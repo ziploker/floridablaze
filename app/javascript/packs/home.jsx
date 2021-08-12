@@ -526,6 +526,7 @@ function Home(props){
 
                     </News>
 
+                  
 
             </HomeWrapper>
 

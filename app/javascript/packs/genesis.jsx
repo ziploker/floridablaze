@@ -9,8 +9,14 @@ import App from './app'
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  const node = document.getElementById('alien_data_dump')
+  const data = JSON.parse(node.getAttribute('data'))
+
   ReactDOM.render(
-    <App/>,
+    <App d={data}/>,
     document.body.appendChild(document.createElement('div')),
   )
 })
+
+
+

@@ -1,0 +1,18 @@
+
+<%= javascript_pack_tag 'genesis' %>
+
+
+<%= content_tag :div,
+    
+    id: "alien_data_dump",
+    data: {current_user: @current_user, 
+            test_string: @test_string, 
+            
+            lastStory: @lastStory, 
+            secondToLastStory: @secondToLastStory, 
+            thirdToLastStory: @thirdToLastStory, 
+            fourthToLastStory: @fourthToLastStory, 
+            fromPath: @path}.to_json do -%>
+    
+<% end %>
+

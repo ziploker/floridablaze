@@ -28,19 +28,26 @@ import Resend from './pages/resend'
 
 
 ///////////////////////////////// MAIN APP STARTING POINT ///////////////
-function App(controllerProps){
+function App(d){
     
-    console.log("==============APP===============")
-    console.log("==============APP props===============", controllerProps)
+    const lastStory = {d}
+    const secondToLastStory = {d}
+    const thirdToLastStory = {d}
+    const fourthToLastStory = {d}
+    const current_user = {d}
+
+    
+    console.log("==============APP===============" + JSON.stringify(d))
+    //console.log("==============APP props===============", controllerProps)
     
     //global APP state 
     const [appState, setAppState] = useState({
             
         
-        lastStory: controllerProps.lastStory,
-        secondToLastStory: controllerProps.secondToLastStory,
-        thirdToLastStory: controllerProps.thirdToLastStory,
-        fourthToLastStory: controllerProps.fourthToLastStory
+        lastStory: lastStory,
+        secondToLastStory: secondToLastStory,
+        thirdToLastStory: thirdToLastStory,
+        fourthToLastStory: fourthToLastStory
         
     })
 
@@ -171,22 +178,22 @@ function App(controllerProps){
         //const mode = process.env.NODE_ENV == "development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
         
         console.log("==============APP useEffects===============")
-        if (controllerProps.current_user != null){
+        if (current_user != null){
 
 
-            console.log("controllerProps.currentUser exists, so bypass session logged_in call")
+            console.log("currentUser exists, so bypass session logged_in call")
             // setAppState({
             //     ...appState,
             //     loggedInStatus: "LOGGED_IN",
-            //     user: controllerProps.current_user,
-            //     emailStatus: controllerProps.current_user.email_confirmed == "true" ? "EMAIL_VERIFIED" : "EMAIL_NOT_VERIFIED"
+            //     user: current_user,
+            //     emailStatus: current_user.email_confirmed == "true" ? "EMAIL_VERIFIED" : "EMAIL_NOT_VERIFIED"
             // })
 
             setUserState({
                 ...userState,
                 loggedInStatus: "LOGGED_IN",
-                user: controllerProps.current_user,
-                emailStatus: controllerProps.current_user.email_confirmed == "true" ? "EMAIL_VERIFIED" : "EMAIL_NOT_VERIFIED"
+                user: current_user,
+                emailStatus: current_user.email_confirmed == "true" ? "EMAIL_VERIFIED" : "EMAIL_NOT_VERIFIED"
             })
 
 
@@ -194,7 +201,7 @@ function App(controllerProps){
         
         
         
-            // console.log("controllerProps.currentUser did not exist, so run logged_in call from server")
+            // console.log("currentUser did not exist, so run logged_in call from server")
 
             // axios.get("/logged_in", {withCredentials: true})
             // .then(response => {
@@ -284,7 +291,7 @@ function App(controllerProps){
                 </Switch>
                 
                 <Act ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}} executeScrollForSection2={executeScrollForSection2} userState={userState} setLoginClicked={setLoginClicked} setOpenSideMenu={setOpenSideMenu}/>
-                <SignupSection ref={{section2ScrollToRef: section2ScrollToRef}}/>
+                <SignupSection ref={{section2ScrollToRef: section2ScrollToRef}} handleSuccessfulAuth={handleSuccessfulAuth}/>
                 {/* <Shop/> */}
                 <Footer/>
 
