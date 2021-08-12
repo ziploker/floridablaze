@@ -1,0 +1,65 @@
+
+
+.replies{
+
+    //transform: scale(1);
+    max-height: 300px;
+    transition: all 197ms ease;
+    opacity: 1;
+    //transform: translateX(0%);
+    //transition-delay: 50ms;
+
+    //position: relative;
+    margin: 10px 0px 0px 25px;
+
+    img {
+        width: 25px;
+        height: 25px;
+        //grid-area: avatar;
+        margin: 1px 10px 0px 0px;
+        border-radius: 50%;
+        border: 1px solid gray;
+        
+    }
+
+}
+
+
+
+.replies.shrink{
+
+    max-height: 0;
+    //transform: scale(0);
+    opacity: 0;
+    //transform: translateX(100%);
+    
+}
+
+
+
+// .ziplokers-enter{
+
+//     opacity: .3;
+// }
+
+
+// .ziplokers-enter-active{
+
+//     opacity: 1;
+//     transition: opacity 2s;
+
+// }
+
+// .ziplokers-exit{
+
+//     opacity: 1;
+//     transition: opacity 2s;
+// }
+
+
+// .ziplokers-exit-active{
+
+//     opacity: 1;
+//     transition: opacity 2s;
+
+// }

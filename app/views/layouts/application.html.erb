@@ -1,0 +1,36 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Floridablaze</title>
+    
+
+ <meta name="viewport" content="width=device-width,initial-scale=1"> 
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAejSgheqbFb_ibGMf9ko902a5_FrJ0dTw&libraries=places"></script>
+    
+    <%# <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
+    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
+
+   
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 
+    
+
+  <body>
+    <%= yield %>
+    
+  </body>
+</html>

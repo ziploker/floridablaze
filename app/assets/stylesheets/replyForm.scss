@@ -1,0 +1,83 @@
+.replyFormHidden{
+
+    z-index: -1;
+    
+    opacity: 0;
+    height: 0px;
+    min-height: 0px;
+    
+    transition: all 197ms ease;
+
+    top: -100px;
+    display: grid;
+  //display: grid;
+
+  position: relative;
+  grid-template-columns: minmax(min-content, max-content) 1fr;
+  grid-template-rows: minmax(50px, 1fr) minmax(min-content, max-content);
+  grid-template-areas:
+
+    "main_comment_img      main_comment_body  "
+    "main_comment_img     main_comment_buttons";
+
+
+  margin: 0px 50px 0px 25px;
+  //min-height: 100px;
+  
+  //top: -100px;
+  //left: 0;
+  background-color: F4F4F4;
+  //padding: 20px;
+  
+
+  img {
+      width: 25px;
+      height: 25px;
+      grid-area: avatar;
+      margin: 1px 10px 0px 0px;
+      border-radius: 50%;
+      border: 1px solid gray;
+
+
+     grid-Area: main_comment_img;
+      
+  }
+
+
+
+}
+
+
+
+
+
+.replyForm{
+
+    //z-index: 1;
+    opacity: 1;
+    height: initial;
+    min-height: 100px;
+    top: 7px;
+
+    margin: 0px 50px 15px 25px;
+    
+
+
+}
+
+
+
+
+
+
+// z-index: ${props => props.rows[props.commentid] == "true" ? "1" : "-1"};
+
+//   opacity: ${props => props.rows[props.commentid] == "true" ? "1" : "0"};
+
+//   height: ${props => props.rows[props.commentid] == "true" ? "initial" : "0px"};
+//   min-height: ${props => props.rows[props.commentid] == "true" ? "100px" : "0px"};
+  
+
+  
+//   top: ${props => props.rows[props.commentid] == "true" ? "7px" : "-100px"};
+//   transition: all .05s ease 0s;
