@@ -1,0 +1,12 @@
+
+
+
+<%= javascript_pack_tag 'admin_portal' %>
+
+
+<%= content_tag :div,
+    
+    id: "admin_data_dump",
+    data: {loggedInStatus: @loggedInStatus}.to_json do -%>
+    
+<% end %>

@@ -353,7 +353,7 @@ function EditForm(props) {
 
 
         <StoryPicWrapper>
-            <StoryPic src={state.image !=null && state.image.length != 0 ? state.image : props.data.url ? props.data.url : "nadaa"}/>
+            {/* <StoryPic src={state.image !=null && state.image.length != 0 ? state.image : props.data.url ? props.data.url : "nadaa"}/> */}
             <LabelForFile htmlFor="image">&#128393;</LabelForFile>
         </StoryPicWrapper> 
 

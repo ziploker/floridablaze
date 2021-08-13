@@ -7,7 +7,9 @@ import NewForm from '../packs/form.jsx'
 
 function Admin(props){
     
-    
+    const loggedInStatus = {props}
+
+    console.log(props.props.loggedInStatus)
     
     return (
 
@@ -16,7 +18,7 @@ function Admin(props){
            
            <NewForm/>
            
-           {props.loggedInStatus}
+           {props.props.loggedInStatus}
 
         </div>
         

@@ -14,7 +14,7 @@ class StoriesController < ApplicationController
   def new
 
     puts "//////////// stories controller // def new --START/////////////////"
-
+    setUser
     
     puts "check if current user exists"
     if @current_user

@@ -348,7 +348,7 @@ function NewForm(props) {
         </div>
 
         <StoryPicWrapper>
-            <StoryPic src={state.image !=null && state.image.length != 0 ? state.image : "nadaa"}/>
+            {/* <StoryPic src={state.image !=null && state.image.length != 0 ? state.image : "nadaa"}/> */}
             <LabelForFile htmlFor="image">&#128393;</LabelForFile>
         </StoryPicWrapper>
 

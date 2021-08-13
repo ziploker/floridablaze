@@ -28,28 +28,28 @@ import Resend from './pages/resend'
 
 
 ///////////////////////////////// MAIN APP STARTING POINT ///////////////
-function App(d){
-    
-    const lastStory = {d}
-    const secondToLastStory = {d}
-    const thirdToLastStory = {d}
-    const fourthToLastStory = {d}
-    const current_user = {d}
+function App({d}){
+    //console.log("NEWAPPPROPS", JSON.stringify(d.current_user))
+    const lastStory = d.lastStory
+    const secondToLastStory = d.secondToLastStory
+    const thirdToLastStory = d.thirdToLastStory
+    const fourthToLastStory = d.fourthToLastStory
+    const current_user = d.current_user
 
     
-    console.log("==============APP===============" + JSON.stringify(d))
+    //console.log("==============APP===============" + JSON.stringify(d))
     //console.log("==============APP props===============", controllerProps)
     
     //global APP state 
-    const [appState, setAppState] = useState({
+    // const [appState, setAppState] = useState({
             
         
-        lastStory: lastStory,
-        secondToLastStory: secondToLastStory,
-        thirdToLastStory: thirdToLastStory,
-        fourthToLastStory: fourthToLastStory
+    //     lastStory: lastStory,
+    //     secondToLastStory: secondToLastStory,
+    //     thirdToLastStory: thirdToLastStory,
+    //     fourthToLastStory: fourthToLastStory
         
-    })
+    // })
 
     const [userState, setUserState] = useState({
 
@@ -280,7 +280,7 @@ function App(d){
                     <Login handleSuccessfulAuth={handleSuccessfulAuth} setLoginClicked={setLoginClicked} loginClicked={loginClicked} />
                 
                 <Switch>
-                    <Route exact path="/" render={ () => <Home handleSuccessfulAuth={handleSuccessfulAuth} loginClicked={loginClicked} setLoginClicked={setLoginClicked} lastStory={appState.lastStory} secondToLastStory={appState.secondToLastStory} thirdToLastStory={appState.thirdToLastStory} fourthToLastStory={appState.fourthToLastStory} />}/>
+                    <Route exact path="/" render={ () => <Home handleSuccessfulAuth={handleSuccessfulAuth} loginClicked={loginClicked} setLoginClicked={setLoginClicked} lastStory={lastStory} secondToLastStory={secondToLastStory} thirdToLastStory={thirdToLastStory} fourthToLastStory={fourthToLastStory} />}/>
                     {/* <Route path="/login" render={ props => <Login {...props} handleSuccessfulAuth={handleSuccessfulAuth} />} /> */}
                     {/* <Route path="/signup" render={ props => <Signup {...props} handleSuccessfulAuth={handleSuccessfulAuth} />} /> */}
                     <Route path="/forgot" render={ props => <Forgot {...props}  />} /> 
