@@ -439,6 +439,7 @@ function Home(props){
                             <LinkWrapper 
                                 to={{
                                     pathname: "/blog/" + slugify(props.lastStory ? props.lastStory.title : "nada"),
+                                    art: props.lastStory
                                 }}
                             >
                                 

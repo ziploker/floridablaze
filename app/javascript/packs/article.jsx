@@ -2,6 +2,8 @@ import React, {useEffect, useState, useRef, usePrevious} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+import {useLocation} from "react-router-dom";
+
 
 // import TimeAgo from 'javascript-time-ago'
 // TimeAgo.addDefaultLocale(en)
@@ -461,6 +463,9 @@ function Article(props){
 
     console.log("==============Article===============")
     console.log("==============Article Props===============", props)
+
+    let dater = useLocation()
+    console.log("dater", dater); //state would be in data.state//
     //const [userData, setUserData] = useState({});
     const [isArtLoading, setIsArtLoading] = useState(true);
     const [artData, setArtData] = useState({})
