@@ -30,7 +30,7 @@ const LinkWrapper = styled(Link)`
 const HomeWrapper = styled.div`
 
     //background: pink;
-    //asdasdasd
+    //xxxxxxxxxxxxxx
     //height: calc(100vh - 85px);
     //max-height: 500px;
     overflow: hidden;
