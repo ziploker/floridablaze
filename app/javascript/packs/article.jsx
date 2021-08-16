@@ -460,25 +460,36 @@ const VoteDown = styled.div`
 
 function Article(props){
 
-
+    let artData
+    
     console.log("==============Article===============")
     console.log("==============Article Props===============", props)
 
-    let artData
+    if (props.location.art && props.location.art != null){
+        artData = props.location.art
+        console.log("artData set via props.location.art - link via home page")
+
+    }else if (props.artData && props.artData != null){
+
+        artData = props.artData
+        console.log("artData set via props.artData - direct link to article - sparks#index")
+    }
+    
+    
 
     
-    if (props.location){
+    // if (props.location){
 
-        let dater = useLocation()
-        console.log("dater", dater); //state would be in data.state//
+    //     let dater = useLocation()
+    //     console.log("dater", dater); //state would be in data.state//
 
-        artData = dater.art
+    //     artData = dater.art
 
-    }else if (props.artData){
+    // }else if (props.artData){
         
-        artData = props.artData
+    //     artData = props.artData
 
-    }
+    // }
 
     
     

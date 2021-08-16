@@ -156,10 +156,10 @@ class CommentsController < ApplicationController
 
         puts "in comments controller, find_commentable 'before action' ==========="
         #comment
-        if params[:event][:comment_id]
+        if params[:event][:comment_id] && !params[:event][:comment_id].empty?
             puts "params[:event][:comment_id] was true so @commentable will be a comment reply"
             @commentable = Comment.find_by_id(params[:event][:comment_id])
-        elsif params[:event][:story_id]
+        elsif params[:event][:story_id] && !params[:event][:story_id].empty?
             
             puts "params[:event][:story_id] was true so @commentable will be a comment reply"
 

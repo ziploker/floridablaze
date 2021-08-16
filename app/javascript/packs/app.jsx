@@ -38,7 +38,7 @@ function App({d}){
     const artData = d.artData
 
     
-    //console.log("==============APP===============" + JSON.stringify(d))
+    console.log("==============APP===============" + JSON.stringify(d))
     //console.log("==============APP props===============", controllerProps)
     
     //global APP state 
