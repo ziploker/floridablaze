@@ -462,6 +462,8 @@ function Home(props){
                             <LinkWrapper 
                                 to={{
                                     pathname: "/blog/" + slugify(props.secondToLastStory ? props.secondToLastStory.title : "nada"),
+                                    art: props.secondToLastStory
+                                
                                 }}
                             >
                                 
@@ -483,7 +485,8 @@ function Home(props){
 
                             <LinkWrapper 
                                 to={{
-                                    pathname: "/blog/" + slugify(props.thirdToLastStory ? props.thirdToLastStory.title : "nada"),
+                                    pathname: "/blog/" + slugify(props.thirdTolastStoryLastStory ? props.thirdToLastStory.title : "nada"),
+                                    art: props.thirdTolastStoryLastStory
                                 }}
                             >
                                 
@@ -505,6 +508,7 @@ function Home(props){
                             <LinkWrapper 
                                 to={{
                                     pathname: "/blog/" + slugify(props.fourthToLastStory ? props.fourthToLastStory.title : "nada"),
+                                    art: props.fourthToLastStory
                                 }}
                             >
                                 

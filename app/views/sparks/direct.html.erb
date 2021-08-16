@@ -1,0 +1,11 @@
+
+<%= javascript_pack_tag 'genesis_story' %>
+
+
+<%= content_tag :div,
+    
+    id: "story_data_dump",
+    data: {artData: @directStory, slug: @slug}.to_json do -%>
+    
+<% end %>
+

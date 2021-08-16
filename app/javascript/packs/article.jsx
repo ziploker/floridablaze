@@ -464,14 +464,39 @@ function Article(props){
     console.log("==============Article===============")
     console.log("==============Article Props===============", props)
 
-    let dater = useLocation()
-    console.log("dater", dater); //state would be in data.state//
+    let artData
+
+    
+    if (props.location){
+
+        let dater = useLocation()
+        console.log("dater", dater); //state would be in data.state//
+
+        artData = dater.art
+
+    }else if (props.artData){
+        
+        artData = props.artData
+
+    }
+
+    
+    
+   
+
+    //const artData = typeof dater.art == 'undefined' ? "empty" : dater.art
+
+   
+
+    //console.log("is artData good?", JSON.stringify(artData))
+
+    
     //const [userData, setUserData] = useState({});
-    const [isArtLoading, setIsArtLoading] = useState(true);
-    const [artData, setArtData] = useState({})
+    //const [isArtLoading, setIsArtLoading] = useState(true);
+    //const [artData, setArtData] = useState({})
 
     //const [artDataComments, setArtDataComments] = useState([])
-    const [avatarLoaded, setAvatarLoaded] = useState(false)
+    //const [avatarLoaded, setAvatarLoaded] = useState(false)
     //const [rows, setRows] = useState({})
     //const [showMore, setShowMore] = useState({})
     
@@ -481,7 +506,7 @@ function Article(props){
     
     
 
-    const [isCommentsLoading, setIsCommentsLoading] = useState(true);
+    //const [isCommentsLoading, setIsCommentsLoading] = useState(true);
 
     let obj = {};
 
@@ -489,55 +514,65 @@ function Article(props){
     //const usersFromController = props.users;
     //const articleFromController = props.article;
     //const commentsFromController = props.comments;
-    const slug = props.match.params.id
-
+    //const slug = props.match.params.id
     
-    useEffect ((props) => {
+
+    const slug = props.match ?  props.match.params.id : props.d.slug
+
+    // artData == "empty" ?
+        
+    //     useEffect (() => {
 
 
-        console.log("==============Article useEffect===============")
+    //         console.log("==============Article useEffect===============")
 
-        const mode = process.env.NODE_ENV =="development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
+    //         const mode = process.env.NODE_ENV =="development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
+    //         console.log(artData == "empty" ? "artData is empty" : "artData is fuLL")
         
         
-        
-        axios.post("/blog/get_article_info", {
-          
-          data: { 
-            slug: slug
+       
+
+    //         axios.post("/blog/get_article_info", {
             
-          }
-        },
-        {withCredentials: true})
-        .then(response => {
-
-
-            //console.log("resoooooooooooooooonse = " + response.inspect)
-          
-                //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
-                //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
-
-               
+    //         data: { 
+    //             slug: slug
                 
-                setArtData(response.data.article)
-                //setArtDataComments(response.data.comments)
+    //         }
+    //         },
+    //         {withCredentials: true})
+    //         .then(response => {
+
+
+    //             //console.log("resoooooooooooooooonse = " + response.inspect)
+            
+    //                 //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
+    //                 //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
+
                 
-                setIsArtLoading(false)
-            
-                //setIsCommentsLoading(false)
+                    
+    //                 setArtData(response.data.article)
+    //                 //setArtDataComments(response.data.comments)
+                    
+    //                 setIsArtLoading(false)
+                
+    //                 //setIsCommentsLoading(false)
 
-                //setCurrentUser(@current_user)
-            
-            
+    //                 //setCurrentUser(@current_user)
+                
+                
 
+                
+                
+    //         }).catch(error => {
             
-            
-        }).catch(error => {
-          
-          //console.log("articleErrors", error)
-        })
-    },[])
-    //const prevRows = usePrevious(rows)
+    //         //console.log("articleErrors", error)
+    //         })
+    //     },[])
+
+    //     :
+
+    //     null
+    // // //const prevRows = usePrevious(rows)
 
 
     // let editLink = null;
@@ -771,11 +806,11 @@ function Article(props){
     
     
     
-    /////////////////////////  do not load page until info lodes from server /////////////
-    if (isArtLoading) {
+    // /////////////////////////  do not load page until info lodes from server /////////////
+    // if (isArtLoading) {
         
-        return <Loading> <h1>Loading......</h1> </Loading>;
-    }
+    //     return <Loading> <h1>Loading......</h1> </Loading>;
+    // }
 
 
 
@@ -785,8 +820,8 @@ function Article(props){
     
         <>
 
-            <AvatarTest src={artData.author_avatar}
-                onLoad={() => setAvatarLoaded(true)}></AvatarTest>
+            {/* <AvatarTest src={artData.author_avatar}
+                onLoad={() => setAvatarLoaded(true)}></AvatarTest> */}
             
             <ArticleSection>
                 
@@ -804,7 +839,9 @@ function Article(props){
                 <InfoBar>
 
                     <FlexBar>
-                        <AuthorAvartar src={avatarLoaded ? artData.author_avatar : defaultAvatar } />
+                        {/* <AuthorAvartar src={avatarLoaded ? artData.author_avatar : defaultAvatar } /> */}
+                        <AuthorAvartar src={artData.author_avatar } />
+
                         <h4 style={{fontSize: ".7rem", lineHeight: "normal"}}>by FloridaBlaze</h4>
                         <div style={{margin: "0px 5px"}}>|</div>
                         <h4 style={{fontFamily: "serif", color: "#777777", fontSize: ".7rem", lineHeight: "normal", marginRight: "8px"}}>{artData.date}</h4>

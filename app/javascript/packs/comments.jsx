@@ -216,8 +216,9 @@ function CommentSection(props){
 
     console.log("==============Comment Section===============")
     console.log("==============Comment Section Props===============", props)    
+    
     const [artDataComments, setArtDataComments] = useState([])
-    const [isCommentsLoading, setIsCommentsLoading] = useState(true);
+    //const [isCommentsLoading, setIsCommentsLoading] = useState(true);
     const allShowMoreRefs = useRef([]);
     allShowMoreRefs.current = []
 
@@ -257,7 +258,7 @@ function CommentSection(props){
                 //setArtData(response.data.article)
                 setArtDataComments(response.data.comments)
                 
-                setIsCommentsLoading(false)
+                //setIsCommentsLoading(false)
             
                 //setIsCommentsLoading(false)
 
@@ -446,15 +447,18 @@ function CommentSection(props){
     
         const nestedComments = (item.comments || []).map(com => {
     
-            return <Comment style={{border: "2px solid blue"}} key={com.id} item={com} type="child" userState={userState} storyID={storyID} setArtDataComments={setArtDataComments} handleShowMoreButton={handleShowMoreButton} handleReplyButton={handleReplyButton} />
-    
+            return (
+                <div key={item.id}>
+                    <Comment style={{border: "2px solid blue"}} item={com} type="child" userState={userState} storyID={storyID} setArtDataComments={setArtDataComments} handleShowMoreButton={handleShowMoreButton} handleReplyButton={handleReplyButton} />
+                </div>
+            )
         });
     
     
     
         return (
     
-            <>
+            
     
                 <CommentDisplay ref={addToShowMoreRefs} className={"replies"} key={item.id + "commentDisplay"} item={item} id={item.id} >
     
@@ -530,7 +534,7 @@ function CommentSection(props){
     
     
     
-            </>
+            
         )
     
     
@@ -551,22 +555,24 @@ function CommentSection(props){
     //     return null
     // }
 
-    if (isCommentsLoading) {
+    // if (isCommentsLoading) {
 
-            return null
-        }
+    //         return null
+    //     }
     
-
+       
 
     return (
 
+        
+
         <Comments>
 
-<CommentFormWrapper>
+            <CommentFormWrapper>
 
-<CommentForm userState={props.userState} storyID={props.artData.id} setArtDataComments={setArtDataComments}/>
+                <CommentForm userState={props.userState} storyID={props.artData.id} setArtDataComments={setArtDataComments}/>
 
-</CommentFormWrapper>
+            </CommentFormWrapper>
 
             
             <div>
@@ -577,16 +583,16 @@ function CommentSection(props){
 
                         artDataComments.map( (c, i) => {
 
-                            //console.log("cccccccccccccccccccccccccccccc", c)
+                            //console.log("cccccccccccccccccccccccccccccc", artDataComments)
 
                             return (
 
-                                <>
-
+                            
+                                   <div key={c.id}>
                                     
-                                    <Comment key={c.id} item={c} userState={props.userState} storyID={props.artData.id} setArtDataComments={setArtDataComments}  handleShowMoreButton={handleShowMoreButton} handleReplyButton={handleReplyButton}  />
-
-                                </>
+                                        <Comment item={c} userState={props.userState} storyID={props.artData.id} setArtDataComments={setArtDataComments}  handleShowMoreButton={handleShowMoreButton} handleReplyButton={handleReplyButton}  />
+                                    </div>
+                                
                             )
                         })
                     }
@@ -595,11 +601,11 @@ function CommentSection(props){
             
             </div>
 
-            <Suspense fallback={<h1>Loading profile...</h1>}>
+            {/* <Suspense fallback={<h1>Loading profile...</h1>}>
 
 
                 </Suspense>
-    
+     */}
         
         </Comments>
     

@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     post '/blog/get_comment_info', to: 'sparks#get_comment_info'
   
     post '/blog/vote_up', to: 'sparks#vote_up'
+
+    #get '/blog/:slug', to: 'sparks#direct'
     
     #get 'blog/:id', to: 'sparks#index'
     
@@ -42,25 +44,6 @@ Rails.application.routes.draw do
     get '/ziploker/edit/:id', to: 'stories#edit'
     get '/ziploker', to: 'stories#new'
     
-  
-  
-  
-  
-  
-  
-  
-  
-  
-    
-    
-  
-    
-  
-  
-  
-  
-  
-  
   
     
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

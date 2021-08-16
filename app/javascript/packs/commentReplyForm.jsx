@@ -360,7 +360,7 @@ function CommentReplyForm(props, ref) {
           {/* <CommentInputDiv contenteditable="true" onClick={self.focus()}>sdfsdf</CommentInputDiv> */}
 
           <TextareaAutosizei 
-           onResize={(e) => {}}
+          //  onResize={(e) => {}}
            
            
            key={props.key + "tar"} data-id={props.dataID + "tar"}

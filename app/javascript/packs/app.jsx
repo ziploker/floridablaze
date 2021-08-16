@@ -35,6 +35,7 @@ function App({d}){
     const thirdToLastStory = d.thirdToLastStory
     const fourthToLastStory = d.fourthToLastStory
     const current_user = d.current_user
+    const artData = d.artData
 
     
     //console.log("==============APP===============" + JSON.stringify(d))
@@ -287,7 +288,7 @@ function App({d}){
                     <Route path="/resend" render={ props => <Resend {...props}  />} />                   
                     <Route exact path="/change_pw/:token" render={ props => <Change {...props}  />} />
                     <Route path="/edit" render={ props => <Edit {...props} user={userState.user}/>} />
-                    <Route exact path="/blog/:id" render = { props => <Article {...props} userState={userState} d={d}/> } />
+                    <Route exact path="/blog/:id" render = { props => <Article {...props} userState={userState} artData={artData}/> } />
                 </Switch>
                 
                 <Act ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}} executeScrollForSection2={executeScrollForSection2} userState={userState} setLoginClicked={setLoginClicked} setOpenSideMenu={setOpenSideMenu}/>

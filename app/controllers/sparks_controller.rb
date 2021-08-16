@@ -13,6 +13,28 @@ class SparksController < ApplicationController
     
     
     end
+
+    def direct
+        puts "DiRECT"
+        puts params[:slug]
+
+        @directStory = Story.find_by(slug: params[:slug])
+        
+        
+        if @directStory.blank?
+            puts "@seeIfStoryExists.blank? was true, so no story was found, either bad params or no story found, redirect to root path with no params, aka homepage, and exit controller "
+            redirect_to root_path
+            return false
+        end
+        
+        if @directStory.nil?
+            puts "@seeIfStoryExists.blank? was true, so no story was found, either bad params or no story found, redirect to root path with no params, aka homepage, and exit controller "
+            redirect_to root_path
+            return false
+        end
+
+        @slug = params[:slug]
+    end
     def index
 
         
