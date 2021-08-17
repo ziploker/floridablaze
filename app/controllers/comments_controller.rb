@@ -10,6 +10,8 @@ class CommentsController < ApplicationController
 
     def create
 
+        
+
         puts "===========in comments controller, create function ==============="
 
 
@@ -50,6 +52,8 @@ class CommentsController < ApplicationController
         if @current_user
 
             puts "current user found, build and save comment"
+
+            
             @comment = @commentable.comments.build(comment_params)
 
             @comment.user = @current_user
@@ -147,7 +151,9 @@ class CommentsController < ApplicationController
     def comment_params
 
         puts "params inspect " + params.inspect
-       
+
+        #params = params[:event].except(:type, :comment_id, :story_id)
+        
         params.require(:event).permit(:event, :body, :author_avatar, :author_nick, :user_id, :original_comment_author)
         #params.require(:event).permit(:event, :body, :story_id, :author_nick, :user_id)
     end
@@ -156,14 +162,18 @@ class CommentsController < ApplicationController
 
         puts "in comments controller, find_commentable 'before action' ==========="
         #comment
-        if params[:event][:comment_id] && !params[:event][:comment_id].empty?
+        if params[:event][:type] == "comment"
             puts "params[:event][:comment_id] was true so @commentable will be a comment reply"
             @commentable = Comment.find_by_id(params[:event][:comment_id])
-        elsif params[:event][:story_id] && !params[:event][:story_id].empty?
+        elsif (params[:event][:type] == "story")
             
-            puts "params[:event][:story_id] was true so @commentable will be a comment reply"
+            puts "params[:event][:story_id] was true so @commentable will be a story reply"
 
             @commentable = Story.find(params[:event][:story_id])
+        else
+
+
+            puts "neither params[:event][:story_id] or params[:event][:comment_id] was true WTFFF"
         end
         puts "out of comments controller, find_commentable before action ==========="
 

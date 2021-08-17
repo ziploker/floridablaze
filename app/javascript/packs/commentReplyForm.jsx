@@ -6,21 +6,21 @@ import $ from 'jquery';
 //import '../components/fix.js'
 import slugify from 'react-slugify'
 import defaultManIcon from '../../assets/images/man3'
-//import TextareaAutosize from 'react-autosize-textarea';
 
 
 
 
-const Section = styled.section`
 
-    //background: rgb(136,189,188);
-    //background: radial-gradient(circle, rgba(136,189,188,1) 0%, rgba(158,190,189,0.9612044646960347) 41%);
-    //background: #F7C562;
-    //height: 100vh;
-    //min-height: 400px;
-    position: relative;
+// const Section = styled.section`
 
-`;
+//     //background: rgb(136,189,188);
+//     //background: radial-gradient(circle, rgba(136,189,188,1) 0%, rgba(158,190,189,0.9612044646960347) 41%);
+//     //background: #F7C562;
+//     //height: 100vh;
+//     //min-height: 400px;
+//     position: relative;
+
+// `;
 
 
 const Form = styled.form`
@@ -131,7 +131,7 @@ const CommentInput = styled.input`
 
 
 
-const TextareaAutosizei = styled.textarea`
+const Textarea = styled.textarea`
 
 
   width: 100%;
@@ -187,23 +187,23 @@ function CommentReplyForm(props, ref) {
       
      
      
-     formData.append('event[body]', state.comment);
-     formData.append('event[story_id]', props.storyID);
-    formData.append('event[comment_id]', props.commentid);
-     formData.append('event[author_nick]', props.userState.nick);
-     formData.append('event[author_avatar]', props.userState.avatar_url);
+      formData.append('event[body]', state.comment);
+      formData.append('event[story_id]', props.storyID);
+      formData.append('event[comment_id]', props.commentID);
+      formData.append('event[author_nick]', props.userState.nick);
+      formData.append('event[author_avatar]', props.userState.avatar_url);
 
-     formData.append('event[original_comment_author]', props.originalcommentAuthor);
+      formData.append('event[original_comment_author]', props.originalcommentAuthor);
+      formData.append('event[type]', "comment");
 
      
      
      
-     
 
-     console.log("formdata from handle add in comment reply form");
-     console.log(formData);
+      console.log("formdata from handle add in comment reply form");
+      console.log(formData);
 
-      
+
       //get token for form submission
       const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");  
       
@@ -232,6 +232,8 @@ function CommentReplyForm(props, ref) {
           //});
 
           //props.setState("done")
+          console.log("rails reply in comment form ajax success= " + JSON.stringify(data, null, 4))
+          console.log("commentREPLYform...........................")
           
           props.setArtDataComments(data.comments)
           
@@ -241,9 +243,7 @@ function CommentReplyForm(props, ref) {
 
           //props.setIsCommentsLoading(false)
 
-         console.log("saved comment not remove reply box + " + props.commentid)
-         console.log("commentreplyform...........................")
-          
+         
 
           
     
@@ -330,12 +330,12 @@ function CommentReplyForm(props, ref) {
 
     
 
-    <div id={props.commentid + "-replyform"} className={"replyFormHidden"} ref={props.addToReplyRefs} commentid={props.commentid}>
+    <div id={props.commentID + "-replyform"} className={"replyFormHidden"} ref={props.addToReplyRefs} commentID={props.commentID}>
         
 
       <img src={props.userState ? props.userState.avatar_url == null ? defaultManIcon : props.userState.avatar_url : defaultManIcon}></img>
 
-      <Form id={props.commentid.toString() + "form"} className="form-inline" onSubmit={handleAdd} enctype="multipart/form-data" >
+      <Form id={props.commentID.toString() + "form"} className="form-inline" onSubmit={handleAdd} enctype="multipart/form-data" >
         
         
         <div style={{width: "100%", height: "100%"}} className="field" >
@@ -359,11 +359,13 @@ function CommentReplyForm(props, ref) {
 
           {/* <CommentInputDiv contenteditable="true" onClick={self.focus()}>sdfsdf</CommentInputDiv> */}
 
-          <TextareaAutosizei 
+          <Textarea 
           //  onResize={(e) => {}}
            
            
-           key={props.key + "tar"} data-id={props.dataID + "tar"}
+           //key={props.key + "tar"} data-id={props.dataID + "tar"}
+           type="textarea"
+           className="form-control"
            onChange={handleChange} 
             
            index={1}
@@ -395,7 +397,7 @@ function CommentReplyForm(props, ref) {
         
         
       </Form>
-      <button form={props.commentid.toString() + "form"} style={{marginTop: "3px", gridArea: "main_comment_buttons"}} type="submit" >reply now</button>
+      <button form={props.commentID.toString() + "form"} style={{marginTop: "3px", gridArea: "main_comment_buttons"}} type="submit" >reply now</button>
     </div>
 
    

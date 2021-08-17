@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_164307) do
+ActiveRecord::Schema.define(version: 2021_08_17_184717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_164307) do
     t.string "parent_id"
     t.string "ancestry"
     t.integer "total_upvotes", default: 0
+    t.integer "total_downvotes", default: 0
     t.index ["ancestry"], name: "index_comments_on_ancestry"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end

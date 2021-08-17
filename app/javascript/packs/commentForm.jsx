@@ -10,16 +10,16 @@ import defaultManIcon from '../../assets/images/man3'
 
 
 
-const Section = styled.section`
+// const Section = styled.section`
 
-    //background: rgb(136,189,188);
-    //background: radial-gradient(circle, rgba(136,189,188,1) 0%, rgba(158,190,189,0.9612044646960347) 41%);
-    //background: #F7C562;
-    //height: 100vh;
-    //min-height: 400px;
-    position: relative;
+//     //background: rgb(136,189,188);
+//     //background: radial-gradient(circle, rgba(136,189,188,1) 0%, rgba(158,190,189,0.9612044646960347) 41%);
+//     //background: #F7C562;
+//     //height: 100vh;
+//     //min-height: 400px;
+//     position: relative;
 
-`;
+// `;
 
 
 const Form = styled.form`
@@ -107,19 +107,21 @@ function CommentForm(props) {
       
      
      
-     formData.append('event[body]', state.comment);
-     formData.append('event[story_id]', props.storyID);
-      formData.append('event[comment_id]', props.commentid);
-     formData.append('event[author_nick]', props.userState.nick);
-     formData.append('event[author_avatar]', props.userState.avatar_url);
+      formData.append('event[body]', state.comment);
+      formData.append('event[story_id]', props.storyID);
+      formData.append('event[comment_id]', props.commentID);
+      formData.append('event[author_nick]', props.userState.nick);
+      formData.append('event[author_avatar]', props.userState.avatar_url);
+      formData.append('event[type]', "story");
+
      
      
      
 
-     console.log("formdata from handle add in comment form");
-     console.log(formData);
+      console.log("formdata from handle add in comment form");
+      console.log(formData);
 
-      
+
       //get token for form submission
       const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");  
       
@@ -150,11 +152,11 @@ function CommentForm(props) {
           //props.setState("done")
 
 
-          console.log("data reply in comment form ajax success= " + JSON.stringify(data, null, 4))
+          console.log("rails reply in comment form ajax success= " + JSON.stringify(data, null, 4))
           console.log("commentform...........................")
           props.setArtDataComments(data.comments)
           
-          //setState({...state,comment: ''})
+          setState({...state,comment: ''})
 
           //props.setIsCommentsLoading(false)
 

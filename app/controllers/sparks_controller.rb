@@ -265,6 +265,58 @@ class SparksController < ApplicationController
     end
 
 
+    def vote_down
+
+        puts "in vote_down in sparks"
+        puts "...and ID is = " + params[:data][:itemID].to_s
+
+        setUser
+
+       
+        if @current_user && @current_user != {}
+            commentToVoteDown = Comment.find_by(id: params["data"]["itemID"])
+            #@current_user is the user thats voting up
+
+            newLike = Like.new(comment_id: commentToVoteDown.id, user_id: @current_user.id)
+
+            if newLike.save!
+                commentToVoteDown.total_downvotes =  commentToVoteDown.total_downvotes + 1
+                
+                if commentToVoteDown.save!
+                    
+                    render json: {
+                        status: "green",
+                        comment_id: commentToVoteDown.id
+        
+                    }
+                end
+
+            else
+                render json: {
+                    status: "red"
+    
+                }
+            end
+
+
+
+
+
+        else
+            render json: {
+                status: "red"
+
+            }
+        end
+
+
+        
+
+        puts commentToVoteDown.likes.count
+
+    end
+
+
 
     def get_comment_info
     

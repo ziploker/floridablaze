@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     post '/blog/get_comment_info', to: 'sparks#get_comment_info'
   
     post '/blog/vote_up', to: 'sparks#vote_up'
+    post '/blog/vote_down', to: 'sparks#vote_down'
 
     #get '/blog/:slug', to: 'sparks#direct'
     
