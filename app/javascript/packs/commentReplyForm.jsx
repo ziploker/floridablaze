@@ -260,7 +260,7 @@ function CommentReplyForm(props, ref) {
   
   const validForm = () => {
 
-    console.log("in comment formmm state.comment = " + state.comment)
+    //console.log("in comment formmm state.comment = " + state.comment)
     if (state.comment ) {
       return true;
     } else {
@@ -277,9 +277,9 @@ function CommentReplyForm(props, ref) {
 
     const { id } = props;
     const value = event.target.value;
-    console.log("nameeeeee = " + event.target.name)
-    console.log("valluuee = " + event.target.value)
-    console.log("focus = " + event.target.tagger)
+    //console.log("nameeeeee = " + event.target.name)
+    //console.log("valluuee = " + event.target.value)
+    //console.log("focus = " + event.target.tagger)
     
     
     if (event.target.name == "title"){

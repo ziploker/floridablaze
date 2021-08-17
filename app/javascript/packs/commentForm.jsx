@@ -109,7 +109,7 @@ function CommentForm(props) {
      
      formData.append('event[body]', state.comment);
      formData.append('event[story_id]', props.storyID);
-      formData.append('event[comment_id]', props.commentID);
+      formData.append('event[comment_id]', props.commentid);
      formData.append('event[author_nick]', props.userState.nick);
      formData.append('event[author_avatar]', props.userState.avatar_url);
      
@@ -140,7 +140,7 @@ function CommentForm(props) {
         ,
         success: function(data) {
           //props.handleAdd(data);
-          //setState({
+          //setState({setState
 
             //focussed: (props.focussed) || false,
             //comment: ''
@@ -154,7 +154,7 @@ function CommentForm(props) {
           console.log("commentform...........................")
           props.setArtDataComments(data.comments)
           
-          setState({...state,comment: ''})
+          //setState({...state,comment: ''})
 
           //props.setIsCommentsLoading(false)
 
@@ -173,7 +173,7 @@ function CommentForm(props) {
   
   const validForm = () => {
 
-    console.log("in comment form")
+    //console.log("in comment form")
     if (state.comment ) {
       return true;
     } else {
@@ -190,9 +190,9 @@ function CommentForm(props) {
 
     const { id } = props;
     const value = event.target.value;
-    console.log("nameeeeee = " + event.target.name)
-    console.log("valluuee = " + event.target.value)
-    console.log("focus = " + event.target.tagger)
+    //console.log("nameeeeee = " + event.target.name)
+    //console.log("valluuee = " + event.target.value)
+    //console.log("focus = " + event.target.tagger)
     
     
     if (event.target.name == "title"){
