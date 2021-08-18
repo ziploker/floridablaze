@@ -189,7 +189,7 @@ function CommentReplyForm(props, ref) {
      
       formData.append('event[body]', state.comment);
       formData.append('event[story_id]', props.storyID);
-      formData.append('event[comment_id]', props.commentID);
+      formData.append('event[comment_id]', props.commentid);
       formData.append('event[author_nick]', props.userState.nick);
       formData.append('event[author_avatar]', props.userState.avatar_url);
 
@@ -330,12 +330,12 @@ function CommentReplyForm(props, ref) {
 
     
 
-    <div id={props.commentID + "-replyform"} className={"replyFormHidden"} ref={props.addToReplyRefs} commentID={props.commentID}>
+    <div id={props.commentid + "-replyform"} className={"replyFormHidden"} ref={props.addToReplyRefs} commentid={props.commentid}>
         
 
       <img src={props.userState ? props.userState.avatar_url == null ? defaultManIcon : props.userState.avatar_url : defaultManIcon}></img>
 
-      <Form id={props.commentID.toString() + "form"} className="form-inline" onSubmit={handleAdd} enctype="multipart/form-data" >
+      <Form id={props.commentid.toString() + "form"} className="form-inline" onSubmit={handleAdd} enctype="multipart/form-data" >
         
         
         <div style={{width: "100%", height: "100%"}} className="field" >
@@ -397,7 +397,7 @@ function CommentReplyForm(props, ref) {
         
         
       </Form>
-      <button form={props.commentID.toString() + "form"} style={{marginTop: "3px", gridArea: "main_comment_buttons"}} type="submit" >reply now</button>
+      <button form={props.commentid.toString() + "form"} style={{marginTop: "3px", gridArea: "main_comment_buttons"}} type="submit" >reply now</button>
     </div>
 
    

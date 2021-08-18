@@ -55,6 +55,7 @@ class Comment < ApplicationRecord
         :author_avatar => node.author_avatar,
         :author_nick => node.author_nick,
         :total_upvotes => node.total_upvotes,
+        :total_downvotes => node.total_downvotes,
         :comments => json_tree(sub_nodes).compact }
     end
     

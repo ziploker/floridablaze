@@ -225,12 +225,18 @@ class SparksController < ApplicationController
             commentToVoteUp = Comment.find_by(id: params["data"]["itemID"])
             #@current_user is the user thats voting up
 
+            
+            puts !!commentToVoteUp.likes.find{|like| like.user_id ==@current_user.id} ? "IT WAS A DUPLICATE VOTE" : "NO VOTE YET< CARRY ON!!"
+            
+            
+            
+            
             newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
 
-            if newLike.save!
+            if newLike.save
                 commentToVoteUp.total_upvotes =  commentToVoteUp.total_upvotes + 1
                 
-                if commentToVoteUp.save!
+                if commentToVoteUp.save
                     
                     render json: {
                         status: "green",
@@ -277,12 +283,12 @@ class SparksController < ApplicationController
             commentToVoteDown = Comment.find_by(id: params["data"]["itemID"])
             #@current_user is the user thats voting up
 
-            newLike = Like.new(comment_id: commentToVoteDown.id, user_id: @current_user.id)
+            newDislike = Dislike.new(comment_id: commentToVoteDown.id, user_id: @current_user.id)
 
-            if newLike.save!
+            if newDislike.save
                 commentToVoteDown.total_downvotes =  commentToVoteDown.total_downvotes + 1
                 
-                if commentToVoteDown.save!
+                if commentToVoteDown.save
                     
                     render json: {
                         status: "green",
