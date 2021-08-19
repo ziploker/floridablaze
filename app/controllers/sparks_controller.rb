@@ -218,70 +218,105 @@ class SparksController < ApplicationController
         puts "in vote_up in sparks"
         puts "...and ID is = " + params[:data][:itemID].to_s
 
+        #set @current_user
         setUser
 
        
+        #check that @current_user exists
         if @current_user && @current_user != {}
             commentToVoteUp = Comment.find_by(id: params["data"]["itemID"])
-            #@current_user is the user thats voting up
+            
 
             
-            if !!commentToVoteUp.likes.find{|like| like.user_id ==@current_user.id}
+            #check if @current_user has already up voted
+            #subtract an upvote
+            if !!commentToVoteUp.likes.find{|like| like.user_id == @current_user.id}
 
-               puts "IT WAS A DUPLICATE VOTE"
-               #newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
-
-               Like.destroy_by(user_id: @current_user.id)
-
-            else
+                #user has already voted, so subtract one vote instead
+                if Like.destroy_by(user_id: @current_user.id)
                 
-                puts "#NO VOTE YET< CARRY ON!!"
-
-                newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
-
-                if newLike.save
-                    commentToVoteUp.total_upvotes =  commentToVoteUp.total_upvotes + 1
+                    render json: {
+                        status: "yellow",
+                        comment_id: commentToVoteUp.id
+                    }
+               
+                else
                     
-                    if commentToVoteUp.save
+                    #Delete Vote Failed
+                    render json: {
+                        status: "red",
+                    }
+                
+                end
+            
+            
+            #check if @current_user has already down voted
+            #subtract a downvote and add an upvote
+            elsif !!commentToVoteUp.dislikes.find{|dislike| dislike.user_id == @current_user.id}
+            
+                if Dislike.destroy_by(user_id: @current_user.id)
+
+                    newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
+
+                    if newLike.save
                         
                         render json: {
                             status: "green",
                             comment_id: commentToVoteUp.id
             
                         }
+               
+                    else
+                    
+                        #Save Failed 
+                        render json: {
+                            status: "red"
+            
+                        }
+                
                     end
+                end
+                
+            else
+                
+                #user has NOT already voted at all, so add one vote.
+                newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
 
+                if newLike.save
+                    
+                    render json: {
+                        status: "green",
+                        comment_id: commentToVoteUp.id
+        
+                    }
+               
                 else
+                    
+                    #Save Failed 
                     render json: {
                         status: "red"
         
                     }
+                
                 end
-
-            
-            
             end
             
             
-
-
-
-
         else
+
+            #@current_user not found
             render json: {
                 status: "red"
 
             }
-        end
-
-
         
-
-        puts commentToVoteUp.likes.count
+        end
 
     end
 
 
+    
+    
     def vote_down
 
         puts "in vote_down in sparks"

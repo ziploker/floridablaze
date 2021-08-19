@@ -32,12 +32,12 @@ class Comment < ApplicationRecord
 
   def self.json_tree(arrayOfHashes)
 
-    puts "in selg jsjgfkjhgfkjhgkhgjkgkjhgkjgh"
+    puts "Comment in self Json Tree"
    
     
     arrayOfHashes.map do |node, sub_nodes|
       
-      
+      puts "in the tree" + node.likes.count.to_s
       {:id => node.id, 
         :body => node.body, 
         :created_at => node.created_at,
@@ -54,8 +54,10 @@ class Comment < ApplicationRecord
         :edit_history => node.edit_history,
         :author_avatar => node.author_avatar,
         :author_nick => node.author_nick,
-        :total_upvotes => node.total_upvotes,
-        :total_downvotes => node.total_downvotes,
+        # :total_upvotes => node.total_upvotes,
+        :total_upvotes => node.likes.count.to_s,
+        #:total_downvotes => node.total_downvotes,
+        :total_downvotes => node.dislikes.count.to_s,
         :comments => json_tree(sub_nodes).compact }
     end
     

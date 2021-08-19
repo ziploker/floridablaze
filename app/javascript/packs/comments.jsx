@@ -384,9 +384,9 @@ function CommentSection(props){
         
     }
 
-    const voteUpByOne = commentID => {
+    const voteUpByOne = (commentID, status) => {
 
-        console.log("inside voteUpByOne", commentID)
+        console.log("inside voteUpByOne", commentID + "and status is = " + status)
         
         allVoteUpRefs.current.map ( (current, i) => {
             
@@ -400,7 +400,19 @@ function CommentSection(props){
             
             if (current.offsetParent.id == commentID){
 
-               current.innerText = parseInt(current.innerText) + 1
+                if (status == "green"){
+               
+                    current.innerText = parseInt(current.innerText) + 1
+                
+                }else if(status == "yellow"){
+
+                    current.innerText = parseInt(current.innerText) - 1
+
+                }else{
+
+                    //this should never happen
+                }
+
             }
 
         })
@@ -449,8 +461,8 @@ function CommentSection(props){
           .then(response => {
   
   
-            if (response.data.status == "green"){     
-                voteUpByOne(response.data.comment_id)
+            if (response.data.status == "green" || response.data.status == "yellow" ){     
+                voteUpByOne(response.data.comment_id, response.data.status)
             }else{
                 voteUpAnimate(response.data.comment_id)
             }
