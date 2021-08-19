@@ -226,32 +226,43 @@ class SparksController < ApplicationController
             #@current_user is the user thats voting up
 
             
-            puts !!commentToVoteUp.likes.find{|like| like.user_id ==@current_user.id} ? "IT WAS A DUPLICATE VOTE" : "NO VOTE YET< CARRY ON!!"
-            
-            
-            
-            
-            newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
+            if !!commentToVoteUp.likes.find{|like| like.user_id ==@current_user.id}
 
-            if newLike.save
-                commentToVoteUp.total_upvotes =  commentToVoteUp.total_upvotes + 1
+               puts "IT WAS A DUPLICATE VOTE"
+               #newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
+
+               Like.destroy_by(user_id: @current_user.id)
+
+            else
                 
-                if commentToVoteUp.save
+                puts "#NO VOTE YET< CARRY ON!!"
+
+                newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
+
+                if newLike.save
+                    commentToVoteUp.total_upvotes =  commentToVoteUp.total_upvotes + 1
                     
+                    if commentToVoteUp.save
+                        
+                        render json: {
+                            status: "green",
+                            comment_id: commentToVoteUp.id
+            
+                        }
+                    end
+
+                else
                     render json: {
-                        status: "green",
-                        comment_id: commentToVoteUp.id
+                        status: "red"
         
                     }
                 end
 
-            else
-                render json: {
-                    status: "red"
-    
-                }
+            
+            
             end
-
+            
+            
 
 
 
