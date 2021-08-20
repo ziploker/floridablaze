@@ -236,7 +236,7 @@ class SparksController < ApplicationController
                 if Like.destroy_by(user_id: @current_user.id)
                 
                     render json: {
-                        status: "yellow",
+                        status: "voteup_undo",
                         comment_id: commentToVoteUp.id
                     }
                
@@ -261,7 +261,7 @@ class SparksController < ApplicationController
                     if newLike.save
                         
                         render json: {
-                            status: "green",
+                            status: "voteup_toggle",
                             comment_id: commentToVoteUp.id
             
                         }
@@ -285,7 +285,7 @@ class SparksController < ApplicationController
                 if newLike.save
                     
                     render json: {
-                        status: "green",
+                        status: "voteup",
                         comment_id: commentToVoteUp.id
         
                     }

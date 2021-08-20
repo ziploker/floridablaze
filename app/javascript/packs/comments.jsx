@@ -388,13 +388,7 @@ function CommentSection(props){
 
         console.log("inside voteUpByOne", commentID + "and status is = " + status)
         
-        allVoteUpRefs.current.map ( (current, i) => {
-            
-            console.log("inside REF array", current)
-
-        })
-
-        ////////////////////////////////////////
+       
 
         allVoteUpRefs.current.map ( (current, i) => {
             
@@ -421,7 +415,36 @@ function CommentSection(props){
 
     }
 
-    const voteDownByOne = commentID => {
+    
+
+    const handleVoteUp = (e, itemID) => {
+
+        console.log("Handle VoteUp Start sending axios request to rails server with item id " + itemID, e)
+        
+        axios.post("/blog/vote_up", {
+          
+            data: { 
+              itemID: itemID
+              
+            }
+          },
+          {withCredentials: true})
+          .then(response => {
+  
+            handleVoteUpResponse(response.data.comment_id, response.data.status)
+            voteUpAnimate(response.data.comment_id)
+            
+  
+              
+              
+          }).catch(error => {
+            
+            console.log("handleVoteUp errors if any are ", error)
+          })
+
+    }
+
+    const handleVoteUpResponse = commentID => {
 
         console.log("inside voteDownByOne", commentID)
         
@@ -443,36 +466,6 @@ function CommentSection(props){
         })
 
 
-
-    }
-
-    const handleVoteUp = (e, itemID) => {
-
-        console.log("Handle VoteUp Start sending axios request to rails server with item id " + itemID, e)
-        
-        axios.post("/blog/vote_up", {
-          
-            data: { 
-              itemID: itemID
-              
-            }
-          },
-          {withCredentials: true})
-          .then(response => {
-  
-  
-            if (response.data.status == "green" || response.data.status == "yellow" ){     
-                voteUpByOne(response.data.comment_id, response.data.status)
-            }else{
-                voteUpAnimate(response.data.comment_id)
-            }
-  
-              
-              
-          }).catch(error => {
-            
-            console.log("handleVoteUp errors if any are ", error)
-          })
 
     }
 
