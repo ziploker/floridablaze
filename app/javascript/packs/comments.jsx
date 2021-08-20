@@ -384,39 +384,10 @@ function CommentSection(props){
         
     }
 
-    const voteUpByOne = (commentID, status) => {
-
-        console.log("inside voteUpByOne", commentID + "and status is = " + status)
-        
-       
-
-        allVoteUpRefs.current.map ( (current, i) => {
-            
-            if (current.offsetParent.id == commentID){
-
-                if (status == "green"){
-               
-                    current.innerText = parseInt(current.innerText) + 1
-                
-                }else if(status == "yellow"){
-
-                    current.innerText = parseInt(current.innerText) - 1
-
-                }else{
-
-                    //this should never happen
-                }
-
-            }
-
-        })
-
-
-
-    }
-
+    
     
 
+    //when someone clicks on the upvote
     const handleVoteUp = (e, itemID) => {
 
         console.log("Handle VoteUp Start sending axios request to rails server with item id " + itemID, e)
@@ -444,31 +415,51 @@ function CommentSection(props){
 
     }
 
-    const handleVoteUpResponse = commentID => {
+    
+    //handle vote up based on rails response (status)
+    const handleVoteUpResponse = (commentID, status) => {
 
-        console.log("inside voteDownByOne", commentID)
+        console.log("inside handleVoteUpResponse", "commentID is = " + commentID + "and status is = " + status)
         
-        allVoteDownRefs.current.map ( (current, i) => {
-            
-            console.log("inside REF array", current)
+       
 
-        })
-
-        ////////////////////////////////////////
-
-        allVoteDownRefs.current.map ( (current, i) => {
+        //find ref
+        allVoteUpRefs.current.map ( (current, i) => {
             
             if (current.offsetParent.id == commentID){
 
-               current.innerText = parseInt(current.innerText) + 1
+                console.log(current)
+
+                if (status == "voteup_undo"){
+               
+                    current.innerText = parseInt(current.innerText) - 1
+                
+                }else if (status == "voteup_toggle"){
+
+                    current.innerText = parseInt(current.innerText) + 1
+
+                    allVoteDownRefs.current.map ( (current, i) => {
+
+                        if (current.offsetParent.id == commentID){
+                            current.innerText = parseInt(current.innerText) - 1
+                        }
+
+                    })
+
+
+                }else if (status == "voteup"){
+
+                    current.innerText = parseInt(current.innerText) + 1
+                }
+
             }
 
         })
-
-
-
+        
+        
+        
     }
-
+        
 
     const handleVoteDown = (e, itemID) => {
 
@@ -485,11 +476,8 @@ function CommentSection(props){
           .then(response => {
   
   
-            if (response.data.status == "green"){     
-                voteDownByOne(response.data.comment_id)
-            }else{
-                voteDownAnimate(response.data.comment_id)
-            }
+            handleVoteDownResponse(response.data.comment_id, response.data.status)
+            voteUpAnimate(response.data.comment_id)
               
   
               
@@ -501,6 +489,50 @@ function CommentSection(props){
 
     }
 
+
+
+    const handleVoteDownResponse = (commentID, status) => {
+
+        console.log("inside handleVoteDownResponse", "commentID is = " + commentID + "and status is = " + status)
+        
+       
+
+        //find ref
+        allVoteDownRefs.current.map ( (current, i) => {
+            
+            if (current.offsetParent.id == commentID){
+
+                console.log(current)
+
+                if (status == "votedown_undo"){
+               
+                    current.innerText = parseInt(current.innerText) - 1
+                
+                }else if (status == "votedown_toggle"){
+
+                    current.innerText = parseInt(current.innerText) + 1
+
+                    allVoteUpRefs.current.map ( (current, i) => {
+
+                        if (current.offsetParent.id == commentID){
+                            current.innerText = parseInt(current.innerText) - 1
+                        }
+
+                    })
+
+
+                }else if (status == "votedown"){
+
+                    current.innerText = parseInt(current.innerText) + 1
+                }
+
+            }
+
+        })
+        
+        
+        
+    }
     
     
     //function called recursivley

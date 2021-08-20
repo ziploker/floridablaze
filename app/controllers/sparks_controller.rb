@@ -229,7 +229,6 @@ class SparksController < ApplicationController
 
             
             #check if @current_user has already up voted
-            #subtract an upvote
             if !!commentToVoteUp.likes.find{|like| like.user_id == @current_user.id}
 
                 #user has already voted, so subtract one vote instead
@@ -322,49 +321,98 @@ class SparksController < ApplicationController
         puts "in vote_down in sparks"
         puts "...and ID is = " + params[:data][:itemID].to_s
 
+        #set @current_user
         setUser
 
        
+        #check that @current_user exists
         if @current_user && @current_user != {}
             commentToVoteDown = Comment.find_by(id: params["data"]["itemID"])
-            #@current_user is the user thats voting up
+            
 
-            newDislike = Dislike.new(comment_id: commentToVoteDown.id, user_id: @current_user.id)
+            
+            #check if @current_user has already up voted
+            if !!commentToVoteDown.dislikes.find{|dislike| dislike.user_id == @current_user.id}
 
-            if newDislike.save
-                commentToVoteDown.total_downvotes =  commentToVoteDown.total_downvotes + 1
+                #user has already voted, so subtract one vote instead
+                if Dislike.destroy_by(user_id: @current_user.id)
                 
-                if commentToVoteDown.save
+                    render json: {
+                        status: "votedown_undo",
+                        comment_id: commentToVoteDown.id
+                    }
+               
+                else
+                    
+                    #Delete Vote Failed
+                    render json: {
+                        status: "red",
+                    }
+                
+                end
+            
+            
+            #check if @current_user has already up voted
+            #subtract a upvote and add a downvote
+            elsif !!commentToVoteDown.likes.find{|like| like.user_id == @current_user.id}
+            
+                if Like.destroy_by(user_id: @current_user.id)
+
+                    newDislike = Dislike.new(comment_id: commentToVoteDown.id, user_id: @current_user.id)
+
+                    if newDislike.save
+                        
+                        render json: {
+                            status: "votedown_toggle",
+                            comment_id: commentToVoteDown.id
+            
+                        }
+               
+                    else
+                    
+                        #Save Failed 
+                        render json: {
+                            status: "red"
+            
+                        }
+                
+                    end
+                end
+                
+            else
+                
+                #user has NOT already voted at all, so add one vote.
+                newDislike = Dislike.new(comment_id: commentToVoteDown.id, user_id: @current_user.id)
+
+                if newDislike.save
                     
                     render json: {
-                        status: "green",
+                        status: "votedown",
                         comment_id: commentToVoteDown.id
         
                     }
+               
+                else
+                    
+                    #Save Failed 
+                    render json: {
+                        status: "red"
+        
+                    }
+                
                 end
-
-            else
-                render json: {
-                    status: "red"
-    
-                }
             end
-
-
-
-
-
+            
+            
         else
+
+            #@current_user not found
             render json: {
                 status: "red"
 
             }
-        end
-
-
         
-
-        puts commentToVoteDown.likes.count
+        end
 
     end
 

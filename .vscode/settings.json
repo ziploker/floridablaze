@@ -6,6 +6,9 @@
         "downvotes",
         "total",
         "type",
-        "upvotes"
+        "undo",
+        "upvotes",
+        "votedown",
+        "voteup"
     ]
 }
