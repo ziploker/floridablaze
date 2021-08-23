@@ -98,7 +98,45 @@ function App({d}){
 
     }
 
-    
+    const handleLogOutClick = () => {
+
+        axios.delete("/logout", {
+          
+            data: { 
+              user: "user"
+            }
+              
+        },{withCredentials: true}).then(response => {
+
+                console.log(response)
+
+                //Server says logged_in but appState says not logged in
+                
+                    
+                setUserState({
+                    ...userState,
+                    loggedInStatus: "NOT_LOGGED_IN",
+                    user: {}
+                 })
+                    
+                
+               
+                
+            
+        }).catch(error => {
+                
+                console.log("Logout? error", error)
+        })
+
+
+
+        
+
+
+
+    }
+
+
     
     
     
@@ -270,7 +308,7 @@ function App({d}){
                    
                     <Header 
                         userState={userState} 
-                        //handleLogOutClick={handleLogOutClick}
+                        handleLogOutClick={handleLogOutClick}
                         setLoginClicked={setLoginClicked}
                         openSideMenu={openSideMenu}
                         setOpenSideMenu={setOpenSideMenu}

@@ -38,6 +38,7 @@ class Comment < ApplicationRecord
     arrayOfHashes.map do |node, sub_nodes|
       
       puts "in the tree" + node.likes.count.to_s
+      puts "in the tree2" + node.likes.map(&:user_id).inspect
       {:id => node.id, 
         :body => node.body, 
         :created_at => node.created_at,
@@ -58,6 +59,7 @@ class Comment < ApplicationRecord
         :total_upvotes => node.likes.count.to_s,
         #:total_downvotes => node.total_downvotes,
         :total_downvotes => node.dislikes.count.to_s,
+        :array_of_likers => node.likes.map(&:user_id),
         :comments => json_tree(sub_nodes).compact }
     end
     
