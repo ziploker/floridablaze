@@ -215,7 +215,7 @@ class SparksController < ApplicationController
 
     def vote_up
 
-        puts "in vote_up in sparks"
+        puts "###in vote_up in sparks ###"
         puts "...and ID is = " + params[:data][:itemID].to_s
 
         #set @current_user
@@ -224,6 +224,8 @@ class SparksController < ApplicationController
        
         #check that @current_user exists
         if @current_user && @current_user != {}
+
+            puts "###verified current user, now get comment via itemID###"
             commentToVoteUp = Comment.find_by(id: params["data"]["itemID"])
             
 
@@ -231,8 +233,10 @@ class SparksController < ApplicationController
             #check if @current_user has already up voted
             if !!commentToVoteUp.likes.find{|like| like.user_id == @current_user.id}
 
+                
+                puts "###found duplicate upvote so subtract one upvote instead ###"
                 #user has already voted, so subtract one vote instead
-                if Like.destroy_by(user_id: @current_user.id)
+                if Like.destroy_by(user_id: @current_user.id, comment_id: commentToVoteUp.id)
                 
                     render json: {
                         status: "voteup_undo",
@@ -253,6 +257,8 @@ class SparksController < ApplicationController
             #subtract a downvote and add an upvote
             elsif !!commentToVoteUp.dislikes.find{|dislike| dislike.user_id == @current_user.id}
             
+                
+                puts "###found user had alreadt downvoted, so remove donvote b4 upvote. ###"
                 if Dislike.destroy_by(user_id: @current_user.id)
 
                     newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
@@ -279,6 +285,7 @@ class SparksController < ApplicationController
             else
                 
                 #user has NOT already voted at all, so add one vote.
+                puts "## no prev votes found, engage ##"
                 newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
 
                 if newLike.save

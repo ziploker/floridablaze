@@ -8,11 +8,18 @@
     fill: white
 }
 
-.selected{
-    
-        fill: rgb(98, 155, 101);
-    
 
+
+.selected{
+
+    #layer1 path:nth-child(2){
+
+        fill:#2ef00a2b;
+    }
+
+    #layer1 path:nth-child(3){
+
+        fill: rgb(46, 240, 10);
+    }
 }
-    
     
