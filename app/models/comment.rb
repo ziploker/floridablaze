@@ -60,6 +60,7 @@ class Comment < ApplicationRecord
         #:total_downvotes => node.total_downvotes,
         :total_downvotes => node.dislikes.count.to_s,
         :array_of_likers => node.likes.map(&:user_id),
+        :array_of_dislikers => node.dislikes.map(&:user_id),
         :comments => json_tree(sub_nodes).compact }
     end
     

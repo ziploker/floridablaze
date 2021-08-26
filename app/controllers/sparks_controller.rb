@@ -35,6 +35,9 @@ class SparksController < ApplicationController
 
         @slug = params[:slug]
     end
+    
+    
+    
     def index
 
         
@@ -259,7 +262,7 @@ class SparksController < ApplicationController
             
                 
                 puts "###found user had alreadt downvoted, so remove donvote b4 upvote. ###"
-                if Dislike.destroy_by(user_id: @current_user.id)
+                if Dislike.destroy_by(user_id: @current_user.id, comment_id: commentToVoteUp.id)
 
                     newLike = Like.new(comment_id: commentToVoteUp.id, user_id: @current_user.id)
 
@@ -338,11 +341,11 @@ class SparksController < ApplicationController
             
 
             
-            #check if @current_user has already up voted
+            #check if @current_user has already down voted
             if !!commentToVoteDown.dislikes.find{|dislike| dislike.user_id == @current_user.id}
 
                 #user has already voted, so subtract one vote instead
-                if Dislike.destroy_by(user_id: @current_user.id)
+                if Dislike.destroy_by(user_id: @current_user.id, comment_id: commentToVoteDown.id)
                 
                     render json: {
                         status: "votedown_undo",
@@ -363,7 +366,7 @@ class SparksController < ApplicationController
             #subtract a upvote and add a downvote
             elsif !!commentToVoteDown.likes.find{|like| like.user_id == @current_user.id}
             
-                if Like.destroy_by(user_id: @current_user.id)
+                if Like.destroy_by(user_id: @current_user.id, comment_id: commentToVoteDown.id)
 
                     newDislike = Dislike.new(comment_id: commentToVoteDown.id, user_id: @current_user.id)
 

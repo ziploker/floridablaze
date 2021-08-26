@@ -29,3 +29,21 @@
 //#f0200a2b;
 
 //#f00a0a;
+
+
+
+.down_vote_selected{
+
+    svg{
+
+        #layer11 path:nth-child(2){
+
+            fill:#f0200a2b;
+        }
+
+        #layer11 path:nth-child(3){
+
+            fill: #f00a0a;
+        }
+    }
+}

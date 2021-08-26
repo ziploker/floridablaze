@@ -14,6 +14,8 @@ import axios from 'axios';
 import DrawingFilled from '../../assets/images/drawingFilled.svg';
 import { ReactComponent as SvgSmiley } from "../../assets/images/drawingFilled.svg";
 import ThumbsUpSvg from './thumbsUpSvg'
+import ThumbsDownSvg from './thumbsDownSvg'
+
 
 import CommentForm from './commentForm'
 
@@ -444,11 +446,13 @@ function CommentSection(props){
                 }else if (status == "voteup_toggle"){
 
                     current.innerText = parseInt(current.innerText) + 1
+                    current.parentElement.classList.add('selected')
 
                     allVoteDownRefs.current.map ( (current, i) => {
 
                         if (current.offsetParent.id == commentID){
                             current.innerText = parseInt(current.innerText) - 1
+                            current.parentElement.classList.remove('down_vote_selected')
                         }
 
                     })
@@ -518,15 +522,18 @@ function CommentSection(props){
                 if (status == "votedown_undo"){
                
                     current.innerText = parseInt(current.innerText) - 1
+                    current.parentElement.classList.remove('down_vote_selected')
                 
                 }else if (status == "votedown_toggle"){
 
                     current.innerText = parseInt(current.innerText) + 1
+                    current.parentElement.classList.add('down_vote_selected')
 
                     allVoteUpRefs.current.map ( (current, i) => {
 
                         if (current.offsetParent.id == commentID){
                             current.innerText = parseInt(current.innerText) - 1
+                            current.parentElement.classList.remove('selected')
                         }
 
                     })
@@ -535,6 +542,7 @@ function CommentSection(props){
                 }else if (status == "votedown"){
 
                     current.innerText = parseInt(current.innerText) + 1
+                    current.parentElement.classList.add('down_vote_selected')
                 }
 
             }
@@ -631,6 +639,28 @@ function CommentSection(props){
 
         }
 
+        const disliker = arrayOfDislikers => {
+            let match = 0
+
+            arrayOfDislikers.map(i => {
+
+                if (i == props.userState.user.id){
+
+                    match = match + 1
+                }
+            })
+
+
+            if (match > 0){
+
+                return "down_vote_selected"
+
+            }
+
+
+
+        }
+
         
     
     
@@ -686,7 +716,9 @@ function CommentSection(props){
     
                         </VoteUp>
     
-                        <VoteDown onClick={(e)=>{handleVoteDown(e, item.id)}}>
+                        <VoteDown className={disliker(item.array_of_dislikers)} onClick={(e)=>{handleVoteDown(e, item.id)}}>
+
+                            <ThumbsDownSvg  width="18px" viewBox="0 0 22 20"/>    
                             <span ref={addToVoteDownRefs} commentid={item.id}>{item.total_downvotes}</span>
     
                         </VoteDown>
