@@ -168,6 +168,8 @@ class LookupsController < ApplicationController
       #get openstates query 1of3 and convert it to json
       #should return info for 1 house and 1 senate legislator
       primaryOpenStatesQuery = openStatesQueryBuilderPrimary(@lat, @lng).to_json
+
+      puts "qqq " + primaryOpenStatesQuery
       primaryOpenStatesResponse = HTTParty.get('https://openstates.org/graphql', {
   
           method: 'POST',
@@ -179,7 +181,7 @@ class LookupsController < ApplicationController
       }).to_dot
   
       puts "=====================start: openstates query 1of3 =================="
-      puts primaryOpenStatesResponse
+      puts primaryOpenStatesResponse.to_yaml
       puts "=====================end: openstates query 1of3=================="
   
   
@@ -196,12 +198,14 @@ class LookupsController < ApplicationController
       
       puts "1sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
       sendToFrontEnd["one"]["fullDistrict"] =  primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].post.division.name
+      
       puts "2sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
       
       temp = primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].post.division.name.dup
       puts "3sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
   
-      fullDistrictTrunk = temp.gsub!(/(\d+|(district))/,"").rstrip
+      # fullDistrictTrunk = temp.gsub!(/(\d+|(district))/,"").rstrip
+      fullDistrictTrunk = "fullDistricTrunk1of2"
       puts "4sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
       sendToFrontEnd["one"]["fullDistrictTrunk"] = fullDistrictTrunk
       puts "5sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
@@ -221,7 +225,9 @@ class LookupsController < ApplicationController
       sendToFrontEnd["two"]["fullDistrict"] =  primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].post.division.name
   
       temp = primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].post.division.name
-      fullDistrictTrunk = temp.gsub!(/(\d+|(district))/,"").rstrip
+      # fullDistrictTrunk = temp.gsub!(/(\d+|(district))/,"").rstrip
+      fullDistrictTrunk = "fullDistricTrunk2of2"
+
       sendToFrontEnd["two"]["fullDistrictTrunk"] = fullDistrictTrunk
       
       
