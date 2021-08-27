@@ -4,7 +4,7 @@ import actBackground from "../../assets/images/actBackground.png";
 import mega from "../../assets/images/megav3.png";
 import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
-import sampleShot2 from "../../assets/images/sampleShot2.png";
+import samplepic from "../../assets/images/man3.png";
 import "../../assets/stylesheets/sendButton";
 
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
@@ -1512,7 +1512,7 @@ function Act(props, ref) {
           <CardOne>
             <CardOneWrapper>
               <CardPicture
-                src={results.one.image ? results.one.image : sampleShot2}
+                src={results.one.image ? results.one.image : samplepic}
               ></CardPicture>
 
               <CardTemplate src={cardTemplate}></CardTemplate>
@@ -1528,7 +1528,7 @@ function Act(props, ref) {
           <CardTwo>
             <CardTwoWrapper>
               <CardPicture
-                src={results.two.image ? results.two.image : sampleShot2}
+                src={results.two.image ? results.two.image : samplepic}
               ></CardPicture>
 
               <CardTemplate src={cardTemplate}></CardTemplate>
@@ -1547,11 +1547,11 @@ function Act(props, ref) {
             <div className="LetterSideOverlay2"></div>
 
             {/* <img
-              src={results.one.image ? results.one.image : sampleShot2}
+              src={results.one.image ? results.one.image : samplepic}
               className="miniPic1"
             />
             <img
-              src={results.two.image ? results.two.image : sampleShot2}
+              src={results.two.image ? results.two.image : samplepic}
               className="miniPic2"
             /> */}
 

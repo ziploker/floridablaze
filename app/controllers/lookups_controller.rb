@@ -106,6 +106,8 @@ class LookupsController < ApplicationController
       end
       
     end
+
+    
   
     
     
@@ -186,49 +188,107 @@ class LookupsController < ApplicationController
   
   
       #update the hash thatll be sent to front end
-  
-      sendToFrontEnd["one"]["name"] =  primaryOpenStatesResponse.data.people.edges[0].node.name.gsub('\\"', '')
-      sendToFrontEnd["one"]["firstName"] =  primaryOpenStatesResponse.data.people.edges[0].node.givenName
-      sendToFrontEnd["one"]["lastName"] =  primaryOpenStatesResponse.data.people.edges[0].node.familyName
-      sendToFrontEnd["one"]["image"] =  primaryOpenStatesResponse.data.people.edges[0].node.image
-      sendToFrontEnd["one"]["id"] =  primaryOpenStatesResponse.data.people.edges[0].node.id
-      sendToFrontEnd["one"]["chamber"] =  primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].organization.name
-      sendToFrontEnd["one"]["parent"] =  primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].organization.parent.name
-      sendToFrontEnd["one"]["district"] =  primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].post.label
-      
-      puts "1sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
-      sendToFrontEnd["one"]["fullDistrict"] =  primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].post.division.name
-      
-      puts "2sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
-      
-      temp = primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].post.division.name.dup
-      puts "3sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
-  
-      # fullDistrictTrunk = temp.gsub!(/(\d+|(district))/,"").rstrip
-      fullDistrictTrunk = "fullDistricTrunk1of2"
-      puts "4sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
-      sendToFrontEnd["one"]["fullDistrictTrunk"] = fullDistrictTrunk
-      puts "5sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
-  
-      
-  
-  
-  
-      sendToFrontEnd["two"]["name"] =  primaryOpenStatesResponse.data.people.edges[1].node.name.gsub('\\"', '')
-      sendToFrontEnd["two"]["firstName"] =  primaryOpenStatesResponse.data.people.edges[1].node.givenName
-      sendToFrontEnd["two"]["lastName"] =  primaryOpenStatesResponse.data.people.edges[1].node.familyName
-      sendToFrontEnd["two"]["image"] =  primaryOpenStatesResponse.data.people.edges[1].node.image
-      sendToFrontEnd["two"]["id"] =  primaryOpenStatesResponse.data.people.edges[1].node.id
-      sendToFrontEnd["two"]["chamber"] =  primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].organization.name
-      sendToFrontEnd["two"]["parent"] =  primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].organization.parent.name
-      sendToFrontEnd["two"]["district"] =  primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].post.label
-      sendToFrontEnd["two"]["fullDistrict"] =  primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].post.division.name
-  
-      temp = primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].post.division.name
-      # fullDistrictTrunk = temp.gsub!(/(\d+|(district))/,"").rstrip
-      fullDistrictTrunk = "fullDistricTrunk2of2"
 
-      sendToFrontEnd["two"]["fullDistrictTrunk"] = fullDistrictTrunk
+      counter = 0
+      primaryOpenStatesResponse.data.people.edges.map{|record|
+      
+        
+      
+        if record.node.chamber[0].organization.parent.name == "Florida Legislature"
+          puts "fl legiskature was found in map"
+          
+          if counter == 0
+
+            
+            puts "counter was 0"
+            sendToFrontEnd["one"]["name"] =  record.node.name.gsub('\\"', '')
+            sendToFrontEnd["one"]["firstName"] =  record.node.givenName
+            sendToFrontEnd["one"]["lastName"] =  record.node.familyName
+            sendToFrontEnd["one"]["image"] =  record.node.image
+            sendToFrontEnd["one"]["id"] =  record.node.id
+            sendToFrontEnd["one"]["chamber"] =  record.node.chamber[0].organization.name
+            sendToFrontEnd["one"]["parent"] =  record.node.chamber[0].organization.parent.name
+            sendToFrontEnd["one"]["district"] =  record.node.chamber[0].post.label
+            sendToFrontEnd["one"]["fullDistrict"] =  record.node.chamber[0].post.division.name
+            sendToFrontEnd["one"]["fullDistrictTrunk"] = record.node.chamber[0].post.division.name.gsub!(/(\d+|(district))/,"").rstrip
+
+      
+          elsif counter == 1
+            puts "counter was 1"
+        
+            sendToFrontEnd["two"]["name"] =  record.node.name.gsub('\\"', '')
+            sendToFrontEnd["two"]["firstName"] =  record.node.givenName
+            sendToFrontEnd["two"]["lastName"] =  record.node.familyName
+            sendToFrontEnd["two"]["image"] =  record.node.image
+            sendToFrontEnd["two"]["id"] =  record.node.id
+            sendToFrontEnd["two"]["chamber"] =  record.node.chamber[0].organization.name
+            sendToFrontEnd["two"]["parent"] =  record.node.chamber[0].organization.parent.name
+            sendToFrontEnd["two"]["district"] =  record.node.chamber[0].post.label
+            sendToFrontEnd["two"]["fullDistrict"] =  record.node.chamber[0].post.division.name
+            sendToFrontEnd["two"]["fullDistrictTrunk"] = record.node.chamber[0].post.division.name.gsub!(/(\d+|(district))/,"").rstrip
+
+           
+
+          end
+
+          counter = counter + 1
+        
+        
+        
+        
+        end
+        #puts "output of the map{}{}{} " + record.node.chamber[0].organization.parent.name
+
+        
+      
+      }
+
+      
+  
+      # sendToFrontEnd["one"]["name"] =  primaryOpenStatesResponse.data.people.edges[0].node.name.gsub('\\"', '')
+      # sendToFrontEnd["one"]["firstName"] =  primaryOpenStatesResponse.data.people.edges[0].node.givenName
+      # sendToFrontEnd["one"]["lastName"] =  primaryOpenStatesResponse.data.people.edges[0].node.familyName
+      # sendToFrontEnd["one"]["image"] =  primaryOpenStatesResponse.data.people.edges[0].node.image
+      # sendToFrontEnd["one"]["id"] =  primaryOpenStatesResponse.data.people.edges[0].node.id
+      # sendToFrontEnd["one"]["chamber"] =  primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].organization.name
+      # sendToFrontEnd["one"]["parent"] =  primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].organization.parent.name
+      # sendToFrontEnd["one"]["district"] =  primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].post.label
+      
+      
+      
+      
+      #temp = primaryOpenStatesResponse.data.people.edges[0].node.chamber[0].post.division.name.dup
+      #puts "temppp " + temp
+      #puts "3sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
+      #puts "4sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"].gsub!(/(\d+|(district))/,"").rstrip
+
+      
+  
+      #fullDistrictTrunk = temp.gsub!(/(\d+|(district))/,"").rstrip
+      #fullDistrictTrunk = "fullDistricTrunk1of2"
+      #puts "4sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
+      #sendToFrontEnd["one"]["fullDistrictTrunk"] = fullDistrictTrunk
+      #puts "5sendToFrontEnd === " + sendToFrontEnd["one"]["fullDistrict"]
+  
+      
+  
+  
+  
+      # sendToFrontEnd["two"]["name"] =  primaryOpenStatesResponse.data.people.edges[1].node.name.gsub('\\"', '')
+      # sendToFrontEnd["two"]["firstName"] =  primaryOpenStatesResponse.data.people.edges[1].node.givenName
+      # sendToFrontEnd["two"]["lastName"] =  primaryOpenStatesResponse.data.people.edges[1].node.familyName
+      # sendToFrontEnd["two"]["image"] =  primaryOpenStatesResponse.data.people.edges[1].node.image
+      # sendToFrontEnd["two"]["id"] =  primaryOpenStatesResponse.data.people.edges[1].node.id
+      # sendToFrontEnd["two"]["chamber"] =  primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].organization.name
+      # sendToFrontEnd["two"]["parent"] =  primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].organization.parent.name
+      # sendToFrontEnd["two"]["district"] =  primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].post.label
+      # sendToFrontEnd["two"]["fullDistrict"] =  primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].post.division.name
+  
+      #temp = primaryOpenStatesResponse.data.people.edges[1].node.chamber[0].post.division.name
+      #fullDistrictTrunk = temp.gsub!(/(\d+|(district))/,"").rstrip
+      #fullDistrictTrunk = "fullDistricTrunk2of2"
+
+      #sendToFrontEnd["two"]["fullDistrictTrunk"] = fullDistrictTrunk
       
       
       
