@@ -345,4 +345,5 @@ function App({d}){
 }
 
 
-export default props => <App {...props} />;
+// export default props => <App {...props} />;
+export default App;

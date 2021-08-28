@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import styled from 'styled-components'
 
+import axios from 'axios'
+
 import footerImage from '../../assets/images/footerImage'
 
 
@@ -283,6 +285,9 @@ const BlackBG = styled.div`
 
 `;
 
+
+const formData = new FormData();
+
 function Footer(props) {
 
    
@@ -290,6 +295,12 @@ function Footer(props) {
     console.log("==============Footer===============")
     console.log("==============Footer Props===============", props)
     //console.log("HEADER_PROPS solo", location.pathname)
+
+
+    
+
+
+    const [newsletterEmail, setNewsletterEmail] = useState("")
 
     useEffect(() => {
 
@@ -301,6 +312,57 @@ function Footer(props) {
         
         
     },[]);
+
+
+
+    function handleNewsletter(e){
+
+        e.preventDefault();
+
+        console.log("currentstateis = ", newsletterEmail)
+
+        formData.append('data[email]', newsletterEmail);
+        formData.append('ziploker', "wtfff");
+
+        console.log("currentFormDatais = ", formData)
+
+        axios.post("/registrations/newsletter", {
+          
+            body: { 
+              payload: newsletterEmail,
+              
+              
+            }
+          },
+          {withCredentials: true})
+          .then(response => {
+  
+  
+            console.log("response from newsletter", response)
+              
+  
+              
+              
+          }).catch(error => {
+            
+            console.log("handlenewsletter errors if any are ", error)
+          })
+
+
+
+    }
+
+    function handleNewsletterChange(e){
+
+        setNewsletterEmail(e.target.value)
+
+        console.log("inHandleNewsLetter", e)
+
+
+
+    }
+
+
 
     function handleFirstTab(e) {
 
@@ -344,11 +406,11 @@ function Footer(props) {
                 <form><strong style={{ display: "none"}}>Thank you for signing up! You are now subscribed.</strong>
                     <div>
 
-                        <input type="email" required="" spellCheck="false" autoComplete="off" autoCapitalize="none" placeholder="Enter your e-mail address"/>
+                        <input onChange={handleNewsletterChange} value={newsletterEmail} type="email" required="" spellCheck="false" autoComplete="off" autoCapitalize="none" placeholder="Enter your e-mail address"/>
 
                         
                     </div>
-                    <button type="submit" name="submint">
+                    <button type="submit" name="submint" onClick={handleNewsletter}>
                         Sign Up
                         </button>
                 </form>

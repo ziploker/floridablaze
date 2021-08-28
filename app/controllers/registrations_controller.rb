@@ -568,6 +568,37 @@ class RegistrationsController < ApplicationController
     end
 
 
+    def start_newsletter
+
+        puts params[:body][:payload]
+
+        
+
+        newNewsletter = Newsletter.new(email: params[:body][:payload])
+
+        if newNewsletter.save
+
+
+            render json: {
+                    
+                status: "green",
+                error: {auth: ["success"]}
+            }
+
+        else
+
+            render json: {
+                    
+                status: "red",
+                error: newNewsletter.errors.full_messages[0]
+            }
+           
+
+
+        end
+    end
+
+
 
 
     

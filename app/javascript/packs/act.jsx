@@ -1511,9 +1511,12 @@ function Act(props, ref) {
 
           <CardOne>
             <CardOneWrapper>
-              <CardPicture
-                src={results.one.image ? results.one.image : samplepic}
-              ></CardPicture>
+
+             
+                <CardPicture
+                  src={results.one.image ? results.one.image : ""} >
+                </CardPicture>
+
 
               <CardTemplate src={cardTemplate}></CardTemplate>
 
@@ -1527,9 +1530,15 @@ function Act(props, ref) {
 
           <CardTwo>
             <CardTwoWrapper>
-              <CardPicture
-                src={results.two.image ? results.two.image : samplepic}
-              ></CardPicture>
+
+              
+                <CardPicture
+                  src={results.two.image ? results.two.image : ""}>
+                </CardPicture>
+
+             
+              
+              
 
               <CardTemplate src={cardTemplate}></CardTemplate>
 

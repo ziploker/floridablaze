@@ -14,8 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ReactDOM.render(
     <App d={data}/>,
-    document.body.appendChild(document.createElement('div')),
+    document.body.appendChild(document.createElement('div'))
   )
+
+ 
+
+  // ReactDOM.unstable_createRoot(document.getElementById("root")).render(
+  //   <App d={data}/>,
+  //   document.body.appendChild(document.createElement('div')),
+  // );
+  
 })
 
 
