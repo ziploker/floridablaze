@@ -285,6 +285,35 @@ const BlackBG = styled.div`
 
 `;
 
+const TopSectionWrapper = styled.div`
+
+    display: grid;
+    grid-template-columns: minmax(min-content, max-content) 1fr;
+    grid-column-gap: 8px;
+
+    span{
+        margin-top: 4px;
+
+    }
+
+    h2{
+
+        font-family: poppins;
+        font-size: 12px;
+        color: white;
+        margin-top: 4px;
+    }
+
+    form{
+
+        grid-area: 2/2/3/3;
+
+    }
+
+
+
+`;
+
 
 const formData = new FormData();
 
@@ -301,7 +330,9 @@ function Footer(props) {
 
 
     const [newsletterEmail, setNewsletterEmail] = useState("")
+    const [signupComplete, setSignupComplete] = useState(false)
 
+    
     useEffect(() => {
 
         
@@ -339,6 +370,7 @@ function Footer(props) {
   
   
             console.log("response from newsletter", response)
+            setSignupComplete(true)
               
   
               
@@ -381,39 +413,49 @@ function Footer(props) {
 
 
             <SubscribeSection>
-                <h2>
-                    <span>
-                        <svg width="19px" height="13px" viewBox="0 0 19 13">
-                            <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                                <g fill="#fff">
-                                    <g>
-                                        <polygon points="0 9.1842 4.103 5.0812 0 0.9792"></polygon>
-                                        <polygon points="0.4365 -0.0003 9.0415 8.6057 17.6475 -0.0003"></polygon>
-                                        <polygon points="14.0445 5.0163 18.0835 9.0553 18.0835 0.9773"></polygon>
-                                        <polygon points="9.0414 10.0194 4.8104 5.7884 0.0004 10.5994 0.0004 12.7504 18.0834 12.7504 18.0834 10.4694 13.3384 5.7234"></polygon>
+                
+                <div>
+                    <TopSectionWrapper>
+                        <span>
+                            <svg width="19px" height="13px" viewBox="0 0 19 13">
+                                <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                                    <g fill="#fff">
+                                        <g>
+                                            <polygon points="0 9.1842 4.103 5.0812 0 0.9792"></polygon>
+                                            <polygon points="0.4365 -0.0003 9.0415 8.6057 17.6475 -0.0003"></polygon>
+                                            <polygon points="14.0445 5.0163 18.0835 9.0553 18.0835 0.9773"></polygon>
+                                            <polygon points="9.0414 10.0194 4.8104 5.7884 0.0004 10.5994 0.0004 12.7504 18.0834 12.7504 18.0834 10.4694 13.3384 5.7234"></polygon>
+                                        </g>
                                     </g>
                                 </g>
-                            </g>
-                        </svg>
+                            </svg>
 
-                    </span>
+                        </span>
 
-                    <span>
-                        Stay up to date on the latest from FloridaBlaze.
-                    </span>
-                </h2>
+                        <h2>
+                            Stay up to date on the latest from FloridaBlaze.
+                        </h2>
 
-                <form><strong style={{ display: "none"}}>Thank you for signing up! You are now subscribed.</strong>
-                    <div>
+                        <form>
+                            <strong style={{ display: signupComplete ? "initial" : "none"}}>Thank you for signing up!</strong>
+                            
+                            <div style={{ display: signupComplete ? "none" : "initial"}}>
 
-                        <input onChange={handleNewsletterChange} value={newsletterEmail} type="email" required="" spellCheck="false" autoComplete="off" autoCapitalize="none" placeholder="Enter your e-mail address"/>
+                                <input onChange={handleNewsletterChange} value={newsletterEmail} type="email" required="" spellCheck="false" autoComplete="off" autoCapitalize="none" placeholder="Enter your e-mail address"/>
 
                         
-                    </div>
-                    <button type="submit" name="submint" onClick={handleNewsletter}>
-                        Sign Up
-                        </button>
-                </form>
+                            </div>
+
+                            <button style={{ display: signupComplete ? "none" : "initial"}} type="submit" name="submint" onClick={handleNewsletter}>
+                                Sign Up
+                            </button>
+                        </form>
+
+                    </TopSectionWrapper>
+                </div>
+                
+
+                
    
             </SubscribeSection>
 

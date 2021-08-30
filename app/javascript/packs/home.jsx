@@ -240,6 +240,7 @@ const Div1 = styled.div`
     border-radius: 10px;
     overflow: hidden;
     display: grid;
+    grid-template-rows: 1fr minmax(min-content, max-content);
     justify-self: center;
     min-height: 290px;
     max-width: 600px;
@@ -274,6 +275,11 @@ const Div1 = styled.div`
 
     } */
 
+    a{
+
+        grid-area: 2/1/3/2;
+    }
+
 `;
 
 const Div2 = styled.div`
@@ -284,6 +290,7 @@ const Div2 = styled.div`
     border-radius: 10px;
     overflow: hidden;
     display: grid;
+    grid-template-rows: 1fr minmax(min-content, max-content);
     min-height: 290px;
     max-width: 600px;
     width: 100%;
@@ -313,6 +320,11 @@ const Div2 = styled.div`
 
     }
 
+    a{
+
+        grid-area: 2/1/3/2;
+    }
+
 `;
 
 const Div3 = styled.div`
@@ -322,6 +334,7 @@ const Div3 = styled.div`
     border-radius: 10px;
     overflow: hidden;
     display: grid;
+    grid-template-rows: 1fr minmax(min-content, max-content);
     min-height: 290px;
     max-width: 600px;
     width: 100%;
@@ -349,6 +362,12 @@ const Div3 = styled.div`
         border-radius: 4px;
         outline: none;
 
+    }
+
+
+    a{
+
+        grid-area: 2/1/3/2;
     }
 
 `;
@@ -364,6 +383,7 @@ const Div4 = styled.div`
         border-radius: 10px;
         overflow: hidden;
         display: grid;
+        grid-template-rows: 1fr minmax(min-content, max-content);
         min-height: 290px;
         max-width: 600px;
         width: 100%;
@@ -391,6 +411,11 @@ const Div4 = styled.div`
             border-radius: 4px;
             outline: none;
 
+        }
+
+        a{
+
+            grid-area: 2/1/3/2;
         }
     }
 
@@ -513,7 +538,9 @@ function Home(props){
                             >
                                 
                                 <StoryOneTitle>
-                                    {props.fourthToLastStory ? props.fourthToLastStory.title : ""}
+                                   
+                                    {props.fourthToLastStory ? props.fourthToLastStory.title : "Place golder for title. place golder for title."}
+
                                 </StoryOneTitle>
                                 
                                 
