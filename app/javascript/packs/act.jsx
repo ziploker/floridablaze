@@ -62,9 +62,9 @@ const BGimage = styled.img`
 
 const Mega = styled.img`
 
-@media only screen and (max-width: 1400px) {
+  /* @media only screen and (max-width: 1400px) {
    width: 85%;
-  }
+  } */
   @media only screen and (max-width: 720px) {
     grid-area: 1/1/-1/-1;
     display: none;
@@ -80,12 +80,12 @@ const Mega = styled.img`
   //left: 12vw;
   width: 100%;
   display: ${props => props.showCards ? "none" : "inherit"};
-  grid-area: 1/2/5/3;
+  grid-area: 1/2/6/3;
   align-self: center;
   justify-self: end;
   //margin-top: -50px;
   margin-right: 1em;
-  margin-top: -50px;
+  margin-top: -80px;
   //margin-bottom: 13px;
   opacity: ${(props) => (props.showLetter ? "0" : "1")}; ;
 `;
@@ -108,6 +108,8 @@ const ActGrid = styled.div`
   //overflow: hidden;
   display: grid;
   position: relative;
+  max-width: 1383px;
+  margin: 0 auto;
   //grid-template-columns: 43% 57%;
   //grid-template-columns: minmax(20px, 1fr) minmax(335px, 350px) minmax(350px,600px) minmax(20px, 1fr);
   //grid-template-rows: 120px 40px 50px 100px 50px 1fr;
@@ -132,8 +134,8 @@ const ActSection = styled.section`
   display: grid;
   position: relative;
   //grid-template-columns: 43% 57%;
-  grid-template-columns: minmax(20px, 40px) minmax(250px, 450px) minmax(350px,600px) minmax(40px, 1fr);
-  grid-template-rows: min-content min-content min-content 1fr;
+  grid-template-columns: minmax(20px, 100px) minmax(250px, 350px) minmax(350px,600px) minmax(40px, 1fr);
+  grid-template-rows: minmax(40px, 50px)  minmax(min-content, max-content) min-content min-content 1fr;
 
   grid-column-gap: 0.5em;
   grid-area: 1/1/-1/-1;
@@ -150,6 +152,34 @@ const ActSection = styled.section`
   }
 `;
 
+const ProgressBarz = styled.div`
+
+  display: flex;
+  grid-area: 1/3/2/-1;
+  margin: 27px 0px 18px 20px;
+
+`;
+
+const StepOne = styled.div`
+  width: 106px;
+  height: 7px;
+  background: #E3B55A;
+`;
+
+const StepTwo = styled.div`
+  width: 106px;
+  height: 7px;
+  background: ${props => props.showCards ? "#E3B55A" : "#605C55" };
+  margin-left: 36px;
+`;
+
+const StepThree = styled.div`
+  width: 106px;
+  height: 7px;
+  background: #605C55;
+  margin-left: 36px;
+`;
+
 const ActHeader = styled.h1`
   @media only screen and (max-width: 720px){
 
@@ -162,25 +192,27 @@ const ActHeader = styled.h1`
   font-family: Poppins;
   font-style: normal;
   font-weight: 800;
-  font-size: 10vw;
+  font-size: min(10vw, 138px);
+  align-self: center;
+  line-height: 100%;
   //line-height: 100px;
   /* identical to box height */
 
   letter-spacing: -0.08em;
 
   color: #ffffff;
-  grid-area: 1/3/2/-1;
-  align-self: end;
+  grid-area: 2/3/3/-1;
+  
 
   //line-height: 100%;
-  margin: -10px 0px 0px 20px;
-  padding-top: 20px;
+  margin: 0px 0px 0px 20px;
+  //padding-top: 20px;
   //z-index: 1;
 
   opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
 `;
 
-const ActSubheader = styled.h1`
+const ActSubheader = styled.h2`
   @media only screen and (max-width: 720px){
 
     grid-area: 2/1/3/-1;
@@ -193,18 +225,20 @@ const ActSubheader = styled.h1`
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 2.5vw;
+  font-size: min(1.5vw, 27px);
+  line-height: 130%;
+  max-width: 80%;
   //line-height: 100%;
 
-  grid-area: 2/3/3/-1;
+  grid-area: 3/3/4/-1;
 
   color: #e3b55a;
-  margin: 0px 0px 8px 20px;
+  margin: 8px 0px 8px 20px;
 
   opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
 `;
 
-const ActSubheader2 = styled.h2`
+const ActSubheader2 = styled.h3`
   @media only screen and (max-width: 720px){
 
     grid-area: 3/1/4/-1;
@@ -216,13 +250,14 @@ const ActSubheader2 = styled.h2`
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 1.5vw;
+  font-size: min(1vw, 16px);
   //line-height: 100%;
+  max-width: 80%;
 
-  grid-area: 3/3/4/-1;
+  grid-area: 4/3/5/-1;
 
   color: #e3b55a;
-  margin: 0px 0px 16px 20px;
+  margin: 10px 0px 18px 20px;
   display: inline;
   //line-height: 6vw;
   vertical-align: bottom;
@@ -257,7 +292,7 @@ const Form = styled.form`
   //box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   //margin-top: 72px;
 
-  grid-area: 4/3/5/4;
+  grid-area: 5/3/6/4;
   padding: 0px 20px;
   border-radius: 5px;
 
@@ -1371,14 +1406,25 @@ function Act(props, ref) {
       <ActGrid >
          
         <ActSection showCards={showCards} showLetter={showLetter}>
+
+          <ProgressBarz >
+            
+            <StepOne/>
+            <StepTwo showCards={showCards}/>
+            <StepThree showCards={showCards}/>
+
+          </ProgressBarz>
+          
           <ActHeader showCards={showCards} showLetter={showLetter}>
             ACT NOW
           </ActHeader>
+          
           <ActSubheader showCards={showCards} showLetter={showLetter}>
-            Contact Your State Representatives{" "}
+          Find your Florida State Representatives and let them know you want to legalize marijuana ASAP. What if you could do this in just a few clicks?{" "}
           </ActSubheader>
+          
           <ActSubheader2 showCards={showCards} showLetter={showLetter}>
-            Enter an address below to get started.{" "}
+          Enter your address below to see who your Florida State Representitives.{" "}
           </ActSubheader2>
 
           <Form
