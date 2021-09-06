@@ -131,7 +131,7 @@ const ActSection = styled.section`
 
     
   }
-  display: grid;
+  display: ${(props) => (props.showCards || props.showLetter ? "none" : "grid")}; ;
   position: relative;
   //grid-template-columns: 43% 57%;
   grid-template-columns: minmax(20px, 100px) minmax(250px, 350px) minmax(350px,600px) minmax(40px, 1fr);
@@ -142,7 +142,7 @@ const ActSection = styled.section`
   transition: opacity 0.4s;
   //padding-bottom: 40px;
 
-  z-index: ${(props) => (props.showCards || props.showLetter ? "0" : "10")}; ;
+  z-index: ${(props) => (props.showCards || props.showLetter ? "0" : "10")};
 
   @media only screen and (min-width: 975px){
 
@@ -546,7 +546,7 @@ const ResultSection = styled.div`
   opacity: ${(props) => (props.showCards ? "1" : "0")};
   z-index: ${(props) => (props.showCards ? "10" : "-5")};
   grid-template-columns: 20px minmax(150px, 200px) minmax(8px, 16px) minmax(150px, 200px) minmax(8px, 16px) 1fr 20px;
-  grid-template-rows: minmax(min-content, max-content) minmax(min-content,max-content) minmax(min-content, max-content);
+  grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content,max-content) minmax(min-content, max-content);
   //visibility: hidden;
   //grid-template-rows: ${(props) => props.showCards ? "minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) 1fr": "0px 0px 0px 0px 0px"};
 
@@ -561,11 +561,27 @@ const ResultSection = styled.div`
   height: ${props => props.showCards ? "inherit" : "0px"};
 `;
 
-const ResultSectionHeader = styled.h1`
+const ResultSectionInfoBox = styled.div`
 
   @media only screen and (max-width: 750px){
 
-    grid-area: 1/2/2/7;
+    grid-area: 1/2/2/6;
+    
+
+
+
+  }
+
+  background: yellow;
+  grid-area: 1/2/2/7;
+  height: 250px;
+`;
+
+const ResultSectionHeaderOne = styled.h1`
+
+  @media only screen and (max-width: 750px){
+
+    grid-area: 3/2/4/5;
     font-size: 8vw;
     
 
@@ -587,7 +603,51 @@ const ResultSectionHeader = styled.h1`
   letter-spacing: -0.03em;
   color: #ffffff;
 
-  grid-area: 1/2/2/7;
+  grid-area: 3/2/4/7;
+  justify-self: start;
+  align-self: start;
+
+  white-space: nowrap;
+
+  margin: 20px 0px;
+  //padding: 0px 20px;
+
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+`;
+
+
+const ResultSectionHeaderTwo = styled.h1`
+
+  @media only screen and (max-width: 750px){
+
+    grid-area: 5/2/6/6;
+    font-size: 8vw;
+    
+
+
+  }
+
+  
+  
+
+
+  font-family: Poppins;
+  //font-style: normal;
+  //font-weight: 500;
+  //font-size: 8vw;
+  //font-size: clamp(1rem, -0.875rem + 8.333333vw, 3.5rem);
+
+  /* identical to box height, or 90px */
+
+  letter-spacing: -0.03em;
+  color: #ffffff;
+
+  grid-area: 3/6/4/7;
   justify-self: start;
   align-self: start;
 
@@ -646,7 +706,7 @@ const CardOne = styled.div`
   //grid-template-columns: 85% 15%;
   //grid-template-rows: 73% 17% 10%;
 
-  grid-area: 3/2/4/3;
+  grid-area: 4/2/5/3;
 
   width: 100%;
 
@@ -656,7 +716,7 @@ const CardOne = styled.div`
   padding-top: calc(310/220*100%);
   
   @media only screen and (max-width: 750px){
-    grid-area: 3/2/4/3;
+    grid-area: 4/2/5/3;
     justify-self: start;
     padding-top: calc(310/220*100%);
     height: 0px;
@@ -707,7 +767,7 @@ const CardTwo = styled.div`
   position: relative;
   
 
-  grid-area: 3/4/4/5;
+  grid-area: 4/4/5/5;
 
   justify-self: end;
   height: 0px;
@@ -715,7 +775,7 @@ const CardTwo = styled.div`
   width: 100%;
 
   @media only screen and (max-width: 750px){
-    grid-area: 3/4/4/5;
+    grid-area: 4/4/5/5;
     justify-self: start;
     padding-top: calc(310/220*100%);
     height: 0px;
@@ -779,7 +839,7 @@ const Letter = styled.div`
 
   @media only screen and (max-width: 750px){
 
-    grid-area: 4/2/7/6;
+    grid-area: 6/2/9/6;
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
     grid-template-columns: auto;
@@ -790,7 +850,7 @@ const Letter = styled.div`
   }
 
   //grid-area: 1/2/7/4;
-  grid-area: 3/6/7/7;
+  grid-area: 4/6/8/7;
   width: 100%;
   min-width: 400px;
   max-width: 500px;
@@ -1053,7 +1113,7 @@ function Act(props, ref) {
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(false);
+  const [showCards, setShowCards] = React.useState(true);
   const [showLetter, setShowLetter] = React.useState(false);
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
@@ -1062,41 +1122,41 @@ function Act(props, ref) {
   const [flashMsg, setFlashMsg] = React.useState("");
   const [successFlag, setSuccessFlag] = React.useState(true);
 
-  // const [results, setResults] = React.useState({
-  //   one: {
-  //     resultFromFlorida: "true",
-  //     name: "Juan Alfonso Fernandez-Barquin",
-  //     firstName: "",
-  //     lastName: "",
-  //     image:
-  //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
-  //     id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
-  //     email: "JuanF.Barquin@myfloridahouse.gov",
-  //     chamber: "House",
-  //     party: "Republican",
-  //     parent: "Florida Legislature",
-  //     district: "119",
-  //     fullDistrict: "Florida State House district 119",
-  //     fullDistrictTrunk: "Florida State House",
-  //   },
-  //   two: {
-  //     name: "Annette Taddeo",
-  //     firstName: "Annette",
-  //     lastName: "Taddeo",
-  //     image:
-  //       "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
-  //     id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
-  //     email: "taddeo.annette.web@flsenate.gov",
-  //     chamber: "Senate",
-  //     party: "Democrat",
-  //     parent: "Florida Legislature",
-  //     district: "40",
-  //     fullDistrict: "Florida State Senate  ",
-  //     fullDistrictTrunk: "Florida State Senate",
-  //   },
-  // });
+  const [results, setResults] = React.useState({
+    one: {
+      resultFromFlorida: "true",
+      name: "Juan Alfonso Fernandez-Barquin",
+      firstName: "",
+      lastName: "",
+      image:
+        "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
+      id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
+      email: "JuanF.Barquin@myfloridahouse.gov",
+      chamber: "House",
+      party: "Republican",
+      parent: "Florida Legislature",
+      district: "119",
+      fullDistrict: "Florida State House district 119",
+      fullDistrictTrunk: "Florida State House",
+    },
+    two: {
+      name: "Annette Taddeo",
+      firstName: "Annette",
+      lastName: "Taddeo",
+      image:
+        "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
+      id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
+      email: "taddeo.annette.web@flsenate.gov",
+      chamber: "Senate",
+      party: "Democrat",
+      parent: "Florida Legislature",
+      district: "40",
+      fullDistrict: "Florida State Senate  ",
+      fullDistrictTrunk: "Florida State Senate",
+    },
+  });
   
-  const [results, setResults] = React.useState( {"one": {}, "two": {} });
+  //const [results, setResults] = React.useState( {"one": {}, "two": {} });
 
   function loginFromDeadEnd(e) {
     e.preventDefault();
@@ -1403,6 +1463,7 @@ function Act(props, ref) {
   return (
     <ActWrapper ref={LookupScrollToRef} >
       <BGimage src={actBackground}></BGimage>
+      
       <ActGrid >
          
         <ActSection showCards={showCards} showLetter={showLetter}>
@@ -1552,8 +1613,20 @@ function Act(props, ref) {
           <Mega showCards={showCards} showLetter={showLetter} src={mega}></Mega>
         </ActSection>
 
+        
         <ResultSection showCards={showCards}>
-          <ResultSectionHeader>Your elected officials</ResultSectionHeader>
+          
+          <ResultSectionInfoBox>
+
+
+
+          </ResultSectionInfoBox>
+
+          <resultSectionSpacerLine/>
+          
+          <ResultSectionHeaderOne>Your elected officials</ResultSectionHeaderOne>
+
+          <ResultSectionHeaderTwo>Personalized Email</ResultSectionHeaderTwo>
 
           <CardOne>
             <CardOneWrapper>
@@ -1687,8 +1760,13 @@ function Act(props, ref) {
               Try another search.
             </a>
           </ShowLetterDeadEnd>
+        
         </ResultSection>
+      
+      
       </ActGrid>
+    
+    
     </ActWrapper>
   );
 }
