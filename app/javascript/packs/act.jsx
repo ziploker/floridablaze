@@ -152,30 +152,33 @@ const ActSection = styled.section`
   }
 `;
 
-const ProgressBarz = styled.div`
+// const ProgressBarz = styled.div`
 
-  display: flex;
-  grid-area: 1/3/2/-1;
-  margin: 27px 0px 18px 20px;
+//   display: flex;
+//   //grid-area: 1/3/2/-1;
+//   //margin: 27px 0px 18px 20px;
+//   margin: 10px 0px 10px 0px;
 
-`;
+//   justify-self: center;
+
+// `;
 
 const StepOne = styled.div`
-  width: 106px;
-  height: 7px;
+  width: 80px;
+  height: 4px;
   background: #E3B55A;
 `;
 
 const StepTwo = styled.div`
-  width: 106px;
-  height: 7px;
+  width: 80px;
+  height: 4px;
   background: ${props => props.showCards ? "#E3B55A" : "#605C55" };
   margin-left: 36px;
 `;
 
 const StepThree = styled.div`
-  width: 106px;
-  height: 7px;
+  width: 80px;
+  height: 4px;
   background: #605C55;
   margin-left: 36px;
 `;
@@ -545,7 +548,7 @@ const ResultSection = styled.div`
     props.showCards ? "translate(0)" : "transform:translate(9999px)"};
   opacity: ${(props) => (props.showCards ? "1" : "0")};
   z-index: ${(props) => (props.showCards ? "10" : "-5")};
-  grid-template-columns: 20px minmax(150px, 200px) minmax(8px, 16px) minmax(150px, 200px) minmax(8px, 16px) 1fr 20px;
+  grid-template-columns: 1fr minmax(150px, 200px) minmax(8px, 16px) minmax(150px, 200px) minmax(8px, 16px) minmax(350px,400px) 1fr;
   grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content,max-content) minmax(min-content, max-content);
   //visibility: hidden;
   //grid-template-rows: ${(props) => props.showCards ? "minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) 1fr": "0px 0px 0px 0px 0px"};
@@ -572,9 +575,83 @@ const ResultSectionInfoBox = styled.div`
 
   }
 
-  background: yellow;
+  display: grid;
+
+  grid-template-columns: auto min-content auto;
   grid-area: 1/2/2/7;
-  height: 250px;
+  //height: 200px;
+`;
+
+const ProgressBarz = styled.div`
+
+  display: flex;
+  grid-area: 1/2/2/3;
+  //margin: 27px 0px 18px 20px;
+  margin: 30px 0px 10px 0px;
+
+  justify-self: start;
+
+`;
+
+const ResultCompleteTitle = styled.h1`
+  font-family: Poppins;
+  justify-self: start;
+  color: #ffffff;
+  grid-area: 2/2/3/3;
+
+
+`;
+
+
+const ResultSectionBulletPointWrapper = styled.div`
+  grid-area: ${props => props.gridArea};
+
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content) 1fr;
+
+  justify-self: start;
+
+
+
+`;
+
+const ResultSectionBulletPoint = styled.div`
+
+  height: 10px;
+  width: 10px;
+  background-color: ${props => props.open ? "black" : "#E3B55A" };
+  border:1.5px solid #E3B55A;
+
+  border-radius: 50%;
+  display: inline-block;
+  justify-self: center;
+  align-self: center;
+
+
+
+`;
+
+const ResultSectionBulletPointTitle = styled.h2`
+
+  font-family: Poppins;
+  justify-self: center;
+  align-self: center;
+  color: #ffffff; 
+  margin-left: 15px;
+  font-size: .8em;
+
+`;
+
+const ResultSectionSpacerLine = styled.div`
+
+  height: 1px;
+  //width: 100vw;
+  background: #E3B55A;
+  opacity: .4;
+  grid-area: 2/1/3/-1;
+  margin: 50px 0 0px 0;
+
+
 `;
 
 const ResultSectionHeaderOne = styled.h1`
@@ -590,7 +667,7 @@ const ResultSectionHeaderOne = styled.h1`
 
   
   
-
+  font-size: 1.3em;
 
   font-family: Poppins;
   //font-style: normal;
@@ -605,11 +682,11 @@ const ResultSectionHeaderOne = styled.h1`
 
   grid-area: 3/2/4/7;
   justify-self: start;
-  align-self: start;
+  align-self: end;
 
   white-space: nowrap;
 
-  margin: 20px 0px;
+  //margin: 20px 0px;
   //padding: 0px 20px;
 
   -webkit-user-select: none;
@@ -634,7 +711,7 @@ const ResultSectionHeaderTwo = styled.h1`
 
   
   
-
+  font-size: 1.3em;
 
   font-family: Poppins;
   //font-style: normal;
@@ -649,11 +726,11 @@ const ResultSectionHeaderTwo = styled.h1`
 
   grid-area: 3/6/4/7;
   justify-self: start;
-  align-self: start;
+  align-self: end;
 
   white-space: nowrap;
 
-  margin: 20px 0px;
+  //margin: 20px 0px;
   //padding: 0px 20px;
 
   -webkit-user-select: none;
@@ -1618,11 +1695,64 @@ function Act(props, ref) {
           
           <ResultSectionInfoBox>
 
+            <ProgressBarz >
+              
+              <StepOne/>
+              <StepTwo showCards={showCards}/>
+              <StepThree showCards={showCards}/>
+
+            </ProgressBarz>
+
+            <ResultCompleteTitle>
+
+              search complete
+
+            </ResultCompleteTitle>
+
+            <ResultSectionBulletPointWrapper gridArea="3/2/4/3">
+
+              <ResultSectionBulletPoint/>
+
+              <ResultSectionBulletPointTitle>
+                Located your elected officials.
+              </ResultSectionBulletPointTitle>
+
+
+
+            </ResultSectionBulletPointWrapper>
+
+
+            <ResultSectionBulletPointWrapper gridArea="4/2/5/3">
+
+              <ResultSectionBulletPoint/>
+
+              <ResultSectionBulletPointTitle>
+                Generated personalized email.
+              </ResultSectionBulletPointTitle>
+
+
+
+            </ResultSectionBulletPointWrapper>
+
+            <ResultSectionBulletPointWrapper gridArea="5/2/6/3">
+
+              <ResultSectionBulletPoint open={open}/>
+
+              <ResultSectionBulletPointTitle>
+              Send email to each of your Reps.              
+              </ResultSectionBulletPointTitle>
+
+
+
+            </ResultSectionBulletPointWrapper>
+
+            
+
 
 
           </ResultSectionInfoBox>
 
-          <resultSectionSpacerLine/>
+          <ResultSectionSpacerLine/>
           
           <ResultSectionHeaderOne>Your elected officials</ResultSectionHeaderOne>
 
