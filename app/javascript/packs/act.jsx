@@ -548,7 +548,7 @@ const ResultSection = styled.div`
     props.showCards ? "translate(0)" : "transform:translate(9999px)"};
   opacity: ${(props) => (props.showCards ? "1" : "0")};
   z-index: ${(props) => (props.showCards ? "10" : "-5")};
-  grid-template-columns: 1fr minmax(150px, 200px) minmax(8px, 16px) minmax(150px, 200px) minmax(8px, 16px) minmax(350px,400px) 1fr;
+  grid-template-columns: 1fr minmax(150px, 200px) minmax(4px,8px) minmax(150px, 200px) minmax(16px, 32px) minmax(350px,470px) 1fr;
   grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content,max-content) minmax(min-content, max-content);
   //visibility: hidden;
   //grid-template-rows: ${(props) => props.showCards ? "minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) 1fr": "0px 0px 0px 0px 0px"};
@@ -654,21 +654,25 @@ const ResultSectionSpacerLine = styled.div`
 
 `;
 
-const ResultSectionHeaderOne = styled.h1`
+const ResultSectionHeaders = styled.h1`
 
   @media only screen and (max-width: 750px){
 
-    grid-area: 3/2/4/5;
-    font-size: 8vw;
+    grid-area: ${props => props.gridAreaTablet};
+    //font-size: 8vw;
     
 
 
   }
 
-  
-  
-  font-size: 1.3em;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1em;
+  min-width: 222px;
+  margin: 50px 0px 25px 0px;
+  padding: 4px 16px;
   font-family: Poppins;
   //font-style: normal;
   //font-weight: 500;
@@ -678,10 +682,16 @@ const ResultSectionHeaderOne = styled.h1`
   /* identical to box height, or 90px */
 
   letter-spacing: -0.03em;
-  color: #ffffff;
+  color: black;
+  background: white;
+  
+  border-radius: 11.11px;
 
-  grid-area: 3/2/4/7;
-  justify-self: start;
+  
+  
+
+  grid-area: ${props => props.gridArea};
+  justify-self: center;
   align-self: end;
 
   white-space: nowrap;
@@ -698,48 +708,7 @@ const ResultSectionHeaderOne = styled.h1`
 `;
 
 
-const ResultSectionHeaderTwo = styled.h1`
 
-  @media only screen and (max-width: 750px){
-
-    grid-area: 5/2/6/6;
-    font-size: 8vw;
-    
-
-
-  }
-
-  
-  
-  font-size: 1.3em;
-
-  font-family: Poppins;
-  //font-style: normal;
-  //font-weight: 500;
-  //font-size: 8vw;
-  //font-size: clamp(1rem, -0.875rem + 8.333333vw, 3.5rem);
-
-  /* identical to box height, or 90px */
-
-  letter-spacing: -0.03em;
-  color: #ffffff;
-
-  grid-area: 3/6/4/7;
-  justify-self: start;
-  align-self: end;
-
-  white-space: nowrap;
-
-  //margin: 20px 0px;
-  //padding: 0px 20px;
-
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-`;
 
 const ResultSectionSubHeader = styled.h2`
 
@@ -1753,10 +1722,10 @@ function Act(props, ref) {
           </ResultSectionInfoBox>
 
           <ResultSectionSpacerLine/>
-          
-          <ResultSectionHeaderOne>Your elected officials</ResultSectionHeaderOne>
+                                   
+          <ResultSectionHeaders gridArea="3/2/4/5" gridAreaTablet="3/2/4/5">Your elected officials</ResultSectionHeaders>
 
-          <ResultSectionHeaderTwo>Personalized Email</ResultSectionHeaderTwo>
+          <ResultSectionHeaders gridArea="3/6/4/7" gridAreaTablet="5/2/6/5">Personalized Email</ResultSectionHeaders>
 
           <CardOne>
             <CardOneWrapper>
