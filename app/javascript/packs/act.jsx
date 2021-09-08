@@ -534,7 +534,7 @@ const ResultSection = styled.div`
     grid-area: 1/1/-1/-1;
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
-    grid-template-columns: 20px minmax(100px, 150px) minmax(8px, 16px) minmax(100px, 150px) 1fr 20px;
+    grid-template-columns: minmax(10px, 1fr) minmax(100px, 150px) minmax(8px, 16px) minmax(100px, 150px) minmax(10px, 1fr);
     width: 100vw;
     
     //max-width: 70vw;
@@ -548,7 +548,7 @@ const ResultSection = styled.div`
     props.showCards ? "translate(0)" : "transform:translate(9999px)"};
   opacity: ${(props) => (props.showCards ? "1" : "0")};
   z-index: ${(props) => (props.showCards ? "10" : "-5")};
-  grid-template-columns: 1fr minmax(150px, 200px) minmax(4px,8px) minmax(150px, 200px) minmax(16px, 32px) minmax(350px,470px) 1fr;
+  grid-template-columns: minmax(10px, 1fr) minmax(150px, 200px) minmax(4px,8px) minmax(150px, 200px) minmax(16px, 32px) minmax(350px,470px) minmax(10px, 1fr);
   grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content,max-content) minmax(min-content, max-content);
   //visibility: hidden;
   //grid-template-rows: ${(props) => props.showCards ? "minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) 1fr": "0px 0px 0px 0px 0px"};
@@ -562,13 +562,15 @@ const ResultSection = styled.div`
   grid-area: 1/1/6/5;
   //margin: 20px 0px 20px 50px;
   height: ${props => props.showCards ? "inherit" : "0px"};
+
+  //margin: 0px 10px;
 `;
 
 const ResultSectionInfoBox = styled.div`
 
   @media only screen and (max-width: 750px){
 
-    grid-area: 1/2/2/6;
+    grid-area: 1/1/2/6;
     
 
 
@@ -604,6 +606,13 @@ const ResultCompleteTitle = styled.h1`
 
 
 const ResultSectionBulletPointWrapper = styled.div`
+
+
+@media only screen and (max-width: 750px){
+
+justify-self: center;
+
+}
   grid-area: ${props => props.gridArea};
 
   display: grid;
@@ -660,7 +669,7 @@ const ResultSectionHeaders = styled.h1`
 
     grid-area: ${props => props.gridAreaTablet};
     //font-size: 8vw;
-    
+    margin: 10px 0px 20px 0px;
 
 
   }
@@ -885,20 +894,21 @@ const Letter = styled.div`
 
   @media only screen and (max-width: 750px){
 
-    grid-area: 6/2/9/6;
+    grid-area: 6/1/9/6;
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
     grid-template-columns: auto;
     width: 100%;
     min-width: inherit;
     margin-top: 25px;
+    justify-self: center;
 
   }
 
   //grid-area: 1/2/7/4;
   grid-area: 4/6/8/7;
   width: 100%;
-  min-width: 400px;
+  //min-width: 400px;
   max-width: 500px;
   justify-self: start;
   border-radius: 10px;
