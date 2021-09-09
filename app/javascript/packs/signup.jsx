@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import styled, { ThemeProvider } from 'styled-components'
 //import { Parallax, Background } from 'react-parallax';
 
+import GoogleLogin from 'react-google-login';
+
 
 
 
@@ -357,6 +359,13 @@ function Signup(props, ref) {
     showStatusSpinner: false,
     waitMessage: ""
   })
+
+
+
+  const responseGoogle = (response) => {
+    console.log(response);
+  }
+  
 
 
 
@@ -730,6 +739,17 @@ const handleAdd = e => {
         </Spacer>
             
       </SignupWrapperInner>
+
+      <GoogleLogin
+        clientId="596024944306-vn3ucabpoapapjk0omu6snrat6ks96us.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+      />
+
+      {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
+
 
     </SignupWrapper>
       
