@@ -601,6 +601,7 @@ class RegistrationsController < ApplicationController
 
 
     def google
+        
 
         puts "in rgsi registration controller " + params[:data][:gtoken]
 

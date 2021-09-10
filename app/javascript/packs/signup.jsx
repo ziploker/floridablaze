@@ -8,6 +8,8 @@ import { GoogleLogin} from 'react-google-login';
 
 
 
+
+
 import {Link, useLocation} from 'react-router-dom'
 
 import redX from '../../assets/images/redXmark'
@@ -362,27 +364,45 @@ function Signup(props, ref) {
 
 
 
-  const responseGoogle = (response) => {
+  const responseGoogle = async response => {
     console.log("google_response", response);
     //console.log("TOkEN_iD", response.tokenId);
 
-    axios.post("rgsi", {
-          
-      data: { 
-        gtoken: response.tokenId
-        
-      }
-    },
-    {withCredentials: true})
-    .then(response => {
 
-      console.log("rgsi response", response.data.status)
+
+
+    const res = await fetch('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token='+response.tokenId)
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     token: response.tokenId
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   }
+    // })  
+    
+    const data = await res.json()
+
+    console.log("DATAdataDATA " + JSON.stringify(data))
+  // store returned user somehow
+
+    // axios.post("rgsi", {
+          
+    //   data: { 
+    //     gtoken: response.tokenId
+        
+    //   }
+    // },
+    // {withCredentials: true})
+    // .then(response => {
+
+    //   console.log("rgsi response", response.data.status)
         
         
-    }).catch(error => {
+    // }).catch(error => {
       
-      //console.log("articleErrors", error)
-    })
+    //   //console.log("articleErrors", error)
+    // })
   }
   
 
