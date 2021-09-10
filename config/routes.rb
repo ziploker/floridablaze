@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     get :logged_in, to: "sessions#logged_in"
     
     post '/lookup', to: 'lookups#incoming'
-    post '/:page', to: 'sparks#next_page'
+    #post '/:page', to: 'sparks#next_page'
     
     put '/registrations/:id', to: 'registrations#update'
     post '/registrations/forgot', to: 'registrations#forgot'
@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   
     post '/blog/vote_up', to: 'sparks#vote_up'
     post '/blog/vote_down', to: 'sparks#vote_down'
+
+    post '/rgsi', to: 'registrations#google'
 
     #get '/blog/:slug', to: 'sparks#direct'
     

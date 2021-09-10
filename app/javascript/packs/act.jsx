@@ -535,6 +535,7 @@ const ResultSection = styled.div`
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
     grid-template-columns: minmax(10px, 1fr) minmax(100px, 150px) minmax(8px, 16px) minmax(100px, 150px) minmax(10px, 1fr);
+   
     width: 100vw;
     
     //max-width: 70vw;
@@ -572,7 +573,7 @@ const ResultSectionInfoBox = styled.div`
 
     grid-area: 1/1/2/6;
     
-
+    grid-template-rows: 1fr min-content 1fr;
 
 
   }
@@ -604,15 +605,34 @@ const ResultCompleteTitle = styled.h1`
 
 `;
 
-
-const ResultSectionBulletPointWrapper = styled.div`
+const ResultSectionBulletPointWrapperSet = styled.div`
 
 
 @media only screen and (max-width: 750px){
 
-justify-self: center;
+  margin: 0 auto;
 
-}
+  }
+
+  grid-area: 3/2/6/3;
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+
+
+ 
+
+
+`;
+
+
+const ResultSectionBulletPointWrapper = styled.div`
+
+
+  /* @media only screen and (max-width: 750px){
+
+    justify-self: center;
+
+  } */
   grid-area: ${props => props.gridArea};
 
   display: grid;
@@ -648,6 +668,7 @@ const ResultSectionBulletPointTitle = styled.h2`
   color: #ffffff; 
   margin-left: 15px;
   font-size: .8em;
+  white-space: nowrap;
 
 `;
 
@@ -1688,42 +1709,45 @@ function Act(props, ref) {
 
             </ResultCompleteTitle>
 
-            <ResultSectionBulletPointWrapper gridArea="3/2/4/3">
+            <ResultSectionBulletPointWrapperSet>
 
-              <ResultSectionBulletPoint/>
+              <ResultSectionBulletPointWrapper gridArea="3/2/4/3">
 
-              <ResultSectionBulletPointTitle>
-                Located your elected officials.
-              </ResultSectionBulletPointTitle>
+                <ResultSectionBulletPoint/>
 
-
-
-            </ResultSectionBulletPointWrapper>
-
-
-            <ResultSectionBulletPointWrapper gridArea="4/2/5/3">
-
-              <ResultSectionBulletPoint/>
-
-              <ResultSectionBulletPointTitle>
-                Generated personalized email.
-              </ResultSectionBulletPointTitle>
+                <ResultSectionBulletPointTitle>
+                  Located your elected officials.
+                </ResultSectionBulletPointTitle>
 
 
 
-            </ResultSectionBulletPointWrapper>
-
-            <ResultSectionBulletPointWrapper gridArea="5/2/6/3">
-
-              <ResultSectionBulletPoint open={open}/>
-
-              <ResultSectionBulletPointTitle>
-              Send email to each of your Reps.              
-              </ResultSectionBulletPointTitle>
+              </ResultSectionBulletPointWrapper>
 
 
+              <ResultSectionBulletPointWrapper gridArea="4/2/5/3">
 
-            </ResultSectionBulletPointWrapper>
+                <ResultSectionBulletPoint/>
+
+                <ResultSectionBulletPointTitle>
+                  Generated personalized email.
+                </ResultSectionBulletPointTitle>
+
+
+
+              </ResultSectionBulletPointWrapper>
+
+              <ResultSectionBulletPointWrapper gridArea="5/2/6/3">
+
+                <ResultSectionBulletPoint open={open}/>
+
+                <ResultSectionBulletPointTitle>
+                Send email to each of your Reps.              
+                </ResultSectionBulletPointTitle>
+
+
+
+              </ResultSectionBulletPointWrapper>
+            </ResultSectionBulletPointWrapperSet>
 
             
 

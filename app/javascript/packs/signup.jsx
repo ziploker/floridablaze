@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled, { ThemeProvider } from 'styled-components'
 //import { Parallax, Background } from 'react-parallax';
 
-import GoogleLogin from 'react-google-login';
+import { GoogleLogin} from 'react-google-login';
 
 
 
@@ -363,7 +363,26 @@ function Signup(props, ref) {
 
 
   const responseGoogle = (response) => {
-    console.log(response);
+    console.log("google_response", response);
+    //console.log("TOkEN_iD", response.tokenId);
+
+    axios.post("rgsi", {
+          
+      data: { 
+        gtoken: response.tokenId
+        
+      }
+    },
+    {withCredentials: true})
+    .then(response => {
+
+      console.log("rgsi response", response.data.status)
+        
+        
+    }).catch(error => {
+      
+      //console.log("articleErrors", error)
+    })
   }
   
 
