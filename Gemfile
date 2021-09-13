@@ -5,7 +5,8 @@ ruby '3.0.0'
 
 
 
-
+gem 'jwt'
+gem 'google-id-token'
 gem 'active_storage_validations'
 gem 'ancestry'
 gem 'mini_magick', '>= 4.9.5'

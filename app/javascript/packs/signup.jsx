@@ -371,7 +371,7 @@ function Signup(props, ref) {
 
 
 
-    const res = await fetch('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token='+response.tokenId)
+    ////////const res = await fetch('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token='+response.tokenId)
     //   method: "POST",
     //   body: JSON.stringify({
     //     token: response.tokenId
@@ -381,28 +381,35 @@ function Signup(props, ref) {
     //   }
     // })  
     
-    const data = await res.json()
+    /////////const data = await res.json()
 
-    console.log("DATAdataDATA " + JSON.stringify(data))
+    ///////////console.log("DATAdataDATA " + JSON.stringify(data))
   // store returned user somehow
 
-    // axios.post("rgsi", {
+    
+  
+  
+  
+  axios.post("rgsi", {
           
-    //   data: { 
-    //     gtoken: response.tokenId
+      data: { 
+        gtoken: "test_data"
         
-    //   }
-    // },
-    // {withCredentials: true})
-    // .then(response => {
+      }
+    }, {
+      headers: {
+        'Authorization': response.tokenId 
+      }
+    },{withCredentials: true})
+    .then(response => {
 
-    //   console.log("rgsi response", response.data.status)
+      console.log("rgsi response", response.data.status)
         
         
-    // }).catch(error => {
+    }).catch(error => {
       
-    //   //console.log("articleErrors", error)
-    // })
+      //console.log("articleErrors", error)
+    })
   }
   
 
@@ -785,6 +792,7 @@ const handleAdd = e => {
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
+        responseType="code"
       />
 
       {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}

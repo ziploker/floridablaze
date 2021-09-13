@@ -601,10 +601,49 @@ class RegistrationsController < ApplicationController
 
 
     def google
+
+        require 'jwt'
+
+
+
+
+        validator = GoogleIDToken::Validator.new
+        begin
+            payload = validator.check(request.headers['Authorization'], "596024944306-vn3ucabpoapapjk0omu6snrat6ks96us.apps.googleusercontent.com")
+            puts "payLOAD is = " + payload.to_s
+            
+            email = payload['email']
+            first_name = payload['given_name']
+            last_name = payload['family_name']
+            email_is_verified = payload['email_verified']
+            picture = payload['picture']
+
+
+            
+
         
+        
+        
+        
+        
+        
+        rescue GoogleIDToken::ValidationError => e
+            puts "Cannot validate: #{e}"
+        end
 
-        puts "in rgsi registration controller " + params[:data][:gtoken]
 
+
+
+
+
+        
+        ###hed = request.headers['Authorization']
+        #puts "in rgsi registration controller " + hed
+
+        ###decoded_token = JWT.decode hed, "bZhou0eDmQ2Km3lSnHhSzqaZ", false, { :algorithm => 'RS256' }
+
+        #decoded = jwt.decode(hed, bZhou0eDmQ2Km3lSnHhSzqaZ);
+        #puts decoded_token 
         render json: {
 
 

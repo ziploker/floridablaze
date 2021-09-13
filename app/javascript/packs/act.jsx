@@ -1738,7 +1738,7 @@ function Act(props, ref) {
 
               <ResultSectionBulletPointWrapper gridArea="5/2/6/3">
 
-                <ResultSectionBulletPoint open={open}/>
+                <ResultSectionBulletPoint open="open"/>
 
                 <ResultSectionBulletPointTitle>
                 Send email to each of your Reps.              
