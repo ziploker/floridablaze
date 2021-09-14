@@ -792,7 +792,7 @@ const handleAdd = e => {
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
-        responseType="code"
+        
       />
 
       {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}

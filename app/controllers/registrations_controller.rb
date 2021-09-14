@@ -619,8 +619,8 @@ class RegistrationsController < ApplicationController
             picture = payload['picture']
 
 
-            
-
+            User.find_or_create_by(first_name: 'Scarlett') do |user|
+           
         
         
         
