@@ -619,11 +619,27 @@ class RegistrationsController < ApplicationController
             picture = payload['picture']
 
 
-            User.find_or_create_by(first_name: 'Scarlett') do |user|
+            user = User.find_or_create_by(email: email) do |u|
            
+                u.email = payload['email']
+                u.password = SecureRandom.hex(8)
+                u.full_name = payload['given_name'] + payload['family_name'] 
+                u.email_confirmed = "true"
+                u.avatar_url = picture
+                u.nick = first_name
+                u.auth_token = SecureRandom.urlsafe_base64
         
-        
-        
+            end
+
+
+            if user.valid?
+                
+
+            else
+
+            end
+            
+
         
         
         

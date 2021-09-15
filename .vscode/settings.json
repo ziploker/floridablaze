@@ -2,6 +2,7 @@
     "cSpell.ignoreWords": [
         "array",
         "b",
+        "base",
         "child",
         "commentable",
         "commentid",
@@ -23,6 +24,7 @@
         "type",
         "undo",
         "upvotes",
+        "urlsafe",
         "votedown",
         "voteup",
         "z",
