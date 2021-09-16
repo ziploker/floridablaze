@@ -329,8 +329,8 @@ function App({d}){
                     <Route exact path="/blog/:id" render = { props => <Article {...props} userState={userState} artData={artData}/> } />
                 </Switch>
                 
-                <Act ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}} executeScrollForSection2={executeScrollForSection2} userState={userState} setLoginClicked={setLoginClicked} setOpenSideMenu={setOpenSideMenu}/>
-                <SignupSection ref={{section2ScrollToRef: section2ScrollToRef}} handleSuccessfulAuth={handleSuccessfulAuth}/>
+                <Act ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}} executeScrollForSection2={executeScrollForSection2} userState={userState} setLoginClicked={setLoginClicked} setOpenSideMenu={setOpenSideMenu} />
+                <SignupSection ref={{section2ScrollToRef: section2ScrollToRef}} handleSuccessfulAuth={handleSuccessfulAuth} />
                 {/* <Shop/> */}
                 <Footer/>
 

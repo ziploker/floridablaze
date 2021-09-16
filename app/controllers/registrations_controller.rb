@@ -607,21 +607,25 @@ class RegistrationsController < ApplicationController
 
         puts "zzni " + request.headers['Authorization']
 
+        #validate google sign in response from google
         validator = GoogleIDToken::Validator.new
+        
         begin
 
             
             payload = validator.check(request.headers['Authorization'], "596024944306-vn3ucabpoapapjk0omu6snrat6ks96us.apps.googleusercontent.com")
-            puts "payLOAD is = " + payload.to_s
             
-            email = payload['email']
-            first_name = payload['given_name']
-            last_name = payload['family_name']
-            email_is_verified = payload['email_verified']
-            picture = payload['picture']
+            #puts "payLOAD is = " + payload.to_s
+            
+            # email = payload['email']
+            # first_name = payload['given_name']
+            # last_name = payload['family_name']
+            # email_is_verified = payload['email_verified']
+            # picture = payload['picture']
 
 
-            user = User.find_or_create_by(email: email) do |u|
+            
+            user = User.find_or_create_by(email: payload['email']) do |u|
            
                 u.email = payload['email']
                 u.password = SecureRandom.hex(8)
@@ -643,13 +647,17 @@ class RegistrationsController < ApplicationController
                     status: "green",
                     logged_in: true,
                     user: user,
-                    error: {success: ["You have successfully logged in !!"]}
+                    error: "You have successfully logged in !!"
                 }
 
                 
 
             else
 
+                render json: {
+                    status: "pink", 
+                    error: "Email validation via Google not done yet"
+                }
             end
             
 
@@ -673,11 +681,11 @@ class RegistrationsController < ApplicationController
 
         #decoded = jwt.decode(hed, bZhou0eDmQ2Km3lSnHhSzqaZ);
         #puts decoded_token 
-        render json: {
+        # render json: {
 
 
-            status: "kjkjkjkkjk"
-        }
+        #     status: "kjkjkjkkjk"
+        # }
 
 
     end

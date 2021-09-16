@@ -404,6 +404,23 @@ function Signup(props, ref) {
     .then(response => {
 
       console.log("rgsi response", response.data.status)
+      
+
+
+      if (response.data.status == "green"){
+
+
+        props.handleSuccessfulAuth(response.data)
+        console.log("result from google signin axios call", response.data.error)
+      
+      }else if (response.data.status == "pink"){
+
+        console.log("result from google signin axios call", response.data.error)
+
+      }else{
+
+        console.log("result from google signin axios call, this should never happen")
+      }
         
         
     }).catch(error => {
@@ -788,7 +805,7 @@ const handleAdd = e => {
 
       <GoogleLogin
         clientId="596024944306-vn3ucabpoapapjk0omu6snrat6ks96us.apps.googleusercontent.com"
-        buttonText="Loginn"
+        buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
