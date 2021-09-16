@@ -605,10 +605,12 @@ class RegistrationsController < ApplicationController
         require 'jwt'
 
 
-
+        puts "zzni " + request.headers['Authorization']
 
         validator = GoogleIDToken::Validator.new
         begin
+
+            
             payload = validator.check(request.headers['Authorization'], "596024944306-vn3ucabpoapapjk0omu6snrat6ks96us.apps.googleusercontent.com")
             puts "payLOAD is = " + payload.to_s
             
@@ -633,6 +635,17 @@ class RegistrationsController < ApplicationController
 
 
             if user.valid?
+
+                cookies.permanent[:auth_token] = user.auth_token
+
+                render json:{
+                    
+                    status: "green",
+                    logged_in: true,
+                    user: user,
+                    error: {success: ["You have successfully logged in !!"]}
+                }
+
                 
 
             else

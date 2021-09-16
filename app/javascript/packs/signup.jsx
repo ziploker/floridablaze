@@ -788,11 +788,11 @@ const handleAdd = e => {
 
       <GoogleLogin
         clientId="596024944306-vn3ucabpoapapjk0omu6snrat6ks96us.apps.googleusercontent.com"
-        buttonText="Login"
+        buttonText="Loginn"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
-        
+      
       />
 
       {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
