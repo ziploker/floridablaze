@@ -167,7 +167,7 @@ class SparksController < ApplicationController
         end
         
         
-        
+        puts " @fullCommentsHash inspect = " +  @fullCommentsHash.inspect 
         
         
         # @comments = @article_info.comments.as_json(include: {comments: 
@@ -480,7 +480,7 @@ class SparksController < ApplicationController
         end
         
         
-        
+        puts " @fullCommentsHash inspect = " +  @fullCommentsHash.inspect 
         
         
         # @comments = @article_info.comments.as_json(include: {comments: 

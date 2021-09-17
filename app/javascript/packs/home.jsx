@@ -235,6 +235,8 @@ const StoryOneTitle = styled.h1`
 
 const Div1 = styled.div`
     //background: blue;
+
+    
     box-shadow: 0 2px 5px 0 rgba(227, 181, 90, 0.2);
     grid-area: one;
     border-radius: 10px;
@@ -277,7 +279,7 @@ const Div1 = styled.div`
 
     a{
 
-        grid-area: 2/1/3/2;
+        grid-area: 1/1/3/2;
     }
 
 `;
@@ -322,7 +324,7 @@ const Div2 = styled.div`
 
     a{
 
-        grid-area: 2/1/3/2;
+        grid-area: 1/1/3/2;
     }
 
 `;
@@ -367,7 +369,7 @@ const Div3 = styled.div`
 
     a{
 
-        grid-area: 2/1/3/2;
+        grid-area: 1/1/3/2;
     }
 
 `;
@@ -415,7 +417,7 @@ const Div4 = styled.div`
 
         a{
 
-            grid-area: 2/1/3/2;
+            grid-area: 1/1/3/2;
         }
     }
 

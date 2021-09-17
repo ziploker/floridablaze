@@ -687,8 +687,8 @@ function CommentSection(props){
     
     
                     <TopBarWrapper>
-                        {/* <img src={item.author_avatar}/> */}
-                        <img src={defaultAvatar}/>
+                        <img src={item.author_avatar}/>
+                        {/* <img src={defaultAvatar}/> */}
                         <h3 style={{alignSelf: "center", fontSize: ".6em", gridArea: "nick", marginRight: "8px"}}>{item.author_nick}</h3>
                         <span style={{alignSelf: "center", gridArea: "date", fontSize: ".6em", color: "gray"}}><ReactTimeAgo key={item.id + "rta"} data-id={ item.id + "rta"} date={item.created_at ? new Date(item.created_at) : null} locale="en-US" timeStyle="round-minute"/></span>
     

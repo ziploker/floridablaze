@@ -631,8 +631,8 @@ class RegistrationsController < ApplicationController
                 u.password = SecureRandom.hex(8)
                 u.full_name = payload['given_name'] + payload['family_name'] 
                 u.email_confirmed = "true"
-                u.avatar_url = picture
-                u.nick = first_name
+                u.avatar_url = payload['picture']
+                u.nick = payload['given_name']
                 u.auth_token = SecureRandom.urlsafe_base64
         
             end
