@@ -605,6 +605,10 @@ class RegistrationsController < ApplicationController
         require 'jwt'
 
 
+        googleClient = Rails.application.credentials.dig(:GOOGLE_OAUTH_CLIENT_ID)
+
+        facebookAppId = Rails.application.credentials.dig(:FACEBOOK_APPID)
+        
         puts "zzni " + request.headers['Authorization']
 
         #validate google sign in response from google
@@ -613,7 +617,7 @@ class RegistrationsController < ApplicationController
         begin
 
             
-            payload = validator.check(request.headers['Authorization'], "596024944306-vn3ucabpoapapjk0omu6snrat6ks96us.apps.googleusercontent.com")
+            payload = validator.check(request.headers['Authorization'], googleClient)
             
             #puts "payLOAD is = " + payload.to_s
             
@@ -671,21 +675,6 @@ class RegistrationsController < ApplicationController
 
 
 
-
-
-        
-        ###hed = request.headers['Authorization']
-        #puts "in rgsi registration controller " + hed
-
-        ###decoded_token = JWT.decode hed, "bZhou0eDmQ2Km3lSnHhSzqaZ", false, { :algorithm => 'RS256' }
-
-        #decoded = jwt.decode(hed, bZhou0eDmQ2Km3lSnHhSzqaZ);
-        #puts decoded_token 
-        # render json: {
-
-
-        #     status: "kjkjkjkkjk"
-        # }
 
 
     end

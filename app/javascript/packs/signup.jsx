@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import styled, { ThemeProvider } from 'styled-components'
 //import { Parallax, Background } from 'react-parallax';
 
-import { GoogleLogin} from 'react-google-login';
+import {GoogleLogin} from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 
 
 
@@ -390,7 +391,7 @@ function Signup(props, ref) {
   
   
   
-  axios.post("rgsi", {
+  axios.post("/auth/rgsi", {
           
       data: { 
         gtoken: "test_data"
@@ -691,6 +692,15 @@ const handleAdd = e => {
   } 
   
 
+  const responseFacebook = (response) => {
+    console.log(response);
+  }
+
+  const componentClicked = () => {
+    console.log("clickedd");
+  }
+
+  
 
   return (
             
@@ -804,13 +814,25 @@ const handleAdd = e => {
       </SignupWrapperInner>
 
       <GoogleLogin
-        clientId="596024944306-vn3ucabpoapapjk0omu6snrat6ks96us.apps.googleusercontent.com"
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
       
       />
+
+
+
+
+ 
+
+  <FacebookLogin
+    appId="293426502140339"
+    autoLoad={true}
+    fields="name,email,picture"
+    onClick={componentClicked}
+    callback={responseFacebook} />
+  
 
       {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
 

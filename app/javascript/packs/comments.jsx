@@ -94,8 +94,9 @@ const BorderDiv = styled.div`
 
     position: absolute;
     border-left: 1px solid gray;
+    opacity: .3;
 
-    height: calc(100% - 25px);
+    height: calc(100% - 34px);
     width: 100%;
 
     margin-left: 12px;
