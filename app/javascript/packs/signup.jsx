@@ -824,7 +824,7 @@ const handleAdd = e => {
 
 
 
- 
+ {console.log("CHECK TO SEE IF ENV WORKS", process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID)}
 
   <FacebookLogin
     appId="293426502140339"

@@ -1,3 +1,6 @@
+require('dotenv').config()
+
+
 import React, {useEffect, useState, useRef, useCallback} from 'react'
 
 import {

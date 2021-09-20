@@ -9,6 +9,7 @@
     "@rails/webpacker": "5.4.0",
     "axios": "^0.21.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "dotenv": "^10.0.0",
     "gsap": "^3.7.1",
     "javascript-time-ago": "^2.3.8",
     "jquery": "^3.6.0",

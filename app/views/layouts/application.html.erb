@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Floridablaze</title>
+    <title>Floridablaze></title>
     
 
  <meta name="viewport" content="width=device-width,initial-scale=1"> 
@@ -46,7 +46,7 @@
 <%
 =end%>
     
-    <meta name="google-signin-client_id" content="596024944306-ujc1bn88dqkt9vbc6e5e12l5e9dq7455.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content=<%=Rails.application.credentials.dig(:GOOGLE_OAUTH_CLIENT_ID)%>>
     <%# <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
