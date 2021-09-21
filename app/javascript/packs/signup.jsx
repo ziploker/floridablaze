@@ -11,6 +11,8 @@ import FacebookLogin from 'react-facebook-login';
 
 
 
+
+
 import {Link, useLocation} from 'react-router-dom'
 
 import redX from '../../assets/images/redXmark'
@@ -366,32 +368,13 @@ function Signup(props, ref) {
 
 
   const responseGoogle = async response => {
-    console.log("google_response", response);
-    //console.log("TOkEN_iD", response.tokenId);
-
-
-
-
-    ////////const res = await fetch('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token='+response.tokenId)
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     token: response.tokenId
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   }
-    // })  
     
-    /////////const data = await res.json()
-
-    ///////////console.log("DATAdataDATA " + JSON.stringify(data))
-  // store returned user somehow
-
     
-  
-  
-  
-  axios.post("/auth/rgsi", {
+    
+    //send googles response to registrations#google
+    //console.log("google_response", response);
+
+    axios.post("/auth/rgsi", {
           
       data: { 
         gtoken: "test_data"
@@ -404,12 +387,54 @@ function Signup(props, ref) {
     },{withCredentials: true})
     .then(response => {
 
-      console.log("rgsi response", response.data.status)
-      
-
-
+      //console.log("rgsi response", response.data.status)
       if (response.data.status == "green"){
 
+        props.handleSuccessfulAuth(response.data)
+        console.log("result from google signin axios call", response.data.error)
+      
+      }else if (response.data.status == "pink"){
+
+        console.log("result from google signin axios call", response.data.error)
+
+      }else{
+
+        console.log("result from google signin axios call, this should never happen")
+      }
+        
+        
+    }).catch(error => {
+      
+      //console.log("articleErrors", error)
+    })
+  }
+
+
+
+
+
+
+  const responseFacebook = async response => {
+    console.log("About to make axios call to send info to server", response);
+
+    //send googles response to registrations#google
+    //console.log("google_response", response);
+
+    axios.post("/auth/rfsi", {
+          
+      data: { 
+        gtoken: "test_data"
+        
+      }
+    }, {
+      headers: {
+        'Authorization': JSON.stringify(response)
+      }
+    },{withCredentials: true})
+    .then(response => {
+
+      //console.log("rgsi response", response.data.status)
+      if (response.data.status == "green"){
 
         props.handleSuccessfulAuth(response.data)
         console.log("result from google signin axios call", response.data.error)
@@ -692,9 +717,7 @@ const handleAdd = e => {
   } 
   
 
-  const responseFacebook = (response) => {
-    console.log(response);
-  }
+  
 
   const componentClicked = () => {
     console.log("clickedd");
@@ -814,28 +837,28 @@ const handleAdd = e => {
       </SignupWrapperInner>
 
       <GoogleLogin
+        render={renderProps => (
+          <button className="loginBtn loginBtn--google" onClick={renderProps.onClick} disabled={renderProps.disabled}>Login with Google</button>
+        )}
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
+        
       
       />
 
 
-
-
- {console.log("CHECK TO SEE IF ENV WORKS", process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID)}
-
-  <FacebookLogin
-    appId="293426502140339"
-    autoLoad={true}
-    fields="name,email,picture"
-    onClick={componentClicked}
-    callback={responseFacebook} />
-  
-
-      {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
-
+      
+      <FacebookLogin
+        appId="293426502140339"
+        autoLoad={false}
+        fields="name,email,picture"
+        onClick={componentClicked}
+        callback={responseFacebook} 
+        cssClass="loginBtn loginBtn--facebook"/>
+     
+ 
 
     </SignupWrapper>
       

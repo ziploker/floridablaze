@@ -598,7 +598,63 @@ class RegistrationsController < ApplicationController
         end
     end
 
+    def facebook
 
+        #puts "in REGISTRATION#FACEBOOK checking input " + JSON.parse(request.headers['Authorization']).inspect
+
+        infoObj = JSON.parse(request.headers['Authorization'])
+        
+        # email = infoObj["email"]
+        # name = infoObj["name"]
+        # first_name = infoObj["name"].split.first
+        # last_name = infoObj["name"].split[1..-1].join(' ')
+        # nick = infoObj["name"].split.first
+        # picture = infoObj["picture"]["data"]["url"]
+
+        # puts "EXTRACTED email is = " + email + " " + name + " " + picture + " " + first_name + " " + last_name + " " + nick
+        # first_name = payload['given_name']
+        # last_name = payload['family_name']
+        # email_is_verified = payload['email_verified']
+        # picture = payload['picture']
+    
+
+
+        user = User.find_or_create_by(email: infoObj["email"]) do |u|
+           
+            u.email = infoObj["email"]
+            u.password = SecureRandom.hex(8)
+            u.full_name = infoObj["name"] 
+            u.email_confirmed = "true"
+            u.avatar_url = infoObj["picture"]["data"]["url"]
+            u.nick = infoObj["name"].split.first
+            u.auth_token = SecureRandom.urlsafe_base64
+    
+        end
+
+
+        if user.valid?
+
+            cookies.permanent[:auth_token] = user.auth_token
+
+            render json:{
+                
+                status: "green",
+                logged_in: true,
+                user: user,
+                error: "You have successfully logged in !!"
+            }
+
+            
+
+        else
+
+            render json: {
+                status: "pink", 
+                error: "Facebook account error, try again?"
+            }
+        end
+    
+    end
 
     def google
 
@@ -634,7 +690,7 @@ class RegistrationsController < ApplicationController
                 u.email = payload['email']
                 u.password = SecureRandom.hex(8)
                 u.full_name = payload['given_name'] + payload['family_name'] 
-                u.email_confirmed = "true"
+                u.email_confirmed = payload['email_verified'] ? "true" : "false"
                 u.avatar_url = payload['picture']
                 u.nick = payload['given_name']
                 u.auth_token = SecureRandom.urlsafe_base64
