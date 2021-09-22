@@ -1190,7 +1190,7 @@ function Act(props, ref) {
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(true);
+  const [showCards, setShowCards] = React.useState(false);
   const [showLetter, setShowLetter] = React.useState(false);
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
@@ -1199,41 +1199,41 @@ function Act(props, ref) {
   const [flashMsg, setFlashMsg] = React.useState("");
   const [successFlag, setSuccessFlag] = React.useState(true);
 
-  const [results, setResults] = React.useState({
-    one: {
-      resultFromFlorida: "true",
-      name: "Juan Alfonso Fernandez-Barquin",
-      firstName: "",
-      lastName: "",
-      image:
-        "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
-      id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
-      email: "JuanF.Barquin@myfloridahouse.gov",
-      chamber: "House",
-      party: "Republican",
-      parent: "Florida Legislature",
-      district: "119",
-      fullDistrict: "Florida State House district 119",
-      fullDistrictTrunk: "Florida State House",
-    },
-    two: {
-      name: "Annette Taddeo",
-      firstName: "Annette",
-      lastName: "Taddeo",
-      image:
-        "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
-      id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
-      email: "taddeo.annette.web@flsenate.gov",
-      chamber: "Senate",
-      party: "Democrat",
-      parent: "Florida Legislature",
-      district: "40",
-      fullDistrict: "Florida State Senate  ",
-      fullDistrictTrunk: "Florida State Senate",
-    },
-  });
+  // const [results, setResults] = React.useState({
+  //   one: {
+  //     resultFromFlorida: "true",
+  //     name: "Juan Alfonso Fernandez-Barquin",
+  //     firstName: "",
+  //     lastName: "",
+  //     image:
+  //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
+  //     id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
+  //     email: "JuanF.Barquin@myfloridahouse.gov",
+  //     chamber: "House",
+  //     party: "Republican",
+  //     parent: "Florida Legislature",
+  //     district: "119",
+  //     fullDistrict: "Florida State House district 119",
+  //     fullDistrictTrunk: "Florida State House",
+  //   },
+  //   two: {
+  //     name: "Annette Taddeo",
+  //     firstName: "Annette",
+  //     lastName: "Taddeo",
+  //     image:
+  //       "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
+  //     id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
+  //     email: "taddeo.annette.web@flsenate.gov",
+  //     chamber: "Senate",
+  //     party: "Democrat",
+  //     parent: "Florida Legislature",
+  //     district: "40",
+  //     fullDistrict: "Florida State Senate  ",
+  //     fullDistrictTrunk: "Florida State Senate",
+  //   },
+  // });
   
-  //const [results, setResults] = React.useState( {"one": {}, "two": {} });
+  const [results, setResults] = React.useState( {"one": {}, "two": {} });
 
   function loginFromDeadEnd(e) {
     e.preventDefault();

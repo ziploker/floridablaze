@@ -37,7 +37,7 @@ var Spinner = require('react-spinkit');
 
 const SignupWrapper = styled.div`
 
-  @media only screen and (max-width: 720px){
+  /* @media only screen and (max-width: 720px){
 
     grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
     min-width: 100%;
@@ -53,7 +53,40 @@ const SignupWrapper = styled.div`
   display: grid;
   grid-template-columns: minmax(20px,1fr) minmax(335px,350px) minmax(350px,600px) minmax(20px,1fr);
   grid-column-gap: 0.5em;
-  justify-items: center;
+  justify-items: center; */
+
+
+
+  @media only screen and (max-width: 720px){
+
+grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
+min-width: 100%;
+//padding-left: 20px;
+//justify-self: center;
+
+
+}
+position: relative;
+height: 100%;
+//background-color: RGB(244, 244, 244);
+background-color: #FFFFFF;
+display: grid;
+
+align-items: center;
+justify-content: center;
+//justify-self: start;
+//grid-template-columns: minmax(170px,350px) minmax(340px,600px);
+//grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
+
+grid-template-columns: minmax(20px, 40px) minmax(350px,450px) minmax(350px,1fr) minmax(20px,40px);
+
+grid-area: 1/1/-1/-1;
+grid-column-gap: 0.5em;
+padding-top: 60px;
+padding-bottom: 20px;
+text-align: center;
+//width: 100vw;
+
 
 `;
 
@@ -274,6 +307,16 @@ const LeftSection = styled.div`
 
     color: rgb(6, 7, 1, .9);
   }
+
+
+`;
+
+
+const RightSection = styled.div`
+
+  background: #765F1F;
+  grid-area: 1/3/2/-1;
+  height: 100%;
 
 
 `;
@@ -730,20 +773,14 @@ const handleAdd = e => {
          
     <SignupWrapper className="homeWrapper" ref={section2ScrollToRef}>
           
-      <SignupWrapperInner>
+      
 
         <LeftSection>
 
           {/* <img style={{width: "50px"}} src={userIcon}/> */}
           <h1>Sign Up!</h1>
-          <sub>- Create a free account.</sub><br/>
-          <sub>- Stay Informed with FloridaBlaze updates.</sub><br/>
-          <sub>- Unlimited access to our "take action" tool.</sub>
-
-
-        </LeftSection>
-            
-        <LoginCard className="formWrapper" >
+          
+          <LoginCard className="formWrapper" >
        
                 
           <Form onSubmit = {handleAdd}>
@@ -826,17 +863,8 @@ const handleAdd = e => {
               </StatusSpinner>
 
           </ErrorWrapper>
-        
-        </LoginCard>
 
-        <Spacer>
-        Contact Your State Representatives
-
-        </Spacer>
-            
-      </SignupWrapperInner>
-
-      <GoogleLogin
+          <GoogleLogin
         render={renderProps => (
           <button className="loginBtn loginBtn--google" onClick={renderProps.onClick} disabled={renderProps.disabled}>Login with Google</button>
         )}
@@ -857,6 +885,23 @@ const handleAdd = e => {
         onClick={componentClicked}
         callback={responseFacebook} 
         cssClass="loginBtn loginBtn--facebook"/>
+        
+        </LoginCard>
+
+        </LeftSection>
+
+        <RightSection></RightSection>
+            
+        
+
+        {/* <Spacer>
+        Contact Your State Representatives
+
+        </Spacer> */}
+            
+      
+
+      
      
  
 
