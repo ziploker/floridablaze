@@ -68,6 +68,7 @@ const Mega = styled.img`
   @media only screen and (max-width: 720px) {
     grid-area: 1/1/-1/-1;
     display: none;
+    
   }
 
   /* @media only screen and (max-width: 1000px) {
@@ -106,7 +107,7 @@ const ActGrid = styled.div`
   }
   
   //overflow: hidden;
-  display: grid;
+  //display: grid;
   position: relative;
   max-width: 1383px;
   margin: 0 auto;
@@ -588,9 +589,10 @@ const ResultSectionInfoBox = styled.div`
 const ProgressBarz = styled.div`
 
   display: flex;
-  grid-area: 1/2/2/3;
+  grid-area: 1/3/2/4;
   //margin: 27px 0px 18px 20px;
-  margin: 30px 0px 10px 0px;
+  margin: 30px 0px 10px 20px;
+  
 
   justify-self: start;
 
