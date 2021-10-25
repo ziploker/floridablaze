@@ -46,7 +46,7 @@ const HeaderWrapper = styled.div`
     grid-template-rows: 85px;
     grid-template-areas:
 
-        "headerLogo  . headerLeaf headerLeaf";
+        "headerLogo headerLogo headerLeaf headerLeaf";
         
     grid-gap: 8px;
 `;
@@ -76,9 +76,9 @@ const Logo = styled.img`
     justify-self: start;
     align-self: center;
     
-    width:50px;
-    height: 50px;
-    min-width: 70px;
+    
+    height: 100%;
+    
     margin-left: 40px;
 
     
@@ -351,10 +351,10 @@ function Header(props) {
         
             <HeaderWrapper openSideMenu={props.openSideMenu}>
             
-                <Package>
-                    <Logo src={newLeaf}></Logo>
-                    <h1>FloridaBlaze</h1>
-                </Package>
+                
+                <Logo src={newLeaf}></Logo>
+                    
+                
 
                 <HeaderLeafImage src={headerLeaf}></HeaderLeafImage>
                 <Nav>

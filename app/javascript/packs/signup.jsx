@@ -141,10 +141,10 @@ const LoginCard = styled.div`
   grid-area: 1/3/2/4;
   box-sizing: border-box;
   max-width: 600px;
-  width: 100%;
+  //width: 100%;
   //margin-left: 20px;
   //padding: 0 2rem;
-  margin-left: 20px;
+  //margin-left: 20px;
   //margin-top: 100px;
   padding: 40px 0px 0px 0px;
 
@@ -314,9 +314,11 @@ const LeftSection = styled.div`
 
 const RightSection = styled.div`
 
-  background: #765F1F;
+  background: #C4C4C4;
   grid-area: 1/3/2/-1;
   height: 100%;
+  border-top-left-radius: 60px;
+  border-bottom-left-radius: 60px;
 
 
 `;
