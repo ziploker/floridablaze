@@ -7,7 +7,7 @@ import FacebookLogin from 'react-facebook-login';
 
 
 
-
+import flFists from '../../assets/images/flFists.png'
 
 
 
@@ -892,7 +892,12 @@ const handleAdd = e => {
 
         </LeftSection>
 
-        <RightSection></RightSection>
+        <RightSection>
+
+          <img src={flFists}/>
+
+
+        </RightSection>
             
         
 
