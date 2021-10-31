@@ -5,7 +5,7 @@ import {Link, useLocation} from 'react-router-dom'
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
 import styled from 'styled-components'
 import headerLeaf from "../../assets/images/headerLeafv2.png"
-import headerLogo from '../../assets/images/logo.png'
+import headerLogo from '../../assets/images/leafTripple.png'
 
 import Burger from './burger'
 import SideMenu from './sidemenu'
@@ -66,7 +66,8 @@ const Logo = styled.img`
     justify-self: start;
     align-self: center;
     
-    width: 80%;
+    width: 50px;
+    height: 50px;
     min-width: 70px;
     margin-left: 40px;
 `;
