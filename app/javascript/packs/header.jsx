@@ -6,6 +6,8 @@ import {Link, useLocation} from 'react-router-dom'
 import styled from 'styled-components'
 import headerLeaf from "../../assets/images/headerLeafv2.png"
 import headerLogo from '../../assets/images/leafTripple.png'
+//import headerLogo from '../../assets/images/logo.png'
+import newLeaf from '../../assets/images/logoDiff4.png'
 
 import Burger from './burger'
 import SideMenu from './sidemenu'
@@ -45,9 +47,18 @@ const HeaderWrapper = styled.div`
     grid-template-rows: 85px;
     grid-template-areas:
 
-        "headerLogo  . headerLeaf headerLeaf";
+        "headerLogo headerLogo headerLeaf headerLeaf";
         
     grid-gap: 8px;
+`;
+
+const Package = styled.div`
+
+display: flex;
+justify-content: center;
+grid-area: headerLogo;
+
+
 `;
 
 
@@ -62,14 +73,16 @@ const Logo = styled.img`
     color: #010101;
     
 
-    grid-area: headerLogo;
+    
     justify-self: start;
     align-self: center;
     
-    width: 50px;
-    height: 50px;
-    min-width: 70px;
+    
+    height: 100%;
+    
     margin-left: 40px;
+
+    
 `;
 
 
@@ -339,7 +352,11 @@ function Header(props) {
         
             <HeaderWrapper openSideMenu={props.openSideMenu}>
             
-                <Logo src={headerLogo}></Logo>
+                
+                <Logo src={newLeaf}></Logo>
+                    
+                
+
                 <HeaderLeafImage src={headerLeaf}></HeaderLeafImage>
                 <Nav>
                     <ul>
