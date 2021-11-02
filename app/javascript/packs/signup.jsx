@@ -8,6 +8,7 @@ import FacebookLogin from 'react-facebook-login';
 
 
 import flFists from '../../assets/images/flFists.png'
+import thebullet from '../../assets/images/thebullet.png'
 
 
 
@@ -320,6 +321,30 @@ const RightSection = styled.div`
   border-top-left-radius: 60px;
   border-bottom-left-radius: 60px;
 
+  display: grid;
+  padding: 50px;
+
+  grid-template-columns: 30px 1fr;
+  grid-template-rows: 1fr repeat(4, 50px) 1fr;
+
+
+
+`;
+
+const FloridaImg = styled.img`
+
+  justify-self: end;
+  align-self: center;
+  grid-area: 1/2/-1/3;
+
+
+`;
+
+
+const WeedBullet = styled.img`
+
+  width: 25px;
+  grid-area: 1/1/2/2;
 
 `;
 
@@ -894,7 +919,9 @@ const handleAdd = e => {
 
         <RightSection>
 
-          <img src={flFists}/>
+          <FloridaImg src={flFists}/>
+
+          <WeedBullet src={thebullet} />
 
 
         </RightSection>
