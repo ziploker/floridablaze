@@ -297,6 +297,8 @@ const LeftSection = styled.div`
   font-style: normal;
   font-weight: 800;
 
+  border-right: 1px gray solid;
+
   h1{
     color: rgb(6, 7, 1, .9);
     margin-bottom: 30px;
@@ -315,17 +317,19 @@ const LeftSection = styled.div`
 
 const RightSection = styled.div`
 
-  background: #C4C4C4;
+  //background: #C4C4C4;
   grid-area: 1/3/2/-1;
-  height: 100%;
+  height: 80%;
   border-top-left-radius: 60px;
   border-bottom-left-radius: 60px;
 
   display: grid;
-  padding: 50px;
+  padding: 0px 50px 50px 20px;
 
   grid-template-columns: 30px 1fr;
   grid-template-rows: 1fr repeat(4, 50px) 1fr;
+
+  align-self: start;
 
 
 
@@ -334,20 +338,69 @@ const RightSection = styled.div`
 const FloridaImg = styled.img`
 
   justify-self: end;
-  align-self: center;
+  align-self: start;
   grid-area: 1/2/-1/3;
 
 
 `;
 
 
-const WeedBullet = styled.img`
+const WeedBullet1 = styled.img`
 
   width: 25px;
-  grid-area: 1/1/2/2;
+  grid-area: 2/1/3/2;
 
 `;
 
+const WeedBullet2 = styled.img`
+
+  width: 25px;
+  grid-area: 3/1/4/2;
+
+`;
+
+const WeedBullet3 = styled.img`
+
+  width: 25px;
+  grid-area: 4/1/5/2;
+
+`;
+
+const WeedBullet4 = styled.img`
+
+  width: 25px;
+  grid-area: 5/1/6/2;
+
+`;
+
+
+const WeedBulletText1 = styled.h2`
+
+  grid-area: 2/2/3/3;
+  justify-self: start;
+
+`;
+
+const WeedBulletText2 = styled.h2`
+
+  grid-area: 3/2/4/3;
+  justify-self: start;
+
+`;
+
+const WeedBulletText3 = styled.h2`
+
+  grid-area: 4/2/5/3;
+  justify-self: start;
+
+`;
+
+const WeedBulletText4 = styled.h2`
+
+  grid-area: 5/2/6/3;
+  justify-self: start;
+
+`;
 const Spacer = styled.h2`
 
   font-family: Poppins;
@@ -805,7 +858,7 @@ const handleAdd = e => {
         <LeftSection>
 
           {/* <img style={{width: "50px"}} src={userIcon}/> */}
-          <h1>Sign Up!</h1>
+          
           
           <LoginCard className="formWrapper" >
        
@@ -919,9 +972,25 @@ const handleAdd = e => {
 
         <RightSection>
 
+          <h1 style={{
+
+            gridArea: "1/2/2/3",
+            justifySelf: "start",
+            alignSelf: "start",
+            wordBreak: "keep-all"
+          
+          }}>Sign Up!</h1>
+
           <FloridaImg src={flFists}/>
 
-          <WeedBullet src={thebullet} />
+          <WeedBullet1 src={thebullet} />
+          <WeedBulletText1>Become a FloridaBlazer. It's totally free.</WeedBulletText1>
+          <WeedBullet2 src={thebullet} />
+          <WeedBulletText2>Get alerts on the latest marijuana laws.  </WeedBulletText2>
+          <WeedBullet3 src={thebullet} />
+          <WeedBulletText3>Easily contact your state Reps.</WeedBulletText3>
+          <WeedBullet4 src={thebullet} />
+          <WeedBulletText4>Help us make Florida green.</WeedBulletText4>
 
 
         </RightSection>
