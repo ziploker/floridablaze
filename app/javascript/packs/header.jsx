@@ -32,6 +32,8 @@ const HeaderWrapper = styled.div`
     min-height: 85px;
     //margin: 0 20px;
     min-width: 500px;
+    max-width: 3000px;
+    margin: 0 auto;
     //overflow: ${props => props.openSideMenu ? "visible" : "hidden"};
     
     //position: relative;

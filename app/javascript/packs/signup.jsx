@@ -79,10 +79,10 @@ justify-content: center;
 //grid-template-columns: minmax(170px,350px) minmax(340px,600px);
 //grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
 
-grid-template-columns: minmax(20px, 40px) minmax(350px,450px) minmax(350px,1fr) minmax(20px,40px);
+grid-template-columns: minmax(20px, 40px) minmax(350px,450px) minmax(350px,700px) minmax(20px,40px);
 
 grid-area: 1/1/-1/-1;
-grid-column-gap: 0.5em;
+//grid-column-gap: 0.5em;
 padding-top: 60px;
 padding-bottom: 20px;
 text-align: center;
@@ -147,7 +147,7 @@ const LoginCard = styled.div`
   //padding: 0 2rem;
   //margin-left: 20px;
   //margin-top: 100px;
-  padding: 40px 0px 0px 0px;
+  padding: 80px 0px 0px 0px;
 
   background-color: #fff;
   border: 1px solid transparent;
@@ -297,7 +297,7 @@ const LeftSection = styled.div`
   font-style: normal;
   font-weight: 800;
 
-  border-right: 1px gray solid;
+  border-right: 1px rgba(114, 111, 111, .3) solid;
 
   h1{
     color: rgb(6, 7, 1, .9);
@@ -324,12 +324,14 @@ const RightSection = styled.div`
   border-bottom-left-radius: 60px;
 
   display: grid;
-  padding: 0px 50px 50px 20px;
+  padding: 0px 50px 50px 30px;
 
   grid-template-columns: 30px 1fr;
-  grid-template-rows: 1fr repeat(4, 50px) 1fr;
+  grid-template-rows: 1fr repeat(4, 69px) 1fr;
 
   align-self: start;
+
+  max-width: 700px;
 
 
 
@@ -340,6 +342,7 @@ const FloridaImg = styled.img`
   justify-self: end;
   align-self: start;
   grid-area: 1/2/-1/3;
+  height: 500px;
 
 
 `;
@@ -349,6 +352,9 @@ const WeedBullet1 = styled.img`
 
   width: 25px;
   grid-area: 2/1/3/2;
+  align-self: center;
+  justify-self: center;
+  margin-top: 1.5px;
 
 `;
 
@@ -356,6 +362,9 @@ const WeedBullet2 = styled.img`
 
   width: 25px;
   grid-area: 3/1/4/2;
+  align-self: center;
+  justify-self: center;
+  margin-top: 1.5px;
 
 `;
 
@@ -363,6 +372,9 @@ const WeedBullet3 = styled.img`
 
   width: 25px;
   grid-area: 4/1/5/2;
+  align-self: center;
+  justify-self: center;
+  margin-top: 1.5px;
 
 `;
 
@@ -370,7 +382,9 @@ const WeedBullet4 = styled.img`
 
   width: 25px;
   grid-area: 5/1/6/2;
-
+  align-self: center;
+  justify-self: center;
+  margin-top: 1.5px;
 `;
 
 
@@ -378,6 +392,9 @@ const WeedBulletText1 = styled.h2`
 
   grid-area: 2/2/3/3;
   justify-self: start;
+  padding-left: 10px;
+  font-size: .8em;
+  align-self: center;
 
 `;
 
@@ -385,6 +402,9 @@ const WeedBulletText2 = styled.h2`
 
   grid-area: 3/2/4/3;
   justify-self: start;
+  padding-left: 10px;
+  font-size: .8em;
+  align-self: center;
 
 `;
 
@@ -392,6 +412,9 @@ const WeedBulletText3 = styled.h2`
 
   grid-area: 4/2/5/3;
   justify-self: start;
+  padding-left: 10px;
+  font-size: .8em;
+  align-self: center;
 
 `;
 
@@ -399,6 +422,9 @@ const WeedBulletText4 = styled.h2`
 
   grid-area: 5/2/6/3;
   justify-self: start;
+  padding-left: 10px;
+  font-size: .8em;
+  align-self: center;
 
 `;
 const Spacer = styled.h2`
@@ -859,7 +885,16 @@ const handleAdd = e => {
 
           {/* <img style={{width: "50px"}} src={userIcon}/> */}
           
-          
+          <h1 style={{
+
+            //gridArea: "1/2/2/3",
+            //justifySelf: "start",
+            //alignSelf: "start",
+            wordBreak: "keep-all",
+
+            //margin: "100px 0px 20px 10px"
+
+            }}>Sign Up!</h1>
           <LoginCard className="formWrapper" >
        
                 
@@ -972,14 +1007,16 @@ const handleAdd = e => {
 
         <RightSection>
 
-          <h1 style={{
+          {/* <h1 style={{
 
             gridArea: "1/2/2/3",
             justifySelf: "start",
             alignSelf: "start",
-            wordBreak: "keep-all"
+            wordBreak: "keep-all",
+            
+            margin: "100px 0px 20px 10px"
           
-          }}>Sign Up!</h1>
+          }}>Sign Up!</h1> */}
 
           <FloridaImg src={flFists}/>
 
