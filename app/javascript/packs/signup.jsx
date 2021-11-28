@@ -79,11 +79,7 @@ justify-content: center;
 //grid-template-columns: minmax(170px,350px) minmax(340px,600px);
 //grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
 
-<<<<<<< HEAD
 grid-template-columns: minmax(20px, 40px) minmax(350px,450px) minmax(350px,600px) minmax(20px,40px);
-=======
-grid-template-columns: minmax(20px, 40px) minmax(350px,450px) minmax(350px,700px) minmax(20px,40px);
->>>>>>> 1eedff796a7578c9aaaf0b716d753e0b1d8033ab
 
 grid-area: 1/1/-1/-1;
 //grid-column-gap: 0.5em;
@@ -359,11 +355,8 @@ const WeedBullet1 = styled.img`
   width: 21px;
   grid-area: 2/1/3/2;
   align-self: center;
-<<<<<<< HEAD
-=======
   justify-self: center;
   margin-top: 1.5px;
->>>>>>> 1eedff796a7578c9aaaf0b716d753e0b1d8033ab
 
 `;
 
@@ -372,11 +365,8 @@ const WeedBullet2 = styled.img`
   width: 21px;
   grid-area: 3/1/4/2;
   align-self: center;
-<<<<<<< HEAD
-=======
   justify-self: center;
   margin-top: 1.5px;
->>>>>>> 1eedff796a7578c9aaaf0b716d753e0b1d8033ab
 
 `;
 
@@ -385,11 +375,8 @@ const WeedBullet3 = styled.img`
   width: 21px;
   grid-area: 4/1/5/2;
   align-self: center;
-<<<<<<< HEAD
-=======
   justify-self: center;
   margin-top: 1.5px;
->>>>>>> 1eedff796a7578c9aaaf0b716d753e0b1d8033ab
 
 `;
 
@@ -398,12 +385,9 @@ const WeedBullet4 = styled.img`
   width: 21px;
   grid-area: 5/1/6/2;
   align-self: center;
-<<<<<<< HEAD
 
-=======
   justify-self: center;
   margin-top: 1.5px;
->>>>>>> 1eedff796a7578c9aaaf0b716d753e0b1d8033ab
 `;
 
 
@@ -411,14 +395,11 @@ const WeedBulletText1 = styled.h2`
 
   grid-area: 2/2/3/3;
   justify-self: start;
-<<<<<<< HEAD
   align-self: center;
   font-size: .9em;
-=======
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
->>>>>>> 1eedff796a7578c9aaaf0b716d753e0b1d8033ab
 
 `;
 
@@ -426,14 +407,11 @@ const WeedBulletText2 = styled.h2`
 
   grid-area: 3/2/4/3;
   justify-self: start;
-<<<<<<< HEAD
   align-self: center;
   font-size: .9em;
-=======
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
->>>>>>> 1eedff796a7578c9aaaf0b716d753e0b1d8033ab
 
 `;
 
@@ -441,14 +419,11 @@ const WeedBulletText3 = styled.h2`
 
   grid-area: 4/2/5/3;
   justify-self: start;
-<<<<<<< HEAD
   align-self: center;
   font-size: .9em;
-=======
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
->>>>>>> 1eedff796a7578c9aaaf0b716d753e0b1d8033ab
 
 `;
 
@@ -456,14 +431,11 @@ const WeedBulletText4 = styled.h2`
 
   grid-area: 5/2/6/3;
   justify-self: start;
-<<<<<<< HEAD
   align-self: center;
   font-size: .9em;
-=======
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
->>>>>>> 1eedff796a7578c9aaaf0b716d753e0b1d8033ab
 
 `;
 const Spacer = styled.h2`
