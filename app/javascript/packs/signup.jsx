@@ -79,7 +79,7 @@ justify-content: center;
 //grid-template-columns: minmax(170px,350px) minmax(340px,600px);
 //grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
 
-grid-template-columns: minmax(20px, 40px) minmax(350px,450px) minmax(350px,1fr) minmax(20px,40px);
+grid-template-columns: minmax(20px, 40px) minmax(350px,450px) minmax(350px,600px) minmax(20px,40px);
 
 grid-area: 1/1/-1/-1;
 grid-column-gap: 0.5em;
@@ -330,6 +330,8 @@ const RightSection = styled.div`
   grid-template-rows: 1fr repeat(4, 50px) 1fr;
 
   align-self: start;
+  min-width: 525px;
+  max-width: 600px;
 
 
 
@@ -347,29 +349,33 @@ const FloridaImg = styled.img`
 
 const WeedBullet1 = styled.img`
 
-  width: 25px;
+  width: 21px;
   grid-area: 2/1/3/2;
+  align-self: center;
 
 `;
 
 const WeedBullet2 = styled.img`
 
-  width: 25px;
+  width: 21px;
   grid-area: 3/1/4/2;
+  align-self: center;
 
 `;
 
 const WeedBullet3 = styled.img`
 
-  width: 25px;
+  width: 21px;
   grid-area: 4/1/5/2;
+  align-self: center;
 
 `;
 
 const WeedBullet4 = styled.img`
 
-  width: 25px;
+  width: 21px;
   grid-area: 5/1/6/2;
+  align-self: center;
 
 `;
 
@@ -378,6 +384,8 @@ const WeedBulletText1 = styled.h2`
 
   grid-area: 2/2/3/3;
   justify-self: start;
+  align-self: center;
+  font-size: .9em;
 
 `;
 
@@ -385,6 +393,8 @@ const WeedBulletText2 = styled.h2`
 
   grid-area: 3/2/4/3;
   justify-self: start;
+  align-self: center;
+  font-size: .9em;
 
 `;
 
@@ -392,6 +402,8 @@ const WeedBulletText3 = styled.h2`
 
   grid-area: 4/2/5/3;
   justify-self: start;
+  align-self: center;
+  font-size: .9em;
 
 `;
 
@@ -399,6 +411,8 @@ const WeedBulletText4 = styled.h2`
 
   grid-area: 5/2/6/3;
   justify-self: start;
+  align-self: center;
+  font-size: .9em;
 
 `;
 const Spacer = styled.h2`
@@ -977,7 +991,8 @@ const handleAdd = e => {
             gridArea: "1/2/2/3",
             justifySelf: "start",
             alignSelf: "start",
-            wordBreak: "keep-all"
+            wordBreak: "keep-all",
+            marginTop: "35px"
           
           }}>Sign Up!</h1>
 
