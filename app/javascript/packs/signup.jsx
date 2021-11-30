@@ -6,9 +6,13 @@ import {GoogleLogin} from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 
 
+import floridaBlankPink from '../../assets/images/floridaBlankPink.png'
 
 import flFists from '../../assets/images/flFists.png'
 import thebullet from '../../assets/images/thebullet.png'
+
+import fists from '../../assets/images/fists.png'
+
 
 
 
@@ -87,6 +91,7 @@ padding-top: 60px;
 padding-bottom: 20px;
 text-align: center;
 //width: 100vw;
+z-index: 3 !important;;
 
 
 `;
@@ -263,6 +268,48 @@ const StatusSpinner = styled.div`
 
 `;
 
+const BackgroundFists = styled.img`
+
+  /* grid-area: 1/2/2/5;
+  
+  width: 100%;
+  height: 100%; */
+
+
+  /* justify-self: end;
+  align-self: start;
+  grid-area: 1/2/-1/3; */
+  //height: 500px;
+  width: 54vw;
+  position: fixed;
+  right: 0;
+  //top: 20px;
+  bottom: 0;
+  z-index: 1;
+  /* position: -webkit-sticky;
+  position: sticky; */
+  //width: 100%;
+
+
+  //grid-area: 1/1/7/3;
+  
+
+
+
+`;
+
+const FloridaImg = styled.img`
+
+  //justify-self: end;
+  //align-self: start;
+  grid-area: 1/1/7/3;
+  height: 500px;
+  z-index: 2;
+
+
+`;
+
+
 const LeftSection = styled.div`
 
   @media only screen and (max-width: 850px){
@@ -327,27 +374,19 @@ const RightSection = styled.div`
   padding: 0px 50px 50px 30px;
 
   grid-template-columns: 30px 1fr;
-  grid-template-rows: 1fr repeat(4, 69px) 1fr;
+  grid-template-rows: 160px repeat(4, 69px) 1fr;
 
   align-self: start;
   min-width: 525px;
   max-width: 600px;
 
   max-width: 700px;
+  z-index: 3;
 
 
 
 `;
 
-const FloridaImg = styled.img`
-
-  justify-self: end;
-  align-self: start;
-  grid-area: 1/2/-1/3;
-  height: 500px;
-
-
-`;
 
 
 const WeedBullet1 = styled.img`
@@ -357,6 +396,7 @@ const WeedBullet1 = styled.img`
   align-self: center;
   justify-self: center;
   margin-top: 1.5px;
+  z-index: 3;
 
 `;
 
@@ -367,6 +407,7 @@ const WeedBullet2 = styled.img`
   align-self: center;
   justify-self: center;
   margin-top: 1.5px;
+  z-index: 3;
 
 `;
 
@@ -377,6 +418,7 @@ const WeedBullet3 = styled.img`
   align-self: center;
   justify-self: center;
   margin-top: 1.5px;
+  z-index: 3;
 
 `;
 
@@ -388,6 +430,7 @@ const WeedBullet4 = styled.img`
 
   justify-self: center;
   margin-top: 1.5px;
+  z-index: 3;
 `;
 
 
@@ -400,6 +443,7 @@ const WeedBulletText1 = styled.h2`
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
+  z-index: 3;
 
 `;
 
@@ -412,6 +456,7 @@ const WeedBulletText2 = styled.h2`
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
+  z-index: 3;
 
 `;
 
@@ -424,6 +469,7 @@ const WeedBulletText3 = styled.h2`
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
+  z-index: 3;
 
 `;
 
@@ -436,6 +482,7 @@ const WeedBulletText4 = styled.h2`
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
+  z-index: 3;
 
 `;
 const Spacer = styled.h2`
@@ -891,6 +938,7 @@ const handleAdd = e => {
     <SignupWrapper className="homeWrapper" ref={section2ScrollToRef}>
           
       
+          <BackgroundFists src={fists}/>
 
         <LeftSection>
 
@@ -1018,22 +1066,20 @@ const handleAdd = e => {
 
         <RightSection>
 
+        
           {/* <h1 style={{
 
             gridArea: "1/2/2/3",
             justifySelf: "start",
             alignSelf: "start",
             wordBreak: "keep-all",
-<<<<<<< HEAD
-            marginTop: "35px"
-=======
+            //marginTop: "35px"
             
             margin: "100px 0px 20px 10px"
->>>>>>> 1eedff796a7578c9aaaf0b716d753e0b1d8033ab
           
           }}>Sign Up!</h1> */}
 
-          <FloridaImg src={flFists}/>
+          <FloridaImg src={floridaBlankPink}/>
 
           <WeedBullet1 src={thebullet} />
           <WeedBulletText1>Become a FloridaBlazer. It's totally free.</WeedBulletText1>
@@ -1061,6 +1107,8 @@ const handleAdd = e => {
  
 
     </SignupWrapper>
+
+    
       
   );  
 }

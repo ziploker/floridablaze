@@ -30,6 +30,7 @@ const FooterWrapper = styled.div`
 
     display: grid;
     //grid-template-columns: 1fr;
+    position: relative;
 
     grid-template-columns: minmax(20px,1fr) minmax(min-content, 200px) minmax(min-content, 200px) minmax(min-content, 250px) minmax(20px,1fr);
     grid-template-rows: minmax(150px, 40%) 1fr;
@@ -37,6 +38,8 @@ const FooterWrapper = styled.div`
         "spacer"
         "footerLeaf"; */
     height: 350px;
+
+    z-index: 4;
 
     
 
@@ -56,6 +59,8 @@ const FooterImage = styled.img`
     height: 100%;
     width: 100%;
     min-width: 500px;
+
+    z-index: 3;
     
 
 `;
@@ -72,7 +77,7 @@ const SubscribeSection = styled.div`
 
 
     //margin: 25px 0px 40px 0px;
-    z-index: 1;
+    z-index: 3;
     background: black;
     grid-area: 2/4/-1/5;
     justify-self: end;
@@ -176,6 +181,7 @@ const Follow = styled.div`
     justify-self: start;
     align-self: start;
     margin-bottom: 20px;
+    z-index: 3;
     
 
     h1{
@@ -220,6 +226,7 @@ const Explore = styled.div`
     justify-self: start;
     align-self: start;
     margin-bottom: 20px;
+    z-index: 3;
     
 
     h1{
@@ -262,7 +269,7 @@ const Legal = styled.div`
 
     padding: 20px 0px;
     background-color: black;
-    z-index: 1;
+    z-index: 3;
     font-size: .2em;
     grid-area: 4/1/5/5;
     align-self: end;
