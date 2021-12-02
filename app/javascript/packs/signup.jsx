@@ -7,6 +7,7 @@ import FacebookLogin from 'react-facebook-login';
 
 
 import floridaBlankPink from '../../assets/images/floridaBlankPink.png'
+import floridaMask from '../../assets/images/floridaMask.png'
 
 import flFists from '../../assets/images/flFists.png'
 import thebullet from '../../assets/images/thebullet.png'
@@ -42,6 +43,21 @@ var Spinner = require('react-spinkit');
 
 const SignupWrapper = styled.div`
 
+  @media only screen and (max-width: 720px){
+
+    grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
+    min-width: 100%;
+    //padding-left: 20px;
+    //justify-self: center;
+
+
+  }
+
+
+
+  
+  //width: 100vw;
+
   /* @media only screen and (max-width: 720px){
 
     grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
@@ -62,36 +78,59 @@ const SignupWrapper = styled.div`
 
 
 
-  @media only screen and (max-width: 720px){
+  
+  position: relative;
 
-grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
-min-width: 100%;
-//padding-left: 20px;
-//justify-self: center;
+  background-color: #FFFFFF;
+  display: grid;
+
+  align-items: center;
+  justify-content: center;
+
+  grid-template-columns: 1fr minmax(350px,450px) minmax(350px,600px) 1fr;
+
+  //padding-top: 60px;
+  //padding-bottom: 20px;
+  text-align: center;
+  height: 100%;
+  //background-color: RGB(244, 244, 244);
 
 
-}
-position: relative;
-height: 100%;
-//background-color: RGB(244, 244, 244);
-background-color: #FFFFFF;
-display: grid;
 
-align-items: center;
-justify-content: center;
-//justify-self: start;
-//grid-template-columns: minmax(170px,350px) minmax(340px,600px);
-//grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
+  //justify-self: start;
+  //grid-template-columns: minmax(170px,350px) minmax(340px,600px);
+  //grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
 
-grid-template-columns: minmax(20px, 40px) minmax(350px,450px) minmax(350px,600px) minmax(20px,40px);
+
+  //grid-area: 1/1/-1/-1;
+  //grid-column-gap: 0.5em;
+
+  background: url(${fists}) fixed;
+  background-size: cover;
+
+
+
+`;
+
+
+
+const SignupMask = styled.img`
 
 grid-area: 1/1/-1/-1;
-//grid-column-gap: 0.5em;
-padding-top: 60px;
-padding-bottom: 20px;
-text-align: center;
-//width: 100vw;
-z-index: 3 !important;;
+
+  
+
+`;
+
+const FloridaImg = styled.img`
+
+  //justify-self: end;
+  //align-self: start;
+  //grid-area: 1/1/7/3;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  
 
 
 `;
@@ -128,7 +167,6 @@ const SignupWrapperInner = styled.div`
   text-align: center;
   //width: 100vw;
   
-
 `;
 
 
@@ -298,16 +336,7 @@ const BackgroundFists = styled.img`
 
 `;
 
-const FloridaImg = styled.img`
 
-  //justify-self: end;
-  //align-self: start;
-  grid-area: 1/1/7/3;
-  height: 500px;
-  z-index: 2;
-
-
-`;
 
 
 const LeftSection = styled.div`
@@ -381,8 +410,7 @@ const RightSection = styled.div`
   max-width: 600px;
 
   max-width: 700px;
-  z-index: 3;
-
+  
 
 
 `;
@@ -396,8 +424,7 @@ const WeedBullet1 = styled.img`
   align-self: center;
   justify-self: center;
   margin-top: 1.5px;
-  z-index: 3;
-
+  
 `;
 
 const WeedBullet2 = styled.img`
@@ -407,8 +434,7 @@ const WeedBullet2 = styled.img`
   align-self: center;
   justify-self: center;
   margin-top: 1.5px;
-  z-index: 3;
-
+  
 `;
 
 const WeedBullet3 = styled.img`
@@ -418,7 +444,7 @@ const WeedBullet3 = styled.img`
   align-self: center;
   justify-self: center;
   margin-top: 1.5px;
-  z-index: 3;
+  
 
 `;
 
@@ -430,7 +456,7 @@ const WeedBullet4 = styled.img`
 
   justify-self: center;
   margin-top: 1.5px;
-  z-index: 3;
+  
 `;
 
 
@@ -443,7 +469,7 @@ const WeedBulletText1 = styled.h2`
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
-  z-index: 3;
+  
 
 `;
 
@@ -456,8 +482,7 @@ const WeedBulletText2 = styled.h2`
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
-  z-index: 3;
-
+  
 `;
 
 const WeedBulletText3 = styled.h2`
@@ -469,7 +494,7 @@ const WeedBulletText3 = styled.h2`
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
-  z-index: 3;
+  
 
 `;
 
@@ -482,7 +507,7 @@ const WeedBulletText4 = styled.h2`
   padding-left: 10px;
   font-size: .8em;
   align-self: center;
-  z-index: 3;
+  
 
 `;
 const Spacer = styled.h2`
@@ -938,160 +963,163 @@ const handleAdd = e => {
     <SignupWrapper className="homeWrapper" ref={section2ScrollToRef}>
           
       
-          <BackgroundFists src={fists}/>
+      <SignupMask src={floridaMask}/>
+      
+      <LeftSection>
 
-        <LeftSection>
-
-          {/* <img style={{width: "50px"}} src={userIcon}/> */}
+        {/* <img style={{width: "50px"}} src={userIcon}/> */}
           
-          <h1 style={{
+        <h1 style={{
 
-            //gridArea: "1/2/2/3",
-            //justifySelf: "start",
-            //alignSelf: "start",
-            wordBreak: "keep-all",
+          //gridArea: "1/2/2/3",
+          //justifySelf: "start",
+          //alignSelf: "start",
+          wordBreak: "keep-all",
 
-            //margin: "100px 0px 20px 10px"
+          //margin: "100px 0px 20px 10px"
 
-            }}>Sign Up!</h1>
-          <LoginCard className="formWrapper" >
+        }}>
+          
+          Sign Up!
+          
+        </h1>
+          
+        
+        <LoginCard className="formWrapper" >
        
                 
           <Form onSubmit = {handleAdd}>
 
-            <FormItem className="formItem">
-                <Label className={state.full_nameFieldActive ? "field-active" : ""}> full name </Label>
-                <Input 
-                name="full_name" 
-                type="text" 
-                
-                value={state.full_name} 
-                onChange={handleChange} 
-                onFocus={activateField}
-                onBlur={disableField}
-                required/>
-            </FormItem>
+          
+          <FormItem className="formItem">
+          
+            <Label className={state.full_nameFieldActive ? "field-active" : ""}> full name </Label>
+            
+            <Input 
+              name="full_name" 
+              type="text" 
+              
+              value={state.full_name} 
+              onChange={handleChange} 
+              onFocus={activateField}
+              onBlur={disableField}
+              required/>
+          
+          </FormItem>
 
                     
-            <FormItem className="formItem">
-                <EmailLabel className={state.emailFieldActive ? "field-active" : ""}>email</EmailLabel>
-                <Input 
-                name="email" 
-                type="email" 
-                
-                value={state.email} 
-                onChange={handleChange} 
-                onFocus={activateField}
-                onBlur={disableField}
-                required/>
-            </FormItem>
-
-            <FormItem className="formItem">
-                <Label className={state.passwordFieldActive ? "field-active" : ""}>password</Label>
-                <Input 
-                name="password" 
-                type="password" 
-                autocomplete="off"
-                value={state.password} 
-                onChange={handleChange} 
-                onFocus={activateField}
-                onBlur={disableField}
-                required/>
-            </FormItem>
-
+          <FormItem className="formItem">
             
-
+            <EmailLabel className={state.emailFieldActive ? "field-active" : ""}>email</EmailLabel>
             
- 
-
+            <Input 
+              name="email" 
+              type="email" 
+              
+              value={state.email} 
+              onChange={handleChange} 
+              onFocus={activateField}
+              onBlur={disableField}
+              required/>
             
-            <Button className="formItem" type="submit" disabled={state.isBtnDisabled}>Sign Up</Button>
-            
-            <div  style={{display: "flex", justifyContent: "center"}}>
-                
-                
-                <input
-                name="opt_in" 
-                type="checkbox" 
-                id="opt_in"
-                checked={state.opt_in}
-                 
-                onChange={handleChange} 
-                
-                />
-                
-                <h3 style={{marginLeft: "5px", fontSize: ".6em", color: "gray"}} htmlFor="opt_in" >Opt In to receive e-mails from FloridaBlaze </h3>
-            </div>
-          
-          </Form>
+          </FormItem>
 
           
+          <FormItem className="formItem">
+            
+            <Label className={state.passwordFieldActive ? "field-active" : ""}>password</Label>
+                
+            <Input 
+              name="password" 
+              type="password" 
+              autocomplete="off"
+              value={state.password} 
+              onChange={handleChange} 
+              onFocus={activateField}
+              onBlur={disableField}
+              required/>
+          
+          </FormItem>
+
+          
+          <Button className="formItem" type="submit" disabled={state.isBtnDisabled}>Sign Up</Button>
+            
+          <div  style={{display: "flex", justifyContent: "center"}}>
+                
+                
+            <input
+              name="opt_in" 
+              type="checkbox" 
+              id="opt_in"
+              checked={state.opt_in}
+                
+              onChange={handleChange} 
+                
+            />
+                
+            
+            <h3 style={{marginLeft: "5px", fontSize: ".6em", color: "gray"}} htmlFor="opt_in" >Opt In to receive e-mails from FloridaBlaze </h3>
+          
+          </div>
+          
+        </Form>
+
           
           <ErrorWrapper showErrorBackground={state.showErrorBackground}>   
-              <Span waitMessage={state.waitMessage}> {state.waitMessage}</Span>     
-              <RedX status={state.status} src={state.status === "pink" ? redX : greenCheck}/>
-              {errorMessages}
+            
+            <Span waitMessage={state.waitMessage}> {state.waitMessage}</Span>     
+            
+            <RedX status={state.status} src={state.status === "pink" ? redX : greenCheck}/>
+            
+            {errorMessages}
 
-              <StatusSpinner showStatusSpinner={state.showStatusSpinner}>
-                  <Spinner name='wave' color='#56c5cc' />
-              </StatusSpinner>
+            <StatusSpinner showStatusSpinner={state.showStatusSpinner}>
+                <Spinner name='wave' color='#56c5cc' />
+            </StatusSpinner>
 
           </ErrorWrapper>
 
-          <GoogleLogin
-        render={renderProps => (
-          <button className="loginBtn loginBtn--google" onClick={renderProps.onClick} disabled={renderProps.disabled}>Login with Google</button>
-        )}
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={'single_host_origin'}
         
-      
-      />
+          <GoogleLogin
+            
+            render={renderProps => (
+            <button className="loginBtn loginBtn--google" onClick={renderProps.onClick} disabled={renderProps.disabled}>Login with Google</button>
+            )}
+          
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+          />
 
 
       
-      <FacebookLogin
-        appId="293426502140339"
-        autoLoad={false}
-        fields="name,email,picture"
-        onClick={componentClicked}
-        callback={responseFacebook} 
-        cssClass="loginBtn loginBtn--facebook"/>
+          <FacebookLogin
+            appId="293426502140339"
+            autoLoad={false}
+            fields="name,email,picture"
+            onClick={componentClicked}
+            callback={responseFacebook} 
+            cssClass="loginBtn loginBtn--facebook"
+          />
         
         </LoginCard>
 
-        </LeftSection>
+      </LeftSection>
 
-        <RightSection>
+      <RightSection>
 
-        
-          {/* <h1 style={{
-
-            gridArea: "1/2/2/3",
-            justifySelf: "start",
-            alignSelf: "start",
-            wordBreak: "keep-all",
-            //marginTop: "35px"
-            
-            margin: "100px 0px 20px 10px"
-          
-          }}>Sign Up!</h1> */}
-
-          <FloridaImg src={floridaBlankPink}/>
-
-          <WeedBullet1 src={thebullet} />
-          <WeedBulletText1>Become a FloridaBlazer. It's totally free.</WeedBulletText1>
-          <WeedBullet2 src={thebullet} />
-          <WeedBulletText2>Get alerts on the latest marijuana laws.  </WeedBulletText2>
-          <WeedBullet3 src={thebullet} />
-          <WeedBulletText3>Easily contact your state Reps.</WeedBulletText3>
-          <WeedBullet4 src={thebullet} />
-          <WeedBulletText4>Help us make Florida green.</WeedBulletText4>
+        <WeedBullet1 src={thebullet} />
+        <WeedBulletText1>Become a FloridaBlazer. It's totally free.</WeedBulletText1>
+        <WeedBullet2 src={thebullet} />
+        <WeedBulletText2>Get alerts on the latest marijuana laws.  </WeedBulletText2>
+        <WeedBullet3 src={thebullet} />
+        <WeedBulletText3>Easily contact your state Reps.</WeedBulletText3>
+        <WeedBullet4 src={thebullet} />
+        <WeedBulletText4>Help us make Florida green.</WeedBulletText4>
 
 
-        </RightSection>
+      </RightSection>
             
         
 
@@ -1100,16 +1128,8 @@ const handleAdd = e => {
 
         </Spacer> */}
             
-      
-
-      
-     
- 
-
     </SignupWrapper>
 
-    
-      
   );  
 }
 
