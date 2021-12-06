@@ -126,7 +126,8 @@ const ActSection = styled.section`
 
   @media only screen and (max-width: 720px){
 
-    grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
+    //grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
+    grid-template-columns: 0px 0px minmax(250px,600px) minmax(40px, 1fr);
     min-width: 100%;
     //justify-self: center;
 
@@ -187,7 +188,7 @@ const StepThree = styled.div`
 const ActHeader = styled.h1`
   @media only screen and (max-width: 720px){
 
-    grid-area: 1/1/2/-1;
+    //grid-area: 1/1/2/-1;
     //justify-self: center;
     font-size: 15vw;
 
@@ -219,7 +220,7 @@ const ActHeader = styled.h1`
 const ActSubheader = styled.h2`
   @media only screen and (max-width: 720px){
 
-    grid-area: 2/1/3/-1;
+    //grid-area: 2/1/3/-1;
     //justify-self: center;
     font-size: 4vw;
 
@@ -245,7 +246,7 @@ const ActSubheader = styled.h2`
 const ActSubheader2 = styled.h3`
   @media only screen and (max-width: 720px){
 
-    grid-area: 3/1/4/-1;
+    //grid-area: 3/1/4/-1;
     //justify-self: center;
     font-size: 2vw;
 
@@ -274,7 +275,7 @@ const ActSubheader2 = styled.h3`
 const Form = styled.form`
   @media only screen and (max-width: 720px){
 
-    grid-area: 4/1/5/-1;
+    //grid-area: 4/1/5/-1;
 
   }
 

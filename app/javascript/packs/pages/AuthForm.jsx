@@ -45,14 +45,32 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 30px 0px 20px;
+  padding: 0 90px 0px 20px;
   box-sizing: border-box;
+
+  @media only screen and (max-width: 1111px){
+    padding: 0 20px 0px 20px;
+
+
+  }
 `;
 
 const FormItem = styled.div`
 
   position: relative;
   margin: 0 0 38px 0;
+  padding: 0;
+
+  
+
+
+
+`;
+
+const FormItemSqueeze = styled.div`
+
+  position: relative;
+  margin: 0 0 30px 0;
   padding: 0;
 
   
@@ -271,4 +289,4 @@ height: 18px;
 `;
 
 export { Form, Input, Button, Logo, Card, RedX, LoginWrapper, 
-  InputIcon, LogoWrapper, H2, FormItem, Label, EmailLabel, ErrorMsg, ErrorWrapper };
+  InputIcon, LogoWrapper, H2, FormItem, FormItemSqueeze, Label, EmailLabel, ErrorMsg, ErrorWrapper };

@@ -7,12 +7,12 @@ import FacebookLogin from 'react-facebook-login';
 
 
 import floridaBlankPink from '../../assets/images/floridaBlankPink.png'
-import floridaMask from '../../assets/images/floridaMask.png'
+import floridaMask from '../../assets/images/floridaMaskThinBlanco1.png'
 
 import flFists from '../../assets/images/flFists.png'
 import thebullet from '../../assets/images/thebullet.png'
 
-import fists from '../../assets/images/fists.png'
+import wleaf from '../../assets/images/wleaf'
 
 
 
@@ -27,7 +27,7 @@ import greenCheck from '../../assets/images/greenCheck'
 import dummy_avatar from '../../assets/images/dummy_avatar'
 
 import { Card, Logo, Form, Input, Button, ErrorMsg, RedX, LoginWrapper, 
-  InputIcon, LogoWrapper, H2, FormItem, Label, EmailLabel, ErrorWrapper} from './pages/AuthForm';
+  InputIcon, LogoWrapper, H2, FormItem, FormItemSqueeze, Label, EmailLabel, ErrorWrapper} from './pages/AuthForm';
 
 import axios from 'axios'
 import $ from 'jquery';
@@ -87,15 +87,16 @@ const SignupWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  grid-template-columns: 1fr minmax(350px,450px) minmax(350px,600px) 1fr;
+  grid-template-columns: 1fr minmax(350px,450px) minmax(525px,700px) 1fr;
 
   //padding-top: 60px;
   //padding-bottom: 20px;
   text-align: center;
   height: 100%;
+  max-height: 620px;
   //background-color: RGB(244, 244, 244);
 
-
+  border-top: 47px white solid;
 
   //justify-self: start;
   //grid-template-columns: minmax(170px,350px) minmax(340px,600px);
@@ -105,8 +106,9 @@ const SignupWrapper = styled.div`
   //grid-area: 1/1/-1/-1;
   //grid-column-gap: 0.5em;
 
-  background: url(${fists}) fixed;
+  background: url(${wleaf}) fixed;
   background-size: cover;
+  background-position: right bottom;
 
 
 
@@ -116,10 +118,34 @@ const SignupWrapper = styled.div`
 
 const SignupMask = styled.img`
 
-grid-area: 1/1/-1/-1;
+  grid-area: 1/2/-1/4;
+  width: 100%;
+  height: 100%;
 
+  max-width: 1400px;
+  max-height: 700px;
+  justify-self: center;
+
+  //opacity: .3;
   
 
+`;
+
+const LeftFiller = styled.div`
+
+  grid-area: 1/1/2/2;
+  background: white;
+  width: 100%;
+  height: 100%;
+
+`;
+
+const RightFiller = styled.div`
+
+  grid-area: 1/4/2/5;
+  background: white;
+  width: 100%;
+  height: 100%;
 `;
 
 const FloridaImg = styled.img`
@@ -190,7 +216,7 @@ const LoginCard = styled.div`
   //padding: 0 2rem;
   //margin-left: 20px;
   //margin-top: 100px;
-  padding: 80px 0px 0px 0px;
+  padding: 50px 0px 0px 0px;
 
   background-color: #fff;
   border: 1px solid transparent;
@@ -356,19 +382,19 @@ const LeftSection = styled.div`
 
   }
 
-  @media only screen and (max-width: 940px){
+  /* @media only screen and (max-width: 940px){
   
     padding-left: 20px;
     padding-right: 20px;
     
-  }
+  } */
   
   align-self: start;
   
   text-align: left;
   grid-area: 1/2/2/3;
   //margin-right: 4.20em;
-  padding-left: 60px;
+  //padding-left: 60px;
   font-family: Poppins;
   font-style: normal;
   font-weight: 800;
@@ -377,8 +403,10 @@ const LeftSection = styled.div`
 
   h1{
     color: rgb(6, 7, 1, .9);
-    margin-bottom: 30px;
+    margin: 30px;
     font-size: 3em;
+    word-break: keep-all;
+
 
   }
 
@@ -386,6 +414,28 @@ const LeftSection = styled.div`
 
     color: rgb(6, 7, 1, .9);
   }
+
+
+`;
+
+
+const SocialMedia = styled.div`
+
+
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content) 1fr minmax(min-content, max-content);
+
+
+  button {
+
+    height: 35px;
+    width: 35px;
+  }
+
+  
+
+  
+
 
 
 `;
@@ -400,16 +450,16 @@ const RightSection = styled.div`
   border-bottom-left-radius: 60px;
 
   display: grid;
-  padding: 0px 50px 50px 30px;
+  padding: 0px 50px 50px 0px;
 
-  grid-template-columns: 30px 1fr;
-  grid-template-rows: 160px repeat(4, 69px) 1fr;
+  grid-template-columns: minmax(0,50px) 30px minmax(430px,620px);
+  grid-template-rows: 190px repeat(4, 73px) 1fr;
 
   align-self: start;
-  min-width: 525px;
-  max-width: 600px;
+  //min-width: 525px;
+  //max-width: 600px;
 
-  max-width: 700px;
+  //max-width: 700px;
   
 
 
@@ -420,7 +470,7 @@ const RightSection = styled.div`
 const WeedBullet1 = styled.img`
 
   width: 21px;
-  grid-area: 2/1/3/2;
+  grid-area: 2/2/3/3;
   align-self: center;
   justify-self: center;
   margin-top: 1.5px;
@@ -430,7 +480,7 @@ const WeedBullet1 = styled.img`
 const WeedBullet2 = styled.img`
 
   width: 21px;
-  grid-area: 3/1/4/2;
+  grid-area: 3/2/4/3;
   align-self: center;
   justify-self: center;
   margin-top: 1.5px;
@@ -440,7 +490,7 @@ const WeedBullet2 = styled.img`
 const WeedBullet3 = styled.img`
 
   width: 21px;
-  grid-area: 4/1/5/2;
+  grid-area: 4/2/5/3;
   align-self: center;
   justify-self: center;
   margin-top: 1.5px;
@@ -451,7 +501,7 @@ const WeedBullet3 = styled.img`
 const WeedBullet4 = styled.img`
 
   width: 21px;
-  grid-area: 5/1/6/2;
+  grid-area: 5/2/6/3;
   align-self: center;
 
   justify-self: center;
@@ -462,7 +512,7 @@ const WeedBullet4 = styled.img`
 
 const WeedBulletText1 = styled.h2`
 
-  grid-area: 2/2/3/3;
+  grid-area: 2/3/3/4;
   justify-self: start;
   align-self: center;
   font-size: .9em;
@@ -475,7 +525,7 @@ const WeedBulletText1 = styled.h2`
 
 const WeedBulletText2 = styled.h2`
 
-  grid-area: 3/2/4/3;
+  grid-area: 3/3/4/4;
   justify-self: start;
   align-self: center;
   font-size: .9em;
@@ -487,7 +537,7 @@ const WeedBulletText2 = styled.h2`
 
 const WeedBulletText3 = styled.h2`
 
-  grid-area: 4/2/5/3;
+  grid-area: 4/3/5/4;
   justify-self: start;
   align-self: center;
   font-size: .9em;
@@ -500,7 +550,7 @@ const WeedBulletText3 = styled.h2`
 
 const WeedBulletText4 = styled.h2`
 
-  grid-area: 5/2/6/3;
+  grid-area: 5/3/6/4;
   justify-self: start;
   align-self: center;
   font-size: .9em;
@@ -696,7 +746,7 @@ function Signup(props, ref) {
     
 
     let homeWrapper = document.querySelectorAll(".homeWrapper");
-    let formItem = document.querySelectorAll(".formItem");
+    let formItem = document.querySelectorAll(".formItemSqueeze");
     let formWrapper = document.querySelectorAll(".formWrapper");
     
     let tl = gsap.timeline({
@@ -964,21 +1014,14 @@ const handleAdd = e => {
           
       
       <SignupMask src={floridaMask}/>
+      <LeftFiller/>
+      <RightFiller/>
       
       <LeftSection>
 
         {/* <img style={{width: "50px"}} src={userIcon}/> */}
           
-        <h1 style={{
-
-          //gridArea: "1/2/2/3",
-          //justifySelf: "start",
-          //alignSelf: "start",
-          wordBreak: "keep-all",
-
-          //margin: "100px 0px 20px 10px"
-
-        }}>
+        <h1>
           
           Sign Up!
           
@@ -991,7 +1034,7 @@ const handleAdd = e => {
           <Form onSubmit = {handleAdd}>
 
           
-          <FormItem className="formItem">
+          <FormItemSqueeze className="formItemSqueeze">
           
             <Label className={state.full_nameFieldActive ? "field-active" : ""}> full name </Label>
             
@@ -1005,10 +1048,10 @@ const handleAdd = e => {
               onBlur={disableField}
               required/>
           
-          </FormItem>
+          </FormItemSqueeze>
 
                     
-          <FormItem className="formItem">
+          <FormItemSqueeze className="formItemSqueeze">
             
             <EmailLabel className={state.emailFieldActive ? "field-active" : ""}>email</EmailLabel>
             
@@ -1022,10 +1065,10 @@ const handleAdd = e => {
               onBlur={disableField}
               required/>
             
-          </FormItem>
+          </FormItemSqueeze>
 
           
-          <FormItem className="formItem">
+          <FormItemSqueeze className="formItemSqueeze">
             
             <Label className={state.passwordFieldActive ? "field-active" : ""}>password</Label>
                 
@@ -1039,12 +1082,9 @@ const handleAdd = e => {
               onBlur={disableField}
               required/>
           
-          </FormItem>
+          </FormItemSqueeze>
 
-          
-          <Button className="formItem" type="submit" disabled={state.isBtnDisabled}>Sign Up</Button>
-            
-          <div  style={{display: "flex", justifyContent: "center"}}>
+          {/* <div  style={{display: "flex", justifyContent: "center"}}>
                 
                 
             <input
@@ -1060,7 +1100,42 @@ const handleAdd = e => {
             
             <h3 style={{marginLeft: "5px", fontSize: ".6em", color: "gray"}} htmlFor="opt_in" >Opt In to receive e-mails from FloridaBlaze </h3>
           
-          </div>
+          </div> */}
+
+          
+          <Button className="formItemSqueeze" type="submit" disabled={state.isBtnDisabled}>Sign Up</Button>
+            
+          <SocialMedia>
+                
+                
+            
+                
+            
+            <GoogleLogin
+              
+              render={renderProps => (
+              <button className="loginBtn loginBtn--google" onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</button>
+              )}
+            
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            />
+
+            <h3 style={{color: "gray", alignSelf: "center", justifySelf: "center"}} htmlFor="opt_in" >or </h3>
+
+        
+            <FacebookLogin
+              appId="293426502140339"
+              autoLoad={false}
+              fields="name,email,picture"
+              onClick={componentClicked}
+              callback={responseFacebook} 
+              cssClass="loginBtn loginBtn--facebook"
+              textButton="Facebook"
+            />
+          </SocialMedia>
           
         </Form>
 
@@ -1079,29 +1154,7 @@ const handleAdd = e => {
 
           </ErrorWrapper>
 
-        
-          <GoogleLogin
-            
-            render={renderProps => (
-            <button className="loginBtn loginBtn--google" onClick={renderProps.onClick} disabled={renderProps.disabled}>Login with Google</button>
-            )}
           
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={'single_host_origin'}
-          />
-
-
-      
-          <FacebookLogin
-            appId="293426502140339"
-            autoLoad={false}
-            fields="name,email,picture"
-            onClick={componentClicked}
-            callback={responseFacebook} 
-            cssClass="loginBtn loginBtn--facebook"
-          />
         
         </LoginCard>
 
