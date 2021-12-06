@@ -49,7 +49,7 @@ const Form = styled.form`
   box-sizing: border-box;
 
   @media only screen and (max-width: 1111px){
-    padding: 0 20px 0px 20px;
+    padding: 0 20px 0px 30px;
 
 
   }

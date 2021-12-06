@@ -7,7 +7,8 @@ import FacebookLogin from 'react-facebook-login';
 
 
 import floridaBlankPink from '../../assets/images/floridaBlankPink.png'
-import floridaMask from '../../assets/images/floridaMaskThinBlanco1.png'
+import floridaMaskCell from '../../assets/images/floridaMaskThinBlanco1.png'
+import floridaMask from '../../assets/images/floridaMaskBlanco.png'
 
 import flFists from '../../assets/images/flFists.png'
 import thebullet from '../../assets/images/thebullet.png'
@@ -43,12 +44,14 @@ var Spinner = require('react-spinkit');
 
 const SignupWrapper = styled.div`
 
-  @media only screen and (max-width: 720px){
+  @media only screen and (max-width: 850px){
 
     grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
+    
     min-width: 100%;
     //padding-left: 20px;
     //justify-self: center;
+    //max-height: initial;
 
 
   }
@@ -87,8 +90,8 @@ const SignupWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  grid-template-columns: 1fr minmax(350px,450px) minmax(525px,700px) 1fr;
-
+  grid-template-columns: minmax(0px, 1fr) minmax(350px,450px) minmax(525px,700px) minmax(0px, 1fr);
+  //grid-template-rows: 1fr minmax(min-content, max-content) 1fr;
   //padding-top: 60px;
   //padding-bottom: 20px;
   text-align: center;
@@ -111,6 +114,9 @@ const SignupWrapper = styled.div`
   background-position: right bottom;
 
 
+  
+
+
 
 `;
 
@@ -118,12 +124,17 @@ const SignupWrapper = styled.div`
 
 const SignupMask = styled.img`
 
+@media only screen and (max-width: 850px){
+  grid-area: 1/1/2/4;
+  //max-height: initial
+}
+
   grid-area: 1/2/-1/4;
   width: 100%;
   height: 100%;
 
   max-width: 1400px;
-  max-height: 700px;
+  //max-height: 700px;
   justify-self: center;
 
   //opacity: .3;
@@ -133,6 +144,10 @@ const SignupMask = styled.img`
 
 const LeftFiller = styled.div`
 
+  @media only screen and (max-width: 850px){
+    display: none;
+    
+  }
   grid-area: 1/1/2/2;
   background: white;
   width: 100%;
@@ -141,6 +156,11 @@ const LeftFiller = styled.div`
 `;
 
 const RightFiller = styled.div`
+
+@media only screen and (max-width: 850px){
+    display: none;
+    
+  }
 
   grid-area: 1/4/2/5;
   background: white;
@@ -222,7 +242,7 @@ const LoginCard = styled.div`
   border: 1px solid transparent;
   
   box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-  border-radius: 8px;
+  //border-radius: 8px;
 
   justify-self: start;
   align-self: center;
@@ -369,18 +389,19 @@ const LeftSection = styled.div`
 
   @media only screen and (max-width: 850px){
 
-    margin-right: 0px;
+    margin: 500px 0px 0px 0px;
+    grid-area: 1/1/2/4;
 
   }
 
-  @media only screen and (max-width: 720px){
+  /* @media only screen and (max-width: 720px){
 
     grid-area: 1/1/2/4;
     margin: 0px 0px 0px 0px;
     //padding-left: 20px;
     //width: 100vw;
 
-  }
+  } */
 
   /* @media only screen and (max-width: 940px){
   
@@ -442,6 +463,12 @@ const SocialMedia = styled.div`
 
 
 const RightSection = styled.div`
+
+  @media only screen and (max-width: 850px){
+
+
+    grid-area: 1/1/2/4;
+  }
 
   //background: #C4C4C4;
   grid-area: 1/3/2/-1;
@@ -619,10 +646,28 @@ function Signup(props, ref) {
 
   console.log("==============Signup Section===============")
   console.log("============= Signup Section Props===============", props)
+
+  function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+  
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+  
+    return windowDimensions;
+  }
+
   
   const locationFromHook = useLocation();
 
   const {section2ScrollToRef} = ref
+
+  const [mobile, setMobile] = useState(false);
 
   const [state, setState] = React.useState({
     full_name: "",
@@ -786,10 +831,24 @@ function Signup(props, ref) {
       
 
 
-
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+  
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
 
 
   },[]);
+
+
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
 
   const validForm = () => {
     if (state.full_name ) {
@@ -1005,15 +1064,16 @@ const handleAdd = e => {
     console.log("clickedd");
   }
 
+  const { height, width } = useWindowDimensions();
   
 
   return (
             
          
     <SignupWrapper className="homeWrapper" ref={section2ScrollToRef}>
-          
       
-      <SignupMask src={floridaMask}/>
+      
+      <SignupMask src={width > 850 ? floridaMask : floridaMaskCell}/>
       <LeftFiller/>
       <RightFiller/>
       

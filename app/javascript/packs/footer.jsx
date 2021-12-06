@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import axios from 'axios'
 
-import footerImage from '../../assets/images/footerImage'
+import footerImage from '../../assets/images/footerImageCrop'
 
 
 const FooterWrapper = styled.div`
@@ -12,7 +12,8 @@ const FooterWrapper = styled.div`
     @media only screen and (max-width: 575px) {
 
         grid-template-columns: minmax(20px, 100px) minmax(133px, 1fr) minmax(133px, 1fr) minmax(20px, 100px);
-        grid-template-rows: minmax(160px, 40%) 1fr;
+        //grid-template-rows: minmax(160px, 40%) 1fr;
+        grid-template-rows: 0px 1fr;
         height: auto
         
     }
