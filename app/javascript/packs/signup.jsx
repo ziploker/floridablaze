@@ -96,7 +96,7 @@ const SignupWrapper = styled.div`
   //padding-bottom: 20px;
   text-align: center;
   height: 100%;
-  max-height: 620px;
+  //max-height: 620px;
   //background-color: RGB(244, 244, 244);
 
   border-top: 47px white solid;

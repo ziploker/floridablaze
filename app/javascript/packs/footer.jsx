@@ -33,12 +33,12 @@ const FooterWrapper = styled.div`
     //grid-template-columns: 1fr;
     position: relative;
 
-    grid-template-columns: minmax(20px,1fr) minmax(min-content, 200px) minmax(min-content, 200px) minmax(min-content, 250px) minmax(20px,1fr);
+    grid-template-columns: 100px minmax(min-content, 200px) minmax(min-content, 200px) minmax(min-content, 250px) minmax(20px,1fr);
     grid-template-rows: minmax(150px, 40%) 1fr;
     /* grid-template-areas:
         "spacer"
         "footerLeaf"; */
-    height: 350px;
+    //height: 350px;
 
     z-index: 4;
 
