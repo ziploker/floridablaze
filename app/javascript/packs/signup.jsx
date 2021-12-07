@@ -9,6 +9,7 @@ import FacebookLogin from 'react-facebook-login';
 import floridaBlankPink from '../../assets/images/floridaBlankPink.png'
 import floridaMaskCell from '../../assets/images/floridaMaskThinBlanco1.png'
 import floridaMask from '../../assets/images/floridaMaskBlanco.png'
+import floridaMaskThinLongist from '../../assets/images/floridaMaskThinLongist.png'
 
 import flFists from '../../assets/images/flFists.png'
 import thebullet from '../../assets/images/thebullet.png'
@@ -49,6 +50,9 @@ const SignupWrapper = styled.div`
     grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
     
     min-width: 100%;
+
+    border-top: 25px white solid;
+
     //padding-left: 20px;
     //justify-self: center;
     //max-height: initial;
@@ -248,6 +252,7 @@ const LoginCard = styled.div`
   align-self: center;
 
   overflow: hidden;
+  //margin: 0 auto;
 `;
 
 
@@ -394,6 +399,11 @@ const LeftSection = styled.div`
 
   }
 
+  
+
+
+  
+
   /* @media only screen and (max-width: 720px){
 
     grid-area: 1/1/2/4;
@@ -479,7 +489,7 @@ const RightSection = styled.div`
   display: grid;
   padding: 0px 50px 50px 0px;
 
-  grid-template-columns: minmax(0,50px) 30px minmax(430px,620px);
+  grid-template-columns: 28px 30px minmax(430px,620px);
   grid-template-rows: 190px repeat(4, 73px) 1fr;
 
   align-self: start;
@@ -1073,7 +1083,7 @@ const handleAdd = e => {
     <SignupWrapper className="homeWrapper" ref={section2ScrollToRef}>
       
       
-      <SignupMask src={width > 850 ? floridaMask : floridaMaskCell}/>
+      <SignupMask src={width > 850 ? floridaMask : width > 400 ? floridaMaskCell : floridaMaskThinLongist}/>
       <LeftFiller/>
       <RightFiller/>
       
@@ -1223,13 +1233,13 @@ const handleAdd = e => {
       <RightSection>
 
         <WeedBullet1 src={thebullet} />
-        <WeedBulletText1>Become a FloridaBlazer. It's totally free.</WeedBulletText1>
+        <WeedBulletText1>Let's make Florida green.</WeedBulletText1>
         <WeedBullet2 src={thebullet} />
-        <WeedBulletText2>Get alerts on the latest marijuana laws.  </WeedBulletText2>
+        <WeedBulletText2> Easily contact your state Reps. </WeedBulletText2>
         <WeedBullet3 src={thebullet} />
-        <WeedBulletText3>Easily contact your state Reps.</WeedBulletText3>
+        <WeedBulletText3>Get alerts on the latest marijuana laws.</WeedBulletText3>
         <WeedBullet4 src={thebullet} />
-        <WeedBulletText4>Help us make Florida green.</WeedBulletText4>
+        <WeedBulletText4>Become a FloridaBlazer now. (It's totally free)</WeedBulletText4>
 
 
       </RightSection>
