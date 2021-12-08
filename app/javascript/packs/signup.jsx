@@ -10,6 +10,10 @@ import floridaBlankPink from '../../assets/images/floridaBlankPink.png'
 import floridaMaskCell from '../../assets/images/floridaMaskThinBlanco1.png'
 import floridaMask from '../../assets/images/floridaMaskBlanco.png'
 import floridaMaskThinLongist from '../../assets/images/floridaMaskThinLongist.png'
+import floridaMaskSmaller from '../../assets/images/floridaMaskSmaller.png'
+import floridaMaskSmaller3 from '../../assets/images/floridaMaskSmaller3.png'
+import floridaMaskSmaller5 from '../../assets/images/floridaMaskSmaller5.png'
+
 
 import flFists from '../../assets/images/flFists.png'
 import thebullet from '../../assets/images/thebullet.png'
@@ -133,12 +137,19 @@ const SignupMask = styled.img`
   //max-height: initial
 }
 
+@media only screen and (max-width: 400px){
+  
+  //max-height: initial
+}
+
   grid-area: 1/2/-1/4;
   width: 100%;
   height: 100%;
 
   max-width: 1400px;
-  //max-height: 700px;
+  
+  max-height: 1125px;
+}
   justify-self: center;
 
   //opacity: .3;
@@ -243,9 +254,9 @@ const LoginCard = styled.div`
   padding: 50px 0px 0px 0px;
 
   background-color: #fff;
-  border: 1px solid transparent;
+  //border: 1px solid transparent;
   
-  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  //box-shadow: 0 1px 1px rgba(0,0,0,0.05);
   //border-radius: 8px;
 
   justify-self: start;
@@ -399,6 +410,11 @@ const LeftSection = styled.div`
 
   }
 
+  @media only screen and (max-width: 400px){
+
+    //margin: 700px 0px 0px 0px;
+  }
+
   
 
 
@@ -476,8 +492,13 @@ const RightSection = styled.div`
 
   @media only screen and (max-width: 850px){
 
-
+    
     grid-area: 1/1/2/4;
+  }
+
+  @media only screen and (max-width: 400px){
+
+    //grid-template-rows: 420px repeat(4, 73px) 1fr;
   }
 
   //background: #C4C4C4;
@@ -1083,7 +1104,7 @@ const handleAdd = e => {
     <SignupWrapper className="homeWrapper" ref={section2ScrollToRef}>
       
       
-      <SignupMask src={width > 850 ? floridaMask : width > 400 ? floridaMaskCell : floridaMaskThinLongist}/>
+      <SignupMask src={width > 850 ? floridaMask : width > 550 ? floridaMaskSmaller : width > 400 ? floridaMaskSmaller3 : floridaMaskSmaller5}/>
       <LeftFiller/>
       <RightFiller/>
       

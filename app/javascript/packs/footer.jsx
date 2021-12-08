@@ -13,7 +13,7 @@ const FooterWrapper = styled.div`
 
         grid-template-columns: minmax(20px, 100px) minmax(133px, 1fr) minmax(133px, 1fr) minmax(20px, 100px);
         //grid-template-rows: minmax(160px, 40%) 1fr;
-        grid-template-rows: 0px 1fr;
+        //grid-template-rows: 0px 1fr;
         height: auto
         
     }
@@ -33,8 +33,8 @@ const FooterWrapper = styled.div`
     //grid-template-columns: 1fr;
     position: relative;
 
-    grid-template-columns: 100px minmax(min-content, 200px) minmax(min-content, 200px) minmax(min-content, 250px) minmax(20px,1fr);
-    grid-template-rows: minmax(150px, 40%) 1fr;
+    grid-template-columns: minmax(20px, 1fr) minmax(min-content, 200px) minmax(min-content, 200px) minmax(min-content, 250px) minmax(20px,1fr);
+    grid-template-rows: minmax(140px, 40%) 1fr;
     /* grid-template-areas:
         "spacer"
         "footerLeaf"; */
@@ -262,7 +262,7 @@ const Legal = styled.div`
     @media only screen and (max-width: 575px) {
 
         grid-area: 4/2/5/4;
-        justify-self: start;
+        
         align-self: end;
         padding: 8px 0px 16px 0px;
 
