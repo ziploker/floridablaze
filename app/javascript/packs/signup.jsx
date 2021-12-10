@@ -10,6 +10,8 @@ import floridaBlankPink from '../../assets/images/floridaBlankPink.png'
 import floridaMaskCell from '../../assets/images/floridaMaskThinBlanco1.png'
 import floridaMask from '../../assets/images/floridaMaskBlanco.png'
 import floridaMaskThinLongist from '../../assets/images/floridaMaskThinLongist.png'
+import floridaMaskBig from '../../assets/images/floridaMaskBig.png'
+
 
 import flFists from '../../assets/images/flFists.png'
 import thebullet from '../../assets/images/thebullet.png'
@@ -45,9 +47,10 @@ var Spinner = require('react-spinkit');
 
 const SignupWrapper = styled.div`
 
-  @media only screen and (max-width: 850px){
+@media only screen and (max-width: 850px){
 
-    grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
+    grid-template-columns: minmax(20px, 1fr) minmax(min-content, max-content) minmax(20px, 1fr);
+    grid-template-rows: min-content 1fr min-content;
     
     min-width: 100%;
 
@@ -94,7 +97,7 @@ const SignupWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  grid-template-columns: minmax(0px, 1fr) minmax(350px,450px) minmax(525px,700px) minmax(0px, 1fr);
+  grid-template-columns: minmax(0px, 1fr) minmax(350px,450px) minmax(525px,700px) minmax(20px, 1fr);
   //grid-template-rows: 1fr minmax(min-content, max-content) 1fr;
   //padding-top: 60px;
   //padding-bottom: 20px;
@@ -124,6 +127,61 @@ const SignupWrapper = styled.div`
 
 `;
 
+const SignupMaskWrapper = styled.div`
+
+  @media only screen and (max-width: 850px){
+
+    grid-area: 1/1/2/4;
+    width: 100%;
+    //height: 100%;
+
+
+
+  }
+
+
+  display: grid;
+  grid-area: 1/3/-1/4;
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+
+  grid-template-rows: min-content 1fr;
+
+
+`;
+
+const TopFiller = styled.div`
+
+  grid-area: 1/1/2/2;
+  background: pink;
+  width: 100%;
+  height: 100%;
+
+
+`;
+
+
+const BottomFiller = styled.div`
+
+  @media only screen and (max-width: 850px){
+
+    grid-area: 2/1/3/4;
+    width: 100%;
+    //height: 100%;
+
+
+
+  }
+
+   grid-area: 2/1/3/2;
+   background: white;
+   width: 100%;
+  height: 100%;
+
+
+`;
+
 
 
 const SignupMask = styled.img`
@@ -133,9 +191,11 @@ const SignupMask = styled.img`
   //max-height: initial
 }
 
-  grid-area: 1/2/-1/4;
+  //grid-area: 1/3/-1/4;
+  grid-area: 1/1/2/2;
   width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
 
   max-width: 1400px;
   //max-height: 700px;
@@ -235,6 +295,7 @@ const LoginCard = styled.div`
   grid-area: 1/3/2/4;
   box-sizing: border-box;
   max-width: 600px;
+  height: 100%;
   //width: 100%;
   //margin-left: 20px;
   //padding: 0 2rem;
@@ -394,8 +455,8 @@ const LeftSection = styled.div`
 
   @media only screen and (max-width: 850px){
 
-    margin: 500px 0px 0px 0px;
-    grid-area: 1/1/2/4;
+    //margin: 500px 0px 0px 0px;
+    grid-area: 3/1/4/4;
 
   }
 
@@ -424,6 +485,7 @@ const LeftSection = styled.div`
   
   text-align: left;
   grid-area: 1/2/2/3;
+  height: 100%;
   //margin-right: 4.20em;
   //padding-left: 60px;
   font-family: Poppins;
@@ -434,9 +496,10 @@ const LeftSection = styled.div`
 
   h1{
     color: rgb(6, 7, 1, .9);
-    margin: 30px;
+    padding: 30px;
     font-size: 3em;
     word-break: keep-all;
+    background: white;
 
 
   }
@@ -481,7 +544,7 @@ const RightSection = styled.div`
   }
 
   //background: #C4C4C4;
-  grid-area: 1/3/2/-1;
+  grid-area: 1/3/2/4;
   height: 80%;
   border-top-left-radius: 60px;
   border-bottom-left-radius: 60px;
@@ -1082,8 +1145,15 @@ const handleAdd = e => {
          
     <SignupWrapper className="homeWrapper" ref={section2ScrollToRef}>
       
+      <SignupMaskWrapper>      
+        
+        {/* <SignupMask src={width > 850 ? floridaMaskBig : width > 400 ? floridaMaskCell : floridaMaskThinLongist}/> */}
+        <SignupMask src={floridaMaskBig}/>
+
+        <BottomFiller/>
+      </SignupMaskWrapper>
+
       
-      <SignupMask src={width > 850 ? floridaMask : width > 400 ? floridaMaskCell : floridaMaskThinLongist}/>
       <LeftFiller/>
       <RightFiller/>
       

@@ -13,7 +13,7 @@ const FooterWrapper = styled.div`
 
         grid-template-columns: minmax(20px, 100px) minmax(133px, 1fr) minmax(133px, 1fr) minmax(20px, 100px);
         //grid-template-rows: minmax(160px, 40%) 1fr;
-        grid-template-rows: 0px 1fr;
+        grid-template-rows: initial;
         height: auto
         
     }
@@ -33,14 +33,14 @@ const FooterWrapper = styled.div`
     //grid-template-columns: 1fr;
     position: relative;
 
-    grid-template-columns: 100px minmax(min-content, 200px) minmax(min-content, 200px) minmax(min-content, 250px) minmax(20px,1fr);
-    grid-template-rows: minmax(150px, 40%) 1fr;
+    grid-template-columns: minmax(20px,1fr) minmax(min-content, 200px) minmax(min-content, 200px) minmax(min-content, 250px) minmax(20px,1fr);
+    grid-template-rows: 100px min-content min-content;
     /* grid-template-areas:
         "spacer"
         "footerLeaf"; */
     //height: 350px;
 
-    z-index: 4;
+    //z-index: 4;
 
     
 
@@ -56,10 +56,11 @@ const FooterImage = styled.img`
 
 
     //grid-area: footerLeaf;
-    grid-area: 1/1/6/-1;
+    grid-area: 1/1/-1/-1;
     height: 100%;
     width: 100%;
     min-width: 500px;
+    align-self: end;
 
     z-index: 3;
     
@@ -80,7 +81,7 @@ const SubscribeSection = styled.div`
     //margin: 25px 0px 40px 0px;
     z-index: 3;
     background: black;
-    grid-area: 2/4/-1/5;
+    grid-area: 2/4/3/5;
     justify-self: end;
     align-self: start;
     margin-bottom: 20px;
@@ -177,7 +178,7 @@ const Follow = styled.div`
     }
 
     
-    grid-area: 2/3/-1/4;
+    grid-area: 2/3/3/4;
     color: white;
     justify-self: start;
     align-self: start;
@@ -222,7 +223,7 @@ const Explore = styled.div`
         padding-top: 80px;
 
     }
-    grid-area: 2/2/-1/3;
+    grid-area: 2/2/3/3;
     color: white;
     justify-self: start;
     align-self: start;
@@ -265,6 +266,7 @@ const Legal = styled.div`
         justify-self: start;
         align-self: end;
         padding: 8px 0px 16px 0px;
+        margin-left: 26px;
 
     }
 
@@ -272,11 +274,12 @@ const Legal = styled.div`
     background-color: black;
     z-index: 3;
     font-size: .2em;
-    grid-area: 4/1/5/5;
+    grid-area: 3/3/4/5;
     align-self: end;
-    justify-self: center;
+    justify-self: start;
     color: white;
-    
+    //width: 100%;
+    text-align: center;
     font-family: poppins;
     padding-bottom: 20px;
 

@@ -200,7 +200,7 @@ const ErrorWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 30px;
+  padding: 30px;
   line-height: .7em;
 
 
