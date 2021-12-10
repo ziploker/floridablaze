@@ -10,13 +10,10 @@ import floridaBlankPink from '../../assets/images/floridaBlankPink.png'
 import floridaMaskCell from '../../assets/images/floridaMaskThinBlanco1.png'
 import floridaMask from '../../assets/images/floridaMaskBlanco.png'
 import floridaMaskThinLongist from '../../assets/images/floridaMaskThinLongist.png'
-<<<<<<< HEAD
 import floridaMaskBig from '../../assets/images/floridaMaskBig.png'
-=======
 import floridaMaskSmaller from '../../assets/images/floridaMaskSmaller.png'
 import floridaMaskSmaller3 from '../../assets/images/floridaMaskSmaller3.png'
 import floridaMaskSmaller5 from '../../assets/images/floridaMaskSmaller5.png'
->>>>>>> 8670259660101da82fb354016e56bd97527e159e
 
 
 import flFists from '../../assets/images/flFists.png'
@@ -147,13 +144,50 @@ const SignupMaskWrapper = styled.div`
 
 
   display: grid;
-  grid-area: 1/3/-1/4;
+  grid-area: 1/3/2/4;
   width: 100%;
   height: 100%;
-  max-height: 500px;
+  //max-height: 500px;
+  grid-template-columns: 1fr max-content 1fr;
+  grid-template-rows: 1fr max-content 1fr;
 
-  grid-template-rows: min-content 1fr;
 
+`;
+
+
+const TopFiLL = styled.div`
+
+  grid-area: 1/1/2/4;
+  background: green;
+  width: 100%;
+  height: 100%;
+
+`;
+
+const BottomFiLL = styled.div`
+
+  grid-area: 3/1/4/4;
+  background: green;
+  width: 100%;
+  height: 100%;
+
+`;
+
+const LeftFiLL = styled.div`
+
+  grid-area: 1/1/4/2;
+  background: green;
+  width: 100%;
+  height: 100%;
+
+`;
+
+const RightFiLL = styled.div`
+
+  grid-area: 1/3/4/4;
+  background: green;
+  width: 100%;
+  height: 100%;
 
 `;
 
@@ -180,7 +214,7 @@ const BottomFiller = styled.div`
 
   }
 
-   grid-area: 2/1/3/2;
+   grid-area: 2/1/3/-1;
    background: white;
    width: 100%;
   height: 100%;
@@ -204,7 +238,7 @@ const SignupMask = styled.img`
   //max-height: initial
 }
 
-  grid-area: 1/2/-1/4;
+  grid-area: 2/2/3/3;
   width: 100%;
   /* width: 100%;
   height: 100%; */
@@ -1174,16 +1208,18 @@ const handleAdd = e => {
         {/* <SignupMask src={width > 850 ? floridaMaskBig : width > 400 ? floridaMaskCell : floridaMaskThinLongist}/> */}
         <SignupMask src={floridaMaskBig}/>
 
-        <BottomFiller/>
+        <TopFiLL/>
+        <BottomFiLL/>
+        <LeftFiLL/>
+        <RightFiLL/>
+
+        {/* <BottomFiller/> */}
       </SignupMaskWrapper>
 
       
-<<<<<<< HEAD
-=======
-      <SignupMask src={width > 850 ? floridaMask : width > 550 ? floridaMaskSmaller : width > 400 ? floridaMaskSmaller3 : floridaMaskSmaller5}/>
->>>>>>> 8670259660101da82fb354016e56bd97527e159e
-      <LeftFiller/>
-      <RightFiller/>
+      {/* <SignupMask src={width > 850 ? floridaMask : width > 550 ? floridaMaskSmaller : width > 400 ? floridaMaskSmaller3 : floridaMaskSmaller5}/> */}
+      {/* <LeftFiller/>
+      <RightFiller/> */}
       
       <LeftSection>
 
