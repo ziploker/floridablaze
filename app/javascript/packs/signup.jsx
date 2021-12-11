@@ -52,8 +52,8 @@ const SignupWrapper = styled.div`
 
 @media only screen and (max-width: 850px){
 
-    grid-template-columns: minmax(20px, 1fr) minmax(min-content, max-content) minmax(20px, 1fr);
-    grid-template-rows: min-content 1fr min-content;
+    grid-template-columns: minmax(20px, 1fr) minmax(min-content, 705px) minmax(20px, 1fr);
+    //grid-template-rows: min-content 1fr min-content;
     
     min-width: 100%;
 
@@ -148,8 +148,8 @@ const SignupMaskWrapper = styled.div`
   width: 100%;
   height: 100%;
   //max-height: 500px;
-  grid-template-columns: 1fr max-content 1fr;
-  grid-template-rows: 1fr max-content 1fr;
+  //grid-template-columns: 1fr max-content 1fr;
+  grid-template-rows: min-content 1fr;
 
 
 `;
@@ -166,7 +166,7 @@ const TopFiLL = styled.div`
 
 const BottomFiLL = styled.div`
 
-  grid-area: 3/1/4/4;
+  grid-area: 2/1/3/2;
   background: green;
   width: 100%;
   height: 100%;
@@ -222,12 +222,25 @@ const BottomFiller = styled.div`
 
 `;
 
+const SignupMaskImageContainer = styled.div`
+  
+  @media only screen and (max-width: 850px){
+    grid-area: 1/1/2/4;
+  }
 
 
-const SignupMask = styled.img`
+  grid-area: 1/1/2/2;
+
+  
+`;
+
+
+
+const SignupMaskImage = styled.img`
 
 @media only screen and (max-width: 850px){
-  grid-area: 1/1/2/4;
+  width: 100%;
+  
   //max-height: initial
 }
 
@@ -238,11 +251,11 @@ const SignupMask = styled.img`
   //max-height: initial
 }
 
-  grid-area: 2/2/3/3;
+  grid-area: 1/1/2/2;
   width: 100%;
   /* width: 100%;
   height: 100%; */
-
+  height: 100%;
   max-width: 1400px;
   
   max-height: 1125px;
@@ -261,7 +274,7 @@ const LeftFiller = styled.div`
     
   }
   grid-area: 1/1/2/2;
-  background: white;
+  background: purple;
   width: 100%;
   height: 100%;
 
@@ -275,7 +288,7 @@ const RightFiller = styled.div`
   }
 
   grid-area: 1/4/2/5;
-  background: white;
+  background: purple;
   width: 100%;
   height: 100%;
 `;
@@ -1206,20 +1219,22 @@ const handleAdd = e => {
       <SignupMaskWrapper>      
         
         {/* <SignupMask src={width > 850 ? floridaMaskBig : width > 400 ? floridaMaskCell : floridaMaskThinLongist}/> */}
-        <SignupMask src={floridaMaskBig}/>
+        <SignupMaskImageContainer>
+          <SignupMaskImage src={floridaMaskBig}/>
+        </SignupMaskImageContainer>
 
-        <TopFiLL/>
+        {/* <TopFiLL/> */}
         <BottomFiLL/>
-        <LeftFiLL/>
-        <RightFiLL/>
+        {/* <LeftFiLL/>
+        <RightFiLL/> */}
 
         {/* <BottomFiller/> */}
       </SignupMaskWrapper>
 
       
       {/* <SignupMask src={width > 850 ? floridaMask : width > 550 ? floridaMaskSmaller : width > 400 ? floridaMaskSmaller3 : floridaMaskSmaller5}/> */}
-      {/* <LeftFiller/>
-      <RightFiller/> */}
+      <LeftFiller/>
+      <RightFiller/>
       
       <LeftSection>
 
