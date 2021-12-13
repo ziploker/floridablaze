@@ -52,7 +52,8 @@ const SignupWrapper = styled.div`
 
 @media only screen and (max-width: 850px){
 
-    grid-template-columns: minmax(20px, 1fr) minmax(min-content, 705px) minmax(20px, 1fr);
+    //grid-template-columns: minmax(20px, 1fr) minmax(min-content, 705px) minmax(20px, 1fr);
+    grid-template-columns: minmax(20px,100px) minmax(300px, min-content) minmax(20px,1fr);
     //grid-template-rows: min-content 1fr min-content;
     
     min-width: 100%;
@@ -134,7 +135,7 @@ const SignupMaskWrapper = styled.div`
 
   @media only screen and (max-width: 850px){
 
-    grid-area: 1/1/2/4;
+    grid-area: 1/1/2/3;
     width: 100%;
     //height: 100%;
 
@@ -158,7 +159,7 @@ const SignupMaskWrapper = styled.div`
 const TopFiLL = styled.div`
 
   grid-area: 1/1/2/4;
-  background: green;
+  background: white;
   width: 100%;
   height: 100%;
 
@@ -166,8 +167,12 @@ const TopFiLL = styled.div`
 
 const BottomFiLL = styled.div`
 
+@media only screen and (max-width: 850px){
+  grid-area: 2/1/3/4;
+}
+
   grid-area: 2/1/3/2;
-  background: green;
+  background: white;
   width: 100%;
   height: 100%;
 
@@ -176,7 +181,7 @@ const BottomFiLL = styled.div`
 const LeftFiLL = styled.div`
 
   grid-area: 1/1/4/2;
-  background: green;
+  background: white;
   width: 100%;
   height: 100%;
 
@@ -185,7 +190,7 @@ const LeftFiLL = styled.div`
 const RightFiLL = styled.div`
 
   grid-area: 1/3/4/4;
-  background: green;
+  background: white;
   width: 100%;
   height: 100%;
 
@@ -194,7 +199,7 @@ const RightFiLL = styled.div`
 const TopFiller = styled.div`
 
   grid-area: 1/1/2/2;
-  background: pink;
+  background: white;
   width: 100%;
   height: 100%;
 
@@ -274,7 +279,7 @@ const LeftFiller = styled.div`
     
   }
   grid-area: 1/1/2/2;
-  background: purple;
+  background: white;
   width: 100%;
   height: 100%;
 
@@ -283,12 +288,12 @@ const LeftFiller = styled.div`
 const RightFiller = styled.div`
 
 @media only screen and (max-width: 850px){
-    display: none;
+    grid-area: 1/3/2/4;
     
   }
 
   grid-area: 1/4/2/5;
-  background: purple;
+  background: white;
   width: 100%;
   height: 100%;
 `;
@@ -346,7 +351,7 @@ const LoginCard = styled.div`
   @media only screen and (max-width: 720px){
 
     grid-area: 2/1/3/4;
-    margin: 25px 0px 0px 0px;
+    //margin: 25px 0px 0px 0px;
     
     //width: 100%;
 
@@ -375,6 +380,26 @@ const LoginCard = styled.div`
 
   overflow: hidden;
   //margin: 0 auto;
+`;
+
+const LoginCardFillLeft = styled.div`
+
+  background: white;
+  grid-area: 2/1/3/2;
+  width: 100%;
+  height: 100%;
+
+
+`;
+
+const LoginCardFillRight = styled.div`
+
+  background: white;
+  grid-area: 2/3/3/4;
+  width: 100%;
+  height: 100%;
+
+
 `;
 
 
@@ -517,7 +542,8 @@ const LeftSection = styled.div`
   @media only screen and (max-width: 850px){
 
     //margin: 500px 0px 0px 0px;
-    grid-area: 3/1/4/4;
+    grid-area: 2/2/3/3;
+    border-right: initial;
 
   }
 
@@ -562,11 +588,11 @@ const LeftSection = styled.div`
 
   h1{
     color: rgb(6, 7, 1, .9);
-    padding: 30px;
+    //padding: 30px;
     font-size: 3em;
     word-break: keep-all;
     background: white;
-
+    //text-align: center;
 
   }
 
@@ -606,7 +632,8 @@ const RightSection = styled.div`
   @media only screen and (max-width: 850px){
 
     
-    grid-area: 1/1/2/4;
+    grid-area: 1/2/2/3;
+    grid-template-columns: 1px 30px minmax(430px,620px);
   }
 
   @media only screen and (max-width: 400px){
@@ -1376,8 +1403,11 @@ const handleAdd = e => {
           
         
         </LoginCard>
+        
 
       </LeftSection>
+      <LoginCardFillLeft/>
+        <LoginCardFillRight/>
 
       <RightSection>
 
