@@ -1,5 +1,7 @@
 /* Shared */
 .loginBtn {
+
+    
     box-sizing: border-box;
     position: relative;
     width: 0px;
@@ -32,6 +34,8 @@
   
   /* Facebook */
   .loginBtn--facebook {
+    grid-area: 2/2/3/3;
+    justify-self: start;
     background-color: #4C69BA;
     background-image: linear-gradient(#4C69BA, #3B55A0);
     /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
@@ -51,6 +55,8 @@
   /* Google */
   .loginBtn--google {
     /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+    justify-self: end;
+    grid-area: 2/1/3/2;
     background: #DD4B39;
     height:" 35px"
   }

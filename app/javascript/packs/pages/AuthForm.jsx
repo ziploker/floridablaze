@@ -45,14 +45,14 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 90px 0px 20px;
+  /* padding: 0 20px 0px 20px; */
   box-sizing: border-box;
 
-  @media only screen and (max-width: 1111px){
+  /* @media only screen and (max-width: 1111px){
     padding: 0 20px 0px 8px;
 
 
-  }
+  } */
 `;
 
 const FormItem = styled.div`

@@ -53,7 +53,7 @@ const SignupWrapper = styled.div`
 @media only screen and (max-width: 850px){
 
     //grid-template-columns: minmax(20px, 1fr) minmax(min-content, 705px) minmax(20px, 1fr);
-    grid-template-columns: minmax(20px,100px) minmax(300px, min-content) minmax(20px,1fr);
+    grid-template-columns: minmax(20px,120px) minmax(300px, min-content) minmax(20px,1fr);
     //grid-template-rows: min-content 1fr min-content;
     
     min-width: 100%;
@@ -63,6 +63,12 @@ const SignupWrapper = styled.div`
     //padding-left: 20px;
     //justify-self: center;
     //max-height: initial;
+
+
+  }
+
+  @media only screen and (max-width: 777px){
+    grid-template-columns: minmax(20px,1fr) minmax(300px, min-content) minmax(20px,1fr);
 
 
   }
@@ -101,7 +107,7 @@ const SignupWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  grid-template-columns: minmax(0px, 1fr) minmax(350px,450px) minmax(525px,700px) minmax(20px, 1fr);
+  grid-template-columns: minmax(0px, 1fr) minmax(300px,450px) minmax(525px,700px) minmax(20px, 1fr);
   //grid-template-rows: 1fr minmax(min-content, max-content) 1fr;
   //padding-top: 60px;
   //padding-bottom: 20px;
@@ -111,6 +117,7 @@ const SignupWrapper = styled.div`
   //background-color: RGB(244, 244, 244);
 
   border-top: 47px white solid;
+  border-bottom: 37px white solid;
 
   //justify-self: start;
   //grid-template-columns: minmax(170px,350px) minmax(340px,600px);
@@ -367,7 +374,8 @@ const LoginCard = styled.div`
   //padding: 0 2rem;
   //margin-left: 20px;
   //margin-top: 100px;
-  padding: 50px 0px 0px 0px;
+  //padding: 50px 0px 0px 0px;
+  padding: 50px 20px 0px 20px;
 
   background-color: #fff;
   //border: 1px solid transparent;
@@ -398,6 +406,7 @@ const LoginCardFillRight = styled.div`
   grid-area: 2/3/3/4;
   width: 100%;
   height: 100%;
+  
 
 
 `;
@@ -539,6 +548,9 @@ const BackgroundFists = styled.img`
 
 const LeftSection = styled.div`
 
+
+  
+
   @media only screen and (max-width: 850px){
 
     //margin: 500px 0px 0px 0px;
@@ -546,6 +558,8 @@ const LeftSection = styled.div`
     border-right: initial;
 
   }
+
+  
 
   @media only screen and (max-width: 400px){
 
@@ -588,7 +602,8 @@ const LeftSection = styled.div`
 
   h1{
     color: rgb(6, 7, 1, .9);
-    //padding: 30px;
+    padding: 0 0 0 20px;
+    
     font-size: 3em;
     word-break: keep-all;
     background: white;
@@ -609,9 +624,18 @@ const SocialMedia = styled.div`
 
 
   display: grid;
-  grid-template-columns: minmax(min-content, max-content) 1fr minmax(min-content, max-content);
+  grid-template-columns: minmax(min-content, 1fr) minmax(min-content, 1fr);
+  grid-template-rows: min-content;
 
 
+  h3{
+    grid-area: 1/1/2/3;
+    justify-self: center;
+    font-size: .8em;
+    margin-bottom: 10px;
+
+  }
+  
   button {
 
     height: 35px;
@@ -1355,7 +1379,7 @@ const handleAdd = e => {
                 
                 
             
-                
+          <h3 style={{color: "gray", alignSelf: "center", justifySelf: "center"}} htmlFor="opt_in" >--- or --- </h3>
             
             <GoogleLogin
               
@@ -1369,7 +1393,7 @@ const handleAdd = e => {
               cookiePolicy={'single_host_origin'}
             />
 
-            <h3 style={{color: "gray", alignSelf: "center", justifySelf: "center"}} htmlFor="opt_in" >or </h3>
+            
 
         
             <FacebookLogin
