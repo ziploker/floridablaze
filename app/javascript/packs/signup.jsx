@@ -142,7 +142,7 @@ const SignupMaskWrapper = styled.div`
 
   @media only screen and (max-width: 850px){
 
-    grid-area: 1/1/2/3;
+    grid-area: 1/2/2/3;
     width: 100%;
     //height: 100%;
 
@@ -282,7 +282,7 @@ const SignupMaskImage = styled.img`
 const LeftFiller = styled.div`
 
   @media only screen and (max-width: 850px){
-    display: none;
+    //display: none;
     
   }
   grid-area: 1/1/2/2;
@@ -667,12 +667,12 @@ const RightSection = styled.div`
 
   //background: #C4C4C4;
   grid-area: 1/3/2/4;
-  height: 80%;
+  //height: 80%;
   border-top-left-radius: 60px;
   border-bottom-left-radius: 60px;
 
   display: grid;
-  padding: 0px 50px 50px 0px;
+  padding: 0px 50px 50px 14px;
 
   grid-template-columns: 28px 30px minmax(430px,620px);
   grid-template-rows: 190px repeat(4, 73px) 1fr;
