@@ -194,8 +194,8 @@ class LookupsController < ApplicationController
       
         
       
-        if record.node.chamber[0].organization.parent.name == "Florida Legislature"
-          puts "fl legiskature was found in map"
+        if record.node.chamber[0].organization.parent.name != "US Congress"
+          puts "some non US Congress item was found in map"
           
           if counter == 0
 

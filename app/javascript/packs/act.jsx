@@ -4,7 +4,7 @@ import actBackground from "../../assets/images/actBackground.png";
 import mega from "../../assets/images/megav3.png";
 import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
-import samplepic from "../../assets/images/man3.png";
+import samplepic from "../../assets/images/man6.png";
 import "../../assets/stylesheets/sendButton";
 
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
@@ -451,7 +451,7 @@ const ShowLetterDeadEnd = styled.div`
     props.showCards && props.resultFromFlorida == "true" ? "0" : "1"};
   z-index: ${(props) =>
     props.showCards && props.resultFromFlorida == "true" ? "-5" : "10"};
-  grid-area: 5/1/6/3;
+  grid-area: 5/2/6/5;
   color: white;
   padding: 16px 0px 0px 0px;
   margin: 0 auto;
@@ -879,12 +879,14 @@ const CardOneWrapper = styled.div`
 
 `;
 
-const CardOneSub = styled.sub`
+const CardOneSub = styled.div`
   position: absolute;
   left: 3px;
   top: 3px;
   right: 3px;
   //width: 100%;
+  opacity: .2;
+  color:black;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background: white;
@@ -942,6 +944,7 @@ const CardTemplate = styled.img`
   grid-area: 1/1/-1/-1;
   width: 100%;
   height: 100%;
+  opacity: .8;
 `;
 
 const CardPicture = styled.img`
@@ -950,12 +953,17 @@ const CardPicture = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 13px;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(${samplepic});
 `;
 
 const CardNameOfRep = styled.h1`
   color: black;
   font-size: 9px;
   line-height: 1.1em;
+  z-index: 1;
   /* position: absolute;
   bottom: 10%;
   left: 3%; */
