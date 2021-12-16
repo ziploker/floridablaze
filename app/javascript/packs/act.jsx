@@ -444,6 +444,9 @@ const ShowLetterButton = styled.div`
 `;
 
 const ShowLetterDeadEnd = styled.div`
+  
+  display: ${(props) =>
+    props.showCards && props.resultFromFlorida == "true" ? "none" : "initial"};
   opacity: ${(props) =>
     props.showCards && props.resultFromFlorida == "true" ? "0" : "1"};
   z-index: ${(props) =>
@@ -590,12 +593,12 @@ const ResultSectionInfoBox = styled.div`
 const ProgressBarz = styled.div`
 
   display: flex;
-  grid-area: 1/3/2/4;
+  grid-area: 1/1/2/4;
   //margin: 27px 0px 18px 20px;
   margin: 30px 0px 10px 20px;
   
 
-  justify-self: start;
+  justify-self: center;
 
 `;
 
@@ -698,7 +701,65 @@ const ResultSectionHeaders = styled.h1`
 
   }
 
+  
   display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1em;
+  min-width: 222px;
+  margin: 50px 0px 25px 0px;
+  padding: 4px 16px;
+  font-family: Poppins;
+  //font-style: normal;
+  //font-weight: 500;
+  //font-size: 8vw;
+  //font-size: clamp(1rem, -0.875rem + 8.333333vw, 3.5rem);
+
+  /* identical to box height, or 90px */
+
+  letter-spacing: -0.03em;
+  color: black;
+  background: white;
+  
+  border-radius: 11.11px;
+
+  
+  
+
+  grid-area: ${props => props.gridArea};
+  justify-self: center;
+  align-self: end;
+
+  white-space: nowrap;
+
+  //margin: 20px 0px;
+  //padding: 0px 20px;
+
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+`;
+
+
+const ResultSectionHeadersAlt = styled.h1`
+
+  @media only screen and (max-width: 750px){
+
+    grid-area: ${props => props.gridAreaTablet};
+    //font-size: 8vw;
+    margin: 10px 0px 20px 0px;
+
+
+  }
+
+  display: ${(props) =>
+    props.showCards && props.resultFromFlorida == "true" ? "flex" : "none"};
+
+  
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -929,6 +990,8 @@ const Letter = styled.div`
 
   }
 
+  display: ${(props) =>
+    props.showCards && props.resultFromFlorida == "true" ? "grid" : "none"};
   //grid-area: 1/2/7/4;
   grid-area: 4/6/8/7;
   width: 100%;
@@ -941,7 +1004,7 @@ const Letter = styled.div`
   //grid-template-columns: 0px 130px 130px 1fr;
   grid-auto-rows: minmax(min-content, max-content);
   //grid-gap: 8px;
-  display: grid;
+  
   padding: 20px;
   //margin: 0px 8px;
   //opacity: ${(props) => (props.showLetter ? "1" : "0")};
@@ -1762,7 +1825,15 @@ function Act(props, ref) {
                                    
           <ResultSectionHeaders gridArea="3/2/4/5" gridAreaTablet="3/2/4/5">Your elected officials</ResultSectionHeaders>
 
-          <ResultSectionHeaders gridArea="3/6/4/7" gridAreaTablet="5/2/6/5">Personalized Email</ResultSectionHeaders>
+          <ResultSectionHeadersAlt 
+            gridArea="3/6/4/7" 
+            gridAreaTablet="5/2/6/5"
+            resultFromFlorida={resultFromFlorida}
+            showCards={showCards}
+          >
+            Personalized Email
+            
+          </ResultSectionHeadersAlt>
 
           <CardOne>
             <CardOneWrapper>
@@ -1805,7 +1876,10 @@ function Act(props, ref) {
             </CardTwoWrapper>
           </CardTwo>
 
-          <Letter showLetter={showLetter}>
+          <Letter 
+            resultFromFlorida={resultFromFlorida}
+            showCards={showCards}
+            showLetter={showLetter}>
             <div className="LetterTopOverlay"></div>
             <div className="LetterSideOverlay"></div>
             <div className="LetterSideOverlay2"></div>
