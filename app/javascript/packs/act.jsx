@@ -578,7 +578,7 @@ const ResultSectionInfoBox = styled.div`
 
     grid-area: 1/1/2/6;
     
-    grid-template-rows: 1fr min-content 1fr;
+    
 
 
   }
@@ -586,6 +586,7 @@ const ResultSectionInfoBox = styled.div`
   display: grid;
 
   grid-template-columns: auto min-content auto;
+  grid-template-rows: 1fr min-content 1fr;
   grid-area: 1/2/2/7;
   //height: 200px;
 `;
@@ -593,20 +594,34 @@ const ResultSectionInfoBox = styled.div`
 const ProgressBarz = styled.div`
 
   display: flex;
-  grid-area: 1/1/2/4;
+  grid-area: 1/3/2/4;
   //margin: 27px 0px 18px 20px;
   margin: 30px 0px 10px 20px;
   
+  padding-left: 2px;
+  justify-self: start;
 
+`;
+
+const ProgressBarzResultSection = styled.div`
+
+  display: flex;
+  grid-area: 1/1/2/-1;
+  //margin: 27px 0px 18px 20px;
+  margin: 30px 0px 10px 20px;
+  
+  padding-left: 2px;
   justify-self: center;
 
 `;
 
+
+
 const ResultCompleteTitle = styled.h1`
   font-family: Poppins;
-  justify-self: start;
+  justify-self: center;
   color: #ffffff;
-  grid-area: 2/2/3/3;
+  grid-area: 2/1/3/-1;
 
 
 `;
@@ -680,12 +695,20 @@ const ResultSectionBulletPointTitle = styled.h2`
 
 const ResultSectionSpacerLine = styled.div`
 
+@media only screen and (max-width: 750px){
+
+  margin: 25px 0 45px 0;
+
+
+
+}
+
   height: 1px;
   //width: 100vw;
   background: #E3B55A;
   opacity: .4;
   grid-area: 2/1/3/-1;
-  margin: 50px 0 0px 0;
+  margin: 25px 0 0px 0;
 
 
 `;
@@ -708,7 +731,7 @@ const ResultSectionHeaders = styled.h1`
   text-align: center;
   font-size: 1em;
   min-width: 222px;
-  margin: 50px 0px 25px 0px;
+  margin: 25px 0px 25px 0px;
   padding: 4px 16px;
   font-family: Poppins;
   //font-style: normal;
@@ -751,7 +774,7 @@ const ResultSectionHeadersAlt = styled.h1`
 
     grid-area: ${props => props.gridAreaTablet};
     //font-size: 8vw;
-    margin: 10px 0px 20px 0px;
+    margin: 50px 0px 0px 0px;
 
 
   }
@@ -993,7 +1016,7 @@ const Letter = styled.div`
     grid-template-columns: auto;
     width: 100%;
     min-width: inherit;
-    margin-top: 25px;
+    margin-top: 20px;
     justify-self: center;
 
   }
@@ -1769,13 +1792,13 @@ function Act(props, ref) {
           
           <ResultSectionInfoBox>
 
-            <ProgressBarz >
+            <ProgressBarzResultSection >
               
               <StepOne/>
               <StepTwo showCards={showCards}/>
               <StepThree showCards={showCards}/>
 
-            </ProgressBarz>
+            </ProgressBarzResultSection>
 
             <ResultCompleteTitle>
 

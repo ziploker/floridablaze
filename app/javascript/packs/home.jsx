@@ -45,7 +45,7 @@ const News = styled.div`
     @media only screen and (max-width: 866px){
 
         //margin-top: 0px;
-        margin-bottom: 96px;
+        margin-bottom: 43px;
         grid-template-columns: 1fr;
         //padding: 0px 20px;
 
