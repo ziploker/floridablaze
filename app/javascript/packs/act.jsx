@@ -904,16 +904,17 @@ const CardOneWrapper = styled.div`
 
 const CardOneSub = styled.div`
   position: absolute;
+  font-weight: bold;
   left: 3px;
   top: 3px;
   right: 3px;
   //width: 100%;
-  opacity: .2;
+  opacity: .8;
   color:black;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background: white;
-  font-size: 0.5em;
+  font-size: 0.7em;
   text-align: center;
   padding: 3px 0px;
 
