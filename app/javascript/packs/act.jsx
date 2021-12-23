@@ -569,7 +569,7 @@ const ResultSection = styled.div`
     props.showCards ? "translate(0)" : "transform:translate(9999px)"};
   opacity: ${(props) => (props.showCards ? "1" : "0")};
   z-index: ${(props) => (props.showCards ? "10" : "-5")};
-  grid-template-columns: minmax(10px, 1fr) minmax(150px, 200px) minmax(4px,8px) minmax(150px, 200px) minmax(16px, 32px) minmax(350px,470px) minmax(10px, 1fr);
+  grid-template-columns: minmax(10px, 1fr) minmax(150px, 200px) minmax(4px,8px) minmax(150px, 200px) minmax(16px, 32px) minmax(350px,670px) minmax(10px, 1fr);
   grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content,max-content) minmax(min-content, max-content);
   //visibility: hidden;
   //grid-template-rows: ${(props) => props.showCards ? "minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) 1fr": "0px 0px 0px 0px 0px"};
@@ -783,13 +783,13 @@ const ResultSectionHeaders = styled.h1`
 `;
 
 
-const ResultSectionHeadersAlt = styled.h1`
+const ResultSectionHeadersAlt = styled.div`
 
   @media only screen and (max-width: 750px){
 
     grid-area: ${props => props.gridAreaTablet};
     //font-size: 8vw;
-    margin: 50px 0px 0px 0px;
+    //margin: 50px 0px 0px 0px;
 
 
   }
@@ -798,7 +798,7 @@ const ResultSectionHeadersAlt = styled.h1`
     props.showCards && props.resultFromFlorida == "true" ? "flex" : "none"};
 
   
-  justify-content: center;
+  /* justify-content: center;
   align-items: center;
   text-align: center;
   font-size: 1em;
@@ -806,37 +806,20 @@ const ResultSectionHeadersAlt = styled.h1`
   margin: 25px 0px 25px 0px;
   padding: 4px 16px;
   font-family: Poppins;
-  //font-style: normal;
-  //font-weight: 500;
-  //font-size: 8vw;
-  //font-size: clamp(1rem, -0.875rem + 8.333333vw, 3.5rem);
-
-  /* identical to box height, or 90px */
-
   letter-spacing: -0.03em;
   color: black;
   background: white;
-  
   border-radius: 11.11px;
-
-  
-  
-
   grid-area: ${props => props.gridArea};
   justify-self: center;
   align-self: end;
-
   white-space: nowrap;
-
-  //margin: 20px 0px;
-  //padding: 0px 20px;
-
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
-  user-select: none;
+  user-select: none; */
 `;
 
 
@@ -1054,7 +1037,7 @@ const Letter = styled.div`
   grid-area: 4/6/8/7;
   width: 100%;
   //min-width: 400px;
-  max-width: 500px;
+  //max-width: 500px;
   justify-self: start;
   border-radius: 10px;
   background: white;
@@ -1314,9 +1297,9 @@ function Act(props, ref) {
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(true);
+  const [showCards, setShowCards] = React.useState(false);
   //const [showLetter, setShowLetter] = React.useState(false);
-  const [showOffer, setShowOffer] = React.useState(true);
+  const [showOffer, setShowOffer] = React.useState(false);
 
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
@@ -1326,6 +1309,8 @@ function Act(props, ref) {
   const [successFlag, setSuccessFlag] = React.useState(true);
   const scrolll = props.executeScrollForLookupSectionTwo;
   const myRef = useRef(null)
+
+  
   // const [results, setResults] = React.useState({
   //   one: {
   //     resultFromFlorida: "true",
@@ -1908,7 +1893,39 @@ function Act(props, ref) {
           {showOffer ? 
           
         <ShowOfferSection>
-          <PayPalButtons style={{ layout: "horizontal" }} />
+          <PayPalButtons 
+            style={{"layout":"vertical"}} 
+            createOrder={(data, actions) => {
+              return actions.order.create({
+                  purchase_units: [
+                      {
+                          amount: {
+                              value: "2.99",
+                          }
+                      }
+                  ]
+              });
+            }}
+            onApprove={(data, actions) => {
+              return actions.order.capture().then((details) => {
+                  const name = details.payer.name.given_name;
+                  alert(`Transaction completed by ${name}`);
+                  console.log("STATUS = " + details.status)
+                  console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
+                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
+                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
+                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
+                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
+                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
+                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
+                  
+              });
+            }}
+            
+            
+            
+            
+          />
         </ShowOfferSection> : 
           <Letter 
             resultFromFlorida={resultFromFlorida}

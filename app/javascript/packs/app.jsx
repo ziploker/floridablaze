@@ -41,6 +41,8 @@ function App({d}){
     const artData = d.artData
 
     
+
+    
     console.log("==============APP===============" + JSON.stringify(d))
     //console.log("==============APP props===============", controllerProps)
     
@@ -337,7 +339,7 @@ function App({d}){
                     <Route path="/edit" render={ props => <Edit {...props} user={userState.user}/>} />
                     <Route exact path="/blog/:id" render = { props => <Article {...props} userState={userState} artData={artData}/> } />
                 </Switch>
-                <PayPalScriptProvider options={{ "client-id": "test" }}>
+                <PayPalScriptProvider options={{ "client-id": "ASxYc6NaKEnx3gEKnVzv60MvRjC2tM4F-CFZgepkJwnAL1Cr9c3MfgRtr9OCMqOa-egcSu3dEpee205c" }}>
                     <Act ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}} executeScrollForSection2={executeScrollForSection2} userState={userState} setLoginClicked={setLoginClicked} setOpenSideMenu={setOpenSideMenu} executeScrollForLookupSection={executeScrollForLookupSection} executeScrollForLookupSectionTwo={executeScrollForLookupSectionTwo} />
                 </PayPalScriptProvider>
                 <SignupSection ref={{section2ScrollToRef: section2ScrollToRef}} handleSuccessfulAuth={handleSuccessfulAuth} />
