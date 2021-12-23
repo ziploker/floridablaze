@@ -6,7 +6,7 @@ import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
 import "../../assets/stylesheets/sendButton";
-
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
 import styled from "styled-components";
 
@@ -88,7 +88,8 @@ const Mega = styled.img`
   margin-right: 1em;
   margin-top: -80px;
   //margin-bottom: 13px;
-  opacity: ${(props) => (props.showLetter ? "0" : "1")}; ;
+  //opacity: ${(props) => (props.showLetter ? "0" : "1")}; ;
+  opacity: 1;
 `;
 
 const ActGrid = styled.div`
@@ -133,7 +134,9 @@ const ActSection = styled.section`
 
     
   }
-  display: ${(props) => (props.showCards || props.showLetter ? "none" : "grid")}; ;
+  //display: ${(props) => (props.showCards || props.showLetter ? "none" : "grid")}; ;
+  display: ${(props) => (props.showCards ? "none" : "grid")}; ;
+
   position: relative;
   //grid-template-columns: 43% 57%;
   grid-template-columns: minmax(20px, 100px) minmax(250px, 350px) minmax(350px,600px) minmax(40px, 1fr);
@@ -144,7 +147,9 @@ const ActSection = styled.section`
   transition: opacity 0.4s;
   //padding-bottom: 40px;
 
-  z-index: ${(props) => (props.showCards || props.showLetter ? "0" : "10")};
+  //z-index: ${(props) => (props.showCards || props.showLetter ? "0" : "10")};
+  z-index: ${(props) => (props.showCards ? "0" : "10")};
+
 
   @media only screen and (min-width: 975px){
 
@@ -214,7 +219,9 @@ const ActHeader = styled.h1`
   //padding-top: 20px;
   //z-index: 1;
 
-  opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+  //opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+  opacity: ${(props) => (props.showCards ? "0" : "1")};
+
 `;
 
 const ActSubheader = styled.h2`
@@ -240,7 +247,9 @@ const ActSubheader = styled.h2`
   color: #e3b55a;
   margin: 8px 0px 8px 20px;
 
-  opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+  //opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+  opacity: ${(props) => (props.showCards ? "0" : "1")};
+
 `;
 
 const ActSubheader2 = styled.h3`
@@ -269,7 +278,9 @@ const ActSubheader2 = styled.h3`
 
   align-self: start;
 
-  opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+  //opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+  opacity: ${(props) => (props.showCards ? "0" : "1")};
+
 `;
 
 const Form = styled.form`
@@ -301,7 +312,9 @@ const Form = styled.form`
   padding: 0px 20px;
   border-radius: 5px;
 
-  opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+  //opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+  opacity: ${(props) => (props.showCards ? "0" : "1")};
+
 `;
 
 const Button = styled.button`
@@ -396,7 +409,9 @@ const FindMyRep = styled.button`
   cursor: pointer;
   //z-index: 1;
 
-  opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+  //opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+  opacity: ${(props) => (props.showCards ? "0" : "1")};
+
 
   
 `;
@@ -586,7 +601,7 @@ const ResultSectionInfoBox = styled.div`
   display: grid;
 
   grid-template-columns: auto min-content auto;
-  grid-template-rows: 1fr min-content 1fr;
+  //grid-template-rows: 1fr min-content 1fr;
   grid-area: 1/2/2/7;
   //height: 200px;
 `;
@@ -788,7 +803,7 @@ const ResultSectionHeadersAlt = styled.h1`
   text-align: center;
   font-size: 1em;
   min-width: 222px;
-  margin: 50px 0px 25px 0px;
+  margin: 25px 0px 25px 0px;
   padding: 4px 16px;
   font-family: Poppins;
   //font-style: normal;
@@ -1004,6 +1019,17 @@ const CardNameOfRep = styled.h1`
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+`;
+
+const ShowOfferSection = styled.div`
+
+  @media only screen and (max-width: 750px){
+
+    grid-area: 6/1/9/6;
+  }
+
+  grid-area: 4/6/8/7;
+
 `;
 
 const Letter = styled.div`
@@ -1288,15 +1314,18 @@ function Act(props, ref) {
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(false);
-  const [showLetter, setShowLetter] = React.useState(false);
+  const [showCards, setShowCards] = React.useState(true);
+  //const [showLetter, setShowLetter] = React.useState(false);
+  const [showOffer, setShowOffer] = React.useState(true);
+
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
   const sendButtonRef = useRef(null);
 
   const [flashMsg, setFlashMsg] = React.useState("");
   const [successFlag, setSuccessFlag] = React.useState(true);
-
+  const scrolll = props.executeScrollForLookupSectionTwo;
+  const myRef = useRef(null)
   // const [results, setResults] = React.useState({
   //   one: {
   //     resultFromFlorida: "true",
@@ -1586,11 +1615,11 @@ function Act(props, ref) {
     //}
   };
 
-  function showLetterFunction() {
-    setShowCards(false);
-    setShowLetter(true);
-    console.log("triggerrrrrrr");
-  }
+  // function showLetterFunction() {
+  //   setShowCards(false);
+  //   setShowLetter(true);
+  //   console.log("triggerrrrrrr");
+  // }
 
   function sendLetterFunction() {
     console.log("send?LetterFunct$#%Ton");
@@ -1599,7 +1628,7 @@ function Act(props, ref) {
   function resetSearch(e) {
     e.preventDefault();
     setShowCards(false);
-    setShowLetter(false);
+    //setShowLetter(false);
   }
 
   const animateButton = function (e) {
@@ -1621,6 +1650,11 @@ function Act(props, ref) {
 
       setTimeout(function () {
         setSuccessFlag(true);
+        setShowOffer(true);
+        console.log("b44444 scroLL")
+        myRef.current.scrollIntoView();
+        console.log("bAFTER scroLL")
+
       }, 3500);
     }
   };
@@ -1637,11 +1671,11 @@ function Act(props, ref) {
 
   return (
     <ActWrapper ref={LookupScrollToRef} >
-      <BGimage src={actBackground}></BGimage>
+      <BGimage src={actBackground} ref={myRef}></BGimage>
       
       <ActGrid >
          
-        <ActSection showCards={showCards} showLetter={showLetter}>
+        <ActSection showCards={showCards} showOffer={showOffer}>
 
           <ProgressBarz >
             
@@ -1651,15 +1685,15 @@ function Act(props, ref) {
 
           </ProgressBarz>
           
-          <ActHeader showCards={showCards} showLetter={showLetter}>
+          <ActHeader showCards={showCards}>
             ACT NOW
           </ActHeader>
           
-          <ActSubheader showCards={showCards} showLetter={showLetter}>
+          <ActSubheader showCards={showCards}>
           Find your Florida State Representatives and let them know you want to legalize marijuana ASAP. What if you could do this in just a few clicks?{" "}
           </ActSubheader>
           
-          <ActSubheader2 showCards={showCards} showLetter={showLetter}>
+          <ActSubheader2 showCards={showCards}>
           Enter your address below to see who your Florida State Representitives.{" "}
           </ActSubheader2>
 
@@ -1667,7 +1701,7 @@ function Act(props, ref) {
             className="form-inline"
             onSubmit={handleAdd}
             showCards={showCards}
-            showLetter={showLetter}
+            
             
           >
             <PlacesAutocomplete
@@ -1785,7 +1819,7 @@ function Act(props, ref) {
           >
             Lookup my Representatives
           </FindMyRep> */}
-          <Mega showCards={showCards} showLetter={showLetter} src={mega}></Mega>
+          <Mega showCards={showCards} src={mega}></Mega>
         </ActSection>
 
         
@@ -1807,45 +1841,7 @@ function Act(props, ref) {
 
             </ResultCompleteTitle>
 
-            <ResultSectionBulletPointWrapperSet>
-
-              <ResultSectionBulletPointWrapper gridArea="3/2/4/3">
-
-                <ResultSectionBulletPoint/>
-
-                <ResultSectionBulletPointTitle>
-                  Located your elected officials.
-                </ResultSectionBulletPointTitle>
-
-
-
-              </ResultSectionBulletPointWrapper>
-
-
-              <ResultSectionBulletPointWrapper gridArea="4/2/5/3">
-
-                <ResultSectionBulletPoint/>
-
-                <ResultSectionBulletPointTitle>
-                  Generated personalized email.
-                </ResultSectionBulletPointTitle>
-
-
-
-              </ResultSectionBulletPointWrapper>
-
-              <ResultSectionBulletPointWrapper gridArea="5/2/6/3">
-
-                <ResultSectionBulletPoint open="open"/>
-
-                <ResultSectionBulletPointTitle>
-                Send email to each of your Reps.              
-                </ResultSectionBulletPointTitle>
-
-
-
-              </ResultSectionBulletPointWrapper>
-            </ResultSectionBulletPointWrapperSet>
+            
 
             
 
@@ -1863,7 +1859,7 @@ function Act(props, ref) {
             resultFromFlorida={resultFromFlorida}
             showCards={showCards}
           >
-            Personalized Email
+            {showOffer ? "Send postal letter" : "Send Personalized Email"}
             
           </ResultSectionHeadersAlt>
 
@@ -1908,10 +1904,16 @@ function Act(props, ref) {
             </CardTwoWrapper>
           </CardTwo>
 
+          
+          {showOffer ? 
+          
+        <ShowOfferSection>
+          <PayPalButtons style={{ layout: "horizontal" }} />
+        </ShowOfferSection> : 
           <Letter 
             resultFromFlorida={resultFromFlorida}
             showCards={showCards}
-            showLetter={showLetter}>
+          >
             <div className="LetterTopOverlay"></div>
             <div className="LetterSideOverlay"></div>
             <div className="LetterSideOverlay2"></div>
@@ -1987,10 +1989,11 @@ function Act(props, ref) {
               </a>{" "}
               to continue.
             </FlashError>
-            <FlashSuccess userState={props.userState} successFlag={successFlag}>
+            {/* <FlashSuccess userState={props.userState} successFlag={successFlag}>
               Email sent!!
-            </FlashSuccess>
+            </FlashSuccess> */}
           </Letter>
+}
 
           <ShowLetterDeadEnd
             resultFromFlorida={resultFromFlorida}
@@ -2004,6 +2007,12 @@ function Act(props, ref) {
           </ShowLetterDeadEnd>
         
         </ResultSection>
+
+        {/* <OfferSection>
+
+
+          
+        </OfferSection> */}
       
       
       </ActGrid>
