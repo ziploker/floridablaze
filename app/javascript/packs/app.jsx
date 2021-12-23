@@ -9,7 +9,7 @@ import {
     Route
 } from "react-router-dom"
 
-
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from 'axios'
 import Header from "./header"
 import Home from "./home"
@@ -212,6 +212,12 @@ function App({d}){
         setOpenSideMenu(false)
     })
 
+    const executeScrollForLookupSectionTwo = () => {
+        
+        scrollToRef2(section2ScrollToRef)
+        setOpenSideMenu(false)
+    }
+
     
 
     
@@ -331,8 +337,9 @@ function App({d}){
                     <Route path="/edit" render={ props => <Edit {...props} user={userState.user}/>} />
                     <Route exact path="/blog/:id" render = { props => <Article {...props} userState={userState} artData={artData}/> } />
                 </Switch>
-                
-                <Act ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}} executeScrollForSection2={executeScrollForSection2} userState={userState} setLoginClicked={setLoginClicked} setOpenSideMenu={setOpenSideMenu} />
+                <PayPalScriptProvider options={{ "client-id": "test" }}>
+                    <Act ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}} executeScrollForSection2={executeScrollForSection2} userState={userState} setLoginClicked={setLoginClicked} setOpenSideMenu={setOpenSideMenu} executeScrollForLookupSection={executeScrollForLookupSection} executeScrollForLookupSectionTwo={executeScrollForLookupSectionTwo} />
+                </PayPalScriptProvider>
                 <SignupSection ref={{section2ScrollToRef: section2ScrollToRef}} handleSuccessfulAuth={handleSuccessfulAuth} />
                 {/* <Shop/> */}
                 <Footer/>
