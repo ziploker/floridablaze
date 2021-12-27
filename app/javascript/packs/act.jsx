@@ -637,9 +637,12 @@ const ResultCompleteTitle = styled.h1`
   justify-self: center;
   color: #ffffff;
   grid-area: 2/1/3/-1;
+  font-size: 3.5em;
 
 
 `;
+
+
 
 const ResultSectionBulletPointWrapperSet = styled.div`
 
@@ -866,8 +869,9 @@ const CardOne = styled.div`
   position: relative;
   //grid-template-columns: 85% 15%;
   //grid-template-rows: 73% 17% 10%;
+  margin-top: 25px;
 
-  grid-area: 4/2/5/3;
+  grid-area: 3/2/4/3;
 
   width: 100%;
 
@@ -930,8 +934,8 @@ const CardTwo = styled.div`
   
   position: relative;
   
-
-  grid-area: 4/4/5/5;
+  margin-top: 25px;
+  grid-area: 3/4/4/5;
 
   justify-self: end;
   height: 0px;
@@ -1015,6 +1019,14 @@ const ShowOfferSection = styled.div`
 
 `;
 
+const ResultsBlurb = styled.div`
+  grid-area: 3/6/5/7;
+  margin-top: 25px;
+  border: 1px orange solid;
+
+
+`;
+
 const Letter = styled.div`
 
 
@@ -1034,8 +1046,10 @@ const Letter = styled.div`
   display: ${(props) =>
     props.showCards && props.resultFromFlorida == "true" ? "grid" : "none"};
   //grid-area: 1/2/7/4;
-  grid-area: 4/6/8/7;
+  //grid-area: 4/6/8/7;
+  grid-area: 5/2/6/7;
   width: 100%;
+  margin-top: 30px;
   //min-width: 400px;
   //max-width: 500px;
   justify-self: start;
@@ -1297,9 +1311,9 @@ function Act(props, ref) {
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(false);
+  const [showCards, setShowCards] = React.useState(true);
   //const [showLetter, setShowLetter] = React.useState(false);
-  const [showOffer, setShowOffer] = React.useState(false);
+  //const [showOffer, setShowOffer] = React.useState(true);
 
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
@@ -1635,7 +1649,7 @@ function Act(props, ref) {
 
       setTimeout(function () {
         setSuccessFlag(true);
-        setShowOffer(true);
+        //setShowOffer(true);
         console.log("b44444 scroLL")
         myRef.current.scrollIntoView();
         console.log("bAFTER scroLL")
@@ -1660,7 +1674,7 @@ function Act(props, ref) {
       
       <ActGrid >
          
-        <ActSection showCards={showCards} showOffer={showOffer}>
+        <ActSection showCards={showCards}>
 
           <ProgressBarz >
             
@@ -1822,9 +1836,11 @@ function Act(props, ref) {
 
             <ResultCompleteTitle>
 
-              search complete
+              Results
 
             </ResultCompleteTitle>
+
+           
 
             
 
@@ -1834,9 +1850,9 @@ function Act(props, ref) {
 
           </ResultSectionInfoBox>
 
-          <ResultSectionSpacerLine/>
-                                   
-          <ResultSectionHeaders gridArea="3/2/4/5" gridAreaTablet="3/2/4/5">Your elected officials</ResultSectionHeaders>
+          {/* <ResultSectionSpacerLine/> */}
+{/*                                    
+          <ResultSectionHeaders gridArea="3/2/4/5" gridAreaTablet="3/2/4/5">Your elected officials</ResultSectionHeaders> */}
 
           <ResultSectionHeadersAlt 
             gridArea="3/6/4/7" 
@@ -1844,7 +1860,7 @@ function Act(props, ref) {
             resultFromFlorida={resultFromFlorida}
             showCards={showCards}
           >
-            {showOffer ? "Send postal letter" : "Send Personalized Email"}
+            Send Personalized Email
             
           </ResultSectionHeadersAlt>
 
@@ -1889,10 +1905,11 @@ function Act(props, ref) {
             </CardTwoWrapper>
           </CardTwo>
 
+
           
-          {showOffer ? 
           
-        <ShowOfferSection>
+          
+        {/* <ShowOfferSection>
           <PayPalButtons 
             style={{"layout":"vertical"}} 
             createOrder={(data, actions) => {
@@ -1926,7 +1943,13 @@ function Act(props, ref) {
             
             
           />
-        </ShowOfferSection> : 
+        </ShowOfferSection> */}
+
+        <ResultsBlurb>
+
+          because it has proven to help certain illnesses including glaucoma, sclerosis, and cancers such as breast and brain cancer. Prohibition has only cost billions of dollars and studies prove that it has not affected the use of marijuana,
+        </ResultsBlurb>
+
           <Letter 
             resultFromFlorida={resultFromFlorida}
             showCards={showCards}
@@ -2010,7 +2033,9 @@ function Act(props, ref) {
               Email sent!!
             </FlashSuccess> */}
           </Letter>
-}
+          
+          
+          
 
           <ShowLetterDeadEnd
             resultFromFlorida={resultFromFlorida}
