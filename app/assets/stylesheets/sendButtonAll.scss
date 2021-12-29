@@ -1,7 +1,7 @@
 $button-width: 150px;
 $spinner-width: calc(#{$button-width}/6);
 $blue: #0076d3;
-$btn-bg: #8BC34A;
+$btn-bg: #ffc439;
 $text-light: #fefefe;
 
 @import url(https://fonts.googleapis.com/css?family=Space+Mono);
@@ -29,10 +29,12 @@ $text-light: #fefefe;
   }
   display: inline-block;
   min-width: $button-width;
-  
+  height: 35px;
+  line-height: 0;
+  color: black;
   margin: 0 auto;
   background: $btn-bg;
-  color: $text-light;
+  //color: $text-light;
   font-size: 1.1em;
   padding: 1em;
   border-radius: 4px;

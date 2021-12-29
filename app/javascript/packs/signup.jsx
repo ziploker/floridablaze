@@ -353,6 +353,14 @@ const SignupWrapperInner = styled.div`
 `;
 
 
+const LoginCardWrapper = styled.div`
+
+  background: white;
+  grid-area: 1/3/2/4;
+  height: 100%;
+`;
+
+
 const LoginCard = styled.div`
 
   @media only screen and (max-width: 720px){
@@ -365,10 +373,10 @@ const LoginCard = styled.div`
 
   }
   position: relative;
-  grid-area: 1/3/2/4;
+  
   box-sizing: border-box;
   max-width: 600px;
-  height: 100%;
+  
   //width: 100%;
   //margin-left: 20px;
   //padding: 0 2rem;
@@ -1297,137 +1305,137 @@ const handleAdd = e => {
           
         </h1>
           
+        <LoginCardWrapper>
+          <LoginCard className="formWrapper" >
         
-        <LoginCard className="formWrapper" >
-       
-                
-          <Form onSubmit = {handleAdd}>
+                  
+            <Form onSubmit = {handleAdd}>
 
-          
-          <FormItemSqueeze className="formItemSqueeze">
-          
-            <Label className={state.full_nameFieldActive ? "field-active" : ""}> full name </Label>
             
-            <Input 
-              name="full_name" 
-              type="text" 
+            <FormItemSqueeze className="formItemSqueeze">
+            
+              <Label className={state.full_nameFieldActive ? "field-active" : ""}> full name </Label>
               
-              value={state.full_name} 
-              onChange={handleChange} 
-              onFocus={activateField}
-              onBlur={disableField}
-              required/>
-          
-          </FormItemSqueeze>
+              <Input 
+                name="full_name" 
+                type="text" 
+                
+                value={state.full_name} 
+                onChange={handleChange} 
+                onFocus={activateField}
+                onBlur={disableField}
+                required/>
+            
+            </FormItemSqueeze>
 
-                    
-          <FormItemSqueeze className="formItemSqueeze">
-            
-            <EmailLabel className={state.emailFieldActive ? "field-active" : ""}>email</EmailLabel>
-            
-            <Input 
-              name="email" 
-              type="email" 
+                      
+            <FormItemSqueeze className="formItemSqueeze">
               
-              value={state.email} 
-              onChange={handleChange} 
-              onFocus={activateField}
-              onBlur={disableField}
-              required/>
-            
-          </FormItemSqueeze>
-
-          
-          <FormItemSqueeze className="formItemSqueeze">
-            
-            <Label className={state.passwordFieldActive ? "field-active" : ""}>password</Label>
-                
-            <Input 
-              name="password" 
-              type="password" 
-              autocomplete="off"
-              value={state.password} 
-              onChange={handleChange} 
-              onFocus={activateField}
-              onBlur={disableField}
-              required/>
-          
-          </FormItemSqueeze>
-
-          {/* <div  style={{display: "flex", justifyContent: "center"}}>
-                
-                
-            <input
-              name="opt_in" 
-              type="checkbox" 
-              id="opt_in"
-              checked={state.opt_in}
-                
-              onChange={handleChange} 
-                
-            />
-                
-            
-            <h3 style={{marginLeft: "5px", fontSize: ".6em", color: "gray"}} htmlFor="opt_in" >Opt In to receive e-mails from FloridaBlaze </h3>
-          
-          </div> */}
-
-          
-          <Button className="formItemSqueeze" type="submit" disabled={state.isBtnDisabled}>Sign Up</Button>
-            
-          <SocialMedia>
-                
-                
-            
-          <h3 style={{color: "gray", alignSelf: "center", justifySelf: "center"}} htmlFor="opt_in" >--- or --- </h3>
-            
-            <GoogleLogin
+              <EmailLabel className={state.emailFieldActive ? "field-active" : ""}>email</EmailLabel>
               
-              render={renderProps => (
-              <button className="loginBtn loginBtn--google" onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</button>
-              )}
-            
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
+              <Input 
+                name="email" 
+                type="email" 
+                
+                value={state.email} 
+                onChange={handleChange} 
+                onFocus={activateField}
+                onBlur={disableField}
+                required/>
+              
+            </FormItemSqueeze>
 
             
+            <FormItemSqueeze className="formItemSqueeze">
+              
+              <Label className={state.passwordFieldActive ? "field-active" : ""}>password</Label>
+                  
+              <Input 
+                name="password" 
+                type="password" 
+                autocomplete="off"
+                value={state.password} 
+                onChange={handleChange} 
+                onFocus={activateField}
+                onBlur={disableField}
+                required/>
+            
+            </FormItemSqueeze>
 
-        
-            <FacebookLogin
-              appId="293426502140339"
-              autoLoad={false}
-              fields="name,email,picture"
-              onClick={componentClicked}
-              callback={responseFacebook} 
-              cssClass="loginBtn loginBtn--facebook"
-              textButton="Facebook"
-            />
-          </SocialMedia>
+            {/* <div  style={{display: "flex", justifyContent: "center"}}>
+                  
+                  
+              <input
+                name="opt_in" 
+                type="checkbox" 
+                id="opt_in"
+                checked={state.opt_in}
+                  
+                onChange={handleChange} 
+                  
+              />
+                  
+              
+              <h3 style={{marginLeft: "5px", fontSize: ".6em", color: "gray"}} htmlFor="opt_in" >Opt In to receive e-mails from FloridaBlaze </h3>
+            
+            </div> */}
+
+            
+            <Button className="formItemSqueeze" type="submit" disabled={state.isBtnDisabled}>Sign Up</Button>
+              
+            <SocialMedia>
+                  
+                  
+              
+            <h3 style={{color: "gray", alignSelf: "center", justifySelf: "center"}} htmlFor="opt_in" >--- or --- </h3>
+              
+              <GoogleLogin
+                
+                render={renderProps => (
+                <button className="loginBtn loginBtn--google" onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</button>
+                )}
+              
+                buttonText="Login"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+              />
+
+              
+
           
-        </Form>
+              <FacebookLogin
+                appId="293426502140339"
+                autoLoad={false}
+                fields="name,email,picture"
+                onClick={componentClicked}
+                callback={responseFacebook} 
+                cssClass="loginBtn loginBtn--facebook"
+                textButton="Facebook"
+              />
+            </SocialMedia>
+            
+          </Form>
 
+            
+            <ErrorWrapper showErrorBackground={state.showErrorBackground}>   
+              
+              <Span waitMessage={state.waitMessage}> {state.waitMessage}</Span>     
+              
+              <RedX status={state.status} src={state.status === "pink" ? redX : greenCheck}/>
+              
+              {errorMessages}
+
+              <StatusSpinner showStatusSpinner={state.showStatusSpinner}>
+                  <Spinner name='wave' color='#56c5cc' />
+              </StatusSpinner>
+
+            </ErrorWrapper>
+
+            
           
-          <ErrorWrapper showErrorBackground={state.showErrorBackground}>   
-            
-            <Span waitMessage={state.waitMessage}> {state.waitMessage}</Span>     
-            
-            <RedX status={state.status} src={state.status === "pink" ? redX : greenCheck}/>
-            
-            {errorMessages}
-
-            <StatusSpinner showStatusSpinner={state.showStatusSpinner}>
-                <Spinner name='wave' color='#56c5cc' />
-            </StatusSpinner>
-
-          </ErrorWrapper>
-
-          
-        
-        </LoginCard>
-        
+          </LoginCard>
+        </LoginCardWrapper>
 
       </LeftSection>
       <LoginCardFillLeft/>

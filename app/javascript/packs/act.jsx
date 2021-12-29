@@ -5,11 +5,12 @@ import mega from "../../assets/images/megav3.png";
 import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
-import "../../assets/stylesheets/sendButton";
+import "../../assets/stylesheets/sendButtonAll";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
 import styled from "styled-components";
-
+import { RiMailSendLine } from "react-icons/ri";
+import { BsMailbox } from "react-icons/bs";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -1015,7 +1016,9 @@ const ShowOfferSection = styled.div`
     grid-area: 6/1/9/6;
   }
 
-  grid-area: 4/6/8/7;
+  grid-area: 5/1/6/3;
+  width: 80%;
+  justify-self: center;
 
 `;
 
@@ -1024,6 +1027,21 @@ const ResultsBlurb = styled.div`
   margin-top: 25px;
   border: 1px orange solid;
 
+
+`;
+
+const TriplePlayWrapper = styled.div`
+
+  display: ${(props) =>
+    props.showCards == true && props.resultFromFlorida == "true" ? "grid" : "none"};
+  //grid-area: 1/2/7/4;
+  //grid-area: 4/6/8/7;
+  grid-area: 5/2/6/7;
+  width: 100%;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 50% 1fr 1fr;
+  grid-gap: 10px;
 
 `;
 
@@ -1043,13 +1061,7 @@ const Letter = styled.div`
 
   }
 
-  display: ${(props) =>
-    props.showCards && props.resultFromFlorida == "true" ? "grid" : "none"};
-  //grid-area: 1/2/7/4;
-  //grid-area: 4/6/8/7;
-  grid-area: 5/2/6/7;
-  width: 100%;
-  margin-top: 30px;
+  
   //min-width: 400px;
   //max-width: 500px;
   justify-self: start;
@@ -1214,9 +1226,138 @@ const Letter = styled.div`
     }
     padding: 30px;
     justify-self: start;
-    grid-area: 6/2/7/5;
+    //grid-area: 6/2/7/5;
+    grid-area: 1/1/2/2
   }
 `;
+
+
+const OfferOne = styled.div`
+
+  display: grid;
+  grid-area: 1/2/2/3;
+  grid-template-columns: 40px 1fr;
+  grid-template-rows: min-content min-content 1fr min-content min-content;
+  background: white;
+  justify-content: center;
+  
+
+  h1{
+
+    grid-area: 1/1/2/3;
+    justify-self: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 400;
+    margin: 30px 0 0 0;
+    font-size: 2.8em;
+  }
+
+  
+
+  h2{
+    grid-area: 4/1/5/3;
+    justify-self: center;
+    margin: 40px;
+
+  }
+
+  
+
+
+`;
+
+
+const OfferTwo = styled.div`
+
+  display: grid;
+  grid-area: 1/3/2/4;
+  grid-template-columns: 40px 1fr;
+  grid-template-rows: min-content min-content 1fr min-content min-content;
+  background: white;
+  justify-content: center;
+  
+
+  h1{
+
+    grid-area: 1/1/2/3;
+    justify-self: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 400;
+    margin: 30px 0 0 0;
+    font-size: 2.8em;
+  }
+
+  
+
+  h2{
+    grid-area: 4/1/5/3;
+    justify-self: center;
+    margin: 40px;
+
+  }
+
+  
+
+
+`;
+
+const BulletPoint = styled.div`
+  background: black;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  grid-area: 3/1/4/2;
+  justify-self: center;
+  margin: 25px 0 0 0;
+`;
+
+const BulletPointText = styled.h3`
+
+  grid-area: 3/2/4/3;
+  font-size: .8em;
+  justify-self: center;
+  margin: 20px 0 0 0;
+`;
+
+
+
+const SendButtonWrapper = styled.div`
+
+  @media only screen and (max-width: 400px){
+    grid-area: 7/2/8/5;
+    align-self: center;
+    justify-self: center;
+    margin: 16px 0px;
+    width: 100%;
+
+  }
+  
+  grid-area: 5/1/6/3;;
+  align-self: center;
+  justify-self: center;
+  //margin-right: 15px;
+  position: relative;
+            
+
+
+`;
+
+
+{/* <OfferOne>
+  <h1>email</h1>
+  <RiMailSendLine/>
+  
+    <BulletPoint/>
+    <BulletPointText>
+      email will be sent to each of your representatives on your behalf
+    </BulletPointText>
+    <h2>Free</h2>
+    <OfferOneButton></OfferOneButton>
+  
+</OfferOne> */}
+
 
 const FlashError = styled.h4`
 
@@ -1269,26 +1410,7 @@ const FlashSuccess = styled.h4`
   display: ${(props) => (props.successFlag ? "initial" : "none")};
 `;
 
-const SendButtonWrapper = styled.div`
 
-  @media only screen and (max-width: 400px){
-    grid-area: 7/2/8/5;
-    align-self: center;
-    justify-self: center;
-    margin: 16px 0px;
-    width: 100%;
-
-  }
-  
-  grid-area: 6/4/7/5;
-  align-self: center;
-  justify-self: end;
-  margin-right: 15px;
-  position: relative;
-            
-
-
-`;
 
 const SendButton = styled.a``;
 
@@ -1854,7 +1976,7 @@ function Act(props, ref) {
 {/*                                    
           <ResultSectionHeaders gridArea="3/2/4/5" gridAreaTablet="3/2/4/5">Your elected officials</ResultSectionHeaders> */}
 
-          <ResultSectionHeadersAlt 
+          {/* <ResultSectionHeadersAlt 
             gridArea="3/6/4/7" 
             gridAreaTablet="5/2/6/5"
             resultFromFlorida={resultFromFlorida}
@@ -1862,7 +1984,7 @@ function Act(props, ref) {
           >
             Send Personalized Email
             
-          </ResultSectionHeadersAlt>
+          </ResultSectionHeadersAlt> */}
 
           <CardOne>
             <CardOneWrapper>
@@ -1909,131 +2031,181 @@ function Act(props, ref) {
           
           
           
-        {/* <ShowOfferSection>
-          <PayPalButtons 
-            style={{"layout":"vertical"}} 
-            createOrder={(data, actions) => {
-              return actions.order.create({
-                  purchase_units: [
-                      {
-                          amount: {
-                              value: "2.99",
-                          }
-                      }
-                  ]
-              });
-            }}
-            onApprove={(data, actions) => {
-              return actions.order.capture().then((details) => {
-                  const name = details.payer.name.given_name;
-                  alert(`Transaction completed by ${name}`);
-                  console.log("STATUS = " + details.status)
-                  console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
-                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
-                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
-                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
-                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
-                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
-                  console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
-                  
-              });
-            }}
-            
-            
-            
-            
-          />
-        </ShowOfferSection> */}
+        
 
         <ResultsBlurb>
 
           because it has proven to help certain illnesses including glaucoma, sclerosis, and cancers such as breast and brain cancer. Prohibition has only cost billions of dollars and studies prove that it has not affected the use of marijuana,
         </ResultsBlurb>
-
-          <Letter 
-            resultFromFlorida={resultFromFlorida}
-            showCards={showCards}
-          >
-            <div className="LetterTopOverlay"></div>
-            <div className="LetterSideOverlay"></div>
-            <div className="LetterSideOverlay2"></div>
-
-            {/* <img
-              src={results.one.image ? results.one.image : samplepic}
-              className="miniPic1"
-            />
-            <img
-              src={results.two.image ? results.two.image : samplepic}
-              className="miniPic2"
-            /> */}
-
-            {/* <div className="LetterRecipientsWrapper">
-              <h1>recipients</h1>
-              <h2 className="email1">{results.one.email}</h2>
-              <h2 className="email2">{results.two.email}</h2>
-            </div> */}
-
-            <h3>Dear Representatives/Senator,</h3>
-
-            <p>
-              I am a constituant of (
-              <i>
-                <b style={{ fontSize: ".8em" }}>
-                  {results.one.fullDistrict}, {results.one.fullDistrict}
-                </b>
-              </i>
-              ). I am writing on behalf of legalizing marijuana to all above the
-              age of eighteen. Marijuana is as much a recreational drug as
-              alcohol, tobacco, and even coffee. Marijuana has never had a
-              report of fatal use and the common use for medical purposes has
-              been proved and even infused into society today. Many states today
-              have legalized it's medical purposes because it has proven to help
-              certain illnesses including glaucoma, sclerosis, and cancers such
-              as breast and brain cancer. Prohibition has only cost billions of
-              dollars and studies prove that it has not affected the use of
-              marijuana, in fact it has made it cheaper and more accessible. All
-              the money used for prosecution of small offenders can be used for
-              tax revenues and ultimately save billions.
-            </p>
-
-            <div className="closing">
-              Sincerely, <br />
-              <sub>Your Name Here</sub> <br />
-              <sub>Your Email Here</sub> <br />
-            </div>
-
-            <SendButtonWrapper>
-              <SendButton>
-                <div className="wrapper">
-                  <div
-                    ref={sendButtonRef}
-                    className="block"
-                    onClick={animateButton}
-                  >
-                    <button className={sendButtonClass}>Send</button>
-                  </div>
-                </div>
-              </SendButton>
-            </SendButtonWrapper>
-
-            
-
-            <FlashError userState={props.userState}>
-              ** Please{" "}
-              <a href="#" onClick={loginFromDeadEnd}>
-                Login
-              </a>{" "}
-              or{" "}
-              <a href="#" onClick={props.executeScrollForSection2}>
-                Signup
-              </a>{" "}
-              to continue.
-            </FlashError>
-            {/* <FlashSuccess userState={props.userState} successFlag={successFlag}>
-              Email sent!!
-            </FlashSuccess> */}
-          </Letter>
           
+          
+          
+          <TriplePlayWrapper resultFromFlorida={resultFromFlorida}
+              showCards={showCards}>
+            <Letter 
+              resultFromFlorida={resultFromFlorida}
+              showCards={showCards}
+            >
+              <div className="LetterTopOverlay"></div>
+              <div className="LetterSideOverlay"></div>
+              <div className="LetterSideOverlay2"></div>
+
+              {/* <img
+                src={results.one.image ? results.one.image : samplepic}
+                className="miniPic1"
+              />
+              <img
+                src={results.two.image ? results.two.image : samplepic}
+                className="miniPic2"
+              /> */}
+
+              {/* <div className="LetterRecipientsWrapper">
+                <h1>recipients</h1>
+                <h2 className="email1">{results.one.email}</h2>
+                <h2 className="email2">{results.two.email}</h2>
+              </div> */}
+
+              <h3>Dear Representatives/Senator,</h3>
+
+              <p>
+                I am a constituant of (
+                <i>
+                  <b style={{ fontSize: ".8em" }}>
+                    {results.one.fullDistrict}, {results.one.fullDistrict}
+                  </b>
+                </i>
+                ). I am writing on behalf of legalizing marijuana to all above the
+                age of eighteen. Marijuana is as much a recreational drug as
+                alcohol, tobacco, and even coffee. Marijuana has never had a
+                report of fatal use and the common use for medical purposes has
+                been proved and even infused into society today. Many states today
+                have legalized it's medical purposes because it has proven to help
+                certain illnesses including glaucoma, sclerosis, and cancers such
+                as breast and brain cancer. Prohibition has only cost billions of
+                dollars and studies prove that it has not affected the use of
+                marijuana, in fact it has made it cheaper and more accessible. All
+                the money used for prosecution of small offenders can be used for
+                tax revenues and ultimately save billions.
+              </p>
+
+              <div className="closing">
+                Sincerely, <br />
+                <sub>Your Name Here</sub> <br />
+                <sub>Your Email Here</sub> <br />
+              </div>
+
+              
+
+              
+
+              <FlashError userState={props.userState}>
+                ** Please{" "}
+                <a href="#" onClick={loginFromDeadEnd}>
+                  Login
+                </a>{" "}
+                or{" "}
+                <a href="#" onClick={props.executeScrollForSection2}>
+                  Signup
+                </a>{" "}
+                to continue.
+              </FlashError>
+              {/* <FlashSuccess userState={props.userState} successFlag={successFlag}>
+                Email sent!!
+              </FlashSuccess> */}
+            </Letter>
+            <OfferOne>
+              <h1>Email</h1>
+              <RiMailSendLine 
+                style={{
+                  gridArea: "2/1/3/3", 
+                  justifySelf: "center",
+                  margin: "20px 0 0 0",
+                  width: "50px",
+                  height: "50px"
+                }}/>
+              
+              <BulletPoint/>
+              <BulletPointText>
+                email will be sent to each of your representatives on your behalf
+              </BulletPointText>
+              <h2>Free</h2>
+              
+              <SendButtonWrapper>
+                <SendButton>
+                  <div className="wrapper">
+                    <div
+                      ref={sendButtonRef}
+                      className="block"
+                      onClick={animateButton}
+                    >
+                      <button className={sendButtonClass}>Act now</button>
+                    </div>
+                  </div>
+                </SendButton>
+              </SendButtonWrapper>
+              
+            </OfferOne>
+
+            <OfferTwo>
+              <h1>Letter</h1>
+              <BsMailbox 
+                style={{
+                  gridArea: "2/1/3/3", 
+                  justifySelf: "center",
+                  margin: "24px 0 0 0",
+                  width: "45px",
+                  height: "45px"
+                }}/>
+              
+              <BulletPoint/>
+              <BulletPointText>
+                a printed letter will be mailed to each of your representatives 
+                via United States Postal Service             
+              </BulletPointText>
+              <h2>$2.99</h2>
+
+              <ShowOfferSection>
+                <PayPalButtons 
+                  style={{"layout":"vertical"}} 
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                        purchase_units: [
+                            {
+                                amount: {
+                                    value: "2.99",
+                                }
+                            }
+                        ]
+                    });
+                  }}
+                  onApprove={(data, actions) => {
+                    return actions.order.capture().then((details) => {
+                        const name = details.payer.name.given_name;
+                        alert(`Transaction completed by ${name}`);
+                        console.log("STATUS = " + details.status)
+                        console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
+                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
+                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
+                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
+                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
+                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
+                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
+                        
+                    });
+                  }}
+                  
+                  
+                  
+                  
+                />
+              </ShowOfferSection>
+              
+              
+              
+            </OfferTwo>
+
+           
+          </TriplePlayWrapper>
           
           
 
