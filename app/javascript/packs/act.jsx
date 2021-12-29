@@ -17,7 +17,7 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 
 import $ from "jquery";
-
+import ReCAPTCHA from "react-google-recaptcha";
 import greenCheck from "../../assets/images/greenCheck.png";
 import searchIcon from "../../assets/images/search.png";
 import searchIconOrange from "../../assets/images/searchGreen.png";
@@ -1752,6 +1752,10 @@ function Act(props, ref) {
     //setShowLetter(false);
   }
 
+  function onChange(value) {
+    console.log("Captcha value:", value);
+  }
+
   const animateButton = function (e) {
     e.preventDefault;
     //reset animation
@@ -2142,6 +2146,11 @@ function Act(props, ref) {
                     </div>
                   </div>
                 </SendButton>
+
+                <ReCAPTCHA
+                  sitekey="6LdE3NgdAAAAADcnYdc8T-d61yIGGVCwNl3sdfc6"
+                  onChange={onChange}
+                />
               </SendButtonWrapper>
               
             </OfferOne>
