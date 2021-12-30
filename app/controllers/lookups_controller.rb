@@ -116,7 +116,7 @@ class LookupsController < ApplicationController
   
   
       #object to be sent to frontend
-      sendToFrontEnd = {"one" => {"resultFromFlorida" => "true", "name" => "", "firstName" => "", "lastName" => "", "image" => "", "id" => "", "email" => "", "chamber" => "", "party" => "", "parent" => "", "district" => "", "fullDistrict" => "", "fullDistrictTrunk" => ""}, "two" => {"name" => "", "firstName" => "", "lastName" => "", "image" => "", "id" => "", "email" => "", "chamber" => "", "party" => "", "parent" => "", "district" => "", "fullDistrict" => "", "fullDistrictTrunk" => ""}}
+      sendToFrontEnd = {"one" => {"resultFromFlorida" => "true", "name" => "", "firstName" => "", "lastName" => "", "image" => "", "id" => "", "email" => "", "chamber" => "", "party" => "", "parent" => "", "district" => "", "fullDistrict" => "", "fullDistrictTrunk" => "", "address" => ""}, "two" => {"name" => "", "firstName" => "", "lastName" => "", "image" => "", "id" => "", "email" => "", "chamber" => "", "party" => "", "parent" => "", "district" => "", "fullDistrict" => "", "fullDistrictTrunk" => "", "address" => ""}}
   
   
       #disable any views being rendered
@@ -212,6 +212,28 @@ class LookupsController < ApplicationController
             sendToFrontEnd["one"]["fullDistrict"] =  record.node.chamber[0].post.division.name
             sendToFrontEnd["one"]["fullDistrictTrunk"] = record.node.chamber[0].post.division.name.gsub!(/(\d+|(district))/,"").rstrip
 
+
+            record.node.contactDetails.each do |object|
+        
+              if object.type === "address" && object.note === "Capitol Office"
+                
+                sendToFrontEnd["one"]["address"] =  object.value
+                break
+              end
+        
+            end
+
+
+
+            record.node.contactDetails.each do |object|
+        
+              if object.type === "email" && object.value.exclude?("%") && object.value.include?("@flsenate.gov") || object.value.include?("@myfloridahouse.gov")
+                
+                sendToFrontEnd["one"]["email"] =  object.value
+                break
+              end
+        
+            end
       
           elsif counter == 1
             puts "counter was 1"
@@ -227,7 +249,26 @@ class LookupsController < ApplicationController
             sendToFrontEnd["two"]["fullDistrict"] =  record.node.chamber[0].post.division.name
             sendToFrontEnd["two"]["fullDistrictTrunk"] = record.node.chamber[0].post.division.name.gsub!(/(\d+|(district))/,"").rstrip
 
-           
+            record.node.contactDetails.each do |object|
+        
+              if object.type === "address" && object.note === "Capitol Office"
+                
+                sendToFrontEnd["two"]["address"] =  object.value
+                break
+              end
+        
+            end
+
+
+            record.node.contactDetails.each do |object|
+        
+              if object.type === "email" && object.value.exclude?("%") && object.value.include?("@flsenate.gov") || object.value.include?("@myfloridahouse.gov")
+                
+                sendToFrontEnd["two"]["email"] =  object.value
+                break
+              end
+        
+            end
 
           end
 
@@ -295,25 +336,29 @@ class LookupsController < ApplicationController
       
       
       
-      primaryOpenStatesResponse.data.people.edges[0].node.contactDetails.each do |object|
+      # primaryOpenStatesResponse.data.people.edges[0].node.contactDetails.each do |object|
         
-        if object.type === "email" && object.value.exclude?("%") && object.value.include?("@flsenate.gov") || object.value.include?("@myfloridahouse.gov")
+      #   if object.type === "email" && object.value.exclude?("%") && object.value.include?("@flsenate.gov") || object.value.include?("@myfloridahouse.gov")
           
-          sendToFrontEnd["one"]["email"] =  object.value
-          break
-        end
+      #     sendToFrontEnd["one"]["email"] =  object.value
+      #     break
+      #   end
   
-      end
+      # end
   
-      primaryOpenStatesResponse.data.people.edges[1].node.contactDetails.each do |object|
+      # primaryOpenStatesResponse.data.people.edges[1].node.contactDetails.each do |object|
         
-        if object.type === "email" && object.value.exclude?("%") && object.value.include?("@flsenate.gov") || object.value.include?("@myfloridahouse.gov")
+      #   if object.type === "email" && object.value.exclude?("%") && object.value.include?("@flsenate.gov") || object.value.include?("@myfloridahouse.gov")
           
-          sendToFrontEnd["two"]["email"] =  object.value
-          break
-        end
+      #     sendToFrontEnd["two"]["email"] =  object.value
+      #     break
+      #   end
   
-      end
+      # end
+
+
+      
+  
       
       
       puts "=====================start: update hash with results from query =================="

@@ -2147,10 +2147,7 @@ function Act(props, ref) {
                   </div>
                 </SendButton>
 
-                <ReCAPTCHA
-                  sitekey="6LdE3NgdAAAAADcnYdc8T-d61yIGGVCwNl3sdfc6"
-                  onChange={onChange}
-                />
+                
               </SendButtonWrapper>
 
               <ReCAPTCHA
