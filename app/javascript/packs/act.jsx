@@ -5,7 +5,7 @@ import mega from "../../assets/images/megav3.png";
 import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
-import "../../assets/stylesheets/sendButtonAll";
+import "../../assets/stylesheets/sendButton";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
 import styled from "styled-components";
@@ -17,7 +17,7 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 
 import $ from "jquery";
-
+import ReCAPTCHA from "react-google-recaptcha";
 import greenCheck from "../../assets/images/greenCheck.png";
 import searchIcon from "../../assets/images/search.png";
 import searchIconOrange from "../../assets/images/searchGreen.png";
@@ -1433,7 +1433,7 @@ function Act(props, ref) {
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(true);
+  const [showCards, setShowCards] = React.useState(false);
   //const [showLetter, setShowLetter] = React.useState(false);
   //const [showOffer, setShowOffer] = React.useState(true);
 
@@ -1750,6 +1750,10 @@ function Act(props, ref) {
     e.preventDefault();
     setShowCards(false);
     //setShowLetter(false);
+  }
+
+  function onChange(value) {
+    console.log("Captcha value:", value);
   }
 
   const animateButton = function (e) {
@@ -2143,6 +2147,15 @@ function Act(props, ref) {
                   </div>
                 </SendButton>
               </SendButtonWrapper>
+
+              <ReCAPTCHA
+                sitekey="6LdE3NgdAAAAADcnYdc8T-d61yIGGVCwNl3sdfc6"
+                onChange={onChange}
+                style={{gridArea: "6/1/7/3", background: "white", justifySelf: "center", margin: "10px 0px 20px 0px"}}
+                size="compact"
+                
+                
+              />
               
             </OfferOne>
 
