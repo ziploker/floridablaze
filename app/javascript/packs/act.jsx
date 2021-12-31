@@ -5,7 +5,7 @@ import mega from "../../assets/images/megav3.png";
 import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
-import "../../assets/stylesheets/sendButton";
+import "../../assets/stylesheets/sendButtonB";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
 import styled from "styled-components";
@@ -1262,6 +1262,12 @@ const OfferOne = styled.div`
 
   }
 
+
+  h4{
+
+    grid-area: 5/1/6/3;;
+  }
+
   
 
 
@@ -1334,7 +1340,7 @@ const SendButtonWrapper = styled.div`
 
   }
   
-  grid-area: 5/1/6/3;;
+  grid-area: 6/1/7/3;
   align-self: center;
   justify-self: center;
   //margin-right: 15px;
@@ -1433,7 +1439,7 @@ function Act(props, ref) {
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(false);
+  const [showCards, setShowCards] = React.useState(true);
   //const [showLetter, setShowLetter] = React.useState(false);
   //const [showOffer, setShowOffer] = React.useState(true);
 
@@ -1445,6 +1451,8 @@ function Act(props, ref) {
   const [successFlag, setSuccessFlag] = React.useState(true);
   const scrolll = props.executeScrollForLookupSectionTwo;
   const myRef = useRef(null)
+
+  const [recaptcha, setRecaptcha] = React.useState("");
 
   
   // const [results, setResults] = React.useState({
@@ -1754,6 +1762,7 @@ function Act(props, ref) {
 
   function onChange(value) {
     console.log("Captcha value:", value);
+    setRecaptcha(value);
   }
 
   const animateButton = function (e) {
@@ -1764,9 +1773,10 @@ function Act(props, ref) {
     //e.target.classList.add('animate');
     if (props.userState.loggedInStatus == "NOT_LOGGED_IN") {
       setSendButtonClass("button error animate");
-
+      setFlashMsg('please login first')
       setTimeout(function () {
         //setFlashMsg('<a href="#" onClick={loginFromDeadEnd}>Login</a> to continue')
+        //setFlashMsg('')
         //e.target.classList.remove('animate')
       }, 4000);
     } else {
@@ -2133,6 +2143,8 @@ function Act(props, ref) {
                 email will be sent to each of your representatives on your behalf
               </BulletPointText>
               <h2>Free</h2>
+
+              <h4>{flashMsg}</h4>
               
               <SendButtonWrapper>
                 <SendButton>
@@ -2153,7 +2165,7 @@ function Act(props, ref) {
               <ReCAPTCHA
                 sitekey="6LdE3NgdAAAAADcnYdc8T-d61yIGGVCwNl3sdfc6"
                 onChange={onChange}
-                style={{gridArea: "6/1/7/3", background: "white", justifySelf: "center", margin: "10px 0px 20px 0px"}}
+                style={{gridArea: "7/1/8/3", background: "white", justifySelf: "center", margin: "10px 0px 20px 0px"}}
                 size="compact"
                 
                 
