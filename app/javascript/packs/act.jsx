@@ -32,21 +32,21 @@ const ActWrapper = styled.div`
   @media only screen and (max-width: 720px) {
     overflow: hidden;
   }
-  
+
   background-color: black;
   //background-image: url(${actBackground});
   //background-position: 0 50%;
   //background-repeat: no-repeat;
-  
+
   position: relative;
   //overflow: hidden;
-  
+
   //padding-bottom: 60px;
 `;
 
 const BGimage = styled.img`
 
-  
+
   //width: 100vw;
   //height: 100vh;
   //object-fit: cover;
@@ -69,7 +69,7 @@ const Mega = styled.img`
   @media only screen and (max-width: 720px) {
     grid-area: 1/1/-1/-1;
     display: none;
-    
+
   }
 
   /* @media only screen and (max-width: 1000px) {
@@ -107,7 +107,7 @@ const ActGrid = styled.div`
 
 
   }
-  
+
   //overflow: hidden;
   //display: grid;
   position: relative;
@@ -133,7 +133,7 @@ const ActSection = styled.section`
     min-width: 100%;
     //justify-self: center;
 
-    
+
   }
   //display: ${(props) => (props.showCards || props.showLetter ? "none" : "grid")}; ;
   display: ${(props) => (props.showCards ? "none" : "grid")}; ;
@@ -154,7 +154,7 @@ const ActSection = styled.section`
 
   @media only screen and (min-width: 975px){
 
-  
+
     padding-bottom: 30px;
 
   }
@@ -198,7 +198,7 @@ const ActHeader = styled.h1`
     //justify-self: center;
     font-size: 15vw;
 
-  } 
+  }
 
   font-family: Poppins;
   font-style: normal;
@@ -213,7 +213,7 @@ const ActHeader = styled.h1`
 
   color: #ffffff;
   grid-area: 2/3/3/-1;
-  
+
 
   //line-height: 100%;
   margin: 0px 0px 0px 20px;
@@ -414,7 +414,7 @@ const FindMyRep = styled.button`
   opacity: ${(props) => (props.showCards ? "0" : "1")};
 
 
-  
+
 `;
 
 const ShowLetterButton = styled.div`
@@ -460,7 +460,7 @@ const ShowLetterButton = styled.div`
 `;
 
 const ShowLetterDeadEnd = styled.div`
-  
+
   display: ${(props) =>
     props.showCards && props.resultFromFlorida == "true" ? "none" : "initial"};
   opacity: ${(props) =>
@@ -548,7 +548,7 @@ const Span = styled.span`
 `;
 
 const ResultSection = styled.div`
-  
+
 
   @media only screen and (max-width: 750px){
 
@@ -556,9 +556,9 @@ const ResultSection = styled.div`
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
     grid-template-columns: minmax(10px, 1fr) minmax(100px, 150px) minmax(8px, 16px) minmax(100px, 150px) minmax(10px, 1fr);
-   
+
     width: 100vw;
-    
+
     //max-width: 70vw;
 
   }
@@ -593,8 +593,8 @@ const ResultSectionInfoBox = styled.div`
   @media only screen and (max-width: 750px){
 
     grid-area: 1/1/2/6;
-    
-    
+
+
 
 
   }
@@ -613,7 +613,7 @@ const ProgressBarz = styled.div`
   grid-area: 1/3/2/4;
   //margin: 27px 0px 18px 20px;
   margin: 30px 0px 10px 20px;
-  
+
   padding-left: 2px;
   justify-self: start;
 
@@ -625,7 +625,7 @@ const ProgressBarzResultSection = styled.div`
   grid-area: 1/1/2/-1;
   //margin: 27px 0px 18px 20px;
   margin: 30px 0px 10px 20px;
-  
+
   padding-left: 2px;
   justify-self: center;
 
@@ -659,7 +659,7 @@ const ResultSectionBulletPointWrapperSet = styled.div`
   grid-template-columns: min-content 1fr min-content;
 
 
- 
+
 
 
 `;
@@ -705,7 +705,7 @@ const ResultSectionBulletPointTitle = styled.h2`
   font-family: Poppins;
   justify-self: center;
   align-self: center;
-  color: #ffffff; 
+  color: #ffffff;
   margin-left: 15px;
   font-size: .8em;
   white-space: nowrap;
@@ -743,7 +743,7 @@ const ResultSectionHeaders = styled.h1`
 
   }
 
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -763,11 +763,11 @@ const ResultSectionHeaders = styled.h1`
   letter-spacing: -0.03em;
   color: black;
   background: white;
-  
+
   border-radius: 11.11px;
 
-  
-  
+
+
 
   grid-area: ${props => props.gridArea};
   justify-self: center;
@@ -801,7 +801,7 @@ const ResultSectionHeadersAlt = styled.div`
   display: ${(props) =>
     props.showCards && props.resultFromFlorida == "true" ? "flex" : "none"};
 
-  
+
   /* justify-content: center;
   align-items: center;
   text-align: center;
@@ -878,9 +878,9 @@ const CardOne = styled.div`
 
   justify-self: end;
   height: 0px;
-  
+
   padding-top: calc(310/220*100%);
-  
+
   @media only screen and (max-width: 750px){
     grid-area: 4/2/5/3;
     justify-self: start;
@@ -932,9 +932,9 @@ const CardOneSub = styled.div`
 const CardTwoSub = styled(CardOneSub)``;
 
 const CardTwo = styled.div`
-  
+
   position: relative;
-  
+
   margin-top: 25px;
   grid-area: 3/4/4/5;
 
@@ -1061,7 +1061,7 @@ const Letter = styled.div`
 
   }
 
-  
+
   //min-width: 400px;
   //max-width: 500px;
   justify-self: start;
@@ -1071,7 +1071,7 @@ const Letter = styled.div`
   //grid-template-columns: 0px 130px 130px 1fr;
   grid-auto-rows: minmax(min-content, max-content);
   //grid-gap: 8px;
-  
+
   padding: 20px;
   //margin: 0px 8px;
   //opacity: ${(props) => (props.showLetter ? "1" : "0")};
@@ -1240,7 +1240,7 @@ const OfferOne = styled.div`
   grid-template-rows: min-content min-content 1fr min-content min-content;
   background: white;
   justify-content: center;
-  
+
 
   h1{
 
@@ -1253,7 +1253,7 @@ const OfferOne = styled.div`
     font-size: 2.8em;
   }
 
-  
+
 
   h2{
     grid-area: 4/1/5/3;
@@ -1268,7 +1268,7 @@ const OfferOne = styled.div`
     grid-area: 5/1/6/3;;
   }
 
-  
+
 
 
 `;
@@ -1282,7 +1282,7 @@ const OfferTwo = styled.div`
   grid-template-rows: min-content min-content 1fr min-content min-content;
   background: white;
   justify-content: center;
-  
+
 
   h1{
 
@@ -1295,7 +1295,7 @@ const OfferTwo = styled.div`
     font-size: 2.8em;
   }
 
-  
+
 
   h2{
     grid-area: 4/1/5/3;
@@ -1304,7 +1304,7 @@ const OfferTwo = styled.div`
 
   }
 
-  
+
 
 
 `;
@@ -1339,13 +1339,14 @@ const SendButtonWrapper = styled.div`
     width: 100%;
 
   }
-  
+
   grid-area: 6/1/7/3;
   align-self: center;
   justify-self: center;
   //margin-right: 15px;
   position: relative;
-            
+  height: 35px;
+
 
 
 `;
@@ -1398,16 +1399,16 @@ const SendButtonV2LoadingAnimationGrow = keyframes`
 
 `;
 
-const SendButtonV2Loading = styled.button`
+const SendButtonV2Loading = styled.div`
 
-
-  display: inline-block;
+  
+  //display: inline-block;
   border: 0;
   outline: 0;
   padding: 12px 16px;
   line-height: 1.4;
-  background: linear-gradient(#4d4d4d,#2f2f2f);
-  border-radius: 5px;
+  //background: linear-gradient(#4d4d4d,#2f2f2f);
+  //border-radius: 5px;
   border: 1px solid black;
   font-family: "poppins", Sans-Serif;
   color: white !important;
@@ -1415,25 +1416,44 @@ const SendButtonV2Loading = styled.button`
   cursor: pointer;
   /* Important part */
   position: relative;
-  transition: padding-right .3s ease-out;
-  padding-right: 40px;
-  
+  //transition: padding-right .3s ease-out;
+  //padding-right: 40px;
+  width: 100%;
+  top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: translateY(-50%);
+
   &:after{
     content: "";
     position: absolute;
     border-radius: 100%;
-    right: 6px;
-    top: 50%;
-    width: 0px;
-    height: 0px;
-    margin-top: -2px;
+    
+    left: 0px;
+    right: 0px;
+    margin: 0 auto;
+    //top: 0px;
+    //width: 0px;
+    //height: 0px;
+    //margin-top: -2px;
     border: 2px solid rgba(255,255,255,0.5);
     border-left-color: #FFF;
     border-top-color: #FFF;
-    animation: ${SendButtonV2LoadingAnimationSpin} .6s infinite linear, ${SendButtonV2LoadingAnimationGrow} .3s forwards ease-out;
+    //animation: ${SendButtonV2LoadingAnimationSpin} .6s infinite linear;
+
+    /* , ${SendButtonV2LoadingAnimationGrow} .3s forwards ease-out */
+
+    width: 14px;
+    height: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    //margin-top: -8px;
+    //right: 13px;
+    //transform: translateY(-50%);
 
 
-    
+
 
   }
 
@@ -1447,14 +1467,14 @@ const SendButtonV2Loading = styled.button`
 {/* <OfferOne>
   <h1>email</h1>
   <RiMailSendLine/>
-  
+
     <BulletPoint/>
     <BulletPointText>
       email will be sent to each of your representatives on your behalf
     </BulletPointText>
     <h2>Free</h2>
     <OfferOneButton></OfferOneButton>
-  
+
 </OfferOne> */}
 
 
@@ -1550,7 +1570,7 @@ function Act(props, ref) {
 
   const [isLoading, setIsLoading] = React.useState(false);
 
-  
+  const [isButtonLoading, setIsButtonLoading] = React.useState(false);
   // const [results, setResults] = React.useState({
   //   one: {
   //     resultFromFlorida: "true",
@@ -1584,8 +1604,18 @@ function Act(props, ref) {
   //     fullDistrictTrunk: "Florida State Senate",
   //   },
   // });
-  
+
   const [results, setResults] = React.useState( {"one": {}, "two": {} });
+
+
+  function AButton({ isLoading, children, ...props }) {
+    
+    return (
+      <button className="button" {...props}>
+        {isLoading ? <SendButtonV2Loading/> :<SendButtonV2Loading/>}
+      </button>
+    );
+  }
 
   function loginFromDeadEnd(e) {
     e.preventDefault();
@@ -1897,33 +1927,33 @@ function Act(props, ref) {
 
     return null
 
-  } 
-    
+  }
+
 
   return (
     <ActWrapper ref={LookupScrollToRef} >
       <BGimage src={actBackground} ref={myRef}></BGimage>
-      
+
       <ActGrid >
-         
+
         <ActSection showCards={showCards}>
 
           <ProgressBarz >
-            
+
             <StepOne/>
             <StepTwo showCards={showCards}/>
             <StepThree showCards={showCards}/>
 
           </ProgressBarz>
-          
+
           <ActHeader showCards={showCards}>
             ACT NOW
           </ActHeader>
-          
+
           <ActSubheader showCards={showCards}>
           Find your Florida State Representatives and let them know you want to legalize marijuana ASAP. What if you could do this in just a few clicks?{" "}
           </ActSubheader>
-          
+
           <ActSubheader2 showCards={showCards}>
           Enter your address below to see who your Florida State Representitives.{" "}
           </ActSubheader2>
@@ -1932,8 +1962,8 @@ function Act(props, ref) {
             className="form-inline"
             onSubmit={handleAdd}
             showCards={showCards}
-            
-            
+
+
           >
             <PlacesAutocomplete
               value={formInfo.address}
@@ -2053,13 +2083,13 @@ function Act(props, ref) {
           <Mega showCards={showCards} src={mega}></Mega>
         </ActSection>
 
-        
+
         <ResultSection showCards={showCards}>
-          
+
           <ResultSectionInfoBox>
 
             <ProgressBarzResultSection >
-              
+
               <StepOne/>
               <StepTwo showCards={showCards}/>
               <StepThree showCards={showCards}/>
@@ -2072,34 +2102,34 @@ function Act(props, ref) {
 
             </ResultCompleteTitle>
 
-           
 
-            
 
-            
+
+
+
 
 
 
           </ResultSectionInfoBox>
 
           {/* <ResultSectionSpacerLine/> */}
-{/*                                    
+{/*
           <ResultSectionHeaders gridArea="3/2/4/5" gridAreaTablet="3/2/4/5">Your elected officials</ResultSectionHeaders> */}
 
-          {/* <ResultSectionHeadersAlt 
-            gridArea="3/6/4/7" 
+          {/* <ResultSectionHeadersAlt
+            gridArea="3/6/4/7"
             gridAreaTablet="5/2/6/5"
             resultFromFlorida={resultFromFlorida}
             showCards={showCards}
           >
             Send Personalized Email
-            
+
           </ResultSectionHeadersAlt> */}
 
           <CardOne>
             <CardOneWrapper>
 
-             
+
                 <CardPicture
                   src={results.one.image ? results.one.image : ""} >
                 </CardPicture>
@@ -2118,14 +2148,14 @@ function Act(props, ref) {
           <CardTwo>
             <CardTwoWrapper>
 
-              
+
                 <CardPicture
                   src={results.two.image ? results.two.image : ""}>
                 </CardPicture>
 
-             
-              
-              
+
+
+
 
               <CardTemplate src={cardTemplate}></CardTemplate>
 
@@ -2138,21 +2168,21 @@ function Act(props, ref) {
           </CardTwo>
 
 
-          
-          
-          
-        
+
+
+
+
 
         <ResultsBlurb>
 
           because it has proven to help certain illnesses including glaucoma, sclerosis, and cancers such as breast and brain cancer. Prohibition has only cost billions of dollars and studies prove that it has not affected the use of marijuana,
         </ResultsBlurb>
-          
-          
-          
+
+
+
           <TriplePlayWrapper resultFromFlorida={resultFromFlorida}
               showCards={showCards}>
-            <Letter 
+            <Letter
               resultFromFlorida={resultFromFlorida}
               showCards={showCards}
             >
@@ -2204,9 +2234,9 @@ function Act(props, ref) {
                 <sub>Your Email Here</sub> <br />
               </div>
 
-              
 
-              
+
+
 
               <FlashError userState={props.userState}>
                 ** Please{" "}
@@ -2225,15 +2255,15 @@ function Act(props, ref) {
             </Letter>
             <OfferOne>
               <h1>Email</h1>
-              <RiMailSendLine 
+              <RiMailSendLine
                 style={{
-                  gridArea: "2/1/3/3", 
+                  gridArea: "2/1/3/3",
                   justifySelf: "center",
                   margin: "20px 0 0 0",
                   width: "50px",
                   height: "50px"
                 }}/>
-              
+
               <BulletPoint/>
               <BulletPointText>
                 email will be sent to each of your representatives on your behalf
@@ -2241,7 +2271,7 @@ function Act(props, ref) {
               <h2>Free</h2>
 
               <h4>{flashMsg}</h4>
-              
+
               <SendButtonWrapper>
                 {/* <SendButton>
                   <div className="wrapper">
@@ -2255,7 +2285,7 @@ function Act(props, ref) {
                   </div>
                 </SendButton> */}
 
-                <SendButtonV2
+                {/* <SendButtonV2
                   onClick={()=> {
 
                     setIsLoading(true);
@@ -2264,7 +2294,7 @@ function Act(props, ref) {
                     },1000);
 
 
-                    
+
 
                   }}
 
@@ -2273,10 +2303,24 @@ function Act(props, ref) {
 
                   {isLoading ? <SendButtonV2Loading/> : "nada" }
 
-                  
-                </SendButtonV2>
 
-                
+                </SendButtonV2> */}
+
+
+
+                <AButton
+                  onClick={() => {
+                    setIsButtonLoading(true);
+                    setTimeout(() => {
+                      setIsButtonLoading(false);
+                    }, 1000);
+                  }}
+                  isLoading={isButtonLoading}
+                >
+                 Send Emails
+                </AButton>
+
+
               </SendButtonWrapper>
 
               <ReCAPTCHA
@@ -2284,33 +2328,33 @@ function Act(props, ref) {
                 onChange={onChange}
                 style={{gridArea: "7/1/8/3", background: "white", justifySelf: "center", margin: "10px 0px 20px 0px"}}
                 size="compact"
-                
-                
+
+
               />
-              
+
             </OfferOne>
 
             <OfferTwo>
               <h1>Letter</h1>
-              <BsMailbox 
+              <BsMailbox
                 style={{
-                  gridArea: "2/1/3/3", 
+                  gridArea: "2/1/3/3",
                   justifySelf: "center",
                   margin: "24px 0 0 0",
                   width: "45px",
                   height: "45px"
                 }}/>
-              
+
               <BulletPoint/>
               <BulletPointText>
-                a printed letter will be mailed to each of your representatives 
-                via United States Postal Service             
+                a printed letter will be mailed to each of your representatives
+                via United States Postal Service
               </BulletPointText>
               <h2>$2.99</h2>
 
               <ShowOfferSection>
-                <PayPalButtons 
-                  style={{"layout":"vertical"}} 
+                <PayPalButtons
+                  style={{"layout":"vertical"}}
                   createOrder={(data, actions) => {
                     return actions.order.create({
                         purchase_units: [
@@ -2334,24 +2378,24 @@ function Act(props, ref) {
                         console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
                         console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
                         console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
-                        
+
                     });
                   }}
-                  
-                  
-                  
-                  
+
+
+
+
                 />
               </ShowOfferSection>
-              
-              
-              
+
+
+
             </OfferTwo>
 
-           
+
           </TriplePlayWrapper>
-          
-          
+
+
 
           <ShowLetterDeadEnd
             resultFromFlorida={resultFromFlorida}
@@ -2363,19 +2407,19 @@ function Act(props, ref) {
               Try another search.
             </a>
           </ShowLetterDeadEnd>
-        
+
         </ResultSection>
 
         {/* <OfferSection>
 
 
-          
+
         </OfferSection> */}
-      
-      
+
+
       </ActGrid>
-    
-    
+
+
     </ActWrapper>
   );
 }
