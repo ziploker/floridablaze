@@ -8,7 +8,7 @@ import samplepic from "../../assets/images/man6.png";
 import "../../assets/stylesheets/sendButtonB";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { RiMailSendLine } from "react-icons/ri";
 import { BsMailbox } from "react-icons/bs";
 import PlacesAutocomplete, {
@@ -1351,6 +1351,99 @@ const SendButtonWrapper = styled.div`
 `;
 
 
+const SendButtonV2 = styled.button`
+
+  display: inline-block;
+  border: 0;
+  outline: 0;
+  padding: 12px 16px;
+  line-height: 1.4;
+  background: linear-gradient(#4d4d4d,#2f2f2f);
+  border-radius: 5px;
+  border: 1px solid black;
+  font-family: "poppins", Sans-Serif;
+  color: white !important;
+  font-size: 1.2em;
+  cursor: pointer;
+  /* Important part */
+  position: relative;
+  transition: padding-right .3s ease-out;
+  padding-right: 40px;
+
+
+
+
+`;
+
+const SendButtonV2LoadingAnimationSpin = keyframes`
+
+  to {
+    transform: rotate(359deg);
+  }
+
+
+
+`;
+
+const SendButtonV2LoadingAnimationGrow = keyframes`
+
+  to {
+    width: 14px;
+    height: 14px;
+    margin-top: -8px;
+    right: 13px;
+  }
+
+
+
+`;
+
+const SendButtonV2Loading = styled.button`
+
+
+  display: inline-block;
+  border: 0;
+  outline: 0;
+  padding: 12px 16px;
+  line-height: 1.4;
+  background: linear-gradient(#4d4d4d,#2f2f2f);
+  border-radius: 5px;
+  border: 1px solid black;
+  font-family: "poppins", Sans-Serif;
+  color: white !important;
+  font-size: 1.2em;
+  cursor: pointer;
+  /* Important part */
+  position: relative;
+  transition: padding-right .3s ease-out;
+  padding-right: 40px;
+  
+  &:after{
+    content: "";
+    position: absolute;
+    border-radius: 100%;
+    right: 6px;
+    top: 50%;
+    width: 0px;
+    height: 0px;
+    margin-top: -2px;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-left-color: #FFF;
+    border-top-color: #FFF;
+    animation: ${SendButtonV2LoadingAnimationSpin} .6s infinite linear, ${SendButtonV2LoadingAnimationGrow} .3s forwards ease-out;
+
+
+    
+
+  }
+
+
+`;
+
+
+
+
+
 {/* <OfferOne>
   <h1>email</h1>
   <RiMailSendLine/>
@@ -1453,6 +1546,9 @@ function Act(props, ref) {
   const myRef = useRef(null)
 
   const [recaptcha, setRecaptcha] = React.useState("");
+
+
+  const [isLoading, setIsLoading] = React.useState(false);
 
   
   // const [results, setResults] = React.useState({
@@ -2147,7 +2243,7 @@ function Act(props, ref) {
               <h4>{flashMsg}</h4>
               
               <SendButtonWrapper>
-                <SendButton>
+                {/* <SendButton>
                   <div className="wrapper">
                     <div
                       ref={sendButtonRef}
@@ -2157,7 +2253,28 @@ function Act(props, ref) {
                       <button className={sendButtonClass}>Act now</button>
                     </div>
                   </div>
-                </SendButton>
+                </SendButton> */}
+
+                <SendButtonV2
+                  onClick={()=> {
+
+                    setIsLoading(true);
+                    setTimeout(() => {
+                      setIsLoading(false);
+                    },1000);
+
+
+                    
+
+                  }}
+
+                >
+
+
+                  {isLoading ? <SendButtonV2Loading/> : "nada" }
+
+                  
+                </SendButtonV2>
 
                 
               </SendButtonWrapper>
