@@ -2308,7 +2308,7 @@ function Act(props, ref) {
 
 
 
-                <AButton
+                {/* <AButton
                   onClick={() => {
                     setIsButtonLoading(true);
                     setTimeout(() => {
@@ -2318,7 +2318,11 @@ function Act(props, ref) {
                   isLoading={isButtonLoading}
                 >
                  Send Emails
-                </AButton>
+                </AButton> */}
+
+                <button className="button" {...props}>
+                  {isButtonLoading ? <SendButtonV2Loading/> :<SendButtonV2Loading/>}
+                </button>
 
 
               </SendButtonWrapper>
