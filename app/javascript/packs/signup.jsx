@@ -912,10 +912,10 @@ function Signup(props, ref) {
       }
     }, {
       headers: {
-        'Authorization': response.tokenId 
+              'Authorization': response.tokenId 
       }
-    },{withCredentials: true})
-    .then(response => {
+    },{wals: true})
+    .then(reithCredentisponse => {
 
       //console.log("rgsi response", response.data.status)
       if (response.data.status == "green"){

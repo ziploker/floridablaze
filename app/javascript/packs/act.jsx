@@ -5,7 +5,7 @@ import mega from "../../assets/images/megav3.png";
 import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
-import "../../assets/stylesheets/sendButtonB";
+//import "../../assets/stylesheets/sendButtonB";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
 import styled, { keyframes } from "styled-components";
@@ -23,6 +23,8 @@ import searchIcon from "../../assets/images/search.png";
 import searchIconOrange from "../../assets/images/searchGreen.png";
 import searchIconOrange2 from "../../assets/images/searchPink2.png";
 import ResultCardOne from "./resultCardOne.jsx";
+import axios from 'axios'
+import Button_genesis from "./button_genesis"
 //import ResultCardTwo from './resultCardTwo.jsx'
 var Spinner = require("react-spinkit");
 const formData = new FormData();
@@ -1376,89 +1378,7 @@ const SendButtonV2 = styled.button`
 
 `;
 
-const SendButtonV2LoadingAnimationSpin = keyframes`
 
-  to {
-    transform: rotate(359deg);
-  }
-
-
-
-`;
-
-const SendButtonV2LoadingAnimationGrow = keyframes`
-
-  to {
-    width: 14px;
-    height: 14px;
-    margin-top: -8px;
-    right: 13px;
-  }
-
-
-
-`;
-
-const SendButtonV2Loading = styled.div`
-
-  
-  //display: inline-block;
-  border: 0;
-  outline: 0;
-  padding: 12px 16px;
-  line-height: 1.4;
-  //background: linear-gradient(#4d4d4d,#2f2f2f);
-  //border-radius: 5px;
-  border: 1px solid black;
-  font-family: "poppins", Sans-Serif;
-  color: white !important;
-  font-size: 1.2em;
-  cursor: pointer;
-  /* Important part */
-  position: relative;
-  //transition: padding-right .3s ease-out;
-  //padding-right: 40px;
-  width: 100%;
-  top: 50%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    transform: translateY(-50%);
-
-  &:after{
-    content: "";
-    position: absolute;
-    border-radius: 100%;
-    
-    left: 0px;
-    right: 0px;
-    margin: 0 auto;
-    //top: 0px;
-    //width: 0px;
-    //height: 0px;
-    //margin-top: -2px;
-    border: 2px solid rgba(255,255,255,0.5);
-    border-left-color: #FFF;
-    border-top-color: #FFF;
-    //animation: ${SendButtonV2LoadingAnimationSpin} .6s infinite linear;
-
-    /* , ${SendButtonV2LoadingAnimationGrow} .3s forwards ease-out */
-
-    width: 14px;
-    height: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    //margin-top: -8px;
-    //right: 13px;
-    //transform: translateY(-50%);
-
-
-
-
-  }
-
-
-`;
 
 
 
@@ -1608,14 +1528,8 @@ function Act(props, ref) {
   const [results, setResults] = React.useState( {"one": {}, "two": {} });
 
 
-  function AButton({ isLoading, children, ...props }) {
-    
-    return (
-      <button className="button" {...props}>
-        {isLoading ? <SendButtonV2Loading/> :<SendButtonV2Loading/>}
-      </button>
-    );
-  }
+  
+  
 
   function loginFromDeadEnd(e) {
     e.preventDefault();
@@ -2273,56 +2187,25 @@ function Act(props, ref) {
               <h4>{flashMsg}</h4>
 
               <SendButtonWrapper>
-                {/* <SendButton>
-                  <div className="wrapper">
-                    <div
-                      ref={sendButtonRef}
-                      className="block"
-                      onClick={animateButton}
-                    >
-                      <button className={sendButtonClass}>Act now</button>
-                    </div>
-                  </div>
-                </SendButton> */}
+                
 
-                {/* <SendButtonV2
-                  onClick={()=> {
-
-                    setIsLoading(true);
-                    setTimeout(() => {
-                      setIsLoading(false);
-                    },1000);
-
-
-
-
-                  }}
-
-                >
-
-
-                  {isLoading ? <SendButtonV2Loading/> : "nada" }
-
-
-                </SendButtonV2> */}
-
-
-
-                {/* <AButton
+                <Button_genesis
+                  
                   onClick={() => {
                     setIsButtonLoading(true);
                     setTimeout(() => {
                       setIsButtonLoading(false);
-                    }, 1000);
+                    }, 3000);
                   }}
+                  
                   isLoading={isButtonLoading}
                 >
+                 
                  Send Emails
-                </AButton> */}
+                
+                </Button_genesis>
 
-                <button className="button" {...props}>
-                  {isButtonLoading ? <SendButtonV2Loading/> :<SendButtonV2Loading/>}
-                </button>
+
 
 
               </SendButtonWrapper>
