@@ -668,18 +668,34 @@ class LookupsController < ApplicationController
       end
       puts "====================final object======="
       puts sendToFrontEnd.to_json
-      @sendToFrontEnd = sendToFrontEnd.to_json
+      sendToFrontEndJson = sendToFrontEnd.as_json
   
       puts "end ========== about to send to frontend"
-      
-      render json: @sendToFrontEnd
+      hasherCode = Digest::SHA1.hexdigest(JSON.generate(sendToFrontEndJson) + "amsterdamAL")
+      puts "hashercode " + hasherCode
+      sendToFrontEndJson["hasherCode"] = hasherCode 
+      render json: sendToFrontEndJson
   
         
   
   end
+
+  def hasher
+
+    "thcthc"
+  end
   
   
-  
+  def sendEmailToReps
+
+    puts 'heeeere'
+    komplete = Digest::SHA1.hexdigest("komplete")
+    render json: {
+      "task": komplete
+    }
+
+
+  end
     
   
   

@@ -15,7 +15,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-
+import sendEmailsToReps from '../packs/communications/sendEmailToReps'
 import $ from "jquery";
 import ReCAPTCHA from "react-google-recaptcha";
 import greenCheck from "../../assets/images/greenCheck.png";
@@ -23,8 +23,8 @@ import searchIcon from "../../assets/images/search.png";
 import searchIconOrange from "../../assets/images/searchGreen.png";
 import searchIconOrange2 from "../../assets/images/searchPink2.png";
 import ResultCardOne from "./resultCardOne.jsx";
-import axios from 'axios'
-import Button_genesis from "./button_genesis"
+
+import Button_Loading from "./myComponents/button_loading"
 //import ResultCardTwo from './resultCardTwo.jsx'
 var Spinner = require("react-spinkit");
 const formData = new FormData();
@@ -1239,7 +1239,7 @@ const OfferOne = styled.div`
   display: grid;
   grid-area: 1/2/2/3;
   grid-template-columns: 40px 1fr;
-  grid-template-rows: min-content min-content 1fr min-content min-content;
+  grid-template-rows: min-content min-content 80px min-content 25px min-content;
   background: white;
   justify-content: center;
 
@@ -1251,7 +1251,7 @@ const OfferOne = styled.div`
     font-family: Poppins;
     font-style: normal;
     font-weight: 400;
-    margin: 30px 0 0 0;
+    margin: 25px 0 0 0;
     font-size: 2.8em;
   }
 
@@ -1260,14 +1260,18 @@ const OfferOne = styled.div`
   h2{
     grid-area: 4/1/5/3;
     justify-self: center;
-    margin: 40px;
+    margin: 40px 0 15px 0;
 
   }
 
 
   h4{
 
-    grid-area: 5/1/6/3;;
+    grid-area: 5/1/6/3;
+    align-self: start;
+    justify-self: center;
+    color: red;
+    font-size: .8em;
   }
 
 
@@ -1281,7 +1285,7 @@ const OfferTwo = styled.div`
   display: grid;
   grid-area: 1/3/2/4;
   grid-template-columns: 40px 1fr;
-  grid-template-rows: min-content min-content 1fr min-content min-content;
+  grid-template-rows: min-content min-content 80px min-content min-content;
   background: white;
   justify-content: center;
 
@@ -1293,7 +1297,7 @@ const OfferTwo = styled.div`
     font-family: Poppins;
     font-style: normal;
     font-weight: 400;
-    margin: 30px 0 0 0;
+    margin: 25px 0 0 0;
     font-size: 2.8em;
   }
 
@@ -1327,6 +1331,7 @@ const BulletPointText = styled.h3`
   font-size: .8em;
   justify-self: center;
   margin: 20px 0 0 0;
+  padding-right: 20px;
 `;
 
 
@@ -1338,7 +1343,7 @@ const SendButtonWrapper = styled.div`
     align-self: center;
     justify-self: center;
     margin: 16px 0px;
-    width: 100%;
+    
 
   }
 
@@ -1347,7 +1352,9 @@ const SendButtonWrapper = styled.div`
   justify-self: center;
   //margin-right: 15px;
   position: relative;
+  width: 80%;
   height: 35px;
+  margin: 0 0 10px 0;
 
 
 
@@ -1472,25 +1479,27 @@ function Act(props, ref) {
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(true);
+  const [showCards, setShowCards] = React.useState(false);
   //const [showLetter, setShowLetter] = React.useState(false);
   //const [showOffer, setShowOffer] = React.useState(true);
 
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
   const sendButtonRef = useRef(null);
+  
 
-  const [flashMsg, setFlashMsg] = React.useState("");
+  const [sendEmailsToRepFlashMsg, setSendEmailsToRepFlashMsg] = React.useState("");
   const [successFlag, setSuccessFlag] = React.useState(true);
   const scrolll = props.executeScrollForLookupSectionTwo;
   const myRef = useRef(null)
 
-  const [recaptcha, setRecaptcha] = React.useState("");
+  const [recaptchaResponse, setRecaptchaResponse] = React.useState("");
 
 
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [isButtonLoading, setIsButtonLoading] = React.useState(false);
+  const [showLoader, setShowLoader] = React.useState(false);
   // const [results, setResults] = React.useState({
   //   one: {
   //     resultFromFlorida: "true",
@@ -1667,6 +1676,8 @@ function Act(props, ref) {
                 setResults(data);
 
                 setResultFromFlorida(data.one.resultFromFlorida.toString());
+                console.log("emailll", data.one.email)
+              
 
                 let flag = data.one.resultFromFlorida.toString();
 
@@ -1723,7 +1734,7 @@ function Act(props, ref) {
             setResults(data);
 
             setResultFromFlorida(data.one.resultFromFlorida.toString());
-
+            
             let flag = data.one.resultFromFlorida.toString();
 
             console.log("FLAG IS " + flag);
@@ -1802,7 +1813,8 @@ function Act(props, ref) {
 
   function onChange(value) {
     console.log("Captcha value:", value);
-    setRecaptcha(value);
+    setRecaptchaResponse(value);
+    setSendEmailsToRepFlashMsg("");
   }
 
   const animateButton = function (e) {
@@ -1842,6 +1854,8 @@ function Act(props, ref) {
     return null
 
   }
+
+  
 
 
   return (
@@ -2184,26 +2198,38 @@ function Act(props, ref) {
               </BulletPointText>
               <h2>Free</h2>
 
-              <h4>{flashMsg}</h4>
+              <h4>{sendEmailsToRepFlashMsg}</h4>
 
               <SendButtonWrapper>
                 
 
-                <Button_genesis
+                <Button_Loading
                   
                   onClick={() => {
-                    setIsButtonLoading(true);
-                    setTimeout(() => {
-                      setIsButtonLoading(false);
-                    }, 3000);
+                    
+                    // if (recaptchaResponse == "" || recaptchaResponse == null) {
+                    //   setSendEmailsToRepFlashMsg("Please check robot checkbox");
+
+                    // }else{
+                      setIsButtonLoading(true);
+                      //ajax call to rails (lookup#sendEmailsToReps)
+                      sendEmailsToReps(setIsButtonLoading, results);
+
+                    // }
                   }}
                   
                   isLoading={isButtonLoading}
+
+                  showLoader={showLoader}
+
+                  setShowLoader={setShowLoader}
+
+                  
                 >
                  
                  Send Emails
                 
-                </Button_genesis>
+                </Button_Loading>
 
 
 
@@ -2305,6 +2331,8 @@ function Act(props, ref) {
 
 
       </ActGrid>
+
+      
 
 
     </ActWrapper>

@@ -46,7 +46,8 @@ const StyledLoadingButton = styled.button`
 
   }
   display: inline-block;
-  min-width: $button-width;
+  //min-width: $button-width;
+  width: 100%;
   height: 35px;
   line-height: 0;
   color: black;
@@ -141,13 +142,34 @@ const SendButtonV2Loading = styled.div`
 `;
 
 
-function Button_Gen({ isLoading, children, ...props }) {
+function Button_Loading({ isLoading, showLoader, setShowLoader, children, ...props }) {
+  
+  React.useEffect(() => {
+    
+    if (isLoading) {
+      setShowLoader(true);
+    }
+  
+    // Show loader a bits longer to avoid loading flash
+    if (!isLoading && showLoader) {
+      const timeout = setTimeout(() => {
+        setShowLoader(false);
+      }, 400);
+  
+      // Don’t forget to clear the timeout
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [isLoading, showLoader]);
+
+  
   
   return (
-    <StyledLoadingButton className="button" {...props}>
-      {isLoading ? <SendButtonV2Loading /> : children}
+    <StyledLoadingButton {...props}>
+      {showLoader ? <SendButtonV2Loading /> : children}
     </StyledLoadingButton>
   );
 }
 
-export default Button_Gen;
+export default Button_Loading;
