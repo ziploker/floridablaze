@@ -667,12 +667,16 @@ class LookupsController < ApplicationController
         puts "House email OK"
       end
       puts "====================final object======="
+      
       puts sendToFrontEnd.to_json
       sendToFrontEndJson = sendToFrontEnd.as_json
   
       puts "end ========== about to send to frontend"
+      
       hasherCode = Digest::SHA1.hexdigest(JSON.generate(sendToFrontEndJson) + "amsterdamAL")
+      
       puts "hashercode " + hasherCode
+      
       sendToFrontEndJson["hasherCode"] = hasherCode 
       render json: sendToFrontEndJson
   
