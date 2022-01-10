@@ -666,38 +666,58 @@ class LookupsController < ApplicationController
       else
         puts "House email OK"
       end
-      puts "====================final object======="
       
-      puts sendToFrontEnd.to_json
+      puts "====================final object start======="
+      puts sendToFrontEnd.as_json
+      puts "====================final object start======="
+      
+      
       sendToFrontEndJson = sendToFrontEnd.as_json
-  
+
+      #hash used to verify sendToFrontEndJson is same when it coms back to Lookup@sendEmailToReps
+      hash = Digest::SHA1.hexdigest(JSON.generate(sendToFrontEndJson) + "amsterdamAL")
+
+      #add hash to json
+      sendToFrontEndJson["hash"] = hash
+
+     
+      
       puts "end ========== about to send to frontend"
-      
-      hasherCode = Digest::SHA1.hexdigest(JSON.generate(sendToFrontEndJson) + "amsterdamAL")
-      
-      puts "hashercode " + hasherCode
-      
-      sendToFrontEndJson["hasherCode"] = hasherCode 
       render json: sendToFrontEndJson
   
         
   
   end
 
-  def hasher
-
-    "thcthc"
-  end
+ 
   
   
   def sendEmailToReps
 
-    puts 'heeeere'
-    komplete = Digest::SHA1.hexdigest("komplete")
-    render json: {
-      "task": komplete
-    }
+    puts 'Lookup#sendEmailToReps start------------'
 
+    #get data from params
+    resultsSentBackFromReact = params[:data][:ztoken]
+    hashSentBackFromReact = params[:data][:ztoken][:hash]
+
+    
+    #compute new hash and compare it to original hash to make sure data hasnt been altered
+    resultsSentBackFromReactEdit = resultsSentBackFromReact.except(:hash)
+    newlyComputedHash = Digest::SHA1.hexdigest(JSON.generate(resultsSentBackFromReactEdit.as_json) + "amsterdamAL")
+
+    if newlyComputedHash === hashSentBackFromReact
+      render json: {
+        
+      status: "green"}
+    
+    else
+      render json: {
+        
+      status: "red"}
+    end
+    
+      
+    puts 'Lookup#sendEmailToReps end------------'
 
   end
     
