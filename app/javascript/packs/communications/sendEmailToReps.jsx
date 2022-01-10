@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const sendEmailToReps = (setIsButtonLoading, results) => {
+const sendEmailToReps = (setIsButtonLoading, results, setSendEmailsToRepFlashMsg) => {
     
     
     
@@ -23,6 +23,8 @@ const sendEmailToReps = (setIsButtonLoading, results) => {
       console.log("sendEmailToReps response is", response)
 
       setIsButtonLoading(false);
+
+      setSendEmailsToRepFlashMsg(response.data.msg)
     //   if (response.data.status == "green"){
 
     //     props.handleSuccessfulAuth(response.data)

@@ -2213,7 +2213,7 @@ function Act(props, ref) {
                     // }else{
                       setIsButtonLoading(true);
                       //ajax call to rails (lookup#sendEmailsToReps)
-                      sendEmailsToReps(setIsButtonLoading, results);
+                      sendEmailsToReps(setIsButtonLoading, results, setSendEmailsToRepFlashMsg);
 
                     // }
                   }}

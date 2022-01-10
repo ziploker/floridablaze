@@ -695,26 +695,49 @@ class LookupsController < ApplicationController
   def sendEmailToReps
 
     puts 'Lookup#sendEmailToReps start------------'
-
-    #get data from params
-    resultsSentBackFromReact = params[:data][:ztoken]
-    hashSentBackFromReact = params[:data][:ztoken][:hash]
+    puts '--------==--------'
+    puts "current user set to ... " + @current_user.inspect
+    puts "running setUser from lookups#sendemailtoreps"
+    puts setUser
+    puts "current user set to ... " + @current_user.inspect
+    
+    if @current_user && @current_user != {}
+      
+      puts "current user email confirmed set to ... " + @current_user.email_confirmed.to_s
+    
+    
+      #get data from params
+      resultsSentBackFromReact = params[:data][:ztoken]
+      hashSentBackFromReact = params[:data][:ztoken][:hash]
 
     
-    #compute new hash and compare it to original hash to make sure data hasnt been altered
-    resultsSentBackFromReactEdit = resultsSentBackFromReact.except(:hash)
-    newlyComputedHash = Digest::SHA1.hexdigest(JSON.generate(resultsSentBackFromReactEdit.as_json) + "amsterdamAL")
+      #compute new hash and compare it to original hash to make sure data hasnt been altered
+      resultsSentBackFromReactEdit = resultsSentBackFromReact.except(:hash)
+      newlyComputedHash = Digest::SHA1.hexdigest(JSON.generate(resultsSentBackFromReactEdit.as_json) + "amsterdamAL")
 
-    if newlyComputedHash === hashSentBackFromReact
-      render json: {
+      if newlyComputedHash === hashSentBackFromReact
         
-      status: "green"}
+        render json: {
+          
+        status: "green",
+        msg: "sending emails... complete"}
+      
+      else
+        render json: {
+          
+        status: "red",
+        msg: "Something went wrong, try again"}
+      end
     
     else
+      puts "unable to check @current_user bcuz user doesn't exist"
       render json: {
-        
-      status: "red"}
+          
+        status: "red",
+        msg: "Please log in first."}
     end
+
+    
     
       
     puts 'Lookup#sendEmailToReps end------------'
