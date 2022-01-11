@@ -1,6 +1,7 @@
 {
     "cSpell.ignoreWords": [
         "array",
+        "axios",
         "b",
         "base",
         "child",
@@ -19,8 +20,10 @@
         "of",
         "path",
         "q",
+        "recaptcha",
         "rfsi",
         "rgsi",
+        "secret",
         "signin",
         "sn",
         "szqa",

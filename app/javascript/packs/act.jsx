@@ -2207,15 +2207,17 @@ function Act(props, ref) {
                   
                   onClick={() => {
                     
-                    // if (recaptchaResponse == "" || recaptchaResponse == null) {
-                    //   setSendEmailsToRepFlashMsg("Please check robot checkbox");
+                    if (recaptchaResponse == "" || recaptchaResponse == null) {
+                      
+                      setSendEmailsToRepFlashMsg("Please check robot checkbox");
 
-                    // }else{
+                    }else{
                       setIsButtonLoading(true);
+                      
                       //ajax call to rails (lookup#sendEmailsToReps)
-                      sendEmailsToReps(setIsButtonLoading, results, setSendEmailsToRepFlashMsg);
+                      sendEmailsToReps(setIsButtonLoading, results, setSendEmailsToRepFlashMsg, recaptchaResponse);
 
-                    // }
+                    }
                   }}
                   
                   isLoading={isButtonLoading}

@@ -694,6 +694,8 @@ class LookupsController < ApplicationController
   
   def sendEmailToReps
 
+    recaptchaSecret = Rails.application.credentials.dig(:RECAPTCHA_SECRET)
+
     puts 'Lookup#sendEmailToReps start------------'
     puts '--------==--------'
     puts "current user set to ... " + @current_user.inspect
@@ -709,6 +711,7 @@ class LookupsController < ApplicationController
       #get data from params
       resultsSentBackFromReact = params[:data][:ztoken]
       hashSentBackFromReact = params[:data][:ztoken][:hash]
+      recaptchaResultsSentBackFromClientToBeChecked = params[:data][:rtoken]
 
     
       #compute new hash and compare it to original hash to make sure data hasnt been altered
@@ -716,17 +719,34 @@ class LookupsController < ApplicationController
       newlyComputedHash = Digest::SHA1.hexdigest(JSON.generate(resultsSentBackFromReactEdit.as_json) + "amsterdamAL")
 
       if newlyComputedHash === hashSentBackFromReact
-        
-        render json: {
+
+
+
+        recaptchaVerificationResults = HTTParty.get("https://www.google.com/recaptcha/api/siteverify?secret=#{recaptchaSecret}&response=#{recaptchaResultsSentBackFromClientToBeChecked}", {
+
+          method: 'POST',
           
-        status: "green",
-        msg: "sending emails... complete"}
+          headers: { "Content-Type" => "application/json"}
+        
+        }).to_dot
+
+
+
+          puts "resoooooooooooooooonse recaptcha verifier = " + recaptchaVerificationResults.inspect
+          puts recaptchaVerificationResults.success
+          render json: {
+            status: "green",
+            msg: "sending emails... complete"
+          }
+       
       
       else
+        
         render json: {
-          
-        status: "red",
-        msg: "Something went wrong, try again"}
+          status: "red",
+          msg: "Something went wrong, try again"
+        }
+      
       end
     
     else
