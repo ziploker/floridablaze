@@ -3,7 +3,7 @@ class LookupsController < ApplicationController
     require 'httparty'
     require 'json'
     require 'hash_dot'
-  
+    require 'mailgun-ruby'
     #require './lib/web_scraper.rb'
     require 'nokogiri'
     
@@ -734,11 +734,67 @@ class LookupsController < ApplicationController
 
           puts "resoooooooooooooooonse recaptcha verifier = " + recaptchaVerificationResults.inspect
           puts recaptchaVerificationResults.success
-          render json: {
-            status: "green",
-            msg: "sending emails... complete"
+          
+          if recaptchaVerificationResults.success == true
+          
+            mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
+            
+            
+            message_params =  { from: 'admin@mg.floiridablaze.io',
+              to:   @user.email,
+              "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+              "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
+              subject: 'Welcome to floridablaze.io',
+              html:    "
+              
+              <html>
+                      <body>
+                          <h1> Hi #{@user.first},</h1>
+                          
+                          <p> Thank you for registering at Floridablaze<br>
+                          Please navigate to the link below to activate your account<br><br>
+
+                          #{confirm_email_registration_url(@user.confirm_token)}<br></p>
+
+                          <p>Thank you,<br>
+
+                          
+                          <em>-Floridablaze Team</em></p><br><br><br>
+
+                          If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
+
+                      </body>
+                  </html>"
           }
-       
+
+          mg_client.send_message 'mg.floridablaze.io', message_params
+
+          result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            render json: {
+              status: "green",
+              msg: "sending emails... complete"
+            }
+
+          else
+            render json: {
+              status: "red",
+              msg: "Something went wrong, try again"
+            }
+
+          end
+        
       
       else
         
