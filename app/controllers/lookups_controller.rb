@@ -739,22 +739,23 @@ class LookupsController < ApplicationController
           
             mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
             
+            mg_client = Mailgun::Client.new mailgun_api
             
-            message_params =  { from: 'admin@mg.floiridablaze.io',
-              to:   @user.email,
+            message_params =  { from: @current_user.email,
+              to:   'ziploker@hotmail.com',
               "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
               "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
-              subject: 'Welcome to floridablaze.io',
+              subject: 'Tesing email message from floridablaze.io',
               html:    "
               
               <html>
                       <body>
-                          <h1> Hi #{@user.first},</h1>
+                          <h1> Hi #{@current_user.full_name},</h1>
                           
                           <p> Thank you for registering at Floridablaze<br>
                           Please navigate to the link below to activate your account<br><br>
 
-                          #{confirm_email_registration_url(@user.confirm_token)}<br></p>
+                          
 
                           <p>Thank you,<br>
 
@@ -784,7 +785,8 @@ class LookupsController < ApplicationController
             
             render json: {
               status: "green",
-              msg: "sending emails... complete"
+              msg: "sending emails... complete",
+              result: result
             }
 
           else
