@@ -1063,18 +1063,18 @@ const Letter = styled.div`
 
   }
 
-
+  display: grid;
   //min-width: 400px;
   //max-width: 500px;
   justify-self: start;
-  border-radius: 10px;
+  border-radius: 13px;
   background: white;
   //margin: 60px auto 0 auto;
   //grid-template-columns: 0px 130px 130px 1fr;
   grid-auto-rows: minmax(min-content, max-content);
   //grid-gap: 8px;
 
-  padding: 20px;
+  //padding: 20px;
   //margin: 0px 8px;
   //opacity: ${(props) => (props.showLetter ? "1" : "0")};
   //height: ${(props) => (props.showLetter ? "auto" : "0px")};
@@ -1191,7 +1191,7 @@ const Letter = styled.div`
     font-size: 0.8em;
     font-weight: 500;
     margin-top: 15px;
-    grid-area: 4/2/5/5;
+    grid-area: 2/1/3/2;
   }
 
   p {
@@ -1206,7 +1206,8 @@ const Letter = styled.div`
     font-size: 0.8em;
     font-weight: 300;
     margin-top: 15px;
-    grid-area: 5/2/6/5;
+    /* grid-area: 5/2/6/5; */
+    grid-area: 3/1/4/2;
     padding: 0px 30px;
     line-height: 1.8em;
   }
@@ -1229,7 +1230,8 @@ const Letter = styled.div`
     padding: 30px;
     justify-self: start;
     //grid-area: 6/2/7/5;
-    grid-area: 1/1/2/2
+    /* grid-area: 1/1/2/2 */
+    grid-area: 4/1/5/2;
   }
 `;
 
@@ -1456,6 +1458,67 @@ const FlashSuccess = styled.h4`
   display: ${(props) => (props.successFlag ? "initial" : "none")};
 `;
 
+const ButtonTabWrapper = styled.div`
+
+  grid-area: 1/1/2/2;
+  
+
+
+`;
+
+const ButtonTabOne = styled.button`
+
+
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: ${(props) => props.whichTabIsActive === 1 ? "#ccc" : "#f1f1f1"};
+
+  
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  border-top-left-radius: 13px;
+
+  &:hover{
+    
+    background-color: ${(props) => props.whichTabIsActive === 1 ? "#ccc" : "#ddd"};;
+  }
+
+
+  //background-color: #ccc;
+`;
+
+const ButtonTabTwo = styled.button`
+
+
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: ${(props) => props.whichTabIsActive === 2 ? "#ccc" : "#f1f1f1"};
+
+
+  
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  border-bottom-right-radius: 13px;
+  &:hover{
+    
+    background-color: ${(props) => props.whichTabIsActive === 2 ? "#ccc" : "#ddd"};;
+  }
+
+  //background-color: #ccc;
+
+
+`;
+
 
 
 const SendButton = styled.a``;
@@ -1479,7 +1542,7 @@ function Act(props, ref) {
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(false);
+  const [showCards, setShowCards] = React.useState(true);
   //const [showLetter, setShowLetter] = React.useState(false);
   //const [showOffer, setShowOffer] = React.useState(true);
 
@@ -1494,47 +1557,47 @@ function Act(props, ref) {
   const myRef = useRef(null)
 
   const [recaptchaResponse, setRecaptchaResponse] = React.useState("");
-
+  const [whichTabIsActive, setWhichTabIsActive] = React.useState(1);
 
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [isButtonLoading, setIsButtonLoading] = React.useState(false);
   const [showLoader, setShowLoader] = React.useState(false);
-  // const [results, setResults] = React.useState({
-  //   one: {
-  //     resultFromFlorida: "true",
-  //     name: "Juan Alfonso Fernandez-Barquin",
-  //     firstName: "",
-  //     lastName: "",
-  //     image:
-  //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
-  //     id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
-  //     email: "JuanF.Barquin@myfloridahouse.gov",
-  //     chamber: "House",
-  //     party: "Republican",
-  //     parent: "Florida Legislature",
-  //     district: "119",
-  //     fullDistrict: "Florida State House district 119",
-  //     fullDistrictTrunk: "Florida State House",
-  //   },
-  //   two: {
-  //     name: "Annette Taddeo",
-  //     firstName: "Annette",
-  //     lastName: "Taddeo",
-  //     image:
-  //       "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
-  //     id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
-  //     email: "taddeo.annette.web@flsenate.gov",
-  //     chamber: "Senate",
-  //     party: "Democrat",
-  //     parent: "Florida Legislature",
-  //     district: "40",
-  //     fullDistrict: "Florida State Senate  ",
-  //     fullDistrictTrunk: "Florida State Senate",
-  //   },
-  // });
+  const [results, setResults] = React.useState({
+    one: {
+      resultFromFlorida: "true",
+      name: "Juan Alfonso Fernandez-Barquin",
+      firstName: "",
+      lastName: "",
+      image:
+        "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
+      id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
+      email: "JuanF.Barquin@myfloridahouse.gov",
+      chamber: "House",
+      party: "Republican",
+      parent: "Florida Legislature",
+      district: "119",
+      fullDistrict: "Florida State House district 119",
+      fullDistrictTrunk: "Florida State House",
+    },
+    two: {
+      name: "Annette Taddeo",
+      firstName: "Annette",
+      lastName: "Taddeo",
+      image:
+        "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
+      id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
+      email: "taddeo.annette.web@flsenate.gov",
+      chamber: "Senate",
+      party: "Democrat",
+      parent: "Florida Legislature",
+      district: "40",
+      fullDistrict: "Florida State Senate  ",
+      fullDistrictTrunk: "Florida State Senate",
+    },
+  });
 
-  const [results, setResults] = React.useState( {"one": {}, "two": {} });
+  //const [results, setResults] = React.useState( {"one": {}, "two": {} });
 
 
   
@@ -1846,7 +1909,90 @@ function Act(props, ref) {
     }
   };
 
+  const GetHouseOrSenate = () => {
 
+
+    if (results.one.chamber !== undefined && results.one.chamber == "Senate"){
+
+      return "Senator"
+    
+    }else if (results.one.chamber !== undefined && results.one.chamber == "House"){
+
+      return "Representative"
+
+    }else{
+
+      return ""
+    }
+  }
+
+  const GetHeader = () => {
+
+    console.log("getHeader start &&&&&&&&&&&&&&&&&&&&&&")
+    console.log(results)
+
+    
+
+    if (results.one.lastName != undefined){
+
+      console.log("Its defined ^^^^^^^^^^^^^^^^^^^")
+
+      
+      const chamb = GetHouseOrSenate();
+      
+      if(results.one.lastName != ""){
+
+        //console.log("@@@@@@lastName is " + results.one.lastName)
+        return <h3>Dear {chamb} {results.one.lastName} </h3>
+      }else{
+        //console.log("@@@@@@@name is " + results.one.name)
+        return <h3>Dear {chamb} {results.one.name} </h3>
+
+      }
+
+
+    }else{
+
+      //console.log("Its undefined ^^^^^^^^^^^^^^^^^^^")
+      return null
+    }
+
+    
+    // if (results.one !== undefined && results.one.name != ""){
+    //   return <h3> results.one.email and results.one.lastName</h3>
+
+    // }else{
+
+    //   return <h3> empty </h3>
+
+    // }
+    
+    
+
+    
+
+  }
+
+
+  const HandleButtonTabOne = (e) => {
+
+    console.log(e.target.value);
+
+    if (whichTabIsActive !== 1){
+
+      setWhichTabIsActive(1)
+    }
+
+  }
+
+  const HandleButtonTabTwo = (e) => {
+    console.log(e.target.value);
+    if (whichTabIsActive !== 2){
+
+      setWhichTabIsActive(2)
+    }
+    
+  }
 
 
   if (locationFromHook.pathname === "/edit"){
@@ -2114,9 +2260,14 @@ function Act(props, ref) {
               resultFromFlorida={resultFromFlorida}
               showCards={showCards}
             >
-              <div className="LetterTopOverlay"></div>
+              <ButtonTabWrapper>
+                <ButtonTabOne value={1} whichTabIsActive = {whichTabIsActive} onClick={HandleButtonTabOne}>Email One</ButtonTabOne>
+                <ButtonTabTwo value={2} whichTabIsActive = {whichTabIsActive} onClick={HandleButtonTabTwo}>Email Two</ButtonTabTwo>
+              </ButtonTabWrapper>
+
+              {/* <div className="LetterTopOverlay"></div>
               <div className="LetterSideOverlay"></div>
-              <div className="LetterSideOverlay2"></div>
+              <div className="LetterSideOverlay2"></div> */}
 
               {/* <img
                 src={results.one.image ? results.one.image : samplepic}
@@ -2133,7 +2284,7 @@ function Act(props, ref) {
                 <h2 className="email2">{results.two.email}</h2>
               </div> */}
 
-              <h3>Dear Representatives/Senator,</h3>
+              <GetHeader/>
 
               <p>
                 I am a constituant of (

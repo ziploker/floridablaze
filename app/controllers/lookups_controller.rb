@@ -116,7 +116,7 @@ class LookupsController < ApplicationController
   
   
       #object to be sent to frontend
-      sendToFrontEnd = {"one" => {"resultFromFlorida" => "true", "name" => "", "firstName" => "", "lastName" => "", "image" => "", "id" => "", "email" => "", "chamber" => "", "party" => "", "parent" => "", "district" => "", "fullDistrict" => "", "fullDistrictTrunk" => "", "address" => ""}, "two" => {"name" => "", "firstName" => "", "lastName" => "", "image" => "", "id" => "", "email" => "", "chamber" => "", "party" => "", "parent" => "", "district" => "", "fullDistrict" => "", "fullDistrictTrunk" => "", "address" => ""}}
+      sendToFrontEnd = {"one" => {"resultFromFlorida" => "true", "name" => "", "firstName" => "", "lastName" => "", "image" => "", "id" => "", "email" => "", "chamber" => "", "party" => "", "parent" => "", "district" => "", "fullDistrict" => "", "fullDistrictTrunk" => "", "address" => "", "classification" => ""}, "two" => {"name" => "", "firstName" => "", "lastName" => "", "image" => "", "id" => "", "email" => "", "chamber" => "", "party" => "", "parent" => "", "district" => "", "fullDistrict" => "", "fullDistrictTrunk" => "", "address" => "", "classification" => ""}}
   
   
       #disable any views being rendered
@@ -207,6 +207,7 @@ class LookupsController < ApplicationController
             sendToFrontEnd["one"]["image"] =  record.node.image
             sendToFrontEnd["one"]["id"] =  record.node.id
             sendToFrontEnd["one"]["chamber"] =  record.node.chamber[0].organization.name
+            sendToFrontEnd["one"]["classification"] =  record.node.chamber[0].organization.classification
             sendToFrontEnd["one"]["parent"] =  record.node.chamber[0].organization.parent.name
             sendToFrontEnd["one"]["district"] =  record.node.chamber[0].post.label
             sendToFrontEnd["one"]["fullDistrict"] =  record.node.chamber[0].post.division.name
@@ -244,6 +245,7 @@ class LookupsController < ApplicationController
             sendToFrontEnd["two"]["image"] =  record.node.image
             sendToFrontEnd["two"]["id"] =  record.node.id
             sendToFrontEnd["two"]["chamber"] =  record.node.chamber[0].organization.name
+            sendToFrontEnd["two"]["classification"] =  record.node.chamber[0].organization.classification
             sendToFrontEnd["two"]["parent"] =  record.node.chamber[0].organization.parent.name
             sendToFrontEnd["two"]["district"] =  record.node.chamber[0].post.label
             sendToFrontEnd["two"]["fullDistrict"] =  record.node.chamber[0].post.division.name
@@ -736,41 +738,50 @@ class LookupsController < ApplicationController
           puts recaptchaVerificationResults.success
           
           if recaptchaVerificationResults.success == true
+
+
+            puts "email one is " + resultsSentBackFromReact[:one][:email]
+            puts "name one is " + resultsSentBackFromReact[:one][:name]
+            puts "email two is " + resultsSentBackFromReact[:two][:email]
+            puts "name two is " + resultsSentBackFromReact[:two][:name]
+
+
+
           
-            mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
+          #   mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
             
-            mg_client = Mailgun::Client.new mailgun_api
+          #   mg_client = Mailgun::Client.new mailgun_api
             
-            message_params =  { from: @current_user.email,
-              to:   'ziploker@hotmail.com',
-              "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
-              "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
-              subject: 'Tesing email message from floridablaze.io',
-              html:    "
+          #   message_params =  { from: @current_user.email,
+          #     to:   'ziploker@hotmail.com',
+          #     "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+          #     "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
+          #     subject: 'Tesing email message from floridablaze.io',
+          #     html:    "
               
-              <html>
-                      <body>
-                          <h1> Hi #{@current_user.full_name},</h1>
+          #     <html>
+          #             <body>
+          #                 <h1> Hi #{@current_user.full_name},</h1>
                           
-                          <p> Thank you for registering at Floridablaze<br>
-                          Please navigate to the link below to activate your account<br><br>
-
-                          
-
-                          <p>Thank you,<br>
+          #                 <p> Thank you for registering at Floridablaze<br>
+          #                 Please navigate to the link below to activate your account<br><br>
 
                           
-                          <em>-Floridablaze Team</em></p><br><br><br>
 
-                          If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
+          #                 <p>Thank you,<br>
 
-                      </body>
-                  </html>"
-          }
+                          
+          #                 <em>-Floridablaze Team</em></p><br><br><br>
 
-          mg_client.send_message 'mg.floridablaze.io', message_params
+          #                 If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
 
-          result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
+          #             </body>
+          #         </html>"
+          # }
+
+          # mg_client.send_message 'mg.floridablaze.io', message_params
+
+          # result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
             
             
             
@@ -786,7 +797,7 @@ class LookupsController < ApplicationController
             render json: {
               status: "green",
               msg: "sending emails... complete",
-              result: result
+              #result: result
             }
 
           else
