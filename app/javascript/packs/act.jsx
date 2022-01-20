@@ -1541,11 +1541,13 @@ function Act(props, ref) {
   const [status, setStatus] = React.useState("");
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
+  const [firstSuggestedAddress, setFirstSuggestedAddress] = React.useState('')
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
   const [showCards, setShowCards] = React.useState(false);
   //const [showLetter, setShowLetter] = React.useState(false);
   //const [showOffer, setShowOffer] = React.useState(true);
-
+  const [addressLineOne, setAddressLineOne] = React.useState("");
+  const [addressLineTwo, setAddressLineTwo] = React.useState("");
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
   const sendButtonRef = useRef(null);
@@ -1638,7 +1640,10 @@ function Act(props, ref) {
   };
 
   //address selected from dropdown box///////////////////  HANDLE_SELECT  /////////
-  const handleSelect = (address) => {
+  const handleSelect = (address, pid, suggestion) => {
+
+    console.log("addressSELECT^^^^^", suggestion.formattedSuggestion.mainText)
+    console.log("addressSELECT22222", suggestion.formattedSuggestion.secondaryText)
     //populate the input with the address selected from 'react places autocomplete'
     setFormInfo({ address: address });
 
@@ -1690,7 +1695,9 @@ function Act(props, ref) {
       setShowStatusSpinner(true);
 
       //get formdata ready to send to server
-      formData.append("event[address]", formInfo.address);
+      //formData.append("event[address]", formInfo.address);
+
+      formData.append("event[address]", firstSuggestedAddress);
 
       //lat lng will be empty if user manually enters address instead if
       //selecting address from react places autocompete
@@ -1745,6 +1752,8 @@ function Act(props, ref) {
                 let flag = data.one.resultFromFlorida.toString();
 
                 console.log("FLAG IS " + flag);
+
+                
 
                 if (flag == "false") {
                   1;
@@ -2013,6 +2022,30 @@ function Act(props, ref) {
 
   }
 
+
+  var selectFirstOnEnter = (input) => {  // store the original event binding function
+    var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
+    function addEventListenerWrapper(type, listener) {  // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected, and then trigger the original listener.
+        if (type == "keydown") { 
+            var orig_listener = listener;
+            listener = function(event) {
+                var suggestion_selected = $(".pac-item-selected").length > 0;
+                if (event.which == 13 && !suggestion_selected) { 
+                    var simulated_downarrow = $.Event("keydown", {keyCode: 40, which: 40}); 
+                    orig_listener.apply(input, [simulated_downarrow]); 
+                }
+                orig_listener.apply(input, [event]);
+            };
+        }
+        _addEventListener.apply(input, [type, listener]); // add the modified listener
+    }
+    if (input.addEventListener) { 
+        input.addEventListener = addEventListenerWrapper; 
+    } else if (input.attachEvent) { 
+        input.attachEvent = addEventListenerWrapper; 
+    }
+  }
+
   
 
 
@@ -2126,13 +2159,23 @@ function Act(props, ref) {
                     }}
                   >
                     {loading && <div>Loading...</div>}
-
+                    
+                    {console.log("mainSuggestion", suggestions)}
                     {suggestions.map((suggestion) => {
-                      console.log(
-                        suggestions.values().next().value.description
-                      );
+                      
+                      
+                      
+                      
+                      setFirstSuggestedAddress(suggestions.values().next().value.description)
+                      
+
+                      console.log("Suggggestion are" + JSON.stringify(suggestion))
                       //props.setFirstMatch(suggestions.values().next().value.description)
 
+
+
+                      
+                      
                       const style = suggestion.active
                         ? { backgroundColor: "#5FCC61", cursor: "pointer" }
                         : { backgroundColor: "#ffffff", cursor: "pointer" };
