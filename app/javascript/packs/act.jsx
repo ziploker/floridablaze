@@ -1542,7 +1542,7 @@ function Act(props, ref) {
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(true);
+  const [showCards, setShowCards] = React.useState(false);
   //const [showLetter, setShowLetter] = React.useState(false);
   //const [showOffer, setShowOffer] = React.useState(true);
 
@@ -1563,41 +1563,41 @@ function Act(props, ref) {
 
   const [isButtonLoading, setIsButtonLoading] = React.useState(false);
   const [showLoader, setShowLoader] = React.useState(false);
-  const [results, setResults] = React.useState({
-    one: {
-      resultFromFlorida: "true",
-      name: "Juan Alfonso Fernandez-Barquin",
-      firstName: "",
-      lastName: "",
-      image:
-        "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
-      id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
-      email: "JuanF.Barquin@myfloridahouse.gov",
-      chamber: "House",
-      party: "Republican",
-      parent: "Florida Legislature",
-      district: "119",
-      fullDistrict: "Florida State House district 119",
-      fullDistrictTrunk: "Florida State House",
-    },
-    two: {
-      name: "Annette Taddeo",
-      firstName: "Annette",
-      lastName: "Taddeo",
-      image:
-        "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
-      id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
-      email: "taddeo.annette.web@flsenate.gov",
-      chamber: "Senate",
-      party: "Democrat",
-      parent: "Florida Legislature",
-      district: "40",
-      fullDistrict: "Florida State Senate  ",
-      fullDistrictTrunk: "Florida State Senate",
-    },
-  });
+  // const [results, setResults] = React.useState({
+  //   one: {
+  //     resultFromFlorida: "true",
+  //     name: "Juan Alfonso Fernandez-Barquin",
+  //     firstName: "",
+  //     lastName: "",
+  //     image:
+  //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
+  //     id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
+  //     email: "JuanF.Barquin@myfloridahouse.gov",
+  //     chamber: "House",
+  //     party: "Republican",
+  //     parent: "Florida Legislature",
+  //     district: "119",
+  //     fullDistrict: "Florida State House district 119",
+  //     fullDistrictTrunk: "Florida State House",
+  //   },
+  //   two: {
+  //     name: "Annette Taddeo",
+  //     firstName: "Annette",
+  //     lastName: "Taddeo",
+  //     image:
+  //       "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
+  //     id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
+  //     email: "taddeo.annette.web@flsenate.gov",
+  //     chamber: "Senate",
+  //     party: "Democrat",
+  //     parent: "Florida Legislature",
+  //     district: "40",
+  //     fullDistrict: "Florida State Senate  ",
+  //     fullDistrictTrunk: "Florida State Senate",
+  //   },
+  // });
 
-  //const [results, setResults] = React.useState( {"one": {}, "two": {} });
+  const [results, setResults] = React.useState( {"one": {}, "two": {} });
 
 
   
@@ -1909,63 +1909,75 @@ function Act(props, ref) {
     }
   };
 
-  const GetHouseOrSenate = () => {
-
-
-    if (results.one.chamber !== undefined && results.one.chamber == "Senate"){
-
-      return "Senator"
-    
-    }else if (results.one.chamber !== undefined && results.one.chamber == "House"){
-
-      return "Representative"
-
-    }else{
-
-      return ""
-    }
-  }
+  
 
   const GetHeader = () => {
 
     console.log("getHeader start &&&&&&&&&&&&&&&&&&&&&&")
     console.log(results)
 
+    if (whichTabIsActive === 1){
     
+      if (results.one.chamber !== undefined && results.one.chamber == "Senate"){
 
-    if (results.one.lastName != undefined){
+        if(results.one.lastName != ""){
 
-      console.log("Its defined ^^^^^^^^^^^^^^^^^^^")
+          return <h3>Dear Senator {results.one.lastName} </h3>
+        
+        }else{
+          
+          return <h3>Dear Senator {results.one.name} </h3>
+  
+        }
 
-      
-      const chamb = GetHouseOrSenate();
-      
-      if(results.one.lastName != ""){
+      }else if (results.one.chamber !== undefined && results.one.chamber == "House"){
 
-        //console.log("@@@@@@lastName is " + results.one.lastName)
-        return <h3>Dear {chamb} {results.one.lastName} </h3>
+        if(results.one.lastName != ""){
+
+          return <h3>Dear Representative {results.one.lastName} </h3>
+        
+        }else{
+          
+          return <h3>Dear Representative {results.one.name} </h3>
+
+        }  
       }else{
-        //console.log("@@@@@@@name is " + results.one.name)
-        return <h3>Dear {chamb} {results.one.name} </h3>
 
+        return null
       }
+    
+    }else if (whichTabIsActive === 2){
 
+      if (results.two.chamber !== undefined && results.two.chamber == "Senate"){
 
+        if(results.two.lastName != ""){
+
+          return <h3>Dear Senator {results.two.lastName} </h3>
+        
+        }else{
+          
+          return <h3>Dear Senator {results.two.name} </h3>
+  
+        }
+
+      }else if (results.two.chamber !== undefined && results.two.chamber == "House"){
+
+        if(results.two.lastName != ""){
+
+          return <h3>Dear Representative {results.two.lastName} </h3>
+        
+        }else{
+          
+          return <h3>Dear Representative {results.two.name} </h3>
+
+        }  
+      }else{
+
+        return null
+      }
     }else{
-
-      //console.log("Its undefined ^^^^^^^^^^^^^^^^^^^")
       return null
     }
-
-    
-    // if (results.one !== undefined && results.one.name != ""){
-    //   return <h3> results.one.email and results.one.lastName</h3>
-
-    // }else{
-
-    //   return <h3> empty </h3>
-
-    // }
     
     
 
@@ -2486,7 +2498,7 @@ function Act(props, ref) {
       </ActGrid>
 
       
-
+<h1>{lastTermSearched}</h1>
 
     </ActWrapper>
   );
