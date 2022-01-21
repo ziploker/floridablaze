@@ -1519,6 +1519,11 @@ const ButtonTabTwo = styled.button`
 
 `;
 
+const handleKeyDown = (event) => {
+
+  console.log("a key was pressedddddddddddddddddddddddddddd", event.keyCode);
+}
+
 
 
 const SendButton = styled.a``;
@@ -1557,6 +1562,7 @@ function Act(props, ref) {
   const [successFlag, setSuccessFlag] = React.useState(true);
   const scrolll = props.executeScrollForLookupSectionTwo;
   const myRef = useRef(null)
+  const addressInputRef = useRef(null)
 
   const [recaptchaResponse, setRecaptchaResponse] = React.useState("");
   const [whichTabIsActive, setWhichTabIsActive] = React.useState(1);
@@ -1603,6 +1609,24 @@ function Act(props, ref) {
 
 
   
+
+
+  // React.useEffect( () => {
+
+  //   window.addEventListener('keydown', handleKeyDown);
+
+
+  //   //selectFirstOnEnter(LookupInputRef)
+  //   return () => {
+
+  //     window.removeEventListener('keydown', handleKeyDown);
+
+  //   };
+
+  // }, []);
+
+
+  
   
 
   function loginFromDeadEnd(e) {
@@ -1642,6 +1666,7 @@ function Act(props, ref) {
   //address selected from dropdown box///////////////////  HANDLE_SELECT  /////////
   const handleSelect = (address, pid, suggestion) => {
 
+    console.log("handle select start ----------------------------------")
     console.log("addressSELECT^^^^^", suggestion.formattedSuggestion.mainText)
     console.log("addressSELECT22222", suggestion.formattedSuggestion.secondaryText)
     //populate the input with the address selected from 'react places autocomplete'
@@ -1661,10 +1686,16 @@ function Act(props, ref) {
         setShowStatusSpinner(false);
         console.error("Error", error);
       });
+
+      console.log("handle select end ----------------------------------")
   };
+
+  
 
   ///SEARCH BUTTON CLICKED///////////////////////////////// HANDLE_ADD  //////////
   const handleAdd = (e) => {
+
+    console.log("HANNNDLLLE ADDDDDDD starrrrtttt =============================")
     //user enters address but doesnt choose one from "react places autocomplete"
     //and thus bypasses handkeSelect method, which gets the lat lng, so get lat lan otherway
     let secondTryLat = "";
@@ -1822,6 +1853,8 @@ function Act(props, ref) {
           });
       }
     }
+
+    console.log("HANNNDLLLE ADDDDDDD end =============================")
   };
 
   ////////////////////////////////////////////////   VALID_FORM  //////
@@ -1845,7 +1878,7 @@ function Act(props, ref) {
   };
 
   const handleChange2 = (event) => {
-    console.log("handle change 222");
+    console.log("handle change 222 start @@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
     //resets search if user erases first search term
     if (event != lastTermSearched) {
@@ -1865,6 +1898,8 @@ function Act(props, ref) {
     //  setSearchButtonActive( false)
 
     //}
+
+    console.log("handle change 222 end @@@@@@@@@@@@@@@@@@@@@@@@@@@@");
   };
 
   // function showLetterFunction() {
@@ -2088,6 +2123,7 @@ function Act(props, ref) {
               value={formInfo.address}
               onChange={handleChange2}
               onSelect={handleSelect}
+              
               searchOptions={searchOptions}
             >
               {({
@@ -2160,7 +2196,7 @@ function Act(props, ref) {
                   >
                     {loading && <div>Loading...</div>}
                     
-                    {console.log("mainSuggestion", suggestions)}
+                    {/* {console.log("mainSuggestion", suggestions)} */}
                     {suggestions.map((suggestion) => {
                       
                       
@@ -2169,7 +2205,7 @@ function Act(props, ref) {
                       setFirstSuggestedAddress(suggestions.values().next().value.description)
                       
 
-                      console.log("Suggggestion are" + JSON.stringify(suggestion))
+                      // console.log("Suggggestion are" + JSON.stringify(suggestion))
                       //props.setFirstMatch(suggestions.values().next().value.description)
 
 
