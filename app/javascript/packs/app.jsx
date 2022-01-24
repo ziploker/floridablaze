@@ -157,7 +157,7 @@ function App({d}){
 
         console.log("in scrollToRef ")
         console.log(ref)
-
+        console.log(LookupInputRef)
 
         var scrollOptions = {
             left: 0,

@@ -1039,6 +1039,7 @@ function Signup(props, ref) {
       }
   
       window.addEventListener('resize', handleResize);
+      
       return () => window.removeEventListener('resize', handleResize);
 
 

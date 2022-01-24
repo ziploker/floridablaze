@@ -493,7 +493,7 @@ const StatusHolder = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
-
+  padding: 10px 0px 0px 0px;
   justify-self: start;
   min-height: 30px;
   margin-bottom: 16px;
@@ -504,6 +504,8 @@ const StatusBar = styled.div`
   opacity: 1;
   transition: opacity 0.4s;
   transition-timing-function: ease-in;
+  line-height: 27px;
+  margin-left: 10px;
 `;
 
 const StatusSpinner = styled.div`
@@ -513,7 +515,7 @@ const StatusSpinner = styled.div`
     props.showStatusSpinner.toString() == "true" ? "1" : "0"};
   transition: opacity 0.4s;
   transition-timing-function: ease-out;
-  margin-left: 8px;
+  
 `;
 
 const CheckMark = styled.img`
@@ -1536,6 +1538,8 @@ function Act(props, ref) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isButtonLoading, setIsButtonLoading] = React.useState(false);
   const [showLoader, setShowLoader] = React.useState(false);
+
+  const [isAddressMenuOpen, setIsAddressMenuOpen] = React.useState(false);
   // const [results, setResults] = React.useState({
   //   one: {
   //     resultFromFlorida: "true",
@@ -1587,7 +1591,7 @@ function Act(props, ref) {
     }
   }, [addressObject]);
   
-  // React.useEffect( () => {
+  React.useEffect( () => {
 
   //   window.addEventListener('keydown', handleKeyDown);
 
@@ -1599,7 +1603,12 @@ function Act(props, ref) {
 
   //   };
 
-  // }, []);
+  
+ 
+
+  
+
+  }, []);
 
 
   /////////////////////////////////////////////////////////////////////////
@@ -1633,6 +1642,8 @@ function Act(props, ref) {
       setSearchButtonActive(false);
     }
   }
+
+
 
   const handleAddressSelected = () => {
 
@@ -1976,6 +1987,21 @@ function Act(props, ref) {
   function resetSearch(e) {
     e.preventDefault();
     setShowCards(false);
+    setAddressObject(null)
+
+    //LookupInputRef.current.focus();
+
+    console.log("insideRESET_SEARCh and Select is", select);
+
+    console.log("insideRESET_SEARCh and LookupInputRef is", LookupInputRef);
+
+    props.executeScrollForLookupSection();
+
+    
+      
+     
+
+    
     //setShowLetter(false);
   }
 
@@ -2166,6 +2192,17 @@ function Act(props, ref) {
     console.log("HANDLE_ADDRESS", v);
     setAddressObject(v);
   }
+
+  const handleInputChange = (v) => {
+    console.log("handleInputChange", v)
+
+    if (v == ""){
+      isAddressMenuOpen ? setIsAddressMenuOpen(false) : null;
+    }else{
+      isAddressMenuOpen ? null : setIsAddressMenuOpen(true);
+    }
+
+  }
   
   
   
@@ -2230,16 +2267,18 @@ function Act(props, ref) {
                 // thc: `my_unique_select_key__${JSON.stringify(value)}`,
                 value: addressObject,
                 placeholder: "Enter your zip code or address",
-                
-                
+                onInputChange: handleInputChange,
+                menuIsOpen: isAddressMenuOpen,
                 onChange: handleAddress,
                 blurInputOnSelect: true,
                 backspaceRemovesValue: true,
                 isClearable: true,
 
-                ref: (ref) => {
-                  setSelect(ref);
-                },
+                // ref: (ref) => {
+                //   setSelect(ref);
+                // },
+
+                ref: LookupInputRef,
                
                 onFocus: handleFocus,
                 
@@ -2262,13 +2301,15 @@ function Act(props, ref) {
 
             <StatusHolder>
               
+              
+              <StatusSpinner showStatusSpinner={showStatusSpinner}>
+                <Spinner name="wave" color="#87d388" />
+              </StatusSpinner>
+
               <StatusBar>
                 <Span status={status}> {status}</Span>
               </StatusBar>
 
-              <StatusSpinner showStatusSpinner={showStatusSpinner}>
-                <Spinner name="wave" color="#87d388" />
-              </StatusSpinner>
 
             </StatusHolder>
           
@@ -2330,7 +2371,7 @@ function Act(props, ref) {
           </CardTwo>
           
           <ResultsBlurb>
-            because it has proven to help certain illnesses including glaucoma, sclerosis, and cancers such as breast and brain cancer. Prohibition has only cost billions of dollars and studies prove that it has not affected the use of marijuana,
+            <h3 style={{color: "white"}} onClick={resetSearch}>New Search</h3>
           </ResultsBlurb>
 
 
