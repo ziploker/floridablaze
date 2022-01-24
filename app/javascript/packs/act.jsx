@@ -5,16 +5,12 @@ import mega from "../../assets/images/megav3.png";
 import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
-//import "../../assets/stylesheets/sendButtonB";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-//import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
 import styled, { keyframes } from "styled-components";
 import { RiMailSendLine } from "react-icons/ri";
 import { BsMailbox } from "react-icons/bs";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from "react-places-autocomplete";
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import sendEmailsToReps from '../packs/communications/sendEmailToReps'
 import $ from "jquery";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -23,10 +19,11 @@ import searchIcon from "../../assets/images/search.png";
 import searchIconOrange from "../../assets/images/searchGreen.png";
 import searchIconOrange2 from "../../assets/images/searchPink2.png";
 import ResultCardOne from "./resultCardOne.jsx";
-
 import Button_Loading from "./myComponents/button_loading"
-//import ResultCardTwo from './resultCardTwo.jsx'
 var Spinner = require("react-spinkit");
+
+/////////////////////////////////////////////////////////////
+
 const formData = new FormData();
 
 const ActWrapper = styled.div`
@@ -286,7 +283,7 @@ const ActSubheader2 = styled.h3`
 
 `;
 
-const Form = styled.form`
+const Form = styled.div`
   @media only screen and (max-width: 720px){
 
     //grid-area: 4/1/5/-1;
@@ -633,8 +630,6 @@ const ProgressBarzResultSection = styled.div`
 
 `;
 
-
-
 const ResultCompleteTitle = styled.h1`
   font-family: Poppins;
   justify-self: center;
@@ -644,8 +639,6 @@ const ResultCompleteTitle = styled.h1`
 
 
 `;
-
-
 
 const ResultSectionBulletPointWrapperSet = styled.div`
 
@@ -665,7 +658,6 @@ const ResultSectionBulletPointWrapperSet = styled.div`
 
 
 `;
-
 
 const ResultSectionBulletPointWrapper = styled.div`
 
@@ -788,7 +780,6 @@ const ResultSectionHeaders = styled.h1`
   user-select: none;
 `;
 
-
 const ResultSectionHeadersAlt = styled.div`
 
   @media only screen and (max-width: 750px){
@@ -827,9 +818,6 @@ const ResultSectionHeadersAlt = styled.div`
   -o-user-select: none;
   user-select: none; */
 `;
-
-
-
 
 const ResultSectionSubHeader = styled.h2`
 
@@ -932,6 +920,7 @@ const CardOneSub = styled.div`
 `;
 
 const CardTwoSub = styled(CardOneSub)``;
+
 
 const CardTwo = styled.div`
 
@@ -1235,7 +1224,6 @@ const Letter = styled.div`
   }
 `;
 
-
 const OfferOne = styled.div`
 
   display: grid;
@@ -1280,7 +1268,6 @@ const OfferOne = styled.div`
 
 
 `;
-
 
 const OfferTwo = styled.div`
 
@@ -1336,8 +1323,6 @@ const BulletPointText = styled.h3`
   padding-right: 20px;
 `;
 
-
-
 const SendButtonWrapper = styled.div`
 
   @media only screen and (max-width: 400px){
@@ -1362,7 +1347,6 @@ const SendButtonWrapper = styled.div`
 
 `;
 
-
 const SendButtonV2 = styled.button`
 
   display: inline-block;
@@ -1386,26 +1370,6 @@ const SendButtonV2 = styled.button`
 
 
 `;
-
-
-
-
-
-
-
-{/* <OfferOne>
-  <h1>email</h1>
-  <RiMailSendLine/>
-
-    <BulletPoint/>
-    <BulletPointText>
-      email will be sent to each of your representatives on your behalf
-    </BulletPointText>
-    <h2>Free</h2>
-    <OfferOneButton></OfferOneButton>
-
-</OfferOne> */}
-
 
 const FlashError = styled.h4`
 
@@ -1524,19 +1488,23 @@ const handleKeyDown = (event) => {
   console.log("a key was pressedddddddddddddddddddddddddddd", event.keyCode);
 }
 
-
-
 const SendButton = styled.a``;
+
+
+//////////////////////////////////////////////////////////////////////
+
+
 
 function Act(props, ref) {
   console.log("==============Act===============")
   console.log("==============Act Props===============", props)
   //console.log("HEADER_PROPS solo", location.pathname)
 
-  const [formInfo, setFormInfo] = React.useState({
-    address: "",
-  });
 
+  
+  // const [formInfo, setFormInfo] = React.useState({
+  //   address: "",
+  // });
   //const newRef = useRef();
   const locationFromHook = useLocation();
   //const {LookupScrollToRef, LookupInputRef} = ref;
@@ -1556,19 +1524,16 @@ function Act(props, ref) {
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
   const sendButtonRef = useRef(null);
-  
-
+  const [addressObject, setAddressObject] = useState(null);
+  const [select, setSelect] = useState(null);
   const [sendEmailsToRepFlashMsg, setSendEmailsToRepFlashMsg] = React.useState("");
   const [successFlag, setSuccessFlag] = React.useState(true);
   const scrolll = props.executeScrollForLookupSectionTwo;
   const myRef = useRef(null)
   const addressInputRef = useRef(null)
-
   const [recaptchaResponse, setRecaptchaResponse] = React.useState("");
   const [whichTabIsActive, setWhichTabIsActive] = React.useState(1);
-
   const [isLoading, setIsLoading] = React.useState(false);
-
   const [isButtonLoading, setIsButtonLoading] = React.useState(false);
   const [showLoader, setShowLoader] = React.useState(false);
   // const [results, setResults] = React.useState({
@@ -1604,13 +1569,24 @@ function Act(props, ref) {
   //     fullDistrictTrunk: "Florida State Senate",
   //   },
   // });
-
   const [results, setResults] = React.useState( {"one": {}, "two": {} });
 
-
+  ///////////////////////////////////////////////////////////////
   
+  useEffect(() => {
+    //setValue(null);
 
+    console.log("==inside useEffect ACT==");
 
+    if (addressObject){
+
+      console.log("ADDR IS = ", addressObject);
+      handleAddressSelected();
+    }else{
+      console.log("ADDR IS NADA");
+    }
+  }, [addressObject]);
+  
   // React.useEffect( () => {
 
   //   window.addEventListener('keydown', handleKeyDown);
@@ -1626,7 +1602,7 @@ function Act(props, ref) {
   // }, []);
 
 
-  
+  /////////////////////////////////////////////////////////////////////////
   
 
   function loginFromDeadEnd(e) {
@@ -1658,17 +1634,110 @@ function Act(props, ref) {
     }
   }
 
-  //search options for 'react places autocomplete
-  const searchOptions = {
-    componentRestrictions: { country: ["us"] },
-  };
+  const handleAddressSelected = () => {
+
+    console.log("==== handle_address_selected_START ====");
+
+
+    setLastTermSearched(addressObject.label);
+
+    //let user know somethings happening
+    setStatus("....may take up to 60 seconds");
+
+    setShowStatusSpinner(true);
+    
+    //set setCoordinates with LAT/LNG
+
+    console.log("about to check the latlang with address ", addressObject.label)
+    geocodeByAddress(addressObject.label)
+      .then((results) => getLatLng(results[0]))
+      .then((latLng) => {
+        
+        console.log("handleAddressSelected and got coordinates", latLng);
+        
+        setCoordinates({
+          lat: latLng.lat,
+          lng: latLng.lng,
+        });
+
+
+        const csrf = document
+          .querySelector("meta[name='csrf-token']")
+          .getAttribute("content");
+
+        fetch("/lookup", {
+          method: "post",
+          dataType: "text",
+          body: JSON.stringify({
+            lookup: {
+              address: addressObject.label,
+              lat: latLng.lat,
+              lng: latLng.lng,
+            }
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": csrf,
+          }
+        }).then((response) => response.json()).then((data) => {
+          //props.setStatus("Search Complete!!")
+
+          //info message under the address search input box
+          setStatus("");
+
+          //message on bullet 1
+
+          //props.setBullet1msg("Search Complete!")
+          setShowStatusSpinner(false);
+          //props.setShowStatusCheck(true)
+          setShowCards(true);
+
+          //props.setBullet1("COMPLETED")
+
+          setResults(data);
+
+          setResultFromFlorida(data.one.resultFromFlorida.toString());
+          console.log("emailll", data.one.email)
+        
+
+          let flag = data.one.resultFromFlorida.toString();
+
+          console.log("FLAG IS " + flag);
+
+          
+
+          if (flag == "false") {
+            1;
+
+            //props.setBullet2msg("Non-Florida result");
+            //props.setBullet2("COMPLETED")
+            //props.setShowStatusCheck2(true)
+          } else {
+            //props.setBullet2msg("Send Message");
+            //props.setShowSteps(true)
+          }
+        });
+      }).catch((error) => {
+        setStatus("No results found. Check address");
+        setShowStatusSpinner(false);
+        console.error("Error", error);
+      });
+
+
+
+
+
+
+
+    console.log("==== handle_address_selected_END ====");
+  }
 
   //address selected from dropdown box///////////////////  HANDLE_SELECT  /////////
   const handleSelect = (address, pid, suggestion) => {
 
     console.log("handle select start ----------------------------------")
-    console.log("addressSELECT^^^^^", suggestion.formattedSuggestion.mainText)
-    console.log("addressSELECT22222", suggestion.formattedSuggestion.secondaryText)
+    //console.log("addressSELECT^^^^^", suggestion.formattedSuggestion.mainText)
+    //console.log("addressSELECT22222", suggestion.formattedSuggestion.secondaryText)
     //populate the input with the address selected from 'react places autocomplete'
     setFormInfo({ address: address });
 
@@ -1689,8 +1758,6 @@ function Act(props, ref) {
 
       console.log("handle select end ----------------------------------")
   };
-
-  
 
   ///SEARCH BUTTON CLICKED///////////////////////////////// HANDLE_ADD  //////////
   const handleAdd = (e) => {
@@ -1858,55 +1925,49 @@ function Act(props, ref) {
   };
 
   ////////////////////////////////////////////////   VALID_FORM  //////
-  const validForm = () => {
-    if (formInfo.address == "") {
-      setStatus("Enter an address.");
-      //props.setShowStatusCheck(false)
+  // const validForm = () => {
+  //   if (formInfo.address == "") {
+  //     setStatus("Enter an address.");
+  //     //props.setShowStatusCheck(false)
 
-      setTimeout(() => {
-        setStatus("");
-      }, 2000);
+  //     setTimeout(() => {
+  //       setStatus("");
+  //     }, 2000);
 
-      return false;
-    } else if (formInfo.address == lastTermSearched) {
-      setStatus("Enter a different address.");
-      //props.setShowStatusCheck(false)
-      return false;
-    } else {
-      return true;
-    }
-  };
+  //     return false;
+  //   } else if (formInfo.address == lastTermSearched) {
+  //     setStatus("Enter a different address.");
+  //     //props.setShowStatusCheck(false)
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // };
 
-  const handleChange2 = (event) => {
-    console.log("handle change 222 start @@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  // const handleChange2 = (event) => {
+  //   console.log("handle change 222 start @@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-    //resets search if user erases first search term
-    if (event != lastTermSearched) {
-      setStatus("");
-      //setShowStatusCheck(false)
-    }
+  //   //resets search if user erases first search term
+  //   if (event != lastTermSearched) {
+  //     setStatus("");
+  //     //setShowStatusCheck(false)
+  //   }
 
-    setFormInfo({
-      address: event,
-    });
+  //   setFormInfo({
+  //     address: event,
+  //   });
 
-    //if (!formInfo.address ){
+  //   //if (!formInfo.address ){
 
-    //  setSearchButtonActive( true)
-    //} else{
+  //   //  setSearchButtonActive( true)
+  //   //} else{
 
-    //  setSearchButtonActive( false)
+  //   //  setSearchButtonActive( false)
 
-    //}
+  //   //}
 
-    console.log("handle change 222 end @@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-  };
-
-  // function showLetterFunction() {
-  //   setShowCards(false);
-  //   setShowLetter(true);
-  //   console.log("triggerrrrrrr");
-  // }
+  //   console.log("handle change 222 end @@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  // };
 
   function sendLetterFunction() {
     console.log("send?LetterFunct$#%Ton");
@@ -1952,8 +2013,6 @@ function Act(props, ref) {
       }, 3500);
     }
   };
-
-  
 
   const GetHeader = () => {
 
@@ -2029,7 +2088,6 @@ function Act(props, ref) {
 
   }
 
-
   const HandleButtonTabOne = (e) => {
 
     console.log(e.target.value);
@@ -2050,13 +2108,11 @@ function Act(props, ref) {
     
   }
 
-
   if (locationFromHook.pathname === "/edit"){
 
     return null
 
   }
-
 
   var selectFirstOnEnter = (input) => {  // store the original event binding function
     var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
@@ -2081,11 +2137,42 @@ function Act(props, ref) {
     }
   }
 
+  const sendAdderessToServerAndFinishLookup = () => {
+
+    console.log("The current address is ", addressObject)
+
+    geocodeByAddress(addressObject.label)
+      .then(results => getLatLng(results[0]))
+      .then(({ lat, lng }) =>
+        console.log('Successfully got latitude and longitude', { lat, lng })
+
+
+    );
+
+  //   geocodeByAddress("9900 sw 166 ct")
+  // .then(results => console.log(results))
+  // .catch(error => console.error(error));
+
+  }
   
+  const handleFocus = (element) => {
+    if (addressObject) {
+      select.select.state.inputValue = addressObject.label;
+    }
+  };
 
+  const handleAddress = (v) => {
 
+    console.log("HANDLE_ADDRESS", v);
+    setAddressObject(v);
+  }
+  
+  
+  
   return (
+    
     <ActWrapper ref={LookupScrollToRef} >
+      
       <BGimage src={actBackground} ref={myRef}></BGimage>
 
       <ActGrid >
@@ -2105,129 +2192,76 @@ function Act(props, ref) {
           </ActHeader>
 
           <ActSubheader showCards={showCards}>
-          Find your Florida State Representatives and let them know you want to legalize marijuana ASAP. What if you could do this in just a few clicks?{" "}
+            Find your Florida State Representatives and let them know you want to legalize marijuana ASAP. What if you could do this in just a few clicks?{" "}
           </ActSubheader>
 
           <ActSubheader2 showCards={showCards}>
-          Enter your address below to see who your Florida State Representitives.{" "}
+            Enter your address below to see who your Florida State Representitives.{" "}
           </ActSubheader2>
 
           <Form
             className="form-inline"
-            onSubmit={handleAdd}
             showCards={showCards}
-
-
           >
-            <PlacesAutocomplete
-              value={formInfo.address}
-              onChange={handleChange2}
-              onSelect={handleSelect}
-              
-              searchOptions={searchOptions}
+            {/* <button
+              style={{width: "100px", height: "50px"}}
+              //searchButtonActive={searchButtonActive}
+              //disabled={false}
+              type="submit"
+              onClick={sendAdderessToServerAndFinishLookup}
+              className="btn btn-primary"
             >
-              {({
-                getInputProps,
-                suggestions,
-                getSuggestionItemProps,
-                loading,
-              }) => (
-                <div
-                  style={{
-                    width: "100%",
-                    border: "medium none !important",
-                    margin: "0 0 10px",
-                    minWidth: "100%",
-                    padding: "50",
-                    zIndex: "1000",
-                    gridArea: "input",
-                    position: "relative",
-                    overflow: "visible",
-                  }}
-                >
-                  <Button
-                    searchButtonActive={searchButtonActive}
-                    disabled={false}
-                    type="submit"
-                    className="btn btn-primary"
-                  >
-                    {" "}
-                  </Button>
+              send
+            </button> */}
+            
+            <GooglePlacesAutocomplete
+              selectProps={{
+                styles: {
+                  input: provided => ({
+                    ...provided,
+                    color: "blue"
+                  }),
+                  control: provided => ({
+                    ...provided,
+                    borderRadius: "8px"
+                  })
+                },
+                // key: `my_unique_select_key__${JSON.stringify(value)}`,
+                // thc: `my_unique_select_key__${JSON.stringify(value)}`,
+                value: addressObject,
+                placeholder: "Enter your zip code or address",
+                
+                
+                onChange: handleAddress,
+                blurInputOnSelect: true,
+                backspaceRemovesValue: true,
+                isClearable: true,
 
-                  <input
-                    {...getInputProps({
-                      placeholder: "123 Main St, Miami FL, 33155",
-                      className: "location-search-input",
-                      type: "text",
-                      tabIndex: "1",
-                      className: "form-control",
-                      name: "address",
-                      onFocus: activateField,
-                      onBlur: disableField,
-                      ref: LookupInputRef,
-                    })}
-                    style={{
-                      width: "100%",
-                      height: "40px",
-                      boxShadow:
-                        "0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)",
-                      border: "honeydew",
-                      display: "block",
-                      paddingLeft: "10px",
-                      fontSize: "12px",
-                      borderRadius: "5px",
-                      outline: "none",
-                    }}
-                  />
-
-                  <div
-                    style={{
-                      position: "absolute",
-                      zIndex: "1000",
-                      borderBottom: "honeydew",
-                      borderLeft: "honeydew",
-                      borderRight: "honeydew",
-                      borderTop: "1px solid #e6e6e6",
-                      boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
-                      backgroundColor: "#FFF",
-                      fontSize: ".7em",
-                      borderRadius: "0 0 2px 2px",
-                    }}
-                  >
-                    {loading && <div>Loading...</div>}
-                    
-                    {/* {console.log("mainSuggestion", suggestions)} */}
-                    {suggestions.map((suggestion) => {
-                      
-                      
-                      
-                      
-                      setFirstSuggestedAddress(suggestions.values().next().value.description)
-                      
-
-                      // console.log("Suggggestion are" + JSON.stringify(suggestion))
-                      //props.setFirstMatch(suggestions.values().next().value.description)
-
-
-
-                      
-                      
-                      const style = suggestion.active
-                        ? { backgroundColor: "#5FCC61", cursor: "pointer" }
-                        : { backgroundColor: "#ffffff", cursor: "pointer" };
-
-                      return (
-                        <div {...getSuggestionItemProps(suggestion, { style })}>
-                          <ResultSpan>{suggestion.description}</ResultSpan>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-            </PlacesAutocomplete>
+                ref: (ref) => {
+                  setSelect(ref);
+                },
+               
+                onFocus: handleFocus,
+                
+                
+                  
+                
+              }}
+              
+              autocompletionRequest={{
+                // bounds: [
+                //   { lat: 50, lng: 50 },
+                //   { lat: 100, lng: 100 }
+                // ],
+                componentRestrictions: {
+                country: ['us'],
+                }
+              }}
+              minLengthAutocomplete={2}
+            />
 
             <StatusHolder>
+              
               <StatusBar>
                 <Span status={status}> {status}</Span>
               </StatusBar>
@@ -2235,19 +2269,13 @@ function Act(props, ref) {
               <StatusSpinner showStatusSpinner={showStatusSpinner}>
                 <Spinner name="wave" color="#87d388" />
               </StatusSpinner>
+
             </StatusHolder>
+          
           </Form>
-          {/* <FindMyRep
-            showCards={showCards}
-            showLetter={showLetter}
-            type="submit"
-            name="submint"
-          >
-            Lookup my Representatives
-          </FindMyRep> */}
+          
           <Mega showCards={showCards} src={mega}></Mega>
         </ActSection>
-
 
         <ResultSection showCards={showCards}>
 
@@ -2266,39 +2294,14 @@ function Act(props, ref) {
               Results
 
             </ResultCompleteTitle>
-
-
-
-
-
-
-
-
-
           </ResultSectionInfoBox>
 
-          {/* <ResultSectionSpacerLine/> */}
-{/*
-          <ResultSectionHeaders gridArea="3/2/4/5" gridAreaTablet="3/2/4/5">Your elected officials</ResultSectionHeaders> */}
-
-          {/* <ResultSectionHeadersAlt
-            gridArea="3/6/4/7"
-            gridAreaTablet="5/2/6/5"
-            resultFromFlorida={resultFromFlorida}
-            showCards={showCards}
-          >
-            Send Personalized Email
-
-          </ResultSectionHeadersAlt> */}
 
           <CardOne>
             <CardOneWrapper>
-
-
-                <CardPicture
-                  src={results.one.image ? results.one.image : ""} >
-                </CardPicture>
-
+              <CardPicture
+                src={results.one.image ? results.one.image : ""} >
+              </CardPicture>
 
               <CardTemplate src={cardTemplate}></CardTemplate>
 
@@ -2312,15 +2315,9 @@ function Act(props, ref) {
 
           <CardTwo>
             <CardTwoWrapper>
-
-
-                <CardPicture
-                  src={results.two.image ? results.two.image : ""}>
-                </CardPicture>
-
-
-
-
+              <CardPicture
+                src={results.two.image ? results.two.image : ""}>
+              </CardPicture>
 
               <CardTemplate src={cardTemplate}></CardTemplate>
 
@@ -2331,22 +2328,17 @@ function Act(props, ref) {
               <CardTwoSub>{results.two.fullDistrictTrunk}</CardTwoSub>
             </CardTwoWrapper>
           </CardTwo>
+          
+          <ResultsBlurb>
+            because it has proven to help certain illnesses including glaucoma, sclerosis, and cancers such as breast and brain cancer. Prohibition has only cost billions of dollars and studies prove that it has not affected the use of marijuana,
+          </ResultsBlurb>
 
 
 
-
-
-
-
-        <ResultsBlurb>
-
-          because it has proven to help certain illnesses including glaucoma, sclerosis, and cancers such as breast and brain cancer. Prohibition has only cost billions of dollars and studies prove that it has not affected the use of marijuana,
-        </ResultsBlurb>
-
-
-
-          <TriplePlayWrapper resultFromFlorida={resultFromFlorida}
-              showCards={showCards}>
+          <TriplePlayWrapper 
+            resultFromFlorida={resultFromFlorida}
+            showCards={showCards}
+          >
             <Letter
               resultFromFlorida={resultFromFlorida}
               showCards={showCards}
@@ -2355,25 +2347,6 @@ function Act(props, ref) {
                 <ButtonTabOne value={1} whichTabIsActive = {whichTabIsActive} onClick={HandleButtonTabOne}>Email One</ButtonTabOne>
                 <ButtonTabTwo value={2} whichTabIsActive = {whichTabIsActive} onClick={HandleButtonTabTwo}>Email Two</ButtonTabTwo>
               </ButtonTabWrapper>
-
-              {/* <div className="LetterTopOverlay"></div>
-              <div className="LetterSideOverlay"></div>
-              <div className="LetterSideOverlay2"></div> */}
-
-              {/* <img
-                src={results.one.image ? results.one.image : samplepic}
-                className="miniPic1"
-              />
-              <img
-                src={results.two.image ? results.two.image : samplepic}
-                className="miniPic2"
-              /> */}
-
-              {/* <div className="LetterRecipientsWrapper">
-                <h1>recipients</h1>
-                <h2 className="email1">{results.one.email}</h2>
-                <h2 className="email2">{results.two.email}</h2>
-              </div> */}
 
               <GetHeader/>
 
@@ -2404,10 +2377,6 @@ function Act(props, ref) {
                 <sub>Your Email Here</sub> <br />
               </div>
 
-
-
-
-
               <FlashError userState={props.userState}>
                 ** Please{" "}
                 <a href="#" onClick={loginFromDeadEnd}>
@@ -2419,12 +2388,11 @@ function Act(props, ref) {
                 </a>{" "}
                 to continue.
               </FlashError>
-              {/* <FlashSuccess userState={props.userState} successFlag={successFlag}>
-                Email sent!!
-              </FlashSuccess> */}
             </Letter>
+            
             <OfferOne>
               <h1>Email</h1>
+             
               <RiMailSendLine
                 style={{
                   gridArea: "2/1/3/3",
@@ -2432,19 +2400,21 @@ function Act(props, ref) {
                   margin: "20px 0 0 0",
                   width: "50px",
                   height: "50px"
-                }}/>
+                }}
+              />
 
               <BulletPoint/>
+              
               <BulletPointText>
                 email will be sent to each of your representatives on your behalf
               </BulletPointText>
+              
               <h2>Free</h2>
 
               <h4>{sendEmailsToRepFlashMsg}</h4>
 
               <SendButtonWrapper>
                 
-
                 <Button_Loading
                   
                   onClick={() => {
@@ -2474,10 +2444,6 @@ function Act(props, ref) {
                  Send Emails
                 
                 </Button_Loading>
-
-
-
-
               </SendButtonWrapper>
 
               <ReCAPTCHA
@@ -2485,8 +2451,6 @@ function Act(props, ref) {
                 onChange={onChange}
                 style={{gridArea: "7/1/8/3", background: "white", justifySelf: "center", margin: "10px 0px 20px 0px"}}
                 size="compact"
-
-
               />
 
             </OfferOne>
@@ -2538,21 +2502,10 @@ function Act(props, ref) {
 
                     });
                   }}
-
-
-
-
                 />
               </ShowOfferSection>
-
-
-
             </OfferTwo>
-
-
           </TriplePlayWrapper>
-
-
 
           <ShowLetterDeadEnd
             resultFromFlorida={resultFromFlorida}
@@ -2567,17 +2520,7 @@ function Act(props, ref) {
 
         </ResultSection>
 
-        {/* <OfferSection>
-
-
-
-        </OfferSection> */}
-
-
       </ActGrid>
-
-      
-<h1>{lastTermSearched}</h1>
 
     </ActWrapper>
   );
