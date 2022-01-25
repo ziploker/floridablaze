@@ -1991,12 +1991,15 @@ function Act(props, ref) {
 
     //LookupInputRef.current.focus();
 
-    console.log("insideRESET_SEARCh and Select is", select);
+    //console.log("insideRESET_SEARCh and Select is", select.current);
 
     console.log("insideRESET_SEARCh and LookupInputRef is", LookupInputRef);
 
-    props.executeScrollForLookupSection();
-
+    //props.executeScrollForLookupSection();
+    setTimeout(() => {
+      console.log("inTimeOut_______________________")
+      LookupInputRef.current.focus();;
+    }, 2000);
     
       
      
@@ -2269,18 +2272,18 @@ function Act(props, ref) {
                 placeholder: "Enter your zip code or address",
                 onInputChange: handleInputChange,
                 menuIsOpen: isAddressMenuOpen,
+                //onBlurResetsInput: false,
+                
                 onChange: handleAddress,
                 blurInputOnSelect: true,
                 backspaceRemovesValue: true,
                 isClearable: true,
 
-                // ref: (ref) => {
-                //   setSelect(ref);
-                // },
-
                 ref: LookupInputRef,
+
+                //ref: LookupInputRef,
                
-                onFocus: handleFocus,
+                //onFocus: handleFocus,
                 
                 
                   
