@@ -1183,6 +1183,7 @@ const Letter = styled.div`
     font-weight: 500;
     margin-top: 15px;
     grid-area: 2/1/3/2;
+    margin-left: 30px;
   }
 
   p {
@@ -1584,10 +1585,10 @@ function Act(props, ref) {
 
     if (addressObject){
 
-      console.log("ADDR IS = ", addressObject);
+      console.log("addressObject is = ", addressObject);
       handleAddressSelected();
     }else{
-      console.log("ADDR IS NADA");
+      console.log("addressObject NADA");
     }
   }, [addressObject]);
   
@@ -2054,11 +2055,11 @@ function Act(props, ref) {
 
         if(results.one.lastName != ""){
 
-          return <h3>Dear Senator {results.one.lastName} </h3>
+          return <h3>Dear Senator {results.one.lastName}, </h3>
         
         }else{
           
-          return <h3>Dear Senator {results.one.name} </h3>
+          return <h3>Dear Senator {results.one.name}, </h3>
   
         }
 
@@ -2066,11 +2067,11 @@ function Act(props, ref) {
 
         if(results.one.lastName != ""){
 
-          return <h3>Dear Representative {results.one.lastName} </h3>
+          return <h3>Dear Representative {results.one.lastName}, </h3>
         
         }else{
           
-          return <h3>Dear Representative {results.one.name} </h3>
+          return <h3>Dear Representative {results.one.name}, </h3>
 
         }  
       }else{
@@ -2084,11 +2085,11 @@ function Act(props, ref) {
 
         if(results.two.lastName != ""){
 
-          return <h3>Dear Senator {results.two.lastName} </h3>
+          return <h3>Dear Senator {results.two.lastName}, </h3>
         
         }else{
           
-          return <h3>Dear Senator {results.two.name} </h3>
+          return <h3>Dear Senator {results.two.name}, </h3>
   
         }
 
@@ -2096,11 +2097,11 @@ function Act(props, ref) {
 
         if(results.two.lastName != ""){
 
-          return <h3>Dear Representative {results.two.lastName} </h3>
+          return <h3>Dear Representative {results.two.lastName}, </h3>
         
         }else{
           
-          return <h3>Dear Representative {results.two.name} </h3>
+          return <h3>Dear Representative {results.two.name}, </h3>
 
         }  
       }else{
@@ -2194,6 +2195,12 @@ function Act(props, ref) {
 
     console.log("HANDLE_ADDRESS", v);
     setAddressObject(v);
+
+    console.log("MAIN_TEXT", v.value.structured_formatting.main_text)
+    console.log("SECONDARY_TEXT", v.value.structured_formatting.secondary_text)
+
+    setAddressLineOne(v.value.structured_formatting.main_text);
+    setAddressLineTwo(v.value.structured_formatting.secondary_text);
   }
 
   const handleInputChange = (v) => {
@@ -2417,8 +2424,9 @@ function Act(props, ref) {
 
               <div className="closing">
                 Sincerely, <br />
-                <sub>Your Name Here</sub> <br />
-                <sub>Your Email Here</sub> <br />
+                <sub>{props.userState.loggedInStatus == "LOGGED_IN" ? props.userState.user.full_name : "Your Name Here"}</sub> <br />
+                <sub>{addressLineOne}</sub> <br />
+                <sub>{addressLineTwo}</sub> <br />
               </div>
 
               <FlashError userState={props.userState}>
