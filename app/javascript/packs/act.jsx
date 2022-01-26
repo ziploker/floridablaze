@@ -2402,24 +2402,28 @@ function Act(props, ref) {
               <GetHeader/>
 
               <p>
-                I am a constituant of (
+                I am a constituent of (
                 <i>
                   <b style={{ fontSize: ".8em" }}>
                     {whichTabIsActive === 1 ? results.one.fullDistrict + " district " + results.one.district : results.two.fullDistrict + " district " + results.two.district}
                   </b>
                 </i>
-                ). I am writing on behalf of legalizing marijuana to all above the
-                age of eighteen. Marijuana is as much a recreational drug as
-                alcohol, tobacco, and even coffee. Marijuana has never had a
-                report of fatal use and the common use for medical purposes has
-                been proved and even infused into society today. Many states today
-                have legalized it's medical purposes because it has proven to help
-                certain illnesses including glaucoma, sclerosis, and cancers such
-                as breast and brain cancer. Prohibition has only cost billions of
-                dollars and studies prove that it has not affected the use of
-                marijuana, in fact it has made it cheaper and more accessible. All
-                the money used for prosecution of small offenders can be used for
-                tax revenues and ultimately save billions.
+                ) I am writing to urge you support legalizing and regulating marijuana for adults (21 and older).
+                Many other states are currently benefiting this common sense approach. <br/>
+                
+                Why is our state lagging behind ?<br/>
+                
+                Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
+                marijuana for recreational use would virtually eliminate the black market, create
+                thousands of jobs in a growing industry and bring in millions of dolors of tax
+                revenue.<br/>
+
+                As a Legislator, you are in a position where you can make a difference. 
+                Can i count on you to end marijuana prohibition.
+
+
+                
+                
               </p>
 
               <div className="closing">
