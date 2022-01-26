@@ -2405,7 +2405,7 @@ function Act(props, ref) {
                 I am a constituant of (
                 <i>
                   <b style={{ fontSize: ".8em" }}>
-                    {results.one.fullDistrict}, {results.one.fullDistrict}
+                    {whichTabIsActive === 1 ? results.one.fullDistrict + " district " + results.one.district : results.two.fullDistrict + " district " + results.two.district}
                   </b>
                 </i>
                 ). I am writing on behalf of legalizing marijuana to all above the
@@ -2424,12 +2424,12 @@ function Act(props, ref) {
 
               <div className="closing">
                 Sincerely, <br />
-                <sub>{props.userState.loggedInStatus == "LOGGED_IN" ? props.userState.user.full_name : "Your Name Here"}</sub> <br />
-                <sub>{addressLineOne}</sub> <br />
-                <sub>{addressLineTwo}</sub> <br />
+                <sub>{props.userState.loggedInStatus == "LOGGED_IN" ? props.userState.user.full_name : "[Your Name Here]"}</sub> <br />
+                <sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
+                <sub>{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}</sub> <br />
               </div>
 
-              <FlashError userState={props.userState}>
+              {/* <FlashError userState={props.userState}>
                 ** Please{" "}
                 <a href="#" onClick={loginFromDeadEnd}>
                   Login
@@ -2439,7 +2439,7 @@ function Act(props, ref) {
                   Signup
                 </a>{" "}
                 to continue.
-              </FlashError>
+              </FlashError> */}
             </Letter>
             
             <OfferOne>
