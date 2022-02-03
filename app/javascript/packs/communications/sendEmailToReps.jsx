@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const sendEmailToReps = (setIsButtonLoading, results, setSendEmailsToRepFlashMsg, recaptchaResponse) => {
+const sendEmailToReps = (setIsButtonLoading, results, setSendEmailsToRepFlashMsg, recaptchaResponse, addressLineOne, addressLineTwo) => {
     
     
     
@@ -14,7 +14,9 @@ const sendEmailToReps = (setIsButtonLoading, results, setSendEmailsToRepFlashMsg
       data: { 
         gtoken: "test_data_from_sendEmailToReps",
         ztoken: results,
-        rtoken: recaptchaResponse
+        rtoken: recaptchaResponse,
+        addressLineOne: addressLineOne,
+        addressLineTwo: addressLineTwo
         
       }
     })

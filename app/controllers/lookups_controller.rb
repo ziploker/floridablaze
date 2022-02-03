@@ -691,40 +691,47 @@ class LookupsController < ApplicationController
   
   end
 
-  def getHeader(datas)
+  def getHeader(datas, whichOne)
 
 
     puts "datas is = " + datas.inspect
 
-    # if (whichTabIsActive === 1){
+    puts "datas is whichOne = " + whichOne
+
     
-    #   if (results.one.chamber !== undefined && results.one.chamber == "Senate"){
+    
+    if datas[:"#{whichOne}"][:chamber] != "" && datas[:"#{whichOne}"][:chamber] == "Senate"
 
-    #     if(results.one.lastName != ""){
+      
+      if datas[:"#{whichOne}"][:lastName] != ""
 
-    #       return <h3>Dear Senator {results.one.lastName}, </h3>
+        return "Dear Senator " + datas[:"#{whichOne}"][:lastName]
         
-    #     }else{
+      else
           
-    #       return <h3>Dear Senator {results.one.name}, </h3>
+        return "Dear Senator " + datas[:"#{whichOne}"][:name]
   
-    #     }
+      end
 
-    #   }else if (results.one.chamber !== undefined && results.one.chamber == "House"){
+    
+    elsif datas[:"#{whichOne}"][:chamber] != "" && datas[:"#{whichOne}"][:chamber] == "House"
 
-    #     if(results.one.lastName != ""){
+      if datas[:one][:lastName] != ""
 
-    #       return <h3>Dear Representative {results.one.lastName}, </h3>
+        return "Dear Representative " + datas[:"#{whichOne}"][:lastName]
         
-    #     }else{
+      else
           
-    #       return <h3>Dear Representative {results.one.name}, </h3>
+        return "Dear Representative " + datas[:"#{whichOne}"][:name]
+  
+      end
+    
+    else
 
-    #     }  
-    #   }else{
+      return ""
 
-    #     return null
-    #   }
+    end
+    
     
     # }else if (whichTabIsActive === 2){
 
@@ -786,6 +793,8 @@ class LookupsController < ApplicationController
       resultsSentBackFromReact = params[:data][:ztoken]
       hashSentBackFromReact = params[:data][:ztoken][:hash]
       recaptchaResultsSentBackFromClientToBeChecked = params[:data][:rtoken]
+      addressLineOne = params[:data][:addressLineOne]
+      addressLineTwo = params[:data][:addressLineTwo]
 
     
       #compute new hash and compare it to original hash to make sure data hasnt been altered
@@ -817,44 +826,95 @@ class LookupsController < ApplicationController
             puts "email two is " + resultsSentBackFromReact[:two][:email]
             puts "name two is " + resultsSentBackFromReact[:two][:name]
 
-            getHeader(resultsSentBackFromReact);
+            
+            #getHeader(resultsSentBackFromReact, "one");
+            #getHeader(resultsSentBackFromReact, "two");
 
           
-          #   mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
+            mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
             
-          #   mg_client = Mailgun::Client.new mailgun_api
+            mg_client_one = Mailgun::Client.new mailgun_api
+            mg_client_two = Mailgun::Client.new mailgun_api
             
-          #   message_params =  { from: @current_user.email,
-          #     to:   'ziploker@hotmail.com',
-          #     "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
-          #     "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
-          #     subject: 'We need a more sensible approach to marijuana laws.',
-          #     html:    "
+            
+            message_params_one =  { from: 'ziploker@hotmail.com',
+              to:   'amsterdamAL@gmail.com',
+              "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+              "h:Reply-To": "ziploker@hotmail.com",
+              subject: 'We need a more sensible approach to marijuana laws.',
+              html:    "
               
-          #     <html>
-          #             <body>
-          #                 <h1> Hi #{@current_user.full_name},</h1>
+              <html>
+                      <body>
+                          <h4> #{getHeader(resultsSentBackFromReact, "one")},</h4>
                           
-          #                 <p> Thank you for registering at Floridablaze<br>
-          #                 Please navigate to the link below to activate your account<br><br>
-
+                          <p>
                           
-
-          #                 <p>Thank you,<br>
-
+                          I am a constituent of #{resultsSentBackFromReact[:one][:fullDistrict]} district #{resultsSentBackFromReact[:one][:district]}. I am writing to urge you to support legalizing and regulating marijuana for adults. Many other states are currently benefiting from this common sense approach. Why is our state lagging behind?
+                          </p>
+                          <p>
+                          Prohibition has never worked and causes an increase in unregulated sales. Legalizing marijuana for recreational use would virtually eliminate the black market, create thousands of jobs in a growing industry and bring in millions of dolars of tax revenue.
+                          </p>
+                          <p>
+                          As a Legislator, you are in a position where you can make a difference. Can i count on you to end marijuana prohibition?
+                          </p>
+                          <br/>
                           
-          #                 <em>-Floridablaze Team</em></p><br><br><br>
+                          Sincerely,<br/>
+                          #{@current_user.full_name} r<br/>
+                          #{addressLineOne}<br/>
+                          #{addressLineTwo}<br/><br/><br/>
 
-          #                 If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
+                          <h6>If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a></h6>
 
-          #             </body>
-          #         </html>"
-          # }
+                      </body>
+                  </html>"
+          }
 
-          # mg_client.send_message 'mg.floridablaze.io', message_params
 
-          # result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
-            
+
+
+
+          message_params_two =  { from: 'ziploker@hotmail.com',
+              to:   'amsterdamAL@gmail.com',
+              "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+              "h:Reply-To": "ziploker@hotmail.com",
+              subject: 'We need a more sensible approach to marijuana laws.',
+              html:    "
+              
+              <html>
+                      <body>
+                          <h4> #{getHeader(resultsSentBackFromReact, "two")},</h4>
+                          
+                          <p>
+                          
+                          I am a constituent of #{resultsSentBackFromReact[:two][:fullDistrict]} district #{resultsSentBackFromReact[:two][:district]}. I am writing to urge you to support legalizing and regulating marijuana for adults. Many other states are currently benefiting from this common sense approach. Why is our state lagging behind?
+                          </p>
+                          <p>
+                          Prohibition has never worked and causes an increase in unregulated sales. Legalizing marijuana for recreational use would virtually eliminate the black market, create thousands of jobs in a growing industry and bring in millions of dolars of tax revenue.
+                          </p>
+                          <p>
+                          As a Legislator, you are in a position where you can make a difference. Can i count on you to end marijuana prohibition?
+                          </p>
+                          <br/>
+                          
+                          Sincerely,<br/>
+                          #{@current_user.full_name} r<br/>
+                          #{addressLineOne}<br/>
+                          #{addressLineTwo}<br/><br/><br/>
+
+                          <h6>If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a></h6>
+
+                      </body>
+                  </html>"
+          }
+
+          mg_client_one.send_message 'mg.floridablaze.io', message_params_one
+          mg_client_two.send_message 'mg.floridablaze.io', message_params_two
+
+          result_one = mg_client_one.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
+          result_two = mg_client_two.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
+
             
             
             
@@ -869,7 +929,8 @@ class LookupsController < ApplicationController
             render json: {
               status: "green",
               msg: "sending emails... complete",
-              #result: result
+              result_one: result_one,
+              result_two: result_two
             }
 
           else

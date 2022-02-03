@@ -2590,7 +2590,7 @@ function Act(props, ref) {
                       setIsButtonLoading(true);
                       
                       //ajax call to rails (lookup#sendEmailsToReps)
-                      sendEmailsToReps(setIsButtonLoading, results, setSendEmailsToRepFlashMsg, recaptchaResponse);
+                      sendEmailsToReps(setIsButtonLoading, results, setSendEmailsToRepFlashMsg, recaptchaResponse, addressLineOne, addressLineTwo);
 
                     }
                   }}
