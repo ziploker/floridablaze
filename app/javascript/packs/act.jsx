@@ -22,6 +22,8 @@ import ResultCardOne from "./resultCardOne.jsx";
 import Button_Loading from "./myComponents/button_loading"
 var Spinner = require("react-spinkit");
 
+import '../../assets/stylesheets/act.scss'
+
 /////////////////////////////////////////////////////////////
 
 const formData = new FormData();
@@ -625,7 +627,7 @@ const ProgressBarzResultSection = styled.div`
   display: flex;
   grid-area: 1/1/2/-1;
   //margin: 27px 0px 18px 20px;
-  margin: 30px 0px 10px 20px;
+  margin: 30px 0px 30px 20px;
 
   padding-left: 2px;
   justify-self: center;
@@ -894,6 +896,10 @@ const CardOneWrapper = styled.div`
   grid-template-columns: 85% 15%;
   grid-template-rows: 73% 17% 10%;
 
+  border-radius: 16.4px;
+  border-left: ${props => props.whichTabIsActive == 1 ? "2px solid orange" : "2px solid #DECDD1"};
+  border-bottom: ${props => props.whichTabIsActive == 1 ? "2px solid orange" : "2px solid #DECDD1"};
+
 
 `;
 
@@ -904,7 +910,7 @@ const CardOneSub = styled.div`
   top: 3px;
   right: 3px;
   //width: 100%;
-  opacity: .8;
+  //opacity: .8;
   color:black;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -957,6 +963,12 @@ const CardTwoWrapper = styled.div`
   grid-template-columns: 85% 15%;
   grid-template-rows: 73% 17% 10%;
 
+  border-radius: 16.4px;
+
+  border-left: ${props => props.whichTabIsActive == 2 ? "2px solid orange" : "2px solid #DECDD1"};
+  border-bottom: ${props => props.whichTabIsActive == 2 ? "2px solid orange" : "2px solid #DECDD1"};
+
+
 
 `;
 
@@ -964,7 +976,7 @@ const CardTemplate = styled.img`
   grid-area: 1/1/-1/-1;
   width: 100%;
   height: 100%;
-  opacity: .8;
+  //opacity: .8;
 `;
 
 const CardPicture = styled.img`
@@ -972,8 +984,8 @@ const CardPicture = styled.img`
 
   width: 100%;
   height: 100%;
-  border-radius: 13px;
-
+  border-radius: 16px;
+  border: 1px solid white;
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url(${samplepic});
@@ -1009,9 +1021,10 @@ const ShowOfferSection = styled.div`
     grid-area: 6/1/9/6;
   }
 
-  grid-area: 5/1/6/3;
+  grid-area: 7/1/8/3;
   width: 80%;
   justify-self: center;
+  margin-top: 4px;
 
 `;
 
@@ -1019,6 +1032,8 @@ const ResultsBlurb = styled.div`
   grid-area: 3/6/5/7;
   margin-top: 25px;
   border: 1px orange solid;
+  border-radius: 13px;
+  padding: 30px;
 
 
 `;
@@ -1072,7 +1087,7 @@ const Letter = styled.div`
   //z-index: ${(props) => (props.showLetter ? "10" : "-5")};
   transition: opacity 0.4s;
 
-  .LetterTopOverlay {
+  /* .LetterTopOverlay {
     //background: #1d0a0a;
     opacity: 0.6;
     grid-area: 1/1/4/5;
@@ -1088,143 +1103,21 @@ const Letter = styled.div`
       rgba(85, 85, 85, 1) 49%,
       rgba(2, 0, 36, 0.14439772491027658) 100%
     );
-  }
-
-  .LetterSideOverlay {
-    background: #494545;
-    opacity: 0.4;
-    grid-area: 4/1/7/2;
-    margin: 0;
-    //width: 25px;
-    //border-radius: 90px;
-    justify-self: center;
-    //z-index: 1;
-  }
-
-  .LetterSideOverlay2 {
-    background: #bea2a2;
-    opacity: 0.3;
-    grid-area: 1/1/7/2;
-    margin: 0;
-    //width: 25px;
-    //border-radius: 90px;
-    justify-self: center;
-  }
-
-  /* .miniPic1 {
-    grid-area: 1/2/4/3;
-    width: 185px;
-    height: 244px;
-    //z-index: 1;
-    min-width: 52px;
-    padding: 3px;
-    border-radius: 33px;
-    //border: 1px solid black;
-    justify-self: end;
-  }
-
-  .miniPic2 {
-    grid-area: 1/3/4/4;
-    width: 185px;
-    height: 244px;
-    //z-index: 1;
-    min-width: 52px;
-    padding: 3px;
-    border-radius: 33px;
-    //border: 1px solid black;
-    justify-self: start;
   } */
+
+  
+  
+  
+  //border: 1px solid black;
+    
+  
 
   /* .LetterRecipientsWrapper {
     grid-area: 1/4/4/5;
     margin: 0;
   } */
 
-  h1 {
-    justify-self: start;
-    //font-size: .8rem;
-    //grid-area: 1/4/4/5;
-    //z-index: 1;
-    //line-height: 30px;
-    //display: inline-block;
-    margin: 10px auto 16px auto;
-    justify-self: center;
-    text-align: center;
-  }
-
-  .email1 {
-    justify-self: start;
-    //font-size: .8em;
-    font-weight: 300;
-    //grid-area: 1/4/4/5;
-    //z-index: 1;
-    //line-height: 30px;
-    //display: inline-block;
-    margin-bottom: 8px;
-    justify-self: center;
-    text-align: center;
-  }
-
-  .email2 {
-    justify-self: start;
-    //font-size: .8em;
-    font-weight: 300;
-    //grid-area: 1/4/4/5;
-    //z-index: 1;
-    //line-height: 30px;
-    //display: inline-block;
-    justify-self: center;
-    text-align: center;
-  }
-
-  h3 {
-    justify-self: start;
-    font-size: 0.8em;
-    font-weight: 500;
-    margin-top: 15px;
-    grid-area: 2/1/3/2;
-    margin-left: 30px;
-  }
-
-  p {
-
-    @media only screen and (max-width: 1000px){
-
-      padding: 0px;
-
-
-    }
-    text-indent: 2rem;
-    font-size: 0.8em;
-    font-weight: 300;
-    margin-top: 15px;
-    /* grid-area: 5/2/6/5; */
-    grid-area: 3/1/4/2;
-    padding: 0px 30px;
-    line-height: 1.8em;
-  }
-
-  div {
-    font-size: 0.9em;
-    font-weight: 300;
-    //min-height: 100px;
-  }
-
-  .closing{
-
-    @media only screen and (max-width: 1000px){
-
-      padding: 0px;
-      margin-top: 16px;
-
-
-    }
-    padding: 30px;
-    justify-self: start;
-    //grid-area: 6/2/7/5;
-    /* grid-area: 1/1/2/2 */
-    grid-area: 4/1/5/2;
-  }
+  
 `;
 
 const OfferOne = styled.div`
@@ -1232,9 +1125,15 @@ const OfferOne = styled.div`
   display: grid;
   grid-area: 1/2/2/3;
   grid-template-columns: 40px 1fr;
-  grid-template-rows: min-content min-content 80px min-content 25px min-content;
+  //grid-template-rows: min-content min-content 80px min-content 25px min-content;
+  //grid-template-rows: min-content;
+  
+  grid-template-rows: 115px 78px 1fr 1fr 100px 15px 50px 161px;
+
+
   background: white;
   justify-content: center;
+  border-radius: 13px;
 
 
   h1{
@@ -1251,20 +1150,22 @@ const OfferOne = styled.div`
 
 
   h2{
-    grid-area: 4/1/5/3;
+    grid-area: 5/1/6/3;
     justify-self: center;
-    margin: 40px 0 15px 0;
+    align-self: center;
+    //margin: 40px 0 15px 0;
 
   }
 
 
   h4{
 
-    grid-area: 5/1/6/3;
+    grid-area: 6/1/7/3;
     align-self: start;
     justify-self: center;
+    align-self: end;
     color: red;
-    font-size: .8em;
+    font-size: .6em;
   }
 
 
@@ -1277,9 +1178,12 @@ const OfferTwo = styled.div`
   display: grid;
   grid-area: 1/3/2/4;
   grid-template-columns: 40px 1fr;
-  grid-template-rows: min-content min-content 80px min-content min-content;
+  //grid-template-rows: min-content min-content 80px min-content min-content;
+  //grid-template-rows: 115px 85px 1fr 1fr 115px 200px;
+  grid-template-rows: 115px 78px 1fr 1fr 100px 15px 211px;
   background: white;
   justify-content: center;
+  border-radius: 13px;
 
 
   h1{
@@ -1296,9 +1200,10 @@ const OfferTwo = styled.div`
 
 
   h2{
-    grid-area: 4/1/5/3;
+    grid-area: 5/1/6/3;
     justify-self: center;
-    margin: 40px;
+    align-self: center;
+    //margin: 40px;
 
   }
 
@@ -1307,23 +1212,61 @@ const OfferTwo = styled.div`
 
 `;
 
-const BulletPoint = styled.div`
-  background: black;
-  border-radius: 50%;
-  width: 8px;
-  height: 8px;
-  grid-area: 3/1/4/2;
-  justify-self: center;
-  margin: 25px 0 0 0;
-`;
+
 
 const BulletPointText = styled.h3`
 
   grid-area: 3/2/4/3;
   font-size: .8em;
   justify-self: center;
-  margin: 20px 0 0 0;
+  align-self: start;
+  //margin: 20px 0 0 0;
   padding-right: 20px;
+  position: relative;
+  
+  &:before{
+
+    background: black;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    grid-area: 3/1/4/2;
+    justify-self: center;
+    //margin: 25px 0 0 0;
+    position: absolute;
+    content: "";
+    left: -20px;
+    top: 4px;
+  }
+`;
+
+
+
+const BulletPointText2 = styled.h3`
+
+  grid-area: 4/2/5/3;
+  font-size: .8em;
+  justify-self: center;
+  align-self: start;
+  //margin: 20px 0 0 0;
+  padding-right: 20px;
+  position: relative;
+  margin-top: 11px;
+
+  &:before{
+
+    background: black;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    grid-area: 3/1/4/2;
+    justify-self: center;
+    //margin: 25px 0 0 0;
+    position: absolute;
+    content: "";
+    left: -20px;
+    top: 4px;
+  }
 `;
 
 const SendButtonWrapper = styled.div`
@@ -1337,7 +1280,7 @@ const SendButtonWrapper = styled.div`
 
   }
 
-  grid-area: 6/1/7/3;
+  grid-area: 7/1/8/3;
   align-self: center;
   justify-self: center;
   //margin-right: 15px;
@@ -1429,6 +1372,148 @@ const ButtonTabWrapper = styled.div`
 
   grid-area: 1/1/2/2;
   
+
+
+`;
+
+const SubjectBox = styled.div`
+
+  width: 96%;
+  justify-self: center;
+  border: 1px solid orange;
+  position: relative;
+  height: 35px;
+  margin: 30px 0px 0px 0px;
+  
+
+    h2{
+      position: absolute;
+      font-size: .6em;
+      background-color: white;
+      left: 10px;
+      top: -10px;
+      padding: 3px 6px;
+
+    }
+
+    h3{
+
+      line-height: 35px;
+      font-size: .6em;
+      padding-left: 15px;
+      font-weight: initial;
+    }
+
+
+`;
+
+const BodyBox = styled.div`
+
+  width: 96%;
+  justify-self: center;
+  border: 1px solid orange;
+  position: relative;
+  margin: 20px 0px;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+
+  h2{
+      position: absolute;
+      font-size: .6em;
+      background-color: white;
+      left: 10px;
+      top: -10px;
+      padding: 3px 6px;
+
+    }
+
+    h1 {
+    justify-self: start;
+    //font-size: .8rem;
+    //grid-area: 1/4/4/5;
+    //z-index: 1;
+    //line-height: 30px;
+    //display: inline-block;
+    margin: 10px auto 16px auto;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .email1 {
+    justify-self: start;
+    //font-size: .8em;
+    font-weight: 300;
+    //grid-area: 1/4/4/5;
+    //z-index: 1;
+    //line-height: 30px;
+    //display: inline-block;
+    margin-bottom: 8px;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .email2 {
+    justify-self: start;
+    //font-size: .8em;
+    font-weight: 300;
+    //grid-area: 1/4/4/5;
+    //z-index: 1;
+    //line-height: 30px;
+    //display: inline-block;
+    justify-self: center;
+    text-align: center;
+  }
+
+  h3 {
+    justify-self: start;
+    font-size: 0.8em;
+    font-weight: initial;
+    margin-top: 30px;
+    grid-area: 2/1/3/2;
+    margin-left: 16px;
+  }
+
+  p {
+
+    @media only screen and (max-width: 1000px){
+
+      padding: 0px;
+
+
+    }
+    //text-indent: 2rem;
+    font-size: 0.8em;
+    font-weight: 300;
+    margin-top: 15px;
+    /* grid-area: 5/2/6/5; */
+    grid-area: 3/1/4/2;
+    padding: 0px 15px;
+    line-height: 1.8em;
+  }
+
+  div {
+    font-size: 0.9em;
+    font-weight: 300;
+    //min-height: 100px;
+  }
+
+  .closing{
+
+    @media only screen and (max-width: 1000px){
+
+      padding: 0px;
+      margin-top: 16px;
+
+
+    }
+    padding: 30px 15px;
+    justify-self: start;
+    //grid-area: 6/2/7/5;
+    /* grid-area: 1/1/2/2 */
+    grid-area: 4/1/5/2;
+  }
+
+
 
 
 `;
@@ -2340,16 +2425,16 @@ function Act(props, ref) {
 
             </ProgressBarzResultSection>
 
-            <ResultCompleteTitle>
+            {/* <ResultCompleteTitle>
 
               Results
 
-            </ResultCompleteTitle>
+            </ResultCompleteTitle> */}
           </ResultSectionInfoBox>
 
 
           <CardOne>
-            <CardOneWrapper>
+            <CardOneWrapper whichTabIsActive={whichTabIsActive}>
               <CardPicture
                 src={results.one.image ? results.one.image : ""} >
               </CardPicture>
@@ -2365,7 +2450,7 @@ function Act(props, ref) {
           </CardOne>
 
           <CardTwo>
-            <CardTwoWrapper>
+            <CardTwoWrapper whichTabIsActive={whichTabIsActive} >
               <CardPicture
                 src={results.two.image ? results.two.image : ""}>
               </CardPicture>
@@ -2399,51 +2484,66 @@ function Act(props, ref) {
                 <ButtonTabTwo value={2} whichTabIsActive = {whichTabIsActive} onClick={HandleButtonTabTwo}>Email Two</ButtonTabTwo>
               </ButtonTabWrapper>
 
-              <GetHeader/>
+              <SubjectBox>
+                <h2>subject</h2>
+                <h3>We need a more sensible approach to marijuana laws.</h3>
 
-              <p>
-                I am a constituent of (
-                <i>
-                  <b style={{ fontSize: ".8em" }}>
-                    {whichTabIsActive === 1 ? results.one.fullDistrict + " district " + results.one.district : results.two.fullDistrict + " district " + results.two.district}
-                  </b>
-                </i>
-                ) I am writing to urge you support legalizing and regulating marijuana for adults (21 and older).
-                Many other states are currently benefiting this common sense approach. <br/>
-                
-                Why is our state lagging behind ?<br/>
-                
-                Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
-                marijuana for recreational use would virtually eliminate the black market, create
-                thousands of jobs in a growing industry and bring in millions of dolors of tax
-                revenue.<br/>
+              </SubjectBox>
 
-                As a Legislator, you are in a position where you can make a difference. 
-                Can i count on you to end marijuana prohibition.
+              <BodyBox>
+
+                <h2>body</h2>
+
+                <GetHeader/>
+
+                <p>
+                  I am a constituent of (
+                  <i>
+                   
+                      {whichTabIsActive === 1 ? results.one.fullDistrict + " district " + results.one.district : results.two.fullDistrict + " district " + results.two.district}
+                   
+                  </i>
+                  ). I am writing to urge you to support legalizing and regulating marijuana for adults.
+                  Many other states are currently benefiting from this common sense approach. 
+                  Why is our state lagging behind?
+
+                  </p>
+                  <p>
+                  
+                  Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
+                  marijuana for recreational use would virtually eliminate the black market, create
+                  thousands of jobs in a growing industry and bring in millions of dolars of tax
+                  revenue.
+                  </p>
+                  <p>
+
+                  As a Legislator, you are in a position where you can make a difference. 
+                  Can i count on you to end marijuana prohibition?
 
 
-                
-                
-              </p>
+                  
+                  
+                </p>
 
-              <div className="closing">
-                Sincerely, <br />
-                <sub>{props.userState.loggedInStatus == "LOGGED_IN" ? props.userState.user.full_name : "[Your Name Here]"}</sub> <br />
-                <sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
-                <sub>{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}</sub> <br />
-              </div>
+                <div className="closing">
+                  Sincerely, <br />
+                  <sub>{props.userState.loggedInStatus == "LOGGED_IN" ? props.userState.user.full_name : "[Your Name Here]"}</sub> <br />
+                  <sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
+                  <sub>{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}</sub> <br />
+                </div>
 
-              {/* <FlashError userState={props.userState}>
-                ** Please{" "}
-                <a href="#" onClick={loginFromDeadEnd}>
-                  Login
-                </a>{" "}
-                or{" "}
-                <a href="#" onClick={props.executeScrollForSection2}>
-                  Signup
-                </a>{" "}
-                to continue.
-              </FlashError> */}
+                {/* <FlashError userState={props.userState}>
+                  ** Please{" "}
+                  <a href="#" onClick={loginFromDeadEnd}>
+                    Login
+                  </a>{" "}
+                  or{" "}
+                  <a href="#" onClick={props.executeScrollForSection2}>
+                    Signup
+                  </a>{" "}
+                  to continue.
+                </FlashError> */}
+              </BodyBox>
             </Letter>
             
             <OfferOne>
@@ -2453,23 +2553,30 @@ function Act(props, ref) {
                 style={{
                   gridArea: "2/1/3/3",
                   justifySelf: "center",
-                  margin: "20px 0 0 0",
-                  width: "50px",
-                  height: "50px"
+                  alignSelf: "start",
+                  
+                  width: "40px",
+                  height: "40px"
                 }}
               />
 
-              <BulletPoint/>
+             
               
               <BulletPointText>
-                email will be sent to each of your representatives on your behalf
+                Personalized email will be sent to each of your representatives.
               </BulletPointText>
+
+              <BulletPointText2>
+                Email will look exacly like it's being sent from you.
+              </BulletPointText2>
               
               <h2>Free</h2>
 
               <h4>{sendEmailsToRepFlashMsg}</h4>
 
               <SendButtonWrapper>
+
+              
                 
                 <Button_Loading
                   
@@ -2496,8 +2603,29 @@ function Act(props, ref) {
 
                   
                 >
+
+                  <div style={{position: "relative"}}>
+
+                  <RiMailSendLine
+                    style={{
+                      //gridArea: "2/1/3/3",
+                      justifySelf: "center",
+                      alignSelf: "start",
+                      position: "absolute",
+                      width: "15px",
+                      height: "15px",
+                      top: "-6.7px",
+                      left: "25px"
+                      
+                    }}
+                  />
+
+                    <span style={{margin: "0 auto", margin: "0px auto 0px 10px"}}> Send Emails</span>
+                  </div>
+
+                  
                  
-                 Send Emails
+                 
                 
                 </Button_Loading>
               </SendButtonWrapper>
@@ -2505,7 +2633,7 @@ function Act(props, ref) {
               <ReCAPTCHA
                 sitekey="6LdE3NgdAAAAADcnYdc8T-d61yIGGVCwNl3sdfc6"
                 onChange={onChange}
-                style={{gridArea: "7/1/8/3", background: "white", justifySelf: "center", margin: "10px 0px 20px 0px"}}
+                className="testClass"
                 size="compact"
               />
 
@@ -2517,16 +2645,22 @@ function Act(props, ref) {
                 style={{
                   gridArea: "2/1/3/3",
                   justifySelf: "center",
-                  margin: "24px 0 0 0",
+                  alignSelf: "start",
+                  
                   width: "45px",
                   height: "45px"
                 }}/>
 
-              <BulletPoint/>
+              
               <BulletPointText>
                 a printed letter will be mailed to each of your representatives
-                via United States Postal Service
+                via United States Postal Service.
               </BulletPointText>
+
+             
+              <BulletPointText2>
+                most effective way to get your point across.
+              </BulletPointText2>
               <h2>$2.99</h2>
 
               <ShowOfferSection>

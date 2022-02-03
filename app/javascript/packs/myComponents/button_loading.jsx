@@ -5,7 +5,7 @@ import styled, { keyframes } from "styled-components";
 const buttonWidth = "157.8px";
 
 const blue =  "#0076d3";
-const orange = "#ffc439";
+const orange = "#F2BA36";
 const textLight= "#fefefe";
 
 
@@ -52,9 +52,9 @@ const StyledLoadingButton = styled.button`
   line-height: 0;
   color: black;
   margin: 0 5px 0px 0px;
-  background: $btn-bg;
+  background: #ffc439;
   //color: $text-light;
-  font-size: 1.1em;
+  font-size: .9em;
   padding: 1em;
   border-radius: 4px;
   text-align: center;
@@ -64,10 +64,16 @@ const StyledLoadingButton = styled.button`
   -webkit-appearance: none;
   border: 10;
   transition: border-radius linear 0.05s, width linear 0.05s;
+  border: 0px;
 
 
   &:focus{
     outline: 0;
+  }
+
+  &:hover{
+
+    background-color: #F2BA36;
   }
 
 

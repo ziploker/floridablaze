@@ -691,6 +691,78 @@ class LookupsController < ApplicationController
   
   end
 
+  def getHeader(datas)
+
+
+    puts "datas is = " + datas.inspect
+
+    # if (whichTabIsActive === 1){
+    
+    #   if (results.one.chamber !== undefined && results.one.chamber == "Senate"){
+
+    #     if(results.one.lastName != ""){
+
+    #       return <h3>Dear Senator {results.one.lastName}, </h3>
+        
+    #     }else{
+          
+    #       return <h3>Dear Senator {results.one.name}, </h3>
+  
+    #     }
+
+    #   }else if (results.one.chamber !== undefined && results.one.chamber == "House"){
+
+    #     if(results.one.lastName != ""){
+
+    #       return <h3>Dear Representative {results.one.lastName}, </h3>
+        
+    #     }else{
+          
+    #       return <h3>Dear Representative {results.one.name}, </h3>
+
+    #     }  
+    #   }else{
+
+    #     return null
+    #   }
+    
+    # }else if (whichTabIsActive === 2){
+
+    #   if (results.two.chamber !== undefined && results.two.chamber == "Senate"){
+
+    #     if(results.two.lastName != ""){
+
+    #       return <h3>Dear Senator {results.two.lastName}, </h3>
+        
+    #     }else{
+          
+    #       return <h3>Dear Senator {results.two.name}, </h3>
+  
+    #     }
+
+    #   }else if (results.two.chamber !== undefined && results.two.chamber == "House"){
+
+    #     if(results.two.lastName != ""){
+
+    #       return <h3>Dear Representative {results.two.lastName}, </h3>
+        
+    #     }else{
+          
+    #       return <h3>Dear Representative {results.two.name}, </h3>
+
+    #     }  
+    #   }else{
+
+    #     return null
+    #   }
+    # }else{
+    #   return null
+    # }
+    
+
+
+
+  end
  
   
   
@@ -745,7 +817,7 @@ class LookupsController < ApplicationController
             puts "email two is " + resultsSentBackFromReact[:two][:email]
             puts "name two is " + resultsSentBackFromReact[:two][:name]
 
-
+            getHeader(resultsSentBackFromReact);
 
           
           #   mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
@@ -756,7 +828,7 @@ class LookupsController < ApplicationController
           #     to:   'ziploker@hotmail.com',
           #     "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
           #     "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
-          #     subject: 'Tesing email message from floridablaze.io',
+          #     subject: 'We need a more sensible approach to marijuana laws.',
           #     html:    "
               
           #     <html>
