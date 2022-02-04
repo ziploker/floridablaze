@@ -102,12 +102,12 @@ const ActGrid = styled.div`
 
   } */
 
-  @media only screen and (max-width: 750px){
+  /* @media only screen and (max-width: 750px){
 
     justify-items: start;
 
 
-  }
+  } */
 
   //overflow: hidden;
   //display: grid;
@@ -553,18 +553,29 @@ const Span = styled.span`
 const ResultSection = styled.div`
 
 
-  @media only screen and (max-width: 750px){
+  @media only screen and (max-width: 1000px){
 
     grid-area: 1/1/-1/-1;
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
-    grid-template-columns: minmax(10px, 1fr) minmax(100px, 150px) minmax(8px, 16px) minmax(100px, 150px) minmax(10px, 1fr);
+    grid-template-columns: minmax(10px, 1fr) minmax(100px, 150px) minmax(4px, 8px) minmax(100px, 150px) minmax(min-content, max-content) minmax(10px, 1fr);
 
     width: 100vw;
 
     //max-width: 70vw;
 
   }
+
+
+  @media only screen and (max-width: 720px){
+
+    
+    grid-template-columns: minmax(10px, 1fr) minmax(100px, 150px) minmax(4px, 8px) minmax(100px, 150px) minmax(10px, 1fr);
+
+
+  }
+
+  
 
   display: grid;
   transition: opacity 0.4s;
@@ -573,7 +584,7 @@ const ResultSection = styled.div`
     props.showCards ? "translate(0)" : "transform:translate(9999px)"};
   opacity: ${(props) => (props.showCards ? "1" : "0")};
   z-index: ${(props) => (props.showCards ? "10" : "-5")};
-  grid-template-columns: minmax(10px, 1fr) minmax(150px, 200px) minmax(4px,8px) minmax(150px, 200px) minmax(16px, 32px) minmax(350px,670px) minmax(10px, 1fr);
+  grid-template-columns: minmax(10px, 1fr) minmax(150px, 200px) minmax(4px,8px) minmax(150px, 200px) minmax(4px,8px) minmax(350px,670px) minmax(10px, 1fr);
   grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content,max-content) minmax(min-content, max-content);
   //visibility: hidden;
   //grid-template-rows: ${(props) => props.showCards ? "minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) 1fr": "0px 0px 0px 0px 0px"};
@@ -593,20 +604,21 @@ const ResultSection = styled.div`
 
 const ResultSectionInfoBox = styled.div`
 
-  @media only screen and (max-width: 750px){
+  /* @media only screen and (max-width: 750px){
 
     grid-area: 1/1/2/6;
 
 
 
 
-  }
+  } */
 
   display: grid;
 
   grid-template-columns: auto min-content auto;
   //grid-template-rows: 1fr min-content 1fr;
-  grid-area: 1/2/2/7;
+  //grid-area: 1/2/2/6;
+  grid-area: 1/1/2/-1;
   //height: 200px;
 `;
 
@@ -647,11 +659,11 @@ const ResultCompleteTitle = styled.h1`
 const ResultSectionBulletPointWrapperSet = styled.div`
 
 
-@media only screen and (max-width: 750px){
+/* @media only screen and (max-width: 750px){
 
   margin: 0 auto;
 
-  }
+  } */
 
   grid-area: 3/2/6/3;
   display: grid;
@@ -712,13 +724,13 @@ const ResultSectionBulletPointTitle = styled.h2`
 
 const ResultSectionSpacerLine = styled.div`
 
-@media only screen and (max-width: 750px){
+/* @media only screen and (max-width: 750px){
 
   margin: 25px 0 45px 0;
 
 
 
-}
+} */
 
   height: 1px;
   //width: 100vw;
@@ -732,14 +744,14 @@ const ResultSectionSpacerLine = styled.div`
 
 const ResultSectionHeaders = styled.h1`
 
-  @media only screen and (max-width: 750px){
+  /* @media only screen and (max-width: 750px){
 
     grid-area: ${props => props.gridAreaTablet};
     //font-size: 8vw;
     margin: 10px 0px 20px 0px;
 
 
-  }
+  } */
 
 
   display: flex;
@@ -786,14 +798,14 @@ const ResultSectionHeaders = styled.h1`
 
 const ResultSectionHeadersAlt = styled.div`
 
-  @media only screen and (max-width: 750px){
+  /* @media only screen and (max-width: 750px){
 
     grid-area: ${props => props.gridAreaTablet};
     //font-size: 8vw;
     //margin: 50px 0px 0px 0px;
 
 
-  }
+  } */
 
   display: ${(props) =>
     props.showCards && props.resultFromFlorida == "true" ? "flex" : "none"};
@@ -825,12 +837,12 @@ const ResultSectionHeadersAlt = styled.div`
 
 const ResultSectionSubHeader = styled.h2`
 
-  @media only screen and (max-width: 750px){
+  /* @media only screen and (max-width: 750px){
 
     font-size: 4vw;
 
 
-  }
+  } */
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
@@ -866,7 +878,7 @@ const CardOne = styled.div`
   //grid-template-rows: 73% 17% 10%;
   margin-top: 25px;
 
-  grid-area: 3/2/4/3;
+  grid-area: 2/2/3/3;
 
   width: 100%;
 
@@ -875,12 +887,12 @@ const CardOne = styled.div`
 
   padding-top: calc(310/220*100%);
 
-  @media only screen and (max-width: 750px){
-    grid-area: 4/2/5/3;
-    justify-self: start;
+  @media only screen and (max-width: 720px){
+    grid-area: 3/2/4/3;
+    /* justify-self: start;
     padding-top: calc(310/220*100%);
     height: 0px;
-    width: 100%;
+    width: 100%; */
   }
 `;
 
@@ -935,19 +947,27 @@ const CardTwo = styled.div`
   position: relative;
 
   margin-top: 25px;
-  grid-area: 3/4/4/5;
+  grid-area: 2/4/3/5;
 
   justify-self: end;
   height: 0px;
   padding-top: calc(310/220*100%);
   width: 100%;
 
-  @media only screen and (max-width: 750px){
+  /* @media only screen and (max-width: 750px){
     grid-area: 4/4/5/5;
     justify-self: start;
     padding-top: calc(310/220*100%);
     height: 0px;
     width: 100%;
+  } */
+
+  @media only screen and (max-width: 720px){
+    grid-area: 3/4/4/5;
+    /* justify-self: start;
+    padding-top: calc(310/220*100%);
+    height: 0px;
+    width: 100%; */
   }
 `;
 
@@ -1016,24 +1036,45 @@ const CardNameOfRep = styled.h1`
 
 const ShowOfferSection = styled.div`
 
-  @media only screen and (max-width: 750px){
+  /* @media only screen and (max-width: 750px){
 
     grid-area: 6/1/9/6;
-  }
+  } */
 
   grid-area: 7/1/8/3;
   width: 80%;
   justify-self: center;
   margin-top: 4px;
 
+  div{
+
+    div{
+      min-width: 100px !important;
+    }
+  }
+
 `;
 
 const ResultsBlurb = styled.div`
-  grid-area: 3/6/5/7;
-  margin-top: 25px;
+  grid-area: 2/6/3/7;
+  //margin: 25px;
   border: 1px orange solid;
   border-radius: 13px;
   padding: 30px;
+  margin-top: 24px;
+
+  @media only screen and (max-width: 1000px){
+
+    grid-area: 2/5/3/6;
+    margin: 10px 0px 0px 16px;
+  } 
+
+  @media only screen and (max-width: 720px){
+
+    
+    grid-area: 2/1/3/6;
+    margin: 10px 16px 0px 16px;
+  } 
 
 
 `;
@@ -1042,32 +1083,61 @@ const TriplePlayWrapper = styled.div`
 
   display: ${(props) =>
     props.showCards == true && props.resultFromFlorida == "true" ? "grid" : "none"};
-  //grid-area: 1/2/7/4;
-  //grid-area: 4/6/8/7;
-  grid-area: 5/2/6/7;
+  
+  grid-area: 3/2/4/7;
   width: 100%;
   margin-top: 30px;
   display: grid;
   grid-template-columns: 50% 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 5px;
+
+  @media only screen and (max-width: 1000px){
+
+    grid-template-columns: 1fr 1fr;
+    grid-area: 3/2/4/6;
+    max-width: 777px;
+
+  }
+
+  @media only screen and (max-width: 720px){
+
+    
+    grid-area: 4/1/5/6;
+    
+
+  }
 
 `;
 
 const Letter = styled.div`
 
 
-  @media only screen and (max-width: 750px){
+  @media only screen and (max-width: 1000px){
 
-    grid-area: 6/1/9/6;
+    grid-area: 1/1/2/3;
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
-    grid-template-columns: auto;
-    width: 100%;
-    min-width: inherit;
-    margin-top: 20px;
+    //grid-template-columns: auto;
+    //width: 100%;
+    //min-width: inherit;
+    //margin-top: 20px;
     justify-self: center;
 
   }
+
+
+  /* @media only screen and (max-width: 720px){
+
+    grid-area: 4/2/5/6;
+    //margin: 0px auto;
+    //padding: 0px 15px 32px 15px;
+    //grid-template-columns: auto;
+    //width: 100%;
+    //min-width: inherit;
+    //margin-top: 20px;
+    justify-self: center;
+
+  } */
 
   display: grid;
   //min-width: 400px;
@@ -1122,6 +1192,19 @@ const Letter = styled.div`
 
 const OfferOne = styled.div`
 
+  @media only screen and (max-width: 1000px){
+
+    grid-area: 2/1/3/2;
+    //margin: 0px auto;
+    //padding: 0px 15px 32px 15px;
+    //grid-template-columns: auto;
+    //width: 100%;
+    //min-width: inherit;
+    //margin-top: 20px;
+    justify-self: end;
+
+  }
+
   display: grid;
   grid-area: 1/2/2/3;
   grid-template-columns: 40px 1fr;
@@ -1129,7 +1212,7 @@ const OfferOne = styled.div`
   //grid-template-rows: min-content;
   
   grid-template-rows: 115px 78px 1fr 1fr 100px 15px 50px 161px;
-
+  max-width: 270px;
 
   background: white;
   justify-content: center;
@@ -1175,6 +1258,19 @@ const OfferOne = styled.div`
 
 const OfferTwo = styled.div`
 
+  @media only screen and (max-width: 1000px){
+
+    grid-area: 2/2/3/3;
+    //margin: 0px auto;
+    //padding: 0px 15px 32px 15px;
+    //grid-template-columns: auto;
+    //width: 100%;
+    //min-width: inherit;
+    //margin-top: 20px;
+    justify-self: start;
+
+  }
+
   display: grid;
   grid-area: 1/3/2/4;
   grid-template-columns: 40px 1fr;
@@ -1184,7 +1280,7 @@ const OfferTwo = styled.div`
   background: white;
   justify-content: center;
   border-radius: 13px;
-
+  max-width: 270px;
 
   h1{
 
@@ -1271,14 +1367,14 @@ const BulletPointText2 = styled.h3`
 
 const SendButtonWrapper = styled.div`
 
-  @media only screen and (max-width: 400px){
+  /* @media only screen and (max-width: 400px){
     grid-area: 7/2/8/5;
     align-self: center;
     justify-self: center;
     margin: 16px 0px;
     
 
-  }
+  } */
 
   grid-area: 7/1/8/3;
   align-self: center;
@@ -1372,6 +1468,59 @@ const ButtonTabWrapper = styled.div`
 
   grid-area: 1/1/2/2;
   
+
+
+`;
+
+const ButtonTabOne = styled.button`
+
+
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: ${(props) => props.whichTabIsActive === 1 ? "#ccc" : "#f1f1f1"};
+
+  
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 6px 16px;
+  transition: 0.3s;
+  font-size: 13px;
+  border-top-left-radius: 13px;
+
+  &:hover{
+    
+    background-color: ${(props) => props.whichTabIsActive === 1 ? "#ccc" : "#ddd"};;
+  }
+
+
+  //background-color: #ccc;
+`;
+
+const ButtonTabTwo = styled.button`
+
+
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: ${(props) => props.whichTabIsActive === 2 ? "#ccc" : "#f1f1f1"};
+
+
+  
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 6px 16px;
+  transition: 0.3s;
+  font-size: 13px;
+  border-bottom-right-radius: 13px;
+  &:hover{
+    
+    background-color: ${(props) => props.whichTabIsActive === 2 ? "#ccc" : "#ddd"};;
+  }
+
+  //background-color: #ccc;
 
 
 `;
@@ -1475,12 +1624,12 @@ const BodyBox = styled.div`
 
   p {
 
-    @media only screen and (max-width: 1000px){
+    /* @media only screen and (max-width: 1000px){
 
       padding: 0px;
 
 
-    }
+    } */
     //text-indent: 2rem;
     font-size: 0.8em;
     font-weight: 300;
@@ -1499,13 +1648,13 @@ const BodyBox = styled.div`
 
   .closing{
 
-    @media only screen and (max-width: 1000px){
+    /* @media only screen and (max-width: 1000px){
 
       padding: 0px;
       margin-top: 16px;
 
 
-    }
+    } */
     padding: 30px 15px;
     justify-self: start;
     //grid-area: 6/2/7/5;
@@ -1518,58 +1667,7 @@ const BodyBox = styled.div`
 
 `;
 
-const ButtonTabOne = styled.button`
 
-
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: ${(props) => props.whichTabIsActive === 1 ? "#ccc" : "#f1f1f1"};
-
-  
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-  border-top-left-radius: 13px;
-
-  &:hover{
-    
-    background-color: ${(props) => props.whichTabIsActive === 1 ? "#ccc" : "#ddd"};;
-  }
-
-
-  //background-color: #ccc;
-`;
-
-const ButtonTabTwo = styled.button`
-
-
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: ${(props) => props.whichTabIsActive === 2 ? "#ccc" : "#f1f1f1"};
-
-
-  
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-  border-bottom-right-radius: 13px;
-  &:hover{
-    
-    background-color: ${(props) => props.whichTabIsActive === 2 ? "#ccc" : "#ddd"};;
-  }
-
-  //background-color: #ccc;
-
-
-`;
 
 const handleKeyDown = (event) => {
 
@@ -1604,7 +1702,7 @@ function Act(props, ref) {
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [firstSuggestedAddress, setFirstSuggestedAddress] = React.useState('')
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(false);
+  const [showCards, setShowCards] = React.useState(true);
   //const [showLetter, setShowLetter] = React.useState(false);
   //const [showOffer, setShowOffer] = React.useState(true);
   const [addressLineOne, setAddressLineOne] = React.useState("");
@@ -1626,40 +1724,40 @@ function Act(props, ref) {
   const [showLoader, setShowLoader] = React.useState(false);
 
   const [isAddressMenuOpen, setIsAddressMenuOpen] = React.useState(false);
-  // const [results, setResults] = React.useState({
-  //   one: {
-  //     resultFromFlorida: "true",
-  //     name: "Juan Alfonso Fernandez-Barquin",
-  //     firstName: "",
-  //     lastName: "",
-  //     image:
-  //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
-  //     id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
-  //     email: "JuanF.Barquin@myfloridahouse.gov",
-  //     chamber: "House",
-  //     party: "Republican",
-  //     parent: "Florida Legislature",
-  //     district: "119",
-  //     fullDistrict: "Florida State House district 119",
-  //     fullDistrictTrunk: "Florida State House",
-  //   },
-  //   two: {
-  //     name: "Annette Taddeo",
-  //     firstName: "Annette",
-  //     lastName: "Taddeo",
-  //     image:
-  //       "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
-  //     id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
-  //     email: "taddeo.annette.web@flsenate.gov",
-  //     chamber: "Senate",
-  //     party: "Democrat",
-  //     parent: "Florida Legislature",
-  //     district: "40",
-  //     fullDistrict: "Florida State Senate  ",
-  //     fullDistrictTrunk: "Florida State Senate",
-  //   },
-  // });
-  const [results, setResults] = React.useState( {"one": {}, "two": {} });
+  const [results, setResults] = React.useState({
+    one: {
+      resultFromFlorida: "true",
+      name: "Juan Alfonso Fernandez-Barquin",
+      firstName: "",
+      lastName: "",
+      image:
+        "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
+      id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
+      email: "JuanF.Barquin@myfloridahouse.gov",
+      chamber: "House",
+      party: "Republican",
+      parent: "Florida Legislature",
+      district: "119",
+      fullDistrict: "Florida State House district 119",
+      fullDistrictTrunk: "Florida State House",
+    },
+    two: {
+      name: "Annette Taddeo",
+      firstName: "Annette",
+      lastName: "Taddeo",
+      image:
+        "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
+      id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
+      email: "taddeo.annette.web@flsenate.gov",
+      chamber: "Senate",
+      party: "Democrat",
+      parent: "Florida Legislature",
+      district: "40",
+      fullDistrict: "Florida State Senate  ",
+      fullDistrictTrunk: "Florida State Senate",
+    },
+  });
+  //const [results, setResults] = React.useState( {"one": {}, "two": {} });
 
   ///////////////////////////////////////////////////////////////
   
@@ -2604,23 +2702,32 @@ function Act(props, ref) {
                   
                 >
 
-                  <div style={{position: "relative"}}>
+                  <div style={{
+                    //position: "relative",
+                    //display: "grid",
+                    //gridTemplateColumns: "1fr 3fr",
+                    height: "100%",
+                    width: "100%"
+                    
+                  }}>
 
                   <RiMailSendLine
                     style={{
                       //gridArea: "2/1/3/3",
-                      justifySelf: "center",
-                      alignSelf: "start",
-                      position: "absolute",
+                      ////justifySelf: "end",
+                      ////alignSelf: "center",
+                      //position: "absolute",
                       width: "15px",
                       height: "15px",
-                      top: "-6.7px",
-                      left: "25px"
+                      transform: "translate(-6px, 2px)",
+                      //top: "-6.7px",
+                      //left: "25px",
+                      ////gridArea: "1/1/2/2"
                       
                     }}
                   />
 
-                    <span style={{margin: "0 auto", margin: "0px auto 0px 10px"}}> Send Emails</span>
+                    <span style={{}}> Send Emails</span>
                   </div>
 
                   
