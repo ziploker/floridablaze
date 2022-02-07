@@ -2454,7 +2454,8 @@ function Act(props, ref) {
                   control: provided => ({
                     ...provided,
                     borderRadius: "8px"
-                  })
+                  }),
+                  zIndex: "9999"
                 },
                 // key: `my_unique_select_key__${JSON.stringify(value)}`,
                 // thc: `my_unique_select_key__${JSON.stringify(value)}`,
@@ -2474,7 +2475,7 @@ function Act(props, ref) {
                 //ref: LookupInputRef,
                
                 //onFocus: handleFocus,
-                
+                menuPortalTarget: document.querySelector('body')
                 
                   
                 

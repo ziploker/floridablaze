@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import headerLeaf from "../../assets/images/headerLeafv2.png"
 import headerLogo from '../../assets/images/leafTripple.png'
 //import headerLogo from '../../assets/images/logo.png'
-import newLeaf from '../../assets/images/logoDiff4.png'
+import newLeaf from '../../assets/images/mainLogo.png'
 
 import Burger from './burger'
 import SideMenu from './sidemenu'
@@ -22,7 +22,7 @@ const HeaderWrapper = styled.div`
     min-height: 85px;
     min-width: 80vw; */
 
-    @media only screen and (max-width: 575px){
+    @media only screen and (max-width: 500px){
         
         min-width: 0px;     
 
@@ -33,7 +33,7 @@ const HeaderWrapper = styled.div`
     //margin: 0 20px;
     min-width: 500px;
     max-width: 3000px;
-    margin: 0 auto;
+    margin: 10px auto 0px auto;
     //overflow: ${props => props.openSideMenu ? "visible" : "hidden"};
     
     //position: relative;
@@ -41,7 +41,9 @@ const HeaderWrapper = styled.div`
     display: grid;
     //grid-template-columns: minmax(95px, 20vw) minmax(400px, 80vw);
 
-    grid-template-columns: minmax(0px, 150px) 1fr minmax(0px, 800px) 1fr;
+    /* grid-template-columns: minmax(0px, 150px) 1fr minmax(0px, 800px) 1fr; */
+
+    grid-template-columns: min-content 1fr minmax(100px, max-content);
     
     //grid-template-columns: 1fr minmax(0px, 15vw) minmax(0px, 82.100vw) 1fr;
 
@@ -49,7 +51,7 @@ const HeaderWrapper = styled.div`
     grid-template-rows: 85px;
     grid-template-areas:
 
-        "headerLogo headerLogo headerLeaf headerLeaf";
+        "headerLogo . headerLeaf ";
         
     grid-gap: 8px;
 `;
@@ -73,6 +75,7 @@ const Logo = styled.img`
     line-height: 144px;
     letter-spacing: -5px;
     color: #010101;
+    grid-area: headerLogo;
     
 
     
@@ -81,8 +84,9 @@ const Logo = styled.img`
     
     
     height: 100%;
-    
-    margin-left: 40px;
+    width: 100px;
+    padding: 15px;
+    //margin-left: 40px;
 
     
 `;
@@ -91,25 +95,27 @@ const Logo = styled.img`
 const HeaderLeafImage = styled.img`
 
 
-    @media only screen and (max-width: 575px){
+    @media only screen and (max-width: 500px){
         
         //display: none; 
-        margin-right: -100px;    
+        margin-right: -90px;    
         //min-width: 475px;
 
     }
 
-    @media only screen and (max-width: 420px){
+    /* @media only screen and (max-width: 420px){
         
         //display: none; 
         margin-right: -150px;    
         //min-width: 475px;
 
-    }
-    max-width: 95%;
-    min-width: 350px;
-    max-height: 85px;
+    } */
+    //max-width: 95%;
+    min-width: 400px;
     
+    max-height: 100%;
+    
+    max-width: 95%;     
     
     grid-area: headerLeaf;
     justify-self: end;
@@ -127,7 +133,7 @@ const SideMenuWrapper = styled.div`
 
 const Nav = styled.nav`
 
-    @media only screen and (max-width: 575px){
+    @media only screen and (max-width: 500px){
         
         display: none;     
 
