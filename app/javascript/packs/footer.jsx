@@ -42,7 +42,7 @@ const FooterWrapper = styled.div`
     //height: 350px;
 
     //z-index: 4;
-
+    z-index: -1;
     
 
 `;

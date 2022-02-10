@@ -1034,15 +1034,11 @@ const CardNameOfRep = styled.h1`
   user-select: none;
 `;
 
-const ShowOfferSection = styled.div`
+const ShowOfferSectionWrapper = styled.div`
 
-  /* @media only screen and (max-width: 750px){
 
-    grid-area: 6/1/9/6;
-  } */
-
-  grid-area: 7/1/8/3;
-  width: 80%;
+grid-area: 7/1/8/3;
+  width: 100%;
   justify-self: center;
   margin-top: 4px;
 
@@ -1052,6 +1048,39 @@ const ShowOfferSection = styled.div`
       min-width: 100px !important;
     }
   }
+
+
+
+position: relative;
+
+
+`;
+
+const ShowOfferSection = styled.div`
+
+  /* @media only screen and (max-width: 750px){
+
+    grid-area: 6/1/9/6;
+  } */
+
+  /* grid-area: 7/1/8/3;
+  width: 80%;
+  justify-self: center;
+  margin-top: 4px;
+
+  div{
+
+    div{
+      min-width: 100px !important;
+    }
+  } */
+
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 0px 10% 0px 10%;
+  background-color: white;
 
 `;
 
@@ -2770,38 +2799,41 @@ function Act(props, ref) {
                 most effective way to get your point across.
               </BulletPointText2>
               <h2>$2.99</h2>
-
-              <ShowOfferSection>
-                <PayPalButtons
-                  style={{"layout":"vertical"}}
-                  createOrder={(data, actions) => {
-                    return actions.order.create({
-                        purchase_units: [
-                            {
-                                amount: {
-                                    value: "2.99",
-                                }
-                            }
-                        ]
-                    });
-                  }}
-                  onApprove={(data, actions) => {
-                    return actions.order.capture().then((details) => {
-                        const name = details.payer.name.given_name;
-                        alert(`Transaction completed by ${name}`);
-                        console.log("STATUS = " + details.status)
-                        console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
-                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
-                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
-                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
-                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
-                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
-                        console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
-
-                    });
-                  }}
-                />
-              </ShowOfferSection>
+              
+              <ShowOfferSectionWrapper>
+                <ShowOfferSection>
+                  <PayPalButtons
+                    style={{"layout":"vertical"}}
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                          purchase_units: [
+                              {
+                                  amount: {
+                                      value: "2.99",
+                                  }
+                              }
+                          ]
+                      });
+                    }}
+                    onApprove={(data, actions) => {
+                      
+                      return actions.order.capture().then((details) => {
+                          const name = details.payer.name.given_name;
+                          alert(`Transaction completed by ${name}`);
+                          console.log("STATUS = " + details.status)
+                          console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
+                          console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
+                          console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
+                          console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
+                          console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
+                          console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
+                          console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
+                          console.log("DATA", data)
+                      });
+                    }}
+                  />
+                </ShowOfferSection>
+              </ShowOfferSectionWrapper>
             </OfferTwo>
           </TriplePlayWrapper>
 

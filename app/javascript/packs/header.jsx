@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import headerLeaf from "../../assets/images/headerLeafv2.png"
 import headerLogo from '../../assets/images/leafTripple.png'
 //import headerLogo from '../../assets/images/logo.png'
-import newLeaf from '../../assets/images/mainLogo.png'
+import newLeaf from '../../assets/images/mainLogo2.png'
 
 import Burger from './burger'
 import SideMenu from './sidemenu'

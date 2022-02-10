@@ -131,7 +131,7 @@ const SignupWrapper = styled.div`
   background-size: cover;
   background-position: right bottom;
 
-
+  z-index: -1;
   
 
 
