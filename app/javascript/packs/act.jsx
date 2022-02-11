@@ -31,7 +31,7 @@ const formData = new FormData();
 const ActWrapper = styled.div`
 
   @media only screen and (max-width: 720px) {
-    overflow: hidden;
+    //overflow: hidden;
   }
 
   background-color: black;
