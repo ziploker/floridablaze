@@ -6,6 +6,9 @@ class LookupsController < ApplicationController
     require 'mailgun-ruby'
     #require './lib/web_scraper.rb'
     require 'nokogiri'
+
+    require "uri"
+    require "net/http"
     
     
   
@@ -963,6 +966,54 @@ class LookupsController < ApplicationController
     
       
     puts 'Lookup#sendEmailToReps end------------'
+
+  end
+
+
+
+  def sendLetterToReps
+
+    puts "in lookups#sendLetterToReps"
+
+    puts "dataIs " + params[:data][:ppResults].inspect
+
+    puts "infoOnReps is  " + params[:data][:infoOnReps].inspect
+    repAddressArray = params[:data][:infoOnReps][:one][:address].split(';')
+    
+    puts "Reps name is " + params[:data][:infoOnReps][:one][:name]
+    puts "second to last address is " + repAddressArray[-2].strip.to_s
+    puts "Lasst address is " + repAddressArray[-1].strip.to_s
+    
+
+    #puts "address for Rep One is " + params[:data][:infoOnReps][:one][:address]
+    puts "==================================l=========="
+
+    addyLineTwo = repAddressArray[-2].strip.to_s
+
+    theStateBreakdown = addyLineTwo.split(",")
+
+    theState = theStateBreakdown[0]
+
+
+    theResponse = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
+  
+         
+          
+          #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+          headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+
+          body: {"firstName": params[:data][:infoOnReps][:one][:name],
+          "addressLine1": repAddressArray[-2].strip.to_s, 
+          "countryCode": "US",
+          "country": "US",
+          "provinceOrState": theState.to_s}
+      })
+
+
+    puts "results arrrre " + theResponse.to_s
+
+
+
 
   end
     

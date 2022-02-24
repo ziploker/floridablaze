@@ -20,6 +20,7 @@ import searchIconOrange from "../../assets/images/searchGreen.png";
 import searchIconOrange2 from "../../assets/images/searchPink2.png";
 import ResultCardOne from "./resultCardOne.jsx";
 import Button_Loading from "./myComponents/button_loading"
+import axios from 'axios'
 var Spinner = require("react-spinkit");
 
 import '../../assets/stylesheets/act.scss'
@@ -1753,39 +1754,43 @@ function Act(props, ref) {
   const [showLoader, setShowLoader] = React.useState(false);
 
   const [isAddressMenuOpen, setIsAddressMenuOpen] = React.useState(false);
-  const [results, setResults] = React.useState({
-    one: {
-      resultFromFlorida: "true",
-      name: "Juan Alfonso Fernandez-Barquin",
-      firstName: "",
-      lastName: "",
-      image:
-        "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
-      id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
-      email: "JuanF.Barquin@myfloridahouse.gov",
-      chamber: "House",
-      party: "Republican",
-      parent: "Florida Legislature",
-      district: "119",
-      fullDistrict: "Florida State House district 119",
-      fullDistrictTrunk: "Florida State House",
-    },
-    two: {
-      name: "Annette Taddeo",
-      firstName: "Annette",
-      lastName: "Taddeo",
-      image:
-        "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
-      id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
-      email: "taddeo.annette.web@flsenate.gov",
-      chamber: "Senate",
-      party: "Democrat",
-      parent: "Florida Legislature",
-      district: "40",
-      fullDistrict: "Florida State Senate  ",
-      fullDistrictTrunk: "Florida State Senate",
-    },
-  });
+  // const [results, setResults] = React.useState({
+  //   one: {
+  //     resultFromFlorida: "true",
+  //     name: "Juan Alfonso Fernandez-Barquin",
+  //     firstName: "",
+  //     lastName: "",
+  //     image:
+  //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
+  //     id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
+  //     email: "JuanF.Barquin@myfloridahouse.gov",
+  //     chamber: "House",
+  //     party: "Republican",
+  //     parent: "Florida Legislature",
+  //     district: "119",
+  //     fullDistrict: "Florida State House district 119",
+  //     fullDistrictTrunk: "Florida State House",
+  //   },
+  //   two: {
+  //     name: "Annette Taddeo",
+  //     firstName: "Annette",
+  //     lastName: "Taddeo",
+  //     image:
+  //       "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
+  //     id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
+  //     email: "taddeo.annette.web@flsenate.gov",
+  //     chamber: "Senate",
+  //     party: "Democrat",
+  //     parent: "Florida Legislature",
+  //     district: "40",
+  //     fullDistrict: "Florida State Senate  ",
+  //     fullDistrictTrunk: "Florida State Senate",
+  //   },
+  // });
+
+
+
+  const [results, setResults] = React.useState( {"one":{"resultFromFlorida":"true","name":"Kaylee Tuck","firstName":"Kaylee","lastName":"Tuck","image":"https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg","id":"ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880","email":"Kaylee.Tuck@myfloridahouse.gov","chamber":"House","party":"Republican","parent":"Florida Legislature","district":"55","fullDistrict":"Florida State House  ","fullDistrictTrunk":"Florida State House","address":"1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300","classification":"lower"},"two":{"name":"Ben Albritton","firstName":"Ben","lastName":"Albritton","image":"https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg","id":"ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8","email":"albritton.ben.web@flsenate.gov","chamber":"Senate","party":"Republican","parent":"Florida Legislature","district":"26","fullDistrict":"Florida State Senate  ","fullDistrictTrunk":"Florida State Senate","address":"314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100","classification":"upper"},"hash":"15a8737628b7c84a892c199720cecdeafc7cd07e"})
   //const [results, setResults] = React.useState( {"one": {}, "two": {} });
 
   ///////////////////////////////////////////////////////////////
@@ -1806,15 +1811,15 @@ function Act(props, ref) {
   
   React.useEffect( () => {
 
-  //   window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
 
-  //   //selectFirstOnEnter(LookupInputRef)
-  //   return () => {
+    //selectFirstOnEnter(LookupInputRef)
+    return () => {
 
-  //     window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
 
-  //   };
+    };
 
   
  
@@ -2818,8 +2823,9 @@ function Act(props, ref) {
                     onApprove={(data, actions) => {
                       
                       return actions.order.capture().then((details) => {
+                          
                           const name = details.payer.name.given_name;
-                          alert(`Transaction completed by ${name}`);
+                          //alert(`Transaction completed by ${name}`);
                           console.log("STATUS = " + details.status)
                           console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
                           console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
@@ -2829,6 +2835,57 @@ function Act(props, ref) {
                           console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
                           console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
                           console.log("DATA", data)
+
+
+                          axios.post("/send/letters", {
+          
+                            data: { 
+                              ppResults: data,
+                              infoOnReps: results
+                              
+                            }
+                          },
+                          {withCredentials: true})
+                          .then(response => {
+                  
+                  
+                              //console.log("resoooooooooooooooonse = " + response.inspect)
+                            
+                                  //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
+                                  //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
+                  
+                                 
+                                  
+                                  //setArtData(response.data.article)
+                                  //setArtDataComments(response.data.comments)
+                                  
+                                  //setIsCommentsLoading(false)
+                              
+                                  //setIsCommentsLoading(false)
+                  
+                                  //setCurrentUser(@current_user)
+                              
+                              
+                  
+                              
+                              
+                          }).catch(error => {
+                            
+                            //console.log("articleErrors", error)
+                          })
+
+
+
+
+
+
+
+
+
+
+
+
+
                       });
                     }}
                   />

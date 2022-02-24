@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     post '/lookup', to: 'lookups#incoming'
     #post '/:page', to: 'sparks#next_page'
     post '/send/emails', to: 'lookups#sendEmailToReps'
+
+    post '/send/letters', to: 'lookups#sendLetterToReps'
     
     put '/registrations/:id', to: 'registrations#update'
     post '/registrations/forgot', to: 'registrations#forgot'
