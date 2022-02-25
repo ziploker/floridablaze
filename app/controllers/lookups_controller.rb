@@ -975,25 +975,30 @@ class LookupsController < ApplicationController
 
     puts "in lookups#sendLetterToReps"
 
-    puts "dataIs " + params[:data][:ppResults].inspect
+    puts "data_is " + params[:data][:ppResults].inspect
 
     puts "infoOnReps is  " + params[:data][:infoOnReps].inspect
-    repAddressArray = params[:data][:infoOnReps][:one][:address].split(';')
+    
     
     puts "Reps name is " + params[:data][:infoOnReps][:one][:name]
-    puts "second to last address is " + repAddressArray[-2].strip.to_s
-    puts "Lasst address is " + repAddressArray[-1].strip.to_s
     
+    mainAddressArray = params[:data][:infoOnReps][:one][:address].split(';')
+    #example output mainAddressArray = ["1401 The Capitol"," 402 South Monroe Street","Tallahassee, FL 32399-1300"]
+   
+    mainAddress = mainAddressArray[-2].strip.to_s
+    #example output mainAddress = "402 South Monroe Street"
+    puts "mainAddress = " + mainAddress
 
-    #puts "address for Rep One is " + params[:data][:infoOnReps][:one][:address]
-    puts "==================================l=========="
+    city = mainAddressArray[-1].strip.split(",")[0]
+    puts "city = " + city
 
-    addyLineTwo = repAddressArray[-2].strip.to_s
+    state = mainAddressArray[-1].strip.split(",")[-1].split(" ")[0]
+    puts "state = " + state
 
-    theStateBreakdown = addyLineTwo.split(",")
-
-    theState = theStateBreakdown[0]
-
+    zipcode = mainAddressArray[-1].strip.split(",")[-1].split(" ")[-1]
+    puts "zipcode = " + zipcode
+    
+    
 
     theResponse = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
   
@@ -1003,10 +1008,10 @@ class LookupsController < ApplicationController
           headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
           body: {"firstName": params[:data][:infoOnReps][:one][:name],
-          "addressLine1": repAddressArray[-2].strip.to_s, 
+          "addressLine1": mainAddress, 
           "countryCode": "US",
           "country": "US",
-          "provinceOrState": theState.to_s}
+          "provinceOrState": state}
       })
 
 
