@@ -1732,7 +1732,7 @@ function Act(props, ref) {
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [firstSuggestedAddress, setFirstSuggestedAddress] = React.useState('')
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(true);
+  const [showCards, setShowCards] = React.useState(false);
   //const [showLetter, setShowLetter] = React.useState(false);
   //const [showOffer, setShowOffer] = React.useState(true);
   const [addressLineOne, setAddressLineOne] = React.useState("");
@@ -1790,8 +1790,8 @@ function Act(props, ref) {
 
 
 
-  const [results, setResults] = React.useState( {"one":{"resultFromFlorida":"true","name":"Kaylee Tuck","firstName":"Kaylee","lastName":"Tuck","image":"https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg","id":"ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880","email":"Kaylee.Tuck@myfloridahouse.gov","chamber":"House","party":"Republican","parent":"Florida Legislature","district":"55","fullDistrict":"Florida State House  ","fullDistrictTrunk":"Florida State House","address":"1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300","classification":"lower"},"two":{"name":"Ben Albritton","firstName":"Ben","lastName":"Albritton","image":"https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg","id":"ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8","email":"albritton.ben.web@flsenate.gov","chamber":"Senate","party":"Republican","parent":"Florida Legislature","district":"26","fullDistrict":"Florida State Senate  ","fullDistrictTrunk":"Florida State Senate","address":"314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100","classification":"upper"},"hash":"15a8737628b7c84a892c199720cecdeafc7cd07e"})
-  //const [results, setResults] = React.useState( {"one": {}, "two": {} });
+  //const [results, setResults] = React.useState( {"one":{"resultFromFlorida":"true","name":"Kaylee Tuck","firstName":"Kaylee","lastName":"Tuck","image":"https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg","id":"ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880","email":"Kaylee.Tuck@myfloridahouse.gov","chamber":"House","party":"Republican","parent":"Florida Legislature","district":"55","fullDistrict":"Florida State House  ","fullDistrictTrunk":"Florida State House","address":"1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300","classification":"lower"},"two":{"name":"Ben Albritton","firstName":"Ben","lastName":"Albritton","image":"https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg","id":"ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8","email":"albritton.ben.web@flsenate.gov","chamber":"Senate","party":"Republican","parent":"Florida Legislature","district":"26","fullDistrict":"Florida State Senate  ","fullDistrictTrunk":"Florida State Senate","address":"314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100","classification":"upper"},"hash":"15a8737628b7c84a892c199720cecdeafc7cd07e"})
+  const [results, setResults] = React.useState( {"one": {}, "two": {} });
 
   ///////////////////////////////////////////////////////////////
   
@@ -2809,6 +2809,7 @@ function Act(props, ref) {
                 <ShowOfferSection>
                   <PayPalButtons
                     style={{"layout":"vertical"}}
+                    
                     createOrder={(data, actions) => {
                       return actions.order.create({
                           purchase_units: [
@@ -2820,6 +2821,7 @@ function Act(props, ref) {
                           ]
                       });
                     }}
+                    
                     onApprove={(data, actions) => {
                       
                       return actions.order.capture().then((details) => {
@@ -2836,9 +2838,12 @@ function Act(props, ref) {
                           console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
                           console.log("DATA", data)
 
-
+                          console.log( "insiiiiiide1 " + results)
+                          
                           axios.post("/send/letters", {
-          
+
+                            
+                            
                             data: { 
                               ppResults: data,
                               infoOnReps: results

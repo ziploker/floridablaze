@@ -980,7 +980,7 @@ class LookupsController < ApplicationController
     puts "infoOnReps is  " + params[:data][:infoOnReps].inspect
     
     
-    puts "Reps name is " + params[:data][:infoOnReps][:one][:name]
+    puts "Reps name is " + params[:data][:infoOnReps][:one][:name].to_s
     
     mainAddressArray = params[:data][:infoOnReps][:one][:address].split(';')
     #example output mainAddressArray = ["1401 The Capitol"," 402 South Monroe Street","Tallahassee, FL 32399-1300"]
@@ -989,13 +989,13 @@ class LookupsController < ApplicationController
     #example output mainAddress = "402 South Monroe Street"
     puts "mainAddress = " + mainAddress
 
-    city = mainAddressArray[-1].strip.split(",")[0]
+    city = mainAddressArray[-1].strip.split(",")[0].to_s
     puts "city = " + city
 
-    state = mainAddressArray[-1].strip.split(",")[-1].split(" ")[0]
+    state = mainAddressArray[-1].strip.split(",")[-1].split(" ")[0].to_s
     puts "state = " + state
 
-    zipcode = mainAddressArray[-1].strip.split(",")[-1].split(" ")[-1]
+    zipcode = mainAddressArray[-1].strip.split(",")[-1].split(" ")[-1].to_s
     puts "zipcode = " + zipcode
     
     
@@ -1011,7 +1011,13 @@ class LookupsController < ApplicationController
           "addressLine1": mainAddress, 
           "countryCode": "US",
           "country": "US",
-          "provinceOrState": state}
+          "provinceOrState": state,
+          "postalOrZip": zipcode,
+          "city": city
+        
+        
+        
+        }
       })
 
 
