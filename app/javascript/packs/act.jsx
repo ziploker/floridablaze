@@ -2821,8 +2821,10 @@ function Act(props, ref) {
                           ]
                       });
                     }}
-                    
+                    forceReRender={[results]}
                     onApprove={(data, actions) => {
+
+                      
                       
                       return actions.order.capture().then((details) => {
                           

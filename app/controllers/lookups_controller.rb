@@ -981,22 +981,32 @@ class LookupsController < ApplicationController
     
     
     puts "Reps name is " + params[:data][:infoOnReps][:one][:name].to_s
+    puts "RepsTwo name is " + params[:data][:infoOnReps][:two][:name].to_s
     
     mainAddressArray = params[:data][:infoOnReps][:one][:address].split(';')
+    mainAddressArrayTwo = params[:data][:infoOnReps][:two][:address].split(';')
     #example output mainAddressArray = ["1401 The Capitol"," 402 South Monroe Street","Tallahassee, FL 32399-1300"]
    
     mainAddress = mainAddressArray[-2].strip.to_s
+    mainAddressTwo = mainAddressArrayTwo[-2].strip.to_s
     #example output mainAddress = "402 South Monroe Street"
     puts "mainAddress = " + mainAddress
+    puts "mainAddressTwo = " + mainAddressTwo
 
     city = mainAddressArray[-1].strip.split(",")[0].to_s
+    cityTwo = mainAddressArrayTwo[-1].strip.split(",")[0].to_s
     puts "city = " + city
+    puts "cityTwo = " + cityTwo
 
     state = mainAddressArray[-1].strip.split(",")[-1].split(" ")[0].to_s
+    stateTwo = mainAddressArrayTwo[-1].strip.split(",")[-1].split(" ")[0].to_s
     puts "state = " + state
+    puts "stateTwo = " + stateTwo
 
     zipcode = mainAddressArray[-1].strip.split(",")[-1].split(" ")[-1].to_s
+    zipcodeTwo = mainAddressArrayTwo[-1].strip.split(",")[-1].split(" ")[-1].to_s
     puts "zipcode = " + zipcode
+    puts "zipcodeTwo = " + zipcodeTwo
     
     
 
@@ -1021,7 +1031,31 @@ class LookupsController < ApplicationController
       })
 
 
-    puts "results arrrre " + theResponse.to_s
+
+      theResponseTwo = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
+  
+         
+          
+        #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+        headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+
+        body: {"firstName": params[:data][:infoOnReps][:two][:name],
+        "addressLine1": mainAddressTwo, 
+        "countryCode": "US",
+        "country": "US",
+        "provinceOrState": stateTwo,
+        "postalOrZip": zipcodeTwo,
+        "city": cityTwo
+      
+      
+      
+      }
+    })
+
+
+    puts "results from postGrid" + theResponse.to_s
+
+    puts "resultsTwo from postGrid" + theResponse.to_s
 
 
 
