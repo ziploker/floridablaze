@@ -193,14 +193,23 @@ class LookupsController < ApplicationController
       #update the hash thatll be sent to front end
 
       counter = 0
+      #4451 Northwest 31st Avenue, Oakland Park, FL, USA
+
+      puts "class is ===== " + primaryOpenStatesResponse.data.people.edges[-2].inspect
+      
+      
+      #method 1 of 2 of getting both state reps from state and national rep array
+      numberOfRepsFound = 0
+
       primaryOpenStatesResponse.data.people.edges.map{|record|
       
         
-      
+        #this "should" skip national reps and end up with two state reps 
         if record.node.chamber[0].organization.parent.name != "US Congress"
           puts "some non US Congress item was found in map"
           
           if counter == 0
+            
 
             
             puts "counter was 0"
@@ -214,8 +223,14 @@ class LookupsController < ApplicationController
             sendToFrontEnd["one"]["parent"] =  record.node.chamber[0].organization.parent.name
             sendToFrontEnd["one"]["district"] =  record.node.chamber[0].post.label
             sendToFrontEnd["one"]["fullDistrict"] =  record.node.chamber[0].post.division.name
-            sendToFrontEnd["one"]["fullDistrictTrunk"] = record.node.chamber[0].post.division.name.gsub!(/(\d+|(district))/,"").rstrip
 
+            copyOfFullDistrictOne = record.node.chamber[0].post.division.name.dup
+            
+            if copyOfFullDistrictOne.split(" ") == 5
+              sendToFrontEnd["one"]["fullDistrictTrunk"] = copyOfFullDistrictOne.gsub!(/(\d+|(district))/,"").rstrip
+            else
+              sendToFrontEnd["one"]["fullDistrictTrunk"] = copyOfFullDistrictOne
+            end
 
             record.node.contactDetails.each do |object|
         
@@ -238,6 +253,8 @@ class LookupsController < ApplicationController
               end
         
             end
+
+            numberOfRepsFound = numberOfRepsFound + 1
       
           elsif counter == 1
             puts "counter was 1"
@@ -252,7 +269,14 @@ class LookupsController < ApplicationController
             sendToFrontEnd["two"]["parent"] =  record.node.chamber[0].organization.parent.name
             sendToFrontEnd["two"]["district"] =  record.node.chamber[0].post.label
             sendToFrontEnd["two"]["fullDistrict"] =  record.node.chamber[0].post.division.name
-            sendToFrontEnd["two"]["fullDistrictTrunk"] = record.node.chamber[0].post.division.name.gsub!(/(\d+|(district))/,"").rstrip
+
+            copyOfFullDistrictTwo = record.node.chamber[0].post.division.name.dup
+
+            if copyOfFullDistrictTwo.split(" ") == 5
+              sendToFrontEnd["two"]["fullDistrictTrunk"] = copyOfFullDistrictTwo.gsub!(/(\d+|(district))/,"").rstrip
+            else
+              sendToFrontEnd["two"]["fullDistrictTrunk"] = copyOfFullDistrictTwo
+            end
 
             record.node.contactDetails.each do |object|
         
@@ -275,6 +299,8 @@ class LookupsController < ApplicationController
         
             end
 
+            numberOfRepsFound = numberOfRepsFound + 1
+
           end
 
           counter = counter + 1
@@ -283,12 +309,114 @@ class LookupsController < ApplicationController
         
         
         end
-        #puts "output of the map{}{}{} " + record.node.chamber[0].organization.parent.name
 
         
-      
+        
+        
       }
 
+      puts "number of reps found was " + numberOfRepsFound.to_s
+
+      # if less than 2 state reps were found, try method 2
+      if numberOfRepsFound < 2
+
+        #4451 Northwest 31st Avenue, Oakland Park, FL, USA
+        puts "----------------in method two of getting both state reps from full reps list array"
+
+
+        record = primaryOpenStatesResponse.data.people.edges[-1]
+
+        sendToFrontEnd["one"]["name"] =  record.node.name.gsub('\\"', '')
+        sendToFrontEnd["one"]["firstName"] =  record.node.givenName
+        sendToFrontEnd["one"]["lastName"] =  record.node.familyName
+        sendToFrontEnd["one"]["image"] =  record.node.image
+        sendToFrontEnd["one"]["id"] =  record.node.id
+        sendToFrontEnd["one"]["chamber"] =  record.node.chamber[0].organization.name
+        sendToFrontEnd["one"]["classification"] =  record.node.chamber[0].organization.classification
+        sendToFrontEnd["one"]["parent"] =  record.node.chamber[0].organization.parent.name
+        sendToFrontEnd["one"]["district"] =  record.node.chamber[0].post.label
+        sendToFrontEnd["one"]["fullDistrict"] =  record.node.chamber[0].post.division.name
+
+        copyOfFullDistrictOne = record.node.chamber[0].post.division.name.dup
+
+        if copyOfFullDistrictOne.split(" ") == 5
+          sendToFrontEnd["one"]["fullDistrictTrunk"] = copyOfFullDistrictOne.gsub!(/(\d+|(district))/,"").rstrip
+        else
+          sendToFrontEnd["one"]["fullDistrictTrunk"] = copyOfFullDistrictOne
+        end
+
+
+        record.node.contactDetails.each do |object|
+    
+          if object.type === "address" && object.note === "Capitol Office"
+            
+            sendToFrontEnd["one"]["address"] =  object.value
+            break
+          end
+    
+        end
+
+
+
+        record.node.contactDetails.each do |object|
+    
+          if object.type === "email" && object.value.exclude?("%") && object.value.include?("@flsenate.gov") || object.value.include?("@myfloridahouse.gov")
+            
+            sendToFrontEnd["one"]["email"] =  object.value
+            break
+          end
+    
+        end
+
+        #######################################################
+
+        record = primaryOpenStatesResponse.data.people.edges[-2]
+
+        sendToFrontEnd["two"]["name"] =  record.node.name.gsub('\\"', '')
+        sendToFrontEnd["two"]["firstName"] =  record.node.givenName
+        sendToFrontEnd["two"]["lastName"] =  record.node.familyName
+        sendToFrontEnd["two"]["image"] =  record.node.image
+        sendToFrontEnd["two"]["id"] =  record.node.id
+        sendToFrontEnd["two"]["chamber"] =  record.node.chamber[0].organization.name
+        sendToFrontEnd["two"]["classification"] =  record.node.chamber[0].organization.classification
+        sendToFrontEnd["two"]["parent"] =  record.node.chamber[0].organization.parent.name
+        sendToFrontEnd["two"]["district"] =  record.node.chamber[0].post.label
+        sendToFrontEnd["two"]["fullDistrict"] =  record.node.chamber[0].post.division.name
+
+        copyOfFullDistrictTwo = record.node.chamber[0].post.division.name.dup
+
+        if copyOfFullDistrictTwo.split(" ") == 5
+          sendToFrontEnd["two"]["fullDistrictTrunk"] = copyOfFullDistrictTwo.gsub!(/(\d+|(district))/,"").rstrip
+        else
+          sendToFrontEnd["two"]["fullDistrictTrunk"] = copyOfFullDistrictTwo
+        end
+
+
+        record.node.contactDetails.each do |object|
+    
+          if object.type === "address" && object.note === "Capitol Office"
+            
+            sendToFrontEnd["two"]["address"] =  object.value
+            break
+          end
+    
+        end
+
+
+        record.node.contactDetails.each do |object|
+    
+          if object.type === "email" && object.value.exclude?("%") && object.value.include?("@flsenate.gov") || object.value.include?("@myfloridahouse.gov")
+            
+            sendToFrontEnd["two"]["email"] =  object.value
+            break
+          end
+    
+        end
+
+
+
+      end
+    
       
   
       # sendToFrontEnd["one"]["name"] =  primaryOpenStatesResponse.data.people.edges[0].node.name.gsub('\\"', '')

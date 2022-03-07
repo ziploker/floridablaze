@@ -2831,6 +2831,8 @@ function Act(props, ref) {
                           const name = details.payer.name.given_name;
                           //alert(`Transaction completed by ${name}`);
                           console.log("STATUS = " + details.status)
+                          console.log(details)
+                          console.log(details.inspect)
                           console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
                           console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
                           console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
