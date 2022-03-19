@@ -1181,6 +1181,61 @@ class LookupsController < ApplicationController
     })
 
 
+    theResponseTwo = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
+  
+         
+          
+      #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+
+      body: {"firstName": params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname],
+      "addressLine1": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:address_line_1],
+      "addressLine2": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:address_line_2], 
+      "countryCode": "US",
+      "country": "US",
+      "provinceOrState": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_1],
+      "postalOrZip": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:postal_code],
+      "city": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_2]
+    
+    
+    
+    }
+  })
+
+
+
+puts "BUYYYYYYYYER DETAILLLLLLS" + params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:address_line_1]
+
+
+
+
+
+  # console.log("STATUS = " + details.status)
+  # console.log(details)
+  # console.log(details.inspect)
+  # console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
+  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
+  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
+  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
+  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
+  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
+  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
+  # console.log("DATA", data)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     puts "results from postGrid" + theResponse.to_s
 
     puts "resultsTwo from postGrid" + theResponse.to_s

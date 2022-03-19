@@ -2850,7 +2850,8 @@ function Act(props, ref) {
                             
                             data: { 
                               ppResults: data,
-                              infoOnReps: results
+                              infoOnReps: results,
+                              buyerDetails: details
                               
                             }
                           },
