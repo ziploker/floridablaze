@@ -1151,12 +1151,13 @@ class LookupsController < ApplicationController
           "country": "US",
           "provinceOrState": state,
           "postalOrZip": zipcode,
-          "city": city
+          "city": city,
+          "description": params[:data][:infoOnReps][:one][:fullDistrictTrunk]
         
         
         
         }
-      })
+      }).to_dot
 
 
 
@@ -1173,15 +1174,16 @@ class LookupsController < ApplicationController
         "country": "US",
         "provinceOrState": stateTwo,
         "postalOrZip": zipcodeTwo,
-        "city": cityTwo
+        "city": cityTwo,
+        "description": params[:data][:infoOnReps][:two][:fullDistrictTrunk]
       
       
       
       }
-    })
+    }).to_dot
 
 
-    theResponseTwo = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
+    theResponseThree = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
   
          
           
@@ -1200,27 +1202,7 @@ class LookupsController < ApplicationController
     
     
     }
-  })
-
-
-
-puts "BUYYYYYYYYER DETAILLLLLLS" + params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:address_line_1]
-
-
-
-
-
-  # console.log("STATUS = " + details.status)
-  # console.log(details)
-  # console.log(details.inspect)
-  # console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
-  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
-  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
-  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
-  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
-  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
-  # console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
-  # console.log("DATA", data)
+  }).to_dot
 
 
 
@@ -1233,12 +1215,121 @@ puts "BUYYYYYYYYER DETAILLLLLLS" + params[:data][:buyerDetails][:purchase_units]
 
 
 
+    puts "-------------------------------------------------"
+
+    puts "results from postGrid" + theResponse.to_yaml
+
+    
+    puts "ID results from postGrid" + theResponse.id.to_s
+
+    puts "-------------------------------------------------"
+
+    puts "resultsTwo from postGrid" + theResponseTwo.to_yaml
+    #puts "ID resultsTwo from postGrid" + theResponseTwo.id.to_s
+
+    puts "-------------------------------------------------"
+
+    puts "resultsThree from postGrid" + theResponseThree.to_yaml
+    #puts "ID resultsThree from postGrid" + theResponseThree.id.to_s
+
+    puts "-------------------------------------------------"
+
+
+    contactRepOne = theResponse.id
+    puts contactRepOne
+
+    contactRepTwo = theResponseTwo.id
+    puts contactRepTwo
+
+    contactBuyer = theResponseThree.id
+    puts contactBuyer
 
 
 
-    puts "results from postGrid" + theResponse.to_s
 
-    puts "resultsTwo from postGrid" + theResponse.to_s
+
+
+    theResponseThree = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
+  
+         
+          
+      #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+
+      body: {
+     
+        # id 	string 	A unique ID prefixed with letter_
+        "id": contactRepOne,
+        # object 	string 	Always letter
+        # status 	string 	See Tracking
+        # imbStatus 	string or null 	See Intelligent-Mail Tracking
+        # live 	boolean 	true if this is a live mode letter else false
+        # description 	string or null 	Optional line describing this letter
+        # sendDate 	Date 	Date when the letter will be sent
+        # to 	Contact 	The recipient of this letter
+        # from 	Contact 	The sender of this letter
+        "from": contactBuyer,
+        # html 	string or null 	The raw html provided for this letter, if any
+        # template 	string or null 	A Template ID, if any
+        # uploadedPDF 	string or null 	A signed link to the original PDF uploaded for this letter, if any
+        # addressPlacement 	string 	One of top_first_page or insert_blank_page
+        # color 	boolean 	Whether the letter will be printed in color
+        # doubleSided 	boolean 	Whether the letter will be printed double-sided
+        # envelopeType 	string 	One of standard_double_window or flat
+        # url 	string or null 	Signed link to a preview of this letter order
+        # pageCount 	number or null 	Number of pages produced for this letter
+        # mergeVariables 	object or null 	See Merge Variables
+        # metadata 	object or null 	See Metadata
+
+      "html": 
+        <p>
+          I am a constituent of (
+          <i>
+          
+              {whichTabIsActive === 1 ? results.one.fullDistrict + " district " + results.one.district : results.two.fullDistrict + " district " + results.two.district}
+          
+          </i>
+          ). I am writing to urge you to support legalizing and regulating marijuana for adults.
+          Many other states are currently benefiting from this common sense approach. 
+          Why is our state lagging behind?
+
+          </p>
+          <p>
+          
+          Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
+          marijuana for recreational use would virtually eliminate the black market, create
+          thousands of jobs in a growing industry and bring in millions of dolars of tax
+          revenue.
+          </p>
+          <p>
+
+          As a Legislator, you are in a position where you can make a difference. 
+          Can i count on you to end marijuana prohibition?
+
+
+          
+          
+        </p>
+
+        <div className="closing">
+          Sincerely, <br />
+          <sub>{props.userState.loggedInStatus == "LOGGED_IN" ? props.userState.user.full_name : "[Your Name Here]"}</sub> <br />
+          <sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
+          <sub>{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}</sub> <br />
+        </div>
+    
+    }
+  }).to_dot
+
+
+
+
+
+  
+
+
+
+
 
 
 
