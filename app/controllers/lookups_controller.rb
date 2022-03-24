@@ -1142,8 +1142,8 @@ class LookupsController < ApplicationController
   
          
           
-          #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-          headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+          headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+          #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
           body: {"firstName": params[:data][:infoOnReps][:one][:name],
           "addressLine1": mainAddress, 
@@ -1165,8 +1165,8 @@ class LookupsController < ApplicationController
   
          
           
-        #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-        headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+        headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+        #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
         body: {"firstName": params[:data][:infoOnReps][:two][:name],
         "addressLine1": mainAddressTwo, 
@@ -1187,8 +1187,8 @@ class LookupsController < ApplicationController
   
          
           
-      #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-      headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
       body: {"firstName": params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname],
       "addressLine1": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:address_line_1],
@@ -1253,8 +1253,8 @@ class LookupsController < ApplicationController
   
          
           
-      #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-      headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
       body: {
      
@@ -1281,12 +1281,14 @@ class LookupsController < ApplicationController
         # mergeVariables 	object or null 	See Merge Variables
         # metadata 	object or null 	See Metadata
 
-      "html": 
+      "html": '<div>
+
+        <h2>Dear {{to.firstName}},</h2>
         <p>
           I am a constituent of (
           <i>
           
-              {whichTabIsActive === 1 ? results.one.fullDistrict + " district " + results.one.district : results.two.fullDistrict + " district " + results.two.district}
+             {{to.description}}
           
           </i>
           ). I am writing to urge you to support legalizing and regulating marijuana for adults.
@@ -1313,12 +1315,17 @@ class LookupsController < ApplicationController
 
         <div className="closing">
           Sincerely, <br />
-          <sub>{props.userState.loggedInStatus == "LOGGED_IN" ? props.userState.user.full_name : "[Your Name Here]"}</sub> <br />
-          <sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
-          <sub>{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}</sub> <br />
+          <sub>{{from.firstName}}</sub> <br />
+          <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
+          <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
+         
+        
+          
+        
         </div>
+        </div>'
+      }
     
-    }
   }).to_dot
 
 
@@ -1334,16 +1341,15 @@ class LookupsController < ApplicationController
 
 
 
-  end
+  end  
+  
+  
+  
+  
+    private
     
-  
-  
-  
-  
-      private
-      
       def event_params
         params.require(:lookup).permit(:address, :zipcode, :test)
       end
-  end
+end
   
