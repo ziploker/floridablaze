@@ -1249,7 +1249,7 @@ class LookupsController < ApplicationController
 
 
 
-    theResponseThree = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
+    theResponseLetter = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
   
          
           
@@ -1259,7 +1259,7 @@ class LookupsController < ApplicationController
       body: {
      
         # id 	string 	A unique ID prefixed with letter_
-        "id": contactRepOne,
+        #"id": contactRepOne,
         # object 	string 	Always letter
         # status 	string 	See Tracking
         # imbStatus 	string or null 	See Intelligent-Mail Tracking
@@ -1267,8 +1267,12 @@ class LookupsController < ApplicationController
         # description 	string or null 	Optional line describing this letter
         # sendDate 	Date 	Date when the letter will be sent
         # to 	Contact 	The recipient of this letter
+        "to": contactRepOne,
         # from 	Contact 	The sender of this letter
         "from": contactBuyer,
+
+        "addressPlacement": "insert_blank_page",
+        
         # html 	string or null 	The raw html provided for this letter, if any
         # template 	string or null 	A Template ID, if any
         # uploadedPDF 	string or null 	A signed link to the original PDF uploaded for this letter, if any
@@ -1332,7 +1336,7 @@ class LookupsController < ApplicationController
 
 
 
-  
+  puts "theResponseLetter = " + theResponseLetter.to_s
 
 
 
