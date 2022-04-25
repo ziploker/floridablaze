@@ -1285,7 +1285,7 @@ class LookupsController < ApplicationController
         # mergeVariables 	object or null 	See Merge Variables
         # metadata 	object or null 	See Metadata
 
-      "html": '<div>
+      "html": '<div style="margin: 50px">
 
         <h2>Dear {{to.firstName}},</h2>
         <p>
