@@ -1117,7 +1117,7 @@ const TriplePlayWrapper = styled.div`
   grid-area: 3/2/4/7;
   width: 100%;
   margin-top: 30px;
-  display: grid;
+  //display: grid;
   grid-template-columns: 50% 1fr 1fr;
   grid-gap: 5px;
 
@@ -1726,18 +1726,20 @@ function Act(props, ref) {
   //const {LookupScrollToRef, LookupInputRef} = ref;
   const {LookupScrollToRef} = ref
   const {LookupInputRef} = ref
+  const [showCards, setShowCards] = React.useState(false);
+  const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
+
   const [searchButtonActive, setSearchButtonActive] = React.useState(false);
   const [status, setStatus] = React.useState("");
   const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [firstSuggestedAddress, setFirstSuggestedAddress] = React.useState('')
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
-  const [showCards, setShowCards] = React.useState(false);
+  
   //const [showLetter, setShowLetter] = React.useState(false);
   //const [showOffer, setShowOffer] = React.useState(true);
   const [addressLineOne, setAddressLineOne] = React.useState("");
   const [addressLineTwo, setAddressLineTwo] = React.useState("");
-  const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
   const sendButtonRef = useRef(null);
   const [addressObject, setAddressObject] = useState(null);
@@ -2494,7 +2496,7 @@ function Act(props, ref) {
                 // key: `my_unique_select_key__${JSON.stringify(value)}`,
                 // thc: `my_unique_select_key__${JSON.stringify(value)}`,
                 value: addressObject,
-                placeholder: "Enter your zip code or address",
+                placeholder: "Enter address",
                 onInputChange: handleInputChange,
                 menuIsOpen: isAddressMenuOpen,
                 //onBlurResetsInput: false,
