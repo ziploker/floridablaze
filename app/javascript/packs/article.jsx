@@ -60,14 +60,12 @@ const ArticleSection = styled.div`
 
     
     display: grid;
-    grid-template-columns: 10px minmax(651px, 750px) 300px;
+    grid-template-columns: minmax(555px, 730px) 300px;
     justify-content: center;
-    margin-top: 20px;
-    //margin-left: 14px;
-    //margin-right: 14px;
+    margin: 20px 14px 0px 14px;
     grid-column-gap: 28px;
 
-    @media only screen and (max-width: 600px){
+    @media only screen and (max-width: 900px){
 
         grid-template-columns: 1fr;
 
@@ -107,8 +105,9 @@ const NewsWrapper = styled.div`
 
 const StoryTitleWrapper = styled.div`
 
-    grid-area: 1/2/2/3;
+    grid-area: 1/1/2/2;
     //margin: 16px;
+    padding-left: 15px;
     justify-self: start;
 
 
@@ -125,7 +124,7 @@ const StoryTitle = styled.h1`
 
     color: #111111;
     
-    @media only screen and (max-width: 800px){
+    /* @media only screen and (max-width: 800px){
 
         font-size: 50px;
 
@@ -136,7 +135,7 @@ const StoryTitle = styled.h1`
         font-size: 30px;
 
 
-    }
+    } */
 
 
 
@@ -206,7 +205,7 @@ const StoryImageWrapper = styled.div`
     
     
     
-    grid-area: 2/2/3/3;
+    grid-area: 2/1/3/2;
     
     
     
