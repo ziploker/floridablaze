@@ -31,6 +31,11 @@ const StyledBurger = styled.button`
     height: 0.13rem;
     //background: ${({ theme }) => theme.offWhite};
     background: white;
+    @media only screen and (max-width: 265px){
+        
+        background: black;
+
+    }
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
@@ -46,6 +51,13 @@ const StyledBurger = styled.button`
       transform: ${({ openSideMenu }) =>
         openSideMenu ? "translateX(5px)" : "translateX(0)"};
       background: inherit;
+
+      @media only screen and (max-width: 265px){
+        
+        color: black;
+
+    }
+
       color: white;
       font-size: 0.5em;
       height: auto;

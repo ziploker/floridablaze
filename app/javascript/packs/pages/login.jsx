@@ -3,11 +3,12 @@ import { Link, Redirect, withRouter} from "react-router-dom";
 import axios from 'axios';
 //import logoImg from "../../../assets/images/logoPlaceholder.jpg";
 import redX from '../../../assets/images/redXmark.jpg'
+import greenCheck from '../../../assets/images/greenCheck.png'
 import tinyMan from '../../../assets/images/tinyManLogo.png'
 import lock from '../../../assets/images/lockIcon.png'
 import styled from 'styled-components'
 import userIcon from '../../../assets/images/signup2'
-import { Card, Logo, Form, Button, ErrorMsg, RedX, LoginWrapper, 
+import { Card, Logo, Form, Button, ErrorMsg, XorCheckIcon, LoginWrapper, 
   InputIcon, LogoWrapper, H2, Label, ErrorWrapper} from './AuthForm';
 
 const LoginWrapperNew = styled.div`
@@ -146,6 +147,11 @@ function Login(props) {
   function closeLoginWindow(){
 
     props.setLoginClicked(false);
+    setState({
+      ...state,
+      status: "",
+      errors: {}
+    });
 
 
   }
@@ -179,8 +185,10 @@ function Login(props) {
           errors: response.data.error,
         });
 
-        
-        props.setLoginClicked(false)
+        setTimeout(function() {
+          props.setLoginClicked(false)
+        }, 3000);
+        //props.setLoginClicked(false)
         
         props.handleSuccessfulAuth(response.data)
         
@@ -336,7 +344,7 @@ function Login(props) {
 
             <label style={{
               marginLeft: "10px",
-              fontSize: ".4em"
+              fontSize: ".6em"
 
             }}>
               remember me:
@@ -352,7 +360,8 @@ function Login(props) {
         </Form>
         
         <ErrorWrapper>        
-          <RedX status={state.status} src={redX}/>
+          {/* <XorCheckIcon status={state.status} src={redX}/> */}
+          <XorCheckIcon status={state.status} src={state.status === "pink" ? redX : greenCheck}/>
           {errorMessages}
         </ErrorWrapper>
 

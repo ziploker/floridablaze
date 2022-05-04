@@ -60,11 +60,11 @@ const ArticleSection = styled.div`
 
     
     display: grid;
-    grid-template-columns: minmax(651px, 1100px) 300px;
+    grid-template-columns: 10px minmax(651px, 750px) 300px;
     justify-content: center;
     margin-top: 20px;
-    margin-left: 14px;
-    margin-right: 14px;
+    //margin-left: 14px;
+    //margin-right: 14px;
     grid-column-gap: 28px;
 
     @media only screen and (max-width: 600px){
@@ -107,8 +107,8 @@ const NewsWrapper = styled.div`
 
 const StoryTitleWrapper = styled.div`
 
-    grid-area: 1/1/2/3;
-    margin: 16px;
+    grid-area: 1/2/2/3;
+    //margin: 16px;
     justify-self: start;
 
 
@@ -206,7 +206,7 @@ const StoryImageWrapper = styled.div`
     
     
     
-    grid-area: 2/1/3/2;
+    grid-area: 2/2/3/3;
     
     
     
@@ -888,21 +888,15 @@ function Article(props){
 
                 </CommentFormWrapper> */}
 
-    
 
-
-                
-            </ArticleSection>
-           
-
-            {/* {isCommentsLoading ? 
+                {/* {isCommentsLoading ? 
                    
                    <h1>comments loading==============================</h1>
                
                
                : */}
 
-                   <Comments 
+                <Comments 
                    //showMoreButtonRefs={showMoreButtonRefs}
                     //artDataComments={artDataComments} 
                     //showMore={showMore}
@@ -922,6 +916,15 @@ function Article(props){
                     />
                     
                {/* } */}
+
+    
+
+
+                
+            </ArticleSection>
+           
+
+            
         </>
     );
 }

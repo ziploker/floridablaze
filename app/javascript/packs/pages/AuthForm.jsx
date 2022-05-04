@@ -200,8 +200,9 @@ const ErrorWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 10px 0px 0px 0px;
   line-height: .7em;
+  height: 20px;
 
 
 `;
@@ -212,7 +213,7 @@ const ErrorMsg = styled.h4`
   
 `;
 
-const RedX = styled.img`
+const XorCheckIcon = styled.img`
 
   display: ${props => props.status == "" ? "none" : "initial"};
   height: 15px;
@@ -288,5 +289,5 @@ height: 18px;
   
 `;
 
-export { Form, Input, Button, Logo, Card, RedX, LoginWrapper, 
+export { Form, Input, Button, Logo, Card, XorCheckIcon, LoginWrapper, 
   InputIcon, LogoWrapper, H2, FormItem, FormItemSqueeze, Label, EmailLabel, ErrorMsg, ErrorWrapper };

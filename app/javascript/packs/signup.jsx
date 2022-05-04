@@ -33,7 +33,7 @@ import userIcon from '../../assets/images/signup2'
 import greenCheck from '../../assets/images/greenCheck'
 import dummy_avatar from '../../assets/images/dummy_avatar'
 
-import { Card, Logo, Form, Input, Button, ErrorMsg, RedX, LoginWrapper, 
+import { Card, Logo, Form, Input, Button, ErrorMsg, XorCheckIcon, LoginWrapper, 
   InputIcon, LogoWrapper, H2, FormItem, FormItemSqueeze, Label, EmailLabel, ErrorWrapper} from './pages/AuthForm';
 
 import axios from 'axios'
@@ -1088,15 +1088,8 @@ function Signup(props, ref) {
 }
 
 
-
-    //const value = event.target.value;
-
-    
-
   
-
-  
-  ////////////////////// Handlev Submit V2 //////////////////////////
+////////////////////// Handlev Submit V2 //////////////////////////
 const handleAdd = e => {
     
   e.preventDefault();
@@ -1255,20 +1248,18 @@ const handleAdd = e => {
     }
   }
   
-  if (locationFromHook.pathname === "/edit"){
-
-    return null
-
-  } 
   
-
-  
-
   const componentClicked = () => {
     console.log("clickedd");
   }
 
   const { height, width } = useWindowDimensions();
+
+  if (locationFromHook.pathname === "/edit"){
+
+    return null
+
+  } else{
   
 
   return (
@@ -1423,7 +1414,7 @@ const handleAdd = e => {
               
               <Span waitMessage={state.waitMessage}> {state.waitMessage}</Span>     
               
-              <RedX status={state.status} src={state.status === "pink" ? redX : greenCheck}/>
+              <XorCheckIcon status={state.status} src={state.status === "pink" ? redX : greenCheck}/>
               
               {errorMessages}
 
@@ -1466,6 +1457,7 @@ const handleAdd = e => {
     </SignupWrapper>
 
   );  
+      }
 }
 
 

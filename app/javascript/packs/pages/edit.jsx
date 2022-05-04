@@ -6,7 +6,7 @@ import greenCheck from '../../../assets/images/greenCheck.png'
 
 import dummy_avatar from '../../../assets/images/dummy_avatar.png'
 import styled, { ThemeProvider } from 'styled-components'
-import { Card, Logo, Form, Input, Button, ErrorMsg, RedX, LoginWrapper,
+import { Card, Logo, Form, Input, Button, ErrorMsg, XorCheckIcon, LoginWrapper,
   InputIcon, LogoWrapper, H2, FormItem, Label, ErrorWrapper} from './AuthForm';
 
 import axios from 'axios';
@@ -29,7 +29,7 @@ const EditAccountWrapper = styled.div`
   } */
   position: relative;
   height: 100%;
-  background-color: #F4F4F4;
+  background-color: #FFFFFF;
   display: grid;
   
   align-items: center;
@@ -66,7 +66,7 @@ const EditAccount = styled.div`
   position: relative;
   grid-area: 1/2/2/3;
   box-sizing: border-box;
-  max-width: 600px;
+  max-width: 300px;
   width: 99vw;
   //margin-left: 20px;
   //padding: 0 2rem;
@@ -74,11 +74,13 @@ const EditAccount = styled.div`
   //margin-top: 100px;
   //padding: 20px 0px 0px 0px;
 
-  background-color: #F4F4F4;
-  border: 1px solid transparent;
+  //background-color: #F4F4F4;
+  background-color: #FFFFFF;
+  //border: 1px solid transparent;
   
-  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  //box-shadow: 0 1px 1px rgba(0,0,0,0.05);
   border-radius: 8px;
+  padding: 30px 0px;
 
   justify-self: center;
   align-self: center;
@@ -627,7 +629,7 @@ function Edit(props) {
         <ErrorWrapper>
 
           
-          <RedX status={state.status} src={state.status == "" ?  "" : state.status == "pink" ? redX : greenCheck}/>
+          <XorCheckIcon status={state.status} src={state.status == "" ?  "" : state.status == "pink" ? redX : greenCheck}/>
           {errorMessages}
 
           <StatusSpinner showStatusSpinner={state.showStatusSpinner}>
@@ -645,4 +647,7 @@ function Edit(props) {
   );
 }
 
-export default props => <Edit {...props}/>;
+//export default props => <Edit {...props}/>;
+
+//const Wtf = React.forwardRef(Edit);
+export default Edit;

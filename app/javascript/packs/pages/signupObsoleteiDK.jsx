@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import redX from '../../../assets/images/redXmark.jpg'
 import greenCheck from '../../../assets/images/greenCheck.png'
 import dummy_avatar from '../../../assets/images/dummy_avatar.png'
-import { Card, Logo, Form, Input, Button, ErrorMsg, RedX, LoginWrapper, 
+import { Card, Logo, Form, Input, Button, ErrorMsg, XorCheckIcon, LoginWrapper, 
   InputIcon, LogoWrapper, H2, FormItem, Label, ErrorWrapper} from './AuthForm';
 
 import axios from 'axios';
@@ -519,7 +519,7 @@ function Signup(props) {
         
         <ErrorWrapper>   
           <Span waitMessage={state.waitMessage}> {state.waitMessage}</Span>     
-          <RedX status={state.status} src={state.status === "pink" ? redX : greenCheck}/>
+          <XorCheckIcon status={state.status} src={state.status === "pink" ? redX : greenCheck}/>
           {errorMessages}
 
           <StatusSpinner showStatusSpinner={state.showStatusSpinner}>

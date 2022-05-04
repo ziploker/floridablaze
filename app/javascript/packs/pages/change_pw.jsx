@@ -7,7 +7,7 @@ import greenCheck from '../../../assets/images/greenCheck.png'
 import tinyMan from '../../../assets/images/tinyManLogo.png'
 import lock from '../../../assets/images/lockIcon.png'
 
-import { Card, Logo, Form, Input, Button, ErrorMsg, RedX, LoginWrapper, 
+import { Card, Logo, Form, Input, Button, ErrorMsg, XorCheckIcon, LoginWrapper, 
   InputIcon, LogoWrapper, H2, FormItem, Label, ErrorWrapper} from './AuthForm';
 
 
@@ -208,7 +208,7 @@ function Login(props) {
         </Form>
        
         <ErrorWrapper>        
-          <RedX status={state.status} src={state.status == "" ?  "" : state.status == "pink" ? redX : greenCheck}/>
+          <XorCheckIcon status={state.status} src={state.status == "" ?  "" : state.status == "pink" ? redX : greenCheck}/>
           {errorMessages}
         </ErrorWrapper>
         

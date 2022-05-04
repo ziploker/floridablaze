@@ -95,6 +95,8 @@ const Logo = styled.img`
 const HeaderLeafImage = styled.img`
 
 
+
+
     @media only screen and (max-width: 500px){
         
         //display: none; 
@@ -102,6 +104,31 @@ const HeaderLeafImage = styled.img`
         //min-width: 475px;
 
     }
+
+    @media only screen and (max-width: 400px){
+        
+        //display: none; 
+        margin-right: -190px;    
+        //min-width: 475px;
+
+    }
+
+    @media only screen and (max-width: 305px){
+        
+        //display: none; 
+        margin-right: -222px;    
+        //min-width: 475px;
+
+    }
+
+    @media only screen and (max-width: 265px){
+        
+        display: none; 
+        //margin-right: -222px;    
+        //min-width: 475px;
+
+    }
+
 
     /* @media only screen and (max-width: 420px){
         
@@ -352,7 +379,11 @@ function Header(props) {
 
     let listener;
     
+    if (locationFromHook.pathname === "/edit"){
+
+        return null
     
+      } else{
 
     return (
 
@@ -417,6 +448,7 @@ function Header(props) {
 
         </>
     )
+                }
 }
 
 
