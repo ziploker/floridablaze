@@ -455,6 +455,21 @@ const VoteDown = styled.div`
 `;
 
 
+const SideAds = styled.div`
+
+    border: 10px solid white;
+    background-color: pink;
+    opacity: .45;
+
+    grid-area: 1/2/7/3;
+
+    width: 100%;
+    height: 100%;
+
+
+
+`;
+
 
 
 function Article(props){
@@ -906,15 +921,10 @@ function Article(props){
                     //rows={rows}
                     //setRows={setRows}
                     slug={slug}
+                />
 
-
-                    
-                    
-                    
-                    
-                    />
-                    
-               {/* } */}
+                <SideAds/>
+                
 
     
 
