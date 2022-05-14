@@ -211,7 +211,7 @@ const VoteDown = styled.div`
 
 const CommentFormWrapper = styled.div`
 
-    margin: 30px 30px;
+    margin: 0 0 30px 0;
     grid-area: 7/1/8/2;
 
 `;

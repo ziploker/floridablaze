@@ -107,7 +107,7 @@ const StoryTitleWrapper = styled.div`
 
     grid-area: 1/1/2/2;
     //margin: 16px;
-    padding-left: 15px;
+    padding-bottom: 15px;
     justify-self: start;
 
 
@@ -117,10 +117,10 @@ const StoryTitle = styled.h1`
 
     color: #303030;
    
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 700;
-    line-height: 1.2em;
-
+    line-height: 1.1em;
+    letter-spacing: -2px;
 
     color: #111111;
     
@@ -157,7 +157,7 @@ const InfoBar = styled.div`
 
     margin-top: 25px;
     align-content: center;
-    padding: 0px 20px;
+    //padding: 0px 20px;
 
     @media only screen and (max-width: 420px){
 
@@ -229,9 +229,9 @@ const Caption = styled.div`
     line-height: 1.7;
     font-style: italic;
     color: #999999;
-    padding: 12px;
-    margin: 0 20px;
-    border-bottom: 1px solid #c0c0c0;
+    padding: 5px 0 0 0;
+    //margin: 0 20px;
+    //border-bottom: 1px solid #c0c0c0;
     grid-area: 3/1/4/2;
 
 `;
@@ -267,7 +267,7 @@ const PWrapper = styled.div`
     grid-area: 5/1/6/2;
     //text-indent: 45px;
     margin-top: 16px;
-    padding: 0px 20px;
+    //padding: 0px 20px;
     font-family: 'IBM Plex Serif', serif;
 
     p{
@@ -465,6 +465,11 @@ const SideAds = styled.div`
 
     width: 100%;
     height: 100%;
+
+    @media only screen and (max-width: 900px){
+
+        display: none;
+    }
 
 
 
