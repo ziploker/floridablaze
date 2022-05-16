@@ -231,7 +231,7 @@ const Caption = styled.div`
     color: #999999;
     padding: 5px 0 0 0;
     //margin: 0 20px;
-    //border-bottom: 1px solid #c0c0c0;
+    border-bottom: 1px solid #c0c0c0;
     grid-area: 3/1/4/2;
 
 `;
@@ -878,9 +878,9 @@ function Article(props){
                     </FlexBar>
                     
                     <StoryShareButtons>
-                        <FacebookShareButton children={<FacebookIcon size={25} round={false} borderRadius={17} />} url={"www.420.com"} style={{marginRight: "3px"}} />
-                        <TwitterShareButton children={<TwitterIcon size={25} round={false} borderRadius={17}/>} url={"www.420.com"} style={{marginRight: "3px"}}/>
-                        <WhatsappShareButton children={<WhatsappIcon size={25} round={false} borderRadius={17}/>} url={"www.420.com"} />
+                        <FacebookShareButton children={<FacebookIcon size={20} round={false} borderRadius={90} />} url={"www.420.com"} style={{marginRight: "3px"}} />
+                        <TwitterShareButton children={<TwitterIcon size={20} round={false} borderRadius={90}/>} url={"www.420.com"} style={{marginRight: "3px"}}/>
+                        <WhatsappShareButton children={<WhatsappIcon size={20} round={false} borderRadius={90}/>} url={"www.420.com"} />
                     </StoryShareButtons>
                     
                     

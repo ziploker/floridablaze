@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 
 
@@ -24,16 +24,17 @@ const HeaderWrapper = styled.div`
 
     @media only screen and (max-width: 500px){
         
-        min-width: 0px;     
+        min-width: 100vw;     
 
     }
     
     
-    min-height: 85px;
+    //min-height: ${ props => props.scrolled ? "initial" : "85px"};
+
     //margin: 0 20px;
     min-width: 500px;
     max-width: 3000px;
-    margin: 10px auto 0px auto;
+    //margin: 10px auto 0px auto;
     //overflow: ${props => props.openSideMenu ? "visible" : "hidden"};
     
     //position: relative;
@@ -48,12 +49,24 @@ const HeaderWrapper = styled.div`
     //grid-template-columns: 1fr minmax(0px, 15vw) minmax(0px, 82.100vw) 1fr;
 
     overflow: hidden;
-    grid-template-rows: 85px;
+    
+    grid-template-rows: ${ props => props.scrolled ? "initial" : "85px"};
+
     grid-template-areas:
 
         "headerLogo . headerLeaf ";
         
     grid-gap: 8px;
+
+
+    position: ${ props => props.scrolled ? "fixed" : "initial"};
+    top: ${ props => props.scrolled ? "0" : "initial"};
+
+    left: ${ props => props.scrolled ? "0" : "initial"};
+    background-color: ${ props => props.scrolled ? "white" : "initial"};
+
+    
+    
 `;
 
 const Package = styled.div`
@@ -89,6 +102,37 @@ const Logo = styled.img`
     //margin-left: 40px;
 
     
+`;
+
+
+const LogoText = styled.h1`
+
+    font-family: 'Permanent Marker', cursive;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: ${ props => props.scrolled ? "initial" : "85px"};
+
+    letter-spacing: -1px;
+    color: #010101;
+    grid-area: headerLogo;
+    
+    padding-left: 15px;
+    
+    justify-self: start;
+    align-self: center;
+    
+    
+    height: 100%;
+    width: 100px;
+    //padding: 15px;
+
+    span{
+
+        color: red;
+    }
+
+
 `;
 
 
@@ -288,6 +332,39 @@ function Header(props) {
     console.log("==============Header===============")
     console.log("==============Header Props===============", props)
 
+
+    ///// sticky nav start
+
+    const [scrolled,setScrolled]=React.useState(false);
+    const logoTextRef = useRef();
+    
+    const handleScroll=() => {
+        
+        // const offset=window.scrollY;
+        
+        // if(offset > 50 ){
+        //     setScrolled(true);
+        // }
+        // else{
+        //     setScrolled(false);
+        // }
+        console.log("scrollY = ", window.scrollY)
+        console.log("logoTextRef = ", logoTextRef.current.getBoundingClientRect().top)
+
+        window.scrollY >= logoTextRef.current.getBoundingClientRect().top
+      ? setScrolled(true)
+      : setScrolled(false);
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll',handleScroll)
+    })
+    
+    
+
+    
+    ////sticky nav end
+
     useEffect(() => {
 
         console.log("==============Header useEffects===============")
@@ -389,12 +466,14 @@ function Header(props) {
 
         <>
         
-            <HeaderWrapper openSideMenu={props.openSideMenu}>
+            <HeaderWrapper openSideMenu={props.openSideMenu} scrolled={scrolled}>
             
                 
-                <Logo src={newLeaf}></Logo>
+                {/* <Logo src={newLeaf}></Logo> */}
+                <LogoText ref={logoTextRef} scrolled={scrolled}>Florida<span>Blaze</span></LogoText>
+               
                     
-                
+               
 
                 <HeaderLeafImage src={headerLeaf}></HeaderLeafImage>
                 <Nav>
@@ -425,7 +504,6 @@ function Header(props) {
                     
                 </div>
             
-                    
                     
             </HeaderWrapper>
         
