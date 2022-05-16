@@ -22,17 +22,25 @@ const HeaderWrapper = styled.div`
     min-height: 85px;
     min-width: 80vw; */
 
-    @media only screen and (max-width: 500px){
-        
-        min-width: 100vw;     
+    /* @media only screen and (max-width: 500px){
 
-    }
+        position: ${ props => props.scrolled ? "fixed" : "initial"};
+        top: ${ props => props.scrolled ? "0" : "initial"};
+
+        left: ${ props => props.scrolled ? "0" : "initial"};
+        background-color: ${ props => props.scrolled ? "white" : "initial"};
+        grid-template-rows: ${ props => props.scrolled ? "initial" : "85px"};
+
+        
+           
+
+    } */
     
     
     //min-height: ${ props => props.scrolled ? "initial" : "85px"};
 
     //margin: 0 20px;
-    min-width: 500px;
+    min-width: 100vw;;
     max-width: 3000px;
     //margin: 10px auto 0px auto;
     //overflow: ${props => props.openSideMenu ? "visible" : "hidden"};
@@ -44,13 +52,13 @@ const HeaderWrapper = styled.div`
 
     /* grid-template-columns: minmax(0px, 150px) 1fr minmax(0px, 800px) 1fr; */
 
-    grid-template-columns: min-content 1fr minmax(100px, max-content);
+    grid-template-columns: minmax(100px, min-content) 1fr minmax(100px, max-content);
     
     //grid-template-columns: 1fr minmax(0px, 15vw) minmax(0px, 82.100vw) 1fr;
-
+    grid-template-rows: 85px;
     overflow: hidden;
     
-    grid-template-rows: ${ props => props.scrolled ? "initial" : "85px"};
+    
 
     grid-template-areas:
 
@@ -59,12 +67,7 @@ const HeaderWrapper = styled.div`
     grid-gap: 8px;
 
 
-    position: ${ props => props.scrolled ? "fixed" : "initial"};
-    top: ${ props => props.scrolled ? "0" : "initial"};
-
-    left: ${ props => props.scrolled ? "0" : "initial"};
-    background-color: ${ props => props.scrolled ? "white" : "initial"};
-
+    
     
     
 `;
@@ -107,23 +110,43 @@ const Logo = styled.img`
 
 const LogoText = styled.h1`
 
+    @media only screen and (max-width: 500px){
+
+        position: ${ props => props.scrolled ? "fixed" : "initial"};
+        top: ${ props => props.scrolled ? "0" : "initial"};
+
+        left: ${ props => props.scrolled ? "0" : "initial"};
+        //background-color: ${ props => props.scrolled ? "white" : "initial"};
+        //grid-template-rows: ${ props => props.scrolled ? "initial" : "85px"};
+
+
+    
+
+    }
+
+    /* @media only screen and (max-width: 500px){
+
+        line-height: ${ props => props.scrolled ? "initial" : "85px"};
+
+    } */
+    animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
     font-family: 'Permanent Marker', cursive;
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
-    line-height: ${ props => props.scrolled ? "initial" : "85px"};
+    //line-height: 85px;
 
     letter-spacing: -1px;
     color: #010101;
     grid-area: headerLogo;
     
-    padding-left: 15px;
+    padding: 0 0 0 15px;
     
     justify-self: start;
     align-self: center;
+    margin-bottom: -1px;
     
-    
-    height: 100%;
+    //height: 100%;
     width: 100px;
     //padding: 15px;
 
@@ -323,6 +346,34 @@ position: relative;
 `;
 
 
+const HamburgerMenu = styled.div`
+
+    position: relative; 
+    grid-area: 1/3/2/4;
+    justify-self: end;
+    align-self: center;
+    padding-right: 1em; 
+
+    @media only screen and (max-width: 500px){
+
+        position: ${ props => props.hamburgerScrolled ? "fixed" : "initial"};
+        top: ${ props => props.hamburgerScrolled ? "7px" : "initial"};
+
+        //left: ${ props => props.ref ? "0" : "initial"};
+        //background-color: ${ props => props.scrolled ? "white" : "initial"};
+        //grid-template-rows: ${ props => props.scrolled ? "initial" : "85px"};
+
+
+
+
+    }
+
+
+
+
+`;
+
+
 
 
 ////////////////////////////////////////////////////////////Header Function
@@ -336,7 +387,14 @@ function Header(props) {
     ///// sticky nav start
 
     const [scrolled,setScrolled]=React.useState(false);
+    const [hamburgerScrolled,setHamburgerScrolled]=React.useState(false);
+    
+    
+    const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(0);
+    const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] = useState(0);
     const logoTextRef = useRef();
+    const ref = React.useRef();
+   
     
     const handleScroll=() => {
         
@@ -349,16 +407,30 @@ function Header(props) {
         //     setScrolled(false);
         // }
         console.log("scrollY = ", window.scrollY)
-        console.log("logoTextRef = ", logoTextRef.current.getBoundingClientRect().top)
+        console.log("logoTextRef = ", pixlesFromLogoToTop)
 
-        window.scrollY >= logoTextRef.current.getBoundingClientRect().top
+        //console.log("scrollY = ", window.scrollY)
+        console.log("hamburgeRef = ", pixlesFromHamburgerToTop)
+
+        window.scrollY >= pixlesFromLogoToTop - 1
       ? setScrolled(true)
       : setScrolled(false);
+
+
+      window.scrollY >= pixlesFromHamburgerToTop - 7
+      ? setHamburgerScrolled(true)
+      : setHamburgerScrolled(false);
     }
 
     useEffect(() => {
         window.addEventListener('scroll',handleScroll)
     })
+
+    useEffect(() => {
+        
+        setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top);
+        setPixlesFromHamburgerToTop(ref.current.getBoundingClientRect().top);
+      }, []);
     
     
 
@@ -429,7 +501,7 @@ function Header(props) {
     
     const locationFromHook = useLocation();
     
-    const ref = React.useRef();
+    
     
     function scrollToTop() {
         window.scrollTo({
@@ -472,7 +544,7 @@ function Header(props) {
                 {/* <Logo src={newLeaf}></Logo> */}
                 <LogoText ref={logoTextRef} scrolled={scrolled}>Florida<span>Blaze</span></LogoText>
                
-                    
+                    <h1 style={{display: "none"}}> {scrolled ? "TRUE" : "FALSE"} </h1>
                
 
                 <HeaderLeafImage src={headerLeaf}></HeaderLeafImage>
@@ -494,15 +566,13 @@ function Header(props) {
 
                 </Nav>
                 
-                <div style={{
-                    position: "relative", 
-                    gridArea: "1/3/2/4",
-                    justifySelf: "end",
-                    alignSelf: "center",
-                    paddingRight: "1em"}} ref={ref}>
+                <HamburgerMenu 
+                    hamburgerScrolled={hamburgerScrolled}
+                    ref={ref}>
+                    
                     <Burger openSideMenu={props.openSideMenu} setOpenSideMenu={props.setOpenSideMenu}/>
                     
-                </div>
+                </HamburgerMenu>
             
                     
             </HeaderWrapper>
