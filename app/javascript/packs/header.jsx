@@ -67,8 +67,8 @@ const HeaderWrapper = styled.div`
     grid-gap: 8px;
 
 
-    
-    
+    z-index: 2;
+    position: relative
     
 `;
 
@@ -110,7 +110,7 @@ const Logo = styled.img`
 
 const LogoText = styled.h1`
 
-    @media only screen and (max-width: 500px){
+    //@media only screen and (max-width: 500px){
 
         position: ${ props => props.scrolled ? "fixed" : "initial"};
         top: ${ props => props.scrolled ? "0" : "initial"};
@@ -122,7 +122,7 @@ const LogoText = styled.h1`
 
     
 
-    }
+    //}
 
     /* @media only screen and (max-width: 500px){
 
@@ -225,13 +225,15 @@ const SideMenuWrapper = styled.div`
 `;
 
 
-const Nav = styled.nav`
+const LongNav = styled.nav`
 
     @media only screen and (max-width: 500px){
         
         display: none;     
 
     }   
+
+    
     
     grid-area: headerLeaf;
     color: white;
@@ -243,34 +245,11 @@ const Nav = styled.nav`
     //height: 100%;
 
     display: flex;
+    position: ${ props => props.longNavScrolled ? "fixed" : "initial"};
+    top: ${ props => props.longNavScrolled ? "7px" : "initial"};
+    color: ${ props => props.longNavScrolled ? "black" : "white"};
     
 
-    /* ul{
-        display: flex;
-        align-items: flex-end;
-        li{
-            list-style-type: none;
-            margin-right: 40px;
-            font-family: Poppins;
-            font-style: normal;
-            font-weight: normal;
-            
-            line-height: 72px;
-            
-
-
-            color: #FFFFFF;
-
-            a{
-                color: #FFFFFF;
-
-            }
-
-        }
-
-
-
-    } */
 
 
     ul{
@@ -279,6 +258,7 @@ const Nav = styled.nav`
         margin-right: 40px;
         display: flex;
         align-items: baseline;
+        color: inherit;
         
 
         
@@ -296,7 +276,9 @@ const Nav = styled.nav`
             font-weight: 500;
             font-size: 16px;
             line-height: 45px;
-            color: ${props => props.theme.white};
+            //color: ${props => props.theme.white};
+            //background: ${ props => props.hamburgerScrolled ? "black" : "white"};
+            color: inherit;
             
             text-decoration: none;
             cursor: pointer;
@@ -307,13 +289,13 @@ const Nav = styled.nav`
                 font-weight: 500;
                 font-size: 12px;
                 line-height: 45px;
-                color: ${props => props.theme.white};
-
-                &:hover{
+                //color: ${props => props.theme.white};
+                color: inherit;
+                /* &:hover{
 
                     color: ${props => props.theme.lightBlue};;
 
-                }
+                } */
             
             }
         
@@ -373,7 +355,7 @@ const HamburgerMenu = styled.div`
         div{
 
             background: ${ props => props.hamburgerScrolled ? "black" : "white"};
-            color: red;
+            color: ${ props => props.hamburgerScrolled ? "black" : "white"};
         }
     }
 
@@ -384,15 +366,27 @@ const HamburgerMenu = styled.div`
 
 const TopBackgroundBar = styled.div`
 
+
+
+//@media only screen and (max-width: 500px){
+
     display: ${ props => props.hamburgerScrolled || props.scrolled ? "inital" : "none"} ;
 
     position: ${ props => props.hamburgerScrolled || props.scrolled ? "fixed" : "initial"} ;
     width: 100%;
     height: 40px;
     background-color: white;
+    transition: all 0.3s linear;
+    z-index: 1;
+
+//}
+
+
 
 
 `;
+
+
 
 
 
@@ -409,12 +403,19 @@ function Header(props) {
 
     const [scrolled,setScrolled]=React.useState(false);
     const [hamburgerScrolled,setHamburgerScrolled]=React.useState(false);
+    const [longNavScrolled,setLongNavScrolled]=React.useState(false);
     
     
     const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(0);
     const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] = useState(0);
+    const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(0);
+    
     const logoTextRef = useRef();
+    
+    //ref for hamburger nav menu
     const ref = React.useRef();
+
+    const longNavRef = React.useRef();
    
     
     const handleScroll=() => {
@@ -441,6 +442,10 @@ function Header(props) {
       window.scrollY >= pixlesFromHamburgerToTop - 7
       ? setHamburgerScrolled(true)
       : setHamburgerScrolled(false);
+
+      window.scrollY >= pixlesFromLongNavToTop - 7
+      ? setLongNavScrolled(true)
+      : setLongNavScrolled(false);
     }
 
     useEffect(() => {
@@ -451,6 +456,7 @@ function Header(props) {
         
         setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top);
         setPixlesFromHamburgerToTop(ref.current.getBoundingClientRect().top);
+        setPixlesFromLongNavToTop(ref.current.getBoundingClientRect().top);
       }, []);
     
     
@@ -570,7 +576,7 @@ function Header(props) {
                
 
                 <HeaderLeafImage src={headerLeaf}></HeaderLeafImage>
-                <Nav>
+                <LongNav ref={longNavRef} longNavScrolled={longNavScrolled}>
                     <ul>
                         <li key={0}>news</li>
                         <li key={1}>
@@ -586,7 +592,7 @@ function Header(props) {
                     </ul>
 
 
-                </Nav>
+                </LongNav>
                 
                 <HamburgerMenu 
                     hamburgerScrolled={hamburgerScrolled}

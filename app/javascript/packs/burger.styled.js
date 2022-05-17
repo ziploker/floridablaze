@@ -54,11 +54,11 @@ const StyledBurger = styled.button`
 
       @media only screen and (max-width: 265px){
         
-        color: black;
+        //color: black;
 
     }
 
-      color: white;
+      //color: white;
       font-size: 0.5em;
       height: auto;
     }
