@@ -368,7 +368,28 @@ const HamburgerMenu = styled.div`
 
     }
 
+    button{
 
+        div{
+
+            background: ${ props => props.hamburgerScrolled ? "black" : "white"};
+            color: red;
+        }
+    }
+
+
+
+
+`;
+
+const TopBackgroundBar = styled.div`
+
+    display: ${ props => props.hamburgerScrolled || props.scrolled ? "inital" : "none"} ;
+
+    position: ${ props => props.hamburgerScrolled || props.scrolled ? "fixed" : "initial"} ;
+    width: 100%;
+    height: 40px;
+    background-color: white;
 
 
 `;
@@ -537,6 +558,7 @@ function Header(props) {
     return (
 
         <>
+            <TopBackgroundBar hamburgerScrolled={hamburgerScrolled} scrolled={scrolled}/>
         
             <HeaderWrapper openSideMenu={props.openSideMenu} scrolled={scrolled}>
             
