@@ -67,7 +67,7 @@ const HeaderWrapper = styled.div`
     grid-gap: 8px;
 
 
-    z-index: 2;
+    z-index: 51;
     position: relative
     
 `;
@@ -108,14 +108,14 @@ const Logo = styled.img`
 `;
 
 
-const LogoText = styled.h1`
+const LogoText = styled.div`
 
     //@media only screen and (max-width: 500px){
 
         position: ${ props => props.scrolled ? "fixed" : "initial"};
-        top: ${ props => props.scrolled ? "0" : "initial"};
+        top: ${ props => props.scrolled ? "4px" : "initial"};
 
-        left: ${ props => props.scrolled ? "0" : "initial"};
+        //left: ${ props => props.scrolled ? "0" : "initial"};
         //background-color: ${ props => props.scrolled ? "white" : "initial"};
         //grid-template-rows: ${ props => props.scrolled ? "initial" : "85px"};
 
@@ -129,7 +129,7 @@ const LogoText = styled.h1`
         line-height: ${ props => props.scrolled ? "initial" : "85px"};
 
     } */
-    animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+    //animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
     font-family: 'Permanent Marker', cursive;
     font-style: normal;
     font-weight: normal;
@@ -144,10 +144,11 @@ const LogoText = styled.h1`
     
     justify-self: start;
     align-self: center;
-    margin-bottom: -1px;
+    //margin-bottom: -1px;
     
-    //height: 100%;
+    
     width: 100px;
+    z-index: 51;
     //padding: 15px;
 
     span{
@@ -215,6 +216,11 @@ const HeaderLeafImage = styled.img`
     justify-self: end;
     align-self: center;
 
+    /* position: ${ props => props.longNavScrolled ? "fixed" : "initial"};
+    top: ${ props => props.longNavScrolled ? props.innerRef.current.getBoundingClientRect().top + "px": "initial"};
+    //right: ${ props => props.longNavScrolled ? "0" : "initial"};
+    width: ${ props => props.longNavScrolled ? props.innerRef.current.clientWidth : "initial"}; */
+
 `;
 
 
@@ -246,8 +252,8 @@ const LongNav = styled.nav`
 
     display: flex;
     position: ${ props => props.longNavScrolled ? "fixed" : "initial"};
-    top: ${ props => props.longNavScrolled ? "7px" : "initial"};
-    color: ${ props => props.longNavScrolled ? "black" : "white"};
+    top: ${ props => props.longNavScrolled ? "-3px" : "initial"};
+    color: ${ props => props.longNavScrolled ? "white" : "white"};
     
 
 
@@ -310,7 +316,7 @@ const LongNav = styled.nav`
 
 `;
 
-
+/* 
 const Wrap = styled.div`
     
         //position: relative;
@@ -319,7 +325,7 @@ const Wrap = styled.div`
         overflow: hidden;
     `;
 
-
+*/
 const Outter = styled.div`
 //overflow: hidden;
 width: 100%;
@@ -354,8 +360,15 @@ const HamburgerMenu = styled.div`
 
         div{
 
-            background: ${ props => props.hamburgerScrolled ? "black" : "white"};
-            color: ${ props => props.hamburgerScrolled ? "black" : "white"};
+            background: white;
+            color: white;
+
+            @media only screen and (max-width: 266px){
+
+                background: black;
+            color: black;
+
+            }
         }
     }
 
@@ -368,21 +381,25 @@ const TopBackgroundBar = styled.div`
 
 
 
-//@media only screen and (max-width: 500px){
 
-    display: ${ props => props.hamburgerScrolled || props.scrolled ? "inital" : "none"} ;
 
-    position: ${ props => props.hamburgerScrolled || props.scrolled ? "fixed" : "initial"} ;
+    //display: ${ props => props.scrolled ? "inital" : "contents"} ;
+
+    position: ${ props => props.scrolled ? "fixed" : "fixed"} ;
+    opacity: ${ props => props.scrolled ? "1" : "0"} ;
+    top: 0;
     width: 100%;
     height: 40px;
-    background-color: white;
-    transition: all 0.3s linear;
-    z-index: 1;
-
-//}
-
-
-
+    background-color: black;
+    transition: all 0.2s linear;
+    
+    z-index: 50;
+    -webkit-backface-visibility: hidden;
+    background: rgb(255,255,255);
+background: -moz-linear-gradient(90deg, rgba(255,255,255,0.8897758932674632) 38%, rgba(0,0,0,0.9009803750601804) 59%);
+background: -webkit-linear-gradient(90deg, rgba(255,255,255,0.8897758932674632) 38%, rgba(0,0,0,0.9009803750601804) 59%);
+background: linear-gradient(90deg, rgba(255,255,255,0.8897758932674632) 38%, rgba(0,0,0,0.9009803750601804) 59%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#000000",GradientType=1); 
 
 `;
 
@@ -404,11 +421,14 @@ function Header(props) {
     const [scrolled,setScrolled]=React.useState(false);
     const [hamburgerScrolled,setHamburgerScrolled]=React.useState(false);
     const [longNavScrolled,setLongNavScrolled]=React.useState(false);
-    
+    const [leafScrolled,setLeafScrolled]=React.useState(false);
+
     
     const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(0);
     const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] = useState(0);
     const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(0);
+    const [pixlesFromLeafToTop, setPixlesFromLeafToTop] = useState(0);
+
     
     const logoTextRef = useRef();
     
@@ -416,6 +436,7 @@ function Header(props) {
     const ref = React.useRef();
 
     const longNavRef = React.useRef();
+    const leafRef = React.useRef();
    
     
     const handleScroll=() => {
@@ -428,13 +449,15 @@ function Header(props) {
         // else{
         //     setScrolled(false);
         // }
-        console.log("scrollY = ", window.scrollY)
-        console.log("logoTextRef = ", pixlesFromLogoToTop)
+        /* console.log("scrollY = ", window.scrollY) */
+        /* console.log("logoTextRef = ", pixlesFromLogoToTop) */
 
         //console.log("scrollY = ", window.scrollY)
-        console.log("hamburgeRef = ", pixlesFromHamburgerToTop)
+        /* console.log("hamburgeRef = ", pixlesFromHamburgerToTop) */
 
-        window.scrollY >= pixlesFromLogoToTop - 1
+        console.log("The Leaf is currently at ", leafRef.current.getBoundingClientRect().top)
+
+        window.scrollY >= pixlesFromLogoToTop - 4 
       ? setScrolled(true)
       : setScrolled(false);
 
@@ -443,9 +466,13 @@ function Header(props) {
       ? setHamburgerScrolled(true)
       : setHamburgerScrolled(false);
 
-      window.scrollY >= pixlesFromLongNavToTop - 7
+      window.scrollY >= pixlesFromLongNavToTop
       ? setLongNavScrolled(true)
       : setLongNavScrolled(false);
+
+      window.scrollY >= pixlesFromLeafToTop + 15
+      ? setLeafScrolled(true)
+      : setLeafScrolled(false);
     }
 
     useEffect(() => {
@@ -456,8 +483,23 @@ function Header(props) {
         
         setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top);
         setPixlesFromHamburgerToTop(ref.current.getBoundingClientRect().top);
-        setPixlesFromLongNavToTop(ref.current.getBoundingClientRect().top);
-      }, []);
+        setPixlesFromLongNavToTop(longNavRef.current.getBoundingClientRect().top);
+        setPixlesFromLeafToTop(leafRef.current.getBoundingClientRect().top);
+
+        /* console.log("logoTextRef.current.getBoundingClientRect().top", logoTextRef.current.getBoundingClientRect().top);
+        console.log("ref.current.getBoundingClientRect().top", ref.current.getBoundingClientRect().top);
+        console.log("longNavRef.current.getBoundingClientRect().top", longNavRef.current.getBoundingClientRect().top);
+        
+
+        console.log("logoTextRef.current.getBoundingClientRect().top", logoTextRef.current.offsetTop);
+        console.log("ref.current.getBoundingClientRect().top", ref.current.offsetTop);
+        console.log("longNavRef.current.getBoundingClientRect().top", longNavRef.current.offsetTop);
+         */
+        console.log("ref.current.getBoundingClientRect().top", ref.current.getBoundingClientRect().top);
+
+        
+    
+    }, []);
     
     
 
@@ -575,7 +617,7 @@ function Header(props) {
                     <h1 style={{display: "none"}}> {scrolled ? "TRUE" : "FALSE"} </h1>
                
 
-                <HeaderLeafImage src={headerLeaf}></HeaderLeafImage>
+                <HeaderLeafImage innerRef={leafRef} ref={leafRef} leafScrolled={leafScrolled} longNavScrolled={longNavScrolled} src={headerLeaf}></HeaderLeafImage>
                 <LongNav ref={longNavRef} longNavScrolled={longNavScrolled}>
                     <ul>
                         <li key={0}>news</li>
