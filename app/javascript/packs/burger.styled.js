@@ -22,7 +22,7 @@ const StyledBurger = styled.button`
     outline: none;
   }
 
-  @media only screen and (min-width: 500px) {
+  @media only screen and (min-width: 501px) {
     display: none;
   }
 
@@ -31,10 +31,8 @@ const StyledBurger = styled.button`
     height: 0.13rem;
     //background: ${({ theme }) => theme.offWhite};
     background: white;
-    @media only screen and (max-width: 265px){
-        
-        background: black;
-
+    @media only screen and (max-width: 265px) {
+      background: black;
     }
     border-radius: 10px;
     transition: all 0.3s linear;
@@ -52,11 +50,9 @@ const StyledBurger = styled.button`
         openSideMenu ? "translateX(5px)" : "translateX(0)"};
       background: inherit;
 
-      @media only screen and (max-width: 265px){
-        
+      @media only screen and (max-width: 265px) {
         //color: black;
-
-    }
+      }
 
       //color: white;
       font-size: 0.5em;
