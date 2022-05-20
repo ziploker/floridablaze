@@ -147,10 +147,10 @@ const HamburgerMenu = styled.div`
       background: white;
       color: white;
 
-      /* @media only screen and (max-width: 266px) {
+      @media only screen and (max-width: 266px) {
         background: black;
         color: black;
-      } */
+      }
     }
   }
 `;
@@ -275,7 +275,7 @@ function Header(props) {
     //resize and/or orientationchange listener
     const handleResize = () => {
       //closed sideMenu on orientation change, if it gets bigger than 850px
-      if (window.innerWidth > 850) {
+      if (window.innerWidth > 500) {
         props.setOpenSideMenu(false);
       }
     };
