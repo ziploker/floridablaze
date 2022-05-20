@@ -2844,7 +2844,7 @@ function Act(props, ref) {
                           console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
                           console.log("DATA", data)
 
-                          console.log( "insiiiiiide1 " + results)
+                          console.log( "insiiiiiide1 " + results.inspect)
                           
                           axios.post("/send/letters", {
 

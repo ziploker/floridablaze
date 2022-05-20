@@ -32,8 +32,8 @@ const HeaderWrapper = styled.div`
 `;
 
 const LogoText = styled.div`
-  position: ${(props) => (props.scrolled ? "fixed" : "initial")};
-  top: ${(props) => (props.scrolled ? "4px" : "initial")};
+  position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
+  top: ${(props) => (props.logoScrolled ? "4px" : "initial")};
   font-family: "Permanent Marker", cursive;
   font-style: normal;
   font-weight: normal;
@@ -75,6 +75,10 @@ const HeaderLeafImage = styled.img`
   grid-area: headerLeaf;
   justify-self: end;
   align-self: center;
+
+  //opacity: ${(props) => (props.hamburgerScrolled || props.longNavScrolled? "0" : "1")};
+  
+  //transition: all 0.2s linear;
 `;
 
 const LongNav = styled.nav`
@@ -91,6 +95,7 @@ const LongNav = styled.nav`
   position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
   top: ${(props) => (props.longNavScrolled ? "-3px" : "initial")};
   color: ${(props) => (props.longNavScrolled ? "white" : "white")};
+  
 
   ul {
     list-style: none;
@@ -156,8 +161,8 @@ const HamburgerMenu = styled.div`
 `;
 
 const TopBackgroundBar = styled.div`
-  position: ${(props) => (props.scrolled ? "fixed" : "fixed")};
-  opacity: ${(props) => (props.scrolled ? "1" : "0")};
+  position: ${(props) => (props.logoScrolled ? "fixed" : "fixed")};
+  opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
   top: 0;
   width: 100%;
   height: 40px;
@@ -192,7 +197,7 @@ function Header(props) {
   console.log("==============Header Props===============", props);
 
   // if true, element reached the top of viewport, ready to be "sticky"
-  const [scrolled, setScrolled] = React.useState(false);
+  const [logoScrolled, setLogoScrolled] = React.useState(false);
   const [hamburgerScrolled, setHamburgerScrolled] = React.useState(false);
   const [longNavScrolled, setLongNavScrolled] = React.useState(false);
 
@@ -203,11 +208,11 @@ function Header(props) {
   const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] =
     useState(19.366668701171875);
 
-  // refs for elements that need stickyness
+  // refs for elements that need stickyness or effects
   const logoTextRef = useRef();
   const hamburgerRef = React.useRef();
   const longNavRef = React.useRef();
-
+  
   const locationFromHook = useLocation();
 
   // scroll listener
@@ -302,8 +307,8 @@ function Header(props) {
     );
     console.log("===================inner width===", window.innerWidth);
     window.scrollY >= pixlesFromLogoToTop - 4
-      ? setScrolled(true)
-      : setScrolled(false);
+      ? setLogoScrolled(true)
+      : setLogoScrolled(false);
 
     window.scrollY >= pixlesFromHamburgerToTop - 7
       ? setHamburgerScrolled(true)
@@ -345,17 +350,17 @@ function Header(props) {
       <>
         <TopBackgroundBar
           hamburgerScrolled={hamburgerScrolled}
-          scrolled={scrolled}
+          logoScrolled={logoScrolled}
         />
 
-        <HeaderWrapper openSideMenu={props.openSideMenu} scrolled={scrolled}>
-          <LogoText ref={logoTextRef} scrolled={scrolled}>
+        <HeaderWrapper openSideMenu={props.openSideMenu} logoScrolled={logoScrolled}>
+          <LogoText ref={logoTextRef} logoScrolled={logoScrolled}>
             Florida<span>Blaze</span>
           </LogoText>
 
-          <h1 style={{ display: "none" }}> {scrolled ? "TRUE" : "FALSE"} </h1>
+          <h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1>
 
-          <HeaderLeafImage src={headerLeaf}></HeaderLeafImage>
+          <HeaderLeafImage src={headerLeaf} longNavScrolled={longNavScrolled} logoScrolled={logoScrolled}></HeaderLeafImage>
           <LongNav ref={longNavRef} longNavScrolled={longNavScrolled}>
             <ul>
               <li key={0}>news</li>
