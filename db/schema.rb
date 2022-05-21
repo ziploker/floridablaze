@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_28_192011) do
+ActiveRecord::Schema.define(version: 2022_05_21_202230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,17 @@ ActiveRecord::Schema.define(version: 2021_08_28_192011) do
     t.integer "total_downvotes", default: 0
     t.index ["ancestry"], name: "index_comments_on_ancestry"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "communications", force: :cascade do |t|
+    t.string "date"
+    t.string "com_type"
+    t.string "status"
+    t.text "full_object"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "postgrid_id"
+    t.string "recipient"
   end
 
   create_table "dislikes", force: :cascade do |t|

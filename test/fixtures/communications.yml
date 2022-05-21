@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  com_type: MyString
+  recipients: MyString
+  status: MyString
+  full_object: MyText
+
+two:
+  date: MyString
+  com_type: MyString
+  recipients: MyString
+  status: MyString
+  full_object: MyText
