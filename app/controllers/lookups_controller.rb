@@ -1204,7 +1204,7 @@ class LookupsController < ApplicationController
     
     puts "RepsOne name is " + params[:data][:infoOnReps][:one][:name].to_s
     puts "RepsTwo name is " + params[:data][:infoOnReps][:two][:name].to_s
-    puts "Buyer email is" + params[:buyerDetails][:payer][:email_address].to_s
+    puts "Buyer email is" + params[:data][:buyerDetails][:payer][:email_address].to_s
     puts "///////////////"
     
     mainAddressArray = params[:data][:infoOnReps][:one][:address].split(';')
