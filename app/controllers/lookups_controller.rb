@@ -116,7 +116,7 @@ class LookupsController < ApplicationController
     
     
     #incoming form submission from react front end
-    def incoming
+        def  incoming
   
   
       #object to be sent to frontend
@@ -129,7 +129,7 @@ class LookupsController < ApplicationController
       
       #working query from json.strinigfy react front end, cant replicate with rails to_json because it keeps escaping \"\" in the start 
       #of the string '{\"query\"'
-      q = '{"query":" {\n    people(latitude: 29.136800, longitude: -83.048340, first: 100) {\n      edges {\n        node {\n          name\n          image\n          id\n          sortName\n          familyName\n          givenName\n          currentMemberships {\n            id\n          }\n          links {\n            note\n            url\n          }\n          contactDetails {\n            type\n            value\n            note\n            label\n          }\n          chamber: currentMemberships(classification: [\"upper\", \"lower\"]) {\n            organization {\n              name\n              classification\n              parent {\n                name\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n\n\n\n\n\n"}'
+        q = '{"query":" {\n    people(latitude: 29.136800, longitude: -83.048340, first: 100) {\n      edges {\n        node {\n          name\n          image\n          id\n          sortName\n          familyName\n          givenName\n          currentMemberships {\n            id\n          }\n          links {\n            note\n            url\n          }\n          contactDetails {\n            type\n            value\n            note\n            label\n          }\n          chamber: currentMemberships(classification: [\"upper\", \"lower\"]) {\n            organization {\n              name\n              classification\n              parent {\n                name\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n\n\n\n\n\n"}'
       
       
   
@@ -904,7 +904,15 @@ class LookupsController < ApplicationController
   end
  
   
-  
+  #///////////////////////////////////////////////////////////
+  #///////////////////////////////////////////////////////////
+  #///////////////////////////////////////////////////////////
+  #///////////////                    ////////////////////////
+  #///////////////    EMail           ////////////////////////
+  #///////////////                    ////////////////////////
+  #///////////////////////////////////////////////////////////
+  #///////////////////////////////////////////////////////////
+  #///////////////////////////////////////////////////////////
   def sendEmailToReps
 
     recaptchaSecret = Rails.application.credentials.dig(:RECAPTCHA_SECRET)
@@ -1100,6 +1108,19 @@ class LookupsController < ApplicationController
 
 
 
+
+
+
+  #///////////////////////////////////////////////////////////
+  #///////////////////////////////////////////////////////////
+  #///////////////////////////////////////////////////////////
+  #///////////////                    ////////////////////////
+  #///////////////    $$$$$$$$$$      ////////////////////////
+  #///////////////                    ////////////////////////
+  #///////////////////////////////////////////////////////////
+  #///////////////////////////////////////////////////////////
+  #///////////////////////////////////////////////////////////
+
   def sendLetterToReps
 
     puts "in lookups#sendLetterToReps"
@@ -1116,6 +1137,7 @@ class LookupsController < ApplicationController
 
 
     puts "/////////////////// create account automatically start"
+    
     mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
     token = SecureRandom.urlsafe_base64.to_s
     mg_client = Mailgun::Client.new mailgun_api
@@ -1154,37 +1176,38 @@ class LookupsController < ApplicationController
 
     if newAutoUser.save
 
-        puts "newAutoUser.save was true !!"
-        # Define your message parameters
-        message_params =  { 
+      puts "newAutoUser.save was true !!"
+      # Define your message parameters
+      message_params =  { 
+          
+        from: 'admin@mg.floiridablaze.io',
+        to:   newAutoUser.email,
+        "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+        "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
+        subject: 'Welcome to floridablaze.io',
+        html:    "
             
-            from: 'admin@mg.floiridablaze.io',
-            to:   newAutoUser.email,
-            "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
-            "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
-            subject: 'Welcome to floridablaze.io',
-            html:    "
+        <html>
+          <body>
+            <h1> Hi #{newAutoUser.full_name},</h1>
             
-                <html>
-                    <body>
-                        <h1> Hi #{newAutoUser.full_name},</h1>
-                        
-                        <p> Thank you for registering at Floridablaze<br>
-                        Please navigate to the link below to activate your account<br><br>
+            <p> Thank you for registering at Floridablaze<br>
+              Please navigate to the link below to activate your account<br><br>
 
-                        #{confirm_email_registration_url(newAutoUser.confirm_token)}<br></p>
+              #{confirm_email_registration_url(newAutoUser.confirm_token)}<br>
+            </p>
 
-                        <p>Thank you,<br>
+            <p>Thank you,<br>
+              <em>-Floridablaze Team</em>
+            </p>
+            
+            <br><br><br>
 
-                        
-                        <em>-Floridablaze Team</em></p><br><br><br>
+            If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
 
-                        If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
-
-                    </body>
-                </html>"
-
-        }
+          </body>
+        </html>"
+      }
 
       mg_client.send_message 'mg.floridablaze.io', message_params
       result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
@@ -1198,8 +1221,8 @@ class LookupsController < ApplicationController
     end
 
     puts "/////////////////// create account automatically end"
-
-
+    puts "///////////////"
+    puts "/////////////////// communicate with post grid start"
     
     
     puts "RepsOne name is " + params[:data][:infoOnReps][:one][:name].to_s
@@ -1235,36 +1258,29 @@ class LookupsController < ApplicationController
     
 
     theResponse = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
-  
-         
-          
-          headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-          #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+      
+      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
-          body: {"firstName": params[:data][:infoOnReps][:one][:name],
-          "addressLine1": mainAddress, 
-          "countryCode": "US",
-          "country": "US",
-          "provinceOrState": state,
-          "postalOrZip": zipcode,
-          "city": city,
-          "description": params[:data][:infoOnReps][:one][:fullDistrictTrunk]
-        
-        
-        
-        }
-      }).to_dot
+      body: {
+        "firstName": params[:data][:infoOnReps][:one][:name],
+        "addressLine1": mainAddress, 
+        "countryCode": "US",
+        "country": "US",
+        "provinceOrState": state,
+        "postalOrZip": zipcode,
+        "city": city,
+        "description": params[:data][:infoOnReps][:one][:fullDistrictTrunk]
+      }
+    }).to_dot
 
 
-
-      theResponseTwo = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
-  
-         
-          
-        headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+    theResponseTwo = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
+      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
         #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
-        body: {"firstName": params[:data][:infoOnReps][:two][:name],
+      body: {
+        "firstName": params[:data][:infoOnReps][:two][:name],
         "addressLine1": mainAddressTwo, 
         "countryCode": "US",
         "country": "US",
@@ -1272,43 +1288,26 @@ class LookupsController < ApplicationController
         "postalOrZip": zipcodeTwo,
         "city": cityTwo,
         "description": params[:data][:infoOnReps][:two][:fullDistrictTrunk]
-      
-      
-      
       }
     }).to_dot
 
 
     theResponseThree = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
   
-         
-          
       headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
       #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
-      body: {"firstName": params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname],
-      "addressLine1": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:address_line_1],
-      "addressLine2": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:address_line_2], 
-      "countryCode": "US",
-      "country": "US",
-      "provinceOrState": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_1],
-      "postalOrZip": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:postal_code],
-      "city": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_2]
-    
-    
-    
-    }
-  }).to_dot
-
-
-
-
-
-
-
-
-
-
+      body: {
+        "firstName": params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname],
+        "addressLine1": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:address_line_1],
+        "addressLine2": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:address_line_2], 
+        "countryCode": "US",
+        "country": "US",
+        "provinceOrState": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_1],
+        "postalOrZip": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:postal_code],
+        "city": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_2]
+      }
+    }).to_dot
 
 
     puts "-------------------------------------------------"
@@ -1341,90 +1340,71 @@ class LookupsController < ApplicationController
     puts contactBuyer
 
 
+  theResponseLetterOne = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
+    
+    headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+    #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
+    body: {
+      # id 	string 	A unique ID prefixed with letter_
+      #"id": contactRepOne,
+      # object 	string 	Always letter
+      # status 	string 	See Tracking
+      # imbStatus 	string or null 	See Intelligent-Mail Tracking
+      # live 	boolean 	true if this is a live mode letter else false
+      # description 	string or null 	Optional line describing this letter
+      # sendDate 	Date 	Date when the letter will be sent
+      # to 	Contact 	The recipient of this letter
+      "to": contactRepOne,
+      # from 	Contact 	The sender of this letter
+      "from": contactBuyer,
 
+      "addressPlacement": "insert_blank_page",
+      
+      # html 	string or null 	The raw html provided for this letter, if any
+      # template 	string or null 	A Template ID, if any
+      # uploadedPDF 	string or null 	A signed link to the original PDF uploaded for this letter, if any
+      # addressPlacement 	string 	One of top_first_page or insert_blank_page
+      # color 	boolean 	Whether the letter will be printed in color
+      # doubleSided 	boolean 	Whether the letter will be printed double-sided
+      # envelopeType 	string 	One of standard_double_window or flat
+      # url 	string or null 	Signed link to a preview of this letter order
+      # pageCount 	number or null 	Number of pages produced for this letter
+      # mergeVariables 	object or null 	See Merge Variables
+      # metadata 	object or null 	See Metadata
 
+      "html": 
+        '<div style="margin: 50px">
 
-    theResponseLetterOne = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
-  
-         
+          <h2>Dear {{to.firstName}},</h2>
           
-      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
-
-      body: {
-     
-        # id 	string 	A unique ID prefixed with letter_
-        #"id": contactRepOne,
-        # object 	string 	Always letter
-        # status 	string 	See Tracking
-        # imbStatus 	string or null 	See Intelligent-Mail Tracking
-        # live 	boolean 	true if this is a live mode letter else false
-        # description 	string or null 	Optional line describing this letter
-        # sendDate 	Date 	Date when the letter will be sent
-        # to 	Contact 	The recipient of this letter
-        "to": contactRepOne,
-        # from 	Contact 	The sender of this letter
-        "from": contactBuyer,
-
-        "addressPlacement": "insert_blank_page",
-        
-        # html 	string or null 	The raw html provided for this letter, if any
-        # template 	string or null 	A Template ID, if any
-        # uploadedPDF 	string or null 	A signed link to the original PDF uploaded for this letter, if any
-        # addressPlacement 	string 	One of top_first_page or insert_blank_page
-        # color 	boolean 	Whether the letter will be printed in color
-        # doubleSided 	boolean 	Whether the letter will be printed double-sided
-        # envelopeType 	string 	One of standard_double_window or flat
-        # url 	string or null 	Signed link to a preview of this letter order
-        # pageCount 	number or null 	Number of pages produced for this letter
-        # mergeVariables 	object or null 	See Merge Variables
-        # metadata 	object or null 	See Metadata
-
-      "html": '<div style="margin: 50px">
-
-        <h2>Dear {{to.firstName}},</h2>
-        <p>
-          I am a constituent of (
-          <i>
-          
-             {{to.description}}
-          
-          </i>
-          ). I am writing to urge you to support legalizing and regulating marijuana for adults.
-          Many other states are currently benefiting from this common sense approach. 
-          Why is our state lagging behind?
-
+          <p>
+            I am a constituent of ( <i> {{to.description}} </i>). I am writing to urge you to support legalizing and regulating marijuana for adults.
+            Many other states are currently benefiting from this common sense approach. 
+            Why is our state lagging behind?
           </p>
           <p>
           
-          Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
-          marijuana for recreational use would virtually eliminate the black market, create
-          thousands of jobs in a growing industry and bring in millions of dolars of tax
-          revenue.
+            Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
+            marijuana for recreational use would virtually eliminate the black market, create
+            thousands of jobs in a growing industry and bring in millions of dolars of tax
+            revenue.
           </p>
           <p>
 
-          As a Legislator, you are in a position where you can make a difference. 
-          Can i count on you to end marijuana prohibition?
+            As a Legislator, you are in a position where you can make a difference. 
+            Can i count on you to end marijuana prohibition?
+          </p>
 
-
-          
-          
-        </p>
-
-        <div className="closing">
-          Sincerely, <br />
-          <sub>{{from.firstName}}</sub> <br />
-          <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
-          <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
-         
-        
-          
-        
+          <div className="closing">
+            Sincerely, <br />
+            <sub>{{from.firstName}}</sub> <br />
+            <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
+            <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
+          </div>
         </div>
-        </div>'
-      }
+      '
+    }
     
   }).to_dot
 
@@ -1528,7 +1508,7 @@ class LookupsController < ApplicationController
   puts "///////////////////////////////////"
   puts ""
 
-  puts "theResponseLetterOne = " + theResponseLetterOne.to_s
+  puts "theResponseLetterTwo = " + theResponseLetterTwo.to_s
 
 
 
@@ -1553,18 +1533,19 @@ class LookupsController < ApplicationController
   puts "recipients = " + theResponseLetterTwo["to"]["firstName"]
   puts "status = " + theResponseLetterTwo["status"]
   puts "postgrid_id = " + theResponseLetterTwo["id"]
+  
   puts "full_object = " + theResponseLetterTwo.to_s
 
+  puts "/////////////////// communicate with post grid start"
 
 
-
-  puts "///////////////////////////////////"
+  puts   "///////////////////////////////////"
   puts "///////////////////////////////////"
   puts "/////   start new + save   ////////"
   puts "///////////////////////////////////"
 
 
-  com1 = Communication.new do |u|
+  com1  = newAutoUser.communications.new do |u|
 
     u.date = theResponseLetterOne["sendDate"]
     u.com_type = theResponseLetterOne["com_type"]
@@ -1579,11 +1560,11 @@ class LookupsController < ApplicationController
 
   if com1.save!
 
-    puts "save was successfull"
+    puts "ENTIRE save was successfull"
 
   else
 
-    puts "save was not successfull"
+    puts "1yard line, save was not successfull"
 
   end
 
@@ -1597,7 +1578,10 @@ class LookupsController < ApplicationController
     private
     
       def event_params
+        
         params.require(:lookup).permit(:address, :zipcode, :test)
-      end
+
+
+       end
 end
   
