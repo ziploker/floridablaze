@@ -11,6 +11,7 @@ class LookupsController < ApplicationController
     require "net/http"
     
     
+    
   
       
     
@@ -1104,12 +1105,107 @@ class LookupsController < ApplicationController
     puts "in lookups#sendLetterToReps"
 
     puts "data_is " + params[:data][:ppResults].inspect
+    puts "///////////////"
 
     puts "infoOnReps is  " + params[:data][:infoOnReps].inspect
+    puts "///////////////"
+
+    puts "buyerDetails is  " + params[:data][:buyerDetails].inspect
+    puts "///////////////"
+
+
+
+    puts "/////////////////// create account automatically start"
+    mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
+    token = SecureRandom.urlsafe_base64.to_s
+    mg_client = Mailgun::Client.new mailgun_api
+    
+
+    # t.string "email"
+    # t.string "full_name"
+    # t.string "password_digest"
+    # t.string "confirm_token"
+    # t.boolean "isAdmin"
+    # t.string "email_confirmed"
+    # t.boolean "opt_in"
+    # t.datetime "created_at", precision: 6, null: false
+    # t.datetime "updated_at", precision: 6, null: false
+    # t.string "avatar_url"
+    # t.string "nick"
+    # t.string "auth_token"
+    # t.integer "number_of_comments", default: 0
+
+    newAutoUser = User.new do |u|
+
+      u.email = params[:data][:buyerDetails][:payer][:email_address].downcase
+      u.full_name = params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname]
+      u.password = "luc1dd0t"
+      u.isAdmin = false
+      u.email_confirmed = "false" 
+      u.opt_in = false
+      u.nick = params[:data][:buyerDetails][:payer][:name][:given_name]
+      u.confirm_token = token
+  
+  
+    end
     
     
-    puts "Reps name is " + params[:data][:infoOnReps][:one][:name].to_s
+    
+
+    if newAutoUser.save
+
+        puts "newAutoUser.save was true !!"
+        # Define your message parameters
+        message_params =  { 
+            
+            from: 'admin@mg.floiridablaze.io',
+            to:   newAutoUser.email,
+            "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+            "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
+            subject: 'Welcome to floridablaze.io',
+            html:    "
+            
+                <html>
+                    <body>
+                        <h1> Hi #{newAutoUser.full_name},</h1>
+                        
+                        <p> Thank you for registering at Floridablaze<br>
+                        Please navigate to the link below to activate your account<br><br>
+
+                        #{confirm_email_registration_url(newAutoUser.confirm_token)}<br></p>
+
+                        <p>Thank you,<br>
+
+                        
+                        <em>-Floridablaze Team</em></p><br><br><br>
+
+                        If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
+
+                    </body>
+                </html>"
+
+        }
+
+      mg_client.send_message 'mg.floridablaze.io', message_params
+      result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
+
+      puts " end of auto user create, result from mg = " + result.to_s
+        
+    else
+
+      puts "auto user create error"
+
+    end
+
+    puts "/////////////////// create account automatically end"
+
+
+    
+    
+    puts "RepsOne name is " + params[:data][:infoOnReps][:one][:name].to_s
     puts "RepsTwo name is " + params[:data][:infoOnReps][:two][:name].to_s
+    puts "Buyer email is" + params[:buyerDetails][:payer][:email_address].to_s
+    puts "///////////////"
     
     mainAddressArray = params[:data][:infoOnReps][:one][:address].split(';')
     mainAddressArrayTwo = params[:data][:infoOnReps][:two][:address].split(';')
@@ -1450,8 +1546,46 @@ class LookupsController < ApplicationController
   puts "recipients = " + theResponseLetterOne["to"]["firstName"]
   puts "status = " + theResponseLetterOne["status"]
   puts "postgrid_id = " + theResponseLetterOne["id"]
-
   puts "full_object = " + theResponseLetterOne.to_s
+  puts "///////////////////"
+  puts "date from postgrid = " + theResponseLetterTwo["sendDate"]
+  puts "com_type = " + theResponseLetterTwo["object"]
+  puts "recipients = " + theResponseLetterTwo["to"]["firstName"]
+  puts "status = " + theResponseLetterTwo["status"]
+  puts "postgrid_id = " + theResponseLetterTwo["id"]
+  puts "full_object = " + theResponseLetterTwo.to_s
+
+
+
+
+  puts "///////////////////////////////////"
+  puts "///////////////////////////////////"
+  puts "/////   start new + save   ////////"
+  puts "///////////////////////////////////"
+
+
+  com1 = Communication.new do |u|
+
+    u.date = theResponseLetterOne["sendDate"]
+    u.com_type = theResponseLetterOne["com_type"]
+    u.recipient = theResponseLetterOne["recipient"]
+    u.status = theResponseLetterOne["status"]
+    u.postgrid_id = theResponseLetterOne["postgrid_id"]
+    u.full_object = theResponseLetterOne["full_object"]
+
+
+
+  end
+
+  if com1.save!
+
+    puts "save was successfull"
+
+  else
+
+    puts "save was not successfull"
+
+  end
 
 
 

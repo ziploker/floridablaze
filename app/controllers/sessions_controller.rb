@@ -25,8 +25,12 @@ class SessionsController < ApplicationController
             .find_by(email: params["user"]["email"].downcase)
             .try(:authenticate, params["user"][:password])
 
+            puts "user that was found is = " + user.inspect
+
         
         if user.present?
+
+            puts "user present? " + user.present?.to_s
             
             
             

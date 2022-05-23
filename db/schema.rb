@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_21_202230) do
+ActiveRecord::Schema.define(version: 2022_05_22_035927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,11 +69,11 @@ ActiveRecord::Schema.define(version: 2022_05_21_202230) do
     t.string "date"
     t.string "com_type"
     t.string "status"
-    t.text "full_object"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "postgrid_id"
     t.string "recipient"
+    t.json "full_object", default: {}
   end
 
   create_table "dislikes", force: :cascade do |t|
