@@ -1123,42 +1123,29 @@ class LookupsController < ApplicationController
 
   def sendLetterToReps
 
-    puts "in lookups#sendLetterToReps"
-
-    puts "data_is " + params[:data][:ppResults].inspect
+    puts "in lookups#sendLetterToReps start, check params"
     puts "///////////////"
-
-    puts "infoOnReps is  " + params[:data][:infoOnReps].inspect
     puts "///////////////"
-
-    puts "buyerDetails is  " + params[:data][:buyerDetails].inspect
     puts "///////////////"
-
-
-
-    puts "/////////////////// create account automatically start"
+    puts "params[:data][:ppResults] is " + params[:data][:ppResults].inspect
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
+    puts "params[:data][:infoOnReps] is  " + params[:data][:infoOnReps].inspect
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
+    puts "params[:data][:buyerDetails] is  " + params[:data][:buyerDetails].inspect
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
+    puts "create User object based on paypal results"
     
     mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
     token = SecureRandom.urlsafe_base64.to_s
     mg_client = Mailgun::Client.new mailgun_api
     
-
-    # t.string "email"
-    # t.string "full_name"
-    # t.string "password_digest"
-    # t.string "confirm_token"
-    # t.boolean "isAdmin"
-    # t.string "email_confirmed"
-    # t.boolean "opt_in"
-    # t.datetime "created_at", precision: 6, null: false
-    # t.datetime "updated_at", precision: 6, null: false
-    # t.string "avatar_url"
-    # t.string "nick"
-    # t.string "auth_token"
-    # t.integer "number_of_comments", default: 0
-
     newAutoUser = User.new do |u|
-
       u.email = params[:data][:buyerDetails][:payer][:email_address].downcase
       u.full_name = params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname]
       u.password = "luc1dd0t"
@@ -1167,63 +1154,21 @@ class LookupsController < ApplicationController
       u.opt_in = false
       u.nick = params[:data][:buyerDetails][:payer][:name][:given_name]
       u.confirm_token = token
-  
-  
     end
     
-    
-    
-
     if newAutoUser.save
-
-      puts "newAutoUser.save was true !!"
-      # Define your message parameters
-      message_params =  { 
-          
-        from: 'admin@mg.floiridablaze.io',
-        to:   newAutoUser.email,
-        "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
-        "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
-        subject: 'Welcome to floridablaze.io',
-        html:    "
-            
-        <html>
-          <body>
-            <h1> Hi #{newAutoUser.full_name},</h1>
-            
-            <p> Thank you for registering at Floridablaze<br>
-              Please navigate to the link below to activate your account<br><br>
-
-              #{confirm_email_registration_url(newAutoUser.confirm_token)}<br>
-            </p>
-
-            <p>Thank you,<br>
-              <em>-Floridablaze Team</em>
-            </p>
-            
-            <br><br><br>
-
-            If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
-
-          </body>
-        </html>"
-      }
-
-      mg_client.send_message 'mg.floridablaze.io', message_params
-      result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
-
-      puts " end of auto user create, result from mg = " + result.to_s
-        
+      puts "newAutoUser was created!!"
     else
-
-      puts "auto user create error"
-
+      puts "newAutoUser was not created!!"
     end
 
-    puts "/////////////////// create account automatically end"
     puts "///////////////"
-    puts "/////////////////// communicate with post grid start"
-    
+    puts "///////////////"
+    puts "///////////////"
+    puts "Building letters.................."
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
     
     puts "RepsOne name is " + params[:data][:infoOnReps][:one][:name].to_s
     puts "RepsTwo name is " + params[:data][:infoOnReps][:two][:name].to_s
@@ -1254,9 +1199,10 @@ class LookupsController < ApplicationController
     zipcodeTwo = mainAddressArrayTwo[-1].strip.split(",")[-1].split(" ")[-1].to_s
     puts "zipcode = " + zipcode
     puts "zipcodeTwo = " + zipcodeTwo
+    puts "///////////////"
+    puts "///////////////"
+    puts "creating 3 contacts with postgrid"
     
-    
-
     theResponse = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
       
       headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
@@ -1309,215 +1255,207 @@ class LookupsController < ApplicationController
       }
     }).to_dot
 
-
-    puts "-------------------------------------------------"
-
-    puts "results from postGrid" + theResponse.to_yaml
-
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
     
-    puts "ID results from postGrid" + theResponse.id.to_s
-
-    puts "-------------------------------------------------"
-
-    puts "resultsTwo from postGrid" + theResponseTwo.to_yaml
-    #puts "ID resultsTwo from postGrid" + theResponseTwo.id.to_s
-
-    puts "-------------------------------------------------"
-
-    puts "resultsThree from postGrid" + theResponseThree.to_yaml
-    #puts "ID resultsThree from postGrid" + theResponseThree.id.to_s
-
-    puts "-------------------------------------------------"
-
+    puts "contact 1of3" + theResponse.to_yaml
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
+    puts "contact 2of3" + theResponseTwo.to_yaml
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
+    puts "contact 3of3" + theResponseThree.to_yaml
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
+    
 
     contactRepOne = theResponse.id
-    puts contactRepOne
-
     contactRepTwo = theResponseTwo.id
-    puts contactRepTwo
-
     contactBuyer = theResponseThree.id
-    puts contactBuyer
-
-
-  theResponseLetterOne = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
     
-    headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-    #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
+    puts "SENDING letters.................."
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
 
-    body: {
-      # id 	string 	A unique ID prefixed with letter_
-      #"id": contactRepOne,
-      # object 	string 	Always letter
-      # status 	string 	See Tracking
-      # imbStatus 	string or null 	See Intelligent-Mail Tracking
-      # live 	boolean 	true if this is a live mode letter else false
-      # description 	string or null 	Optional line describing this letter
-      # sendDate 	Date 	Date when the letter will be sent
-      # to 	Contact 	The recipient of this letter
-      "to": contactRepOne,
-      # from 	Contact 	The sender of this letter
-      "from": contactBuyer,
-
-      "addressPlacement": "insert_blank_page",
+    theResponseLetterOne = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
       
-      # html 	string or null 	The raw html provided for this letter, if any
-      # template 	string or null 	A Template ID, if any
-      # uploadedPDF 	string or null 	A signed link to the original PDF uploaded for this letter, if any
-      # addressPlacement 	string 	One of top_first_page or insert_blank_page
-      # color 	boolean 	Whether the letter will be printed in color
-      # doubleSided 	boolean 	Whether the letter will be printed double-sided
-      # envelopeType 	string 	One of standard_double_window or flat
-      # url 	string or null 	Signed link to a preview of this letter order
-      # pageCount 	number or null 	Number of pages produced for this letter
-      # mergeVariables 	object or null 	See Merge Variables
-      # metadata 	object or null 	See Metadata
+      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
-      "html": 
-        '<div style="margin: 50px">
+      body: {
+        # id 	string 	A unique ID prefixed with letter_
+        #"id": contactRepOne,
+        # object 	string 	Always letter
+        # status 	string 	See Tracking
+        # imbStatus 	string or null 	See Intelligent-Mail Tracking
+        # live 	boolean 	true if this is a live mode letter else false
+        # description 	string or null 	Optional line describing this letter
+        # sendDate 	Date 	Date when the letter will be sent
+        # to 	Contact 	The recipient of this letter
+        "to": contactRepOne,
+        # from 	Contact 	The sender of this letter
+        "from": contactBuyer,
 
-          <h2>Dear {{to.firstName}},</h2>
-          
-          <p>
-            I am a constituent of ( <i> {{to.description}} </i>). I am writing to urge you to support legalizing and regulating marijuana for adults.
-            Many other states are currently benefiting from this common sense approach. 
-            Why is our state lagging behind?
-          </p>
-          <p>
-          
-            Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
-            marijuana for recreational use would virtually eliminate the black market, create
-            thousands of jobs in a growing industry and bring in millions of dolars of tax
-            revenue.
-          </p>
-          <p>
+        "addressPlacement": "insert_blank_page",
+        
+        # html 	string or null 	The raw html provided for this letter, if any
+        # template 	string or null 	A Template ID, if any
+        # uploadedPDF 	string or null 	A signed link to the original PDF uploaded for this letter, if any
+        # addressPlacement 	string 	One of top_first_page or insert_blank_page
+        # color 	boolean 	Whether the letter will be printed in color
+        # doubleSided 	boolean 	Whether the letter will be printed double-sided
+        # envelopeType 	string 	One of standard_double_window or flat
+        # url 	string or null 	Signed link to a preview of this letter order
+        # pageCount 	number or null 	Number of pages produced for this letter
+        # mergeVariables 	object or null 	See Merge Variables
+        # metadata 	object or null 	See Metadata
 
-            As a Legislator, you are in a position where you can make a difference. 
-            Can i count on you to end marijuana prohibition?
-          </p>
+        "html": 
+          '<div style="margin: 50px">
 
-          <div className="closing">
-            Sincerely, <br />
-            <sub>{{from.firstName}}</sub> <br />
-            <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
-            <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
+            <h2>Dear {{to.firstName}},</h2>
+            
+            <p>
+              I am a constituent of ( <i> {{to.description}} </i>). I am writing to urge you to support legalizing and regulating marijuana for adults.
+              Many other states are currently benefiting from this common sense approach. 
+              Why is our state lagging behind?
+            </p>
+            <p>
+            
+              Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
+              marijuana for recreational use would virtually eliminate the black market, create
+              thousands of jobs in a growing industry and bring in millions of dolars of tax
+              revenue.
+            </p>
+            <p>
+
+              As a Legislator, you are in a position where you can make a difference. 
+              Can i count on you to end marijuana prohibition?
+            </p>
+
+            <div className="closing">
+              Sincerely, <br />
+              <sub>{{from.firstName}}</sub> <br />
+              <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
+              <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
+            </div>
           </div>
+        '
+      }
+      
+    }).to_dot
+
+
+
+    theResponseLetterTwo = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
+    
+          
+            
+      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+
+      body: {
+    
+        # id 	string 	A unique ID prefixed with letter_
+        #"id": contactRepOne,
+        # object 	string 	Always letter
+        # status 	string 	See Tracking
+        # imbStatus 	string or null 	See Intelligent-Mail Tracking
+        # live 	boolean 	true if this is a live mode letter else false
+        # description 	string or null 	Optional line describing this letter
+        # sendDate 	Date 	Date when the letter will be sent
+        # to 	Contact 	The recipient of this letter
+        "to": contactRepTwo,
+        # from 	Contact 	The sender of this letter
+        "from": contactBuyer,
+
+        "addressPlacement": "insert_blank_page",
+        
+        # html 	string or null 	The raw html provided for this letter, if any
+        # template 	string or null 	A Template ID, if any
+        # uploadedPDF 	string or null 	A signed link to the original PDF uploaded for this letter, if any
+        # addressPlacement 	string 	One of top_first_page or insert_blank_page
+        # color 	boolean 	Whether the letter will be printed in color
+        # doubleSided 	boolean 	Whether the letter will be printed double-sided
+        # envelopeType 	string 	One of standard_double_window or flat
+        # url 	string or null 	Signed link to a preview of this letter order
+        # pageCount 	number or null 	Number of pages produced for this letter
+        # mergeVariables 	object or null 	See Merge Variables
+        # metadata 	object or null 	See Metadata
+
+      "html": '<div style="margin: 50px">
+
+        <h2>Dear {{to.firstName}},</h2>
+        <p>
+          I am a constituent of (
+          <i>
+          
+            {{to.description}}
+          
+          </i>
+          ). I am writing to urge you to support legalizing and regulating marijuana for adults.
+          Many other states are currently benefiting from this common sense approach. 
+          Why is our state lagging behind?
+
+          </p>
+          <p>
+          
+          Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
+          marijuana for recreational use would virtually eliminate the black market, create
+          thousands of jobs in a growing industry and bring in millions of dolars of tax
+          revenue.
+          </p>
+          <p>
+
+          As a Legislator, you are in a position where you can make a difference. 
+          Can i count on you to end marijuana prohibition?
+
+
+          
+          
+        </p>
+
+        <div className="closing">
+          Sincerely, <br />
+          <sub>{{from.firstName}}</sub> <br />
+          <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
+          <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
+        
+        
+          
+        
         </div>
-      '
-    }
+        </div>'
+      }
     
   }).to_dot
 
 
-
-  theResponseLetterTwo = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
   
-         
-          
-    headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-    #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
-
-    body: {
-   
-      # id 	string 	A unique ID prefixed with letter_
-      #"id": contactRepOne,
-      # object 	string 	Always letter
-      # status 	string 	See Tracking
-      # imbStatus 	string or null 	See Intelligent-Mail Tracking
-      # live 	boolean 	true if this is a live mode letter else false
-      # description 	string or null 	Optional line describing this letter
-      # sendDate 	Date 	Date when the letter will be sent
-      # to 	Contact 	The recipient of this letter
-      "to": contactRepTwo,
-      # from 	Contact 	The sender of this letter
-      "from": contactBuyer,
-
-      "addressPlacement": "insert_blank_page",
-      
-      # html 	string or null 	The raw html provided for this letter, if any
-      # template 	string or null 	A Template ID, if any
-      # uploadedPDF 	string or null 	A signed link to the original PDF uploaded for this letter, if any
-      # addressPlacement 	string 	One of top_first_page or insert_blank_page
-      # color 	boolean 	Whether the letter will be printed in color
-      # doubleSided 	boolean 	Whether the letter will be printed double-sided
-      # envelopeType 	string 	One of standard_double_window or flat
-      # url 	string or null 	Signed link to a preview of this letter order
-      # pageCount 	number or null 	Number of pages produced for this letter
-      # mergeVariables 	object or null 	See Merge Variables
-      # metadata 	object or null 	See Metadata
-
-    "html": '<div style="margin: 50px">
-
-      <h2>Dear {{to.firstName}},</h2>
-      <p>
-        I am a constituent of (
-        <i>
-        
-           {{to.description}}
-        
-        </i>
-        ). I am writing to urge you to support legalizing and regulating marijuana for adults.
-        Many other states are currently benefiting from this common sense approach. 
-        Why is our state lagging behind?
-
-        </p>
-        <p>
-        
-        Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
-        marijuana for recreational use would virtually eliminate the black market, create
-        thousands of jobs in a growing industry and bring in millions of dolars of tax
-        revenue.
-        </p>
-        <p>
-
-        As a Legislator, you are in a position where you can make a difference. 
-        Can i count on you to end marijuana prohibition?
-
-
-        
-        
-      </p>
-
-      <div className="closing">
-        Sincerely, <br />
-        <sub>{{from.firstName}}</sub> <br />
-        <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
-        <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
-       
-      
-        
-      
-      </div>
-      </div>'
-    }
-  
-}).to_dot
-
-
-  puts "///////////////////////////////////"
-  puts "///////////////////////////////////"
-  puts "///////////////////////////////////"
-  puts "///////////////////////////////////"
-  puts ""
+  puts "///////////////"
+  puts "///////////////"
+  puts "///////////////"
 
   puts "theResponseLetterOne = " + theResponseLetterOne.to_s
 
-  puts "///////////////////////////////////"
-  puts "///////////////////////////////////"
-  puts "///////////////////////////////////"
-  puts "///////////////////////////////////"
-  puts ""
+  puts "///////////////"
+  puts "///////////////"
+  puts "///////////////"
 
   puts "theResponseLetterTwo = " + theResponseLetterTwo.to_s
 
-
-
-  puts "///////////////////////////////////"
-  puts "///////////////////////////////////"
-  puts "///////////////////////////////////"
-  puts "///////////////////////////////////"
-  puts ""
-
+  puts "///////////////"
+  puts "///////////////"
+  puts "///////////////"
 
 
 
@@ -1539,7 +1477,7 @@ class LookupsController < ApplicationController
   puts "/////////////////// communicate with post grid start"
 
 
-  puts   "///////////////////////////////////"
+  puts "///////////////////////////////////"
   puts "///////////////////////////////////"
   puts "/////   start new + save   ////////"
   puts "///////////////////////////////////"
@@ -1564,9 +1502,49 @@ class LookupsController < ApplicationController
 
   else
 
-    puts "1yard line, save was not successfull"
+    puts "1 yard line, save was not successfull"
 
   end
+
+
+  puts "send paypal reciept to newAutoUser!!"
+  message_params =  { 
+      
+    from: 'admin@mg.floiridablaze.io',
+    to:   newAutoUser.email,
+    "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+    "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
+    subject: 'Welcome to floridablaze.io',
+    html:    "
+        
+    <html>
+      <body>
+        <h1> Hi #{newAutoUser.full_name},</h1>
+        
+        <p> Thank you for registering at Floridablaze<br>
+          Please navigate to the link below to activate your account<br><br>
+
+          #{confirm_email_registration_url(newAutoUser.confirm_token)}<br>
+        </p>
+
+        <p>Thank you,<br>
+          <em>-Floridablaze Team</em>
+        </p>
+        
+        <br><br><br>
+
+        If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
+
+      </body>
+    </html>"
+  }
+
+  mg_client.send_message 'mg.floridablaze.io', message_params
+  result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
+
+  puts " end of auto user create, result from mg = " + result.to_s
+
+
 
 
 
