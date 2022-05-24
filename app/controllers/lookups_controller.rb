@@ -1179,6 +1179,9 @@ class LookupsController < ApplicationController
     mainAddressArrayTwo = params[:data][:infoOnReps][:two][:address].split(';')
     #example output mainAddressArray = ["1401 The Capitol"," 402 South Monroe Street","Tallahassee, FL 32399-1300"]
    
+    puts "check if mainAddressArray[-2] is nil ========="
+    puts "if soooo then put hardcoded address"
+    
     mainAddress = mainAddressArray[-2].strip.to_s
     mainAddressTwo = mainAddressArrayTwo[-2].strip.to_s
     #example output mainAddress = "402 South Monroe Street"
@@ -1445,21 +1448,35 @@ class LookupsController < ApplicationController
   puts "///////////////"
   puts "///////////////"
 
-  puts "theResponseLetterOne = " + theResponseLetterOne.to_s
+  #puts "theResponseLetterOne = " + theResponseLetterOne.to_s
 
   puts "///////////////"
   puts "///////////////"
   puts "///////////////"
 
-  puts "theResponseLetterTwo = " + theResponseLetterTwo.to_s
+  p#uts "theResponseLetterTwo = " + theResponseLetterTwo.to_s
 
   puts "///////////////"
   puts "///////////////"
   puts "///////////////"
+  puts "ttttttttttttake 1"
+  puts newAutoUser.inspect
+
+  puts theResponseLetterOne.class.to_s
+
+  puts theResponseLetterOne.inspect
+  
+  puts theResponseLetterOne.sendDate
+  puts theResponseLetterOne.com_type
+  puts theResponseLetterOne["recipient"]
+  puts theResponseLetterOne["status"]
+  puts theResponseLetterOne["postgrid_id"]
+  puts theResponseLetterOne["full_object"].to_s
 
 
 
   puts "date from postgrid = " + theResponseLetterOne["sendDate"]
+  puts "date from postgrid class = " + theResponseLetterOne["sendDate"].class.to_s
   puts "com_type = " + theResponseLetterOne["object"]
   puts "recipients = " + theResponseLetterOne["to"]["firstName"]
   puts "status = " + theResponseLetterOne["status"]
@@ -1481,6 +1498,17 @@ class LookupsController < ApplicationController
   puts "///////////////////////////////////"
   puts "/////   start new + save   ////////"
   puts "///////////////////////////////////"
+  
+  puts "ttttttttttttake 2"
+  puts newAutoUser.inspect
+  puts theResponseLetterOne["sendDate"]
+  puts theResponseLetterOne["sendDate"]
+  puts theResponseLetterOne["com_type"]
+  puts theResponseLetterOne["recipient"]
+  puts theResponseLetterOne["status"]
+  puts theResponseLetterOne["postgrid_id"]
+  puts theResponseLetterOne["full_object"].to_s
+
 
 
   com1  = newAutoUser.communications.new do |u|
@@ -1490,12 +1518,27 @@ class LookupsController < ApplicationController
     u.recipient = theResponseLetterOne["recipient"]
     u.status = theResponseLetterOne["status"]
     u.postgrid_id = theResponseLetterOne["postgrid_id"]
-    u.full_object = theResponseLetterOne["full_object"]
+    u.paypal_full_object = theResponseLetterOne["full_object"].to_s
 
 
 
   end
 
+  puts com1.inspect
+  puts "ttttttttttttake 3"
+  puts newAutoUser.inspect
+  puts theResponseLetterOne["sendDate"]
+  puts theResponseLetterOne["sendDate"]
+  puts theResponseLetterOne["com_type"]
+  puts theResponseLetterOne["recipient"]
+  puts theResponseLetterOne["status"]
+  puts theResponseLetterOne["postgrid_id"]
+  puts theResponseLetterOne["full_object"].to_s
+
+  
+  
+  
+  
   if com1.save!
 
     puts "ENTIRE save was successfull"
