@@ -1180,7 +1180,7 @@ class LookupsController < ApplicationController
     #example output mainAddressArray = ["1401 The Capitol"," 402 South Monroe Street","Tallahassee, FL 32399-1300"]
    
     puts "check if mainAddressArray[-2] is nil ========="
-    puts "if soooo then put hardcoded address"
+    puts "if soooo dont split address, length of array should be " + mainAddressArray.length().to_s;
     
     mainAddress = mainAddressArray[-2].strip.to_s
     mainAddressTwo = mainAddressArrayTwo[-2].strip.to_s
@@ -1262,7 +1262,6 @@ class LookupsController < ApplicationController
     puts "///////////////"
     puts "///////////////"
     puts "///////////////"
-    
     puts "contact 1of3" + theResponse.to_yaml
     puts "///////////////"
     puts "///////////////"
@@ -1357,8 +1356,6 @@ class LookupsController < ApplicationController
       
     }).to_dot
 
-
-
     theResponseLetterTwo = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
     
           
@@ -1440,156 +1437,117 @@ class LookupsController < ApplicationController
         </div>'
       }
     
-  }).to_dot
+    }).to_dot
 
 
   
-  puts "///////////////"
-  puts "///////////////"
-  puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
 
-  #puts "theResponseLetterOne = " + theResponseLetterOne.to_s
+    puts "theResponseLetterOne = " + theResponseLetterOne.inspect
 
-  puts "///////////////"
-  puts "///////////////"
-  puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
 
-  p#uts "theResponseLetterTwo = " + theResponseLetterTwo.to_s
+    puts "theResponseLetterTwo = " + theResponseLetterTwo.inspect
 
-  puts "///////////////"
-  puts "///////////////"
-  puts "///////////////"
-  puts "ttttttttttttake 1"
-  puts newAutoUser.inspect
-
-  puts theResponseLetterOne.class.to_s
-
-  puts theResponseLetterOne.inspect
-  
-  puts theResponseLetterOne.sendDate
-  puts theResponseLetterOne.com_type
-  puts theResponseLetterOne["recipient"]
-  puts theResponseLetterOne["status"]
-  puts theResponseLetterOne["postgrid_id"]
-  puts theResponseLetterOne["full_object"].to_s
-
-
-
-  puts "date from postgrid = " + theResponseLetterOne["sendDate"]
-  puts "date from postgrid class = " + theResponseLetterOne["sendDate"].class.to_s
-  puts "com_type = " + theResponseLetterOne["object"]
-  puts "recipients = " + theResponseLetterOne["to"]["firstName"]
-  puts "status = " + theResponseLetterOne["status"]
-  puts "postgrid_id = " + theResponseLetterOne["id"]
-  puts "full_object = " + theResponseLetterOne.to_s
-  puts "///////////////////"
-  puts "date from postgrid = " + theResponseLetterTwo["sendDate"]
-  puts "com_type = " + theResponseLetterTwo["object"]
-  puts "recipients = " + theResponseLetterTwo["to"]["firstName"]
-  puts "status = " + theResponseLetterTwo["status"]
-  puts "postgrid_id = " + theResponseLetterTwo["id"]
-  
-  puts "full_object = " + theResponseLetterTwo.to_s
-
-  puts "/////////////////// communicate with post grid start"
-
-
-  puts "///////////////////////////////////"
-  puts "///////////////////////////////////"
-  puts "/////   start new + save   ////////"
-  puts "///////////////////////////////////"
-  
-  puts "ttttttttttttake 2"
-  puts newAutoUser.inspect
-  puts theResponseLetterOne["sendDate"]
-  puts theResponseLetterOne["sendDate"]
-  puts theResponseLetterOne["com_type"]
-  puts theResponseLetterOne["recipient"]
-  puts theResponseLetterOne["status"]
-  puts theResponseLetterOne["postgrid_id"]
-  puts theResponseLetterOne["full_object"].to_s
-
-
-
-  com1  = newAutoUser.communications.new do |u|
-
-    u.date = theResponseLetterOne["sendDate"]
-    u.com_type = theResponseLetterOne["com_type"]
-    u.recipient = theResponseLetterOne["recipient"]
-    u.status = theResponseLetterOne["status"]
-    u.postgrid_id = theResponseLetterOne["postgrid_id"]
-    u.paypal_full_object = theResponseLetterOne["full_object"].to_s
-
-
-
-  end
-
-  puts com1.inspect
-  puts "ttttttttttttake 3"
-  puts newAutoUser.inspect
-  puts theResponseLetterOne["sendDate"]
-  puts theResponseLetterOne["sendDate"]
-  puts theResponseLetterOne["com_type"]
-  puts theResponseLetterOne["recipient"]
-  puts theResponseLetterOne["status"]
-  puts theResponseLetterOne["postgrid_id"]
-  puts theResponseLetterOne["full_object"].to_s
-
+    puts "///////////////"
+    puts "///////////////"
+    puts "///////////////"
   
   
+
+    puts "date from postgrid = " + theResponseLetterOne["sendDate"]
+    puts "com_type = " + theResponseLetterOne["object"]
+    puts "recipients = " + theResponseLetterOne["to"]["firstName"]
+    puts "status = " + theResponseLetterOne["status"]
+    puts "postgrid_id = " + theResponseLetterOne["id"]
+    puts "postgrid_full_object  = " + theResponseLetterOne.inspect
+
+    puts "///////////////////"
+    puts "date from postgrid = " + theResponseLetterTwo["sendDate"]
+    puts "com_type = " + theResponseLetterTwo["object"]
+    puts "recipients = " + theResponseLetterTwo["to"]["firstName"]
+    puts "status = " + theResponseLetterTwo["status"]
+    puts "postgrid_id = " + theResponseLetterTwo["id"]
+    
+    puts "postgrid_full_object = " + theResponseLetterTwo.inspect
+    puts "/////////////////// communicate with post grid start"
+
+
+    puts "///////////////////////////////////"
+    puts "///////////////////////////////////"
+    puts "/////   start new + save   ////////"
+    puts "///////////////////////////////////"
+    
+
+
+    com1  = newAutoUser.communications.new do |u|
+
+      u.date = theResponseLetterOne["sendDate"]
+      u.com_type = theResponseLetterOne["object"]
+      u.recipient = theResponseLetterOne["to"]["firstName"]
+      u.status = theResponseLetterOne["status"]
+      u.postgrid_id = theResponseLetterTwo["id"]
+      u.paypal_full_object = params[:data][:buyerDetails]
+      u.postgrid_full_object = theResponseLetterOne
+
+
+
+    end
+
   
+    puts "limbo com1 is " + com1.inspect
   
-  if com1.save!
+    if com1.save!
 
-    puts "ENTIRE save was successfull"
+      puts "ENTIRE save was successfull"
 
-  else
+    else
 
-    puts "1 yard line, save was not successfull"
+      puts "1 yard line, save was not successfull"
 
-  end
+    end
 
 
-  puts "send paypal reciept to newAutoUser!!"
-  message_params =  { 
-      
-    from: 'admin@mg.floiridablaze.io',
-    to:   newAutoUser.email,
-    "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
-    "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
-    subject: 'Welcome to floridablaze.io',
-    html:    "
+    puts "send paypal reciept to newAutoUser!!"
+    message_params =  { 
         
-    <html>
-      <body>
-        <h1> Hi #{newAutoUser.full_name},</h1>
-        
-        <p> Thank you for registering at Floridablaze<br>
-          Please navigate to the link below to activate your account<br><br>
+      from: 'admin@mg.floiridablaze.io',
+      to:   newAutoUser.email,
+      "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+      "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
+      subject: 'Welcome to floridablaze.io',
+      html:    "
+          
+      <html>
+        <body>
+          <h1> Hi #{newAutoUser.full_name},</h1>
+          
+          <p> Thank you for registering at Floridablaze<br>
+            Please navigate to the link below to activate your account<br><br>
 
-          #{confirm_email_registration_url(newAutoUser.confirm_token)}<br>
-        </p>
+            #{confirm_email_registration_url(newAutoUser.confirm_token)}<br>
+          </p>
 
-        <p>Thank you,<br>
-          <em>-Floridablaze Team</em>
-        </p>
-        
-        <br><br><br>
+          <p>Thank you,<br>
+            <em>-Floridablaze Team</em>
+          </p>
+          
+          <br><br><br>
 
-        If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
+          If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
 
-      </body>
-    </html>"
-  }
+        </body>
+      </html>"
+    }
 
-  mg_client.send_message 'mg.floridablaze.io', message_params
-  result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
+    mg_client.send_message 'mg.floridablaze.io', message_params
+    result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
 
-  puts " end of auto user create, result from mg = " + result.to_s
-
-
-
-
+    puts " end of auto user create, result from mg = " + result.to_s
 
   end  
   

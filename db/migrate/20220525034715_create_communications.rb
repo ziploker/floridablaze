@@ -7,9 +7,10 @@ class CreateCommunications < ActiveRecord::Migration[6.1]
       t.string        :status
       t.references    :user, foreign_key: true
       t.string        :postgrid_id
-      t.text          :paypal_full_object
-      t.text          :postgrid_full_object
+      t.json          :paypal_full_object, default: {}
+      t.json          :postgrid_full_object, default: {}
       t.timestamps
     end
   end
 end
+
