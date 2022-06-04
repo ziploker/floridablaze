@@ -1123,6 +1123,17 @@ class LookupsController < ApplicationController
 
   def sendLetterToReps
 
+    # someone paid to send letter
+
+    # check if the paypal email exists as a FB user.
+
+    # If the do, send them reciept of letter
+
+    # if they dont, create a user account with random password
+    # and email them new user account info and reciept for letter too
+
+
+
     puts "in lookups#sendLetterToReps start, check params"
     puts "///////////////"
     puts "///////////////"
