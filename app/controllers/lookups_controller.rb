@@ -1123,68 +1123,44 @@ class LookupsController < ApplicationController
 
   def sendLetterToReps
 
+    #--------------------------------- TASKS-----
     # someone paid to send letter
-
-    # check if the paypal email exists as a FB user.
-
-    # If the do, send them reciept of letter
-
-    # if they dont, create a user account with random password
-    # and email them new user account info and reciept for letter too
+    # send the letters.
+    # check if the paypal email exists as a FloridaBlaze user.
+    # If it does, send them reciept
+    # if it doesnt, Ask if they want to create a user account, then send reciept
+    #--------------------------------------------
 
 
+    #///////////////////////////////////////////////////////////
+    #/////////////   Display info in console   /////////////////
+    #///////////////////////////////////////////////////////////
 
     puts "in lookups#sendLetterToReps start, check params"
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    puts "params[:data][:ppResults] is " + params[:data][:ppResults].inspect
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    puts "params[:data][:infoOnReps] is  " + params[:data][:infoOnReps].inspect
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    puts "params[:data][:buyerDetails] is  " + params[:data][:buyerDetails].inspect
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    puts "create User object based on paypal results"
     
+    puts "params[:data][:ppResults] is " + params[:data][:ppResults].inspect
+    puts "params[:data][:infoOnReps] is  " + params[:data][:infoOnReps].inspect
+    puts "params[:data][:buyerDetails] is  " + params[:data][:buyerDetails].inspect
+    puts "create User object based on paypal results"
+
+
+    #///////////////////////////////////////////////////////////
+    #/////////////   Send Letters   ////////////////////////////
+    #///////////////////////////////////////////////////////////
+    puts "Sending letters start.................."
+
+
     mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
     token = SecureRandom.urlsafe_base64.to_s
     mg_client = Mailgun::Client.new mailgun_api
     
-    newAutoUser = User.new do |u|
-      u.email = params[:data][:buyerDetails][:payer][:email_address].downcase
-      u.full_name = params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname]
-      u.password = "luc1dd0t"
-      u.isAdmin = false
-      u.email_confirmed = "false" 
-      u.opt_in = false
-      u.nick = params[:data][:buyerDetails][:payer][:name][:given_name]
-      u.confirm_token = token
-    end
-    
-    if newAutoUser.save
-      puts "newAutoUser was created!!"
-    else
-      puts "newAutoUser was not created!!"
-    end
-
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    puts "Building letters.................."
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    
     puts "RepsOne name is " + params[:data][:infoOnReps][:one][:name].to_s
     puts "RepsTwo name is " + params[:data][:infoOnReps][:two][:name].to_s
-    puts "Buyer email is" + params[:data][:buyerDetails][:payer][:email_address].to_s
-    puts "///////////////"
+
+    buyerEmail = params[:data][:buyerDetails][:payer][:email_address].to_s
+    buyerFirstName = params[:data][:buyerDetails][:payer][:name][:given_name].to_s
+    puts "Buyer email is" + buyerEmail
+    puts "Buyer First name is" + buyerFirstName
     
     mainAddressArray = params[:data][:infoOnReps][:one][:address].split(';')
     mainAddressArrayTwo = params[:data][:infoOnReps][:two][:address].split(';')
@@ -1192,10 +1168,10 @@ class LookupsController < ApplicationController
    
     puts "check if mainAddressArray[-2] is nil ========="
     puts "if soooo dont split address, length of array should be " + mainAddressArray.length().to_s;
-    
     mainAddress = mainAddressArray[-2].strip.to_s
     mainAddressTwo = mainAddressArrayTwo[-2].strip.to_s
     #example output mainAddress = "402 South Monroe Street"
+    
     puts "mainAddress = " + mainAddress
     puts "mainAddressTwo = " + mainAddressTwo
 
@@ -1213,10 +1189,9 @@ class LookupsController < ApplicationController
     zipcodeTwo = mainAddressArrayTwo[-1].strip.split(",")[-1].split(" ")[-1].to_s
     puts "zipcode = " + zipcode
     puts "zipcodeTwo = " + zipcodeTwo
-    puts "///////////////"
-    puts "///////////////"
-    puts "creating 3 contacts with postgrid"
     
+    puts "start creating 3 contacts with postgrid"
+    #make contacts at postgrid for sender and two recipients.
     theResponse = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
       
       headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
@@ -1269,36 +1244,18 @@ class LookupsController < ApplicationController
       }
     }).to_dot
 
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    puts "contact 1of3" + theResponse.to_yaml
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    puts "contact 2of3" + theResponseTwo.to_yaml
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    puts "contact 3of3" + theResponseThree.to_yaml
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
+    
+    puts "contact 1of3 = " + theResponse.to_yaml
+    puts "contact 2of3 = " + theResponseTwo.to_yaml
+    puts "contact 3of3 = " + theResponseThree.to_yaml
     
 
+    #assign new contacts to variables
     contactRepOne = theResponse.id
     contactRepTwo = theResponseTwo.id
     contactBuyer = theResponseThree.id
     
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-    puts "SENDING letters.................."
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-
+    #make two letters at postgrid.
     theResponseLetterOne = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
       
       headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
@@ -1450,26 +1407,11 @@ class LookupsController < ApplicationController
     
     }).to_dot
 
-
-  
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-
     puts "theResponseLetterOne = " + theResponseLetterOne.inspect
-
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-
     puts "theResponseLetterTwo = " + theResponseLetterTwo.inspect
 
-    puts "///////////////"
-    puts "///////////////"
-    puts "///////////////"
-  
-  
-
+    
+    puts "---some additional info check for LETTER ONE---"
     puts "date from postgrid = " + theResponseLetterOne["sendDate"]
     puts "com_type = " + theResponseLetterOne["object"]
     puts "recipients = " + theResponseLetterOne["to"]["firstName"]
@@ -1477,72 +1419,85 @@ class LookupsController < ApplicationController
     puts "postgrid_id = " + theResponseLetterOne["id"]
     puts "postgrid_full_object  = " + theResponseLetterOne.inspect
 
-    puts "///////////////////"
+    puts "---some additional info check for LETTER TWO---"
     puts "date from postgrid = " + theResponseLetterTwo["sendDate"]
     puts "com_type = " + theResponseLetterTwo["object"]
     puts "recipients = " + theResponseLetterTwo["to"]["firstName"]
     puts "status = " + theResponseLetterTwo["status"]
     puts "postgrid_id = " + theResponseLetterTwo["id"]
     
-    puts "postgrid_full_object = " + theResponseLetterTwo.inspect
-    puts "/////////////////// communicate with post grid start"
-
-
-    puts "///////////////////////////////////"
-    puts "///////////////////////////////////"
-    puts "/////   start new + save   ////////"
-    puts "///////////////////////////////////"
+    puts "Sending letters end.................."
     
-
-
-    com1  = newAutoUser.communications.new do |u|
-
-      u.date = theResponseLetterOne["sendDate"]
-      u.com_type = theResponseLetterOne["object"]
-      u.recipient = theResponseLetterOne["to"]["firstName"]
-      u.status = theResponseLetterOne["status"]
-      u.postgrid_id = theResponseLetterTwo["id"]
-      u.paypal_full_object = params[:data][:buyerDetails]
-      u.postgrid_full_object = theResponseLetterOne
-
-
-
-    end
-
+   
   
-    puts "limbo com1 is " + com1.inspect
-  
-    if com1.save!
+    #///////////////////////////////////////////////////////////
+    #///////   Send EmaiL Receipt to paypal user   /////////////
+    #///////////////////////////////////////////////////////////
+    ##buyers email is params[:data][:buyerDetails][:payer][:email_address].to_s
+    
+    puts "START----send paypal receipt to paypal user !!"
 
-      puts "ENTIRE save was successfull"
+    ####auto registration email, save here for now
+    # message_params =  { 
+        
+    #   from: 'admin@mg.floiridablaze.io',
+    #   to:   newAutoUser.email,
+    #   "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+    #   "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
+    #   subject: 'Welcome to floridablaze.io',
+    #   html:    "
+          
+    #   <html>
+    #     <body>
+    #       <h1> Hi #{newAutoUser.full_name},</h1>
+          
+    #       <p> Thank you for registering at Floridablaze<br>
+    #         Please navigate to the link below to activate your account<br><br>
 
-    else
+    #         #{confirm_email_registration_url(newAutoUser.confirm_token)}<br>
+    #       </p>
 
-      puts "1 yard line, save was not successfull"
+    #       <p>Thank you,<br>
+    #         <em>-Floridablaze Team</em>
+    #       </p>
+          
+    #       <br><br><br>
 
-    end
+    #       If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
 
+    #     </body>
+    #   </html>"
+    # }
 
-    puts "send paypal reciept to newAutoUser!!"
+    # mg_client.send_message 'mg.floridablaze.io', message_params
+    # result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
+
+    
     message_params =  { 
         
       from: 'admin@mg.floiridablaze.io',
-      to:   newAutoUser.email,
+      to:   buyerEmail,
       "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
       "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
-      subject: 'Welcome to floridablaze.io',
+      subject: 'The team at FloridaBlaze.io thanks you for making a difference.',
       html:    "
           
       <html>
         <body>
-          <h1> Hi #{newAutoUser.full_name},</h1>
+          <h1> Hi #{buyerFirstName},</h1>
           
-          <p> Thank you for registering at Floridablaze<br>
-            Please navigate to the link below to activate your account<br><br>
-
-            #{confirm_email_registration_url(newAutoUser.confirm_token)}<br>
+          <p> 
+            YOU DID IT !!!!<br>
           </p>
 
+          <p>
+
+            Your Letters are currently being prepared and will 
+            soon be on the way to thier destination.<br>
+
+
+          </p>
+          
           <p>Thank you,<br>
             <em>-Floridablaze Team</em>
           </p>
@@ -1557,8 +1512,86 @@ class LookupsController < ApplicationController
 
     mg_client.send_message 'mg.floridablaze.io', message_params
     result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
+    puts "START----send paypal receipt to paypal user !!, result from postgrid is " + result.to_s
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ##check to see if paypal email is exists at FBLAZE
+    ##if it does Save to DB and Send them Reciept
+    ##if it doesnt, Save to DB and ask if they want to create auto User
+    
+    
+    
+    newAutoUser = User.new do |u|
+      u.email = params[:data][:buyerDetails][:payer][:email_address].downcase
+      u.full_name = params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname]
+      u.password = "luc1dd0t"
+      u.isAdmin = false
+      u.email_confirmed = "false" 
+      u.opt_in = false
+      u.nick = params[:data][:buyerDetails][:payer][:name][:given_name]
+      u.confirm_token = token
+    end
+    
+    if newAutoUser.save
+      puts "newAutoUser was created!!"
+    else
+      puts "newAutoUser was not created!!"
+    end
+    
+    
+    
+    
+    
+    
+    
+    
+    #///////////////////////////////////////////////////////////
+    #/////////////   Save TO DB   //////////////////////////////
+    #///////////////////////////////////////////////////////////
+    puts "saving everything to the DB start.................."
+    
+    com1  = newAutoUser.communications.new do |u|
 
-    puts " end of auto user create, result from mg = " + result.to_s
+      u.date = theResponseLetterOne["sendDate"]
+      u.com_type = theResponseLetterOne["object"]
+      u.recipient = theResponseLetterOne["to"]["firstName"]
+      u.status = theResponseLetterOne["status"]
+      u.postgrid_id = theResponseLetterTwo["id"]
+      u.paypal_full_object = params[:data][:buyerDetails]
+      u.postgrid_full_object = theResponseLetterOne
+    end
+
+  
+    puts "limbo com1 is " + com1.inspect
+  
+    if com1.save!
+
+      puts "ENTIRE save was successfull"
+
+    else
+
+      puts "1 yard line, save was not successfull"
+
+    end
+    puts "saving everything to the DB end.................."
+
+    
+    
+
+    
+
+    
+
+
+
+    
 
   end  
   
