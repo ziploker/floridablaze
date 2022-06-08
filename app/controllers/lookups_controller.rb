@@ -1512,20 +1512,35 @@ class LookupsController < ApplicationController
 
     mg_client.send_message 'mg.floridablaze.io', message_params
     result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
-    puts "START----send paypal receipt to paypal user !!, result from postgrid is " + result.to_s
+    puts "result from postgrid is " + result.to_s
+    
+    
+    puts "End----send paypal receipt to paypal user !!"
     
     
     
     
-    
-    
-    
-    
-    
-    ##check to see if paypal email is exists at FBLAZE
-    ##if it does Save to DB and Send them Reciept
-    ##if it doesnt, Save to DB and ask if they want to create auto User
-    
+    #///////////////////////////////////////////////////////////
+    #///  check to see if paypal email is exists at FBLAZE   ///
+    #///////////////////////////////////////////////////////////
+    ##     if it does Save to DB and Send them Reciept    //////
+    ##  if it doesnt, Save to DB and ask if they want to create auto User
+    #///////////////////////////////////////////////////////////
+    puts "check if paypal email exists in fblazeDB"
+
+    if User.exists?(:eamil => buyerEmail.downcase)
+    puts "...it did"
+
+
+
+
+    else
+    puts "...it diddn't"
+
+
+
+
+    end
     
     
     newAutoUser = User.new do |u|
