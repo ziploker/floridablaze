@@ -1536,13 +1536,8 @@ class LookupsController < ApplicationController
 
     else
     puts "...it diddn't"
+    puts "creating autoUSer account"
 
-
-
-
-    end
-    
-    
     newAutoUser = User.new do |u|
       u.email = params[:data][:buyerDetails][:payer][:email_address].downcase
       u.full_name = params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname]
@@ -1552,21 +1547,18 @@ class LookupsController < ApplicationController
       u.opt_in = false
       u.nick = params[:data][:buyerDetails][:payer][:name][:given_name]
       u.confirm_token = token
+      u.userCreatedAutomatically = true
     end
-    
+
     if newAutoUser.save
-      puts "newAutoUser was created!!"
+      puts "autoUser was created OK!!"
     else
-      puts "newAutoUser was not created!!"
+      puts "autoUser was not created!!"
     end
+
     
-    
-    
-    
-    
-    
-    
-    
+  
+  
     #///////////////////////////////////////////////////////////
     #/////////////   Save TO DB   //////////////////////////////
     #///////////////////////////////////////////////////////////
@@ -1584,7 +1576,7 @@ class LookupsController < ApplicationController
     end
 
   
-    puts "limbo com1 is " + com1.inspect
+    puts "com1 is " + com1.inspect
   
     if com1.save!
 
@@ -1597,6 +1589,32 @@ class LookupsController < ApplicationController
     end
     puts "saving everything to the DB end.................."
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  end
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
     
     
 
