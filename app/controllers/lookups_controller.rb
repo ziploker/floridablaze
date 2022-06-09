@@ -1437,40 +1437,7 @@ class LookupsController < ApplicationController
     
     puts "START----send paypal receipt to paypal user !!"
 
-    ####auto registration email, save here for now
-    # message_params =  { 
-        
-    #   from: 'admin@mg.floiridablaze.io',
-    #   to:   newAutoUser.email,
-    #   "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
-    #   "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
-    #   subject: 'Welcome to floridablaze.io',
-    #   html:    "
-          
-    #   <html>
-    #     <body>
-    #       <h1> Hi #{newAutoUser.full_name},</h1>
-          
-    #       <p> Thank you for registering at Floridablaze<br>
-    #         Please navigate to the link below to activate your account<br><br>
-
-    #         #{confirm_email_registration_url(newAutoUser.confirm_token)}<br>
-    #       </p>
-
-    #       <p>Thank you,<br>
-    #         <em>-Floridablaze Team</em>
-    #       </p>
-          
-    #       <br><br><br>
-
-    #       If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
-
-    #     </body>
-    #   </html>"
-    # }
-
-    # mg_client.send_message 'mg.floridablaze.io', message_params
-    # result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
+    
 
     
     message_params =  { 
@@ -1528,68 +1495,128 @@ class LookupsController < ApplicationController
     #///////////////////////////////////////////////////////////
     puts "check if paypal email exists in fblazeDB"
 
+    
+    
     if User.exists?(:eamil => buyerEmail.downcase)
-    puts "...it did"
+    
+      puts "...it did exist"
 
 
 
 
     else
-    puts "...it diddn't"
-    puts "creating autoUSer account"
+      puts "...it diddn't exist, so create autoUser and communications DB entries"
+      puts "creating autoUSer account"
 
-    newAutoUser = User.new do |u|
-      u.email = params[:data][:buyerDetails][:payer][:email_address].downcase
-      u.full_name = params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname]
-      u.password = "luc1dd0t"
-      u.isAdmin = false
-      u.email_confirmed = "false" 
-      u.opt_in = false
-      u.nick = params[:data][:buyerDetails][:payer][:name][:given_name]
-      u.confirm_token = token
-      u.userCreatedAutomatically = true
-    end
+      newAutoUser = User.new do |u|
+        u.email = params[:data][:buyerDetails][:payer][:email_address].downcase
+        u.full_name = params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname]
+        u.password = "luc1dd0t"
+        u.isAdmin = false
+        u.email_confirmed = "false" 
+        u.opt_in = false
+        u.nick = params[:data][:buyerDetails][:payer][:name][:given_name]
+        u.confirm_token = token
+        u.userCreatedAutomatically = true
+      end
 
-    if newAutoUser.save
-      puts "autoUser was created OK!!"
-    else
-      puts "autoUser was not created!!"
-    end
+      if newAutoUser.save
+        puts "autoUser was created and saved OK!!"
+      else
+        puts "autoUser was not created but not saved!!"
+      end
+
+      puts "creating autoUSer.communications entry (com1)"
+  
+      com1  = newAutoUser.communications.new do |u|
+        u.date = theResponseLetterOne["sendDate"]
+        u.com_type = theResponseLetterOne["object"]
+        u.recipient = theResponseLetterOne["to"]["firstName"]
+        u.status = theResponseLetterOne["status"]
+        u.postgrid_id = theResponseLetterTwo["id"]
+        u.paypal_full_object = params[:data][:buyerDetails]
+        u.postgrid_full_object = theResponseLetterOne
+      end
+      puts "com1 is " + com1.inspect
+
+      puts "creating autoUSer.communications entry (com2)"
+  
+      com2  = newAutoUser.communications.new do |u|
+        u.date = theResponseLetterTwo["sendDate"]
+        u.com_type = theResponseLetterTwo["object"]
+        u.recipient = theResponseLetterTwo["to"]["firstName"]
+        u.status = theResponseLetterTwo["status"]
+        u.postgrid_id = theResponseLetterTwo["id"]
+        u.paypal_full_object = params[:data][:buyerDetails]
+        u.postgrid_full_object = theResponseLetterTwo
+      end
 
     
-  
-  
-    #///////////////////////////////////////////////////////////
-    #/////////////   Save TO DB   //////////////////////////////
-    #///////////////////////////////////////////////////////////
-    puts "saving everything to the DB start.................."
+      puts "com2 is " + com2.inspect
     
-    com1  = newAutoUser.communications.new do |u|
+      if com1.save!
+        puts "com1 save was successfull"
+      else
+        puts "com1 save was unsuccessfull"
+      end
 
-      u.date = theResponseLetterOne["sendDate"]
-      u.com_type = theResponseLetterOne["object"]
-      u.recipient = theResponseLetterOne["to"]["firstName"]
-      u.status = theResponseLetterOne["status"]
-      u.postgrid_id = theResponseLetterTwo["id"]
-      u.paypal_full_object = params[:data][:buyerDetails]
-      u.postgrid_full_object = theResponseLetterOne
-    end
+      if com2.save!
+        puts "com2 save was successfull"
+      else
+        puts "com2 save was unsuccessfull"
+      end
+      
+      puts "sending autoUser confirmation Email to paypal customer"
 
-  
-    puts "com1 is " + com1.inspect
-  
-    if com1.save!
+     
+      message_params =  { 
+          
+        from: 'admin@mg.floiridablaze.io',
+        to:   newAutoUser.email,
+        "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+        "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
+        subject: 'Welcome to floridablaze.io',
+        html:    "
+            
+        <html>
+          <body>
+            <h1> Hi #{newAutoUser.full_name},</h1>
+            
+            <p> 
+              Thank you for visiting Floridablaze <br>
+            </p>
+            
+            <p> 
+              We have created an account for you at floridaBlaze.io 
+              so you can track the progress of the letters sent to your legistators.
+            </p>
 
-      puts "ENTIRE save was successfull"
+            username: newAutoUser.email
+            password: 
+            
+            
+            <p>
 
-    else
+              Please navigate to the link below to finish activating your account<br><br>
 
-      puts "1 yard line, save was not successfull"
+              #{confirm_email_registration_url(newAutoUser.confirm_token)}<br>
+            </p>
 
-    end
-    puts "saving everything to the DB end.................."
+            <p>Thank you,<br>
+              <em>-Floridablaze Team</em>
+            </p>
+            
+            <br><br><br>
 
-  
+            If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
+
+          </body>
+        </html>"
+      }
+
+      mg_client.send_message 'mg.floridablaze.io', message_params
+      result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
+    
   
   
   
