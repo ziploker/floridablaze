@@ -20,6 +20,9 @@ class SessionsController < ApplicationController
     def create   
         
         puts "in sessions#create=================="
+
+        puts "user email is = " + params["user"]["email"].downcase
+        puts "user PW is = " + params["user"][:password].strip
         #search for user email and try to auth...
         user = User
             .find_by(email: params["user"]["email"].downcase)

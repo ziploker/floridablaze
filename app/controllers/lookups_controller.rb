@@ -1479,7 +1479,7 @@ class LookupsController < ApplicationController
 
     mg_client.send_message 'mg.floridablaze.io', message_params
     result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
-    puts "result from postgrid is " + result.to_s
+    puts "result from postgrid is " + result.inspect
     
     
     puts "End----send paypal receipt to paypal user !!"
@@ -1497,7 +1497,7 @@ class LookupsController < ApplicationController
 
     
     
-    if User.exists?(:eamil => buyerEmail.downcase)
+    if User.exists?(:email => buyerEmail.downcase)
     
       puts "...it did exist"
 
@@ -1508,10 +1508,15 @@ class LookupsController < ApplicationController
       puts "...it diddn't exist, so create autoUser and communications DB entries"
       puts "creating autoUSer account"
 
+      #generate random password
+      randomPW = ([*('A'..'Z'),*('0'..'9')]-%w(0 1 I O)).sample(8).join
+
       newAutoUser = User.new do |u|
         u.email = params[:data][:buyerDetails][:payer][:email_address].downcase
+        u.first_name = params[:data][:buyerDetails][:payer][:name][:given_name]
+        u.last_name = params[:data][:buyerDetails][:payer][:name][:surname]
         u.full_name = params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname]
-        u.password = "luc1dd0t"
+        u.password = randomPW
         u.isAdmin = false
         u.email_confirmed = "false" 
         u.opt_in = false
@@ -1580,24 +1585,24 @@ class LookupsController < ApplicationController
             
         <html>
           <body>
-            <h1> Hi #{newAutoUser.full_name},</h1>
+            <h1> Hi #{newAutoUser.first_name},</h1>
             
             <p> 
               Thank you for visiting Floridablaze <br>
             </p>
             
             <p> 
-              We have created an account for you at floridaBlaze.io 
-              so you can track the progress of the letters sent to your legistators.
+              We created an account for you at floridaBlaze.io 
+              so you can track the progress of the letters sent to your legislators.
             </p>
 
-            username: newAutoUser.email
-            password: 
+            username: #{newAutoUser.email} <br>
+            password: #{randomPW} <br><br><br>
             
             
             <p>
 
-              Please navigate to the link below to finish activating your account<br><br>
+              Please navigate to the link below to finish activating your account<br>
 
               #{confirm_email_registration_url(newAutoUser.confirm_token)}<br>
             </p>
@@ -1617,42 +1622,7 @@ class LookupsController < ApplicationController
       mg_client.send_message 'mg.floridablaze.io', message_params
       result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
     
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  end
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
-    
-    
-
-    
-
-    
-
-
-
-    
-
+    end
   end  
   
   
