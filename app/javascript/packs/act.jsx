@@ -124,8 +124,7 @@ const ActSection = styled.section`
 		min-width: 100%;
 		//justify-self: center;
 	}
-	//display: ${(props) =>
-		props.showCards || props.showLetter ? "none" : "grid"};
+
 	display: ${(props) => (props.showCards ? "none" : "grid")};
 
 	position: relative;
@@ -265,7 +264,7 @@ const Form = styled.div`
 	@media only screen and (max-width: 720px) {
 		//grid-area: 4/1/5/-1;
 	}
-
+	height: 40px;
 	display: grid;
 	position: relative;
 	grid-template-columns: 100%;
@@ -290,6 +289,7 @@ const Form = styled.div`
 
 	//opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
 	opacity: ${(props) => (props.showCards ? "0" : "1")};
+	//pointer-events: none;
 `;
 
 const Button = styled.button`
@@ -297,10 +297,7 @@ const Button = styled.button`
 	width: 50px;
 	//grid-area: button;
 	background-color: #e8e5e5;
-	//background-image: ${(props) =>
-		props.searchButtonActive
-			? "url(" + searchIconOrange + ")"
-			: "url(" + searchIcon + ")"};
+
 	background-image: url(${searchIconOrange});
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -320,8 +317,6 @@ const Button = styled.button`
 	transition-timing-function: ease-in;
 	filter: ${(props) =>
 		props.searchButtonActive ? "grayscale(0%)" : "grayscale(80%)"};
-	//filter: ${(props) =>
-		props.searchButtonActive ? "sepia(0%)" : "sepia(60%)"};
 
 	&:hover {
 		//background-image: url( ${searchIconOrange});transition: background-image 1s;
@@ -469,6 +464,7 @@ const StatusHolder = styled.div`
 	justify-self: start;
 	min-height: 30px;
 	margin-bottom: 16px;
+	pointer-events: none;
 `;
 
 const StatusBar = styled.div`
@@ -553,17 +549,17 @@ const ResultSection = styled.div`
 		minmax(min-content, max-content) minmax(min-content, max-content)
 		minmax(min-content, max-content) minmax(min-content, max-content);
 	//visibility: hidden;
-	//grid-template-rows: ${(props) =>
+	/* grid-template-rows: ${(props) =>
 		props.showCards
 			? "minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) 1fr"
-			: "0px 0px 0px 0px 0px"};
+			: "0px 0px 0px 0px 0px"}; */
 
 	//grid-row-gap: .7em;
 	//grid-column-gap: 0.5em;
 	padding: 0px 0px 20px 0px;
 
-	//padding: ${(props) =>
-		props.showCards ? "75px 0px 50px 0px" : "0px 0px 50px 0px"};
+	/* padding: ${(props) =>
+		props.showCards ? "75px 0px 50px 0px" : "0px 0px 50px 0px"}; */
 
 	grid-area: 1/1/6/5;
 	//margin: 20px 0px 20px 50px;
@@ -2223,51 +2219,41 @@ function Act(props, ref) {
             >
               send
             </button> */}
+						<div>
+							<GooglePlacesAutocomplete
+								selectProps={{
+									// key: `my_unique_select_key__${JSON.stringify(value)}`,
+									// thc: `my_unique_select_key__${JSON.stringify(value)}`,
+									value: addressObject,
+									placeholder: "Enter address",
+									onInputChange: handleInputChange,
+									menuIsOpen: isAddressMenuOpen,
+									//onBlurResetsInput: false,
 
-						<GooglePlacesAutocomplete
-							selectProps={{
-								styles: {
-									input: (provided) => ({
-										...provided,
-										color: "blue",
-									}),
-									control: (provided) => ({
-										...provided,
-										borderRadius: "8px",
-									}),
-									zIndex: "9999",
-								},
-								// key: `my_unique_select_key__${JSON.stringify(value)}`,
-								// thc: `my_unique_select_key__${JSON.stringify(value)}`,
-								value: addressObject,
-								placeholder: "Enter address",
-								onInputChange: handleInputChange,
-								menuIsOpen: isAddressMenuOpen,
-								//onBlurResetsInput: false,
+									onChange: handleAddress,
+									blurInputOnSelect: false,
+									backspaceRemovesValue: true,
+									isClearable: true,
 
-								onChange: handleAddress,
-								blurInputOnSelect: true,
-								backspaceRemovesValue: true,
-								isClearable: true,
+									ref: LookupInputRef,
 
-								ref: LookupInputRef,
+									//ref: LookupInputRef,
 
-								//ref: LookupInputRef,
-
-								//onFocus: handleFocus,
-								menuPortalTarget: document.querySelector("body"),
-							}}
-							autocompletionRequest={{
-								// bounds: [
-								//   { lat: 50, lng: 50 },
-								//   { lat: 100, lng: 100 }
-								// ],
-								componentRestrictions: {
-									country: ["us"],
-								},
-							}}
-							minLengthAutocomplete={2}
-						/>
+									//onFocus: handleFocus,
+									menuPortalTarget: document.querySelector("body"),
+								}}
+								autocompletionRequest={{
+									// bounds: [
+									//   { lat: 50, lng: 50 },
+									//   { lat: 100, lng: 100 }
+									// ],
+									componentRestrictions: {
+										country: ["us"],
+									},
+								}}
+								minLengthAutocomplete={2}
+							/>
+						</div>
 
 						<StatusHolder>
 							<StatusSpinner showStatusSpinner={showStatusSpinner}>
