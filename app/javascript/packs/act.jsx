@@ -9,8 +9,9 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import styled, { keyframes } from "styled-components";
 import { RiMailSendLine } from "react-icons/ri";
 import { BsMailbox } from "react-icons/bs";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+//import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { geocodeByAddress, getLatLng } from "react-google-places-autocomplete";
+import Script from "react-load-script";
 import sendEmailsToReps from "../packs/communications/sendEmailToReps";
 import $ from "jquery";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -1558,6 +1559,7 @@ function Act(props, ref) {
 	const scrolll = props.executeScrollForLookupSectionTwo;
 	const myRef = useRef(null);
 	const addressInputRef = useRef(null);
+	const autocompleteRef = useRef(null);
 	const [recaptchaResponse, setRecaptchaResponse] = React.useState("");
 	const [whichTabIsActive, setWhichTabIsActive] = React.useState(1);
 	const [isLoading, setIsLoading] = React.useState(false);
@@ -1618,10 +1620,12 @@ function Act(props, ref) {
 	}, [addressObject]);
 
 	React.useEffect(() => {
+		console.log("Start the handleKeyDown listiner");
 		window.addEventListener("keydown", handleKeyDown);
 
 		//selectFirstOnEnter(LookupInputRef)
 		return () => {
+			console.log("End the handleKeyDown listiner");
 			window.removeEventListener("keydown", handleKeyDown);
 		};
 	}, []);
@@ -2163,7 +2167,7 @@ function Act(props, ref) {
 	};
 
 	const handleAddress = (v) => {
-		console.log("HANDLE_ADDRESS", v);
+		console.log("onChange => so HANDLE_ADDRESS", v);
 		setAddressObject(v);
 
 		console.log("MAIN_TEXT", v.value.structured_formatting.main_text);
@@ -2180,6 +2184,56 @@ function Act(props, ref) {
 			isAddressMenuOpen ? setIsAddressMenuOpen(false) : null;
 		} else {
 			isAddressMenuOpen ? null : setIsAddressMenuOpen(true);
+		}
+	};
+
+	const clickedThisTest = (v) => {
+		console.log("clickedThisTest = ", v);
+	};
+
+	const handleScriptLoad = () => {
+		// Declare Options For Autocomplete
+
+		console.log("script looodesd");
+		const options = {
+			types: ["(cities)"],
+			bounds: [
+				{ lat: 50, lng: 50 },
+				{ lat: 100, lng: 100 },
+			],
+			componentRestrictions: {
+				country: ["us"],
+			},
+		};
+
+		// Initialize Google Autocomplete
+		/*global google*/ // To disable any eslint 'google not defined' errors
+		autocompleteRef.current = new google.maps.places.Autocomplete(
+			document.getElementById("testID"),
+			options
+		);
+
+		// Avoid paying for data that you don't need by restricting the set of
+		// place fields that are returned to just the address components and formatted
+		// address.
+		autocompleteRef.current.setFields([
+			"address_components",
+			"formatted_address",
+		]);
+
+		// Fire Event when a suggested name is selected
+		autocompleteRef.current.addListener("place_changed", handlePlaceSelect);
+	};
+
+	const handlePlaceSelect = () => {
+		// Extract City From Address Object
+		const addressObject = autocompleteRef.current.getPlace();
+		const address = addressObject.address_components;
+
+		// Check if address is valid
+		if (address) {
+			setCity(address[0].long_name);
+			setQuery(addressObject.formatted_address);
 		}
 	};
 
@@ -2207,8 +2261,12 @@ function Act(props, ref) {
 						Enter your address below to see who your Florida State
 						Representitives.{" "}
 					</ActSubheader2>
+					<Script
+						url="https://maps.googleapis.com/maps/api/js?key=AIzaSyAejSgheqbFb_ibGMf9ko902a5_FrJ0dTw&libraries=places"
+						onLoad={handleScriptLoad}
+					/>
 
-					<Form className="form-inline" showCards={showCards}>
+					<Form id="testID" className="form-inline" showCards={showCards}>
 						{/* <button
               style={{width: "100px", height: "50px"}}
               //searchButtonActive={searchButtonActive}
@@ -2219,11 +2277,13 @@ function Act(props, ref) {
             >
               send
             </button> */}
-						<div>
+						{/* <div
+							onClick={(e) => {
+								clickedThisTest(e);
+							}}
+						>
 							<GooglePlacesAutocomplete
 								selectProps={{
-									// key: `my_unique_select_key__${JSON.stringify(value)}`,
-									// thc: `my_unique_select_key__${JSON.stringify(value)}`,
 									value: addressObject,
 									placeholder: "Enter address",
 									onInputChange: handleInputChange,
@@ -2253,7 +2313,18 @@ function Act(props, ref) {
 								}}
 								minLengthAutocomplete={2}
 							/>
-						</div>
+						</div> */}
+
+						<input
+							id="autocomplete"
+							placeholder=""
+							hintText="Search City"
+							value={addressObject}
+							style={{
+								margin: "0 auto",
+								maxWidth: 800,
+							}}
+						/>
 
 						<StatusHolder>
 							<StatusSpinner showStatusSpinner={showStatusSpinner}>
