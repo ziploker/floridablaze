@@ -15,16 +15,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%
-=begin%>
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAejSgheqbFb_ibGMf9ko902a5_FrJ0dTw&libraries=places"></script> 
-<%
-=end%>
+    
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAejSgheqbFb_ibGMf9ko902a5_FrJ0dTw&libraries=places"></script> 
+
+
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     
     
     
-  <%
+ 
+
+ <%
 =begin%>
  <script>
     window.fbAsyncInit = function() {
@@ -46,9 +48,10 @@
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-  </script> 
+  </script>  
 <%
 =end%>
+
     
     <meta name="google-signin-client_id" content=<%=Rails.application.credentials.dig(:GOOGLE_OAUTH_CLIENT_ID)%>>
     <%# <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
