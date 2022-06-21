@@ -76,8 +76,9 @@ const HeaderLeafImage = styled.img`
   justify-self: end;
   align-self: center;
 
-  //opacity: ${(props) => (props.hamburgerScrolled || props.longNavScrolled? "0" : "1")};
-  
+  //opacity: ${(props) =>
+    props.hamburgerScrolled || props.longNavScrolled ? "0" : "1"};
+
   //transition: all 0.2s linear;
 `;
 
@@ -95,7 +96,6 @@ const LongNav = styled.nav`
   position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
   top: ${(props) => (props.longNavScrolled ? "-3px" : "initial")};
   color: ${(props) => (props.longNavScrolled ? "white" : "white")};
-  
 
   ul {
     list-style: none;
@@ -212,7 +212,7 @@ function Header(props) {
   const logoTextRef = useRef();
   const hamburgerRef = React.useRef();
   const longNavRef = React.useRef();
-  
+
   const locationFromHook = useLocation();
 
   // scroll listener
@@ -300,12 +300,12 @@ function Header(props) {
 
   // sets the state so the element can stick
   const handleScroll = () => {
-    console.log("===================window.scrollY===", window.scrollY);
+    //console.log("===================window.scrollY===", window.scrollY);
     console.log(
       "===================pixlesFromLongNavToTop===",
       pixlesFromLongNavToTop
     );
-    console.log("===================inner width===", window.innerWidth);
+    //console.log("===================inner width===", window.innerWidth);
     window.scrollY >= pixlesFromLogoToTop - 4
       ? setLogoScrolled(true)
       : setLogoScrolled(false);
@@ -353,14 +353,24 @@ function Header(props) {
           logoScrolled={logoScrolled}
         />
 
-        <HeaderWrapper openSideMenu={props.openSideMenu} logoScrolled={logoScrolled}>
+        <HeaderWrapper
+          openSideMenu={props.openSideMenu}
+          logoScrolled={logoScrolled}
+        >
           <LogoText ref={logoTextRef} logoScrolled={logoScrolled}>
             Florida<span>Blaze</span>
           </LogoText>
 
-          <h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1>
+          <h1 style={{ display: "none" }}>
+            {" "}
+            {logoScrolled ? "TRUE" : "FALSE"}{" "}
+          </h1>
 
-          <HeaderLeafImage src={headerLeaf} longNavScrolled={longNavScrolled} logoScrolled={logoScrolled}></HeaderLeafImage>
+          <HeaderLeafImage
+            src={headerLeaf}
+            longNavScrolled={longNavScrolled}
+            logoScrolled={logoScrolled}
+          ></HeaderLeafImage>
           <LongNav ref={longNavRef} longNavScrolled={longNavScrolled}>
             <ul>
               <li key={0}>news</li>

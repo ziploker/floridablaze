@@ -145,10 +145,10 @@ class LookupsController < ApplicationController
       @address = params[:lookup][:address]
       #@zipcode = params[:lookup][:zipcode]
       puts "=====================start: got info from front end=================="
-      puts "Address is = " + @address.to_s
+      #puts "Address is = " + @address.to_s
       
-      @address = "\""+@address+"\""
-      puts @address.to_s
+      #@address = "\""+@address+"\""
+      #puts @address.to_s
       #puts "zipcode is = " + @zipcode.to_s
       puts "=====================end: got info from front end=================="
   
