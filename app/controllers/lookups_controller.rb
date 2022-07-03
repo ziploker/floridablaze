@@ -142,7 +142,7 @@ class LookupsController < ApplicationController
            
       
       #get info from react front end form, used for google api call
-      @address = params[:lookup][:address]
+      ###@address = params[:lookup][:address]
       #@zipcode = params[:lookup][:zipcode]
       puts "=====================start: got info from front end=================="
       #puts "Address is = " + @address.to_s

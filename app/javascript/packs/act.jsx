@@ -147,7 +147,7 @@ const ActSection = styled.section`
   z-index: ${(props) => (props.showCards ? "0" : "10")};
 
   @media only screen and (min-width: 975px) {
-    padding-bottom: 30px;
+    //padding-bottom: 30px;
   }
 `;
 
@@ -268,7 +268,7 @@ const Form = styled.div`
   @media only screen and (max-width: 720px) {
     //grid-area: 4/1/5/-1;
   }
-  height: 38px;
+  //height: 38px;
   display: grid;
   position: relative;
   grid-template-columns: 100%;
@@ -1659,9 +1659,17 @@ function Act(props, ref) {
 
     console.log("==inside useEffect ACT==");
 
-    if (addressObject) {
-      console.log("addressObject is = ", addressObject);
+    console.log("ADDRESSOBJECTIS_ " + JSON.stringify(addressObject));
+
+    if (addressObject && addressObject.address_components) {
+      console.log(
+        "ADDRESSOBJECTIS_ && addressObject.address_components" +
+          JSON.stringify(addressObject.address_components)
+      );
+
       handleAddressSelected();
+    } else if (addressObject && addressObject.manual) {
+      handleAddressSelectedManual();
     } else {
       console.log("addressObject NADA");
     }
@@ -1807,6 +1815,167 @@ function Act(props, ref) {
           address: addressObject.formated_address,
           lat: addressObject.geometry.location.lat(),
           lng: addressObject.geometry.location.lng(),
+        },
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrf,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        //props.setStatus("Search Complete!!")
+
+        //info message under the address search input box
+        setStatus("");
+
+        //message on bullet 1
+
+        //props.setBullet1msg("Search Complete!")
+        setShowStatusSpinner(false);
+        //props.setShowStatusCheck(true)
+        setShowCards(true);
+
+        //props.setBullet1("COMPLETED")
+
+        setResults(data);
+
+        setResultFromFlorida(data.one.resultFromFlorida.toString());
+        console.log("emailll", data.one.email);
+
+        let flag = data.one.resultFromFlorida.toString();
+
+        console.log("FLAG IS " + flag);
+
+        if (flag == "false") {
+          1;
+
+          //props.setBullet2msg("Non-Florida result");
+          //props.setBullet2("COMPLETED")
+          //props.setShowStatusCheck2(true)
+        } else {
+          //props.setBullet2msg("Send Message");
+          //props.setShowSteps(true)
+        }
+      });
+
+    //props.setStatus("Search Complete!!");
+
+    //info message under the address search input box
+    //setStatus("");
+
+    //setShowStatusSpinner(false);
+
+    //setShowCards(true);
+
+    console.log("==== handle_address_selected_END ====");
+  };
+
+  const handleAddressSelectedManual = () => {
+    console.log("==== handle_address_selected_MANUAL_START ====");
+
+    setLastTermSearched(addressObject.address);
+
+    //let user know somethings happening
+    setStatus("....may take up to 60 seconds");
+
+    setShowStatusSpinner(true);
+
+    //set setCoordinates with LAT/LNG
+
+    // console.log(
+    //   "about to check the latlang with address ",
+    //   addressObject.formated_address
+    // );
+    // geocodeByAddress(addressObject.formated_address)
+    //   .then((results) => getLatLng(results[0]))
+    //   .then((latLng) => {
+    //     console.log("handleAddressSelected and got coordinates", latLng);
+
+    //     setCoordinates({
+    //       lat: latLng.lat,
+    //       lng: latLng.lng,
+    //     });
+
+    //     const csrf = document
+    //       .querySelector("meta[name='csrf-token']")
+    //       .getAttribute("content");
+
+    //     fetch("/lookup", {
+    //       method: "post",
+    //       dataType: "text",
+    //       body: JSON.stringify({
+    //         lookup: {
+    //           address: addressObject.formated_address,
+    //           lat: latLng.lat,
+    //           lng: latLng.lng,
+    //         },
+    //       }),
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         "X-CSRF-Token": csrf,
+    //       },
+    //     })
+    //       .then((response) => response.json())
+    //       .then((data) => {
+    //         //props.setStatus("Search Complete!!")
+
+    //         //info message under the address search input box
+    //         setStatus("");
+
+    //         //message on bullet 1
+
+    //         //props.setBullet1msg("Search Complete!")
+    //         setShowStatusSpinner(false);
+    //         //props.setShowStatusCheck(true)
+    //         setShowCards(true);
+
+    //         //props.setBullet1("COMPLETED")
+
+    //         setResults(data);
+
+    //         setResultFromFlorida(data.one.resultFromFlorida.toString());
+    //         console.log("emailll", data.one.email);
+
+    //         let flag = data.one.resultFromFlorida.toString();
+
+    //         console.log("FLAG IS " + flag);
+
+    //         if (flag == "false") {
+    //           1;
+
+    //           //props.setBullet2msg("Non-Florida result");
+    //           //props.setBullet2("COMPLETED")
+    //           //props.setShowStatusCheck2(true)
+    //         } else {
+    //           //props.setBullet2msg("Send Message");
+    //           //props.setShowSteps(true)
+    //         }
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     setStatus("No results found. Check address");
+    //     setShowStatusSpinner(false);
+    //     console.error("Error", error);
+    //   });
+
+    // setCoordinates({
+    //   lat: addressObject.geometry.location.lat(),
+    //   lng: addressObject.geometry.location.lng(),
+    // });
+
+    const csrf = document
+      .querySelector("meta[name='csrf-token']")
+      .getAttribute("content");
+
+    fetch("/lookup", {
+      method: "post",
+      dataType: "text",
+      body: JSON.stringify({
+        lookup: {
+          //address: addressObject.formated_address,
+          lat: addressObject.lat,
+          lng: addressObject.lng,
         },
       }),
       headers: {
@@ -2367,7 +2536,7 @@ function Act(props, ref) {
               query={query}
               setQuery={setQuery}
             />
-            ;
+
             <StatusHolder>
               <StatusSpinner showStatusSpinner={showStatusSpinner}>
                 <Spinner name="wave" color="#87d388" />
@@ -2432,6 +2601,13 @@ function Act(props, ref) {
           <ResultsBlurb>
             <h3 style={{ color: "white" }} onClick={resetSearch}>
               New Search
+            </h3>
+            <h3>
+              {addressObject && addressObject.formatted_address
+                ? addressObject.formatted_address
+                : addressObject && addressObject.address
+                ? addressObject.address
+                : "blank"}
             </h3>
           </ResultsBlurb>
 

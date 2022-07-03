@@ -1,6 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import $ from "jquery";
+import styled from "styled-components";
 let autoComplete;
+
+const MainInput = styled.input`
+  grid-area: input;
+  height: 60px;
+  width: 100%;
+  padding: 0.2em 0.5em;
+  text-shadow: 0 1px 1px hsl(0 0% 0% / 20%);
+  font: normal 1.1em system-ui, sans-serif;
+`;
 
 function SearchLocationInput({
   passRef,
@@ -36,51 +46,62 @@ function SearchLocationInput({
     console.log($(".pac-container .pac-item:first").text());
     console.log($(".pac-container .pac-item:first").text().length.toString());
 
-    //if firstVale.length == 0, it means enter was hit and and  address was selected.
-
-    if (event.keyCode == 13 || (event.keyCode == 9 && firstValue.length > 0)) {
+    if (event.keyCode == 13 || event.keyCode == 9) {
       console.log(
-        "Enter was hit, key code(" +
-          event.keyCode +
-          ") AND nothing was selected from the list"
+        "inside Key Down Handler ================ enter or tab was hit"
       );
 
       var firstValue = $(".pac-container .pac-item:first").text();
-      console.log("USE " + firstValue + " to do new search programatically");
 
-      setQuery(firstValue);
+      if (firstValue.length > 0) {
+        console.log(
+          "inside Key Down Handler ================ nothing was selected from the list"
+        );
 
-      const autocomplete = new window.google.maps.places.AutocompleteService();
-      var geocoder = new window.google.maps.Geocoder();
+        console.log("USE " + firstValue + " to do new search programatically");
 
-      autocomplete.getPlacePredictions(
-        { input: firstValue },
+        setQuery(firstValue);
 
-        function (predictions, status) {
-          console.log(
-            "matching prediction is " + JSON.stringify(predictions[0])
-          );
-          if (status == "OK") {
-            geocoder.geocode(
-              {
-                placeId: predictions[0].place_id,
-              },
-              function (responses, status) {
-                if (status == "OK") {
-                  var lat = responses[0].geometry.location.lat();
-                  var lng = responses[0].geometry.location.lng();
-                  console.log(lat, lng);
-                }
-              }
+        const autocomplete =
+          new window.google.maps.places.AutocompleteService();
+        var geocoder = new window.google.maps.Geocoder();
+
+        autocomplete.getPlacePredictions(
+          { input: firstValue },
+
+          function (predictions, status) {
+            console.log(
+              "matching prediction is " + JSON.stringify(predictions[0])
             );
+            if (status == "OK") {
+              geocoder.geocode(
+                {
+                  placeId: predictions[0].place_id,
+                },
+                function (responses, status) {
+                  if (status == "OK") {
+                    var lat = responses[0].geometry.location.lat();
+                    var lng = responses[0].geometry.location.lng();
+                    console.log(lat, lng);
+
+                    setAddressObject({
+                      manual: "true",
+                      address: firstValue,
+                      lat: lat,
+                      lng: lng,
+                    });
+                  }
+                }
+              );
+            }
           }
-        }
-      );
+        );
+      }
     } else {
       console.log(
-        "Something was hit, key code(" +
+        "Something that was not enter or tab was hit, key code(" +
           event.keyCode +
-          ") AND/OR something was selected from the list "
+          ") "
       );
     }
 
@@ -156,10 +177,10 @@ function SearchLocationInput({
 
   return (
     <div className="search-location-input">
-      <input
+      <MainInput
         ref={autoCompleteRef}
         onChange={(event) => setQuery(event.target.value)}
-        placeholder="Enter a City"
+        placeholder="Enter an address"
         value={query}
       />
     </div>
