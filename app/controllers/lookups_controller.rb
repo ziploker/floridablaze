@@ -1138,9 +1138,18 @@ class LookupsController < ApplicationController
 
     puts "in lookups#sendLetterToReps start, check params"
     
-    puts "params[:data][:ppResults] is " + params[:data][:ppResults].inspect
-    puts "params[:data][:infoOnReps] is  " + params[:data][:infoOnReps].inspect
-    puts "params[:data][:buyerDetails] is  " + params[:data][:buyerDetails].inspect
+    puts "params[:data][:ppResults] is " + params[:data][:ppResults].to_yaml
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "params[:data][:infoOnReps] is  " + params[:data][:infoOnReps].to_yaml
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "params[:data][:buyerDetails] is  " + params[:data][:buyerDetails].to_yaml
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "[                                       ]"
     puts "create User object based on paypal results"
 
 
@@ -1159,8 +1168,8 @@ class LookupsController < ApplicationController
 
     buyerEmail = params[:data][:buyerDetails][:payer][:email_address].to_s
     buyerFirstName = params[:data][:buyerDetails][:payer][:name][:given_name].to_s
-    puts "Buyer email is" + buyerEmail
-    puts "Buyer First name is" + buyerFirstName
+    puts "Buyer email is " + buyerEmail
+    puts "Buyer First name is " + buyerFirstName
     
     mainAddressArray = params[:data][:infoOnReps][:one][:address].split(';')
     mainAddressArrayTwo = params[:data][:infoOnReps][:two][:address].split(';')
@@ -1244,10 +1253,21 @@ class LookupsController < ApplicationController
       }
     }).to_dot
 
-    
+    puts "[                                       ]"
+    puts "[     response from postgrid            ]"
+    puts "[                                       ]"
     puts "contact 1of3 = " + theResponse.to_yaml
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "[                                       ]"
     puts "contact 2of3 = " + theResponseTwo.to_yaml
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "[                                       ]"
     puts "contact 3of3 = " + theResponseThree.to_yaml
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "[                                       ]"
     
 
     #assign new contacts to variables
@@ -1406,9 +1426,17 @@ class LookupsController < ApplicationController
       }
     
     }).to_dot
-
-    puts "theResponseLetterOne = " + theResponseLetterOne.inspect
-    puts "theResponseLetterTwo = " + theResponseLetterTwo.inspect
+    puts "[                                       ]"
+    puts "[      response from postgrid           ]"
+    puts "[                                       ]"
+    puts "theResponseLetterOne = " + theResponseLetterOne.to_yaml
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "theResponseLetterTwo = " + theResponseLetterTwo.to_yaml
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "[                                       ]"
 
     
     puts "---some additional info check for LETTER ONE---"
@@ -1427,14 +1455,18 @@ class LookupsController < ApplicationController
     puts "postgrid_id = " + theResponseLetterTwo["id"]
     
     puts "Sending letters end.................."
-    
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "[                                       ]"
    
   
     #///////////////////////////////////////////////////////////
     #///////   Send EmaiL Receipt to paypal user   /////////////
     #///////////////////////////////////////////////////////////
     ##buyers email is params[:data][:buyerDetails][:payer][:email_address].to_s
-    
+    puts "[                                       ]"
+    puts "[                                       ]"
+    puts "[                                       ]"
     puts "START----send paypal receipt to paypal user !!"
 
     
@@ -1498,8 +1530,62 @@ class LookupsController < ApplicationController
     
     
     if User.exists?(:email => buyerEmail.downcase)
+
+      
     
-      puts "...it did exist"
+      puts "...it did exist, so get existing user and communications DB entries"
+      existingUser = User.find_by_email(buyerEmail.downcase)
+
+      if existingUser.email_confirmed = "true"
+
+
+        com1  = existingUser.communications.new do |u|
+          u.date = theResponseLetterOne["sendDate"]
+          u.com_type = theResponseLetterOne["object"]
+          u.recipient = theResponseLetterOne["to"]["firstName"]
+          u.status = theResponseLetterOne["status"]
+          u.postgrid_id = theResponseLetterTwo["id"]
+          u.paypal_full_object = params[:data][:buyerDetails]
+          u.postgrid_full_object = theResponseLetterOne
+        end
+        puts "com1 is " + com1.inspect
+  
+        puts "creating autoUSer.communications entry (com2)"
+    
+        com2  = existingUser.communications.new do |u|
+          u.date = theResponseLetterTwo["sendDate"]
+          u.com_type = theResponseLetterTwo["object"]
+          u.recipient = theResponseLetterTwo["to"]["firstName"]
+          u.status = theResponseLetterTwo["status"]
+          u.postgrid_id = theResponseLetterTwo["id"]
+          u.paypal_full_object = params[:data][:buyerDetails]
+          u.postgrid_full_object = theResponseLetterTwo
+        end
+  
+      
+        puts "com2 is " + com2.inspect
+      
+        if com1.save!
+          puts "com1 save was successfull"
+        else
+          puts "com1 save was unsuccessfull"
+        end
+  
+        if com2.save!
+          puts "com2 save was successfull"
+        else
+          puts "com2 save was unsuccessfull"
+        end
+        
+        puts "sending autoUser confirmation Email to paypal customer"
+  
+       
+        
+      else
+
+        puts "email NOT confirmed"
+
+      end
 
 
 
@@ -1623,18 +1709,18 @@ class LookupsController < ApplicationController
       result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
     
     end
-  end  
+   
+  end
   
   
   
+  private
   
-    private
-    
-      def event_params
-        
-        params.require(:lookup).permit(:address, :zipcode, :test)
+    def event_params
+      
+      params.require(:lookup).permit(:address, :zipcode, :test)
 
 
-       end
+    end
 end
   

@@ -110,10 +110,9 @@ const SignupWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  grid-template-columns: minmax(0px, 1fr) minmax(300px, 450px) minmax(
-      525px,
-      700px
-    ) minmax(20px, 1fr);
+  grid-template-columns:
+    minmax(0px, 1fr) minmax(300px, 450px) minmax(525px, 700px)
+    minmax(20px, 1fr);
   //grid-template-rows: 1fr minmax(min-content, max-content) 1fr;
   //padding-top: 60px;
   //padding-bottom: 20px;
@@ -136,7 +135,7 @@ const SignupWrapper = styled.div`
   background-size: cover;
   background-position: right bottom;
 
-  z-index: -1;
+  //z-index: -1;
 `;
 
 const SignupMaskWrapper = styled.div`
@@ -291,10 +290,9 @@ const SignupWrapperInner = styled.div`
   //grid-template-columns: minmax(170px,350px) minmax(340px,600px);
   //grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
 
-  grid-template-columns: minmax(20px, 40px) minmax(250px, 450px) minmax(
-      350px,
-      600px
-    ) minmax(40px, 1fr);
+  grid-template-columns:
+    minmax(20px, 40px) minmax(250px, 450px) minmax(350px, 600px)
+    minmax(40px, 1fr);
 
   grid-area: 1/1/-1/-1;
   grid-column-gap: 0.5em;
