@@ -1711,7 +1711,76 @@ class LookupsController < ApplicationController
     end
    
   end
+
+  def getLetter
+
+    puts params["data"]["letterID"]
+
+    getLetterResponse = HTTParty.get('https://api.postgrid.com/print-mail/v1/letters/letter_kPcarR9g1poy4BpCQQmHAU?expand[]=template', {
   
+      method: 'POST',
+      
+      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+          
+          
+    }).to_dot
+
+     puts "zzzzzzzzzzzzzzzzz", getLetterResponse.to_yaml
+
+    if getLetterResponse.key?("error")
+
+      
+      render json: {
+      status: "pink", 
+      error: getLetterResponse.error.type,
+      message: getLetterResponse.error.message
+    }
+      
+
+        
+
+    else
+
+        
+        render json:{
+          
+          status: "green",
+          url: getLetterResponse.url
+      }
+    end
+  end
+  
+  def populate
+
+    puts "---------calling setUser from lookup controller populate-----------"
+
+    setUser
+
+
+    if @current_user && @current_user != {}
+      
+      render json: {
+
+
+        #article: @article_info,
+        status: "green",
+        populate: @current_user.communications
+
+      }
+    
+  
+    else
+      puts "unable to check @current_user bcuz user doesn't exist"
+      render json: {
+          
+        status: "red",
+        msg: "Please log in first."}
+    end
+
+  
+  
+  end
   
   
   private

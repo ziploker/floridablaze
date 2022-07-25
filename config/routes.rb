@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     post '/send/emails', to: 'lookups#sendEmailToReps'
 
     post '/send/letters', to: 'lookups#sendLetterToReps'
+
+    post '/send/getLetter', to: 'lookups#getLetter'
+    get '/send/populate', to: 'lookups#populate'
     
     put '/registrations/:id', to: 'registrations#update'
     post '/registrations/forgot', to: 'registrations#forgot'
