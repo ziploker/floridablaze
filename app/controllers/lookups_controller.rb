@@ -1544,7 +1544,7 @@ class LookupsController < ApplicationController
           u.com_type = theResponseLetterOne["object"]
           u.recipient = theResponseLetterOne["to"]["firstName"]
           u.status = theResponseLetterOne["status"]
-          u.postgrid_id = theResponseLetterTwo["id"]
+          u.postgrid_id = theResponseLetterOne["id"]
           u.paypal_full_object = params[:data][:buyerDetails]
           u.postgrid_full_object = theResponseLetterOne
         end
