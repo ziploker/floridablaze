@@ -24,7 +24,7 @@ import {
 } from "./AuthForm";
 
 import axios from "axios";
-
+import "../../../assets/stylesheets/edit.scss";
 import $ from "jquery";
 var Spinner = require("react-spinkit");
 
@@ -711,7 +711,15 @@ function Edit(props) {
 						}
 						return (
 							<tr key={x.id}>
-								<td>{x.com_type}</td>
+								<td>
+									<a
+										onClick={() => RedirectURL(x.postgrid_id)}
+										target={"_blank"}
+										rel={"noreferrer noopener"}
+									>
+										{x.com_type}
+									</a>{" "}
+								</td>
 								<td>{x.date}</td>
 								<td>{x.recipient}</td>
 								<td>{x.status}</td>
