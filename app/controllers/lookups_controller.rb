@@ -1742,7 +1742,9 @@ class LookupsController < ApplicationController
 
     else
 
-        
+      
+
+     
         render json:{
           
           status: "green",

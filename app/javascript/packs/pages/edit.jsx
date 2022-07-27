@@ -199,6 +199,30 @@ function Edit(props) {
 		}
 	}
 
+	function RedirectURL(postgrid_letter_ID) {
+		// window.location = "http://www.att.com";
+
+		console.log("REDIRECTURL XYZ ", postgrid_letter_ID);
+
+		axios
+			.post(
+				"/send/getLetter",
+				{
+					data: {
+						letterID: postgrid_letter_ID,
+					},
+				},
+				{ withCredentials: true }
+			)
+			.then((response) => {
+				console.log("handleGetLetterRESPONSE", response);
+				window.open(response.data.url);
+			})
+			.catch((error) => {
+				console.log("Logout? error", error);
+			});
+	}
+
 	///////////////////////////////////  HANDLE_SUBMIT ///////////////////////////
 	function handleSubmit(event) {
 		////send info into backend heyyohhhh/////
@@ -473,7 +497,7 @@ function Edit(props) {
 			.then((response) => {
 				console.log("handleGetLetterRESPONSE", response);
 
-				window.open("www.time.com", "_blank", "noopener,noreferrer");
+				return response.data.url;
 			})
 			.catch((error) => {
 				console.log("Logout? error", error);
@@ -481,7 +505,25 @@ function Edit(props) {
 	};
 
 	const HandlePopulateAll = () => {
+		// allActivity.map((x, i) => {
+		// 	return (
+		// 		<tr key={x.id}>
+		// 			<td>{x.com_type}</td>
+		// 			<td>{x.date}</td>
+		// 			<td>{x.recipient}</td>
+		// 			<td>{x.status}</td>
+		// 			<td>
+		// 				<a onClick={() => handleGetLetter(x.postgrid_id)}>preview</a>
+		// 			</td>
+		// 			{/* <td>{x.paypal_full_object.purchace_units[0].amount.value}</td> */}
+		// 		</tr>
+		// 	);
+		// });
+
 		allActivity.map((x, i) => {
+			{
+				console.log("INSIDE MAP ", i + " " + x.recipient);
+			}
 			return (
 				<tr key={x.id}>
 					<td>{x.com_type}</td>
@@ -489,7 +531,7 @@ function Edit(props) {
 					<td>{x.recipient}</td>
 					<td>{x.status}</td>
 					<td>
-						<a onClick={() => handleGetLetter(x.postgrid_id)}>preview</a>
+						<a href="www.att.com" target="_blank" rel="noopener noreferrer"></a>
 					</td>
 					{/* <td>{x.paypal_full_object.purchace_units[0].amount.value}</td> */}
 				</tr>
@@ -663,8 +705,10 @@ function Edit(props) {
 						<th>status</th>
 						<th>preview</th>
 					</tr>
-
 					{allActivity.map((x, i) => {
+						{
+							console.log("INSIDE MAP ", i + " " + x.recipient);
+						}
 						return (
 							<tr key={x.id}>
 								<td>{x.com_type}</td>
@@ -672,9 +716,15 @@ function Edit(props) {
 								<td>{x.recipient}</td>
 								<td>{x.status}</td>
 								<td>
-									<a onClick={() => handleGetLetter(x.postgrid_id)}>preview</a>
+									<a
+										onClick={() => RedirectURL(x.postgrid_id)}
+										target={"_blank"}
+										rel={"noreferrer noopener"}
+									>
+										preview
+									</a>
 								</td>
-								{/* <td>{x.paypal_full_object.purchace_units[0].amount.value}</td> */}
+								<td>${x.paypal_full_object.purchase_units[0].amount.value}</td>
 							</tr>
 						);
 					})}
