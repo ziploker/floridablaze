@@ -1,0 +1,47 @@
+a {
+	cursor: pointer;
+}
+
+a:link {
+	color: red;
+}
+
+/* visited link */
+a:visited {
+	color: green;
+}
+
+/* mouse over link */
+a:hover {
+	color: hotpink;
+}
+
+/* selected link */
+a:active {
+	color: blue;
+}
+
+#activity td {
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+#activity th {
+	background-color: #0000006e;
+	border: 1px solid #ddd;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#activity tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#activity tr:not(:first-child) {
+	cursor: pointer;
+}
+#activity tr:hover {
+	background-color: #ddd;
+}

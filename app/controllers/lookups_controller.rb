@@ -1541,6 +1541,7 @@ class LookupsController < ApplicationController
 
         com1  = existingUser.communications.new do |u|
           u.date = theResponseLetterOne["sendDate"]
+          u.formatted_date = theResponseLetterOne["sendDate"].to_date.strftime("%b %e, %Y")
           u.com_type = theResponseLetterOne["object"]
           u.recipient = theResponseLetterOne["to"]["firstName"]
           u.status = theResponseLetterOne["status"]
@@ -1554,6 +1555,7 @@ class LookupsController < ApplicationController
     
         com2  = existingUser.communications.new do |u|
           u.date = theResponseLetterTwo["sendDate"]
+          u.formatted_date = theResponseLetterTwo["sendDate"].to_date.strftime("%b %e, %Y")
           u.com_type = theResponseLetterTwo["object"]
           u.recipient = theResponseLetterTwo["to"]["firstName"]
           u.status = theResponseLetterTwo["status"]
@@ -1621,6 +1623,7 @@ class LookupsController < ApplicationController
   
       com1  = newAutoUser.communications.new do |u|
         u.date = theResponseLetterOne["sendDate"]
+        u.formatted_date = theResponseLetterOne["sendDate"].to_date.strftime("%b %e, %Y")
         u.com_type = theResponseLetterOne["object"]
         u.recipient = theResponseLetterOne["to"]["firstName"]
         u.status = theResponseLetterOne["status"]
@@ -1634,6 +1637,7 @@ class LookupsController < ApplicationController
   
       com2  = newAutoUser.communications.new do |u|
         u.date = theResponseLetterTwo["sendDate"]
+        u.formatted_date = theResponseLetterTwo["sendDate"].to_date.strftime("%b %e, %Y")
         u.com_type = theResponseLetterTwo["object"]
         u.recipient = theResponseLetterTwo["to"]["firstName"]
         u.status = theResponseLetterTwo["status"]
