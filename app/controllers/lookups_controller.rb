@@ -9,6 +9,7 @@ class LookupsController < ApplicationController
 
     require "uri"
     require "net/http"
+    require 'date'
     
     
     
@@ -1057,7 +1058,29 @@ class LookupsController < ApplicationController
 
             
             
-            
+          ## save email transaction to user activity
+
+          # comEmail  = existingUser.communications.new do |u|
+          #   u.date = DateTime.now
+          #   u.formatted_date = DateTime.now.strftime("%b %e, %Y")
+          #   u.com_type = email
+          #   u.recipient = theResponseLetterTwo["to"]["firstName"]
+          #   u.status = theResponseLetterTwo["status"]
+          #   u.postgrid_id = theResponseLetterTwo["id"]
+          #   u.paypal_full_object = params[:data][:buyerDetails]
+          #   u.postgrid_full_object = theResponseLetterTwo
+          # end
+    
+        
+          # puts "comEmail is " + comEmail.inspect
+        
+          # if comEmail.save!
+          #   puts "comEmail save was successfull"
+          
+          
+          # else
+          #   puts "comEmail save was unsuccessfull"
+          # end
             
             
             

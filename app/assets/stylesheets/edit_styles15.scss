@@ -45,3 +45,9 @@ a:active {
 #activity tr:hover {
 	background-color: #ddd;
 }
+
+.recipients {
+	@media only screen and (max-width: 420px) {
+		display: none;
+	}
+}

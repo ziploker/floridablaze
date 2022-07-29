@@ -24,7 +24,7 @@ import {
 } from "./AuthForm";
 
 import axios from "axios";
-import "../../../assets/stylesheets/editStyleSheet111.scss";
+import "../../../assets/stylesheets/edit_styles15.scss";
 import $ from "jquery";
 var Spinner = require("react-spinkit");
 
@@ -49,8 +49,12 @@ const EditAccountWrapper = styled.div`
 	//grid-template-columns: minmax(170px,350px) minmax(340px,600px);
 	//grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
 
-	grid-template-columns: minmax(20px, 40px) 40% 60% minmax(20px, 40px);
+	grid-template-columns: 40% 60%;
 
+	@media only screen and (max-width: 800px) {
+		grid-template-columns: 1fr;
+		grid-template-rows: min-content min-content;
+	}
 	grid-area: 1/1/-1/-1;
 	grid-column-gap: 0.5em;
 	//padding-top: 60px;
@@ -70,7 +74,7 @@ const EditAccount = styled.div`
 
   } */
 	position: relative;
-	grid-area: 1/2/2/3;
+	//grid-area: 1/2/2/3;
 	box-sizing: border-box;
 	max-width: 300px;
 	width: 99vw;
@@ -528,7 +532,7 @@ function Edit(props) {
 				<tr key={x.id}>
 					<td>{x.com_type}</td>
 					<td>{x.date}</td>
-					<td>{x.recipient}</td>
+					<td className={"recipients"}>{x.recipient}</td>
 					<td>{x.status}</td>
 					<td>
 						<a href="www.att.com" target="_blank" rel="noopener noreferrer"></a>
@@ -543,9 +547,14 @@ function Edit(props) {
 		display: grid;
 		grid-template-columns: 1f4;
 		grid-template-rows: 160px 1fr;
-		grid-area: 1/3/2/4;
+		//grid-area: 1/3/2/4;
 		align-self: start;
 		padding: 0 20px;
+		margin-bottom: 50px;
+
+		@media only screen and (max-width: 420px) {
+			padding: 0 2px;
+		}
 	`;
 	const ActivityTableHeader = styled.h2`
 		grid-area: 1/1/2/2;
@@ -721,7 +730,7 @@ function Edit(props) {
 						<tr>
 							<th></th>
 							<th>date</th>
-							<th>recipient</th>
+							<th className={"recipients"}>recipient</th>
 							<th>status</th>
 							<th>total</th>
 						</tr>
@@ -733,7 +742,7 @@ function Edit(props) {
 								<tr key={x.id} onClick={() => RedirectURL(x.postgrid_id)}>
 									<td>{x.com_type}</td>
 									<td>{x.formatted_date}</td>
-									<td>{x.recipient}</td>
+									<td className={"recipients"}>{x.recipient}</td>
 									<td>{x.status}</td>
 
 									<td>
