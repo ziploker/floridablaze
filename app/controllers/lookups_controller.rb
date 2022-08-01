@@ -1050,17 +1050,19 @@ class LookupsController < ApplicationController
                   </html>"
           }
 
-          mg_client_one.send_message 'mg.floridablaze.io', message_params_one
-          mg_client_two.send_message 'mg.floridablaze.io', message_params_two
+          mailGunResponseOne = mg_client_one.send_message 'mg.floridablaze.io', message_params_one
+          mailGunResponseTwo = mg_client_two.send_message 'mg.floridablaze.io', message_params_two
 
-          result_one = mg_client_one.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
-          result_two = mg_client_two.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
+          #result_one = mg_client_one.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
+          #result_two = mg_client_two.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
 
           #puts "RESULT_ON_CLASS IS = " + result_one
 
           #JSON.parse(result_one.to_json.gsub('\"', '"').replace(/\r?\n|\r/g, ''));
 puts "----------------"
 puts "----------------"
+puts "CLASS of mgresponse IS = " + mailGunResponseOne.class.to_s
+puts "Qwqweqwe " + mailGunResponseOne.to_yaml
 puts "----------------"
           puts "RESULT_ON_CLASS IS = " + result_one.to_yaml
           #puts "RESULT_ON_CLASS after gsub IS = " + result_one.gsub('\"', '"')
