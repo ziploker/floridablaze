@@ -1056,8 +1056,15 @@ class LookupsController < ApplicationController
           result_one = mg_client_one.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
           result_two = mg_client_two.get("mg.floridablaze.io/events", {:event => 'delivered'}) 
 
-            
-            
+          #puts "RESULT_ON_CLASS IS = " + result_one
+
+          #JSON.parse(result_one.to_json.gsub('\"', '"').replace(/\r?\n|\r/g, ''));
+puts "----------------"
+puts "----------------"
+puts "----------------"
+          puts "RESULT_ON_CLASS IS = " + result_one.to_yaml
+          #puts "RESULT_ON_CLASS after gsub IS = " + result_one.gsub('\"', '"')
+
           ## save email transaction to user activity
 
           # comEmail  = existingUser.communications.new do |u|
@@ -1546,7 +1553,7 @@ class LookupsController < ApplicationController
     #///  check to see if paypal email is exists at FBLAZE   ///
     #///////////////////////////////////////////////////////////
     ##     if it does Save to DB and Send them Reciept    //////
-    ##  if it doesnt, Save to DB and ask if they want to create auto User
+    ##  if it doesnt, Save to DB and create auto User
     #///////////////////////////////////////////////////////////
     puts "check if paypal email exists in fblazeDB"
 
@@ -1559,62 +1566,51 @@ class LookupsController < ApplicationController
       puts "...it did exist, so get existing user and communications DB entries"
       existingUser = User.find_by_email(buyerEmail.downcase)
 
-      if existingUser.email_confirmed = "true"
-
-
-        com1  = existingUser.communications.new do |u|
-          u.date = theResponseLetterOne["sendDate"]
-          u.formatted_date = theResponseLetterOne["sendDate"].to_date.strftime("%b %e, %Y")
-          u.com_type = theResponseLetterOne["object"]
-          u.recipient = theResponseLetterOne["to"]["firstName"]
-          u.status = theResponseLetterOne["status"]
-          u.postgrid_id = theResponseLetterOne["id"]
-          u.paypal_full_object = params[:data][:buyerDetails]
-          u.postgrid_full_object = theResponseLetterOne
-        end
-        puts "com1 is " + com1.inspect
-  
-        puts "creating autoUSer.communications entry (com2)"
-    
-        com2  = existingUser.communications.new do |u|
-          u.date = theResponseLetterTwo["sendDate"]
-          u.formatted_date = theResponseLetterTwo["sendDate"].to_date.strftime("%b %e, %Y")
-          u.com_type = theResponseLetterTwo["object"]
-          u.recipient = theResponseLetterTwo["to"]["firstName"]
-          u.status = theResponseLetterTwo["status"]
-          u.postgrid_id = theResponseLetterTwo["id"]
-          u.paypal_full_object = params[:data][:buyerDetails]
-          u.postgrid_full_object = theResponseLetterTwo
-        end
-  
       
-        puts "com2 is " + com2.inspect
-      
-        if com1.save!
-          puts "com1 save was successfull"
-        else
-          puts "com1 save was unsuccessfull"
-        end
-  
-        if com2.save!
-          puts "com2 save was successfull"
-        else
-          puts "com2 save was unsuccessfull"
-        end
-        
-        puts "sending autoUser confirmation Email to paypal customer"
-  
-       
-        
-      else
 
-        puts "email NOT confirmed"
 
+      com1  = existingUser.communications.new do |u|
+        u.date = theResponseLetterOne["sendDate"]
+        u.formatted_date = theResponseLetterOne["sendDate"].to_date.strftime("%b %e, %Y")
+        u.com_type = theResponseLetterOne["object"]
+        u.recipient = theResponseLetterOne["to"]["firstName"]
+        u.status = theResponseLetterOne["status"]
+        u.postgrid_id = theResponseLetterOne["id"]
+        u.paypal_full_object = params[:data][:buyerDetails]
+        u.postgrid_full_object = theResponseLetterOne
+      end
+      puts "com1 is " + com1.inspect
+
+      puts "creating autoUSer.communications entry (com2)"
+  
+      com2  = existingUser.communications.new do |u|
+        u.date = theResponseLetterTwo["sendDate"]
+        u.formatted_date = theResponseLetterTwo["sendDate"].to_date.strftime("%b %e, %Y")
+        u.com_type = theResponseLetterTwo["object"]
+        u.recipient = theResponseLetterTwo["to"]["firstName"]
+        u.status = theResponseLetterTwo["status"]
+        u.postgrid_id = theResponseLetterTwo["id"]
+        u.paypal_full_object = params[:data][:buyerDetails]
+        u.postgrid_full_object = theResponseLetterTwo
       end
 
+    
+      puts "com2 is " + com2.inspect
+    
+      if com1.save!
+        puts "com1 save was successfull"
+      else
+        puts "com1 save was unsuccessfull"
+      end
 
-
-
+      if com2.save!
+        puts "com2 save was successfull"
+      else
+        puts "com2 save was unsuccessfull"
+      end
+      
+      puts "sending autoUser confirmation Email to paypal customer"
+  
     else
       puts "...it diddn't exist, so create autoUser and communications DB entries"
       puts "creating autoUSer account"
