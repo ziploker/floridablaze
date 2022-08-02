@@ -1808,6 +1808,33 @@ puts "----------------"
   
   
   end
+
+  def get_logs
+
+
+    mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
+
+    mailGunGetResponse = RestClient.get "https://api:#{mailgun_api}"\
+    "@api.mailgun.net/v3/mg.floridablaze.io/events",
+     :params => {
+      :'begin'       => 'Fri, 30 Aug 2013 09:00:00 -0000',
+      :'ascending'   => 'yes',
+      :'limit'       =>  25,
+      :'pretty'      => 'no',
+      :'from' => 'ziploker@hotmail.com'
+     }
+
+     puts "MYResults to yaml " + mailGunGetResponse.to_yaml
+
+     render json: {
+
+
+      #article: @article_info,
+      status: "green",
+      mailGunGetResponse: mailGunGetResponse
+
+    }
+  end
   
   
   private

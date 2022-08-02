@@ -159,6 +159,7 @@ function Edit(props) {
 	console.log("==============Edit===============");
 	console.log("==============Edit Props===============", props);
 	const [allActivity, setAllActivity] = React.useState([]);
+	const [emailActivity, setEmailActivity] = React.useState([]);
 	const [state, setState] = React.useState({
 		loggedInStatus: "NOT_LOGGED_IN",
 		full_name: "",
@@ -484,6 +485,32 @@ function Edit(props) {
 			})
 			.catch((error) => {
 				console.log("error in pupoulate function", error);
+			});
+	}, []);
+
+	useEffect(() => {
+		//const mode = process.env.NODE_ENV == "development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
+		axios
+			.get("/send/get_logs", { withCredentials: true })
+			.then((response) => {
+				console.log("GET_LOGS", response);
+				console.log("GET_LOGS.DATA", response.data);
+				console.log(
+					"GET_LOGS.DATA.mailGunGetResponse",
+					response.data.mailGunGetResponse
+				);
+				var xxx = JSON.parse(response.data.mailGunGetResponse);
+				console.log("ITS OF CLASSSS " + typeof xxx.items);
+
+				console.log(
+					"JSON.parse(response.data.mailGunGetResponse.items) ",
+					xxx.items
+				);
+
+				setEmailActivity(xxx.items);
+			})
+			.catch((error) => {
+				console.log("error in GET_LOGS function", error);
 			});
 	}, []);
 

@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
     post '/send/getLetter', to: 'lookups#getLetter'
     get '/send/populate', to: 'lookups#populate'
+    get '/send/get_logs', to: 'lookups#get_logs'
+    
     
     put '/registrations/:id', to: 'registrations#update'
     post '/registrations/forgot', to: 'registrations#forgot'
