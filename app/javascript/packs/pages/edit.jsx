@@ -428,6 +428,12 @@ function Edit(props) {
 	}
 
 	///////////////////////////////////  USE_EFFECT //////////////////////
+	///////////////////////////////////  USE_EFFECT //////////////////////
+	///////////////////////////////////  USE_EFFECT //////////////////////
+	///////////////////////////////////  USE_EFFECT //////////////////////
+	///////////////////////////////////  USE_EFFECT //////////////////////
+	///////////////////////////////////  USE_EFFECT //////////////////////
+
 	useEffect(() => {
 		//const mode = process.env.NODE_ENV == "development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
 		axios
@@ -513,6 +519,8 @@ function Edit(props) {
 				console.log("error in GET_LOGS function", error);
 			});
 	}, []);
+
+	//////////////////////////////////////////////////////////////////////
 
 	const handleGetLetter = (postgrid_letter_ID) => {
 		axios
@@ -761,10 +769,8 @@ function Edit(props) {
 							<th>status</th>
 							<th>total</th>
 						</tr>
+
 						{allActivity.map((x, i) => {
-							{
-								console.log("INSIDE MAP ", i + " " + x.recipient);
-							}
 							return (
 								<tr key={x.id} onClick={() => RedirectURL(x.postgrid_id)}>
 									<td>{x.com_type}</td>
@@ -775,6 +781,19 @@ function Edit(props) {
 									<td>
 										${x.paypal_full_object.purchase_units[0].amount.value}
 									</td>
+								</tr>
+							);
+						})}
+
+						{emailActivity.map((x, i) => {
+							return (
+								<tr key={x.id}>
+									<td>email</td>
+									<td>{x.formatted_date}</td>
+									<td className={"recipients"}>{x.recipient}</td>
+									<td>{x.event}</td>
+
+									<td>free</td>
 								</tr>
 							);
 						})}
