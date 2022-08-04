@@ -1824,26 +1824,23 @@ puts "----------------"
       :'from' => 'ziploker@hotmail.com'
      }
 
-     responseConvertedToJsonHash = JSON.parse(mailGunGetResponse)
+    responseConvertedToJsonHash = JSON.parse(mailGunGetResponse)
+  
     
-     puts "responseConvertedToJsonHash", responseConvertedToJsonHash.class.to_s
-     puts "responseConvertedToJsonHash", responseConvertedToJsonHash.to_s
-
-     puts "responseConvertedToJsonHash_ITEMS", responseConvertedToJsonHash["items"].class.to_s
-     puts "responseConvertedToJsonHash_ITEMS", responseConvertedToJsonHash["items"].to_s
-      responseConvertedToJsonHash["items"].map { |rec, i|
-
-      puts "INSIIIIDE", DateTime.strptime(rec["timestamp"].to_s,'%s').strftime("%b %-d, %Y")
-      #puts "INSIIIIDE", DateTime.strptime(rec["timestamp"].to_s, '%b %e, %Y')
-        rec["formatted_date"] = DateTime.strptime(rec["timestamp"].to_s,'%s').strftime("%b %-d, %Y")
-        rec["TESTING"] = "BLUEGREEN"
-     }
-     render json: {
+    
+    responseConvertedToJsonHash["items"].map { |rec, i|
+    
+      rec[:formatted_date] = DateTime.strptime(rec["timestamp"].to_s,'%s').strftime("%b %-d, %Y")
+     
+    }
+     
+     
+    render json: {
 
 
       #article: @article_info,
       status: "green",
-      mailGunGetResponse: mailGunGetResponse
+      mailGunGetResponse: responseConvertedToJsonHash
 
     }
   end
