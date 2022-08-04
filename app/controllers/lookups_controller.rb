@@ -1787,6 +1787,52 @@ puts "----------------"
 
     if @current_user && @current_user != {}
       
+      puts "start MAAAAAAAAAAAAAAAAAAP"
+
+      @current_user.communications.map { |com, i|
+
+        puts "com_type of number is " + com.com_type
+        puts "com_type postgrid_id is  " + com.postgrid_id
+
+        letterDetails = HTTParty.get("https://api.postgrid.com/print-mail/v1/letters/#{com.postgrid_id}?expand[]=template", {
+      
+          headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+          #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+    
+          # body: {
+          #   "firstName": params[:data][:infoOnReps][:one][:name],
+          #   "addressLine1": mainAddress, 
+          #   "countryCode": "US",
+          #   "country": "US",
+          #   "provinceOrState": state,
+          #   "postalOrZip": zipcode,
+          #   "city": city,
+          #   "description": params[:data][:infoOnReps][:one][:fullDistrictTrunk]
+          # }
+        }).to_dot
+  
+  
+        puts "inside MAP DETAIL LETTER INFO============= ", letterDetails.to_yaml
+        com.update(status: letterDetails.status)
+        com.save!
+
+      }
+
+      
+      
+
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
       render json: {
 
 
