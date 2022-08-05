@@ -29,8 +29,11 @@ Rails.application.routes.draw do
 
     post '/send/letters', to: 'lookups#sendLetterToReps'
 
-    post '/send/getLetter', to: 'lookups#getLetter'
-    get '/send/populate', to: 'lookups#populate'
+    # post '/send/getLetter', to: 'lookups#getLetter'
+    # get '/send/populateLetters', to: 'lookups#populateLetters'
+    # get '/send/populateEmails', to: 'lookups#populateEmails'
+    get '/send/populateLettersAndEmails', to: 'lookups#populateLettersAndEmails'
+    
     get '/send/get_logs', to: 'lookups#get_logs'
     
     

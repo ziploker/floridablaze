@@ -158,8 +158,10 @@ const formData = new FormData();
 function Edit(props) {
 	console.log("==============Edit===============");
 	console.log("==============Edit Props===============", props);
-	const [allActivity, setAllActivity] = React.useState([]);
-	const [emailActivity, setEmailActivity] = React.useState([]);
+	///const [letterActivity, setLetterActivity] = React.useState([]);
+	///const [emailActivity, setEmailActivity] = React.useState([]);
+	const [allLettersAndEmails, setAllLettersAndEmails] = useState([]);
+
 	const [state, setState] = React.useState({
 		loggedInStatus: "NOT_LOGGED_IN",
 		full_name: "",
@@ -483,44 +485,60 @@ function Edit(props) {
 	useEffect(() => {
 		//const mode = process.env.NODE_ENV == "development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
 		axios
-			.get("/send/populate", { withCredentials: true })
+			.get("/send/populateLettersAndEmails", { withCredentials: true })
 			.then((response) => {
-				console.log("POPULATE", response);
+				console.log("populateLetters", response);
 
-				setAllActivity(response.data.populate);
+				// setLetterActivity(response.data.populateLetters);
+				// setEmailActivity(response.data.populateEmails);
+				setAllLettersAndEmails(response.data.populateLettersAndEmails);
 			})
 			.catch((error) => {
-				console.log("error in pupoulate function", error);
+				console.log("error in populateLetters function", error);
 			});
 	}, []);
 
-	useEffect(() => {
-		//const mode = process.env.NODE_ENV == "development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
-		axios
-			.get("/send/get_logs", { withCredentials: true })
-			.then((response) => {
-				console.log("GET_LOGS", response);
-				console.log("GET_LOGS.DATA", response.data);
-				console.log(
-					"GET_LOGS.DATA.mailGunGetResponse",
-					response.data.mailGunGetResponse
-				);
-				//var xxx = JSON.parse(response.data.mailGunGetResponse);
-				console.log(
-					"ITS OF CLASSSS " + typeof response.data.mailGunGetResponse
-				);
+	// useEffect(() => {
+	// 	//const mode = process.env.NODE_ENV == "development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
+	// 	axios
+	// 		.get("/send/populateEmails", { withCredentials: true })
+	// 		.then((response) => {
+	// 			console.log("populateEmails", response);
 
-				console.log(
-					"JSON.parse(response.data.mailGunGetResponse.items) ",
-					response.data.mailGunGetResponse.items
-				);
+	// 			setEmailActivity(response.data.populateEmails);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log("error in populateLetters function", error);
+	// 		});
+	// }, []);
 
-				setEmailActivity(response.data.mailGunGetResponse.items);
-			})
-			.catch((error) => {
-				console.log("error in GET_LOGS function", error);
-			});
-	}, []);
+	// useEffect(() => {
+	// 	const mode = process.env.NODE_ENV == "development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
+	// 	axios
+	// 		.get("/send/get_logs", { withCredentials: true })
+	// 		.then((response) => {
+	// 			console.log("GET_LOGS", response);
+	// 			console.log("GET_LOGS.DATA", response.data);
+	// 			console.log(
+	// 				"GET_LOGS.DATA.mailGunGetResponse",
+	// 				response.data.mailGunGetResponse
+	// 			);
+	// 			var xxx = JSON.parse(response.data.mailGunGetResponse);
+	// 			console.log(
+	// 				"ITS OF CLASSSS " + typeof response.data.mailGunGetResponse
+	// 			);
+
+	// 			console.log(
+	// 				"JSON.parse(response.data.mailGunGetResponse.items) ",
+	// 				response.data.mailGunGetResponse.items
+	// 			);
+
+	// 			setEmailActivity(response.data.mailGunGetResponse.items);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log("error in GET_LOGS function", error);
+	// 		});
+	// }, []);
 
 	//////////////////////////////////////////////////////////////////////
 
@@ -783,7 +801,7 @@ function Edit(props) {
 							<th>total</th>
 						</tr>
 
-						{allActivity.map((x, i) => {
+						{allLettersAndEmails.map((x, i) => {
 							return (
 								<tr key={x.id} onClick={() => RedirectURL(x.postgrid_id)}>
 									<td>{x.com_type}</td>
@@ -792,13 +810,15 @@ function Edit(props) {
 									<td>{x.status}</td>
 
 									<td>
-										${x.paypal_full_object.purchase_units[0].amount.value}
+										{x.com_type == "letter"
+											? x.paypal_full_object.purchase_units[0].amount.value
+											: "checking..."}
 									</td>
 								</tr>
 							);
 						})}
 
-						{emailActivity.map((x, i) => {
+						{allLettersAndEmails.map((x, i) => {
 							return (
 								<tr key={x.id}>
 									<td>email</td>

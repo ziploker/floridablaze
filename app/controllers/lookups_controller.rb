@@ -1059,37 +1059,73 @@ class LookupsController < ApplicationController
           #puts "RESULT_ON_CLASS IS = " + result_one
 
           #JSON.parse(result_one.to_json.gsub('\"', '"').replace(/\r?\n|\r/g, ''));
-puts "----------------"
-puts "----------------"
-puts "CLASS of mgresponse IS = " + mailGunResponseOne.class.to_s
-puts "Qwqweqwe " + mailGunResponseOne.to_yaml
-puts "----------------"
-          puts "RESULT_ON_CLASS IS = " + result_one.to_yaml
+          puts "----------------"
+          puts "----------------"
+          mailGunResponseOne = JSON.parse(mailGunResponseOne.body)
+          mailGunResponseTwo = JSON.parse(mailGunResponseTwo.body)
+          puts "CLASS of mailGunResponseOne IS = " + mailGunResponseOne.class.to_s
+          puts "CLASS of mailGunResponseOne IS = " + mailGunResponseOne.inspect
+          puts "CLASS of mailGunResponseOne IS = " + mailGunResponseOne["id"]
+          puts "CLASS of mailGunResponseOne IS = " + mailGunResponseOne["message"]
+
+
+          puts "----------go------"
+          #puts "RESULT_ON_CLASS IS = " + result_one.to_yaml
           #puts "RESULT_ON_CLASS after gsub IS = " + result_one.gsub('\"', '"')
 
-          ## save email transaction to user activity
+          # save email transaction to user activity
 
-          # comEmail  = existingUser.communications.new do |u|
-          #   u.date = DateTime.now
-          #   u.formatted_date = DateTime.now.strftime("%b %e, %Y")
-          #   u.com_type = email
-          #   u.recipient = theResponseLetterTwo["to"]["firstName"]
-          #   u.status = theResponseLetterTwo["status"]
-          #   u.postgrid_id = theResponseLetterTwo["id"]
-          #   u.paypal_full_object = params[:data][:buyerDetails]
-          #   u.postgrid_full_object = theResponseLetterTwo
-          # end
-    
+          comEmailOne  = @current_user.communications.new do |u|
+            u.date = DateTime.now
+            u.formatted_date = DateTime.now.strftime("%b %e, %Y")
+            u.com_type = "email"
+            u.recipient = resultsSentBackFromReact[:one][:name]
+            u.status = mailGunResponseOne["message"]
+            u.postgrid_id = ""
+            u.paypal_full_object = {}
+            u.postgrid_full_object = {}
+          
+            u.mailgun_id = mailGunResponseOne["id"]
+            u.mailgun_recipient_email = resultsSentBackFromReact[:one][:email]
+          end
+
+          comEmailTwo  = @current_user.communications.new do |u|
+            u.date = DateTime.now
+            u.formatted_date = DateTime.now.strftime("%b %e, %Y")
+            u.com_type = "email"
+            u.recipient = resultsSentBackFromReact[:two][:name]
+            u.status = mailGunResponseTwo["message"]
+            u.postgrid_id = ""
+            u.paypal_full_object = {}
+            u.postgrid_full_object = {}
+          
+            u.mailgun_id = mailGunResponseTwo["id"]
+            u.mailgun_recipient_email = resultsSentBackFromReact[:two][:email]
+          end
+
         
-          # puts "comEmail is " + comEmail.inspect
+          puts "comEmailOne is " + comEmailOne.inspect
         
-          # if comEmail.save!
-          #   puts "comEmail save was successfull"
+          if comEmailOne.save!
+            puts "comEmailOne save was successfull"
           
           
-          # else
-          #   puts "comEmail save was unsuccessfull"
-          # end
+          else
+            puts "comEmailOne save was unsuccessfull"
+          end
+
+          puts "comEmailOne is " + comEmailOne.inspect
+        
+          
+          
+          
+          if comEmailTwo.save!
+            puts "comEmailTwo save was successfull"
+          
+          
+          else
+            puts "comEmailTwo save was unsuccessfull"
+          end
             
             
             
@@ -1101,8 +1137,8 @@ puts "----------------"
             render json: {
               status: "green",
               msg: "sending emails... complete",
-              result_one: result_one,
-              result_two: result_two
+              #result_one: result_one,
+              #result_two: result_two
             }
 
           else
@@ -1778,9 +1814,9 @@ puts "----------------"
     end
   end
   
-  def populate
+  def populateLetters
 
-    puts "---------calling setUser from lookup controller populate-----------"
+    puts "---------calling setUser from lookup controller populateLetters-----------"
 
     setUser
 
@@ -1838,7 +1874,7 @@ puts "----------------"
 
         #article: @article_info,
         status: "green",
-        populate: @current_user.communications
+        populateLetters: @current_user.communications
 
       }
     
@@ -1855,8 +1891,93 @@ puts "----------------"
   
   end
 
-  def get_logs
 
+  
+  
+ 
+
+  def populateLettersAndEmails
+
+    puts "---------calling setUser from lookup controller populateLettersAndEmails-----------"
+
+    setUser
+
+      @current_user.communications.map { |com, i|
+
+        puts "com_type of number is " + com.com_type
+        
+
+        
+        if com.com_type == "letter"
+          
+          puts "com_type postgrid_id is  " + com.postgrid_id
+
+          letterDetails = HTTParty.get("https://api.postgrid.com/print-mail/v1/letters/#{com.postgrid_id}?expand[]=template", {
+        
+            headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+            #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+      
+            # body: {
+            #   "firstName": params[:data][:infoOnReps][:one][:name],
+            #   "addressLine1": mainAddress, 
+            #   "countryCode": "US",
+            #   "country": "US",
+            #   "provinceOrState": state,
+            #   "postalOrZip": zipcode,
+            #   "city": city,
+            #   "description": params[:data][:infoOnReps][:one][:fullDistrictTrunk]
+            # }
+          }).to_dot
+          puts "inside MAP DETAIL LETTER INFO============= ", letterDetails.to_yaml
+          com.update(status: letterDetails.status)
+          com.save!
+          
+          elsif com.com_type == "email"
+
+            puts "mailgun email ID is  " + com.mailgun_id
+        puts "mailgun recipient email  is  " + com.mailgun_recipient_email
+
+
+          end
+  
+        
+
+      }
+
+      
+      
+
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      render json: {
+
+
+        #article: @article_info,
+        status: "green",
+        populateLettersAndEmails: @current_user.communications
+
+      }
+    
+  
+   
+
+  
+  
+  end
+
+  
+
+  def get_logs
 
     mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
 
@@ -1882,13 +2003,11 @@ puts "----------------"
      
      
     render json: {
-
-
       #article: @article_info,
       status: "green",
       mailGunGetResponse: responseConvertedToJsonHash
-
     }
+  
   end
   
   
