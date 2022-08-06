@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get '/send/populateCommunications', to: 'lookups#populateCommunications'
     
     get '/send/get_logs', to: 'lookups#get_logs'
+    post '/send/getLetterPreview', to: 'lookups#getLetterPreview'
     
     
     put '/registrations/:id', to: 'registrations#update'

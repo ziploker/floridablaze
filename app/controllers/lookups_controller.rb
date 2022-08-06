@@ -1080,7 +1080,7 @@ class LookupsController < ApplicationController
             u.formatted_date = DateTime.now.strftime("%b %e, %Y")
             u.com_type = "email"
             u.recipient = resultsSentBackFromReact[:one][:name]
-            u.status = mailGunResponseOne["message"]
+            u.status = mailGunResponseOne["message"] == "Queued. Thank you." ? "queued" : mailGunResponseOne["message"]
             u.postgrid_id = ""
             u.paypal_full_object = {}
             u.postgrid_full_object = {}
@@ -1094,7 +1094,7 @@ class LookupsController < ApplicationController
             u.formatted_date = DateTime.now.strftime("%b %e, %Y")
             u.com_type = "email"
             u.recipient = resultsSentBackFromReact[:two][:name]
-            u.status = mailGunResponseTwo["message"]
+            u.status = mailGunResponseTwo["message"] == "Queued. Thank you." ? "queued" : mailGunResponseOne["message"]
             u.postgrid_id = ""
             u.paypal_full_object = {}
             u.postgrid_full_object = {}
@@ -1773,7 +1773,7 @@ class LookupsController < ApplicationController
    
   end
 
-  def getLetter
+  def getLetterPreview
 
     puts params["data"]["letterID"]
 
