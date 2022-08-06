@@ -1896,9 +1896,9 @@ class LookupsController < ApplicationController
   
  
 
-  def populateLettersAndEmails
+  def populateCommunications
 
-    puts "---------calling setUser from lookup controller populateLettersAndEmails-----------"
+    puts "---------calling setUser from lookup controller Communications-----------"
 
     setUser
 
@@ -1964,7 +1964,7 @@ class LookupsController < ApplicationController
 
         #article: @article_info,
         status: "green",
-        populateLettersAndEmails: @current_user.communications
+        populateCommunications: @current_user.communications
 
       }
     
