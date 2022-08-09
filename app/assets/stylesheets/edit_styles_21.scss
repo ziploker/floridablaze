@@ -52,6 +52,11 @@ a:active {
 	}
 }
 
+.totalprice {
+	@media only screen and (max-width: 295px) {
+		display: none;
+	}
+}
 //spinner for when loading data
 
 .lds-spinner {
