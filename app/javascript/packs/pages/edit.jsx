@@ -169,9 +169,13 @@ const NoActivity = styled.div`
 				: "none"
 			: "none"};
 	h1 {
-		display: none;
-		font-size: 5em;
+		font-size: 3em;
 		margin-bottom: 10px;
+	}
+
+	h3 {
+		cursor: pointer;
+		margin-top: 50px;
 	}
 `;
 
@@ -224,7 +228,7 @@ const ActivityTable = styled.table`
 
 const LoadingActivitySpinnerWrapper = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	//grid-template-rows: 1fr 1fr;
 	max-height: ${(props) =>
 		props.activityLoadingSpinnerDefaultTimer == "on" ||
 		props.isAllCommunicationsReady == false
@@ -235,16 +239,10 @@ const LoadingActivitySpinnerWrapper = styled.div`
 		props.isAllCommunicationsReady == false
 			? "1"
 			: "0"};
-
-	h2 {
-		justify-self: start;
-		align-self: center;
-		margin-left: 16px;
-	}
 `;
 
 const LoadingActivitySpinner = styled.div`
-	justify-self: end;
+	justify-self: center;
 	align-self: center;
 `;
 
@@ -566,6 +564,21 @@ function Edit(props) {
 				typeof allCommunications.length
 		);
 	}, [allCommunications]);
+
+	const handleClick = () => {
+		console.log("IN HANDLE CLICK");
+
+		//props.executeScrollForLookupSection
+
+		var scrollOptions = {
+			left: 0,
+			top: props.LookupScrollToRef.current.offsetTop,
+			behavior: "smooth",
+		};
+
+		window.scrollTo(scrollOptions);
+		//window.scrollTo(0, ref.current.offsetTop)
+	};
 
 	/////////////////////////////////// JSX /////////////////////////////////////////
 	return (
@@ -1069,11 +1082,8 @@ function Edit(props) {
 						activityLoadingSpinnerDefaultTimer
 					}
 				>
-					<h1>No Activity {allCommunications.count} Yet :(</h1>
-					<h3>
-						click here to send a letter or email to your state representatives
-						:(
-					</h3>
+					<h1>No Activity Yet :(</h1>
+					<h3 onClick={handleClick}>START HERE :)</h3>
 				</NoActivity>
 				<LoadingActivitySpinnerWrapper
 					allCommunications={allCommunications}
@@ -1096,10 +1106,8 @@ function Edit(props) {
 						<div></div>
 						<div></div>
 					</LoadingActivitySpinner>
-					<h2> ...Loading</h2>
 				</LoadingActivitySpinnerWrapper>
 			</ActivityTableWrapper>
-			<h1>{typeof allCommunications.length.toString()} ppp</h1>
 		</EditAccountWrapper>
 	);
 }
