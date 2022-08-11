@@ -8,10 +8,9 @@ import footerImage from "../../assets/images/footerImageCrop";
 
 const FooterWrapper = styled.div`
 	@media only screen and (max-width: 575px) {
-		grid-template-columns: minmax(20px, 100px) minmax(133px, 1fr) minmax(
-				133px,
-				1fr
-			) minmax(20px, 100px);
+		grid-template-columns:
+			minmax(20px, 100px) minmax(133px, 1fr) minmax(133px, 1fr)
+			minmax(20px, 100px);
 		//grid-template-rows: minmax(160px, 40%) 1fr;
 		grid-template-rows: initial;
 		//grid-template-rows: 0px 1fr;
@@ -33,10 +32,9 @@ const FooterWrapper = styled.div`
 	//grid-template-columns: 1fr;
 	position: relative;
 
-	grid-template-columns: minmax(20px, 1fr) minmax(min-content, 200px) minmax(
-			min-content,
-			200px
-		) minmax(min-content, 250px) minmax(20px, 1fr);
+	grid-template-columns:
+		minmax(20px, 1fr) minmax(min-content, 200px) minmax(min-content, 200px)
+		minmax(min-content, 250px) minmax(20px, 1fr);
 	grid-template-rows: 100px min-content min-content;
 	/* grid-template-areas:
         "spacer"
@@ -44,7 +42,7 @@ const FooterWrapper = styled.div`
 	//height: 350px;
 
 	//z-index: 4;
-	z-index: -1;
+	z-index: 1;
 `;
 
 const FooterImage = styled.img`

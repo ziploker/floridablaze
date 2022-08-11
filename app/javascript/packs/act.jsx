@@ -607,7 +607,7 @@ const ProgressBarz = styled.div`
 	margin: 30px 0px 10px 20px;
 
 	padding-left: 2px;
-	justify-self: start;
+	justify-self: center;
 `;
 
 const ProgressBarzResultSection = styled.div`

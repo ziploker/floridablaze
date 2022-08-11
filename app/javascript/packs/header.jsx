@@ -10,6 +10,7 @@ import headerLeaf from "../../assets/images/headerLeafv2.png";
 //import headerLogo from '../../assets/images/logo.png'
 import Burger from "./burger";
 import SideMenu from "./sidemenu";
+import company_logo from "../../assets/images/company_logo";
 
 ////////////////////////////////////////////////////////
 //////////////   STYLED COMPONENTS  ///////////////////
@@ -31,15 +32,15 @@ const HeaderWrapper = styled.div`
 	z-index: 51;
 `;
 
-const LogoText = styled.div`
+const LogoText = styled.img`
 	position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
 	top: ${(props) => (props.logoScrolled ? "4px" : "initial")};
-	font-family: "Permanent Marker", cursive;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 22px;
-	letter-spacing: -1px;
-	color: #010101;
+	//font-family: "Permanent Marker", cursive;
+	//font-style: normal;
+	//font-weight: normal;
+	//font-size: 22px;
+	//letter-spacing: -1px;
+	//color: #010101;
 	grid-area: headerLogo;
 	padding: 0 0 0 15px;
 	justify-self: start;
@@ -357,9 +358,11 @@ function Header(props) {
 				openSideMenu={props.openSideMenu}
 				logoScrolled={logoScrolled}
 			>
-				<LogoText ref={logoTextRef} logoScrolled={logoScrolled}>
-					Florida<span>Blaze</span>
-				</LogoText>
+				<LogoText
+					src={company_logo}
+					ref={logoTextRef}
+					logoScrolled={logoScrolled}
+				></LogoText>
 
 				<h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1>
 
