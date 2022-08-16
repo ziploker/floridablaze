@@ -1,29 +1,17 @@
-import React, {useEffect, useState, useRef} from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import NewForm from '../packs/form.jsx'
+import React, { useEffect, useState, useRef } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import NewForm from "../packs/form.jsx";
 
+function Admin(props) {
+  const loggedInStatus = { props };
 
+  console.log(props.props.loggedInStatus);
 
-
-function Admin(props){
-    
-    const loggedInStatus = {props}
-
-    console.log(props.props.loggedInStatus)
-    
-    return (
-
-        <div style={{marginTop: "50px"}}>
-            
-           
-           <NewForm/>
-           
-           {props.props.loggedInStatus}
-
-        </div>
-        
-    );
+  return (
+    <div style={{ marginTop: "50px" }}>
+      <NewForm />
+    </div>
+  );
 }
 
-
-export default props => <Admin {...props} />;
+export default (props) => <Admin {...props} />;
