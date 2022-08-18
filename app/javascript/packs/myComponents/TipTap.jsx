@@ -119,10 +119,18 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-export default () => {
+const TipTap = ({ state, setState }) => {
   const editor = useEditor({
     extensions: [StarterKit],
     content: ``,
+    onUpdate: ({ editor }) => {
+      const extracted = editor.getHTML();
+      console.log("extraaacted", extracted);
+      setState({
+        ...state,
+        body: extracted,
+      });
+    },
   });
 
   return (
@@ -132,3 +140,5 @@ export default () => {
     </div>
   );
 };
+
+export default TipTap;

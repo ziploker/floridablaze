@@ -310,7 +310,8 @@ function NewForm(props) {
             name="body"
             placeholder="Story here..."
             value={state.body}
-            onChange={handleChange}
+            readOnly
+            //onChange={handleChange}
           />
         </div>
 
@@ -318,7 +319,7 @@ function NewForm(props) {
           Add
         </button>
       </Form>
-      <TipTap doThis={handleChange} />
+      <TipTap setState={setState} state={state} />
     </FormWrapper>
   );
 }
