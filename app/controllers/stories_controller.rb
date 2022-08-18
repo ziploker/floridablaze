@@ -80,24 +80,31 @@ class StoriesController < ApplicationController
     setUser
 
     puts "||||||||||||||||  create new story and add params ||||||||||||||"
+    puts "MY_PARAMS " + params.inspect
+
+
+    myarr = JSON.parse(params["event"]["images"])
+
+    puts "TYPE is " + myarr.class.to_s
+    puts "myrr is " + myarr.inspect
+    # puts event_params.to_s
+    
+    # story = Story.new(event_params)
+    # story.author_avatar = @current_user.avatar_url myarr
     
     
-    story = Story.new(event_params)
-    story.author_avatar = @current_user.avatar_url
-    
-    
-    puts "story create about to begin save"
-    if story.save!
+    # puts "story create about to begin save"
+    # if story.save!
       
-      puts "story save! was true"
-      render json: story
+    #   puts "story save! was true"
+    #   render json: story
     
-    else
+    # else
       
-      render nothing: true, status: :bad_request
-      puts story.errors.full_messages
+    #   render nothing: true, status: :bad_request
+    #   puts story.errors.full_messages
     
-    end
+    # end
     
  
     puts "|||||||||||||||exit stories controller create|||||||||||||||||||||"
@@ -134,7 +141,7 @@ class StoriesController < ApplicationController
   private
     
     def event_params
-      params.require(:event).permit(:title, :slug, :keywords, :body, :image, :url, :topic, :author_avatar, :caption)
+      params.require(:event).permit(:title, :slug, :keywords, :body, :images [], :url, :topic, :author_avatar, :caption)
     end
 
 
