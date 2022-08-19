@@ -16,7 +16,7 @@ class Story < ApplicationRecord
 
     has_many_attached :images
 
-    validate :acceptable_image
+    #validate :acceptable_image
 
     #has_many :comments, as: :commentable, dependent: :destroy
 
@@ -171,7 +171,7 @@ class Story < ApplicationRecord
 
 
     def acceptable_image
-        return unless image.attached?
+        return unless images.attached?
 
         #unless image.byte_size <= 1.megabyte
         #    errors.add(:image, "is too big")
@@ -191,7 +191,7 @@ class Story < ApplicationRecord
         puts "------------after_validation callback begin, in getKeyFromBlobAndAddItToStoryRecord -------------------"
         
         puts "is self image attached?"
-        if self.image.attached?
+        if self.images.attached?
 
             
             puts "yes it is, start to split url"

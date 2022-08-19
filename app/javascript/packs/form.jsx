@@ -185,19 +185,32 @@ function NewForm(props) {
 	};
 
 	const handleImageChange = (event) => {
-		console.log("chd");
-		console.log(event.target);
-		console.log("This is formdata: ");
-		console.log(formData);
-		//formData.append("event[images]", event.target.files[0]);
-		formData.append("event[images]", JSON.stringify(["a", "b", "c"]));
-		console.log("This is formdata: ");
-		console.log(formData);
+		console.log("EVENTTTTTTTTTTTTTTTTTTTTTTTT", event.target.files[0]);
 
-		setState({
+		let imageArray = [];
+
+		imageArray.push(event.target.files[0]);
+
+		console.log("full imageArray[0]  is ", imageArray[0]);
+
+		//formData.append("event[images]", event.target.files[0]);
+		//formData.append("event[images]", JSON.stringify(imageArray));
+
+		for (const a of imageArray) {
+			formData.append("images[]", a);
+		}
+
+		console.log(...formData);
+
+		// setState({
+		// 	...state,
+		// 	images: URL.createObjectURL(event.target.files[0]),
+		// });
+
+		setState((prevState) => ({
 			...state,
-			images: URL.createObjectURL(event.target.files[0]),
-		});
+			images: [...prevState.images, URL.createObjectURL(event.target.files[0])],
+		}));
 	};
 
 	const { focussed, value, error, label } = state;

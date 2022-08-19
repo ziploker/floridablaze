@@ -80,31 +80,69 @@ class StoriesController < ApplicationController
     setUser
 
     puts "||||||||||||||||  create new story and add params ||||||||||||||"
-    puts "MY_PARAMS " + params.inspect
+    
+    puts "MY_ORIGINAL_PARAMS ", params.inspect
+    puts "MY_IMAGE_PARAMS ", params["images"].inspect
+    puts "MY_IMAGE_PARAMS[0] ", params["images"][0].inspect
+    imga = params["images"]
+
+    puts "MY_IMAGE_PARAMS class is ", params["images"].class.to_s
+
+    extractImages = params.extract!("images")
+    
+    params["event"]["images"] = imga
+    
+
+    # newFO = params.except("event")
+    # puts "NEWFO-----", params["event"]
+
+    # newO = {"event": {}}
+
+    # newO["event"] = newFO
+
+    # puts "NEWO ", newO
+
+    # params = ActionController::Parameters.new(newFO)
+    
+    # images = params["images"]
+    #striped_params = params["event"]
+    #puts "MY_striped_PARAMSf ", striped_params.inspect
+    # striped_params["images"] = images
+    # puts "MY_OTHER_PARAMS ", striped_params.inspect
+
+    # finalParams["event"] = striped_params
+    # puts "MY_FINAL_PARAMS ", finalParams.inspect
+
+    # puts "MY_images[0] ", images[0].inspect
 
 
-    myarr = JSON.parse(params["event"]["images"])
+    # myarr = params["images"]
 
-    puts "TYPE is " + myarr.class.to_s
-    puts "myrr is " + myarr.inspect
-    # puts event_params.to_s
+    # puts "TYPE of myarr is " + myarr.class.to_s
+    # puts "myrr is ", myarr[0].inspect
+    params.extract!("controller")
+
+    params.extract!("action")
+    puts "wtfffff", params
+    np = params["event"]
+    np.permit!
+    puts "wtfffff", np
+    story = Story.new(np)
+    story.author_avatar = @current_user.avatar_url
     
-    # story = Story.new(event_params)
-    # story.author_avatar = @current_user.avatar_url myarr
     
-    
-    # puts "story create about to begin save"
-    # if story.save!
+    puts "story create about to begin save"
+    if story.save!
       
-    #   puts "story save! was true"
-    #   render json: story
+      puts "story save! was true"
+      render json: story
     
-    # else
+    else
       
-    #   render nothing: true, status: :bad_request
-    #   puts story.errors.full_messages
+      render nothing: true, status: :bad_request
+      puts story.errors.full_messages
     
-    # end
+    end
     
  
     puts "|||||||||||||||exit stories controller create|||||||||||||||||||||"
@@ -141,7 +179,9 @@ class StoriesController < ApplicationController
   private
     
     def event_params
-      params.require(:event).permit(:title, :slug, :keywords, :body, :images [], :url, :topic, :author_avatar, :caption)
+
+      puts "inside event_params", params.inspect
+      params.require(:event).permit(:title, :slug, :keywords, :body, :images [], :url, :urls [], :topic, :author_avatar, :caption)
     end
 
 
