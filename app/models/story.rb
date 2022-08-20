@@ -16,7 +16,7 @@ class Story < ApplicationRecord
 
     has_many_attached :images
 
-    #validate :acceptable_image
+    validate :acceptable_image
 
     #has_many :comments, as: :commentable, dependent: :destroy
 
@@ -172,15 +172,17 @@ class Story < ApplicationRecord
 
     def acceptable_image
         return unless images.attached?
-
+        puts "in accep img", self.images
+        puts "in accep img", images
+        
         #unless image.byte_size <= 1.megabyte
         #    errors.add(:image, "is too big")
         #end
 
         acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
         
-        unless acceptable_types.include?(image.content_type)
-            errors.add(:image, "must be a JPEG or PNG")
+        unless acceptable_types.include?(images[0].content_type)
+            errors.add(:images, "must be a JPEG or PNG")
         end
     end
 
@@ -198,8 +200,8 @@ class Story < ApplicationRecord
 
             
 
-            puts "url to split is " + self.image.url
-            url = self.image.url.split("?").first
+            puts "url to split is " + self.images[0].url
+            url = self.images[0].url.split("?").first
             puts "final selfurl is " + url.to_s
 
             
