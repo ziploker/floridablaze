@@ -155,7 +155,7 @@ class StoriesController < ApplicationController
     
     puts "|||||||||||||||enter stories controller edit|||||||||||||||||||||"
 
-
+    setUser
     if @current_user
       @loggedInStatus = "LOGGED_IN"
       @story2edit = Story.find(params[:id])

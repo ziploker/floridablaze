@@ -431,12 +431,11 @@ function Article(props) {
 	//     null
 	// // //const prevRows = usePrevious(rows)
 
-	// let editLink = null;
+	//let editLink = null;
 
-	// if(userData && userData.isAdmin)
-	// {
-	//     editLink = <a href={`/ziploker/edit/${artData.id}`}>edit</a>;
-	// }
+	//if (userData && userData.isAdmin) {
+	//editLink = <a href={`/edit_story/${artData.id}`}>edit</a>;
+	//}
 
 	//console.log("Article_PROPS", props)
 
@@ -573,7 +572,10 @@ function Article(props) {
 		<>
 			{/* <AvatarTest src={artData.author_avatar}
                 onLoad={() => setAvatarLoaded(true)}></AvatarTest> */}
-
+			<Link key={"b"} to={"/edit_story/" + artData.id} state={{ test: "data" }}>
+				edit STORY
+			</Link>
+			;
 			<ArticleSection>
 				<StoryTitleWrapper>
 					<StoryTitle>{artData.title}</StoryTitle>
@@ -628,7 +630,9 @@ function Article(props) {
 				</InfoBar>
 
 				<StoryImageWrapper>
-					<StoryImage src={artData.url} />
+					<StoryImage src={JSON.parse(artData.url)[0]} />
+					<StoryImage src={JSON.parse(artData.url)[1]} />
+					<StoryImage src={JSON.parse(artData.url)[2]} />
 				</StoryImageWrapper>
 
 				<PWrapper dangerouslySetInnerHTML={{ __html: artData.body }}></PWrapper>

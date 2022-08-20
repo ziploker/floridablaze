@@ -2,21 +2,16 @@
 // like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
 // of the page.
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Article from './article'
+import React from "react";
+import ReactDOM from "react-dom";
+import Article from "./article";
 
+document.addEventListener("DOMContentLoaded", () => {
+	const node = document.getElementById("story_data_dump");
+	const data = JSON.parse(node.getAttribute("data"));
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  const node = document.getElementById('story_data_dump')
-  const data = JSON.parse(node.getAttribute('data'))
-
-  ReactDOM.render(
-    <Article d={data}/>,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
-
-
-
+	ReactDOM.render(
+		<Article d={data} />,
+		document.body.appendChild(document.createElement("div"))
+	);
+});

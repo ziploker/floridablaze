@@ -173,17 +173,23 @@ class Story < ApplicationRecord
     def acceptable_image
         return unless images.attached?
         puts "in accep img", self.images
-        puts "in accep img", images
+        puts "in accep img", images.class.to_s
         
         #unless image.byte_size <= 1.megabyte
         #    errors.add(:image, "is too big")
         #end
-
         acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
-        
-        unless acceptable_types.include?(images[0].content_type)
-            errors.add(:images, "must be a JPEG or PNG")
+        self.images.each do |i|
+
+            unless acceptable_types.include?(i.content_type)
+                errors.add(:images, "must be a JPEG or PNG")
+            end
+
         end
+
+        
+        
+        
     end
 
     
@@ -193,23 +199,54 @@ class Story < ApplicationRecord
         puts "------------after_validation callback begin, in getKeyFromBlobAndAddItToStoryRecord -------------------"
         
         puts "is self image attached?"
-        if self.images.attached?
+        # if self.images.attached?
 
             
-            puts "yes it is, start to split url"
+        #     puts "yes it is, start to split url"
 
-            
+        #     puts self.images.class.to_s
 
-            puts "url to split is " + self.images[0].url
-            url = self.images[0].url.split("?").first
-            puts "final selfurl is " + url.to_s
+        #     puts "url to split is " + self.images[0].url
+        #     url = self.images[0].url.split("?").first
+        #     puts "final selfurl is " + url.to_s
 
             
             
         
         
        
-            self.url = url
+        #     self.url = url
+
+        # end
+
+        if self.images.attached?
+
+            
+            puts "yes it is, start to split url"
+
+            tempArray = []
+            self.images.each do |i|
+                
+                
+                tempArray.push(i.url.split("?").first)
+                
+            
+            
+            
+            
+            end
+
+            
+
+            puts "final selfurl is " + tempArray.inspect
+            puts "final selfurl type is " + tempArray.class.to_s
+
+            
+            
+        
+        
+       
+            self.url = tempArray
 
         end
 

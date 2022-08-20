@@ -23,7 +23,7 @@ import Forgot from "./pages/forgot";
 import Edit from "./pages/edit";
 import Change from "./pages/change_pw";
 import Resend from "./pages/resend";
-
+import EditStory from "./EditStory";
 ///////////////////////////////// MAIN APP STARTING POINT ///////////////
 function App({ d }) {
 	//console.log("NEWAPPPROPS", JSON.stringify(d.current_user))
@@ -269,6 +269,7 @@ function App({ d }) {
 						render={(props) => <Change {...props} />}
 					/>
 					<Route
+						exact
 						path="/edit"
 						render={(props) => (
 							<Edit
@@ -279,6 +280,7 @@ function App({ d }) {
 							/>
 						)}
 					/>
+					<Route path="/edit_story/:id" render={(props) => <EditStory />} />
 					<Route
 						exact
 						path="/blog/:id"

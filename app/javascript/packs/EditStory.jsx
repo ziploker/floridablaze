@@ -6,6 +6,7 @@ import $ from "jquery";
 //import '../components/fix.js'
 import slugify from "react-slugify";
 import TipTap from "./myComponents/TipTap.jsx";
+import { useLocation } from "react-router-dom";
 
 const StoryPicWrapper = styled.div`
 	position: relative;
@@ -91,6 +92,11 @@ function NewForm(props) {
 		//error: '',
 		//activeIndex: null
 	});
+
+	const location = useLocation();
+	const { test } = location.state;
+
+	//useEffect(() => {});
 
 	const handleAdd = (e) => {
 		e.preventDefault();
@@ -234,6 +240,7 @@ function NewForm(props) {
 
 	return (
 		<FormWrapper>
+			<h1>{test} ------ </h1>
 			<Form
 				className="form-inline"
 				onSubmit={handleAdd}
