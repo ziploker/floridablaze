@@ -118,7 +118,7 @@ class SparksController < ApplicationController
     end
 
 
-    def get_article_info
+    def get_story_info
 
         puts "============Sparks controller def get_article_info start================"
 
@@ -130,59 +130,47 @@ class SparksController < ApplicationController
         
         #puts " SLUG = " + params["data"]["slug"]
 
-        @article_info = Story.find_by(slug: params["data"]["slug"])
+        @story_info = Story.find_by(id: params["data"]["storyID"])
         
         
         
         
        
-        @fullCommentsHash = {}
+        # @fullCommentsHash = {}
         
-        if @article_info.comments
+        # if @article_info.comments
             
             
-            @article_info.comments.reverse.each do |c|
+        #     @article_info.comments.reverse.each do |c|
 
 
-                #@comments = @article_info.comments.second.subtree.arrange
+        #         #@comments = @article_info.comments.second.subtree.arrange
 
-                # @testComments.push(c.subtree.arrange)
-                @fullCommentsHash = @fullCommentsHash.merge(c.subtree.arrange)
+        #         # @testComments.push(c.subtree.arrange)
+        #         @fullCommentsHash = @fullCommentsHash.merge(c.subtree.arrange)
             
             
-            end
+        #     end
             
-
-
-            
-
-            #@testComments.push(@comments)
 
 
             
 
-        else
-            puts "@article_info.comments was false so @comments = {}"
-            @comments = {}
-        end
-        
-        
-        puts " @fullCommentsHash inspect = " +  @fullCommentsHash.inspect 
-        
-        
-        # @comments = @article_info.comments.as_json(include: {comments: 
-        #                                             { include: {comments:
-        #                                                 { include: {comments:
-        #                                                     { include: [:comments]}
-        #                                                 }}
-        #                                             }}
-        #                                         })
-
-        
-
-        
+        #     #@testComments.push(@comments)
 
 
+            
+
+        # else
+        #     puts "@article_info.comments was false so @comments = {}"
+        #     @comments = {}
+        # end
+        
+        
+        # puts " @fullCommentsHash inspect = " +  @fullCommentsHash.inspect 
+        
+        
+        
         if @current_user
 
             #puts "found current user" + @comments.inspect
@@ -191,8 +179,8 @@ class SparksController < ApplicationController
 
             render json: {
                 
-                article: @article_info,
-                comments: Comment.json_tree(@fullCommentsHash),
+                story: @story_info,
+                
                 user: @current_user
             
             }
@@ -205,8 +193,8 @@ class SparksController < ApplicationController
             render json: {
 
 
-                article: @article_info,
-                comments: Comment.json_tree(@fullCommentsHash)
+                article: {},
+                
 
             }
         end

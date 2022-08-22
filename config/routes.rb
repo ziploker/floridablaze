@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     post '/registrations/newsletter', to: 'registrations#start_newsletter'
     post '/registrations/:token/reset', to: 'registrations#reset', as: 'registrations_reset'
     
-    post '/blog/get_article_info', to: 'sparks#get_article_info'
+    post '/blog/get_story_info', to: 'sparks#get_story_info'
     post '/blog/get_comment_info', to: 'sparks#get_comment_info'
   
     post '/blog/vote_up', to: 'sparks#vote_up'
