@@ -47,10 +47,9 @@ const News = styled.div`
 	}
 
 	@media only screen and (min-width: 867px) and (max-width: 1111px) {
-		grid-template-columns: minmax(20px, 1fr) minmax(200px, 600px) minmax(
-				200px,
-				600px
-			) minmax(20px, 1fr);
+		grid-template-columns:
+			minmax(20px, 1fr) minmax(200px, 600px) minmax(200px, 600px)
+			minmax(20px, 1fr);
 
 		grid-template-rows: 340px 170px 120px 50px minmax(100px, 1fr);
 		grid-template-areas:
@@ -70,10 +69,9 @@ const News = styled.div`
 	//grid-template-columns: minmax(20px, 1fr) minmax(170px, 350px)  minmax(340px, 600px)  minmax(20px, 1fr);
 
 	//grid-template-columns: 5px 1fr 1fr 1fr 5px;
-	grid-template-columns: minmax(20px, 1fr) minmax(200px, 600px) minmax(
-			200px,
-			600px
-		) minmax(200px, 600px) minmax(20px, 1fr);
+	grid-template-columns:
+		minmax(20px, 1fr) minmax(200px, 600px) minmax(200px, 600px)
+		minmax(200px, 600px) minmax(20px, 1fr);
 
 	//grid-template-rows: 80px 120px 50px 1fr;
 	grid-template-areas:
@@ -97,10 +95,9 @@ const News = styled.div`
     } */
 
 	@media only screen and (min-width: 1850px) {
-		grid-template-columns: minmax(20px, 1fr) minmax(600px, 700px) minmax(
-				600px,
-				700px
-			) minmax(600px, 700px) minmax(20px, 1fr);
+		grid-template-columns:
+			minmax(20px, 1fr) minmax(600px, 700px) minmax(600px, 700px)
+			minmax(600px, 700px) minmax(20px, 1fr);
 	}
 `;
 
@@ -404,11 +401,7 @@ function Home(props) {
 			<HomeWrapper>
 				<News>
 					<Div1
-						imageURL={
-							props.lastStory
-								? JSON.parse(props.lastStory.url)[0]
-								: defaultImage
-						}
+						imageURL={props.lastStory ? props.lastStory.urls[0] : defaultImage}
 					>
 						<LinkWrapper
 							to={{
@@ -433,7 +426,7 @@ function Home(props) {
 					<Div2
 						imageURL={
 							props.secondToLastStory
-								? JSON.parse(props.secondToLastStory.url)[0]
+								? props.secondToLastStory.urls[0]
 								: defaultImage
 						}
 					>
@@ -463,7 +456,7 @@ function Home(props) {
 					<Div3
 						imageURL={
 							props.thirdToLastStory
-								? JSON.parse(props.thirdToLastStory.url)[0]
+								? props.thirdToLastStory.urls[0]
 								: defaultImage
 						}
 					>
@@ -493,7 +486,7 @@ function Home(props) {
 					<Div4
 						imageURL={
 							props.fourthToLastStory
-								? JSON.parse(props.fourthToLastStory.url)[0]
+								? props.fourthToLastStory.urls[0]
 								: defaultImage
 						}
 					>

@@ -84,6 +84,7 @@ class StoriesController < ApplicationController
     puts "MY_ORIGINAL_PARAMS ", params.inspect
     puts "MY_IMAGE_PARAMS ", params["images"].inspect
     puts "MY_IMAGE_PARAMS[0] ", params["images"][0].inspect
+    
     imga = params["images"]
 
     puts "MY_IMAGE_PARAMS class is ", params["images"].class.to_s
@@ -93,38 +94,13 @@ class StoriesController < ApplicationController
     params["event"]["images"] = imga
     
 
-    # newFO = params.except("event")
-    # puts "NEWFO-----", params["event"]
-
-    # newO = {"event": {}}
-
-    # newO["event"] = newFO
-
-    # puts "NEWO ", newO
-
-    # params = ActionController::Parameters.new(newFO)
-    
-    # images = params["images"]
-    #striped_params = params["event"]
-    #puts "MY_striped_PARAMSf ", striped_params.inspect
-    # striped_params["images"] = images
-    # puts "MY_OTHER_PARAMS ", striped_params.inspect
-
-    # finalParams["event"] = striped_params
-    # puts "MY_FINAL_PARAMS ", finalParams.inspect
-
-    # puts "MY_images[0] ", images[0].inspect
-
-
-    # myarr = params["images"]
-
-    # puts "TYPE of myarr is " + myarr.class.to_s
-    # puts "myrr is ", myarr[0].inspect
     params.extract!("controller")
 
     params.extract!("action")
-    puts "wtfffff", params
+    
+    puts "wtfffff now?", params
     np = params["event"]
+    puts "wtfffff now final?", np
     np.permit!
     puts "wtfffff", np
     story = Story.new(np)
