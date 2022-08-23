@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '3.1.2'
 
 
 
@@ -14,7 +14,8 @@ gem 'mini_magick', '>= 4.9.5'
 gem 'httparty'
 gem 'hash_dot'
 gem "aws-sdk-s3", require: false
-gem 'rails', '~> 6.1.3'
+#gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 7.0.3.1'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
@@ -24,6 +25,7 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'mailgun-ruby', '~>1.2.3'
 gem 'bootsnap', '>= 1.4.4', require: false
 #gem 'mini_racer', platforms: :ruby
+gem "sprockets-rails"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 #gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
