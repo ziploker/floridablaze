@@ -1,8 +1,11 @@
 import "../../../assets/stylesheets/tiptap.scss";
 
 import { EditorContent, useEditor } from "@tiptap/react";
+
 import StarterKit from "@tiptap/starter-kit";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+
+//const tipTapRef = useRef(null);
 
 const MenuBar = ({ editor }) => {
 	if (!editor) {
@@ -119,27 +122,40 @@ const MenuBar = ({ editor }) => {
 	);
 };
 
-const TipTap = ({ artBody, setArtBody }) => {
-	const editor = useEditor({
-		extensions: [StarterKit],
-		content: ``,
-		onUpdate: ({ editor }) => {
-			const extracted = editor.getHTML();
-			console.log("extraaacted", extracted);
+function TipTap({ artBody, setArtBody }) {
+	// useEffect(() => {
+	// 	console.log("TIPTAPREFFFF", JSON.stringify(artBody));
+	// }, [artBody]);
 
-			setArtBody({
-				...artBody,
-				body: extracted,
+	{
+		if (artBody == "") {
+			return <h1>uuuuuuuuuu</h1>;
+		} else {
+			const editor = useEditor({
+				extensions: [StarterKit],
+
+				content: artBody,
+
+				onUpdate: ({ editor }) => {
+					const extracted = editor.getHTML();
+					console.log("extraaacted", extracted);
+
+					setArtBody({
+						...artBody,
+						body: extracted,
+					});
+				},
 			});
-		},
-	});
+			console.log("EDIITOR", editor);
 
-	return (
-		<div style={{ marginTop: "25px" }}>
-			<MenuBar editor={editor} />
-			<EditorContent editor={editor} />
-		</div>
-	);
-};
+			return (
+				<div style={{ marginTop: "25px" }}>
+					<MenuBar editor={editor} />
+					<EditorContent editor={editor} />
+				</div>
+			);
+		}
+	}
+}
 
 export default TipTap;
