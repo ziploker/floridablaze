@@ -76,13 +76,8 @@ GEM
     ancestry (4.2.0)
       activerecord (>= 5.2.6)
     aws-eventstream (1.2.0)
-<<<<<<< HEAD
-    aws-partitions (1.621.0)
-    aws-sdk-core (3.133.0)
-=======
     aws-partitions (1.620.0)
     aws-sdk-core (3.132.0)
->>>>>>> bca98037243dd3b9d85b88c74b52c298c16464c7
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.525.0)
       aws-sigv4 (~> 1.1)

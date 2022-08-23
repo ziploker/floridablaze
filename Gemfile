@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'mailgun-ruby', '~>1.2.3'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem "sprockets-rails"
+
 #gem 'mini_racer', platforms: :ruby
 gem "sprockets-rails"
 

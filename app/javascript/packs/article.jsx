@@ -630,9 +630,9 @@ function Article(props) {
 				</InfoBar>
 
 				<StoryImageWrapper>
-					<StoryImage src={JSON.parse(artData.url)[0]} />
-					<StoryImage src={JSON.parse(artData.url)[1]} />
-					<StoryImage src={JSON.parse(artData.url)[2]} />
+					<StoryImage src={artData.urls[0]} />
+					<StoryImage src={artData.urls[1]} />
+					<StoryImage src={artData.urls[2]} />
 				</StoryImageWrapper>
 
 				<PWrapper dangerouslySetInnerHTML={{ __html: artData.body }}></PWrapper>

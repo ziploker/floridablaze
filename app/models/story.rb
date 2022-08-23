@@ -18,7 +18,7 @@ class Story < ApplicationRecord
 
     validate :acceptable_image
 
-    #has_many :comments, as: :commentable, dependent: :destroy
+    
 
     has_many :comments, as: :commentable, dependent: :destroy
     
@@ -246,7 +246,7 @@ class Story < ApplicationRecord
         
         
        
-            self.url = tempArray
+            self.urls = tempArray
 
         end
 
