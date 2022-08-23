@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -27,7 +28,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "sprockets-rails"
 
 #gem 'mini_racer', platforms: :ruby
-gem "sprockets-rails"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 #gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
@@ -80,12 +80,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-
-
-
-
-
 
 
 
