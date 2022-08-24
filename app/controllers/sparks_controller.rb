@@ -420,8 +420,8 @@ class SparksController < ApplicationController
     
     
     
-    puts "in get_comment_info // sparks controller--------------------------------------->>>>>> + " + params[:id].to_s
-    puts "============Sparks controller def get_comment_info start================"
+        puts "in get_comment_info // sparks controller--------------------------------------->>>>>> + " + params[:id].to_s
+        puts "============Sparks controller def get_comment_info start================"
 
 
         #puts "set user from sparks get article info start"
@@ -512,6 +512,13 @@ class SparksController < ApplicationController
             }
         #end
     
+
+    end
+
+
+    def delete_pic
+
+        puts "pp", params[:data][:picUrlToDelete]
 
     end
     
