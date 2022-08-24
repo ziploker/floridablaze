@@ -518,7 +518,58 @@ class SparksController < ApplicationController
 
     def delete_pic
 
-        puts "pp", params[:data][:picUrlToDelete]
+        puts "pp", params[:data][:picUrl]
+        puts "pp", params[:data][:storyTitle]
+
+        s = Story.find_by(title: params[:data][:storyTitle])
+
+        
+        if s.images.count > 0
+            s.images.each do |rec|
+
+                if rec.url.split("?").first == params[:data][:picUrl]
+                    puts "IT WAS A MATCH___"
+                    
+
+                    rec.destroy
+                    
+                    if rec.destroyed?
+
+
+                        render json: {
+                            status: "green",
+                            msg: "record was destroyed successfully"
+
+
+                        }
+                    else
+
+                        render json: {
+
+                            status: "red",
+                            msg: "record was found but not destroyed successfully"
+                        }
+
+                    end
+                else
+                    puts "IT WAS NOT A MATCH___"
+                    render json: {
+                        status: "red",
+                        msg: "record was not found"
+
+                    }
+                end
+
+            end
+        else
+            puts "There are no images in the database"
+            render json: {
+                status: "red",
+                msg: "record was not found, there are no pics in db"
+
+            }
+
+        end
 
     end
     
