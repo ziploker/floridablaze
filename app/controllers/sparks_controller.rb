@@ -524,7 +524,9 @@ class SparksController < ApplicationController
         s = Story.find_by(title: params[:data][:storyTitle])
 
         
+        
         if s.images.count > 0
+            
             s.images.each do |rec|
 
                 if rec.url.split("?").first == params[:data][:picUrl]
@@ -535,42 +537,46 @@ class SparksController < ApplicationController
                     
                     if rec.destroyed?
 
+                        puts "rec was destroyed, now update urls array"
 
+
+                        newUrls = s.urls.reject do |u|
+
+                            u == params[:data][:picUrl]
+
+
+                        end
+
+                        puts "NEWURLS is ", newUrls.inspect
+                        puts "s.urls is ", s.urls
+
+                        s.urls = newUrls
+                        s.save(validate: false)
+
+                        puts "s.urls after save is ", s.urls
+                        
                         render json: {
                             status: "green",
-                            msg: "record was destroyed successfully"
-
-
+                            msg: "record was not found, there are no pics in db"
                         }
-                    else
-
-                        render json: {
-
-                            status: "red",
-                            msg: "record was found but not destroyed successfully"
-                        }
-
                     end
-                else
-                    puts "IT WAS NOT A MATCH___"
-                    render json: {
-                        status: "red",
-                        msg: "record was not found"
-
-                    }
+                    
                 end
-
+                puts "IT WAS NOT A MATCH___"
             end
+        
         else
+            
             puts "There are no images in the database"
+            
             render json: {
                 status: "red",
                 msg: "record was not found, there are no pics in db"
 
             }
+            
 
         end
-
     end
     
     

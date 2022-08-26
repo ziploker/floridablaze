@@ -128,33 +128,29 @@ function TipTap({ artBody, setArtBody }) {
   // }, [artBody]);
 
   {
-    if (artBody == "") {
-      return <h1>uuuuuuuuuu</h1>;
-    } else {
-      const editor = useEditor({
-        extensions: [StarterKit],
+    const editor = useEditor({
+      extensions: [StarterKit],
 
-        content: artBody,
+      content: artBody,
 
-        onUpdate: ({ editor }) => {
-          const extracted = editor.getHTML();
-          console.log("extraaacted", extracted);
+      onUpdate: ({ editor }) => {
+        const extracted = editor.getHTML();
+        console.log("extraaacted", extracted);
 
-          setArtBody({
-            ...artBody,
-            body: extracted,
-          });
-        },
-      });
-      console.log("EDIITOR", editor);
+        setArtBody({
+          ...artBody,
+          body: extracted,
+        });
+      },
+    });
+    console.log("EDIITOR", editor);
 
-      return (
-        <div style={{ marginTop: "25px" }}>
-          <MenuBar editor={editor} />
-          <EditorContent editor={editor} />
-        </div>
-      );
-    }
+    return (
+      <div style={{ marginTop: "25px" }}>
+        <MenuBar editor={editor} />
+        <EditorContent editor={editor} />
+      </div>
+    );
   }
 }
 
