@@ -143,7 +143,11 @@ class StoriesController < ApplicationController
       
     end
 
-    puts @story2edit.inspect
+    puts "STORY2EDIT iS ", @story2edit.inspect
+
+    puts"{}{}{}}{}{}{}{}{{}}"
+
+    puts "iNCOMMING PARAMS are ", params.inspect
 
     puts "|||||||||||||||enter stories controller edit|||||||||||||||||||||"
 

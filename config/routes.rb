@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     
     get '/send/get_logs', to: 'lookups#get_logs'
     post '/send/getLetterPreview', to: 'lookups#getLetterPreview'
+
+    post '/stories/:id/edit', to: 'stories#edit'
     
     
     put '/registrations/:id', to: 'registrations#update'
