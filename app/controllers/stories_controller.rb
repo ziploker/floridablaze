@@ -143,6 +143,8 @@ class StoriesController < ApplicationController
       
     end
 
+    puts @story2edit.inspect
+
     puts "|||||||||||||||enter stories controller edit|||||||||||||||||||||"
 
   end

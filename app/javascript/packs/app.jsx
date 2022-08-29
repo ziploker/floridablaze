@@ -281,8 +281,8 @@ function App({ d }) {
             )}
           />
           <Route
-            path="/edit_story/:storyId"
-            render={(props) => <EditStory />}
+            path="/story_editor/:storyId"
+            render={(props) => <EditStory {...props} />}
           />
           <Route
             exact
