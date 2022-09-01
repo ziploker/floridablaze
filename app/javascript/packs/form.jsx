@@ -100,7 +100,7 @@ function NewForm(props) {
       formData.append("event[slug]", state.slug);
       formData.append("event[keywords]", state.keywords);
       formData.append("event[topic]", state.topic);
-      formData.append("event[body]", artBody.body);
+      formData.append("event[body]", artBody);
       formData.append("event[caption]", state.caption);
 
       console.log("formdata from handle add in form");

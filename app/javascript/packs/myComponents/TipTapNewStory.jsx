@@ -137,10 +137,7 @@ function TipTap({ artBody, setArtBody }) {
         const extracted = editor.getHTML();
         console.log("extraaacted", extracted);
 
-        setArtBody({
-          ...artBody,
-          body: extracted,
-        });
+        setArtBody(extracted);
       },
     });
     console.log("EDIITOR", editor);

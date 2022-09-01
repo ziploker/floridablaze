@@ -81,13 +81,12 @@ class StoriesController < ApplicationController
 
     puts "||||||||||||||||  create new story and add params ||||||||||||||"
     
-    puts "MY_ORIGINAL_PARAMS ", params.inspect
-    puts "MY_IMAGE_PARAMS ", params["images"].inspect
-    puts "MY_IMAGE_PARAMS[0] ", params["images"][0].inspect
+    puts "MY_ORIGINAL_PARAMS ", params.to_yaml
+    
     
     imga = params["images"]
 
-    puts "MY_IMAGE_PARAMS class is ", params["images"].class.to_s
+   
 
     extractImages = params.extract!("images")
     
@@ -98,11 +97,11 @@ class StoriesController < ApplicationController
 
     params.extract!("action")
     
-    puts "wtfffff now?", params
+    puts "wtfffff now?", params.to_yaml
     np = params["event"]
-    puts "wtfffff now final?", np
+    puts "wtfffff now final?", np.to_yaml
     np.permit!
-    puts "wtfffff", np
+    puts "wtfffff", np.to_yaml
     story = Story.new(np)
     story.author_avatar = @current_user.avatar_url
     
@@ -148,6 +147,29 @@ class StoriesController < ApplicationController
     puts"{}{}{}}{}{}{}{}{{}}"
 
     puts "iNCOMMING PARAMS are ", params.inspect
+
+    puts "MY_ORIGINAL_PARAMS ", params.inspect
+    
+    
+    imga = params["images"]
+
+   
+
+    extractImages = params.extract!("images")
+    
+    params["event"]["images"] = imga
+    
+
+    params.extract!("controller")
+
+    params.extract!("action")
+    
+    puts "wtfffff now?", params.inspect
+    np = params["event"]
+    puts "wtfffff now final?", np.inspect
+    np.permit!
+    puts "wtfffff", np.inspect
+    @story2edit.update(np)
 
     puts "|||||||||||||||enter stories controller edit|||||||||||||||||||||"
 

@@ -524,9 +524,9 @@ class SparksController < ApplicationController
         s = Story.find_by(title: params[:data][:storyTitle])
 
         
-        
+        puts "check if s.images.count > 0"
         if s.images.count > 0
-            
+            puts "images.count was > 0"
             s.images.each do |rec|
 
                 if rec.url.split("?").first == params[:data][:picUrl]
@@ -557,7 +557,7 @@ class SparksController < ApplicationController
                         
                         render json: {
                             status: "green",
-                            msg: "record was not found, there are no pics in db"
+                            msg: "Everythings good."
                         }
                     end
                     

@@ -635,8 +635,6 @@ function Article(props) {
 
         <StoryImageWrapper>
           <StoryImage src={artData.urls[0]} />
-          <StoryImage src={artData.urls[1]} />
-          <StoryImage src={artData.urls[2]} />
         </StoryImageWrapper>
 
         <PWrapper dangerouslySetInnerHTML={{ __html: artData.body }}></PWrapper>
