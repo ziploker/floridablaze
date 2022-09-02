@@ -157,7 +157,7 @@ class StoriesController < ApplicationController
 
     extractImages = params.extract!("images")
     
-    params["event"]["images"] = imga
+    #params["event"]["images"] = imga
     
 
     params.extract!("controller")
@@ -169,7 +169,14 @@ class StoriesController < ApplicationController
     puts "wtfffff now final?", np.inspect
     np.permit!
     puts "wtfffff", np.inspect
+
+    @story2edit.images.attach(imga)
+
+
+
+    puts "****************** images.count is", @story2edit.images.count
     @story2edit.update(np)
+    puts "****************** images.count is", @story2edit.images.count
 
     puts "|||||||||||||||enter stories controller edit|||||||||||||||||||||"
 
