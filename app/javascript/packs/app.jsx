@@ -96,6 +96,7 @@ function App({ d }) {
         console.log(response);
 
         //Server says logged_in but appState says not logged in
+        //Server says logged_in but appState says not logged in
 
         setUserState({
           ...userState,
