@@ -7,12 +7,13 @@ import slugify from "react-slugify";
 import { Link } from "react-router-dom";
 
 const LinkWrapper = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+  grid-area: 1/1/3/2;
 
   //max-width:450px;
-  width: 100%;
+  //width: 100%;
 
   /* @media screen and (min-width: 750px) and (max-width: 1111px){
 
@@ -140,11 +141,11 @@ const Div1OverlayWrapper = styled.div`
   //border: 5px solid #e8e5e5;
   //box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
   overflow: hidden;
-  min-height: 290px;
+  //min-height: 290px;
   max-width: 600px;
   width: 100%;
   justify-self: center;
-  min-height: 290px;
+
   max-width: 600px;
   position: relative;
   background: rgb(0, 0, 0);
@@ -192,16 +193,18 @@ const StoryImageOverlay = styled.div`
 `;
 
 const StoryOneTitle = styled.h1`
-  grid-area: 1 /1 /2/2;
-  font-size: 20px;
-  align-self: end;
-  justify-self: start;
-  text-align: left;
+  //grid-area: 1 /1 /2/2;
+  font-size: 16px;
+  //align-self: end;
+  //justify-self: start;
+  //text-align: left;
   color: white;
-  line-height: 1em;
+  //line-height: 1em;
   //letter-spacing: 2px;
   z-index: 1;
-  padding: 0px 15px 8px 15px;
+  padding: 0px 8px 8px 8px;
+  width: 100%;
+  min-height: 100%;
 `;
 
 const Div1 = styled.div`
@@ -212,15 +215,15 @@ const Div1 = styled.div`
   border-radius: 10px;
   overflow: hidden;
   display: grid;
-  grid-template-rows: 1fr minmax(min-content, max-content);
+  //grid-template-rows: 1fr minmax(min-content, max-content);
   justify-self: center;
-  min-height: 290px;
+  //min-height: 290px;
   max-width: 600px;
   width: 100%;
   background-image: url(${(props) => props.imageURL});
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom center;
   //border: 5px solid #e8e5e5;
   //grid-template-columns: minmax(250px, 1fr);
   //grid-template-rows: auto;
@@ -230,6 +233,14 @@ const Div1 = styled.div`
     transition: box-shadow 80ms;
     border-radius: 4px;
     outline: none;
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    padding-bottom: calc(9 / 16 * 100%);
   }
 
   /* &:before{
@@ -244,7 +255,10 @@ const Div1 = styled.div`
     } */
 
   a {
-    grid-area: 1/1/3/2;
+    //grid-area: 1/1/3/2;
+    display: block;
+    height: 100%;
+    width: 100%;
   }
 `;
 
@@ -256,7 +270,7 @@ const Div2 = styled.div`
   overflow: hidden;
   display: grid;
   grid-template-rows: 1fr minmax(min-content, max-content);
-  min-height: 290px;
+  //min-height: 290px;
   max-width: 600px;
   width: 100%;
   justify-self: center;
@@ -297,7 +311,7 @@ const Div3 = styled.div`
   overflow: hidden;
   display: grid;
   grid-template-rows: 1fr minmax(min-content, max-content);
-  min-height: 290px;
+  //min-height: 290px;
   max-width: 600px;
   width: 100%;
   justify-self: center;
@@ -340,7 +354,7 @@ const Div4 = styled.div`
     overflow: hidden;
     display: grid;
     grid-template-rows: 1fr minmax(min-content, max-content);
-    min-height: 290px;
+    //min-height: 290px;
     max-width: 600px;
     width: 100%;
     justify-self: center;
@@ -400,24 +414,26 @@ function Home(props) {
     <>
       <HomeWrapper>
         <News>
-          <Div1
-            imageURL={props.lastStory ? props.lastStory.urls[0] : defaultImage}
+          <LinkWrapper
+            to={{
+              pathname:
+                "/blog/" +
+                slugify(props.lastStory ? props.lastStory.title : "nada"),
+              art: props.lastStory,
+            }}
           >
-            <LinkWrapper
-              to={{
-                pathname:
-                  "/blog/" +
-                  slugify(props.lastStory ? props.lastStory.title : "nada"),
-                art: props.lastStory,
-              }}
+            <Div1
+              imageURL={
+                props.lastStory ? props.lastStory.urls[0] : defaultImage
+              }
             >
               <StoryOneTitle>
                 {props.lastStory
                   ? props.lastStory.title
                   : "Place golder for title. place golder for title."}
               </StoryOneTitle>
-            </LinkWrapper>
-          </Div1>
+            </Div1>
+          </LinkWrapper>
 
           <Div1OverlayWrapper>
             <StoryImageOverlay />
