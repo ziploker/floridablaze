@@ -6,22 +6,6 @@ import defaultImage from "../../assets/images/defaultImage";
 import slugify from "react-slugify";
 import { Link } from "react-router-dom";
 
-const LinkWrapper = styled(Link)`
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
-  grid-area: 1/1/3/2;
-
-  //max-width:450px;
-  //width: 100%;
-
-  /* @media screen and (min-width: 750px) and (max-width: 1111px){
-
-        width: 88%;
-        max-width:100%;
-    } */
-`;
-
 const HomeWrapper = styled.div`
   //background: pink;
 
@@ -207,11 +191,40 @@ const StoryOneTitle = styled.h1`
   min-height: 100%;
 `;
 
+const LinkWrapper1 = styled(Link)`
+  grid-area: 1/1/3/2;
+  grid-area: one;
+  max-width: 600px;
+  width: 100%;
+  justify-self: center;
+`;
+const LinkWrapper2 = styled(Link)`
+  grid-area: 1/1/3/2;
+  grid-area: two;
+  max-width: 600px;
+  width: 100%;
+  justify-self: center;
+`;
+const LinkWrapper3 = styled(Link)`
+  grid-area: 1/1/3/2;
+  grid-area: three;
+  max-width: 600px;
+  width: 100%;
+  justify-self: center;
+`;
+const LinkWrapper4 = styled(Link)`
+  grid-area: 1/1/3/2;
+  grid-area: four;
+  max-width: 600px;
+  width: 100%;
+  justify-self: center;
+`;
+
 const Div1 = styled.div`
   //background: blue;
 
   box-shadow: 0 2px 5px 0 rgba(227, 181, 90, 0.2);
-  grid-area: one;
+
   border-radius: 10px;
   overflow: hidden;
   display: grid;
@@ -265,19 +278,19 @@ const Div1 = styled.div`
 const Div2 = styled.div`
   box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
   background: orange;
-  grid-area: two;
+
   border-radius: 10px;
   overflow: hidden;
   display: grid;
-  grid-template-rows: 1fr minmax(min-content, max-content);
+  //grid-template-rows: 1fr minmax(min-content, max-content);
   //min-height: 290px;
   max-width: 600px;
   width: 100%;
   justify-self: center;
   background-image: url(${(props) => props.imageURL});
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom center;
   //border: 5px solid #e8e5e5;
   //margin-right: 25px;
   /* &:before{
@@ -298,27 +311,38 @@ const Div2 = styled.div`
     outline: none;
   }
 
+  &:before {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    padding-bottom: calc(9 / 16 * 100%);
+  }
+
   a {
-    grid-area: 1/1/3/2;
+    //grid-area: 1/1/3/2;
+    display: block;
+    height: 100%;
+    width: 100%;
   }
 `;
 
 const Div3 = styled.div`
   box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
   background: green;
-  grid-area: three;
+
   border-radius: 10px;
   overflow: hidden;
   display: grid;
-  grid-template-rows: 1fr minmax(min-content, max-content);
+  //grid-template-rows: 1fr minmax(min-content, max-content);
   //min-height: 290px;
   max-width: 600px;
   width: 100%;
   justify-self: center;
   background-image: url(${(props) => props.imageURL});
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom center;
   //border: 5px solid #e8e5e5;
   //margin-right: 25px;
   /* &:before{
@@ -339,8 +363,19 @@ const Div3 = styled.div`
     outline: none;
   }
 
+  &:before {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    padding-bottom: calc(9 / 16 * 100%);
+  }
+
   a {
-    grid-area: 1/1/3/2;
+    //grid-area: 1/1/3/2;
+    display: block;
+    height: 100%;
+    width: 100%;
   }
 `;
 
@@ -349,19 +384,19 @@ const Div4 = styled.div`
     box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
     display: initial;
     background: red;
-    grid-area: four;
+
     border-radius: 10px;
     overflow: hidden;
     display: grid;
-    grid-template-rows: 1fr minmax(min-content, max-content);
+    //grid-template-rows: 1fr minmax(min-content, max-content);
     //min-height: 290px;
     max-width: 600px;
     width: 100%;
     justify-self: center;
     background-image: url(${(props) => props.imageURL});
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom center;
     //border: 5px solid #e8e5e5;
     //margin-right: 25px;
     /* &:before{
@@ -382,8 +417,19 @@ const Div4 = styled.div`
       outline: none;
     }
 
+    &:before {
+      content: "";
+      display: block;
+      height: 0;
+      width: 0;
+      padding-bottom: calc(9 / 16 * 100%);
+    }
+
     a {
-      grid-area: 1/1/3/2;
+      //grid-area: 1/1/3/2;
+      display: block;
+      height: 100%;
+      width: 100%;
     }
   }
 
@@ -414,7 +460,7 @@ function Home(props) {
     <>
       <HomeWrapper>
         <News>
-          <LinkWrapper
+          <LinkWrapper1
             to={{
               pathname:
                 "/blog/" +
@@ -433,98 +479,98 @@ function Home(props) {
                   : "Place golder for title. place golder for title."}
               </StoryOneTitle>
             </Div1>
-          </LinkWrapper>
+          </LinkWrapper1>
 
           <Div1OverlayWrapper>
             <StoryImageOverlay />
           </Div1OverlayWrapper>
 
-          <Div2
-            imageURL={
-              props.secondToLastStory
-                ? props.secondToLastStory.urls[0]
-                : defaultImage
-            }
+          <LinkWrapper2
+            to={{
+              pathname:
+                "/blog/" +
+                slugify(
+                  props.secondToLastStory
+                    ? props.secondToLastStory.title
+                    : "nada"
+                ),
+              art: props.secondToLastStory,
+            }}
           >
-            <LinkWrapper
-              to={{
-                pathname:
-                  "/blog/" +
-                  slugify(
-                    props.secondToLastStory
-                      ? props.secondToLastStory.title
-                      : "nada"
-                  ),
-                art: props.secondToLastStory,
-              }}
+            <Div2
+              imageURL={
+                props.secondToLastStory
+                  ? props.secondToLastStory.urls[0]
+                  : defaultImage
+              }
             >
               <StoryOneTitle>
                 {props.secondToLastStory
                   ? props.secondToLastStory.title
                   : "Place holder for title, place holder for title"}
               </StoryOneTitle>
-            </LinkWrapper>
-          </Div2>
+            </Div2>
+          </LinkWrapper2>
           <Div2OverlayWrapper>
             <StoryImageOverlay />
           </Div2OverlayWrapper>
 
-          <Div3
-            imageURL={
-              props.thirdToLastStory
-                ? props.thirdToLastStory.urls[0]
-                : defaultImage
-            }
+          <LinkWrapper3
+            to={{
+              pathname:
+                "/blog/" +
+                slugify(
+                  props.thirdTolastStoryLastStory
+                    ? props.thirdToLastStory.title
+                    : "nada"
+                ),
+              art: props.thirdTolastStoryLastStory,
+            }}
           >
-            <LinkWrapper
-              to={{
-                pathname:
-                  "/blog/" +
-                  slugify(
-                    props.thirdTolastStoryLastStory
-                      ? props.thirdToLastStory.title
-                      : "nada"
-                  ),
-                art: props.thirdTolastStoryLastStory,
-              }}
+            <Div3
+              imageURL={
+                props.thirdToLastStory
+                  ? props.thirdToLastStory.urls[0]
+                  : defaultImage
+              }
             >
               <StoryOneTitle>
                 {props.thirdToLastStory
                   ? props.thirdToLastStory.title
                   : "Place golder for title. place golder for title."}
               </StoryOneTitle>
-            </LinkWrapper>
-          </Div3>
+            </Div3>
+          </LinkWrapper3>
           <Div3OverlayWrapper>
             <StoryImageOverlay />
           </Div3OverlayWrapper>
 
-          <Div4
-            imageURL={
-              props.fourthToLastStory
-                ? props.fourthToLastStory.urls[0]
-                : defaultImage
-            }
+          <LinkWrapper4
+            to={{
+              pathname:
+                "/blog/" +
+                slugify(
+                  props.fourthToLastStory
+                    ? props.fourthToLastStory.title
+                    : "nada"
+                ),
+              art: props.fourthToLastStory,
+            }}
           >
-            <LinkWrapper
-              to={{
-                pathname:
-                  "/blog/" +
-                  slugify(
-                    props.fourthToLastStory
-                      ? props.fourthToLastStory.title
-                      : "nada"
-                  ),
-                art: props.fourthToLastStory,
-              }}
+            <Div4
+              imageURL={
+                props.fourthToLastStory
+                  ? props.fourthToLastStory.urls[0]
+                  : defaultImage
+              }
             >
               <StoryOneTitle>
                 {props.fourthToLastStory
                   ? props.fourthToLastStory.title
                   : "Place golder for title. place golder for title."}
               </StoryOneTitle>
-            </LinkWrapper>
-          </Div4>
+            </Div4>
+          </LinkWrapper4>
           <Div4OverlayWrapper>
             <StoryImageOverlay />
           </Div4OverlayWrapper>
