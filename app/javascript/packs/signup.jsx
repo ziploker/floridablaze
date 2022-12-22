@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 //import { Parallax, Background } from 'react-parallax';
 
 import { GoogleLogin } from "react-google-login";
-import FacebookLogin from "react-facebook-login";
+//import FacebookLogin from "react-facebook-login";
 
 import floridaBlankPink from "../../assets/images/floridaBlankPink.png";
 import floridaMaskCell from "../../assets/images/floridaMaskThinBlanco1.png";
@@ -1176,7 +1176,7 @@ function Signup(props, ref) {
                     cookiePolicy={"single_host_origin"}
                   />
 
-                  <FacebookLogin
+                  {/* <FacebookLogin
                     appId="293426502140339"
                     autoLoad={false}
                     fields="name,email,picture"
@@ -1184,7 +1184,7 @@ function Signup(props, ref) {
                     callback={responseFacebook}
                     cssClass="loginBtn loginBtn--facebook"
                     textButton="Facebook"
-                  />
+                  /> */}
                 </SocialMedia>
               </Form>
 
