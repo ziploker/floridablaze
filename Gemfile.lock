@@ -108,11 +108,13 @@ GEM
       xpath (~> 3.2)
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
     crass (1.0.6)
     digest (3.1.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.11.0)
+    execjs (2.8.1)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -179,7 +181,7 @@ GEM
     rack (2.2.4)
     rack-mini-profiler (2.3.4)
       rack (>= 1.2.0)
-    rack-proxy (0.7.2)
+    rack-proxy (0.7.4)
       rack
     rack-test (2.0.2)
       rack (>= 1.3)
@@ -209,10 +211,17 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
+    rainbow (3.1.1)
     rake (13.0.6)
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    react_on_rails (13.1.0)
+      addressable
+      connection_pool
+      execjs (~> 2.5)
+      rails (>= 5.2)
+      rainbow (~> 3.0)
     regexp_parser (2.5.0)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
@@ -237,6 +246,11 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    shakapacker (6.5.2)
+      activesupport (>= 5.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     spring (4.0.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -263,11 +277,6 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0)
-    webpacker (5.4.3)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -299,14 +308,15 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 7.0.3.1)
+  react_on_rails (= 13.1)
   sass-rails (>= 6)
   selenium-webdriver
+  shakapacker (= 6.5.2)
   spring
   sprockets-rails
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers
-  webpacker (~> 5.0)
 
 RUBY VERSION
    ruby 3.1.2p20

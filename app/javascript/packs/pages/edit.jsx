@@ -26,7 +26,7 @@ import {
 import axios from "axios";
 import "../../../assets/stylesheets/edit_styles_21.scss";
 import $ from "jquery";
-var Spinner = require("react-spinkit");
+//var Spinner = require("react-spinkit");
 
 const EditAccountWrapper = styled.div`
 	/* @media only screen and (max-width: 720px){
@@ -245,9 +245,9 @@ const LoadingActivitySpinner = styled.div`
 	justify-self: center;
 	align-self: center;
 `;
-
-const formData = new FormData();
-
+if (typeof window !== "undefined") {
+	const formData = new FormData();
+}
 function Edit(props) {
 	console.log("==============Edit===============");
 	console.log("==============Edit Props===============", props);
@@ -325,7 +325,7 @@ function Edit(props) {
 
 				console.log("handleGetLetterRESPONSE", response.data.url);
 
-				window.open(response.data.url);
+				/////window.open(response.data.url);
 			})
 			.catch((error) => {
 				console.log("Logout? error", error);
@@ -576,7 +576,7 @@ function Edit(props) {
 			behavior: "smooth",
 		};
 
-		window.scrollTo(scrollOptions);
+		////////window.scrollTo(scrollOptions);
 		//window.scrollTo(0, ref.current.offsetTop)
 	};
 
@@ -726,7 +726,7 @@ function Edit(props) {
 					{errorMessages}
 
 					<StatusSpinner showStatusSpinner={state.showStatusSpinner}>
-						<Spinner name="wave" color="#56c5cc" />
+						{/* <Spinner name="wave" color="#56c5cc" /> */}
 					</StatusSpinner>
 				</ErrorWrapper>
 
