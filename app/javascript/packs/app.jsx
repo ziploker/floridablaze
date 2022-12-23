@@ -1,8 +1,8 @@
-require("dotenv").config();
+//require("dotenv").config();
 
 import React, { useEffect, useState, useRef, useCallback } from "react";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
@@ -244,7 +244,7 @@ function App({ d }) {
 					loginClicked={loginClicked}
 				/>
 
-				<Switch>
+				<Routes>
 					<Route
 						exact
 						path="/"
@@ -292,7 +292,7 @@ function App({ d }) {
 							<Article {...props} userState={userState} artData={artData} />
 						)}
 					/>
-				</Switch>
+				</Routes>
 				<PayPalScriptProvider
 					options={{
 						"client-id":

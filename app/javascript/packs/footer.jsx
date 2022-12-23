@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import axios from "axios";
 
-import footerImage from "../../assets/images/footerImageCrop";
+import footerImage from "../../assets/images/footerImageCrop.png";
 
 const FooterWrapper = styled.div`
 	@media only screen and (max-width: 575px) {

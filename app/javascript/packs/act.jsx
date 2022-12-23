@@ -7,11 +7,11 @@ import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import styled, { keyframes } from "styled-components";
-import { RiMailSendLine } from "react-icons/ri";
-import { BsMailbox } from "react-icons/bs";
+//import { RiMailSendLine } from "react-icons/ri";
+//import { BsMailbox } from "react-icons/bs";
 //import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { geocodeByAddress, getLatLng } from "react-google-places-autocomplete";
-import Script from "react-load-script";
+//import Script from "react-load-script";
 import sendEmailsToReps from "../packs/communications/sendEmailToReps";
 import $ from "jquery";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -22,7 +22,7 @@ import searchIconOrange2 from "../../assets/images/searchPink2.png";
 import ResultCardOne from "./resultCardOne.jsx";
 import Button_Loading from "./myComponents/button_loading";
 import axios from "axios";
-var Spinner = require("react-spinkit");
+//var Spinner = require("react-spinkit");
 //import Autocomplete from "react-google-autocomplete";
 //import { usePlacesWidget } from "react-google-autocomplete";
 
@@ -2659,7 +2659,7 @@ function Act(props, ref) {
 
 						<StatusHolder>
 							<StatusSpinner showStatusSpinner={showStatusSpinner}>
-								<Spinner name="wave" color="#87d388" />
+								{/* <Spinner name="wave" color="#87d388" /> */}
 							</StatusSpinner>
 
 							<StatusBar>
@@ -2828,7 +2828,7 @@ function Act(props, ref) {
 						<OfferOne>
 							<h1>Email</h1>
 
-							<RiMailSendLine
+							{/* <RiMailSendLine
 								style={{
 									gridArea: "2/1/3/3",
 									justifySelf: "center",
@@ -2837,7 +2837,7 @@ function Act(props, ref) {
 									width: "40px",
 									height: "40px",
 								}}
-							/>
+							/> */}
 
 							<BulletPointText>
 								Personalized email will be sent to each of your representatives.
@@ -2883,7 +2883,7 @@ function Act(props, ref) {
 											width: "100%",
 										}}
 									>
-										<RiMailSendLine
+										{/* <RiMailSendLine
 											style={{
 												//gridArea: "2/1/3/3",
 												////justifySelf: "end",
@@ -2896,7 +2896,7 @@ function Act(props, ref) {
 												//left: "25px",
 												////gridArea: "1/1/2/2"
 											}}
-										/>
+										/> */}
 
 										<span style={{}}> Send Emails</span>
 									</div>
@@ -2913,7 +2913,7 @@ function Act(props, ref) {
 
 						<OfferTwo>
 							<h1>Letter</h1>
-							<BsMailbox
+							{/* <BsMailbox
 								style={{
 									gridArea: "2/1/3/3",
 									justifySelf: "center",
@@ -2922,7 +2922,7 @@ function Act(props, ref) {
 									width: "45px",
 									height: "45px",
 								}}
-							/>
+							/> */}
 
 							<BulletPointText>
 								a printed letter will be mailed to each of your representatives

@@ -10,7 +10,7 @@ import headerLeaf from "../../assets/images/headerLeafv2.png";
 //import headerLogo from '../../assets/images/logo.png'
 import Burger from "./burger";
 import SideMenu from "./sidemenu";
-import company_logo from "../../assets/images/company_logo";
+import company_logo from "../../assets/images/company_logo.svg";
 
 ////////////////////////////////////////////////////////
 //////////////   STYLED COMPONENTS  ///////////////////
