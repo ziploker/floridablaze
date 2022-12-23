@@ -244,22 +244,24 @@ function App({ d }) {
 					loginClicked={loginClicked}
 				/>
 
+				<Home
+					handleSuccessfulAuth={handleSuccessfulAuth}
+					loginClicked={loginClicked}
+					setLoginClicked={setLoginClicked}
+					lastStory={lastStory}
+					secondToLastStory={secondToLastStory}
+					thirdToLastStory={thirdToLastStory}
+					fourthToLastStory={fourthToLastStory}
+				/>
+
 				<Routes>
-					<Route
+					{/* <Route
 						exact
 						path="/"
 						render={() => (
-							<Home
-								handleSuccessfulAuth={handleSuccessfulAuth}
-								loginClicked={loginClicked}
-								setLoginClicked={setLoginClicked}
-								lastStory={lastStory}
-								secondToLastStory={secondToLastStory}
-								thirdToLastStory={thirdToLastStory}
-								fourthToLastStory={fourthToLastStory}
-							/>
+							
 						)}
-					/>
+					/> */}
 					{/* <Route path="/login" render={ props => <Login {...props} handleSuccessfulAuth={handleSuccessfulAuth} />} /> */}
 					{/* <Route path="/signup" render={ props => <Signup {...props} handleSuccessfulAuth={handleSuccessfulAuth} />} /> */}
 					<Route path="/forgot" render={(props) => <Forgot {...props} />} />

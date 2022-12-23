@@ -1388,7 +1388,7 @@
   resolved "https://registry.npmjs.org/@tiptap/extension-text/-/extension-text-2.0.0-beta.209.tgz"
   integrity sha512-12PTPTQViDR7xDLwxGMPiYaV89E9olH/+4Zfoh6QiOjHqhmgYu3+/c8YZ3eARgXnfpy/EzUD0PBxiAyDZJ1vdw==
 
-"@tiptap/react@^2.0.0-beta.209":
+"@tiptap/react@^2.0.0-beta.193":
   version "2.0.0-beta.209"
   resolved "https://registry.npmjs.org/@tiptap/react/-/react-2.0.0-beta.209.tgz"
   integrity sha512-iuJ+hgaSPETPMX39QpX6e0tZmFAj9azl0qGhNm6NNB1biCehkB4qMfcfwecWFRWVpZKG5UtjJvjJ3UZM167Jlg==
@@ -1397,7 +1397,7 @@
     "@tiptap/extension-floating-menu" "^2.0.0-beta.209"
     prosemirror-view "^1.28.2"
 
-"@tiptap/starter-kit@^2.0.0-beta.209":
+"@tiptap/starter-kit@^2.0.0-beta.193":
   version "2.0.0-beta.209"
   resolved "https://registry.npmjs.org/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.209.tgz"
   integrity sha512-uR68ZfDZ5PeygGey3xc9ZuFIP+K7VRElrABnZcM6t9/Crrs70UFwSTNlkS0ezx9woj8h+8N78a6r8W1YC04TOw==
