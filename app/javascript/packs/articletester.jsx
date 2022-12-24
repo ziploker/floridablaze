@@ -396,6 +396,7 @@ function Article({ artData, userState }) {
 
   // // const slug = props.match ? props.match.params.id : props.d.slug;
   //const slug = artData.slug;
+
   // artData == "empty" ?
 
   //     useEffect (() => {
@@ -584,6 +585,7 @@ function Article({ artData, userState }) {
       <Link
         key={"b"}
         to={"/story_editor/" + artData.id}
+        //state={{ art: location.state.art }}
         state={{ art: artData }}
       >
         edit STORY
@@ -671,7 +673,7 @@ function Article({ artData, userState }) {
           //setArtDataComments={setArtDataComments}
           //rows={rows}
           //setRows={setRows}
-          ///////////////slug={slug}
+          /////////////////////////slug={slug}
         />
 
         <SideAds />
