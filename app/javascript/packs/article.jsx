@@ -334,6 +334,12 @@ const SideAds = styled.div`
 function Article(props) {
   let artData;
 
+  const location = useLocation();
+  console.log(
+    "0000000000000000000000000000000000000000000 useLocation",
+    location
+  );
+
   console.log("==============Article===============");
   console.log("==============Article Props===============", props);
 
