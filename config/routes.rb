@@ -65,7 +65,10 @@ Rails.application.routes.draw do
     get '/ziploker', to: 'stories#new'
     
   
+     #admin login to add new stories
+     get '/ziploker/login', to: 'stories#admin_login', as: 'admin_login'
     
+     post '/ziploker/verify', to: 'stories#create_admin'
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
     
