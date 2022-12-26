@@ -1,9 +1,9 @@
 
 
 
-<%= content_tag :div,
+<%# <%= content_tag :div, %>
     
-    id: "alien_data_dump",
+    <%# id: "alien_data_dump",
     data: {current_user: @current_user, 
             test_string: @test_string, 
             
@@ -14,5 +14,24 @@
             fromPath: @path,
             artData: @seeIfStoryExists}.to_json do %>
     
-<% end %>
+<%# <% end %>
+
+
+
+<% puts "$$$$$$$$$$$$$$$$  Sparks#index.html.erb $$$$$$$$$$$$"%>
+
+
+
+<% @data = {current_user: @current_user, 
+            test_string: @test_string, 
+            
+            lastStory: @lastStory, 
+            secondToLastStory: @secondToLastStory, 
+            thirdToLastStory: @thirdToLastStory, 
+            fourthToLastStory: @fourthToLastStory, 
+            fromPath: @path,
+            artData: @seeIfStoryExists} %>
+
+<%= react_component("App", props: {d: @data}, prerender: false) %>
+
 
