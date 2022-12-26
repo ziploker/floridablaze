@@ -341,15 +341,21 @@ function Article({ artData, userState }) {
     location
   );
 
-  console.log("==============Article===============");
+  console.log("==============Article===============start", artData);
+  console.log("==============Article=============== location", location);
 
   if (artData && artData != null) {
+    console.log("==============Article=============== artdata was full");
+    console.log("==============Article=============== location", location);
+
     artData = artData;
     console.log(
       "artData set via props.artData - direct link to article - sparks#index"
     );
   } else {
     // if (art && art != null) {
+    console.log("==============Article=============== artdata = null", artData);
+    console.log("==============Article=============== location", location);
 
     const { art, pathname } = location.state;
     artData = art;
@@ -671,7 +677,7 @@ function Article({ artData, userState }) {
           //setArtDataComments={setArtDataComments}
           //rows={rows}
           //setRows={setRows}
-          ///////////////slug={slug}
+          slug={artData.slug}
         />
 
         <SideAds />

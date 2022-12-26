@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
@@ -14,7 +14,7 @@ import styled, { ThemeProvider } from "styled-components";
 import GlobalStyles from "./global";
 import Article from "./article";
 import SideMenu from "./sidemenu";
-
+import Admin_Login from "./admin_login";
 import Login from "./pages/login";
 import Forgot from "./pages/forgot";
 //import Signup from './pages/signup'
@@ -33,6 +33,7 @@ function App({ d }) {
   const artData = d.artData;
 
   console.log("==============APP===============" + JSON.stringify(d));
+
   //console.log("==============APP props===============", controllerProps)
 
   //global APP state
@@ -190,51 +191,42 @@ function App({ d }) {
             : "EMAIL_NOT_VERIFIED",
       });
     } else {
-      console.log(
-        "currentUser did not exist, so run logged_in call from server"
-      );
-      axios
-        .get("/logged_in", { withCredentials: true })
-        .then((response) => {
-          //Server says logged_in but appState says not logged in
-          setAppState({
-            ...appState,
-            loggedInStatus:
-              response.data.logged_in &&
-              appState.loggedInStatus == "NOT_LOGGED_IN"
-                ? "LOGGED_IN"
-                : "NOT_LOGGED_IN",
-            user: response.data.user,
-            emailStatus:
-              response.data.user && response.data.user.email_confirmed == "true"
-                ? "EMAIL_VERIFIED"
-                : "EMAIL_NOT_VERIFIED",
-          });
-          //Server says not logged in but appState says logged_in
-          //}else if (!response.data.logged_in && appState.loggedInStatus == "LOGGED_IN"){
-          //    setAppState({
-          //        ...appState,
-          //        loggedInStatus: "NOT_LOGGED_IN",
-          //        user: {}
-          //    })
-          //    console.log("WTTFFF", "BBBBBBB")
-          //Check if email has been confirmed
-          //if (response.data.user && response.data.user.email_confirmed == true){
-          //    setAppState({
-          //        ...appState,
-          //          emailStatus: "EMAIL_VERIFIED"
-          //    })
-          //    console.log("WTTFFF", "cccccc")
-          // }
-        })
-        .catch((error) => console.log("Logged in? error", error));
+      // console.log("currentUser did not exist, so run logged_in call from server")
+      // axios.get("/logged_in", {withCredentials: true})
+      // .then(response => {
+      //     //Server says logged_in but appState says not logged in
+      //     setAppState({
+      //         ...appState,
+      //         loggedInStatus: response.data.logged_in && appState.loggedInStatus == "NOT_LOGGED_IN" ? "LOGGED_IN": "NOT_LOGGED_IN",
+      //         user: response.data.user,
+      //         emailStatus: response.data.user && response.data.user.email_confirmed == "true" ? "EMAIL_VERIFIED" : "EMAIL_NOT_VERIFIED"
+      //     })
+      //     //Server says not logged in but appState says logged_in
+      //     //}else if (!response.data.logged_in && appState.loggedInStatus == "LOGGED_IN"){
+      //     //    setAppState({
+      //     //        ...appState,
+      //     //        loggedInStatus: "NOT_LOGGED_IN",
+      //     //        user: {}
+      //     //    })
+      //     //    console.log("WTTFFF", "BBBBBBB")
+      //     //Check if email has been confirmed
+      //     //if (response.data.user && response.data.user.email_confirmed == true){
+      //     //    setAppState({
+      //     //        ...appState,
+      //   //          emailStatus: "EMAIL_VERIFIED"
+      //     //    })
+      //     //    console.log("WTTFFF", "cccccc")
+      //    // }
+      // })
+      // .catch(error => console.log("Logged in? error", error))
     }
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Router>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+
         <Header
           userState={userState}
           handleLogOutClick={handleLogOutClick}
@@ -267,7 +259,8 @@ function App({ d }) {
               />
             }
           />
-
+          {/* <Route path="/login" render={ props => <Login {...props} handleSuccessfulAuth={handleSuccessfulAuth} />} /> */}
+          {/* <Route path="/signup" render={ props => <Signup {...props} handleSuccessfulAuth={handleSuccessfulAuth} />} /> */}
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/resend" element={<Resend />} />
           <Route exact path="/change_pw/:token" element={<Change />} />
@@ -286,15 +279,10 @@ function App({ d }) {
           <Route
             exact
             path="/blog/:id"
-            element={
-              <Article
-                tester="testing123"
-                userState={userState}
-                artData={artData}
-              />
-            }
+            element={<Article userState={userState} artData={artData} />}
           />
         </Routes>
+
         <PayPalScriptProvider
           options={{
             "client-id":
@@ -325,8 +313,8 @@ function App({ d }) {
         {/* <LookupSection appState={appState} ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}}/>
                 <Section2 ref={{section2ScrollToRef: section2ScrollToRef}} stories={appState.stories} appState={appState} setAppState={setAppState} handleSuccessfulAuth={handleSuccessfulAuth} />
                <Footer/> */}
-      </Router>
-    </ThemeProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
