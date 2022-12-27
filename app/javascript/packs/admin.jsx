@@ -3,9 +3,9 @@ import styled, { ThemeProvider } from "styled-components";
 import NewForm from "../packs/form.jsx";
 
 function Admin(props) {
-  const loggedInStatus = { props };
+  //const loggedInStatus = { props };
 
-  console.log(props.props.loggedInStatus);
+  console.log("in admin.jsx", props);
 
   return (
     <div style={{ marginTop: "50px" }}>

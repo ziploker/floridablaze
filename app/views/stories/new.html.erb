@@ -8,9 +8,13 @@
 <%# <% end %>
 
 
-<%= content_tag :div,
+<%# content_tag :div,
     
     id: "admin_station",
     data: {loggedInStatus: @loggedInStatus}.to_json do -%>
     
-<% end %>
+ <%# end %>
+
+
+
+<%= react_component("AdminLogin", props: {loggedInStatus: @loggedInStatus}, prerender: false) %>
