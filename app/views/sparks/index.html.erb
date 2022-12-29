@@ -30,7 +30,9 @@
             thirdToLastStory: @thirdToLastStory, 
             fourthToLastStory: @fourthToLastStory, 
             fromPath: @path,
-            artData: @seeIfStoryExists} %>
+            artData: @seeIfStoryExists,
+            page: @page,
+            stories: @stories} %>
 
 <%= react_component("App", props: {d: @data}, prerender: false) %>
 

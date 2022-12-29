@@ -86,8 +86,11 @@ class SparksController < ApplicationController
             
             @page = params.fetch(:page, 0).to_i
             
-            #@stories = Story.order("created_at DESC").offset(@page * STORIES_PER_PAGE).limit(STORIES_PER_PAGE)
+            @stories = Story.order("created_at DESC").offset(@page * STORIES_PER_PAGE).limit(STORIES_PER_PAGE)
             
+puts "@page===================== " + @page.to_s  
+puts "@stories===================== " + @stories.inspect  
+
             @lastStory = Story.last
             @secondToLastStory = Story.second_to_last
             @thirdToLastStory = Story.third_to_last
