@@ -129,10 +129,10 @@ function App({ d }) {
     //window.scrollTo(0, ref.current.offsetTop)
 
     setOpenSideMenu(false);
+
     setTimeout(function () {
       LookupInputRef.current.focus();
     }, 420);
-    //LookupInputRef.current.focus();
   };
 
   const scrollToRef2 = (ref) => {

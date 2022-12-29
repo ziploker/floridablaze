@@ -15,6 +15,14 @@
     
  <%# end %>
 
+ <%= puts "inside new.html.erb " + @loggedInStatus %>
+ <% if @loggedInStatus === "LOGGED_IN" %>
+ <%= puts "inside new.html.erb waslogged in" + @loggedInStatus %>
 
+    <%= react_component("Admin", props: {loggedInStatus: @loggedInStatus}, prerender: false) %>
+<% elsif @loggedInStatus === "NOT_LOGGED_IN" %>
+ <%= puts "inside new.html.erb was NOT logged in" + @loggedInStatus %>
 
-<%= react_component("AdminLogin", props: {loggedInStatus: @loggedInStatus}, prerender: false) %>
+    
+    <%= react_component("AdminLogin", props: {loggedInStatus: @loggedInStatus}, prerender: false) %>
+<% end %>

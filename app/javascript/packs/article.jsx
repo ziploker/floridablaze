@@ -587,14 +587,17 @@ function Article({ artData, userState }) {
     <>
       {/* <AvatarTest src={artData.author_avatar}
                 onLoad={() => setAvatarLoaded(true)}></AvatarTest> */}
-      <Link
-        key={"b"}
-        to={"/story_editor/" + artData.id}
-        state={{ art: artData }}
-      >
-        edit STORY
-      </Link>
-      ;
+      {Object.keys(userState.user).length > 0 &&
+      userState.user.isAdmin == true ? (
+        <Link
+          key={"b"}
+          to={"/story_editor/" + artData.id}
+          state={{ art: artData }}
+        >
+          edit STORY
+        </Link>
+      ) : null}
+
       <ArticleSection>
         <StoryTitleWrapper>
           <StoryTitle>{artData.title}</StoryTitle>

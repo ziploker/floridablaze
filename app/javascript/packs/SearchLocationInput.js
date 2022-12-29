@@ -18,6 +18,7 @@ function SearchLocationInput({
   setQuery,
   setAddressObject,
   addressObject,
+  passRef2,
 }) {
   //moved to parent
   //const [query, setQuery] = useState("");
@@ -178,7 +179,10 @@ function SearchLocationInput({
   return (
     <div className="search-location-input">
       <MainInput
-        ref={autoCompleteRef}
+        ref={(node) => {
+          autoCompleteRef.current = node;
+          passRef2.current = node;
+        }}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Enter an address"
         value={query}
