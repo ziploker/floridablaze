@@ -110,6 +110,7 @@ puts "@stories===================== " + @stories.inspect
 
         puts "next----------------page"
         @page = params.fetch(:page, 0).to_i
+        @page = 1
         
         @stories = Story.order("created_at DESC").offset(@page * STORIES_PER_PAGE).limit(STORIES_PER_PAGE)
 

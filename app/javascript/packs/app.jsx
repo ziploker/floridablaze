@@ -28,10 +28,10 @@ function App({ d }) {
 	// const secondToLastStory = d.secondToLastStory;
 	// const thirdToLastStory = d.thirdToLastStory;
 	// const fourthToLastStory = d.fourthToLastStory;
-	const lastStory = d.stories[0];
-	const secondToLastStory = d.stories[1];
-	const thirdToLastStory = d.stories[2];
-	const fourthToLastStory = d.stories[3];
+	// const lastStory = d.stories[0];
+	// const secondToLastStory = d.stories[1];
+	// const thirdToLastStory = d.stories[2];
+	// const fourthToLastStory = d.stories[3];
 	const current_user = d.current_user;
 	const artData = d.artData;
 
@@ -56,6 +56,10 @@ function App({ d }) {
 
 	const [openSideMenu, setOpenSideMenu] = useState(false);
 	const [loginClicked, setLoginClicked] = useState(false);
+	const [lastStory, setLastStory] = useState(d.stories[0]);
+	const [secondToLastStory, setSecondToLastStory] = useState(d.stories[1]);
+	const [thirdToLastStory, setThirdToLastStory] = useState(d.stories[2]);
+	const [fourthToLastStory, setFourthToLastStory] = useState(d.stories[3]);
 
 	const theme = {
 		white: "#ffffff",
@@ -267,6 +271,11 @@ function App({ d }) {
 								secondToLastStory={secondToLastStory}
 								thirdToLastStory={thirdToLastStory}
 								fourthToLastStory={fourthToLastStory}
+								setLastStory={setLastStory}
+								setSecondToLastStory={setSecondToLastStory}
+								setThirdToLastStory={setThirdToLastStory}
+								setFourthToLastStory={setFourthToLastStory}
+								page={d.page}
 							/>
 						}
 					/>

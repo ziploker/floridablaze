@@ -5,7 +5,8 @@ import Login from "./pages/login";
 import defaultImage from "../../assets/images/defaultImage.jpg";
 import slugify from "react-slugify";
 import { Link } from "react-router-dom";
-
+import scrollArrow from "../../assets/images/scroll-arrow.png";
+import axios from "axios";
 const HomeWrapper = styled.div`
 	//background: pink;
 
@@ -13,6 +14,54 @@ const HomeWrapper = styled.div`
 	//max-height: 500px;
 	overflow: hidden;
 	//min-width: 500px;
+`;
+
+const LeftArrowButton = styled.button`
+	width: 100%;
+	height: 100%;
+	grid-area: leftArrow;
+	align-self: center;
+	justify-self: end;
+	background: rgba(255, 255, 255, 0);
+	border: 0;
+	display: grid;
+	cursor: pointer;
+
+	&:hover {
+		background: rgba(54, 54, 54, 0.075);
+	}
+`;
+const LeftArrow = styled.img`
+	max-width: 30px;
+
+	position: relative;
+	justify-self: end;
+	align-self: center;
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+`;
+
+const RightArrowButton = styled.button`
+	width: 100%;
+	height: 100%;
+	grid-area: rightArrow;
+	align-self: center;
+	justify-self: start;
+	background: rgba(255, 255, 255, 0);
+	border: 0;
+	display: grid;
+	cursor: pointer;
+
+	&:hover {
+		background: rgba(54, 54, 54, 0.075);
+	}
+`;
+const RightArrow = styled.img`
+	max-width: 30px;
+
+	position: relative;
+	justify-self: start;
+	align-self: center;
 `;
 
 const News = styled.div`
@@ -55,16 +104,19 @@ const News = styled.div`
 
 	//grid-template-columns: 5px 1fr 1fr 1fr 5px;
 	grid-template-columns:
-		minmax(20px, 1fr) minmax(200px, 600px) minmax(200px, 600px)
-		minmax(200px, 600px) minmax(20px, 1fr);
+		minmax(30px, 1fr) minmax(200px, 600px) minmax(10px, 1fr) minmax(
+			200px,
+			600px
+		)
+		minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr);
 
 	//grid-template-rows: 80px 120px 50px 1fr;
 	grid-template-areas:
-		".   one two three   ."
-		".   one two three   ."
-		".   one two three   ."
-		".    .   .    .     .";
-	grid-gap: 20px;
+		"leftArrow   one . two . three   rightArrow"
+		"leftArrow   one . two . three   rightArrow"
+		"leftArrow   one . two . three   rightArrow"
+		"    .        .  .  .  .   .     .";
+	//grid-gap: 20px;
 
 	margin-top: 30px;
 
@@ -79,11 +131,11 @@ const News = styled.div`
 
     } */
 
-	@media only screen and (min-width: 1850px) {
+	/* @media only screen and (min-width: 1850px) {
 		grid-template-columns:
 			minmax(20px, 1fr) minmax(600px, 700px) minmax(600px, 700px)
 			minmax(600px, 700px) minmax(20px, 1fr);
-	}
+	} */
 `;
 
 const StoryImageWrapper = styled.div`
@@ -192,21 +244,21 @@ const StoryOneTitle = styled.h1`
 `;
 
 const LinkWrapper1 = styled(Link)`
-	grid-area: 1/1/3/2;
+	//grid-area: 1/1/3/2;
 	grid-area: one;
 	max-width: 600px;
 	width: 100%;
 	justify-self: center;
 `;
 const LinkWrapper2 = styled(Link)`
-	grid-area: 1/1/3/2;
+	//grid-area: 1/1/3/2;
 	grid-area: two;
 	max-width: 600px;
 	width: 100%;
 	justify-self: center;
 `;
 const LinkWrapper3 = styled(Link)`
-	grid-area: 1/1/3/2;
+	//grid-area: 1/1/3/2;
 	grid-area: three;
 	max-width: 600px;
 	width: 100%;
@@ -215,7 +267,7 @@ const LinkWrapper3 = styled(Link)`
 const LinkWrapper4 = styled(Link)`
 	display: none;
 	@media only screen and (max-width: 1111px) {
-		grid-area: 1/1/3/2;
+		//grid-area: 1/1/3/2;
 		grid-area: four;
 		max-width: 600px;
 		width: 100%;
@@ -460,10 +512,35 @@ function Home(props) {
 
 	// const [screenIsAtTop, setScreenIsAtTop] = React.useState(true);
 
+	function handleForwardPage() {
+		axios
+			.post(
+				"/forward/",
+				{
+					data: {
+						page: 2,
+					},
+				},
+				{ withCredentials: true }
+			)
+			.then((response) => {
+				props.setLastStory(response.data.stories[0]);
+				props.setSecondToLastStory(response.data.stories[1]);
+				props.setThirdToLastStory(response.data.stories[2]);
+				props.setFourthToLastStory(response.data.stories[3]);
+			})
+			.catch((error) => {
+				console.log("handleForwardPageErrors", error);
+			});
+	}
+
 	return (
 		<>
 			<HomeWrapper>
 				<News>
+					<LeftArrowButton>
+						<LeftArrow src={scrollArrow}></LeftArrow>
+					</LeftArrowButton>
 					<LinkWrapper1
 						to={
 							"/blog/" +
@@ -570,6 +647,9 @@ function Home(props) {
 					<Div4OverlayWrapper>
 						<StoryImageOverlay />
 					</Div4OverlayWrapper>
+					<RightArrowButton onClick={handleForwardPage}>
+						<RightArrow src={scrollArrow}></RightArrow>
+					</RightArrowButton>
 
 					<BackgroundGray></BackgroundGray>
 				</News>
