@@ -87,10 +87,10 @@ const News = styled.div`
 
 		//grid-template-rows: 340px 170px 120px 50px minmax(100px, 1fr);
 		grid-template-areas:
-			".      one      two   ."
-			".     three     four  ."
-			".     three     four  ."
-			".     three     four  ."
+			"leftArrow      one      two   rightArrow"
+			"leftArrow     three     four  rightArrow"
+			"leftArrow     three     four  rightArrow"
+			"leftArrow     three     four  rightArrow"
 			".       .        .    .";
 	}
 
@@ -506,39 +506,65 @@ const BackgroundGray = styled.div`
 	}
 `;
 
+function handleForwardPage(props) {
+	axios
+		.post(
+			"/forward/",
+			{
+				data: {
+					page: props.page,
+					width: window.innerWidth,
+				},
+			},
+			{ withCredentials: true }
+		)
+		.then((response) => {
+			props.setLastStory(response.data.stories[0]);
+			props.setSecondToLastStory(response.data.stories[1]);
+			props.setThirdToLastStory(response.data.stories[2]);
+			props.setFourthToLastStory(response.data.stories[3]);
+			props.setPage(response.data.page);
+		})
+		.catch((error) => {
+			console.log("handleForwardPageErrors", error);
+		});
+}
+
+function handleReversePage(props) {
+	axios
+		.post(
+			"/reverse/",
+			{
+				data: {
+					page: props.page,
+					width: window.innerWidth,
+				},
+			},
+			{ withCredentials: true }
+		)
+		.then((response) => {
+			props.setLastStory(response.data.stories[0]);
+			props.setSecondToLastStory(response.data.stories[1]);
+			props.setThirdToLastStory(response.data.stories[2]);
+			props.setFourthToLastStory(response.data.stories[3]);
+			props.setPage(response.data.page);
+		})
+		.catch((error) => {
+			console.log("handleReversePageErrors", error);
+		});
+}
+
 function Home(props) {
 	console.log("==============Home===============");
 	console.log("==============Home Props===============", props);
 
 	// const [screenIsAtTop, setScreenIsAtTop] = React.useState(true);
 
-	function handleForwardPage() {
-		axios
-			.post(
-				"/forward/",
-				{
-					data: {
-						page: 2,
-					},
-				},
-				{ withCredentials: true }
-			)
-			.then((response) => {
-				props.setLastStory(response.data.stories[0]);
-				props.setSecondToLastStory(response.data.stories[1]);
-				props.setThirdToLastStory(response.data.stories[2]);
-				props.setFourthToLastStory(response.data.stories[3]);
-			})
-			.catch((error) => {
-				console.log("handleForwardPageErrors", error);
-			});
-	}
-
 	return (
 		<>
 			<HomeWrapper>
 				<News>
-					<LeftArrowButton>
+					<LeftArrowButton onClick={() => handleReversePage(props)}>
 						<LeftArrow src={scrollArrow}></LeftArrow>
 					</LeftArrowButton>
 					<LinkWrapper1
@@ -647,7 +673,7 @@ function Home(props) {
 					<Div4OverlayWrapper>
 						<StoryImageOverlay />
 					</Div4OverlayWrapper>
-					<RightArrowButton onClick={handleForwardPage}>
+					<RightArrowButton onClick={() => handleForwardPage(props)}>
 						<RightArrow src={scrollArrow}></RightArrow>
 					</RightArrowButton>
 

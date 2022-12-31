@@ -60,6 +60,7 @@ function App({ d }) {
 	const [secondToLastStory, setSecondToLastStory] = useState(d.stories[1]);
 	const [thirdToLastStory, setThirdToLastStory] = useState(d.stories[2]);
 	const [fourthToLastStory, setFourthToLastStory] = useState(d.stories[3]);
+	const [page, setPage] = useState(d.page);
 
 	const theme = {
 		white: "#ffffff",
@@ -275,7 +276,8 @@ function App({ d }) {
 								setSecondToLastStory={setSecondToLastStory}
 								setThirdToLastStory={setThirdToLastStory}
 								setFourthToLastStory={setFourthToLastStory}
-								page={d.page}
+								page={page}
+								setPage={setPage}
 							/>
 						}
 					/>

@@ -81,15 +81,16 @@ class SparksController < ApplicationController
         
         else
             puts "params[:path] didnt exist i guess, carry on"
-
-            @path = params[:path]
+            # puts "params[:path] is ========" + params[:path]
+            # @path = params[:path]
             
-            @page = params.fetch(:page, 0).to_i
+            # @page = params.fetch(:page, 0).to_i
+            @page = 0
             
-            @stories = Story.order("created_at DESC").offset(@page * STORIES_PER_PAGE).limit(STORIES_PER_PAGE)
+            @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE)
             
-puts "@page===================== " + @page.to_s  
-puts "@stories===================== " + @stories.inspect  
+            puts "@page===================== " + @page.to_s  
+            puts "@stories===================== " + @stories.inspect  
 
             @lastStory = Story.last
             @secondToLastStory = Story.second_to_last
@@ -106,20 +107,63 @@ puts "@stories===================== " + @stories.inspect
 
 
 
-    def next_page
+    def page_forward
 
-        puts "next----------------page"
-        @page = params.fetch(:page, 0).to_i
-        @page = 1
+        puts "forward----------------page"
+        #@page = params.fetch(:page, 0).to_i
+
+        puts "the current page is " + params[:data][:page].to_s
+        puts "the current page width is " + params[:data][:width].to_s
+
+        currentPageWidth = params[:data][:width]
+
+        if currentPageWidth > 1111
+            dynamicStoriesPerPage = 3
+        else
+            dynamicStoriesPerPage = 4
+        end
+        puts "the dynamicStoriesPerPage is " + dynamicStoriesPerPage.to_s
+        @page = params[:data][:page] + 1
         
-        @stories = Story.order("created_at DESC").offset(@page * STORIES_PER_PAGE).limit(STORIES_PER_PAGE)
+        @stories = Story.order("created_at DESC").offset(@page * dynamicStoriesPerPage).limit(dynamicStoriesPerPage)
 
         render json: {
                 
             
-            stories: @stories
+            stories: @stories,
+            page: @page
         }
     end
+
+
+    def page_reverse
+
+        puts "reverse----------------page"
+        #@page = params.fetch(:page, 0).to_i
+        puts "the current page is " + params[:data][:page].to_s
+        puts "the current page width is " + params[:data][:width].to_s
+
+        currentPageWidth = params[:data][:width]
+
+        if currentPageWidth > 1111
+            dynamicStoriesPerPage = 3
+        else
+            dynamicStoriesPerPage = 4
+        end
+
+        puts "the current page is " + params[:data][:page].to_s
+        @page = params[:data][:page] - 1
+        
+        @stories = Story.order("created_at DESC").offset(@page * dynamicStoriesPerPage).limit(dynamicStoriesPerPage)
+
+        render json: {
+                
+            
+            stories: @stories,
+            page: @page
+        }
+    end
+
 
 
     def get_story_info

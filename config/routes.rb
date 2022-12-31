@@ -26,7 +26,8 @@ Rails.application.routes.draw do
     get :logged_in, to: "sessions#logged_in"
     
     post '/lookup', to: 'lookups#incoming'
-    post '/forward', to: 'sparks#next_page'
+    post '/forward', to: 'sparks#page_forward'
+    post '/reverse', to: 'sparks#page_reverse'
     post '/send/emails', to: 'lookups#sendEmailToReps'
 
     post '/send/letters', to: 'lookups#sendLetterToReps'
