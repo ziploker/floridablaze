@@ -115,17 +115,17 @@ class SparksController < ApplicationController
         puts "the current page is " + params[:data][:page].to_s
         puts "the current page width is " + params[:data][:width].to_s
 
-        currentPageWidth = params[:data][:width]
+        # currentPageWidth = params[:data][:width]
 
-        if currentPageWidth > 1111
-            dynamicStoriesPerPage = 3
-        else
-            dynamicStoriesPerPage = 4
-        end
-        puts "the dynamicStoriesPerPage is " + dynamicStoriesPerPage.to_s
+        # if currentPageWidth > 1111
+        #     dynamicStoriesPerPage = 3
+        # else
+        #     dynamicStoriesPerPage = 4
+        # end
+        # puts "the dynamicStoriesPerPage is " + dynamicStoriesPerPage.to_s
         @page = params[:data][:page] + 1
         
-        @stories = Story.order("created_at DESC").offset(@page * dynamicStoriesPerPage).limit(dynamicStoriesPerPage)
+        @stories = Story.order("created_at DESC").offset(@page * STORIES_PER_PAGE).limit(STORIES_PER_PAGE)
 
         render json: {
                 
@@ -143,18 +143,18 @@ class SparksController < ApplicationController
         puts "the current page is " + params[:data][:page].to_s
         puts "the current page width is " + params[:data][:width].to_s
 
-        currentPageWidth = params[:data][:width]
+        # currentPageWidth = params[:data][:width]
 
-        if currentPageWidth > 1111
-            dynamicStoriesPerPage = 3
-        else
-            dynamicStoriesPerPage = 4
-        end
+        # if currentPageWidth > 1111
+        #     dynamicStoriesPerPage = 3
+        # else
+        #     dynamicStoriesPerPage = 4
+        # end
 
-        puts "the current page is " + params[:data][:page].to_s
+        # puts "the current page is " + params[:data][:page].to_s
         @page = params[:data][:page] - 1
         
-        @stories = Story.order("created_at DESC").offset(@page * dynamicStoriesPerPage).limit(dynamicStoriesPerPage)
+        @stories = Story.order("created_at DESC").offset(@page * STORIES_PER_PAGE).limit(STORIES_PER_PAGE)
 
         render json: {
                 
