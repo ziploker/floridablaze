@@ -109,7 +109,14 @@ class SparksController < ApplicationController
 
     def page_forward
 
-        puts "forward----------------page"
+        # 10  9   8   [7]
+        #get 3 and move 7 to front [limit 3] [offset 4] => 6,5,4
+        # 7 6 5 [4]
+        #get 3 II   II       II    [limit3]  [offset7] => 3,2,1
+        # 4 3 2 1
+
+
+        puts "fo4ward----------------page"
         #@page = params.fetch(:page, 0).to_i
 
         puts "the current page is " + params[:data][:page].to_s
