@@ -553,17 +553,31 @@ function handleReversePage(props) {
 			{
 				data: {
 					page: props.page,
-					//width: window.innerWidth,
+					width: window.innerWidth,
 				},
 			},
 			{ withCredentials: true }
 		)
 		.then((response) => {
-			props.setLastStory(response.data.stories[0]);
-			props.setSecondToLastStory(response.data.stories[1]);
-			props.setThirdToLastStory(response.data.stories[2]);
-			props.setFourthToLastStory(response.data.stories[3]);
-			props.setPage(response.data.page);
+			// props.setLastStory(response.data.stories[0]);
+			// props.setSecondToLastStory(response.data.stories[1]);
+			// props.setThirdToLastStory(response.data.stories[2]);
+			// props.setFourthToLastStory(response.data.stories[3]);
+			// props.setPage(response.data.page);
+
+			if (response.data.stories.length == 3) {
+				props.setLastStory(response.data.stories[0]);
+				props.setSecondToLastStory(response.data.stories[1]);
+				props.setThirdToLastStory(response.data.stories[2]);
+				props.setFourthToLastStory(props.lastStory);
+				props.setPage(response.data.page);
+			} else if (response.data.stories.length == 4) {
+				props.setLastStory(response.data.stories[0]);
+				props.setSecondToLastStory(response.data.stories[1]);
+				props.setThirdToLastStory(response.data.stories[2]);
+				props.setFourthToLastStory(response.data.stories[3]);
+				props.setPage(response.data.page);
+			}
 		})
 		.catch((error) => {
 			console.log("handleReversePageErrors", error);

@@ -109,9 +109,12 @@ class SparksController < ApplicationController
 
     def page_forward
 
-        # 10  9   8   [7]
+        # 10  9   8   [7] = page 0
         #get 3 and move 7 to front [limit 3] [offset 4] => 6,5,4
-        # 7 6 5 [4]
+        #if page is zero then offset = 4
+
+        # 7 6 5 [4] = page 1
+        #if page > 0 then offest = page * dynamicStoriesPerPage - 1
         #get 3 II   II       II    [limit3]  [offset7] => 3,2,1
         # 4 3 2 1
 
@@ -122,6 +125,8 @@ class SparksController < ApplicationController
         puts "the current page is " + params[:data][:page].to_s
         puts "the current page width is " + params[:data][:width].to_s
 
+        
+        #get currentPageWidth and use that to set dynamicStoriesPerPage
         currentPageWidth = params[:data][:width]
 
         if currentPageWidth > 1111
@@ -129,11 +134,23 @@ class SparksController < ApplicationController
         else
             dynamicStoriesPerPage = 4
         end
-        # puts "the dynamicStoriesPerPage is " + dynamicStoriesPerPage.to_s
-        @page = params[:data][:page] + 1
         
-        @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(@page * STORIES_PER_PAGE)
+        
+        if params[:data][:page] == 0
 
+            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(STORIES_PER_PAGE)
+
+
+        else
+
+            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(params[:data][:page] * dynamicStoriesPerPage + STORIES_PER_PAGE)
+
+        end
+        
+       
+        
+        
+        @page = params[:data][:page] + 1
         render json: {
                 
             
@@ -150,19 +167,36 @@ class SparksController < ApplicationController
         puts "the current page is " + params[:data][:page].to_s
         puts "the current page width is " + params[:data][:width].to_s
 
-        # currentPageWidth = params[:data][:width]
+        puts "the current page is " + params[:data][:page].to_s
+        puts "the current page width is " + params[:data][:width].to_s
 
-        # if currentPageWidth > 1111
-        #     dynamicStoriesPerPage = 3
-        # else
-        #     dynamicStoriesPerPage = 4
-        # end
+        
+        #get currentPageWidth and use that to set dynamicStoriesPerPage
+        currentPageWidth = params[:data][:width]
+
+        if currentPageWidth > 1111
+            dynamicStoriesPerPage = 3
+        else
+            dynamicStoriesPerPage = 4
+        end
 
         # puts "the current page is " + params[:data][:page].to_s
-        @page = params[:data][:page] - 1
-        
-        @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE)
+        prevPage = params[:data][:page] -1
 
+        if params[:data][:page] == 0
+
+            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(STORIES_PER_PAGE)
+
+
+        else
+
+            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(prevPage * dynamicStoriesPerPage + STORIES_PER_PAGE)
+
+        end
+        
+        
+        #@stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE)
+        @page = params[:data][:page] - 1
         render json: {
                 
             
