@@ -146,6 +146,13 @@ class SparksController < ApplicationController
             @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(params[:data][:page] * dynamicStoriesPerPage + STORIES_PER_PAGE)
 
         end
+
+        puts "the number of @stories is " + @stories.count.to_s
+        if @stories.count == 0
+            @page = 0
+            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(0)
+        end
+
         
        
         
@@ -164,14 +171,13 @@ class SparksController < ApplicationController
 
         puts "reverse----------------page"
         #@page = params.fetch(:page, 0).to_i
-        puts "the current page is " + params[:data][:page].to_s
-        puts "the current page width is " + params[:data][:width].to_s
-
+        
         puts "the current page is " + params[:data][:page].to_s
         puts "the current page width is " + params[:data][:width].to_s
 
         
         #get currentPageWidth and use that to set dynamicStoriesPerPage
+        
         currentPageWidth = params[:data][:width]
 
         if currentPageWidth > 1111
@@ -185,23 +191,22 @@ class SparksController < ApplicationController
 
         if params[:data][:page] == 0
 
-            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(STORIES_PER_PAGE)
-
+            puts "reverse but page is zero"
 
         else
 
-            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(prevPage * dynamicStoriesPerPage + STORIES_PER_PAGE)
+            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(prevPage * dynamicStoriesPerPage)
 
         end
         
         
         #@stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE)
-        @page = params[:data][:page] - 1
+        
         render json: {
                 
             
             stories: @stories,
-            page: @page
+            page: prevPage
         }
     end
 

@@ -539,6 +539,8 @@ function handleForwardPage(props) {
 				props.setThirdToLastStory(response.data.stories[2]);
 				props.setFourthToLastStory(response.data.stories[3]);
 				props.setPage(response.data.page);
+			} else if (response.data.stories.length == o) {
+				console.log("zero stories returned");
 			}
 		})
 		.catch((error) => {
