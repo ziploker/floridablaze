@@ -122,12 +122,13 @@ class SparksController < ApplicationController
         puts "fo4ward----------------page"
         #@page = params.fetch(:page, 0).to_i
 
-        puts "the current page is " + params[:data][:page].to_s
+        puts "the current lastStory_ID is " + params[:data][:lastStory_ID].to_s
         puts "the current page width is " + params[:data][:width].to_s
 
         
         #get currentPageWidth and use that to set dynamicStoriesPerPage
         currentPageWidth = params[:data][:width]
+        lastStory_ID = params[:data][:lastStory_ID]
 
         if currentPageWidth > 1111
             dynamicStoriesPerPage = 3
@@ -135,34 +136,22 @@ class SparksController < ApplicationController
             dynamicStoriesPerPage = 4
         end
         
-        
-        if params[:data][:page] == 0
 
-            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(STORIES_PER_PAGE)
+        @stories = Story.where("id < ?", lastStory_ID).limit(4).order(id: :desc)
 
 
-        else
-
-            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(params[:data][:page] * dynamicStoriesPerPage + STORIES_PER_PAGE)
-
-        end
-
-        puts "the number of @stories is " + @stories.count.to_s
-        if @stories.count == 0
-            @page = 0
-            @stories = Story.order("created_at DESC").limit(dynamicStoriesPerPage).offset(0)
-        end
-
+       puts "about to return " + @stories.length.to_s + " stories"
+       
         
        
         
         
-        @page = params[:data][:page] + 1
+       
         render json: {
                 
             
             stories: @stories,
-            page: @page
+           
         }
     end
 
