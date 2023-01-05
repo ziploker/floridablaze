@@ -109,19 +109,8 @@ class SparksController < ApplicationController
 
     def page_forward
 
-        # 10  9   8   [7] = page 0
-        #get 3 and move 7 to front [limit 3] [offset 4] => 6,5,4
-        #if page is zero then offset = 4
-
-        # 7 6 5 [4] = page 1
-        #if page > 0 then offest = page * dynamicStoriesPerPage - 1
-        #get 3 II   II       II    [limit3]  [offset7] => 3,2,1
-        # 4 3 2 1
-
-
         puts "fo4ward----------------page"
-        #@page = params.fetch(:page, 0).to_i
-
+    
         puts "the current lastStory_ID is " + params[:data][:lastStory_ID].to_s
         puts "the current page width is " + params[:data][:width].to_s
 
@@ -130,6 +119,7 @@ class SparksController < ApplicationController
         currentPageWidth = params[:data][:width]
         lastStory_ID = params[:data][:lastStory_ID]
 
+        
         if currentPageWidth > 1111
             dynamicStoriesPerPage = 3
         else
@@ -137,10 +127,57 @@ class SparksController < ApplicationController
         end
         
 
-        @stories = Story.where("id < ?", lastStory_ID).limit(4).order(id: :desc)
+        @stories = Story.where("id < ?", lastStory_ID).limit(3).order(id: :desc)
+        @stories2 = Story.where("id > ?", 26).limit(1).order(id: :desc)
+
+        if @stories.length == 0
+            puts "about to return " + @stories.length.to_s + " stories"
 
 
-       puts "about to return " + @stories.length.to_s + " stories"
+        elsif @stories.length == 1
+            puts "about to return " + @stories.length.to_s + " stories"
+
+        elsif @stories.length == 2
+            puts "about to return " + @stories.length.to_s + " stories"
+
+
+        elsif @stories.length == 3
+            puts "about to return " + @stories.length.to_s + " stories"
+
+
+        elsif @stories.length == 4
+            puts "about to return " + @stories.length.to_s + " stories"
+
+
+        end
+
+
+        puts "@stories is a class of  " + @stories.class.to_s
+        puts "@stories2 is a class of  " + @stories2.class.to_s
+
+puts "@stories has " + @stories.length.to_s
+
+@stories.each do |w|
+puts w.id
+    end
+puts "@stories2 has " + @stories2.length.to_s
+@stories2.each do |w|
+    puts w.id
+        end
+
+        
+        combinedStory = @stories|@stories2
+        puts "combinedStory has " + combinedStory.length.to_s
+        combinedStory.each do |w|
+            puts w.id
+                end
+        
+
+        puts "combined Story is of class " + combinedStory.class.to_s
+
+
+       
+       
        
         
        
