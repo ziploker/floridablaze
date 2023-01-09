@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 //import { Parallax, Background } from 'react-parallax';
 import Login from "./pages/login";
@@ -7,6 +7,8 @@ import slugify from "react-slugify";
 import { Link } from "react-router-dom";
 import scrollArrow from "../../assets/images/scroll-arrow.png";
 import axios from "axios";
+import { gsap } from "gsap";
+
 const HomeWrapper = styled.div`
   //background: pink;
 
@@ -82,16 +84,20 @@ const News = styled.div`
 
   @media only screen and (min-width: 867px) and (max-width: 1111px) {
     grid-template-columns:
-      minmax(20px, 1fr) minmax(200px, 600px) minmax(200px, 600px)
+      minmax(20px, 1fr)
+      minmax(200px, 600px)
+      10px
+      minmax(200px, 600px)
       minmax(20px, 1fr);
 
-    //grid-template-rows: 340px 170px 120px 50px minmax(100px, 1fr);
+    grid-template-rows: auto 10px auto auto auto auto;
     grid-template-areas:
-      "leftArrow      one      two   rightArrow"
-      "leftArrow     three     four  rightArrow"
-      "leftArrow     three     four  rightArrow"
-      "leftArrow     three     four  rightArrow"
-      ".       .        .    .";
+      "leftArrow      one   .   two   rightArrow"
+      "leftArrow       .    .    .    rightArrow  "
+      "leftArrow     three  .   four  rightArrow"
+      "leftArrow     three  .   four  rightArrow"
+      "leftArrow     three  .   four  rightArrow"
+      "    .           .    .    .        .     ";
   }
 
   min-height: 100%;
@@ -502,7 +508,7 @@ const BackgroundGray = styled.div`
   padding: 75px 0px;
 
   @media only screen and (max-width: 1111px) {
-    grid-area: 4/1/-1/-1;
+    grid-area: 5/1/-1/-1;
   }
 `;
 
@@ -513,7 +519,7 @@ function handleForwardPage(props) {
       {
         data: {
           //page: props.page,
-          lastStory_ID: props.fourthToLastStory.id,
+          fourthToLastStory_ID: props.fourthToLastStory.id,
           width: window.innerWidth,
         },
       },
@@ -527,23 +533,20 @@ function handleForwardPage(props) {
       console.log(
         "i got " + response.data.stories.length.toString() + " back from rails"
       );
-
-      console;
-
-      if (response.data.stories.length == 3) {
-        props.setLastStory(props.fourthToLastStory);
-        props.setSecondToLastStory(response.data.stories[0]);
-        props.setThirdToLastStory(response.data.stories[1]);
-        props.setFourthToLastStory(response.data.stories[2]);
-        props.setPage(response.data.page);
-      } else if (response.data.stories.length == 4) {
-        props.setLastStory(response.data.stories[0]);
-        props.setSecondToLastStory(response.data.stories[1]);
-        props.setThirdToLastStory(response.data.stories[2]);
-        props.setFourthToLastStory(response.data.stories[3]);
-        props.setPage(response.data.page);
-      } else if (response.data.stories.length == 0) {
-        console.log("zero stories returned");
+      if (response.data.dynamicStoriesPerPage == 3) {
+        if (response.data.stories.length == 3) {
+          props.setLastStory(props.fourthToLastStory);
+          props.setSecondToLastStory(response.data.stories[0]);
+          props.setThirdToLastStory(response.data.stories[1]);
+          props.setFourthToLastStory(response.data.stories[2]);
+        }
+      } else if (response.data.dynamicStoriesPerPage == 4) {
+        if (response.data.stories.length == 4) {
+          props.setLastStory(response.data.stories[0]);
+          props.setSecondToLastStory(response.data.stories[1]);
+          props.setThirdToLastStory(response.data.stories[2]);
+          props.setFourthToLastStory(response.data.stories[3]);
+        }
       }
     })
     .catch((error) => {
@@ -557,31 +560,27 @@ function handleReversePage(props) {
       "/reverse/",
       {
         data: {
-          page: props.page,
+          lastStory_ID: props.lastStory.id,
           width: window.innerWidth,
         },
       },
       { withCredentials: true }
     )
     .then((response) => {
-      // props.setLastStory(response.data.stories[0]);
-      // props.setSecondToLastStory(response.data.stories[1]);
-      // props.setThirdToLastStory(response.data.stories[2]);
-      // props.setFourthToLastStory(response.data.stories[3]);
-      // props.setPage(response.data.page);
-
-      if (response.data.stories.length == 3) {
-        props.setLastStory(response.data.stories[0]);
-        props.setSecondToLastStory(response.data.stories[1]);
-        props.setThirdToLastStory(response.data.stories[2]);
-        props.setFourthToLastStory(props.lastStory);
-        props.setPage(response.data.page);
-      } else if (response.data.stories.length == 4) {
-        props.setLastStory(response.data.stories[0]);
-        props.setSecondToLastStory(response.data.stories[1]);
-        props.setThirdToLastStory(response.data.stories[2]);
-        props.setFourthToLastStory(response.data.stories[3]);
-        props.setPage(response.data.page);
+      if (response.data.dynamicStoriesPerPage == 3) {
+        if (response.data.stories.length == 3) {
+          props.setLastStory(response.data.stories[2]);
+          props.setSecondToLastStory(response.data.stories[1]);
+          props.setThirdToLastStory(response.data.stories[0]);
+          props.setFourthToLastStory(props.lastStory);
+        }
+      } else if (response.data.dynamicStoriesPerPage == 4) {
+        if (response.data.stories.length == 4) {
+          props.setLastStory(response.data.stories[3]);
+          props.setSecondToLastStory(response.data.stories[2]);
+          props.setThirdToLastStory(response.data.stories[1]);
+          props.setFourthToLastStory(response.data.stories[0]);
+        }
       }
     })
     .catch((error) => {
@@ -593,13 +592,38 @@ function Home(props) {
   console.log("==============Home===============");
   console.log("==============Home Props===============", props);
 
+  const gsapContainer = useRef();
+  const tl = useRef();
+
+  const toggleTimeline = () => {
+    tl.current.reversed(!tl.current.reversed());
+  };
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context((self) => {
+      const boxes = self.selector(".box");
+      tl.current = gsap
+        .timeline()
+        .to(boxes[0], { x: 120, rotation: 360 })
+        .to(boxes[1], { x: -120, rotation: -360 }, "<")
+        .to(boxes[2], { y: -166 })
+        .reverse();
+    }, gsapContainer); // <- Scope!
+
+    return () => ctx.revert(); // <- Cleanup!
+  }, []);
+
   // const [screenIsAtTop, setScreenIsAtTop] = React.useState(true);
 
   return (
     <>
       <HomeWrapper>
-        <News>
-          <LeftArrowButton onClick={() => handleReversePage(props)}>
+        <News ref={gsapContainer} className="box">
+          {/* <LeftArrowButton onClick={() => handleReversePage(props)}> */}
+
+          <LeftArrowButton
+            onClick={() => tl.current.reversed(!tl.current.reversed())}
+          >
             <LeftArrow src={scrollArrow}></LeftArrow>
           </LeftArrowButton>
           <LinkWrapper1
