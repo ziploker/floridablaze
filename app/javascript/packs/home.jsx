@@ -592,37 +592,28 @@ function Home(props) {
   console.log("==============Home===============");
   console.log("==============Home Props===============", props);
 
-  const gsapContainer = useRef();
-  const tl = useRef();
+  const gsapContainer1 = useRef();
+  const gsapContainer2 = useRef();
 
-  const toggleTimeline = () => {
-    tl.current.reversed(!tl.current.reversed());
-  };
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context((self) => {
-      const boxes = self.selector(".box");
-      tl.current = gsap
-        .timeline()
-        .to(boxes[0], { x: 120, rotation: 360 })
-        .to(boxes[1], { x: -120, rotation: -360 }, "<")
-        .to(boxes[2], { y: -166 })
-        .reverse();
-    }, gsapContainer); // <- Scope!
-
-    return () => ctx.revert(); // <- Cleanup!
-  }, []);
+  useLayoutEffect(() => {}, []);
 
   // const [screenIsAtTop, setScreenIsAtTop] = React.useState(true);
 
   return (
     <>
       <HomeWrapper>
-        <News ref={gsapContainer} className="box">
+        <News className="box">
           {/* <LeftArrowButton onClick={() => handleReversePage(props)}> */}
 
           <LeftArrowButton
-            onClick={() => tl.current.reversed(!tl.current.reversed())}
+            onClick={() => {
+              gsap.to(gsapContainer1.current, {
+                x: "-1000%",
+              });
+              gsap.to(gsapContainer2.current, {
+                x: "-1000%",
+              });
+            }}
           >
             <LeftArrow src={scrollArrow}></LeftArrow>
           </LeftArrowButton>
@@ -632,6 +623,7 @@ function Home(props) {
               slugify(props.lastStory ? props.lastStory.title : "nada")
             }
             state={{ art: props.lastStory }}
+            ref={gsapContainer1}
           >
             <Div1
               imageURL={
@@ -646,7 +638,7 @@ function Home(props) {
             </Div1>
           </LinkWrapper1>
 
-          <Div1OverlayWrapper>
+          <Div1OverlayWrapper ref={gsapContainer2}>
             <StoryImageOverlay />
           </Div1OverlayWrapper>
 
