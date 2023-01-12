@@ -9,6 +9,7 @@ import scrollArrow from "../../assets/images/scroll-arrow.png";
 import axios from "axios";
 import { gsap } from "gsap";
 import { _parseRelative } from "gsap/gsap-core";
+import "../../assets/stylesheets/home_story_spinner.scss";
 
 const HomeWrapper = styled.div`
 	//background: pink;
@@ -292,26 +293,12 @@ const Div1OverlayWrapper = styled.div`
 	pointer-events: none;
 	grid-area: one;
 	border-radius: 10px;
-	//border: 5px solid #e8e5e5;
-	//box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
 	overflow: hidden;
-	//min-height: 290px;
 	max-width: 600px;
-	/* top: 0;
-	bottom: 0; */
 	width: 100%;
 	justify-self: center;
 	display: grid;
 	z-index: 1;
-	//position: absolute;
-
-	/* &:before {
-		content: "";
-		display: block;
-		height: 0;
-		width: 0;
-		padding-bottom: calc(9 / 16 * 100%);
-	} */
 
 	background: rgb(0, 0, 0);
 	background: -moz-linear-gradient(
@@ -445,7 +432,8 @@ const BackgroundGray = styled.div`
 	}
 `;
 
-function handleForwardPage(props) {
+function handleForwardPage(props, setLoadingStories) {
+	setLoadingStories(true);
 	axios
 		.post(
 			"/forward/",
@@ -481,6 +469,47 @@ function handleForwardPage(props) {
 					props.setFourthToLastStory(response.data.stories[3]);
 				}
 			}
+
+			gsap.to(
+				".s1",
+
+				{
+					x: "-500%",
+					duration: 0.2,
+				}
+			);
+
+			gsap.fromTo(
+				".s1",
+				{ x: "300%" },
+				{
+					x: "initial",
+
+					duration: 0.2,
+					delay: 0.1,
+				}
+			);
+
+			gsap.to(
+				".s2",
+
+				{
+					x: "-500%",
+					duration: 0.2,
+				}
+			);
+
+			gsap.fromTo(
+				".s2",
+				{ x: "300%" },
+				{
+					x: "initial",
+
+					duration: 0.2,
+					delay: 0.1,
+				}
+			);
+			setLoadingStories(false);
 		})
 		.catch((error) => {
 			console.log("handleForwardPageErrors", error);
@@ -521,48 +550,6 @@ function handleReversePage(props) {
 		});
 }
 
-function animateLeft() {
-	gsap.to(
-		".s1",
-
-		{
-			x: "-500%",
-			duration: 0.2,
-		}
-	);
-
-	gsap.fromTo(
-		".s1",
-		{ x: "300%" },
-		{
-			x: "initial",
-
-			duration: 0.2,
-			delay: 0.1,
-		}
-	);
-
-	gsap.to(
-		".s2",
-
-		{
-			x: "-500%",
-			duration: 0.2,
-		}
-	);
-
-	gsap.fromTo(
-		".s2",
-		{ x: "300%" },
-		{
-			x: "initial",
-
-			duration: 0.2,
-			delay: 0.1,
-		}
-	);
-}
-
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 ///////////////                    ////////////////////////
@@ -580,12 +567,15 @@ function Home(props) {
 	useLayoutEffect(() => {}, []);
 
 	// const [screenIsAtTop, setScreenIsAtTop] = React.useState(true);
+	const [loadingStories, setLoadingStories] = React.useState(false);
 
 	return (
 		<>
 			<HomeWrapper>
 				<News className="box">
-					<LeftArrowButton onClick={animateLeft}>
+					<LeftArrowButton
+						onClick={() => handleForwardPage(props, setLoadingStories)}
+					>
 						<LeftArrow src={scrollArrow}></LeftArrow>
 					</LeftArrowButton>
 
@@ -612,6 +602,19 @@ function Home(props) {
 								: "Place golder for title. place golder for title."}
 						</StoryOneTitle>
 					</Div1OverlayWrapper>
+
+					{loadingStories ? (
+						<div
+							class="loader"
+							style={{
+								gridArea: "one",
+								justifySelf: "center",
+								alignSelf: "center",
+							}}
+						>
+							Loading...
+						</div>
+					) : null}
 
 					<LinkWrapper2
 						to={
