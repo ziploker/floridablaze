@@ -105,7 +105,17 @@ class SparksController < ApplicationController
         puts "============Sparks controller def index end================"
     end
 
+def story_flipper
 
+    @newStories = Story.limit(4).offset(4).order(id: :desc)
+
+    render json: {
+        stories: @newStories,
+        
+    }
+
+
+end
 
     def page_forward
 

@@ -337,7 +337,7 @@ function Footer(props) {
 	// }
 
 	return (
-		<FooterWrapper>
+		<FooterWrapper ref={props.intersectionObserverRef}>
 			<FooterImage src={footerImage} />
 
 			<SubscribeSection>
