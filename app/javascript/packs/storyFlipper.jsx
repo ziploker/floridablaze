@@ -1,37 +1,60 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import StoryCard from "./storyCard";
 
 function storyFlipper({ inView }) {
-	useEffect(() => {}, []);
+  const [stories, setStories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-	function GetStories(props) {
-		axios
-			.post(
-				"/story_flipper/",
-				{
-					data: {
-						// lastStory_ID: props.lastStory.id,
-						// width: window.innerWidth,
-					},
-				},
-				{ withCredentials: true }
-			)
-			.then((response) => {
-				console.log("RESPONSE from story_flipper", response.data.stories);
-			})
-			.catch((error) => {
-				console.log("handleReversePageErrors", error);
-			});
+  useEffect(() => {
+    console.log(
+      "USEEFFECT in storyFlipper, isloading is " +
+        isLoading +
+        " and inView is " +
+        inView
+    );
+    {
+      inView &&
+        axios
+          .post(
+            "/story_flipper/",
+            {
+              data: {
+                // lastStory_ID: props.lastStory.id,
+                // width: window.innerWidth,
+              },
+            },
+            { withCredentials: true }
+          )
+          .then((response) => {
+            console.log("RESPONSE from story_flipper", response.data.stories);
+            console.log(
+              "RESPONSE from story_flipper",
+              typeof response.data.stories
+            );
 
-		return <h1>TRUE</h1>;
-	}
+            setStories(response.data.stories);
 
-	return (
-		<div>
-			<h1>LOADING...</h1>
-			{inView == true ? <GetStories /> : <h1>FALSE</h1>}
-		</div>
-	);
+            setIsLoading(false);
+          })
+          .catch((error) => {
+            console.log("handleReversePageErrors", error);
+          });
+    }
+  }, [inView]);
+
+  function DisplayStories() {
+    console.log("inDIsplayStories----------------=============");
+    return (
+      <>
+        {stories.map((s, i) => (
+          <StoryCard key={i} i={i} s={s} />
+        ))}
+      </>
+    );
+  }
+
+  return <>{isLoading ? <h1>Loading.....</h1> : <DisplayStories />}</>;
 }
 
 export default storyFlipper;
