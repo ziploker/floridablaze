@@ -98,10 +98,11 @@ const StoryFlipperWrapper = styled.div`
 
   grid-gap: 10px;
 `;
-
-function storyCard({ s, i }) {
+// const Post = React.forwardRef(({ post }, ref) => {
+const storyCard = React.forwardRef(({ s, i }, ref) => {
+  console.log("Insiode StoryCXard and ref ios ", ref);
   return (
-    <StoryFlipperWrapper key={i}>
+    <StoryFlipperWrapper ref={ref} key={i}>
       <LinkWrapper1
         to={"/blog/" + slugify(s.title)}
         // state={{ art: props.lastStory }}
@@ -121,6 +122,6 @@ function storyCard({ s, i }) {
       </Div1OverlayWrapper>
     </StoryFlipperWrapper>
   );
-}
+});
 
 export default storyCard;
