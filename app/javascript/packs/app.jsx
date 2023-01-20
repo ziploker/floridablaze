@@ -45,6 +45,7 @@ function App({ d }) {
   } = useInView({
     /* Optional options */
     threshold: 0,
+    triggerOnce: true,
   });
 
   console.log("==============APP===============" + JSON.stringify(d));
