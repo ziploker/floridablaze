@@ -105,19 +105,35 @@ class SparksController < ApplicationController
         puts "============Sparks controller def index end================"
     end
 
-def story_flipper
+    def story_flipper
 
-    @newStories = Story.limit(4).offset(4).order(id: :desc)
+        @newStories = Story.limit(4).offset(4).order(id: :desc)
 
-    render json: {
-        stories: @newStories,
+        render json: {
+            stories: @newStories,
+            
+        }
+
+
+    end
+
+    def story_flipper_more
+
+        lastStoryID = params[:data][:lastStoryID]
+
+        @newStories = Story.where("id < ?", lastStoryID).limit(4).order(id: :desc)
+
+        render json: {
+            stories: @newStories,
+            howManyStories: @newStories.length
+            
+        }
+
         
-    }
 
+    end
 
-end
-
-    def page_forward
+    def page_reverse
 
         puts "fo4ward----------------page"
     
@@ -241,7 +257,7 @@ end
     end
 
 
-    def page_reverse
+    def page_forward
 
         puts "reverse----------------page"
     
