@@ -85,11 +85,12 @@ function storyFlipper({ inView }) {
 
 					// //setStories(response.data.stories);
 					setIsLoading(false);
-					if (response.data.howManyStories > 0) {
+					if (response.data.howManyStories > 4) {
 						setStories((prev) => [...prev, ...response.data.stories]);
 
 						// setHasNextPage(true);
 					} else {
+						setStories((prev) => [...prev, ...response.data.stories]);
 						if (intObserver.current) intObserver.current.disconnect();
 					}
 				})
