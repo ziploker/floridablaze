@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     post '/forward', to: 'sparks#page_forward'
     post '/reverse', to: 'sparks#page_reverse'
     post '/story_flipper', to: 'sparks#story_flipper'
+    post '/story_flipper/new', to: 'sparks#story_flipper_new'
     post '/send/emails', to: 'lookups#sendEmailToReps'
 
     post '/send/letters', to: 'lookups#sendLetterToReps'
