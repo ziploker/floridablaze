@@ -136,6 +136,7 @@ const LongNav = styled.nav`
 const Outter = styled.div`
   width: 100%;
   position: relative;
+  overflow: hidden;
 `;
 
 const HamburgerMenu = styled.div`
