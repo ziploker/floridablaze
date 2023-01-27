@@ -28,6 +28,7 @@
     "node-sass": "^8.0.0",
     "pnp-webpack-plugin": "1",
     "prop-types": "^15.8.1",
+    "prosemirror-commands": "^1.5.0",
     "prosemirror-keymap": "^1.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
