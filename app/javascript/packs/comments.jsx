@@ -9,10 +9,10 @@ import React, {
 import styled from "styled-components";
 //import {CSSTransition} from 'react-transition-group';
 //import { useSpring, useTransition, animated } from 'react-spring'
-import TimeAgo from "javascript-time-ago";
-TimeAgo.addDefaultLocale(en);
+//import TimeAgo from "javascript-time-ago";
+//TimeAgo.addDefaultLocale(en);
 import ReactTimeAgo from "react-time-ago";
-import en from "javascript-time-ago/locale/en";
+//import en from "javascript-time-ago/locale/en";
 import CommentReplyForm from "./commentReplyForm";
 import defaultAvatar from "../../assets/images/man3.png";
 import axios from "axios";
