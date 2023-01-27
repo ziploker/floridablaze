@@ -11,6 +11,8 @@ import styled from "styled-components";
 //import { useSpring, useTransition, animated } from 'react-spring'
 //import TimeAgo from "javascript-time-ago";
 //TimeAgo.addDefaultLocale(en);
+//
+// wtf
 import ReactTimeAgo from "react-time-ago";
 //import en from "javascript-time-ago/locale/en";
 import CommentReplyForm from "./commentReplyForm";
