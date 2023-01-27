@@ -132,7 +132,7 @@ const LeftArrow = styled.img`
 const LinkWrapper1 = styled(Link)`
   //grid-area: 1/1/3/2;
   grid-area: one;
-  max-width: 600px;
+  //max-width: 600px;
   width: 100%;
   justify-self: center;
   display: grid;
@@ -173,7 +173,7 @@ const Div1 = styled.div`
   overflow: hidden;
   display: grid;
   justify-self: center;
-  max-width: 600px;
+  //max-width: 600px;
   width: 100%;
 
   background-image: url(${(props) => props.imageURL});
@@ -299,7 +299,7 @@ const Div1OverlayWrapper = styled.div`
   grid-area: one;
   border-radius: 10px;
   overflow: hidden;
-  max-width: 600px;
+  //max-width: 600px;
   width: 100%;
   justify-self: center;
   display: grid;
@@ -623,11 +623,11 @@ function Home(props) {
     <>
       <HomeWrapper>
         <News className="box">
-          <LeftArrowButton
+          {/* <LeftArrowButton
             onClick={() => handleForwardPage(props, setLoadingStories)}
           >
             <LeftArrow src={scrollArrow}></LeftArrow>
-          </LeftArrowButton>
+          </LeftArrowButton> */}
 
           <LinkWrapper1
             to={
@@ -666,7 +666,7 @@ function Home(props) {
             </div>
           ) : null}
 
-          <LinkWrapper2
+          {/* <LinkWrapper2
             to={
               "/blog/" +
               slugify(
@@ -747,15 +747,15 @@ function Home(props) {
                 ? props.fourthToLastStory.title
                 : "Place golder for title. place golder for title."}
             </StoryOneTitle>
-          </Div4OverlayWrapper>
+          </Div4OverlayWrapper> */}
 
-          <RightArrowButton
+          {/* <RightArrowButton
             onClick={() => handleReversePage(props, setLoadingStories)}
           >
             <RightArrow src={scrollArrow}></RightArrow>
-          </RightArrowButton>
+          </RightArrowButton> */}
 
-          <BackgroundGray></BackgroundGray>
+          {/* <BackgroundGray></BackgroundGray> */}
         </News>
       </HomeWrapper>
     </>
