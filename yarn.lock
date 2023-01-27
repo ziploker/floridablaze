@@ -3596,7 +3596,7 @@ isobject@^3.0.1:
   resolved "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz"
   integrity sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==
 
-javascript-time-ago@^2.3.7:
+javascript-time-ago@^2.3.7, javascript-time-ago@^2.5.9:
   version "2.5.9"
   resolved "https://registry.npmjs.org/javascript-time-ago/-/javascript-time-ago-2.5.9.tgz"
   integrity sha512-pQ8mNco/9g9TqWXWWjP0EWl6i/lAQScOyEeXy5AB+f7MfLSdgyV9BJhiOD1zrIac/lrxPYOWNbyl/IW8CW5n0A==
