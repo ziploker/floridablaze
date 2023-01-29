@@ -10,6 +10,7 @@ import axios from "axios";
 import { gsap } from "gsap";
 import { _parseRelative } from "gsap/gsap-core";
 import "../../assets/stylesheets/home_story_spinner.scss";
+import Carousel, { CarouselItem } from "./carousel";
 
 const HomeWrapper = styled.div`
   //background: pink;
@@ -622,14 +623,14 @@ function Home(props) {
   return (
     <>
       <HomeWrapper>
-        <News className="box">
-          {/* <LeftArrowButton
+        {/* <News className="box"> */}
+        {/* <LeftArrowButton
             onClick={() => handleForwardPage(props, setLoadingStories)}
           >
             <LeftArrow src={scrollArrow}></LeftArrow>
           </LeftArrowButton> */}
 
-          <LinkWrapper1
+        {/* <LinkWrapper1
             to={
               "/blog/" +
               slugify(props.lastStory ? props.lastStory.title : "nada")
@@ -643,17 +644,17 @@ function Home(props) {
                 props.lastStory ? props.lastStory.urls[0] : defaultImage
               }
             ></Div1>
-          </LinkWrapper1>
+          </LinkWrapper1> */}
 
-          <Div1OverlayWrapper ref={gsapContainer2} className="s2">
+        {/* <Div1OverlayWrapper ref={gsapContainer2} className="s2">
             <StoryOneTitle>
               {props.lastStory
                 ? props.lastStory.title
                 : "Place golder for title. place golder for title."}
             </StoryOneTitle>
-          </Div1OverlayWrapper>
+          </Div1OverlayWrapper> */}
 
-          {loadingStories ? (
+        {/* {loadingStories ? (
             <div
               className="loader"
               style={{
@@ -664,9 +665,9 @@ function Home(props) {
             >
               Loading...
             </div>
-          ) : null}
+          ) : null} */}
 
-          {/* <LinkWrapper2
+        {/* <LinkWrapper2
             to={
               "/blog/" +
               slugify(
@@ -749,14 +750,20 @@ function Home(props) {
             </StoryOneTitle>
           </Div4OverlayWrapper> */}
 
-          {/* <RightArrowButton
+        {/* <RightArrowButton
             onClick={() => handleReversePage(props, setLoadingStories)}
           >
             <RightArrow src={scrollArrow}></RightArrow>
           </RightArrowButton> */}
 
-          {/* <BackgroundGray></BackgroundGray> */}
-        </News>
+        {/* <BackgroundGray></BackgroundGray> */}
+        {/* </News> */}
+
+        <Carousel>
+          <CarouselItem>Item 1</CarouselItem>
+          <CarouselItem>Item 2</CarouselItem>
+          <CarouselItem>Item 3</CarouselItem>
+        </Carousel>
       </HomeWrapper>
     </>
   );

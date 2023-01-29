@@ -44,6 +44,7 @@
     "react-router-dom": "^6.6.1",
     "react-share": "^4.4.1",
     "react-slugify": "^2.1.0",
+    "react-swipeable": "^7.0.0",
     "react-time-ago": "^7.2.1",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
