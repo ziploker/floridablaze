@@ -4,6 +4,7 @@ import { useSwipeable } from "react-swipeable";
 import "../../assets/stylesheets/carousel.css";
 
 export const CarouselItem = ({ children, width }) => {
+  console.log("children----", children);
   return (
     <div className="carousel-item" style={{ width: width }}>
       {children}
@@ -26,17 +27,16 @@ const Carousel = ({ children }) => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!paused) {
-        updateIndex(activeIndex + 1);
-      }
-    }, 3000);
-
-    return () => {
-      if (interval) {
-        clearInterval(interval);
-      }
-    };
+    // const interval = setInterval(() => {
+    //   if (!paused) {
+    //     updateIndex(activeIndex + 1);
+    //   }
+    // }, 3000);
+    // return () => {
+    //   if (interval) {
+    //     clearInterval(interval);
+    //   }
+    // };
   });
 
   const handlers = useSwipeable({

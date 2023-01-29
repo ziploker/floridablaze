@@ -442,6 +442,10 @@ const BackgroundGray = styled.div`
   }
 `;
 
+const ItemWrapper = styled.div`
+  display: grid;
+`;
+
 function handleForwardPage(props, setLoadingStories) {
   setLoadingStories(true);
   axios
@@ -760,9 +764,97 @@ function Home(props) {
         {/* </News> */}
 
         <Carousel>
-          <CarouselItem>Item 1</CarouselItem>
-          <CarouselItem>Item 2</CarouselItem>
-          <CarouselItem>Item 3</CarouselItem>
+          <CarouselItem>
+            <ItemWrapper>
+              <LinkWrapper1
+                to={
+                  "/blog/" +
+                  slugify(props.lastStory ? props.lastStory.title : "nada")
+                }
+                state={{ art: props.lastStory }}
+                ref={gsapContainer1}
+              >
+                <Div1
+                  className="s1"
+                  imageURL={
+                    props.lastStory ? props.lastStory.urls[0] : defaultImage
+                  }
+                ></Div1>
+              </LinkWrapper1>
+
+              <Div1OverlayWrapper ref={gsapContainer2} className="s2">
+                <StoryOneTitle>
+                  {props.lastStory
+                    ? props.lastStory.title
+                    : "Place golder for title. place golder for title."}
+                </StoryOneTitle>
+              </Div1OverlayWrapper>
+            </ItemWrapper>
+          </CarouselItem>
+          <CarouselItem>
+            <ItemWrapper>
+              <LinkWrapper2
+                to={
+                  "/blog/" +
+                  slugify(
+                    props.secondToLastStory
+                      ? props.secondToLastStory.title
+                      : "nada"
+                  )
+                }
+                state={{ art: props.secondToLastStory }}
+              >
+                <Div2
+                  className="s1"
+                  imageURL={
+                    props.secondToLastStory
+                      ? props.secondToLastStory.urls[0]
+                      : defaultImage
+                  }
+                ></Div2>
+              </LinkWrapper2>
+
+              <Div2OverlayWrapper className="s2">
+                <StoryOneTitle>
+                  {props.secondToLastStory
+                    ? props.secondToLastStory.title
+                    : "Place holder for title, place holder for title"}
+                </StoryOneTitle>
+              </Div2OverlayWrapper>
+            </ItemWrapper>
+          </CarouselItem>
+          <CarouselItem>
+            <ItemWrapper>
+              <LinkWrapper3
+                to={
+                  "/blog/" +
+                  slugify(
+                    props.thirdTolastStoryLastStory
+                      ? props.thirdToLastStory.title
+                      : "nada"
+                  )
+                }
+                state={{ art: props.thirdTolastStoryLastStory }}
+              >
+                <Div3
+                  className="s1"
+                  imageURL={
+                    props.thirdToLastStory
+                      ? props.thirdToLastStory.urls[0]
+                      : defaultImage
+                  }
+                ></Div3>
+              </LinkWrapper3>
+
+              <Div3OverlayWrapper className="s2">
+                <StoryOneTitle>
+                  {props.thirdToLastStory
+                    ? props.thirdToLastStory.title
+                    : "Place golder for title. place golder for title."}
+                </StoryOneTitle>
+              </Div3OverlayWrapper>
+            </ItemWrapper>
+          </CarouselItem>
         </Carousel>
       </HomeWrapper>
     </>
