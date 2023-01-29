@@ -11,6 +11,7 @@ import { gsap } from "gsap";
 import { _parseRelative } from "gsap/gsap-core";
 import "../../assets/stylesheets/home_story_spinner.scss";
 import Carousel, { CarouselItem } from "./carousel";
+import "../../assets/stylesheets/carouselstyle.scss";
 
 const HomeWrapper = styled.div`
   //background: pink;
