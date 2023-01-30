@@ -133,7 +133,8 @@ const LeftArrow = styled.img`
 
 const LinkWrapper1 = styled(Link)`
   //grid-area: 1/1/3/2;
-  grid-area: one;
+  //grid-area: one;
+  grid-area: 1/1/-1/-1;
   //max-width: 600px;
   width: 100%;
   justify-self: center;
@@ -142,29 +143,34 @@ const LinkWrapper1 = styled(Link)`
 
 const LinkWrapper2 = styled(Link)`
   //grid-area: 1/1/3/2;
-  grid-area: two;
-  max-width: 600px;
+  //grid-area: two;
+  grid-area: 1/1/-1/-1;
+  //max-width: 600px;
   width: 100%;
   justify-self: center;
+  display: grid;
 `;
 
 const LinkWrapper3 = styled(Link)`
   //grid-area: 1/1/3/2;
-  grid-area: three;
-  max-width: 600px;
+  //grid-area: three;
+  grid-area: 1/1/-1/-1;
+  //max-width: 600px;
   width: 100%;
   justify-self: center;
+  display: grid;
 `;
 
 const LinkWrapper4 = styled(Link)`
   display: none;
   @media only screen and (max-width: 1111px) {
     //grid-area: 1/1/3/2;
-    grid-area: four;
-    max-width: 600px;
+    //grid-area: four;
+    grid-area: 1/1/-1/-1;
+    //max-width: 600px;
     width: 100%;
     justify-self: center;
-    display: initial;
+    display: grid;
   }
 `;
 
@@ -206,7 +212,7 @@ const Div2 = styled.div`
   overflow: hidden;
   display: grid;
   justify-self: center;
-  max-width: 600px;
+  //max-width: 600px;
   width: 100%;
 
   background-image: url(${(props) => props.imageURL});
@@ -237,7 +243,7 @@ const Div3 = styled.div`
   overflow: hidden;
   display: grid;
   justify-self: center;
-  max-width: 600px;
+  //max-width: 600px;
   width: 100%;
 
   background-image: url(${(props) => props.imageURL});
@@ -269,7 +275,7 @@ const Div4 = styled.div`
     overflow: hidden;
     display: grid;
     justify-self: center;
-    max-width: 600px;
+    //max-width: 600px;
     width: 100%;
 
     background-image: url(${(props) => props.imageURL});
@@ -298,7 +304,8 @@ const Div4 = styled.div`
 
 const Div1OverlayWrapper = styled.div`
   pointer-events: none;
-  grid-area: one;
+  //grid-area: one;
+  grid-area: 1/1/-1/-1;
   border-radius: 10px;
   overflow: hidden;
   //max-width: 600px;
@@ -327,16 +334,19 @@ const Div1OverlayWrapper = styled.div`
 `;
 
 const Div2OverlayWrapper = styled(Div1OverlayWrapper)`
-  grid-area: two;
+  //grid-area: two;
+  grid-area: 1/1/-1/-1;
 `;
 
 const Div3OverlayWrapper = styled(Div1OverlayWrapper)`
-  grid-area: three;
+  //grid-area: three;
+  grid-area: 1/1/-1/-1;
 `;
 
 const Div4OverlayWrapper = styled(Div1OverlayWrapper)`
   @media only screen and (max-width: 1111px) {
-    grid-area: four;
+    //grid-area: four;
+    grid-area: 1/1/-1/-1;
     display: inherit;
   }
 
@@ -445,6 +455,8 @@ const BackgroundGray = styled.div`
 
 const ItemWrapper = styled.div`
   display: grid;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 function handleForwardPage(props, setLoadingStories) {
