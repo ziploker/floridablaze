@@ -11,7 +11,6 @@ import { gsap } from "gsap";
 import { _parseRelative } from "gsap/gsap-core";
 import "../../assets/stylesheets/home_story_spinner.scss";
 import Carousel, { CarouselItem } from "./carousel";
-import "../../assets/stylesheets/carouselstyle.scss";
 
 const HomeWrapper = styled.div`
 	//background: pink;
@@ -778,7 +777,7 @@ function Home(props) {
 
 				<Carousel>
 					<CarouselItem>
-						<ItemWrapper className="slide">
+						<ItemWrapper>
 							<LinkWrapper1
 								to={
 									"/blog/" +
@@ -805,7 +804,7 @@ function Home(props) {
 						</ItemWrapper>
 					</CarouselItem>
 					<CarouselItem>
-						<ItemWrapper className="slide">
+						<ItemWrapper>
 							<LinkWrapper2
 								to={
 									"/blog/" +
@@ -837,7 +836,7 @@ function Home(props) {
 						</ItemWrapper>
 					</CarouselItem>
 					<CarouselItem>
-						<ItemWrapper className="slide">
+						<ItemWrapper>
 							<LinkWrapper3
 								to={
 									"/blog/" +
