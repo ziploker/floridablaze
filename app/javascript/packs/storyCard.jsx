@@ -75,7 +75,8 @@ const Div1OverlayWrapper = styled.div`
 
 const StoryOneTitle = styled.h1`
   //grid-area: 1 /1 /2/2;
-  font-size: 16px;
+  font-size: 4.2vw;
+  word-break: break-all;
   //align-self: end;
   //justify-self: start;
   //text-align: left;
