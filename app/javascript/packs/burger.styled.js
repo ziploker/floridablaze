@@ -22,7 +22,7 @@ const StyledBurger = styled.button`
     outline: none;
   }
 
-  @media only screen and (min-width: 501px) {
+  @media only screen and (min-width: 1111px) {
     display: none;
   }
 
