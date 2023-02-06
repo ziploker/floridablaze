@@ -108,11 +108,15 @@ const LongNav = styled.nav`
 				padding: 0px 12px;
 			}
 
+			@media only screen and (min-width: 1396px) {
+				font-size: 39px;
+			}
+
 			display: inline-block;
-			padding: 0px 20px;
+			padding: 0px 12px;
 
 			font-weight: 500;
-			font-size: 16px;
+			font-size: 2.8vw;
 			line-height: 45px;
 			color: inherit;
 			text-decoration: none;
@@ -122,9 +126,13 @@ const LongNav = styled.nav`
 			}
 
 			a {
+				@media only screen and (min-width: 1396px) {
+					font-size: 21px;
+				}
+
 				transition: all 0.3s ease 0s;
 				font-weight: 500;
-				font-size: 16px;
+				font-size: 1.5vw;
 				line-height: 45px;
 				color: inherit;
 			}
@@ -143,7 +151,7 @@ const HamburgerMenu = styled.div`
 	grid-area: 1/3/2/4;
 	justify-self: end;
 	align-self: center;
-	padding-right: 1em;
+	padding-right: 1.5em;
 
 	@media only screen and (max-width: 1111px) {
 		position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
@@ -378,22 +386,13 @@ function Header(props) {
 				></HeaderLeafImage>
 				<LongNav ref={longNavRef} longNavScrolled={longNavScrolled}>
 					<ul>
-						<li key={0} style={{ fontSize: "2.8vw" }}>
-							news
-						</li>
+						<li key={0}>news</li>
 						<li key={1}>
-							<a
-								style={{ fontSize: "2.8vw" }}
-								onClick={props.executeScrollForLookupSection}
-							>
-								Act
-							</a>
+							<span onClick={props.executeScrollForLookupSection}>Act</span>
 						</li>
-						<li key={2} style={{ fontSize: "2.8vw" }}>
-							shop
-						</li>
+						<li key={2}>shop</li>
 
-						<li key={3} style={{ fontSize: "1.5vw" }}>
+						<li key={3}>
 							{props.userState.loggedInStatus == "LOGGED_IN"
 								? [
 										<a key={"a"} onClick={props.handleLogOutClick}>

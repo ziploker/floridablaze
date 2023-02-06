@@ -23,6 +23,9 @@ const HomeWrapper = styled.div`
 `;
 
 const News = styled.div`
+	@media only screen and (max-width: 2199px) {
+		display: none;
+	}
 	@media only screen and (max-width: 1111px) {
 		//@media only screen and (max-width: 866px) {
 		//margin-top: 0px;
@@ -40,7 +43,7 @@ const News = styled.div`
 			".";
 	}
 
-	/* @media only screen and (min-width: 867px) and (max-width: 1111px) {
+	@media only screen and (min-width: 867px) and (max-width: 1111px) {
 		grid-template-columns:
 			minmax(20px, 1fr)
 			minmax(200px, 600px)
@@ -56,7 +59,7 @@ const News = styled.div`
 			"leftArrow     three  .   four  rightArrow"
 			"leftArrow     three  .   four  rightArrow"
 			"    .           .    .    .        .     ";
-	} */
+	}
 
 	min-height: 100%;
 
@@ -715,130 +718,127 @@ function Home(props) {
 
 	return (
 		<HomeWrapper>
-			{/* <News className="box">
-          <LeftArrowButton
-            onClick={() => handleForwardPage(props, setLoadingStories)}
-          >
-            <LeftArrow src={scrollArrow}></LeftArrow>
-          </LeftArrowButton>
+			<News className="box">
+				<LeftArrowButton
+					onClick={() => handleForwardPage(props, setLoadingStories)}
+				>
+					<LeftArrow src={scrollArrow}></LeftArrow>
+				</LeftArrowButton>
 
-          <LinkWrapper1
-            to={
-              "/blog/" +
-              slugify(props.lastStory ? props.lastStory.title : "nada")
-            }
-            state={{ art: props.lastStory }}
-          >
-            <Div1
-              className="s1"
-              imageURL={
-                props.lastStory ? props.lastStory.urls[0] : defaultImage
-              }
-            ></Div1>
-          </LinkWrapper1>
-          <Div1OverlayWrapper className="s2">
-            <StoryOneTitle>
-              {props.lastStory
-                ? props.lastStory.title
-                : "Place golder for title. place golder for title."}
-            </StoryOneTitle>
-          </Div1OverlayWrapper>
-          {loadingStories ? (
-            <div
-              className="loader"
-              style={{
-                gridArea: "one",
-                justifySelf: "center",
-                alignSelf: "center",
-              }}
-            >
-              Loading...
-            </div>
-          ) : null}
-          <LinkWrapper2
-            to={
-              "/blog/" +
-              slugify(
-                props.secondToLastStory ? props.secondToLastStory.title : "nada"
-              )
-            }
-            state={{ art: props.secondToLastStory }}
-          >
-            <Div2
-              className="s1"
-              imageURL={
-                props.secondToLastStory
-                  ? props.secondToLastStory.urls[0]
-                  : defaultImage
-              }
-            ></Div2>
-          </LinkWrapper2>
-          <Div2OverlayWrapper className="s2">
-            <StoryOneTitle>
-              {props.secondToLastStory
-                ? props.secondToLastStory.title
-                : "Place holder for title, place holder for title"}
-            </StoryOneTitle>
-          </Div2OverlayWrapper>
-          <LinkWrapper3
-            to={
-              "/blog/" +
-              slugify(
-                props.thirdTolastStoryLastStory
-                  ? props.thirdToLastStory.title
-                  : "nada"
-              )
-            }
-            state={{ art: props.thirdTolastStoryLastStory }}
-          >
-            <Div3
-              className="s1"
-              imageURL={
-                props.thirdToLastStory
-                  ? props.thirdToLastStory.urls[0]
-                  : defaultImage
-              }
-            ></Div3>
-          </LinkWrapper3>
-          <Div3OverlayWrapper className="s2">
-            <StoryOneTitle>
-              {props.thirdToLastStory
-                ? props.thirdToLastStory.title
-                : "Place golder for title. place golder for title."}
-            </StoryOneTitle>
-          </Div3OverlayWrapper>
-          <LinkWrapper4
-            to={
-              "/blog/" +
-              slugify(
-                props.fourthToLastStory ? props.fourthToLastStory.title : "nada"
-              )
-            }
-            state={{ art: props.fourthToLastStory }}
-          >
-            <Div4
-              className="s1"
-              imageURL={
-                props.fourthToLastStory
-                  ? props.fourthToLastStory.urls[0]
-                  : defaultImage
-              }
-            ></Div4>
-          </LinkWrapper4>
-          <Div4OverlayWrapper className="s2">
-            <StoryOneTitle>
-              {props.fourthToLastStory
-                ? props.fourthToLastStory.title
-                : "Place golder for title. place golder for title."}
-            </StoryOneTitle>
-          </Div4OverlayWrapper>
-          <RightArrowButton
-            onClick={() => handleReversePage(props, setLoadingStories)}
-          >
-            <RightArrow src={scrollArrow}></RightArrow>
-          </RightArrowButton>
-          <BackgroundGray></BackgroundGray>
-        </News> */}
+				<LinkWrapper1
+					to={
+						"/blog/" + slugify(props.lastStory ? props.lastStory.title : "nada")
+					}
+					state={{ art: props.lastStory }}
+				>
+					<Div1
+						className="s1"
+						imageURL={props.lastStory ? props.lastStory.urls[0] : defaultImage}
+					></Div1>
+				</LinkWrapper1>
+				<Div1OverlayWrapper className="s2">
+					<StoryOneTitle>
+						{props.lastStory
+							? props.lastStory.title
+							: "Place golder for title. place golder for title."}
+					</StoryOneTitle>
+				</Div1OverlayWrapper>
+				{loadingStories ? (
+					<div
+						className="loader"
+						style={{
+							gridArea: "one",
+							justifySelf: "center",
+							alignSelf: "center",
+						}}
+					>
+						Loading...
+					</div>
+				) : null}
+				<LinkWrapper2
+					to={
+						"/blog/" +
+						slugify(
+							props.secondToLastStory ? props.secondToLastStory.title : "nada"
+						)
+					}
+					state={{ art: props.secondToLastStory }}
+				>
+					<Div2
+						className="s1"
+						imageURL={
+							props.secondToLastStory
+								? props.secondToLastStory.urls[0]
+								: defaultImage
+						}
+					></Div2>
+				</LinkWrapper2>
+				<Div2OverlayWrapper className="s2">
+					<StoryOneTitle>
+						{props.secondToLastStory
+							? props.secondToLastStory.title
+							: "Place holder for title, place holder for title"}
+					</StoryOneTitle>
+				</Div2OverlayWrapper>
+				<LinkWrapper3
+					to={
+						"/blog/" +
+						slugify(
+							props.thirdTolastStoryLastStory
+								? props.thirdToLastStory.title
+								: "nada"
+						)
+					}
+					state={{ art: props.thirdTolastStoryLastStory }}
+				>
+					<Div3
+						className="s1"
+						imageURL={
+							props.thirdToLastStory
+								? props.thirdToLastStory.urls[0]
+								: defaultImage
+						}
+					></Div3>
+				</LinkWrapper3>
+				<Div3OverlayWrapper className="s2">
+					<StoryOneTitle>
+						{props.thirdToLastStory
+							? props.thirdToLastStory.title
+							: "Place golder for title. place golder for title."}
+					</StoryOneTitle>
+				</Div3OverlayWrapper>
+				<LinkWrapper4
+					to={
+						"/blog/" +
+						slugify(
+							props.fourthToLastStory ? props.fourthToLastStory.title : "nada"
+						)
+					}
+					state={{ art: props.fourthToLastStory }}
+				>
+					<Div4
+						className="s1"
+						imageURL={
+							props.fourthToLastStory
+								? props.fourthToLastStory.urls[0]
+								: defaultImage
+						}
+					></Div4>
+				</LinkWrapper4>
+				<Div4OverlayWrapper className="s2">
+					<StoryOneTitle>
+						{props.fourthToLastStory
+							? props.fourthToLastStory.title
+							: "Place golder for title. place golder for title."}
+					</StoryOneTitle>
+				</Div4OverlayWrapper>
+				<RightArrowButton
+					onClick={() => handleReversePage(props, setLoadingStories)}
+				>
+					<RightArrow src={scrollArrow}></RightArrow>
+				</RightArrowButton>
+				<BackgroundGray></BackgroundGray>
+			</News>
 			{/* ////////// */}
 
 			<Carousel>
