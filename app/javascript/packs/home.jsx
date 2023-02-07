@@ -26,7 +26,7 @@ const News = styled.div`
 	@media only screen and (max-width: 2199px) {
 		display: none;
 	}
-	@media only screen and (max-width: 1111px) {
+	/* @media only screen and (max-width: 1111px) {
 		//@media only screen and (max-width: 866px) {
 		//margin-top: 0px;
 		margin: 20px 10px 43px 10px;
@@ -41,9 +41,9 @@ const News = styled.div`
 			"three"
 			"four"
 			".";
-	}
+	} */
 
-	@media only screen and (min-width: 867px) and (max-width: 1111px) {
+	/* @media only screen and (min-width: 867px) and (max-width: 1111px) {
 		grid-template-columns:
 			minmax(20px, 1fr)
 			minmax(200px, 600px)
@@ -59,7 +59,7 @@ const News = styled.div`
 			"leftArrow     three  .   four  rightArrow"
 			"leftArrow     three  .   four  rightArrow"
 			"    .           .    .    .        .     ";
-	}
+	} */
 
 	min-height: 100%;
 
@@ -105,7 +105,7 @@ const News = styled.div`
 	} */
 `;
 
-const LeftArrowButton = styled.button`
+const NewsLeftArrowButton = styled.button`
 	width: 50px;
 	height: 40px;
 	grid-area: leftArrow;
@@ -114,10 +114,9 @@ const LeftArrowButton = styled.button`
 	background: rgba(255, 255, 255, 0);
 	border: 0;
 	display: grid;
-	position: absolute;
+
 	z-index: 1;
-	left: 0;
-	top: 69px;
+
 	cursor: pointer;
 
 	&:hover {
@@ -136,30 +135,49 @@ const LeftArrow = styled.img`
 `;
 
 const LinkWrapper1 = styled(Link)`
-	//grid-area: 1/1/3/2;
-	//grid-area: one;
-	grid-area: 1/1/-1/-1;
-	//max-width: 600px;
+	@media only screen and (max-width: 2199px) {
+		//grid-area: 1/1/3/2;
+		//grid-area: one;
+		grid-area: 1/1/-1/-1;
+		//max-width: 600px;
+		width: 100%;
+		justify-self: center;
+		display: grid;
+	}
+	grid-area: one;
 	width: 100%;
 	justify-self: center;
 	display: grid;
 `;
 
 const LinkWrapper2 = styled(Link)`
-	//grid-area: 1/1/3/2;
-	//grid-area: two;
-	grid-area: 1/1/-1/-1;
-	//max-width: 600px;
+	@media only screen and (max-width: 2199px) {
+		//grid-area: 1/1/3/2;
+		//grid-area: two;
+		grid-area: 1/1/-1/-1;
+		//max-width: 600px;
+		width: 100%;
+		justify-self: center;
+		display: grid;
+	}
+	grid-area: two;
 	width: 100%;
 	justify-self: center;
 	display: grid;
 `;
 
 const LinkWrapper3 = styled(Link)`
-	//grid-area: 1/1/3/2;
-	//grid-area: three;
-	grid-area: 1/1/-1/-1;
-	//max-width: 600px;
+	@media only screen and (max-width: 2199px) {
+		//grid-area: 1/1/3/2;
+		//grid-area: three;
+		grid-area: 1/1/-1/-1;
+		//max-width: 600px;
+		width: 100%;
+		justify-self: center;
+		display: grid;
+	}
+
+	grid-area: three;
 	width: 100%;
 	justify-self: center;
 	display: grid;
@@ -175,6 +193,8 @@ const LinkWrapper4 = styled(Link)`
 		width: 100%;
 		justify-self: center;
 		display: grid;
+	}
+	@media only screen and (max-width: 2199px) {
 	}
 `;
 
@@ -337,16 +357,28 @@ const Div1OverlayWrapper = styled.div`
 		rgba(255, 145, 145, 0) 34%
 	);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff9191",GradientType=1);
+
+	@media only screen and (max-width: 2199px) {
+		grid-area: one;
+	}
 `;
 
 const Div2OverlayWrapper = styled(Div1OverlayWrapper)`
 	//grid-area: two;
 	grid-area: 1/1/-1/-1;
+
+	@media only screen and (max-width: 2199px) {
+		grid-area: two;
+	}
 `;
 
 const Div3OverlayWrapper = styled(Div1OverlayWrapper)`
 	//grid-area: three;
 	grid-area: 1/1/-1/-1;
+
+	@media only screen and (max-width: 2199px) {
+		grid-area: three;
+	}
 `;
 
 const Div4OverlayWrapper = styled(Div1OverlayWrapper)`
@@ -719,11 +751,11 @@ function Home(props) {
 	return (
 		<HomeWrapper>
 			<News className="box">
-				<LeftArrowButton
+				<NewsLeftArrowButton
 					onClick={() => handleForwardPage(props, setLoadingStories)}
 				>
 					<LeftArrow src={scrollArrow}></LeftArrow>
-				</LeftArrowButton>
+				</NewsLeftArrowButton>
 
 				<LinkWrapper1
 					to={
