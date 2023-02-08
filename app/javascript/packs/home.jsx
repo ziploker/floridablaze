@@ -23,28 +23,27 @@ const HomeWrapper = styled.div`
 `;
 
 const News = styled.div`
-	@media only screen and (max-width: 2199px) {
-		display: none;
-	}
-	/* @media only screen and (max-width: 1111px) {
-		//@media only screen and (max-width: 866px) {
-		//margin-top: 0px;
-		margin: 20px 10px 43px 10px;
-		grid-template-columns: 1fr;
-		//padding: 0px 20px;
-		grid-gap: 10px;
+	@media only screen and (min-width: 2200px) {
+		/* @media only screen and (max-width: 1111px) {
+			//@media only screen and (max-width: 866px) {
+			//margin-top: 0px;
+			margin: 20px 10px 43px 10px;
+			grid-template-columns: 1fr;
+			//padding: 0px 20px;
+			grid-gap: 10px;
 
-		grid-template-rows: max-content max-content max-content max-content 1fr;
-		grid-template-areas:
-			"one"
-			"two"
-			"three"
-			"four"
-			".";
-	} */
+			grid-template-rows: max-content max-content max-content max-content 1fr;
+			grid-template-areas:
+				"one"
+				"two"
+				"three"
+				"four"
+				".";
+		} */
 
-	/* @media only screen and (min-width: 867px) and (max-width: 1111px) {
-		grid-template-columns:
+		//@media only screen and (min-width: 867px) and (max-width: 1111px) {
+
+		/* grid-template-columns:
 			minmax(20px, 1fr)
 			minmax(200px, 600px)
 			10px
@@ -58,70 +57,60 @@ const News = styled.div`
 			"leftArrow     three  .   four  rightArrow"
 			"leftArrow     three  .   four  rightArrow"
 			"leftArrow     three  .   four  rightArrow"
-			"    .           .    .    .        .     ";
-	} */
+			"    .           .    .    .        .     "; */
+		//}
 
-	min-height: 100%;
+		min-height: 100%;
 
-	display: grid;
-	justify-content: center;
-	//grid-template-columns: 1fr minmax(0px, 350px) minmax(0px, 600px) 1fr;
+		display: grid;
+		justify-content: center;
 
-	//grid-template-columns: minmax(20px, 1fr) minmax(170px, 350px)  minmax(340px, 600px)  minmax(20px, 1fr);
+		/* grid-template-columns:
+			minmax(30px, 1fr) minmax(200px, 600px) minmax(10px, 1fr) minmax(
+				200px,
+				600px
+			)
+			minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr);
 
-	//grid-template-columns: 5px 1fr 1fr 1fr 5px;
-	grid-template-columns:
-		minmax(30px, 1fr) minmax(200px, 600px) minmax(10px, 1fr) minmax(
-			200px,
-			600px
-		)
-		minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr);
+		grid-template-areas:
+			"leftArrow   one . two . three   rightArrow"
+			"leftArrow   one . two . three   rightArrow"
+			"leftArrow   one . two . three   rightArrow"
+			"    .        .  .  .  .   .     ."; */
 
-	//grid-template-rows: 80px 120px 50px 1fr;
-	grid-template-areas:
-		"leftArrow   one . two . three   rightArrow"
-		"leftArrow   one . two . three   rightArrow"
-		"leftArrow   one . two . three   rightArrow"
-		"    .        .  .  .  .   .     .";
-	//grid-gap: 20px;
-
-	margin-top: 30px;
-
-	/* display: grid;
-    justify-content: center;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas:
-        "featured one two  ." */
-
-	/* @media only screen and (min-width: 2000px){
-        grid-template-columns: 10vw 1fr 1fr 1fr 10vw;
-
-    } */
-
-	/* @media only screen and (min-width: 1850px) {
 		grid-template-columns:
-			minmax(20px, 1fr) minmax(600px, 700px) minmax(600px, 700px)
-			minmax(600px, 700px) minmax(20px, 1fr);
-	} */
-`;
+			minmax(30px, 50px) 1fr minmax(10px, 30px) 1fr
+			minmax(30px, 50px);
+		/* minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr); */
 
-const NewsLeftArrowButton = styled.button`
-	width: 50px;
-	height: 40px;
-	grid-area: leftArrow;
-	align-self: center;
-	justify-self: end;
-	background: rgba(255, 255, 255, 0);
-	border: 0;
-	display: grid;
+		grid-template-areas:
+			"leftArrow   one . two rightArrow"
+			"leftArrow   one . two rightArrow"
+			"leftArrow   one . two rightArrow"
+			"    .        .  .  .      .     ";
+		//grid-gap: 20px;
 
-	z-index: 1;
+		margin-top: 30px;
 
-	cursor: pointer;
+		/* display: grid;
+		justify-content: center;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-areas:
+			"featured one two  ." */
 
-	&:hover {
-		background: rgba(54, 54, 54, 0.075);
+		/* @media only screen and (min-width: 2000px){
+			grid-template-columns: 10vw 1fr 1fr 1fr 10vw;
+
+		} */
+
+		/* @media only screen and (min-width: 1850px) {
+			grid-template-columns:
+				minmax(20px, 1fr) minmax(600px, 700px) minmax(600px, 700px)
+				minmax(600px, 700px) minmax(20px, 1fr);
+		} */
 	}
+
+	display: none;
 `;
 
 const LeftArrow = styled.img`
@@ -135,52 +124,52 @@ const LeftArrow = styled.img`
 `;
 
 const LinkWrapper1 = styled(Link)`
-	@media only screen and (max-width: 2199px) {
-		//grid-area: 1/1/3/2;
-		//grid-area: one;
-		grid-area: 1/1/-1/-1;
-		//max-width: 600px;
+	//grid-area: 1/1/3/2;
+	//grid-area: one;
+	grid-area: 1/1/-1/-1;
+	//max-width: 600px;
+	width: 100%;
+	justify-self: center;
+	display: grid;
+	@media only screen and (min-width: 2200px) {
+		grid-area: one;
 		width: 100%;
 		justify-self: center;
 		display: grid;
 	}
-	grid-area: one;
-	width: 100%;
-	justify-self: center;
-	display: grid;
 `;
 
 const LinkWrapper2 = styled(Link)`
-	@media only screen and (max-width: 2199px) {
-		//grid-area: 1/1/3/2;
-		//grid-area: two;
-		grid-area: 1/1/-1/-1;
-		//max-width: 600px;
+	//grid-area: 1/1/3/2;
+	//grid-area: two;
+	grid-area: 1/1/-1/-1;
+	//max-width: 600px;
+	width: 100%;
+	justify-self: center;
+	display: grid;
+	@media only screen and (min-width: 2200px) {
+		grid-area: two;
 		width: 100%;
 		justify-self: center;
 		display: grid;
 	}
-	grid-area: two;
-	width: 100%;
-	justify-self: center;
-	display: grid;
 `;
 
 const LinkWrapper3 = styled(Link)`
-	@media only screen and (max-width: 2199px) {
-		//grid-area: 1/1/3/2;
-		//grid-area: three;
-		grid-area: 1/1/-1/-1;
-		//max-width: 600px;
-		width: 100%;
-		justify-self: center;
-		display: grid;
-	}
-
-	grid-area: three;
+	//grid-area: 1/1/3/2;
+	//grid-area: three;
+	grid-area: 1/1/-1/-1;
+	//max-width: 600px;
 	width: 100%;
 	justify-self: center;
 	display: grid;
+	@media only screen and (min-width: 2200px) {
+		/* grid-area: three;
+		width: 100%;
+		justify-self: center;
+		display: grid; */
+		display: none;
+	}
 `;
 
 const LinkWrapper4 = styled(Link)`
@@ -193,8 +182,6 @@ const LinkWrapper4 = styled(Link)`
 		width: 100%;
 		justify-self: center;
 		display: grid;
-	}
-	@media only screen and (max-width: 2199px) {
 	}
 `;
 
@@ -358,7 +345,7 @@ const Div1OverlayWrapper = styled.div`
 	);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff9191",GradientType=1);
 
-	@media only screen and (max-width: 2199px) {
+	@media only screen and (min-width: 2200px) {
 		grid-area: one;
 	}
 `;
@@ -367,7 +354,7 @@ const Div2OverlayWrapper = styled(Div1OverlayWrapper)`
 	//grid-area: two;
 	grid-area: 1/1/-1/-1;
 
-	@media only screen and (max-width: 2199px) {
+	@media only screen and (min-width: 2200px) {
 		grid-area: two;
 	}
 `;
@@ -376,8 +363,9 @@ const Div3OverlayWrapper = styled(Div1OverlayWrapper)`
 	//grid-area: three;
 	grid-area: 1/1/-1/-1;
 
-	@media only screen and (max-width: 2199px) {
-		grid-area: three;
+	@media only screen and (min-width: 2200px) {
+		//grid-area: three;
+		display: none;
 	}
 `;
 
@@ -417,6 +405,25 @@ const StoryOneTitle = styled.h1`
 	align-self: end;
 	justify-self: center;
 	text-align: center;
+`;
+
+const LeftArrowButton = styled.button`
+	width: 100%;
+	height: 100%;
+	grid-area: leftArrow;
+	align-self: center;
+	justify-self: end;
+	background: rgba(255, 255, 255, 0);
+	border: 0;
+	display: grid;
+
+	z-index: 1;
+
+	cursor: pointer;
+
+	&:hover {
+		background: rgba(54, 54, 54, 0.075);
+	}
 `;
 
 const RightArrowButton = styled.button`
@@ -751,11 +758,11 @@ function Home(props) {
 	return (
 		<HomeWrapper>
 			<News className="box">
-				<NewsLeftArrowButton
+				<LeftArrowButton
 					onClick={() => handleForwardPage(props, setLoadingStories)}
 				>
 					<LeftArrow src={scrollArrow}></LeftArrow>
-				</NewsLeftArrowButton>
+				</LeftArrowButton>
 
 				<LinkWrapper1
 					to={
