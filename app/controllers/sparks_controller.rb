@@ -135,11 +135,12 @@ class SparksController < ApplicationController
 
     def page_reverse
 
-        puts "fo4ward----------------page"
+        puts "page_reverse----------------page"
     
         #get currentPageWidth and use that to set dynamicStoriesPerPage
         currentPageWidth = params[:data][:width]
-        fourthToLastStory_ID = params[:data][:fourthToLastStory_ID]
+        secondToLastStory_ID = params[:data][:secondToLastStory_ID]
+        
 
    
         dynamicStoriesPerPage = 2
@@ -147,10 +148,11 @@ class SparksController < ApplicationController
 
     
 
-        puts "the current fourthToLastStory_ID is " + params[:data][:fourthToLastStory_ID].to_s
+        puts "the current secondToLastStory_ID is " + params[:data][:secondToLastStory_ID].to_s
+
         puts "the current page width is " + params[:data][:width].to_s
         puts "the dynamicStoriesPerPage is " + dynamicStoriesPerPage.to_s
-        @stories = Story.where("id < ?", fourthToLastStory_ID).limit(dynamicStoriesPerPage).order(id: :desc)
+        @stories = Story.where("id < ?", secondToLastStory_ID).limit(dynamicStoriesPerPage).order(id: :desc)
         
         #if theres 3 stories per page, always return 3
         #if theres 4 stories per page always return 4
@@ -159,6 +161,7 @@ class SparksController < ApplicationController
         if @stories.length == 0
             puts "about to return " + @stories.length.to_s + " stories"
             #get 3 or 4 stories from the top depending on how many stories per page
+            #get 2 stories from the top 
             
             @newStories = Story.limit(dynamicStoriesPerPage).order(id: :desc)
             puts " but returning " + @newStories.length.to_s + "instead"
@@ -194,6 +197,18 @@ class SparksController < ApplicationController
                     dynamicStoriesPerPage: dynamicStoriesPerPage,
                 }
                 return
+            elsif dynamicStoriesPerPage == 2
+
+                #need to add one more from the top fort a total of 2
+                @extraStories = Story.limit(1).order(id: :desc)
+                @storyPackage = @stories | @extraStories
+                puts " but returning = " + @storyPackage.length.to_s + " instead"
+                render json: {
+                    stories: @storyPackage,
+                    dynamicStoriesPerPage: dynamicStoriesPerPage,
+                }
+                return
+
             end
 
         elsif @stories.length == 2
@@ -221,7 +236,18 @@ class SparksController < ApplicationController
                     dynamicStoriesPerPage: dynamicStoriesPerPage,
                 }
                 return
+
+            elsif dynamicStoriesPerPage == 2
+
+               puts "rendering @stories since it was 2"
+                render json: {
+                    stories: @stories,
+                    dynamicStoriesPerPage: dynamicStoriesPerPage,
+                }
+                return
+
             end
+            
 
         elsif @stories.length == 3
             puts "about to return " + @stories.length.to_s + " stories"
