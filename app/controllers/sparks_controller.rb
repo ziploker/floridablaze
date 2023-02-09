@@ -141,11 +141,11 @@ class SparksController < ApplicationController
         currentPageWidth = params[:data][:width]
         fourthToLastStory_ID = params[:data][:fourthToLastStory_ID]
 
-        if currentPageWidth > 1111
-            dynamicStoriesPerPage = 3
-        else
-            dynamicStoriesPerPage = 4
-        end
+   
+        dynamicStoriesPerPage = 2
+        
+
+    
 
         puts "the current fourthToLastStory_ID is " + params[:data][:fourthToLastStory_ID].to_s
         puts "the current page width is " + params[:data][:width].to_s
