@@ -69,10 +69,11 @@ function App({ d }) {
 
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [loginClicked, setLoginClicked] = useState(false);
-  const [lastStory, setLastStory] = useState(d.stories[0]);
-  const [secondToLastStory, setSecondToLastStory] = useState(d.stories[1]);
-  const [thirdToLastStory, setThirdToLastStory] = useState(d.stories[2]);
-  const [fourthToLastStory, setFourthToLastStory] = useState(d.stories[3]);
+  // const [lastStory, setLastStory] = useState(d.stories[0]);
+  // const [secondToLastStory, setSecondToLastStory] = useState(d.stories[1]);
+  // const [thirdToLastStory, setThirdToLastStory] = useState(d.stories[2]);
+  // const [fourthToLastStory, setFourthToLastStory] = useState(d.stories[3]);
+  const [allStories, setAllStories] = useState(d.stories);
   const [page, setPage] = useState(d.page);
 
   const theme = {
@@ -284,14 +285,17 @@ function App({ d }) {
                 handleSuccessfulAuth={handleSuccessfulAuth}
                 loginClicked={loginClicked}
                 setLoginClicked={setLoginClicked}
-                lastStory={lastStory}
-                secondToLastStory={secondToLastStory}
-                thirdToLastStory={thirdToLastStory}
-                fourthToLastStory={fourthToLastStory}
-                setLastStory={setLastStory}
-                setSecondToLastStory={setSecondToLastStory}
-                setThirdToLastStory={setThirdToLastStory}
-                setFourthToLastStory={setFourthToLastStory}
+                allStories={allStories}
+                setAllStories={setAllStories}
+                //stories={d.stories}
+                // lastStory={lastStory}
+                // secondToLastStory={secondToLastStory}
+                // thirdToLastStory={thirdToLastStory}
+                // fourthToLastStory={fourthToLastStory}
+                // setLastStory={setLastStory}
+                // setSecondToLastStory={setSecondToLastStory}
+                // setThirdToLastStory={setThirdToLastStory}
+                // setFourthToLastStory={setFourthToLastStory}
                 page={page}
                 setPage={setPage}
               />
