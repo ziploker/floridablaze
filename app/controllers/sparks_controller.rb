@@ -160,8 +160,7 @@ class SparksController < ApplicationController
 
         if @stories.length == 0
             puts "about to return " + @stories.length.to_s + " stories"
-            #get 3 or 4 stories from the top depending on how many stories per page
-            #get 2 stories from the top 
+            #no stories left, so get 2 stories from the top.
             
             @newStories = Story.limit(dynamicStoriesPerPage).order(id: :desc)
             puts " but returning " + @newStories.length.to_s + "instead"
@@ -175,69 +174,23 @@ class SparksController < ApplicationController
         elsif @stories.length == 1
             puts "about to return " + @stories.length.to_s + " stories"
 
-            if dynamicStoriesPerPage == 3
-                #need to add two more from the top for a total of 3
-                @extraStories = Story.limit(2).order(id: :desc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning " + @storyPackage.length.to_s + "instead"
+            
+    
 
+            #need to add one more from the top fort a total of 2
+            @extraStories = Story.limit(1).order(id: :desc)
+            @storyPackage = @stories | @extraStories
+            puts " but returning = " + @storyPackage.length.to_s + " instead"
+            render json: {
+                stories: @storyPackage,
+                dynamicStoriesPerPage: dynamicStoriesPerPage,
+            }
+            return
 
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-            elsif dynamicStoriesPerPage == 4
-                #need to add three more from the top fort a total of 4
-                @extraStories = Story.limit(3).order(id: :desc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning = " + @storyPackage.length.to_s + " instead"
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-            elsif dynamicStoriesPerPage == 2
-
-                #need to add one more from the top fort a total of 2
-                @extraStories = Story.limit(1).order(id: :desc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning = " + @storyPackage.length.to_s + " instead"
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-
-            end
+            
 
         elsif @stories.length == 2
             puts "about to return " + @stories.length.to_s + " stories"
-
-            if dynamicStoriesPerPage == 3
-                #need to add one more from the top for a total of 3
-                @extraStories = Story.limit(1).order(id: :desc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning " + @storyPackage.length.to_s + "instead"
-
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-            elsif dynamicStoriesPerPage == 4
-                #need to add two more from the top for a total of 4
-                @extraStories = Story.limit(2).order(id: :desc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning " + @storyPackage.length.to_s + "instead"
-
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-
-            elsif dynamicStoriesPerPage == 2
 
                puts "rendering @stories since it was 2"
                 render json: {
@@ -246,56 +199,29 @@ class SparksController < ApplicationController
                 }
                 return
 
-            end
+            
             
 
-        elsif @stories.length == 3
-            puts "about to return " + @stories.length.to_s + " stories"
-
-            if dynamicStoriesPerPage == 3
-               
-                # send those three to frontend
-                
-            elsif dynamicStoriesPerPage == 4
-                #need to add one more from the top for a total of 4
-                @extraStories = Story.limit(1).order(id: :desc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning " + @storyPackage.length.to_s + "instead"
-
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-            end
+       
 
 
 
         end
 
         
-       
-        render json: {
-            stories: @stories,
-            dynamicStoriesPerPage: dynamicStoriesPerPage,
-        }
-    
     end
 
 
     def page_forward
 
-        puts "reverse----------------page"
+        dynamicStoriesPerPage = 2
+
+        puts "page_forward----------------page"
     
-        #get currentPageWidth and use that to set dynamicStoriesPerPage
         currentPageWidth = params[:data][:width]
         lastStory_ID = params[:data][:lastStory_ID]
 
-        if currentPageWidth > 1111
-            dynamicStoriesPerPage = 3
-        else
-            dynamicStoriesPerPage = 4
-        end
+        
 
         puts "the current lastStory_ID is " + params[:data][:lastStory_ID].to_s
         puts "the current page width is " + params[:data][:width].to_s
@@ -314,156 +240,71 @@ class SparksController < ApplicationController
         
 
         if @stories.length == 0
-            puts "about to return " + @stories.length.to_s + " stories"
-            #get 3 or 4 stories from the top depending on how many stories per page
+            # puts "about to return " + @stories.length.to_s + " stories"
+            # #get 3 or 4 stories from the top depending on how many stories per page
             
-            @newStories = Story.limit(dynamicStoriesPerPage).order(id: :asc)
-            puts " but returning " + @newStories.length.to_s + "instead"
+            # @newStories = Story.limit(dynamicStoriesPerPage).order(id: :asc)
 
-            @newStories.each do |x|
+            # puts @newStories.class.to_s
+            # puts " but returning " + @newStories.length.to_s + "instead"
+
+            # @newStories.each do |x|
+            #     puts x.title
+            # end
+
+           
+
+            render json: {
+               
+                numOfResults: 0
+            }
+            return
+
+            
+        elsif @stories.length == 1
+            puts "about to return " + @stories.length.to_s + " stories"
+            #@extraStories = Story.limit(1).order(id: :asc)
+            #@storyPackage = @stories | @extraStories
+           
+            # @storyPackage.each do |x|
+            #     puts x.title
+            # end
+            #puts " combined @extraStories" 
+            # @extraStories.each do |x|
+            #     puts x.title
+            # end
+
+            render json: {
+                stories: @stories,
+                dynamicStoriesPerPage: dynamicStoriesPerPage,
+                numOfResults: 1
+            }
+            return
+            
+
+        elsif @stories.length == 2
+          
+            puts " returning next two @stories" 
+            @stories.each do |x|
                 puts x.title
             end
 
             render json: {
-                stories: @newStories,
+                stories: @stories.reverse,
                 dynamicStoriesPerPage: dynamicStoriesPerPage,
+                numOfResults: 2
             }
             return
+            
+           
 
-        elsif @stories.length == 1
-            puts "about to return " + @stories.length.to_s + " stories"
-
-            if dynamicStoriesPerPage == 3
-                #need to add two more from the top for a total of 3
-                @extraStories = Story.limit(2).order(id: :asc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning combined" + @storyPackage.length.to_s + "instead"
-                
-                @storyPackage.each do |x|
-                    puts x.title
-                end
-
-                
-                puts " combined @extraStories" 
-                @extraStories.each do |x|
-                    puts x.title
-                end
-
-
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-            elsif dynamicStoriesPerPage == 4
-                #need to add three more from the top fort a total of 4
-                @extraStories = Story.limit(3).order(id: :asc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning combined" + @storyPackage.length.to_s + "instead"
-                
-                @storyPackage.each do |x|
-                    puts x.title
-                end
-
-                
-                puts " combined @extraStories" 
-                @extraStories.each do |x|
-                    puts x.title
-                end
-
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-            end
-
-        elsif @stories.length == 2
-            puts "about to return " + @stories.length.to_s + " stories"
-
-            if dynamicStoriesPerPage == 3
-                #need to add one more from the top for a total of 3
-                @extraStories = Story.limit(1).order(id: :asc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning combined" + @storyPackage.length.to_s + "instead"
-                
-                @storyPackage.each do |x|
-                    puts x.title
-                end
-
-                
-                puts " combined @extraStories" 
-                @extraStories.each do |x|
-                    puts x.title
-                end
-
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-            elsif dynamicStoriesPerPage == 4
-                #need to add two more from the top for a total of 4
-                @extraStories = Story.limit(2).order(id: :asc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning combined" + @storyPackage.length.to_s + "instead"
-                
-                @storyPackage.each do |x|
-                    puts x.title
-                end
-
-                
-                puts " combined @extraStories" 
-                @extraStories.each do |x|
-                    puts x.title
-                end
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-            end
-
-        elsif @stories.length == 3
-            puts "about to return " + @stories.length.to_s + " stories"
-
-            if dynamicStoriesPerPage == 3
-               
-                # send those three to frontend
-                
-            elsif dynamicStoriesPerPage == 4
-                #need to add one more from the top for a total of 4
-                @extraStories = Story.limit(1).order(id: :asc)
-                @storyPackage = @stories | @extraStories
-                puts " but returning combined" + @storyPackage.length.to_s + "instead"
-                
-                @storyPackage.each do |x|
-                    puts x.title
-                end
-
-                
-                puts " combined @extraStories" 
-                @extraStories.each do |x|
-                    puts x.title
-                end
-
-                render json: {
-                    stories: @storyPackage,
-                    dynamicStoriesPerPage: dynamicStoriesPerPage,
-                }
-                return
-            end
+       
 
 
 
         end
 
         
-       
-        render json: {
-            stories: @stories,
-            dynamicStoriesPerPage: dynamicStoriesPerPage,
-        }
     end
 
 

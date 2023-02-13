@@ -14,17 +14,17 @@ import "../../assets/stylesheets/home_story_spinner.scss";
 import Carousel, { CarouselItem } from "./carousel";
 
 const HomeWrapper = styled.div`
-	//background: pink;
+  //background: pink;
 
-	//height: calc(100vh - 85px);
-	//max-height: 500px;
-	overflow: hidden;
-	//min-width: 500px;
+  //height: calc(100vh - 85px);
+  //max-height: 500px;
+  overflow: hidden;
+  //min-width: 500px;
 `;
 
 const News = styled.div`
-	@media only screen and (min-width: 2200px) {
-		/* @media only screen and (max-width: 1111px) {
+  @media only screen and (min-width: 2200px) {
+    /* @media only screen and (max-width: 1111px) {
 			//@media only screen and (max-width: 866px) {
 			//margin-top: 0px;
 			margin: 20px 10px 43px 10px;
@@ -41,9 +41,9 @@ const News = styled.div`
 				".";
 		} */
 
-		//@media only screen and (min-width: 867px) and (max-width: 1111px) {
+    //@media only screen and (min-width: 867px) and (max-width: 1111px) {
 
-		/* grid-template-columns:
+    /* grid-template-columns:
 			minmax(20px, 1fr)
 			minmax(200px, 600px)
 			10px
@@ -58,14 +58,14 @@ const News = styled.div`
 			"leftArrow     three  .   four  rightArrow"
 			"leftArrow     three  .   four  rightArrow"
 			"    .           .    .    .        .     "; */
-		//}
+    //}
 
-		min-height: 100%;
+    min-height: 100%;
 
-		display: grid;
-		justify-content: center;
+    display: grid;
+    justify-content: center;
 
-		/* grid-template-columns:
+    /* grid-template-columns:
 			minmax(30px, 1fr) minmax(200px, 600px) minmax(10px, 1fr) minmax(
 				200px,
 				600px
@@ -78,392 +78,392 @@ const News = styled.div`
 			"leftArrow   one . two . three   rightArrow"
 			"    .        .  .  .  .   .     ."; */
 
-		grid-template-columns:
-			minmax(30px, 50px) 1fr minmax(10px, 30px) 1fr
-			minmax(30px, 50px);
-		/* minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr); */
+    grid-template-columns:
+      minmax(30px, 50px) 1fr minmax(10px, 30px) 1fr
+      minmax(30px, 50px);
+    /* minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr); */
 
-		grid-template-areas:
-			"leftArrow   one . two rightArrow"
-			"leftArrow   one . two rightArrow"
-			"leftArrow   one . two rightArrow"
-			"    .        .  .  .      .     ";
-		//grid-gap: 20px;
+    grid-template-areas:
+      "leftArrow   one . two rightArrow"
+      "leftArrow   one . two rightArrow"
+      "leftArrow   one . two rightArrow"
+      "    .        .  .  .      .     ";
+    //grid-gap: 20px;
 
-		margin-top: 30px;
+    margin-top: 30px;
 
-		/* display: grid;
+    /* display: grid;
 		justify-content: center;
 		grid-template-columns: 1fr 1fr 1fr;
 		grid-template-areas:
 			"featured one two  ." */
 
-		/* @media only screen and (min-width: 2000px){
+    /* @media only screen and (min-width: 2000px){
 			grid-template-columns: 10vw 1fr 1fr 1fr 10vw;
 
 		} */
 
-		/* @media only screen and (min-width: 1850px) {
+    /* @media only screen and (min-width: 1850px) {
 			grid-template-columns:
 				minmax(20px, 1fr) minmax(600px, 700px) minmax(600px, 700px)
 				minmax(600px, 700px) minmax(20px, 1fr);
 		} */
-	}
+  }
 
-	display: none;
+  display: none;
 `;
 
 const LeftArrow = styled.img`
-	max-width: 30px;
+  max-width: 30px;
 
-	position: relative;
-	justify-self: end;
-	align-self: center;
-	-webkit-transform: scaleX(-1);
-	transform: scaleX(-1);
+  position: relative;
+  justify-self: end;
+  align-self: center;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 `;
 
 const LinkWrapper1 = styled(Link)`
-	//grid-area: 1/1/3/2;
-	//grid-area: one;
-	grid-area: 1/1/-1/-1;
-	//max-width: 600px;
-	width: 100%;
-	justify-self: center;
-	display: grid;
-	@media only screen and (min-width: 2200px) {
-		grid-area: one;
-		width: 100%;
-		justify-self: center;
-		display: grid;
-	}
+  //grid-area: 1/1/3/2;
+  //grid-area: one;
+  grid-area: 1/1/-1/-1;
+  //max-width: 600px;
+  width: 100%;
+  justify-self: center;
+  display: grid;
+  @media only screen and (min-width: 2200px) {
+    grid-area: one;
+    width: 100%;
+    justify-self: center;
+    display: grid;
+  }
 `;
 
 const LinkWrapper2 = styled(Link)`
-	//grid-area: 1/1/3/2;
-	//grid-area: two;
-	grid-area: 1/1/-1/-1;
-	//max-width: 600px;
-	width: 100%;
-	justify-self: center;
-	display: grid;
-	@media only screen and (min-width: 2200px) {
-		grid-area: two;
-		width: 100%;
-		justify-self: center;
-		display: grid;
-	}
+  //grid-area: 1/1/3/2;
+  //grid-area: two;
+  grid-area: 1/1/-1/-1;
+  //max-width: 600px;
+  width: 100%;
+  justify-self: center;
+  display: grid;
+  @media only screen and (min-width: 2200px) {
+    grid-area: two;
+    width: 100%;
+    justify-self: center;
+    display: grid;
+  }
 `;
 
 const LinkWrapper3 = styled(Link)`
-	//grid-area: 1/1/3/2;
-	//grid-area: three;
-	grid-area: 1/1/-1/-1;
-	//max-width: 600px;
-	width: 100%;
-	justify-self: center;
-	display: grid;
-	@media only screen and (min-width: 2200px) {
-		/* grid-area: three;
+  //grid-area: 1/1/3/2;
+  //grid-area: three;
+  grid-area: 1/1/-1/-1;
+  //max-width: 600px;
+  width: 100%;
+  justify-self: center;
+  display: grid;
+  @media only screen and (min-width: 2200px) {
+    /* grid-area: three;
 		width: 100%;
 		justify-self: center;
 		display: grid; */
-		display: none;
-	}
+    display: none;
+  }
 `;
 
 const LinkWrapper4 = styled(Link)`
-	display: none;
-	@media only screen and (max-width: 1111px) {
-		//grid-area: 1/1/3/2;
-		//grid-area: four;
-		grid-area: 1/1/-1/-1;
-		//max-width: 600px;
-		width: 100%;
-		justify-self: center;
-		display: grid;
-	}
+  display: none;
+  @media only screen and (max-width: 1111px) {
+    //grid-area: 1/1/3/2;
+    //grid-area: four;
+    grid-area: 1/1/-1/-1;
+    //max-width: 600px;
+    width: 100%;
+    justify-self: center;
+    display: grid;
+  }
 `;
 
 const Div1 = styled.div`
-	box-shadow: 0 2px 5px 0 rgba(227, 181, 90, 0.2);
-	position: relative;
-	border-radius: 10px;
-	overflow: hidden;
-	display: grid;
-	justify-self: center;
-	//max-width: 600px;
-	width: 100%;
+  box-shadow: 0 2px 5px 0 rgba(227, 181, 90, 0.2);
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  justify-self: center;
+  //max-width: 600px;
+  width: 100%;
 
-	background-image: url(${(props) => props.imageURL});
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-position: bottom center;
+  background-image: url(${(props) => props.imageURL});
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
 
-	&:before {
-		content: "";
-		display: block;
-		height: 0;
-		width: 0;
-		padding-bottom: calc(9 / 16 * 100%);
-	}
+  &:before {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    padding-bottom: calc(9 / 16 * 100%);
+  }
 
-	&:hover {
-		box-shadow: 0 0 0 5px #e3b55a;
-		transition: box-shadow 80ms;
-		border-radius: 4px;
-		outline: none;
-	}
+  &:hover {
+    box-shadow: 0 0 0 5px #e3b55a;
+    transition: box-shadow 80ms;
+    border-radius: 4px;
+    outline: none;
+  }
 `;
 
 const Div2 = styled.div`
-	box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
-	position: relative;
-	border-radius: 10px;
-	overflow: hidden;
-	display: grid;
-	justify-self: center;
-	//max-width: 600px;
-	width: 100%;
+  box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  justify-self: center;
+  //max-width: 600px;
+  width: 100%;
 
-	background-image: url(${(props) => props.imageURL});
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-position: bottom center;
+  background-image: url(${(props) => props.imageURL});
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
 
-	&:before {
-		content: "";
-		display: block;
-		height: 0;
-		width: 0;
-		padding-bottom: calc(9 / 16 * 100%);
-	}
+  &:before {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    padding-bottom: calc(9 / 16 * 100%);
+  }
 
-	&:hover {
-		box-shadow: 0 0 0 5px #e3b55a;
-		transition: box-shadow 80ms;
-		border-radius: 4px;
-		outline: none;
-	}
+  &:hover {
+    box-shadow: 0 0 0 5px #e3b55a;
+    transition: box-shadow 80ms;
+    border-radius: 4px;
+    outline: none;
+  }
 `;
 
 const Div3 = styled.div`
-	box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
-	position: relative;
-	border-radius: 10px;
-	overflow: hidden;
-	display: grid;
-	justify-self: center;
-	//max-width: 600px;
-	width: 100%;
+  box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  justify-self: center;
+  //max-width: 600px;
+  width: 100%;
 
-	background-image: url(${(props) => props.imageURL});
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-position: bottom center;
+  background-image: url(${(props) => props.imageURL});
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
 
-	&:hover {
-		box-shadow: 0 0 0 5px #e3b55a;
-		transition: box-shadow 80ms;
-		border-radius: 4px;
-		outline: none;
-	}
+  &:hover {
+    box-shadow: 0 0 0 5px #e3b55a;
+    transition: box-shadow 80ms;
+    border-radius: 4px;
+    outline: none;
+  }
 
-	&:before {
-		content: "";
-		display: block;
-		height: 0;
-		width: 0;
-		padding-bottom: calc(9 / 16 * 100%);
-	}
+  &:before {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    padding-bottom: calc(9 / 16 * 100%);
+  }
 `;
 
 const Div4 = styled.div`
-	@media only screen and (max-width: 1111px) {
-		box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
-		position: relative;
-		border-radius: 10px;
-		overflow: hidden;
-		display: grid;
-		justify-self: center;
-		//max-width: 600px;
-		width: 100%;
+  @media only screen and (max-width: 1111px) {
+    box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    display: grid;
+    justify-self: center;
+    //max-width: 600px;
+    width: 100%;
 
-		background-image: url(${(props) => props.imageURL});
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
-		background-position: bottom center;
+    background-image: url(${(props) => props.imageURL});
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom center;
 
-		&:hover {
-			box-shadow: 0 0 0 5px #e3b55a;
-			transition: box-shadow 80ms;
-			border-radius: 4px;
-			outline: none;
-		}
+    &:hover {
+      box-shadow: 0 0 0 5px #e3b55a;
+      transition: box-shadow 80ms;
+      border-radius: 4px;
+      outline: none;
+    }
 
-		&:before {
-			content: "";
-			display: block;
-			height: 0;
-			width: 0;
-			padding-bottom: calc(9 / 16 * 100%);
-		}
-	}
+    &:before {
+      content: "";
+      display: block;
+      height: 0;
+      width: 0;
+      padding-bottom: calc(9 / 16 * 100%);
+    }
+  }
 
-	display: none;
+  display: none;
 `;
 
 const Div1OverlayWrapper = styled.div`
-	pointer-events: none;
-	word-break: break-all;
-	//grid-area: one;
-	grid-area: 1/1/-1/-1;
-	border-radius: 10px;
-	overflow: hidden;
-	//max-width: 600px;
-	width: 100%;
-	height: 100%;
-	justify-self: center;
-	display: grid;
-	z-index: 1;
+  pointer-events: none;
+  word-break: break-all;
+  //grid-area: one;
+  grid-area: 1/1/-1/-1;
+  border-radius: 10px;
+  overflow: hidden;
+  //max-width: 600px;
+  width: 100%;
+  height: 100%;
+  justify-self: center;
+  display: grid;
+  z-index: 1;
 
-	background: rgb(0, 0, 0);
-	background: -moz-linear-gradient(
-		0deg,
-		rgba(0, 0, 0, 1) 10%,
-		rgba(255, 145, 145, 0) 34%
-	);
-	background: -webkit-linear-gradient(
-		0deg,
-		rgba(0, 0, 0, 1) 10%,
-		rgba(255, 145, 145, 0) 34%
-	);
-	background: linear-gradient(
-		0deg,
-		rgba(0, 0, 0, 1) 10%,
-		rgba(255, 145, 145, 0) 34%
-	);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff9191",GradientType=1);
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(255, 145, 145, 0) 34%
+  );
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(255, 145, 145, 0) 34%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(255, 145, 145, 0) 34%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff9191",GradientType=1);
 
-	@media only screen and (min-width: 2200px) {
-		grid-area: one;
-	}
+  @media only screen and (min-width: 2200px) {
+    grid-area: one;
+  }
 `;
 
 const Div2OverlayWrapper = styled(Div1OverlayWrapper)`
-	//grid-area: two;
-	grid-area: 1/1/-1/-1;
+  //grid-area: two;
+  grid-area: 1/1/-1/-1;
 
-	@media only screen and (min-width: 2200px) {
-		grid-area: two;
-	}
+  @media only screen and (min-width: 2200px) {
+    grid-area: two;
+  }
 `;
 
 const Div3OverlayWrapper = styled(Div1OverlayWrapper)`
-	//grid-area: three;
-	grid-area: 1/1/-1/-1;
+  //grid-area: three;
+  grid-area: 1/1/-1/-1;
 
-	@media only screen and (min-width: 2200px) {
-		//grid-area: three;
-		display: none;
-	}
+  @media only screen and (min-width: 2200px) {
+    //grid-area: three;
+    display: none;
+  }
 `;
 
 const Div4OverlayWrapper = styled(Div1OverlayWrapper)`
-	@media only screen and (max-width: 1111px) {
-		//grid-area: four;
-		grid-area: 1/1/-1/-1;
-		display: inherit;
-	}
+  @media only screen and (max-width: 1111px) {
+    //grid-area: four;
+    grid-area: 1/1/-1/-1;
+    display: inherit;
+  }
 
-	display: none;
+  display: none;
 `;
 
 const StoryImageOverlay = styled.div`
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 const StoryOneTitle = styled.h1`
-	//grid-area: 1 /1 /2/2;
-	white-space: normal;
-	font-size: 4vw;
-	word-break: break-all;
-	//align-self: end;
-	//justify-self: start;
-	//text-align: left;
-	color: white;
-	//line-height: 1em;
-	//letter-spacing: 2px;
-	//z-index: 1;
-	padding: 0px 8px 8px 8px;
-	width: 100%;
-	//min-height: 100%;
-	align-self: end;
-	justify-self: center;
-	text-align: center;
+  //grid-area: 1 /1 /2/2;
+  white-space: normal;
+  font-size: 4vw;
+  word-break: break-all;
+  //align-self: end;
+  //justify-self: start;
+  //text-align: left;
+  color: white;
+  //line-height: 1em;
+  //letter-spacing: 2px;
+  //z-index: 1;
+  padding: 0px 8px 8px 8px;
+  width: 100%;
+  //min-height: 100%;
+  align-self: end;
+  justify-self: center;
+  text-align: center;
 `;
 
 const LeftArrowButton = styled.button`
-	width: 100%;
-	height: 100%;
-	grid-area: leftArrow;
-	align-self: center;
-	justify-self: end;
-	background: rgba(255, 255, 255, 0);
-	border: 0;
-	display: grid;
+  width: 100%;
+  height: 100%;
+  grid-area: leftArrow;
+  align-self: center;
+  justify-self: end;
+  background: rgba(255, 255, 255, 0);
+  border: 0;
+  display: grid;
 
-	z-index: 1;
+  z-index: 1;
 
-	cursor: pointer;
+  cursor: pointer;
 
-	&:hover {
-		background: rgba(54, 54, 54, 0.075);
-	}
+  &:hover {
+    background: rgba(54, 54, 54, 0.075);
+  }
 `;
 
 const RightArrowButton = styled.button`
-	@media only screen and (min-width: 1111px) {
-		width: 100%;
-		height: 100%;
-		grid-area: rightArrow;
-		align-self: center;
-		justify-self: start;
-		background: rgba(255, 255, 255, 0);
-		border: 0;
-		display: grid;
-		cursor: pointer;
+  @media only screen and (min-width: 1111px) {
+    width: 100%;
+    height: 100%;
+    grid-area: rightArrow;
+    align-self: center;
+    justify-self: start;
+    background: rgba(255, 255, 255, 0);
+    border: 0;
+    display: grid;
+    cursor: pointer;
 
-		&:hover {
-			background: rgba(54, 54, 54, 0.075);
-		}
-	}
+    &:hover {
+      background: rgba(54, 54, 54, 0.075);
+    }
+  }
 
-	display: none;
+  display: none;
 `;
 
 const RightArrow = styled.img`
-	max-width: 30px;
+  max-width: 30px;
 
-	position: relative;
-	justify-self: start;
-	align-self: center;
+  position: relative;
+  justify-self: start;
+  align-self: center;
 `;
 
 const StoryImageWrapper = styled.div`
-	width: 100%;
-	height: 0px;
-	//min-height: 90px;
-	//max-height: 300px;
-	grid-area: 1 /1 /2 /2;
-	padding-top: 60%;
-	position: relative;
+  width: 100%;
+  height: 0px;
+  //min-height: 90px;
+  //max-height: 300px;
+  grid-area: 1 /1 /2 /2;
+  padding-top: 60%;
+  position: relative;
 
-	/* @media screen and (min-width: 750px) and (max-width: 1111px){
+  /* @media screen and (min-width: 750px) and (max-width: 1111px){
         width: 100%;
         height: 100%;
 
@@ -479,99 +479,160 @@ const StoryImageWrapper = styled.div`
 `;
 
 const StoryImage = styled.img`
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 const BackgroundGray = styled.div`
-	@media only screen and (max-width: 866px) {
-		display: none;
-	}
-	background: #c4c4c4;
-	grid-area: 3/1/-1/-1;
-	z-index: -1;
-	padding: 75px 0px;
+  @media only screen and (max-width: 866px) {
+    display: none;
+  }
+  background: #c4c4c4;
+  grid-area: 3/1/-1/-1;
+  z-index: -1;
+  padding: 75px 0px;
 
-	@media only screen and (max-width: 1111px) {
-		grid-area: 5/1/-1/-1;
-	}
+  @media only screen and (max-width: 1111px) {
+    grid-area: 5/1/-1/-1;
+  }
 `;
 
 const ItemWrapper = styled.div`
-	display: grid;
-	width: 97%;
-	margin: 0 auto;
+  display: grid;
+  width: 97%;
+  margin: 0 auto;
 `;
 
 const MainDiv = styled.div`
-	display: flex;
-	position: relative;
-	flex-direction: column;
-	width: 100vw;
-	height: 250px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100vw;
+  height: 250px;
 `;
 
 const SlidesContainer = styled.div`
-	/* position: relative; */
-	/* overflow: hidden; */
-	/* display: flex; */
-	/* flex: 1; */
+  /* position: relative; */
+  /* overflow: hidden; */
+  /* display: flex; */
+  /* flex: 1; */
 
-	//height: 20%;
-	width: 100%;
-	background: #555;
-	position: relative;
-	display: flex;
-	align-items: center;
-	overflow: hidden;
+  //height: 20%;
+  width: 100%;
+  background: #555;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 `;
 
 const SlidesInner = styled.div`
-	position: relative;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-	/* display: grid;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  /* display: grid;
   grid-template-columns: repeat(10, 1fr); */
 `;
 
 const Slide = styled.div`
-	/* position: absolute; */
+  /* position: absolute; */
 
-	/* font-size: 90px; */
-	/* font-weight: 700; */
-	/* color: rgba(255, 255, 255, 0.9); */
-	/* display: flex; */
-	/* align-items: center; */
-	/* justify-content: center; */
-	/* height: 100%; */
+  /* font-size: 90px; */
+  /* font-weight: 700; */
+  /* color: rgba(255, 255, 255, 0.9); */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* height: 100%; */
 
-	/* //width: calc(100% / 3); */
-	/* width: 100%; */
+  /* //width: calc(100% / 3); */
+  /* width: 100%; */
 
-	box-sizing: border-box;
-	display: grid;
-	align-items: center;
-	justify-content: center;
-	background: green;
-	height: 100%;
-	width: 100%;
-	margin: 0;
-	padding: 0;
-	position: relative;
-	flex-shrink: 0;
-	color: black;
-	font-size: 21px;
-	cursor: pointer;
+  box-sizing: border-box;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  background: green;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+  color: black;
+  font-size: 21px;
+  cursor: pointer;
 
-	&:active {
-		lor: white;
-		rder: 2px solid white;
-	}
+  &:active {
+    lor: white;
+    rder: 2px solid white;
+  }
 `;
+
+const gsapSwipeAnimation = () => {
+  gsap.to(
+    ".s1",
+
+    {
+      x: "-500%",
+      duration: 0.2,
+    }
+  );
+
+  gsap.fromTo(
+    ".s1",
+    { x: "300%" },
+    {
+      x: "initial",
+
+      duration: 0.2,
+      delay: 0.1,
+    }
+  );
+
+  gsap.to(
+    ".s2",
+
+    {
+      x: "-500%",
+      duration: 0.2,
+    }
+  );
+
+  gsap.fromTo(
+    ".s2",
+    { x: "300%" },
+    {
+      x: "initial",
+
+      duration: 0.2,
+      delay: 0.1,
+    }
+  );
+};
+
+const gsapDeadEndAnimation = () => {
+  gsap.to(
+    ".s1",
+
+    {
+      x: "-10%",
+      duration: 0.2,
+    }
+  );
+  gsap.to(
+    ".s1",
+
+    {
+      x: "0",
+      duration: 0.9,
+    }
+  );
+};
 
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
@@ -581,362 +642,290 @@ const Slide = styled.div`
 ///////////////////////////////////////////////////////////
 
 function Home(props) {
-	console.log("==============Home===============");
-	console.log("==============Home Props===============", props);
+  console.log("==============Home===============");
+  console.log("==============Home Props===============", props);
 
-	// // // useLayoutEffect(() => {
-	const gsapContainer1 = useRef();
-	const gsapContainer2 = useRef();
-	const leftArrowRef = useRef();
+  // // // useLayoutEffect(() => {
+  const gsapContainer1 = useRef();
+  const gsapContainer2 = useRef();
+  const leftArrowRef = useRef();
 
-	useEffect(() => {
-		// gsapContainer1.current.clientHeight
+  useEffect(() => {
+    // gsapContainer1.current.clientHeight
 
-		setAllStories;
-	});
+    setAllStories;
+  });
 
-	// const [screenIsAtTop, setScreenIsAtTop] = React.useState(true);
-	const [loadingStories, setLoadingStories] = React.useState(false);
+  // const [screenIsAtTop, setScreenIsAtTop] = React.useState(true);
+  const [loadingStories, setLoadingStories] = React.useState(false);
 
-	const [allStories, setAllStories] = useState(props.allStories);
-	const [page, setPage] = useState(props.page);
+  const [allStories, setAllStories] = useState(props.allStories);
+  const [page, setPage] = useState(props.page);
 
-	function handleForwardPage(props, setLoadingStories) {
-		setLoadingStories(true);
-		axios
-			.post(
-				"/forward/",
-				{
-					data: {
-						//page: props.page,
-						fourthToLastStory_ID: props.fourthToLastStory.id,
-						width: window.innerWidth,
-					},
-				},
-				{ withCredentials: true }
-			)
-			.then((response) => {
-				console.log(
-					"=================Stories ",
-					JSON.stringify(response.data.stories)
-				);
-				console.log(
-					"i got " +
-						response.data.stories.length.toString() +
-						" back from rails"
-				);
-				if (response.data.dynamicStoriesPerPage == 3) {
-					if (response.data.stories.length == 3) {
-						props.setLastStory(props.fourthToLastStory);
-						props.setSecondToLastStory(response.data.stories[0]);
-						props.setThirdToLastStory(response.data.stories[1]);
-						props.setFourthToLastStory(response.data.stories[2]);
-					}
-				} else if (response.data.dynamicStoriesPerPage == 4) {
-					if (response.data.stories.length == 4) {
-						props.setLastStory(response.data.stories[0]);
-						props.setSecondToLastStory(response.data.stories[1]);
-						props.setThirdToLastStory(response.data.stories[2]);
-						props.setFourthToLastStory(response.data.stories[3]);
-					}
-				}
+  function handleForwardPage(props, setLoadingStories) {
+    setLoadingStories(true);
+    axios
+      .post(
+        "/forward/",
+        {
+          data: {
+            //page: props.page,
+            lastStory_ID: allStories[0].id,
+            width: window.innerWidth,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        if (response.data.numOfResults == 1) {
+          let newArray = [];
+          newArray[0] = response.data.stories[0];
+          newArray[1] = allStories[0];
+          gsapSwipeAnimation();
+          setAllStories(newArray);
+        } else if (response.data.numOfResults == 0) {
+          gsapDeadEndAnimation();
+        } else {
+          setAllStories(response.data.stories);
+          gsapSwipeAnimation();
+        }
 
-				gsap.to(
-					".s1",
+        setLoadingStories(false);
+      })
+      .catch((error) => {
+        console.log("handleForwardPageErrors", error);
+      });
+  }
 
-					{
-						x: "-500%",
-						duration: 0.2,
-					}
-				);
+  function handleReversePage() {
+    setLoadingStories(true);
+    axios
+      .post(
+        "/reverse/",
+        {
+          data: {
+            secondToLastStory_ID: allStories[1].id,
+            width: window.innerWidth,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        setAllStories(response.data.stories);
 
-				gsap.fromTo(
-					".s1",
-					{ x: "300%" },
-					{
-						x: "initial",
+        gsap.to(
+          ".s1",
 
-						duration: 0.2,
-						delay: 0.1,
-					}
-				);
+          {
+            x: "500%",
+            duration: 0.2,
+          }
+        );
 
-				gsap.to(
-					".s2",
+        gsap.fromTo(
+          ".s1",
+          { x: "-300%" },
+          {
+            x: "initial",
 
-					{
-						x: "-500%",
-						duration: 0.2,
-					}
-				);
+            duration: 0.2,
+            delay: 0.1,
+          }
+        );
 
-				gsap.fromTo(
-					".s2",
-					{ x: "300%" },
-					{
-						x: "initial",
+        gsap.to(
+          ".s2",
 
-						duration: 0.2,
-						delay: 0.1,
-					}
-				);
-				setLoadingStories(false);
-			})
-			.catch((error) => {
-				console.log("handleForwardPageErrors", error);
-			});
-	}
+          {
+            x: "500%",
+            duration: 0.2,
+          }
+        );
 
-	function handleReversePage(props, setLoadingStories) {
-		setLoadingStories(true);
-		axios
-			.post(
-				"/reverse/",
-				{
-					data: {
-						secondToLastStory_ID: allStories[1].id,
-						width: window.innerWidth,
-					},
-				},
-				{ withCredentials: true }
-			)
-			.then((response) => {
-				// if (response.data.dynamicStoriesPerPage == 3) {
-				// 	if (response.data.stories.length == 3) {
-				// 		props.setLastStory(response.data.stories[2]);
-				// 		props.setSecondToLastStory(response.data.stories[1]);
-				// 		props.setThirdToLastStory(response.data.stories[0]);
-				// 		props.setFourthToLastStory(props.lastStory);
-				// 	}
-				// } else if (response.data.dynamicStoriesPerPage == 4) {
-				// 	if (response.data.stories.length == 4) {
-				// 		props.setLastStory(response.data.stories[3]);
-				// 		props.setSecondToLastStory(response.data.stories[2]);
-				// 		props.setThirdToLastStory(response.data.stories[1]);
-				// 		props.setFourthToLastStory(response.data.stories[0]);
-				// 	}
-				// }
+        gsap.fromTo(
+          ".s2",
+          { x: "-300%" },
+          {
+            x: "initial",
 
-				// if (response.data.dynamicStoriesPerPage == 3) {
-				if (response.data.stories.length == 2) {
-					// props.setLastStory(response.data.stories[0]);
-					// props.setSecondToLastStory(response.data.stories[1]);
+            duration: 0.2,
+            delay: 0.1,
+          }
+        );
+        setLoadingStories(false);
+      })
+      .catch((error) => {
+        console.log("handleReversePageErrors", error);
+      });
+  }
+  return (
+    <HomeWrapper>
+      <News className="box">
+        <LeftArrowButton
+          onClick={() => handleForwardPage(props, setLoadingStories)}
+        >
+          <LeftArrow src={scrollArrow}></LeftArrow>
+        </LeftArrowButton>
 
-					props.setStories(response.data.stories);
-				}
-				gsap.to(
-					".s1",
+        <LinkWrapper1
+          to={"/blog/" + slugify(allStories[0] ? allStories[0].title : "nada")}
+          state={{ art: allStories[0] }}
+        >
+          <Div1
+            className="s1"
+            imageURL={allStories[0] ? allStories[0].urls[0] : defaultImage}
+          ></Div1>
+        </LinkWrapper1>
+        <Div1OverlayWrapper className="s2">
+          <StoryOneTitle>
+            {allStories[0]
+              ? allStories[0].title
+              : "Place golder for title. place golder for title."}
+          </StoryOneTitle>
+        </Div1OverlayWrapper>
+        {loadingStories ? (
+          <div
+            className="loader"
+            style={{
+              gridArea: "one",
+              justifySelf: "center",
+              alignSelf: "center",
+            }}
+          >
+            Loading...
+          </div>
+        ) : null}
+        <LinkWrapper2
+          to={"/blog/" + slugify(allStories[1] ? allStories[1].title : "nada")}
+          state={{ art: allStories[1] }}
+        >
+          <Div2
+            className="s1"
+            imageURL={allStories[1] ? allStories[1].urls[0] : defaultImage}
+          ></Div2>
+        </LinkWrapper2>
+        <Div2OverlayWrapper className="s2">
+          <StoryOneTitle>
+            {allStories[1]
+              ? allStories[1].title
+              : "Place holder for title, place holder for title"}
+          </StoryOneTitle>
+        </Div2OverlayWrapper>
+        {/* <LinkWrapper3
+          to={"/blog/" + slugify(allStories[2] ? allStories[2].title : "nada")}
+          state={{ art: allStories[2] }}
+        >
+          <Div3
+            className="s1"
+            imageURL={allStories[2] ? allStories[2].urls[0] : defaultImage}
+          ></Div3>
+        </LinkWrapper3>
+        <Div3OverlayWrapper className="s2">
+          <StoryOneTitle>
+            {allStories[2]
+              ? allStories[2].title
+              : "Place golder for title. place golder for title."}
+          </StoryOneTitle>
+        </Div3OverlayWrapper>
+        <LinkWrapper4
+          to={"/blog/" + slugify(allStories[3] ? allStories[3].title : "nada")}
+          state={{ art: allStories[3] }}
+        >
+          <Div4
+            className="s1"
+            imageURL={allStories[3] ? allStories[3].urls[0] : defaultImage}
+          ></Div4>
+        </LinkWrapper4>
+        <Div4OverlayWrapper className="s2">
+          <StoryOneTitle>
+            {allStories[3]
+              ? allStories[3].title
+              : "Place golder for title. place golder for title."}
+          </StoryOneTitle>
+        </Div4OverlayWrapper> */}
+        <RightArrowButton
+          onClick={() => handleReversePage(props, setLoadingStories)}
+        >
+          <RightArrow src={scrollArrow}></RightArrow>
+        </RightArrowButton>
+        <BackgroundGray></BackgroundGray>
+      </News>
+      {/* ////////// */}
 
-					{
-						x: "500%",
-						duration: 0.2,
-					}
-				);
+      <Carousel>
+        <CarouselItem>
+          <ItemWrapper>
+            <LinkWrapper1
+              to={
+                "/blog/" + slugify(allStories[0] ? allStories[0].title : "nada")
+              }
+              state={{ art: allStories[0] }}
+              ref={gsapContainer1}
+            >
+              <Div1
+                className="s1"
+                imageURL={allStories[0] ? allStories[0].urls[0] : defaultImage}
+              ></Div1>
+            </LinkWrapper1>
 
-				gsap.fromTo(
-					".s1",
-					{ x: "-300%" },
-					{
-						x: "initial",
+            <Div1OverlayWrapper ref={gsapContainer2} className="s2">
+              <StoryOneTitle>
+                {allStories[0]
+                  ? allStories[0].title
+                  : "Place golder for title. place golder for title."}
+              </StoryOneTitle>
+            </Div1OverlayWrapper>
+          </ItemWrapper>
+        </CarouselItem>
+        <CarouselItem>
+          <ItemWrapper>
+            <LinkWrapper2
+              to={
+                "/blog/" + slugify(allStories[1] ? allStories[1].title : "nada")
+              }
+              state={{ art: allStories[1] }}
+            >
+              <Div2
+                className="s1"
+                imageURL={allStories[1] ? allStories[1].urls[0] : defaultImage}
+              ></Div2>
+            </LinkWrapper2>
 
-						duration: 0.2,
-						delay: 0.1,
-					}
-				);
+            <Div2OverlayWrapper className="s2">
+              <StoryOneTitle>
+                {allStories[1]
+                  ? allStories[1].title
+                  : "Place holder for title, place holder for title"}
+              </StoryOneTitle>
+            </Div2OverlayWrapper>
+          </ItemWrapper>
+        </CarouselItem>
+        {/* <CarouselItem>
+          <ItemWrapper>
+            <LinkWrapper3
+              to={
+                "/blog/" + slugify(allStories[2] ? allStories[2].title : "nada")
+              }
+              state={{ art: allStories[2] }}
+            >
+              <Div3
+                className="s1"
+                imageURL={allStories[2] ? allStories[2].urls[0] : defaultImage}
+              ></Div3>
+            </LinkWrapper3>
 
-				gsap.to(
-					".s2",
-
-					{
-						x: "500%",
-						duration: 0.2,
-					}
-				);
-
-				gsap.fromTo(
-					".s2",
-					{ x: "-300%" },
-					{
-						x: "initial",
-
-						duration: 0.2,
-						delay: 0.1,
-					}
-				);
-				setLoadingStories(false);
-			})
-			.catch((error) => {
-				console.log("handleReversePageErrors", error);
-			});
-	}
-	return (
-		<HomeWrapper>
-			<News className="box">
-				<LeftArrowButton
-					onClick={() => handleForwardPage(props, setLoadingStories)}
-				>
-					<LeftArrow src={scrollArrow}></LeftArrow>
-				</LeftArrowButton>
-
-				<LinkWrapper1
-					to={"/blog/" + slugify(allStories[0] ? allStories[0].title : "nada")}
-					state={{ art: allStories[0] }}
-				>
-					<Div1
-						className="s1"
-						imageURL={allStories[0] ? allStories[0].urls[0] : defaultImage}
-					></Div1>
-				</LinkWrapper1>
-				<Div1OverlayWrapper className="s2">
-					<StoryOneTitle>
-						{allStories[0]
-							? allStories[0].title
-							: "Place golder for title. place golder for title."}
-					</StoryOneTitle>
-				</Div1OverlayWrapper>
-				{loadingStories ? (
-					<div
-						className="loader"
-						style={{
-							gridArea: "one",
-							justifySelf: "center",
-							alignSelf: "center",
-						}}
-					>
-						Loading...
-					</div>
-				) : null}
-				<LinkWrapper2
-					to={"/blog/" + slugify(allStories[1] ? allStories[1].title : "nada")}
-					state={{ art: allStories[1] }}
-				>
-					<Div2
-						className="s1"
-						imageURL={allStories[1] ? allStories[1].urls[0] : defaultImage}
-					></Div2>
-				</LinkWrapper2>
-				<Div2OverlayWrapper className="s2">
-					<StoryOneTitle>
-						{allStories[1]
-							? allStories[1].title
-							: "Place holder for title, place holder for title"}
-					</StoryOneTitle>
-				</Div2OverlayWrapper>
-				<LinkWrapper3
-					to={"/blog/" + slugify(allStories[2] ? allStories[2].title : "nada")}
-					state={{ art: allStories[2] }}
-				>
-					<Div3
-						className="s1"
-						imageURL={allStories[2] ? allStories[2].urls[0] : defaultImage}
-					></Div3>
-				</LinkWrapper3>
-				<Div3OverlayWrapper className="s2">
-					<StoryOneTitle>
-						{allStories[2]
-							? allStories[2].title
-							: "Place golder for title. place golder for title."}
-					</StoryOneTitle>
-				</Div3OverlayWrapper>
-				<LinkWrapper4
-					to={"/blog/" + slugify(allStories[3] ? allStories[3].title : "nada")}
-					state={{ art: allStories[3] }}
-				>
-					<Div4
-						className="s1"
-						imageURL={allStories[3] ? allStories[3].urls[0] : defaultImage}
-					></Div4>
-				</LinkWrapper4>
-				<Div4OverlayWrapper className="s2">
-					<StoryOneTitle>
-						{allStories[3]
-							? allStories[3].title
-							: "Place golder for title. place golder for title."}
-					</StoryOneTitle>
-				</Div4OverlayWrapper>
-				<RightArrowButton
-					onClick={() => handleReversePage(props, setLoadingStories)}
-				>
-					<RightArrow src={scrollArrow}></RightArrow>
-				</RightArrowButton>
-				<BackgroundGray></BackgroundGray>
-			</News>
-			{/* ////////// */}
-
-			<Carousel>
-				<CarouselItem>
-					<ItemWrapper>
-						<LinkWrapper1
-							to={
-								"/blog/" + slugify(allStories[0] ? allStories[0].title : "nada")
-							}
-							state={{ art: allStories[0] }}
-							ref={gsapContainer1}
-						>
-							<Div1
-								className="s1"
-								imageURL={allStories[0] ? allStories[0].urls[0] : defaultImage}
-							></Div1>
-						</LinkWrapper1>
-
-						<Div1OverlayWrapper ref={gsapContainer2} className="s2">
-							<StoryOneTitle>
-								{allStories[0]
-									? allStories[0].title
-									: "Place golder for title. place golder for title."}
-							</StoryOneTitle>
-						</Div1OverlayWrapper>
-					</ItemWrapper>
-				</CarouselItem>
-				<CarouselItem>
-					<ItemWrapper>
-						<LinkWrapper2
-							to={
-								"/blog/" + slugify(allStories[1] ? allStories[1].title : "nada")
-							}
-							state={{ art: allStories[1] }}
-						>
-							<Div2
-								className="s1"
-								imageURL={allStories[1] ? allStories[1].urls[0] : defaultImage}
-							></Div2>
-						</LinkWrapper2>
-
-						<Div2OverlayWrapper className="s2">
-							<StoryOneTitle>
-								{allStories[1]
-									? allStories[1].title
-									: "Place holder for title, place holder for title"}
-							</StoryOneTitle>
-						</Div2OverlayWrapper>
-					</ItemWrapper>
-				</CarouselItem>
-				<CarouselItem>
-					<ItemWrapper>
-						<LinkWrapper3
-							to={
-								"/blog/" + slugify(allStories[2] ? allStories[2].title : "nada")
-							}
-							state={{ art: allStories[2] }}
-						>
-							<Div3
-								className="s1"
-								imageURL={allStories[2] ? allStories[2].urls[0] : defaultImage}
-							></Div3>
-						</LinkWrapper3>
-
-						<Div3OverlayWrapper className="s2">
-							<StoryOneTitle>
-								{allStories[2]
-									? allStories[2].title
-									: "Place golder for title. place golder for title."}
-							</StoryOneTitle>
-						</Div3OverlayWrapper>
-					</ItemWrapper>
-				</CarouselItem>
-			</Carousel>
-		</HomeWrapper>
-	);
+            <Div3OverlayWrapper className="s2">
+              <StoryOneTitle>
+                {allStories[2]
+                  ? allStories[2].title
+                  : "Place golder for title. place golder for title."}
+              </StoryOneTitle>
+            </Div3OverlayWrapper>
+          </ItemWrapper>
+        </CarouselItem> */}
+      </Carousel>
+    </HomeWrapper>
+  );
 }
 
 export default Home;
