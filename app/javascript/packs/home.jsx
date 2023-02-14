@@ -652,8 +652,7 @@ function Home(props) {
 
   useEffect(() => {
     // gsapContainer1.current.clientHeight
-
-    setAllStories;
+    //setAllStories;
   });
 
   // const [screenIsAtTop, setScreenIsAtTop] = React.useState(true);
