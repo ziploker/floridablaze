@@ -692,50 +692,78 @@ function Home(props) {
 	const [page, setPage] = useState(props.page);
 
 	useEffect(() => {
-		setAllStories(JSON.parse(window.localStorage.getItem("allStories")));
+		console.log(
+			"compare it=======",
+			props.allStories[0].id + "  " + allStories[0].id
+		);
+
+		console.log(
+			"compare it LOCAL=======",
+			JSON.parse(window.localStorage.getItem("allStories"))[0].id
+		);
+
+		if (
+			props.allStories[0].id ==
+			JSON.parse(window.localStorage.getItem("allStories"))[0].id
+		) {
+			setAllStories(JSON.parse(window.localStorage.getItem("allStories")));
+		}
 
 		console.log(
 			"check to see whats up with localstorage",
 			typeof window.localStorage.getItem("allStories")
 		);
-	}, [activeStories]);
+	}, []);
 
 	useEffect(() => {
 		window.localStorage.setItem("allStories", JSON.stringify(allStories));
 	}, [allStories]);
 
-	function handleForwardPage(props, setLoadingStories) {
-		setLoadingStories(true);
-		axios
-			.post(
-				"/forward/",
-				{
-					data: {
-						//page: props.page,
-						lastStory_ID: allStories[0].id,
-						width: window.innerWidth,
-					},
-				},
-				{ withCredentials: true }
-			)
-			.then((response) => {
-				if (response.data.numOfResults == 1) {
-					let newArray = [];
-					newArray[0] = response.data.stories[0];
-					newArray[1] = allStories[0];
-					gsapSwipeAnimation();
-					setAllStories(newArray);
-				} else if (response.data.numOfResults == 0) {
-					gsapDeadEndAnimation();
-					setAllStories(response.data.stories);
-					gsapSwipeAnimation();
-				}
+	function handleForwardPage() {
+		//setLoadingStories(true);
 
-				setLoadingStories(false);
-			})
-			.catch((error) => {
-				console.log("handleForwardPageErrors", error);
-			});
+		if (activeStories[0] == 0) {
+			gsapDeadEndAnimation();
+		} else if (activeStories[0] == 1) {
+			setActiveStories([0, 1]);
+			gsapSwipeAnimation();
+		} else {
+			let nv0 = activeStories[0] - 2;
+			let nv1 = activeStories[1] - 2;
+			setActiveStories([nv0, nv1]);
+			gsapSwipeAnimation();
+		}
+
+		// axios
+		// 	.post(
+		// 		"/forward/",
+		// 		{
+		// 			data: {
+		// 				//page: props.page,
+		// 				lastStory_ID: allStories[0].id,
+		// 				width: window.innerWidth,
+		// 			},
+		// 		},
+		// 		{ withCredentials: true }
+		// 	)
+		// 	.then((response) => {
+		// 		if (response.data.numOfResults == 1) {
+		// 			let newArray = [];
+		// 			newArray[0] = response.data.stories[0];
+		// 			newArray[1] = allStories[0];
+		// 			gsapSwipeAnimation();
+		// 			setAllStories(newArray);
+		// 		} else if (response.data.numOfResults == 0) {
+		// 			gsapDeadEndAnimation();
+		// 			setAllStories(response.data.stories);
+		// 			gsapSwipeAnimation();
+		// 		}
+
+		// 		setLoadingStories(false);
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log("handleForwardPageErrors", error);
+		// 	});
 	}
 
 	function handleReversePage() {
