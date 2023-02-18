@@ -135,28 +135,14 @@ class SparksController < ApplicationController
 
     def page_reverse
 
-        puts "page_reverse----------------page"
+        puts "page_reverse----------------sparksController start"
     
-        #get currentPageWidth and use that to set dynamicStoriesPerPage
-        currentPageWidth = params[:data][:width]
         secondToLastStory_ID = params[:data][:secondToLastStory_ID]
         getNumOfStories = params[:data][:getNumOfStories]
 
-   
-        #dynamicStoriesPerPage = 2
-
-        
-
-    
-
         puts "the current secondToLastStory_ID is " + params[:data][:secondToLastStory_ID].to_s
 
-        puts "the current page width is " + params[:data][:width].to_s
-        #puts "the dynamicStoriesPerPage is " + dynamicStoriesPerPage.to_s
         @stories = Story.where("id < ?", secondToLastStory_ID).limit(getNumOfStories).order(id: :desc)
-        
-        #if theres 3 stories per page, always return 3
-        #if theres 4 stories per page always return 4
         
 
         if @stories.length == 0
@@ -164,12 +150,8 @@ class SparksController < ApplicationController
             puts "@stories.length == 0"
             #no stories left, so get send back empty array and loop from allStories instead
             
-            # @newStories = Story.limit(getNumOfStories).order(id: :desc)
-            # puts " but returning " + @newStories.length.to_s + "instead"
-
             render json: {
-                stories: [],
-                #dynamicStoriesPerPage: dynamicStoriesPerPage,
+                stories: []
             }
             return
 
@@ -177,8 +159,7 @@ class SparksController < ApplicationController
         else
             
             render json: {
-                stories: @stories,
-                #dynamicStoriesPerPage: dynamicStoriesPerPage,
+                stories: @stories
             }
             return
 
@@ -282,11 +263,11 @@ class SparksController < ApplicationController
 
     def page_forward
 
-        dynamicStoriesPerPage = 2
+        #dynamicStoriesPerPage = 2
 
         puts "page_forward----------------page"
     
-        currentPageWidth = params[:data][:width]
+       
         lastStory_ID = params[:data][:lastStory_ID]
 
         
