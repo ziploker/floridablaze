@@ -679,12 +679,6 @@ function Home(props) {
 	const gsapContainer2 = useRef();
 	const leftArrowRef = useRef();
 
-	useEffect(() => {
-		// gsapContainer1.current.clientHeight
-		//setAllStories;
-	});
-
-	// const [screenIsAtTop, setScreenIsAtTop] = React.useState(true);
 	const [loadingStories, setLoadingStories] = React.useState(false);
 
 	const [allStories, setAllStories] = useState(props.allStories);
@@ -719,7 +713,7 @@ function Home(props) {
 		window.localStorage.setItem("allStories", JSON.stringify(allStories));
 	}, [allStories]);
 
-	function handleForwardPage() {
+	function handleForwardPage(mode) {
 		//setLoadingStories(true);
 
 		if (activeStories[0] == 0) {
@@ -728,42 +722,18 @@ function Home(props) {
 			setActiveStories([0, 1]);
 			gsapSwipeAnimation();
 		} else {
-			let nv0 = activeStories[0] - 2;
-			let nv1 = activeStories[1] - 2;
-			setActiveStories([nv0, nv1]);
-			gsapSwipeAnimation();
+			if (mode == "desktop") {
+				let nv0 = activeStories[0] - 2;
+				let nv1 = activeStories[1] - 2;
+				setActiveStories([nv0, nv1]);
+				gsapSwipeAnimation();
+			} else if (mode == "cellphone") {
+				let nv0 = activeStories[0] - 1;
+				let nv1 = activeStories[1] - 1;
+				setActiveStories([nv0, nv1]);
+				gsapSwipeAnimation();
+			}
 		}
-
-		// axios
-		// 	.post(
-		// 		"/forward/",
-		// 		{
-		// 			data: {
-		// 				//page: props.page,
-		// 				lastStory_ID: allStories[0].id,
-		// 				width: window.innerWidth,
-		// 			},
-		// 		},
-		// 		{ withCredentials: true }
-		// 	)
-		// 	.then((response) => {
-		// 		if (response.data.numOfResults == 1) {
-		// 			let newArray = [];
-		// 			newArray[0] = response.data.stories[0];
-		// 			newArray[1] = allStories[0];
-		// 			gsapSwipeAnimation();
-		// 			setAllStories(newArray);
-		// 		} else if (response.data.numOfResults == 0) {
-		// 			gsapDeadEndAnimation();
-		// 			setAllStories(response.data.stories);
-		// 			gsapSwipeAnimation();
-		// 		}
-
-		// 		setLoadingStories(false);
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log("handleForwardPageErrors", error);
-		// 	});
 	}
 
 	function handleReversePage(mode) {
@@ -1020,27 +990,22 @@ function Home(props) {
 					});
 			}
 		}
-
-		allStories.map((s, i) => {
-			console.log(
-				"s+i",
-				"ID is " + s.id + " and i is " + i + " count is " + allStories.length
-			);
-		});
 	}
 	return (
 		<HomeWrapper>
 			<News className="box">
-				<LeftArrowButton
-					onClick={() => handleForwardPage(props, setLoadingStories)}
-				>
+				<LeftArrowButton onClick={() => handleForwardPage("desktop")}>
 					<LeftArrow src={scrollArrow}></LeftArrow>
 				</LeftArrowButton>
 
 				<LinkWrapper1
 					to={
 						"/blog/" +
-						slugify(allStories ? allStories[activeStories[0]].title : "nada")
+						slugify(
+							allStories[activeStories[0]]
+								? allStories[activeStories[0]].title
+								: "nada"
+						)
 					}
 					state={{ art: allStories[activeStories[0]] }}
 				>
@@ -1107,14 +1072,19 @@ function Home(props) {
 			</News>
 			{/* ////////// */}
 
-			<Carousel handleReversePage={handleReversePage}>
+			<Carousel
+				handleReversePage={handleReversePage}
+				handleForwardPage={handleForwardPage}
+			>
 				<CarouselItem>
 					<ItemWrapper>
 						<LinkWrapper1
 							to={
 								"/blog/" +
 								slugify(
-									allStories ? allStories[activeStories[0]].title : "nada"
+									allStories[activeStories[0]]
+										? allStories[activeStories[0]].title
+										: "nada"
 								)
 							}
 							state={{ art: allStories[activeStories[0]] }}
@@ -1123,7 +1093,7 @@ function Home(props) {
 							<Div1
 								className="s1"
 								imageURL={
-									allStories
+									allStories[activeStories[0]]
 										? allStories[activeStories[0]].urls[0]
 										: defaultImage
 								}
@@ -1132,7 +1102,7 @@ function Home(props) {
 
 						<Div1OverlayWrapper ref={gsapContainer2} className="s2">
 							<StoryOneTitle>
-								{allStories
+								{allStories[activeStories[0]]
 									? allStories[activeStories[0]].title
 									: "Place golder for title. place golder for title."}
 							</StoryOneTitle>
@@ -1145,7 +1115,9 @@ function Home(props) {
 							to={
 								"/blog/" +
 								slugify(
-									allStories ? allStories[activeStories[1]].title : "nada"
+									allStories[activeStories[1]]
+										? allStories[activeStories[1]].title
+										: "nada"
 								)
 							}
 							state={{ art: allStories[activeStories[1]] }}
@@ -1153,7 +1125,7 @@ function Home(props) {
 							<Div2
 								className="s1"
 								imageURL={
-									allStories
+									allStories[activeStories[1]]
 										? allStories[activeStories[1]].urls[0]
 										: defaultImage
 								}
@@ -1162,36 +1134,13 @@ function Home(props) {
 
 						<Div2OverlayWrapper className="s2">
 							<StoryOneTitle>
-								{allStories
+								{allStories[activeStories[1]]
 									? allStories[activeStories[1]].title
 									: "Place holder for title, place holder for title"}
 							</StoryOneTitle>
 						</Div2OverlayWrapper>
 					</ItemWrapper>
 				</CarouselItem>
-				{/* <CarouselItem>
-          <ItemWrapper>
-            <LinkWrapper3
-              to={
-                "/blog/" + slugify(allStories[2] ? allStories[2].title : "nada")
-              }
-              state={{ art: allStories[2] }}
-            >
-              <Div3
-                className="s1"
-                imageURL={allStories[2] ? allStories[2].urls[0] : defaultImage}
-              ></Div3>
-            </LinkWrapper3>
-
-            <Div3OverlayWrapper className="s2">
-              <StoryOneTitle>
-                {allStories[2]
-                  ? allStories[2].title
-                  : "Place golder for title. place golder for title."}
-              </StoryOneTitle>
-            </Div3OverlayWrapper>
-          </ItemWrapper>
-        </CarouselItem> */}
 			</Carousel>
 		</HomeWrapper>
 	);
