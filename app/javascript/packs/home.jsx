@@ -564,7 +564,7 @@ const Slide = styled.div`
   position: relative;
   flex-shrink: 0;
   color: black;
-  font-size: 21px;
+  font-size: rtpx;
   cursor: pointer;
 
   &:active {
@@ -686,27 +686,31 @@ function Home(props) {
   const [page, setPage] = useState(props.page);
 
   useEffect(() => {
-    console.log(
-      "compare it=======",
-      props.allStories[0].id + "  " + allStories[0].id
-    );
+    if (typeof allStories[activeStories] === "undefined") {
+      console.log('allStories[activeStories] === "undefined"');
+    } else {
+      console.log(
+        "compare it=======",
+        props.allStories[0].id + "  " + allStories[0].id
+      );
 
-    console.log(
-      "compare it LOCAL=======",
-      JSON.parse(window.localStorage.getItem("allStories"))[0].id
-    );
+      console.log(
+        "compare it LOCAL=======",
+        JSON.parse(window.localStorage.getItem("allStories"))[0].id
+      );
 
-    if (
-      props.allStories[0].id ==
-      JSON.parse(window.localStorage.getItem("allStories"))[0].id
-    ) {
-      setAllStories(JSON.parse(window.localStorage.getItem("allStories")));
+      if (
+        props.allStories[0].id ==
+        JSON.parse(window.localStorage.getItem("allStories"))[0].id
+      ) {
+        setAllStories(JSON.parse(window.localStorage.getItem("allStories")));
+      }
+
+      console.log(
+        "check to see whats up with localstorage",
+        typeof window.localStorage.getItem("allStories")
+      );
     }
-
-    console.log(
-      "check to see whats up with localstorage",
-      typeof window.localStorage.getItem("allStories")
-    );
   }, []);
 
   useEffect(() => {
