@@ -8,7 +8,7 @@ const CarouselMain = styled.div`
   margin: 30px auto 40px auto;
   max-width: 1700px;
 
-  @media only screen and (min-width: 950px) {
+  @media only screen and (min-width: 975px) {
     display: none;
   }
 `;
