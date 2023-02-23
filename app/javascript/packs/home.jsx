@@ -684,8 +684,10 @@ function Home(props) {
   const [allStories, setAllStories] = useState(props.allStories);
   const [activeStories, setActiveStories] = useState([0, 1]);
   const [page, setPage] = useState(props.page);
+  const [innerWidth, setInnerWidth] = useState(0);
 
   useEffect(() => {
+    setInnerWidth(window.innerWidth);
     if (typeof allStories[activeStories] === "undefined") {
       console.log('allStories[activeStories] === "undefined"');
     } else {
@@ -997,6 +999,7 @@ function Home(props) {
   }
   return (
     <HomeWrapper>
+      <h1>{innerWidth}</h1>
       <News className="box">
         <LeftArrowButton onClick={() => handleForwardPage("desktop")}>
           <LeftArrow src={scrollArrow}></LeftArrow>
