@@ -23,7 +23,7 @@ const HomeWrapper = styled.div`
 `;
 
 const News = styled.div`
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 1090px) {
     /* @media only screen and (max-width: 1111px) {
 			//@media only screen and (max-width: 866px) {
 			//margin-top: 0px;
@@ -131,7 +131,7 @@ const LinkWrapper1 = styled(Link)`
   width: 100%;
   justify-self: center;
   display: grid;
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 1090px) {
     grid-area: one;
     width: 100%;
     justify-self: center;
@@ -147,7 +147,7 @@ const LinkWrapper2 = styled(Link)`
   width: 100%;
   justify-self: center;
   display: grid;
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 1090px) {
     grid-area: two;
     width: 100%;
     justify-self: center;
@@ -163,7 +163,7 @@ const LinkWrapper3 = styled(Link)`
   width: 100%;
   justify-self: center;
   display: grid;
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 1090px) {
     /* grid-area: three;
 		width: 100%;
 		justify-self: center;
@@ -345,7 +345,7 @@ const Div1OverlayWrapper = styled.div`
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff9191",GradientType=1);
 
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 1090px) {
     grid-area: one;
   }
 `;
@@ -354,7 +354,7 @@ const Div2OverlayWrapper = styled(Div1OverlayWrapper)`
   //grid-area: two;
   grid-area: 1/1/-1/-1;
 
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 1090px) {
     grid-area: two;
   }
 `;
@@ -363,7 +363,7 @@ const Div3OverlayWrapper = styled(Div1OverlayWrapper)`
   //grid-area: three;
   grid-area: 1/1/-1/-1;
 
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 1090px) {
     //grid-area: three;
     display: none;
   }
