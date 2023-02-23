@@ -256,17 +256,17 @@ function App({ d }) {
     }
   }, []);
 
-  useEffect(() => {
-    document.addEventListener(
-      "touchmove",
-      function (event) {
-        if (event.scale !== 1) {
-          event.preventDefault();
-        }
-      },
-      false
-    );
-  }, []);
+  //   useEffect(() => {
+  //     document.addEventListener(
+  //       "touchmove",
+  //       function (event) {
+  //         if (event.scale !== 1) {
+  //           event.preventDefault();
+  //         }
+  //       },
+  //       false
+  //     );
+  //   }, []);
 
   return (
     <ThemeProvider theme={theme}>
