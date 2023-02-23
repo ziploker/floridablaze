@@ -60,7 +60,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 17px;
     color: #333333;
 
-    
+    touch-action: pan-x pan-y;
     
 
   }
