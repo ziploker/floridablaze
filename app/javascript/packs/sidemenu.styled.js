@@ -15,23 +15,22 @@ const StyledMenu = styled.nav`
   height: 100vh;
   text-align: left;
   //padding: ${({ openSideMenu }) => (openSideMenu ? "2rem" : "0")};
-  position: absolute;
+  position: fixed;
   //top: 85px;
   width: 100%;
   //right: 0;
+  top: 0;
   left: 0;
+  padding-top: 150px;
 
   //height: ${({ openSideMenu }) => (openSideMenu ? "auto" : "0px")};
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
   z-index: 3;
-  
 
-  transform: ${props => props.openSideMenu ? "translateX(0%)" : "translateX(100%)"};
-  
-  
-  //transform: ${props => props.openSideMenu ? "scale(1,1)" : "scale(0,1)"};
+  transform: ${(props) =>
+    props.openSideMenu ? "translateX(0%)" : "translateX(100%)"};
 
-  
+  //transform: ${(props) => (props.openSideMenu ? "scale(1,1)" : "scale(0,1)")};
 
   ul {
     list-style-type: none;
