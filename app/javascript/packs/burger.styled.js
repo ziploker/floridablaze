@@ -29,8 +29,8 @@ const StyledBurger = styled.button`
 	div {
 		width: 2.5rem;
 		height: 0.13rem;
-		//background: ${({ theme }) => theme.offWhite};
-		background: white;
+		background: ${({ hamburgerScrolled }) =>
+			hamburgerScrolled ? "black" : "white"};
 		@media only screen and (max-width: 265px) {
 			background: black;
 		}
@@ -54,14 +54,17 @@ const StyledBurger = styled.button`
 				//color: black;
 			}
 
-			//color: white;
 			font-size: 15px;
 			height: auto;
+			color: ${({ hamburgerScrolled }) =>
+				hamburgerScrolled ? "black" : "white"};
 		}
 
 		:nth-child(3) {
 			transform: ${({ openSideMenu }) =>
 				openSideMenu ? "rotate(-45deg)" : "rotate(0)"};
+			background: ${({ hamburgerScrolled }) =>
+				hamburgerScrolled ? "black" : "white"};
 		}
 	}
 `;
