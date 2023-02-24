@@ -144,8 +144,8 @@ const Carousel = ({ children, handleReversePage, handleForwardPage }) => {
   });
 
   const handlers = useSwipeable({
-    // onSwipedLeft: () => updateIndex(activeIndex + 1),
-    // onSwipedRight: () => updateIndex(activeIndex - 1),
+    onSwipedLeft: () => handleForwardPage("cellphone"),
+    onSwipedRight: () => handleReversePage("cellphone"),
   });
 
   return (
