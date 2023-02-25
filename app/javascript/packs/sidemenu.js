@@ -17,33 +17,46 @@ function Menu(props) {
 			hamburgerScrolled={props.hamburgerScrolled}
 		>
 			<UL>
-				<li key={1}>
+				<li key={1} style={{ borderBottom: "2px orange solid" }}>
 					<a href="/">Home</a>
 				</li>
-				<li key={2}>
+				<li key={2} style={{ borderBottom: "2px orange solid" }}>
 					<a onClick={props.executeScrollForLookupSection}>Act</a>
 				</li>
-				<li key={3}>
+				<li key={3} style={{ borderBottom: "2px orange solid" }}>
 					<a href="#">Shop</a>
 				</li>
 
 				<li key={4}>
 					{props.userState.loggedInStatus == "LOGGED_IN"
 						? [
-								<a key={"a"} onClick={props.handleLogOutClick}>
+								<a
+									style={{ fontSize: "4vw" }}
+									key={"a"}
+									onClick={props.handleLogOutClick}
+								>
 									{" "}
-									Logout |{" "}
+									Logout{" "}
 								</a>,
-								<Link key={"b"} to="/edit">
+								<span style={{ fontSize: "4vw" }}>| </span>,
+								<Link style={{ fontSize: "4vw" }} key={"b"} to="/edit">
 									edit{" "}
 								</Link>,
 						  ]
 						: [
-								<a key={"c"} onClick={props.doSomething}>
+								<a
+									style={{ fontSize: "4vw" }}
+									key={"c"}
+									onClick={props.doSomething}
+								>
 									{" "}
 									Login |
 								</a>,
-								<a key={"d"} onClick={props.executeScrollForSection2}>
+								<a
+									style={{ fontSize: "4vw" }}
+									key={"d"}
+									onClick={props.executeScrollForSection2}
+								>
 									{" "}
 									Signup
 								</a>,
