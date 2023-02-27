@@ -46,11 +46,12 @@ function App({ d }) {
 
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [loginClicked, setLoginClicked] = useState(false);
+  const [allStories, setAllStories] = useState(d.stories);
   // const [lastStory, setLastStory] = useState(d.stories[0]);
   // const [secondToLastStory, setSecondToLastStory] = useState(d.stories[1]);
   // const [thirdToLastStory, setThirdToLastStory] = useState(d.stories[2]);
   // const [fourthToLastStory, setFourthToLastStory] = useState(d.stories[3]);
-  const allStories = d.stories;
+  const allStoriesFromController = d.stories;
   const page = d.page;
 
   const theme = {
@@ -308,7 +309,9 @@ function App({ d }) {
                 handleSuccessfulAuth={handleSuccessfulAuth}
                 loginClicked={loginClicked}
                 setLoginClicked={setLoginClicked}
+                allStoriesFromController={allStoriesFromController}
                 allStories={allStories}
+                setAllStories={setAllStories}
                 //stories={d.stories}
                 // lastStory={lastStory}
                 // secondToLastStory={secondToLastStory}
@@ -380,7 +383,11 @@ function App({ d }) {
           inView={inView}
         />
 
-        <StoryFlipper inView={inView} />
+        <StoryFlipper
+          inView={inView}
+          allStories={allStories}
+          setAllStories={setAllStories}
+        />
 
         {/* <LookupSection appState={appState} ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}}/>
                 <Section2 ref={{section2ScrollToRef: section2ScrollToRef}} stories={appState.stories} appState={appState} setAppState={setAppState} handleSuccessfulAuth={handleSuccessfulAuth} />

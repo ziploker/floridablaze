@@ -5,7 +5,7 @@ import scrollArrow from "../../assets/images/scroll-arrow.png";
 
 const CarouselMain = styled.div`
   overflow: hidden;
-  margin: 30px auto 40px auto;
+  margin: 30px auto 10px auto;
   max-width: 1700px;
 
   @media only screen and (min-width: 985px) {
