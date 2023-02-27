@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import StoryCard from "./storyCard";
 
-function storyFlipper({ inView, allStories, setAllStories }) {
+function storyFlipper({ inView }) {
 	const [stories, setStories] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [hasNextPage, setHasNextPage] = useState(true);
@@ -14,43 +14,40 @@ function storyFlipper({ inView, allStories, setAllStories }) {
 
 	useEffect(() => {
 		if (inView) {
-			console.log(
-				"SFFFFF ----- UFFFFFFF -- iVIEWWWWW -------------------------------"
-			);
-			//       setIsLoading(true);
+			setIsLoading(true);
 
-			//       console.log("inUseEFFECT ofSTORYFLIPPER, abou to axios to story_flipper");
-			//       axios
-			//         .post(
-			//           "/story_flipper/",
-			//           {
-			//             data: {
-			//               //lastStoryID: lastStoryID,
-			//               // width: window.innerWidth,
-			//             },
-			//           },
-			//           { withCredentials: true }
-			//         )
-			//         .then((response) => {
-			//           console.log("RESPONSE from story_flipper", response.data.stories);
-			//           console.log(
-			//             "RESPONSE from story_flipper",
-			//             typeof response.data.stories
-			//           );
-			//           console.log(
-			//             "size of data is ",
-			//             response.data.stories.length.toString() +
-			//               Boolean(response.data.stories.length)
-			//           );
+			console.log("inUseEFFECT ofSTORYFLIPPER, abou to axios to story_flipper");
+			axios
+				.post(
+					"/story_flipper/",
+					{
+						data: {
+							//lastStoryID: lastStoryID,
+							// width: window.innerWidth,
+						},
+					},
+					{ withCredentials: true }
+				)
+				.then((response) => {
+					console.log("RESPONSE from story_flipper", response.data.stories);
+					console.log(
+						"RESPONSE from story_flipper",
+						typeof response.data.stories
+					);
+					console.log(
+						"size of data is ",
+						response.data.stories.length.toString() +
+							Boolean(response.data.stories.length)
+					);
 
-			//           //setStories(response.data.stories);
-			//           setStories((prev) => [...prev, ...response.data.stories]);
-			//           setIsLoading(false);
-			//           setHasNextPage(true);
-			//         })
-			//         .catch((error) => {
-			//           console.log("handleReversePageErrors", error);
-			//         });
+					//setStories(response.data.stories);
+					setStories((prev) => [...prev, ...response.data.stories]);
+					setIsLoading(false);
+					setHasNextPage(true);
+				})
+				.catch((error) => {
+					console.log("handleReversePageErrors", error);
+				});
 		}
 	}, [inView]);
 
@@ -60,7 +57,7 @@ function storyFlipper({ inView, allStories, setAllStories }) {
 			console.log("in________GETMORE lastStoryID aka n is ", n.toString());
 			console.log(
 				"in________GETMORE story.length is ",
-				allStories.length.toString()
+				stories.length.toString()
 			);
 
 			axios
@@ -87,15 +84,9 @@ function storyFlipper({ inView, allStories, setAllStories }) {
 					// );
 
 					// //setStories(response.data.stories);
-					setIsLoading(false);
-					if (response.data.howManyStories > 4) {
-						setAllStories((prev) => [...prev, ...response.data.stories]);
-
-						// setHasNextPage(true);
-					} else {
-						setAllStories((prev) => [...prev, ...response.data.stories]);
-						if (intObserver.current) intObserver.current.disconnect();
-					}
+					// setStories((prev) => [...prev, ...response.data.stories]);
+					// setIsLoading(false);
+					// setHasNextPage(true);
 				})
 				.catch((error) => {
 					console.log("handle_getMore_Errors", error);
@@ -104,7 +95,7 @@ function storyFlipper({ inView, allStories, setAllStories }) {
 		[lastStoryID]
 	);
 
-	const lastPostRef = (node) => {
+	const lastPostRef = useCallback((node) => {
 		console.log(",,,,,,, lastPostRef called from last ref ,,,,,,,,,");
 
 		if (node) lastItemIdRef.current = node;
@@ -116,33 +107,22 @@ function storyFlipper({ inView, allStories, setAllStories }) {
 		if (intObserver.current) intObserver.current.disconnect();
 
 		intObserver.current = new IntersectionObserver((s) => {
-			console.log(
-				",,,,,,, intObserver.current = new IntersectionObserver start ,,,,,,,,,",
-				s
-			);
 			if (s[0].isIntersecting && hasNextPage) {
-				console.log(",,,,,,, s[0].isIntersecting && hasNextPage ,,,,,,,,,");
 				console.log("We are near the last post!, call getMore() ");
 				console.log("We are near the last post! ", lastStoryID);
 				console.log("We are near the last post! ", node.dataset.last);
 
 				getMore(node.dataset.last);
-			} else {
-				console.log(
-					"else do nadaaaaaaaaaaaaaaaaaaaaaaaa========================="
-				);
 			}
 		});
 
 		if (node) intObserver.current.observe(node);
-	};
-	const displayStories = allStories.map((s, i) => {
-		if (allStories.length === i + 1) {
-			console.log("inside storyFlipper allStories.map LAST");
+	}, []);
+
+	const displayStories = stories.map((s, i) => {
+		if (stories.length === i + 1) {
 			return <StoryCard key={i} i={i} s={s} lastID={s.id} ref={lastPostRef} />;
 		}
-		console.log("inside storyFlipper allStories.map REGULAR");
-
 		return <StoryCard key={i} i={i} s={s} />;
 	});
 
