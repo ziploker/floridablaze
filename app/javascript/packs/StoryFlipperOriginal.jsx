@@ -13,43 +13,41 @@ function storyFlipper({ inView }) {
 	console.log("in storyFlipper");
 
 	useEffect(() => {
-		if (inView) {
-			setIsLoading(true);
+		setIsLoading(true);
 
-			console.log("inUseEFFECT ofSTORYFLIPPER, abou to axios to story_flipper");
-			axios
-				.post(
-					"/story_flipper/",
-					{
-						data: {
-							//lastStoryID: lastStoryID,
-							// width: window.innerWidth,
-						},
+		console.log("inUseEFFECT ofSTORYFLIPPER, abou to axios to story_flipper");
+		axios
+			.post(
+				"/story_flipper/",
+				{
+					data: {
+						//lastStoryID: lastStoryID,
+						// width: window.innerWidth,
 					},
-					{ withCredentials: true }
-				)
-				.then((response) => {
-					console.log("RESPONSE from story_flipper", response.data.stories);
-					console.log(
-						"RESPONSE from story_flipper",
-						typeof response.data.stories
-					);
-					console.log(
-						"size of data is ",
-						response.data.stories.length.toString() +
-							Boolean(response.data.stories.length)
-					);
+				},
+				{ withCredentials: true }
+			)
+			.then((response) => {
+				console.log("RESPONSE from story_flipper", response.data.stories);
+				console.log(
+					"RESPONSE from story_flipper",
+					typeof response.data.stories
+				);
+				console.log(
+					"size of data is ",
+					response.data.stories.length.toString() +
+						Boolean(response.data.stories.length)
+				);
 
-					//setStories(response.data.stories);
-					setStories((prev) => [...prev, ...response.data.stories]);
-					setIsLoading(false);
-					setHasNextPage(true);
-				})
-				.catch((error) => {
-					console.log("handleReversePageErrors", error);
-				});
-		}
-	}, [inView]);
+				//setStories(response.data.stories);
+				setStories((prev) => [...prev, ...response.data.stories]);
+				setIsLoading(false);
+				setHasNextPage(true);
+			})
+			.catch((error) => {
+				console.log("handleReversePageErrors", error);
+			});
+	}, []);
 
 	const getMore = useCallback(
 		(n) => {
@@ -84,9 +82,15 @@ function storyFlipper({ inView }) {
 					// );
 
 					// //setStories(response.data.stories);
-					// setStories((prev) => [...prev, ...response.data.stories]);
-					// setIsLoading(false);
-					// setHasNextPage(true);
+					setIsLoading(false);
+					if (response.data.howManyStories > 4) {
+						setStories((prev) => [...prev, ...response.data.stories]);
+
+						// setHasNextPage(true);
+					} else {
+						setStories((prev) => [...prev, ...response.data.stories]);
+						if (intObserver.current) intObserver.current.disconnect();
+					}
 				})
 				.catch((error) => {
 					console.log("handle_getMore_Errors", error);
