@@ -694,10 +694,10 @@ function Home(props) {
 		// if (typeof props.allStories[activeStories] === "undefined") {
 		//   console.log('props.allStories[activeStories] === "undefined"');
 		// } else {
-		console.log(
-			"compare it=======",
-			props.allStoriesFromController[0].id + "  " + props.allStories[0].id
-		);
+		// console.log(
+		// 	"compare it=======",
+		// 	props.allStoriesFromController[0].id + "  " + props.allStories[0].id
+		// );
 
 		if (window.localStorage.getItem("allStories") !== null) {
 			console.log(
