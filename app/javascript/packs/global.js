@@ -61,7 +61,7 @@ const GlobalStyles = createGlobalStyle`
     color: #333333;
 
     touch-action: pan-x pan-y;
-    
+    //min-width: 186px;
 
   }
 

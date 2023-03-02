@@ -18,6 +18,10 @@ const StyledBurger = styled.button`
 	padding: 0;
 	z-index: 10;
 
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none; /* Standard syntax */
+
 	&:focus {
 		outline: none;
 	}
@@ -31,7 +35,7 @@ const StyledBurger = styled.button`
 		height: 0.13rem;
 		background: ${({ hamburgerScrolled }) =>
 			hamburgerScrolled ? "black" : "white"};
-		@media only screen and (max-width: 265px) {
+		@media only screen and (max-width: 281px) {
 			background: black;
 		}
 		border-radius: 10px;
@@ -50,8 +54,8 @@ const StyledBurger = styled.button`
 				openSideMenu ? "translateX(5px)" : "translateX(0)"};
 			background: inherit;
 
-			@media only screen and (max-width: 265px) {
-				//color: black;
+			@media only screen and (max-width: 281px) {
+				color: black;
 			}
 
 			font-size: 15px;
@@ -65,6 +69,9 @@ const StyledBurger = styled.button`
 				openSideMenu ? "rotate(-45deg)" : "rotate(0)"};
 			background: ${({ hamburgerScrolled }) =>
 				hamburgerScrolled ? "black" : "white"};
+			@media only screen and (max-width: 281px) {
+				background: black;
+			}
 		}
 	}
 `;
