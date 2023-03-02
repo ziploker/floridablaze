@@ -119,14 +119,18 @@ class SparksController < ApplicationController
 
     def story_flipper_more
 
+        
+
         lastStoryID = params[:data][:lastStoryID]
+
+        puts "in sparks#story_flipper_more, lastStoryID is " + lastStoryID.to_s
+
 
         @newStories = Story.where("id < ?", lastStoryID).limit(4).order(id: :desc)
 
         render json: {
-            stories: @newStories,
-            howManyStories: @newStories.length
-            
+            newStories: @newStories,
+                      
         }
 
         

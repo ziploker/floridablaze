@@ -7,8 +7,6 @@ function storyFlipper({ allStories, setAllStories }) {
 	const [stories, setStories] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [hasNextPage, setHasNextPage] = useState(true);
-	const [lastStoryID, setLastStoryID] = useState(null);
-	const [hasMore, setHasMore] = useState(true);
 
 	const intObserver = useRef();
 	const lastItemIdRef = useRef();
@@ -68,8 +66,14 @@ function storyFlipper({ allStories, setAllStories }) {
 	//}
 	//}, [inView]);
 
-	function onIntersection() {
-		console.log("EEEEEEEUUURRRIIIKKKKAAAA");
+	function onIntersection(entries) {
+		console.log("EEEEEEEUUURRRIIIKKKKAAAA", entries);
+
+		if (entries[0].isIntersecting) {
+			getMore(allStories);
+		} else {
+			console.log("do nada");
+		}
 	}
 
 	useEffect(() => {
@@ -79,56 +83,51 @@ function storyFlipper({ allStories, setAllStories }) {
 		if (observer && elementRef.current) {
 			observer.observe(elementRef.current);
 		}
-	}, [allStories]);
-	const getMore = useCallback(
-		(n) => {
-			console.log("in________GETMORE useCallback");
-			console.log("in________GETMORE lastStoryID aka n is ", n.toString());
-			console.log(
-				"in________GETMORE story.length is ",
-				allStories.length.toString()
-			);
 
-			axios
-				.post(
-					"/story_flipper/more",
-					{
-						data: {
-							lastStoryID: n,
-							// width: window.innerWidth,
-						},
+		return () => {
+			if (observer) {
+				observer.disconnect;
+			}
+		};
+	}, []);
+	const getMore = (allStories) => {
+		console.log("in________GETMORE useCallback");
+		console.log("in________GETMORE useCallback allStories", allStories);
+
+		//get the lastID
+		let lastID;
+		allStories.map((s, i) => {
+			if (allStories.length === i + 1) {
+				lastID = s.id;
+				console.log("in________GETMORE useCallback LAST ID is = " + lastID);
+			}
+		});
+		setIsLoading(true);
+		axios
+			.post(
+				"/story_flipper/more",
+				{
+					data: {
+						lastStoryID: lastID,
+						// width: window.innerWidth,
 					},
-					{ withCredentials: true }
-				)
-				.then((response) => {
-					console.log("RESPONSE from story_flipper", response.data);
-					// console.log(
-					// 	"RESPONSE from story_flipper",
-					// 	typeof response.data.stories
-					// );
-					// console.log(
-					// 	"size of data is ",
-					// 	response.data.stories.length.toString() +
-					// 		Boolean(response.data.stories.length)
-					// );
+				},
+				{ withCredentials: true }
+			)
+			.then((response) => {
+				console.log("RESPONSE from story_flipper", response.data);
 
-					// //setStories(response.data.stories);
-					setIsLoading(false);
-					if (response.data.howManyStories > 4) {
-						setAllStories((prev) => [...prev, ...response.data.stories]);
-
-						// setHasNextPage(true);
-					} else {
-						setAllStories((prev) => [...prev, ...response.data.stories]);
-						if (intObserver.current) intObserver.current.disconnect();
-					}
-				})
-				.catch((error) => {
-					console.log("handle_getMore_Errors", error);
-				});
-		},
-		[lastStoryID]
-	);
+				setIsLoading(false);
+				if (response.data.newStories.length > 0) {
+					setAllStories((prev) => [...prev, ...response.data.newStories]);
+				} else if (response.data.newStories == 0) {
+					setHasNextPage(false);
+				}
+			})
+			.catch((error) => {
+				console.log("handle_getMore_Errors", error);
+			});
+	};
 
 	// const lastPostRef = (node) => {
 	// 	console.log(
@@ -217,6 +216,7 @@ function storyFlipper({ allStories, setAllStories }) {
 	const displayStories = allStories.map((s, i) => {
 		if (allStories.length === i + 1) {
 			console.log("inside displayStories = allStories.map LAST");
+			//setLastID(s.id);
 			return <StoryCard key={i} i={i} s={s} lastID={s.id} />;
 		}
 		console.log("inside displayStories = allStories.map REGULAR");
@@ -227,12 +227,13 @@ function storyFlipper({ allStories, setAllStories }) {
 	return (
 		<>
 			{displayStories}
-			{isLoading && hasMore && (
+			{isLoading || hasNextPage ? (
 				<div ref={elementRef}>Loading more items.....</div>
+			) : (
+				<p className="center">
+					<a href="#top">Back to Top</a>
+				</p>
 			)}
-			{/* <p className="center">
-				<a href="#top">Back to Top</a>
-			</p> */}
 		</>
 	);
 }
