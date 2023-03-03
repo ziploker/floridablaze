@@ -699,7 +699,10 @@ function Home(props) {
 		// 	props.allStoriesFromController[0].id + "  " + props.allStories[0].id
 		// );
 
-		if (window.localStorage.getItem("allStories") !== null) {
+		if (
+			window.localStorage.getItem("allStories") !== null &&
+			window.localStorage.getItem("allStories").length >= 0
+		) {
 			console.log(
 				"compare it LOCAL=======",
 				JSON.parse(window.localStorage.getItem("allStories"))[0].id
