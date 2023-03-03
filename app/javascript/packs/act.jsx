@@ -196,17 +196,17 @@ const StepThree = styled.div`
 const ActHeaderWrapper = styled.div`
 	display: grid;
 	grid-area: 1/3/2/4;
-	width: max-content;
-	border: 1px red solid;
+	width: 100%;
 
 	@media only screen and (min-width: 1026px) {
 		margin: 0 0 0 60px;
 	}
 
 	@media only screen and (max-width: 985px) {
-		justify-self: center;
+		justify-self: start;
 		grid-area: 1/2/2/3;
-		margin-top: 35px;
+		margin-top: 25px;
+		margin-bottom: 16px;
 	}
 `;
 
@@ -243,12 +243,13 @@ const ActHeader = styled.h1`
 
 	font-family: "Poppins";
 	font-style: normal;
-
+	width: 100%;
 	letter-spacing: -0.05em;
 	word-break: break-word;
 	white-space: normal;
 	overflow: visible;
 	color: #ffffff;
+	//margin: 24px 0 21px 60px;
 `;
 
 const ActSubheader = styled.h2`
@@ -261,16 +262,16 @@ const ActSubheader = styled.h2`
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: 800;
-	font-size: min(6vw, 36px);
+	font-size: min(4vw, 36px);
 	line-height: 59px;
 	//max-width: 80%;
 	//line-height: 100%;
-	justify-self: end;
+	justify-self: start;
 	align-self: start;
 	color: #ffffff;
 	//margin: 8px 0px 8px 20px;
-	margin: -23px 14px 8px 0;
-
+	margin: -14px 14px 8px 5px;
+	display: none;
 	//opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
 	opacity: ${(props) => (props.showCards ? "0" : "1")};
 
@@ -281,8 +282,8 @@ const ActSubheader = styled.h2`
 
 const ActBulletPointsWrapper = styled.div`
 	grid-area: 2/3/3/4;
-	margin-bottom: 8px;
-	border: 1px green solid;
+	margin-bottom: 16px;
+
 	width: 100%;
 
 	@media only screen and (min-width: 1026px) {
@@ -336,7 +337,7 @@ const Form = styled.div`
 		padding: 0;
 		justify-self: center;
 	}
-	border: 1px pink solid;
+
 	padding: 0 20px 0 0;
 	//height: 38px;
 	display: grid;
