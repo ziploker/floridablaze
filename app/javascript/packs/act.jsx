@@ -269,7 +269,7 @@ const ActSubheader = styled.h2`
 	align-self: start;
 	color: #ffffff;
 	//margin: 8px 0px 8px 20px;
-	margin: -23px 14px 20px 0;
+	margin: -23px 14px 8px 0;
 
 	//opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
 	opacity: ${(props) => (props.showCards ? "0" : "1")};
@@ -281,8 +281,9 @@ const ActSubheader = styled.h2`
 
 const ActBulletPointsWrapper = styled.div`
 	grid-area: 2/3/3/4;
-	margin-bottom: 26px;
+	margin-bottom: 8px;
 	border: 1px green solid;
+	width: 100%;
 
 	@media only screen and (min-width: 1026px) {
 		margin: 0 0 26px 60px;
@@ -352,7 +353,7 @@ const Form = styled.div`
 	width: 100%;
 	transition: opacity 0.4s;
 
-	max-width: 481px;
+	//max-width: 481px;
 	//box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 	//margin-top: 72px;
 
@@ -371,7 +372,7 @@ const MainAddressInput = styled.input`
 	width: 100%;
 	padding: 0.2em 0.5em;
 	text-shadow: 0 1px 1px hsl(0 0% 0% / 20%);
-	font: normal 1.1em system-ui, sans-serif;
+	font: normal 1.5em system-ui, sans-serif;
 `;
 
 const Button = styled.button`
