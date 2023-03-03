@@ -698,10 +698,16 @@ function Home(props) {
 		// 	"compare it=======",
 		// 	props.allStoriesFromController[0].id + "  " + props.allStories[0].id
 		// );
-
+		console.log("AAA", window.localStorage.getItem("allStories"));
+		console.log(
+			"BBB",
+			window.localStorage.getItem("allStories").length.toString()
+		);
+		console.log("CCC", props.allStoriesFromController.length.toString());
 		if (
 			window.localStorage.getItem("allStories") !== null &&
-			window.localStorage.getItem("allStories").length >= 0
+			window.localStorage.getItem("allStories").length >= 0 &&
+			props.allStoriesFromController.length >= 0
 		) {
 			console.log(
 				"compare it LOCAL=======",
