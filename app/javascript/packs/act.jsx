@@ -197,6 +197,7 @@ const ActHeaderWrapper = styled.div`
 	display: grid;
 	grid-area: 1/3/2/4;
 	width: max-content;
+	border: 1px red solid;
 
 	@media only screen and (min-width: 1026px) {
 		margin: 0 0 0 60px;
@@ -281,6 +282,7 @@ const ActSubheader = styled.h2`
 const ActBulletPointsWrapper = styled.div`
 	grid-area: 2/3/3/4;
 	margin-bottom: 26px;
+	border: 1px green solid;
 
 	@media only screen and (min-width: 1026px) {
 		margin: 0 0 26px 60px;
@@ -333,7 +335,7 @@ const Form = styled.div`
 		padding: 0;
 		justify-self: center;
 	}
-
+	border: 1px pink solid;
 	padding: 0 20px 0 0;
 	//height: 38px;
 	display: grid;
