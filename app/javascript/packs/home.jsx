@@ -538,6 +538,112 @@ const SlidesInner = styled.div`
   grid-template-columns: repeat(10, 1fr); */
 `;
 
+const Indicators = styled.div`
+  display: grid;
+  //grid-auto-flow: column;
+  /* grid-template-columns: ${(props) =>
+    `repeat(${props.allStories.length}, 10px)`}; */
+  height: 20px;
+  margin-bottom: 16px;
+  overflow: none;
+`;
+const DotWrapper = styled.div`
+  display: grid;
+  grid-template-columns: ${(props) => `repeat(11, ${props.cellSize}px)`};
+  justify-self: center;
+`;
+
+const DotLeftZero = styled.div`
+  border-radius: 50%;
+  width: 0px;
+  height: 0px;
+  justify-self: center;
+  align-self: center;
+  background-color: black;
+  opacity: ${(props) => (props.statusOfIndicators > -3 ? "0" : "1")};
+`;
+
+//should be 2px
+const DotLeftLow = styled.div`
+  border-radius: 50%;
+  width: ${(props) => props.low};
+  height: ${(props) => props.low};
+  justify-self: center;
+  align-self: center;
+  background-color: black;
+  opacity: ${(props) =>
+    props.statusOfIndicators == 0
+      ? "0"
+      : props.statusOfIndicators == -1
+      ? "0"
+      : "1"};
+`;
+
+//should be 3px
+const DotLeftMid = styled.div`
+  border-radius: 50%;
+  width: ${(props) => props.mid};
+  height: ${(props) => props.mid};
+  justify-self: center;
+  align-self: center;
+  //opacity: ${(props) => (props.statusOfIndicators == 0 ? "0" : "1")};
+  background-color: black;
+`;
+
+const DotLeft = styled.div`
+  border-radius: 50%;
+  width: ${(props) => props.high};
+  height: ${(props) => props.high};
+  background-color: black;
+  justify-self: center;
+  align-self: center;
+`;
+
+const Dot = styled.div`
+  border-radius: 50%;
+  width: ${(props) => props.high};
+  height: ${(props) => props.high};
+  background-color: black;
+  justify-self: center;
+  align-self: center;
+`;
+
+const DotRight = styled.div`
+  border-radius: 50%;
+  width: ${(props) => props.high};
+  height: ${(props) => props.high};
+  background-color: black;
+  justify-self: center;
+  align-self: center;
+`;
+
+const DotRightMid = styled.div`
+  border-radius: 50%;
+  width: ${(props) => props.mid};
+  height: ${(props) => props.mid};
+  background-color: black;
+  justify-self: center;
+  align-self: center;
+`;
+
+const DotRightLow = styled.div`
+  border-radius: 50%;
+  width: ${(props) => props.low};
+  height: ${(props) => props.low};
+  background-color: black;
+  justify-self: center;
+  align-self: center;
+`;
+
+const DotRightZero = styled.div`
+  border-radius: 50%;
+  width: 0px;
+  height: 0px;
+  background-color: black;
+  justify-self: center;
+  align-self: center;
+`;
+
 const Slide = styled.div`
   /* position: absolute; */
 
@@ -684,8 +790,124 @@ function Home(props) {
 
   //const [allStories, setAllStories] = useState(props.allStoriesFromController);
   const [activeStories, setActiveStories] = useState([0, 1]);
+  const [statusOfIndicators, setStatusOfIndicators] = useState(0);
   const [page, setPage] = useState(props.page);
   const [innerWidth, setInnerWidth] = useState(0);
+
+  const app = useRef();
+  // store the timeline in a ref.
+  const tl = useRef();
+  const tlFirstReverse = useRef();
+  const tlSecondReverse = useRef();
+  const high = "8px";
+  const med = "6px";
+  const low = "4px";
+  const zero = "0px";
+  const cellSize = 30;
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // add a box and circle animation to our timeline and play on first render
+      console.log("creating timeline");
+      // tl.current && tl.current.progress(0).kill();
+      // tl.current = gsap
+      //   .timeline({ paused: true })
+      //   .from(".dotLeftZero", { x: 10, width: "1.5px", height: "1.5px" })
+      //   .from(".dotLeftLow", { x: 10, width: "3px", height: "3px" }, "<")
+      //   .from(".dotLeftMid", { x: 10, width: "5px", height: "5px" }, "<")
+      //   .from(".dotLeft", { x: 10, width: "5px", height: "5px" }, "<")
+      //   .from(".dot", { x: 10 }, "<")
+      //   .from(".dotRight", { x: 10, width: "3px", height: "3px" }, "<")
+      //   .from(".dotRightMid", { x: 10, width: "1.5px", height: "1.5px" }, "<")
+      //   .from(".dotRightLow", { x: 10, width: "0px", height: "0px" }, "<");
+
+      tlSecondReverse.current && tlSecondReverse.current.progress(0).kill();
+      tlSecondReverse.current = gsap
+        .timeline({ paused: true })
+        .fromTo(
+          ".dotLeftZero",
+          { x: cellSize, width: low, height: low },
+          { x: 0, width: 0, height: 0 }
+        )
+        .fromTo(
+          ".dotLeftLow",
+          { x: cellSize, width: med, height: med },
+          { x: 0, width: low, height: low },
+          "<"
+        )
+        .fromTo(
+          ".dotLeftMid",
+          { x: cellSize, width: high, height: high },
+          { x: 0, width: med, height: med },
+          "<"
+        )
+        .fromTo(
+          ".dotLeft",
+          { x: cellSize, width: high, height: high },
+          { x: 0, width: high, height: high },
+          "<"
+        )
+        .fromTo(".dot", { x: cellSize }, { x: 0 }, "<")
+        .fromTo(
+          ".dotRight",
+          { x: cellSize, width: med, height: med },
+          { x: 0, width: high, height: high },
+          "<"
+        )
+        .fromTo(
+          ".dotRightMid",
+          { x: cellSize, width: low, height: low },
+          { x: 0, width: med, height: med },
+          "<"
+        )
+        .fromTo(
+          ".dotRightLow",
+          { x: cellSize, width: zero, height: zero },
+          { x: 0, width: low, height: low },
+          "<"
+        );
+
+      // tlFirstReverse.current && tlFirstReverse.current.progress(0).kill();
+      // tlFirstReverse.current = gsap
+      //   .timeline({ paused: true })
+      //   //.from(".dotLeftZero", { x: 10, width: "1.5px", height: "1.5px" })
+      //   //.from(".dotLeftLow", { x: 10, width: "3px", height: "3px" }, "<")
+      //   .fromTo(
+      //     ".dotLeftMid",
+      //     { x: 10, width: "5px", height: "5px" },
+      //     { x: 0, width: "3px", height: "3px" },
+      //     "<"
+      //   )
+      //   .fromTo(
+      //     ".dotLeft",
+      //     { x: 10, width: "5px", height: "5px" },
+      //     { x: 0, width: "5px", height: "5px" },
+      //     "<"
+      //   )
+      //   .fromTo(".dot", { x: 10 }, { x: 0 }, "<")
+      //   .fromTo(
+      //     ".dotRight",
+      //     { x: 10, width: "3px", height: "3px" },
+      //     { x: 0, width: "5px", height: "5px" },
+      //     "<"
+      //   )
+      //   .fromTo(
+      //     ".dotRightMid",
+      //     { x: 10, width: "1.5px", height: "1.5px" },
+      //     { x: 0, width: "3px", height: "3px" },
+      //     "<"
+      //   )
+      //   .fromTo(
+      //     ".dotRightLow",
+      //     { x: 10, width: "0px", height: "0px" },
+      //     { x: 0, width: "1.5px", height: "1.5px" },
+      //     "<"
+      //   );
+
+      //gsap.from(".dotRightZero", { x: -10, width: "0px", height: "0px" });
+    }, app);
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     console.log("start of function UE=================", props.allStories);
@@ -749,6 +971,19 @@ function Home(props) {
   function handleReversePage(mode) {
     // mode is either "cellphone" or "desktop"
     // check how many stories are left in clients array (allStories)
+
+    if (statusOfIndicators == 0) {
+      tlSecondReverse.current.play(0);
+      setStatusOfIndicators(-1);
+    } else if (statusOfIndicators == -1) {
+      tlSecondReverse.current.play(0);
+      setStatusOfIndicators(-2);
+    } else if (statusOfIndicators == -2) {
+      tlSecondReverse.current.play(0);
+      setStatusOfIndicators(-3);
+    } else if (statusOfIndicators == -3) {
+      tlSecondReverse.current.play(0);
+    }
 
     console.log("Mode is ==================== ", mode);
     let storiesLeft = props.allStories.length - (activeStories[1] + 1);
@@ -1002,8 +1237,12 @@ function Home(props) {
       }
     }
   }
+
+  // const drawDots = props.allStories.map((i, s) => {
+  //   return <Dot key={i} />;
+  // });
   return (
-    <HomeWrapper>
+    <HomeWrapper ref={app}>
       {/* <h1>{innerWidth}</h1> */}
       <News className="box">
         <LeftArrowButton onClick={() => handleForwardPage("desktop")}>
@@ -1154,6 +1393,87 @@ function Home(props) {
           </ItemWrapper>
         </CarouselItem>
       </Carousel>
+      <Indicators allStories={props.allStories} activeStories={activeStories}>
+        <DotWrapper cellSize={cellSize}>
+          <DotLeftZero
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dotLeftZero"
+          />
+          <DotLeftLow
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dotLeftLow"
+          />
+          <DotLeftMid
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dotLeftMid"
+          />
+          <DotLeft
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dotLeft"
+          />
+          <Dot
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dot"
+          />
+          <Dot
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dot"
+          />
+          <Dot
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dot"
+          />
+          <DotRight
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dotRight"
+          />
+          <DotRightMid
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dotRightMid"
+          />
+          <DotRightLow
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dotRightLow"
+          />
+          <DotRightZero
+            high={high}
+            med={med}
+            low={low}
+            statusOfIndicators={statusOfIndicators}
+            className="dotRightZero"
+          />
+        </DotWrapper>
+      </Indicators>
     </HomeWrapper>
   );
 }

@@ -291,7 +291,7 @@ const SignupWrapperInner = styled.div`
   //grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
 
   grid-template-columns:
-    minmax(20px, 40px) minmax(250px, 450px) minmax(350px, 600px)
+    minmax(20px, 40px) minmax(250px, 450px) minmax(150px, 600px)
     minmax(40px, 1fr);
 
   grid-area: 1/1/-1/-1;
