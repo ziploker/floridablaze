@@ -560,7 +560,7 @@ const DotLeftZero = styled.div`
   justify-self: center;
   align-self: center;
   background-color: black;
-  opacity: ${(props) => (props.statusOfIndicators > -3 ? "0" : "1")};
+  opacity: ${(props) => (props.statusOfIndicators < -6 ? "1" : "0")};
 `;
 
 //should be 2px
@@ -571,12 +571,7 @@ const DotLeftLow = styled.div`
   justify-self: center;
   align-self: center;
   background-color: black;
-  opacity: ${(props) =>
-    props.statusOfIndicators == 0
-      ? "0"
-      : props.statusOfIndicators == -1
-      ? "0"
-      : "1"};
+  opacity: ${(props) => (props.statusOfIndicators < -5 ? "1" : "0")};
 `;
 
 //should be 3px
@@ -586,24 +581,46 @@ const DotLeftMid = styled.div`
   height: ${(props) => props.mid};
   justify-self: center;
   align-self: center;
-  //opacity: ${(props) => (props.statusOfIndicators == 0 ? "0" : "1")};
-  background-color: black;
+  //opacity: ${(props) => (props.statusOfIndicators < -4 ? "1" : "0")};
+  background-color: ${(props) =>
+    props.statusOfIndicators == 0 ? "orange" : "black"}; ;
 `;
 
 const DotLeft = styled.div`
   border-radius: 50%;
   width: ${(props) => props.high};
   height: ${(props) => props.high};
-  background-color: black;
+  background-color: ${(props) =>
+    props.statusOfIndicators == -1 ? "orange" : "black"};
+
   justify-self: center;
   align-self: center;
 `;
 
-const Dot = styled.div`
+const Dot1 = styled.div`
   border-radius: 50%;
   width: ${(props) => props.high};
   height: ${(props) => props.high};
-  background-color: black;
+  background-color: ${(props) =>
+    props.statusOfIndicators == -2 ? "orange" : "black"};
+  justify-self: center;
+  align-self: center;
+`;
+const Dot2 = styled.div`
+  border-radius: 50%;
+  width: ${(props) => props.high};
+  height: ${(props) => props.high};
+  background-color: ${(props) =>
+    props.statusOfIndicators == -3 ? "orange" : "black"};
+  justify-self: center;
+  align-self: center;
+`;
+const Dot3 = styled.div`
+  border-radius: 50%;
+  width: ${(props) => props.high};
+  height: ${(props) => props.high};
+  background-color: ${(props) =>
+    props.statusOfIndicators == -4 ? "orange" : "black"};
   justify-self: center;
   align-self: center;
 `;
@@ -612,7 +629,8 @@ const DotRight = styled.div`
   border-radius: 50%;
   width: ${(props) => props.high};
   height: ${(props) => props.high};
-  background-color: black;
+  background-color: ${(props) =>
+    props.statusOfIndicators < -4 ? "orange" : "black"};
   justify-self: center;
   align-self: center;
 `;
@@ -973,15 +991,27 @@ function Home(props) {
     // check how many stories are left in clients array (allStories)
 
     if (statusOfIndicators == 0) {
-      tlSecondReverse.current.play(0);
+      //tlSecondReverse.current.play(0);
       setStatusOfIndicators(-1);
     } else if (statusOfIndicators == -1) {
-      tlSecondReverse.current.play(0);
+      //tlSecondReverse.current.play(0);
       setStatusOfIndicators(-2);
     } else if (statusOfIndicators == -2) {
-      tlSecondReverse.current.play(0);
+      //tlSecondReverse.current.play(0);
       setStatusOfIndicators(-3);
     } else if (statusOfIndicators == -3) {
+      //tlSecondReverse.current.play(0);
+      setStatusOfIndicators(-4);
+    } else if (statusOfIndicators == -4) {
+      tlSecondReverse.current.play(0);
+      setStatusOfIndicators(-5);
+    } else if (statusOfIndicators == -5) {
+      tlSecondReverse.current.play(0);
+      setStatusOfIndicators(-6);
+    } else if (statusOfIndicators == -6) {
+      tlSecondReverse.current.play(0);
+      setStatusOfIndicators(-7);
+    } else if (statusOfIndicators == -7) {
       tlSecondReverse.current.play(0);
     }
 
@@ -1423,21 +1453,21 @@ function Home(props) {
             statusOfIndicators={statusOfIndicators}
             className="dotLeft"
           />
-          <Dot
+          <Dot1
             high={high}
             med={med}
             low={low}
             statusOfIndicators={statusOfIndicators}
             className="dot"
           />
-          <Dot
+          <Dot2
             high={high}
             med={med}
             low={low}
             statusOfIndicators={statusOfIndicators}
             className="dot"
           />
-          <Dot
+          <Dot3
             high={high}
             med={med}
             low={low}
