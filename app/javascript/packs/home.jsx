@@ -642,6 +642,8 @@ const DotRightMid = styled.div`
   background-color: black;
   justify-self: center;
   align-self: center;
+  opacity: ${(props) =>
+    props.activeStories[0] == props.allStories.length - 1 ? "0" : "1"};
 `;
 
 const DotRightLow = styled.div`
@@ -651,6 +653,8 @@ const DotRightLow = styled.div`
   background-color: black;
   justify-self: center;
   align-self: center;
+  opacity: ${(props) =>
+    props.activeStories[0] == props.allStories.length - 2 ? "0" : "1"};
 `;
 
 const DotRightZero = styled.div`
@@ -660,6 +664,8 @@ const DotRightZero = styled.div`
   background-color: black;
   justify-self: center;
   align-self: center;
+  opacity: ${(props) =>
+    props.activeStories[0] == props.allStories.length - 3 ? "0" : "1"};
 `;
 
 const Slide = styled.div`
@@ -841,11 +847,11 @@ function Home(props) {
 
       tlSecondReverse.current && tlSecondReverse.current.progress(0).kill();
       tlSecondReverse.current = gsap
-        .timeline({ paused: true })
+        .timeline({ paused: true, immediateRender: false })
         .fromTo(
           ".dotLeftZero",
           { x: cellSize, width: low, height: low },
-          { x: 0, width: 0, height: 0 }
+          { delay: 0.08, x: 0, width: 0, height: 0 }
         )
         .fromTo(
           ".dotLeftLow",
@@ -1003,16 +1009,26 @@ function Home(props) {
       //tlSecondReverse.current.play(0);
       setStatusOfIndicators(-4);
     } else if (statusOfIndicators == -4) {
-      tlSecondReverse.current.play(0);
       setStatusOfIndicators(-5);
+      tlSecondReverse.current.play(0);
     } else if (statusOfIndicators == -5) {
-      tlSecondReverse.current.play(0);
       setStatusOfIndicators(-6);
-    } else if (statusOfIndicators == -6) {
       tlSecondReverse.current.play(0);
+    } else if (statusOfIndicators == -6) {
       setStatusOfIndicators(-7);
+      tlSecondReverse.current.play(0);
     } else if (statusOfIndicators == -7) {
       tlSecondReverse.current.play(0);
+    }
+
+    console.log(
+      "TESTING=========== " +
+        activeStories[0] +
+        " === " +
+        (props.allStories.length - 3)
+    );
+    if (activeStories[0] == props.allStories.length - 3) {
+      console.log("newanimation");
     }
 
     console.log("Mode is ==================== ", mode);
@@ -1485,6 +1501,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeStories={activeStories}
+            allStories={props.allStories}
             statusOfIndicators={statusOfIndicators}
             className="dotRightMid"
           />
@@ -1492,6 +1510,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeStories={activeStories}
+            allStories={props.allStories}
             statusOfIndicators={statusOfIndicators}
             className="dotRightLow"
           />
@@ -1499,6 +1519,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeStories={activeStories}
+            allStories={props.allStories}
             statusOfIndicators={statusOfIndicators}
             className="dotRightZero"
           />
