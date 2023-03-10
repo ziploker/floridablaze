@@ -642,8 +642,12 @@ const DotRightMid = styled.div`
   background-color: black;
   justify-self: center;
   align-self: center;
-  opacity: ${(props) =>
-    props.activeStories[0] == props.allStories.length - 1 ? "0" : "1"};
+  /* display: ${(props) =>
+    props.activeStories[0] >= props.allStories.length - 1
+      ? "none"
+      : "initial"}; */
+  /* opacity: ${(props) =>
+    props.activeStories[0] >= props.allStories.length - 1 ? "0" : "1"}; */
 `;
 
 const DotRightLow = styled.div`
@@ -653,8 +657,12 @@ const DotRightLow = styled.div`
   background-color: black;
   justify-self: center;
   align-self: center;
-  opacity: ${(props) =>
-    props.activeStories[0] == props.allStories.length - 2 ? "0" : "1"};
+  /* display: ${(props) =>
+    props.activeStories[0] >= props.allStories.length - 2
+      ? "none"
+      : "initial"}; */
+  /* opacity: ${(props) =>
+    props.activeStories[0] >= props.allStories.length - 2 ? "0" : "1"}; */
 `;
 
 const DotRightZero = styled.div`
@@ -664,8 +672,12 @@ const DotRightZero = styled.div`
   background-color: black;
   justify-self: center;
   align-self: center;
-  opacity: ${(props) =>
-    props.activeStories[0] == props.allStories.length - 3 ? "0" : "1"};
+  /* display: ${(props) =>
+    props.activeStories[0] >= props.allStories.length - 3
+      ? "none"
+      : "initial"}; */
+  /* opacity: ${(props) =>
+    props.activeStories[0] >= props.allStories.length - 3 ? "0" : "0"}; */
 `;
 
 const Slide = styled.div`
@@ -823,6 +835,9 @@ function Home(props) {
   const tl = useRef();
   const tlFirstReverse = useRef();
   const tlSecondReverse = useRef();
+  const tl3Reverse = useRef();
+  const tl2Reverse = useRef();
+  const tl1Reverse = useRef();
   const high = "8px";
   const med = "6px";
   const low = "4px";
@@ -845,13 +860,160 @@ function Home(props) {
       //   .from(".dotRightMid", { x: 10, width: "1.5px", height: "1.5px" }, "<")
       //   .from(".dotRightLow", { x: 10, width: "0px", height: "0px" }, "<");
 
+      tl3Reverse.current && tl3Reverse.current.progress(0).kill();
+      tl3Reverse.current = gsap
+        .timeline({ paused: true, immediateRender: false })
+        .fromTo(
+          ".dotLeftZero",
+          { x: cellSize, width: low, height: low },
+          { delay: 0.09, x: 0, width: 0, height: 0 }
+        )
+        .fromTo(
+          ".dotLeftLow",
+          { x: cellSize, width: med, height: med },
+          { x: 0, width: low, height: low },
+          "<"
+        )
+        .fromTo(
+          ".dotLeftMid",
+          { x: cellSize, width: high, height: high },
+          { x: 0, width: med, height: med },
+          "<"
+        )
+        .fromTo(
+          ".dotLeft",
+          { x: cellSize, width: high, height: high },
+          { x: 0, width: high, height: high },
+          "<"
+        )
+        .fromTo(".dot", { x: cellSize }, { x: 0 }, "<")
+        .fromTo(
+          ".dotRight",
+          { x: cellSize, width: med, height: med },
+          { x: 0, width: high, height: high },
+          "<"
+        )
+        .fromTo(
+          ".dotRightMid",
+          { x: cellSize, width: low, height: low },
+          { x: 0, width: med, height: med },
+          "<"
+        )
+        .fromTo(
+          ".dotRightLow",
+          { x: cellSize, width: 0, height: 0 },
+          // { x: 0, width: low, height: low },
+          { x: 0, width: 0, height: 0 },
+          "<"
+        );
+
+      tl2Reverse.current && tl2Reverse.current.progress(0).kill();
+      tl2Reverse.current = gsap
+        .timeline({ paused: true, immediateRender: false })
+        .fromTo(
+          ".dotLeftZero",
+          { x: cellSize, width: low, height: low },
+          { delay: 0.09, x: 0, width: 0, height: 0 }
+        )
+        .fromTo(
+          ".dotLeftLow",
+          { x: cellSize, width: med, height: med },
+          { x: 0, width: low, height: low },
+          "<"
+        )
+        .fromTo(
+          ".dotLeftMid",
+          { x: cellSize, width: high, height: high },
+          { x: 0, width: med, height: med },
+          "<"
+        )
+        .fromTo(
+          ".dotLeft",
+          { x: cellSize, width: high, height: high },
+          { x: 0, width: high, height: high },
+          "<"
+        )
+        .fromTo(".dot", { x: cellSize }, { x: 0 }, "<")
+        .fromTo(
+          ".dotRight",
+          { x: cellSize, width: med, height: med },
+          { x: 0, width: high, height: high },
+          "<"
+        )
+        .fromTo(
+          ".dotRightMid",
+          { x: cellSize, width: 0, height: 0 },
+          // { x: cellSize, width: low, height: low },
+          // { x: 0, width: med, height: med },
+          { x: 0, width: 0, height: 0 },
+          "<"
+        )
+        .fromTo(
+          ".dotRightLow",
+          { x: cellSize, width: zero, height: zero },
+          // { x: 0, width: low, height: low },
+          { x: 0, width: 0, height: 0 },
+          "<"
+        );
+
+      tl1Reverse.current && tl1Reverse.current.progress(0).kill();
+      tl1Reverse.current = gsap
+        .timeline({ paused: true, immediateRender: false })
+        .fromTo(
+          ".dotLeftZero",
+          { x: cellSize, width: low, height: low },
+          { delay: 0.09, x: 0, width: 0, height: 0 }
+        )
+        .fromTo(
+          ".dotLeftLow",
+          { x: cellSize, width: med, height: med },
+          { x: 0, width: low, height: low },
+          "<"
+        )
+        .fromTo(
+          ".dotLeftMid",
+          { x: cellSize, width: high, height: high },
+          { x: 0, width: med, height: med },
+          "<"
+        )
+        .fromTo(
+          ".dotLeft",
+          { x: cellSize, width: high, height: high },
+          { x: 0, width: high, height: high },
+          "<"
+        )
+        .fromTo(".dot", { x: cellSize }, { x: 0 }, "<")
+        .fromTo(
+          ".dotRight",
+          { x: cellSize, width: med, height: med },
+          // { x: cellSize, width: med, height: med },
+          // { x: 0, width: high, height: high },
+          { x: 0, width: high, height: high },
+          "<"
+        )
+        .fromTo(
+          ".dotRightMid",
+          { x: cellSize, width: low, height: low },
+          // { x: cellSize, width: low, height: low },
+          // { x: 0, width: med, height: med },
+          { x: 0, width: 0, height: 0 },
+          "<"
+        )
+        .fromTo(
+          ".dotRightLow",
+          { x: cellSize, width: zero, height: zero },
+          // { x: 0, width: low, height: low },
+          { x: 0, width: 0, height: 0 },
+          "<"
+        );
+
       tlSecondReverse.current && tlSecondReverse.current.progress(0).kill();
       tlSecondReverse.current = gsap
         .timeline({ paused: true, immediateRender: false })
         .fromTo(
           ".dotLeftZero",
           { x: cellSize, width: low, height: low },
-          { delay: 0.08, x: 0, width: 0, height: 0 }
+          { delay: 0.09, x: 0, width: 0, height: 0 }
         )
         .fromTo(
           ".dotLeftLow",
@@ -996,6 +1158,9 @@ function Home(props) {
     // mode is either "cellphone" or "desktop"
     // check how many stories are left in clients array (allStories)
 
+    // if (activeStories[0] == props.allStories.length - 1) {
+    //   return;
+    // }
     if (statusOfIndicators == 0) {
       //tlSecondReverse.current.play(0);
       setStatusOfIndicators(-1);
@@ -1018,14 +1183,31 @@ function Home(props) {
       setStatusOfIndicators(-7);
       tlSecondReverse.current.play(0);
     } else if (statusOfIndicators == -7) {
-      tlSecondReverse.current.play(0);
+      console.log("------------------------------------------ -7");
+      if (activeStories[0] == props.allStories.length - 3) {
+        console.log("------------------------------------------ tl3");
+
+        tl3Reverse.current.play(0);
+      } else if (activeStories[0] == props.allStories.length - 2) {
+        console.log("------------------------------------------ -tl2");
+
+        tl2Reverse.current.play(0);
+      } else if (activeStories[0] == props.allStories.length - 1) {
+        console.log("------------------------------------------ -tl1");
+        return;
+        //tl1Reverse.current.play(0);
+      } else {
+        console.log("------------------------------------------ tlsecond");
+
+        tlSecondReverse.current.play(0);
+      }
     }
 
     console.log(
       "TESTING=========== " +
         activeStories[0] +
         " === " +
-        (props.allStories.length - 3)
+        props.allStories.length
     );
     if (activeStories[0] == props.allStories.length - 3) {
       console.log("newanimation");
