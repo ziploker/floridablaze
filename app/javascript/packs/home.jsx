@@ -12,6 +12,8 @@ import { Draggable } from "gsap/all";
 import { _parseRelative } from "gsap/gsap-core";
 import "../../assets/stylesheets/home_story_spinner.scss";
 import Carousel, { CarouselItem } from "./carousel";
+//import Dots from "react-carousel-dots";
+import "../../assets/stylesheets/dots.css";
 
 const HomeWrapper = styled.div`
   //background: pink;
@@ -560,7 +562,10 @@ const DotLeftZero = styled.div`
   justify-self: center;
   align-self: center;
   background-color: black;
-  opacity: ${(props) => (props.statusOfIndicators < -6 ? "1" : "0")};
+  opacity: ${(props) =>
+    props.statusOfIndicators < -6 || props.directionOfFlow == "forward"
+      ? "1"
+      : "0"};
 `;
 
 //should be 2px
@@ -571,7 +576,10 @@ const DotLeftLow = styled.div`
   justify-self: center;
   align-self: center;
   background-color: black;
-  opacity: ${(props) => (props.statusOfIndicators < -5 ? "1" : "0")};
+  opacity: ${(props) =>
+    props.statusOfIndicators < -5 || props.directionOfFlow == "forward"
+      ? "1"
+      : "0"};
 `;
 
 //should be 3px
@@ -582,17 +590,20 @@ const DotLeftMid = styled.div`
   justify-self: center;
   align-self: center;
   //opacity: ${(props) => (props.statusOfIndicators < -4 ? "1" : "0")};
+  /* background-color: ${(props) =>
+    props.statusOfIndicators == 0 ? "orange" : "black"}; ; */
   background-color: ${(props) =>
-    props.statusOfIndicators == 0 ? "orange" : "black"}; ;
+    props.activeIndicator == 1 ? "orange" : "black"};
 `;
 
 const DotLeft = styled.div`
   border-radius: 50%;
   width: ${(props) => props.high};
   height: ${(props) => props.high};
+  /* background-color: ${(props) =>
+    props.statusOfIndicators == -1 ? "orange" : "black"}; */
   background-color: ${(props) =>
-    props.statusOfIndicators == -1 ? "orange" : "black"};
-
+    props.activeIndicator == 2 ? "orange" : "black"};
   justify-self: center;
   align-self: center;
 `;
@@ -601,8 +612,10 @@ const Dot1 = styled.div`
   border-radius: 50%;
   width: ${(props) => props.high};
   height: ${(props) => props.high};
+  /* background-color: ${(props) =>
+    props.statusOfIndicators == -2 ? "orange" : "black"}; */
   background-color: ${(props) =>
-    props.statusOfIndicators == -2 ? "orange" : "black"};
+    props.activeIndicator == 3 ? "orange" : "black"};
   justify-self: center;
   align-self: center;
 `;
@@ -610,8 +623,10 @@ const Dot2 = styled.div`
   border-radius: 50%;
   width: ${(props) => props.high};
   height: ${(props) => props.high};
+  /* background-color: ${(props) =>
+    props.statusOfIndicators == -3 ? "orange" : "black"}; */
   background-color: ${(props) =>
-    props.statusOfIndicators == -3 ? "orange" : "black"};
+    props.activeIndicator == 4 ? "orange" : "black"};
   justify-self: center;
   align-self: center;
 `;
@@ -619,8 +634,10 @@ const Dot3 = styled.div`
   border-radius: 50%;
   width: ${(props) => props.high};
   height: ${(props) => props.high};
+  /* background-color: ${(props) =>
+    props.statusOfIndicators == -4 ? "orange" : "black"}; */
   background-color: ${(props) =>
-    props.statusOfIndicators == -4 ? "orange" : "black"};
+    props.activeIndicator == 5 ? "orange" : "black"};
   justify-self: center;
   align-self: center;
 `;
@@ -629,8 +646,10 @@ const DotRight = styled.div`
   border-radius: 50%;
   width: ${(props) => props.high};
   height: ${(props) => props.high};
+  /* background-color: ${(props) =>
+    props.statusOfIndicators < -4 ? "orange" : "black"}; */
   background-color: ${(props) =>
-    props.statusOfIndicators < -4 ? "orange" : "black"};
+    props.activeIndicator == 6 ? "orange" : "black"};
   justify-self: center;
   align-self: center;
 `;
@@ -713,6 +732,19 @@ const Slide = styled.div`
     lor: white;
     rder: 2px solid white;
   }
+`;
+
+const AllDotsWrapper = styled.div`
+  grid-area: 1/2/2/3;
+  display: grid;
+  grid-template-columns: ${(props) =>
+    `repeat(${props.allStories.length}, 20px)`};
+  overflow: hidden;
+  width: 220px;
+  justify-self: center;
+  margin-bottom: 13px;
+
+  transition: transform 0.5s ease;
 `;
 
 const gsapSwipeAnimation = () => {
@@ -805,6 +837,8 @@ const gsapDeadEndAnimation = () => {
   );
 };
 
+const getNewBigDots = () => {};
+
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 ///////////////                    ////////////////////////
@@ -827,8 +861,16 @@ function Home(props) {
   //const [allStories, setAllStories] = useState(props.allStoriesFromController);
   const [activeStories, setActiveStories] = useState([0, 1]);
   const [statusOfIndicators, setStatusOfIndicators] = useState(0);
+  const [directionOfFlow, setDirectionOfFlow] = useState("reverse");
+  const [activeIndicator, setActiveIndicator] = useState(1);
   const [page, setPage] = useState(props.page);
   const [innerWidth, setInnerWidth] = useState(0);
+  const [active, setActive] = useState(0);
+
+  const [activeDot, setActiveDot] = useState(0);
+  const [visibleDots, setVisibleDots] = useState([0, 1, 2, 3, 4]);
+  const [transitionX, setTransitionX] = useState(60);
+  const [allDotsWrapperWidth, setAllDotsWrapperWidth] = useState(100);
 
   const app = useRef();
   // store the timeline in a ref.
@@ -838,6 +880,7 @@ function Home(props) {
   const tl3Reverse = useRef();
   const tl2Reverse = useRef();
   const tl1Reverse = useRef();
+  const tlmaster = useRef();
   const high = "8px";
   const med = "6px";
   const low = "4px";
@@ -1091,6 +1134,11 @@ function Home(props) {
       //   );
 
       //gsap.from(".dotRightZero", { x: -10, width: "0px", height: "0px" });
+
+      // tlmaster.current = gsap.timeline({ paused: true });
+      // tlmaster.current.add(tlSecondReverse.current);
+      //tlmaster.current.add(tl3Reverse.current);
+      //tlmaster.current.add(tl2Reverse.current);
     }, app);
     return () => ctx.revert();
   }, []);
@@ -1131,8 +1179,75 @@ function Home(props) {
     window.localStorage.setItem("allStories", JSON.stringify(props.allStories));
   }, [props.allStories]);
 
+  useEffect(() => {
+    console.log(
+      "activeDot is " + activeDot + ", visibleDots[3] is " + visibleDots[3]
+    );
+    // if (activeDot >= visibleDots[3]) {
+
+    //setAllDotsWrapperWidth((pre) => pre + 20);
+    //}
+
+    setVisibleDots((pre) => {
+      let na = [];
+      if (activeStories[0] == 0) {
+        return pre;
+      } else {
+        pre.map((item, i) => {
+          console.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+          na[i] = item + 1;
+        });
+        return na;
+      }
+    });
+  }, [activeDot]);
+
   function handleForwardPage(mode) {
+    setDirectionOfFlow("forward");
     //setLoadingStories(true);
+    //setStatusOfIndicators((pre) => pre + 3);
+    //tl1Reverse.current.reverse();
+    //tl2Reverse.current.reverse();
+
+    setActiveIndicator((prev) => {
+      if (prev == 2) {
+        tl3Reverse.current.reverse();
+        return prev - 1;
+      } else if (prev == 1) {
+        return 1;
+      } else {
+        return prev - 1;
+      }
+    });
+
+    // // // if (statusOfIndicators == -7) {
+    // // //   //tl3Reverse.current.reverse();
+    // // //   setStatusOfIndicators(-4);
+    // // // }
+    // // // if (statusOfIndicators == -4) {
+    // // //   //tl3Reverse.current.reverse();
+    // // //   setStatusOfIndicators(-3);
+    // // // }
+    // // // if (statusOfIndicators == -3) {
+    // // //   //tl3Reverse.current.reverse();
+    // // //   setStatusOfIndicators(-2);
+    // // // }
+    // // // if (statusOfIndicators == -2) {
+    // // //   //tl3Reverse.current.reverse();
+    // // //   setStatusOfIndicators(-1);
+    // // // }
+    // // // if (statusOfIndicators == -1) {
+    // // //   //tl3Reverse.current.reverse();
+    // // //   tl2Reverse.current.reverse();
+    // // //   setStatusOfIndicators(0);
+    // // // }
+    // // // if (statusOfIndicators == 0) {
+    // // //   console.log("i0i0i0i0i0i0i");
+    // // //   //tl3Reverse.current.reverse();
+    // // //   //tl3Reverse.current.reverse();
+    // // //   tlSecondReverse.current.reverse();
+    // // //   tlSecondReverse.current.revert();
+    // // // }
 
     if (activeStories[0] == 0) {
       gsapDeadEndAnimation();
@@ -1146,12 +1261,29 @@ function Home(props) {
         setActiveStories([nv0, nv1]);
         gsapSwipeAnimation();
       } else if (mode == "cellphone") {
-        let nv0 = activeStories[0] - 1;
-        let nv1 = activeStories[1] - 1;
-        setActiveStories([nv0, nv1]);
+        if (activeStories[0] > activeStories[1]) {
+          console.log("activeStories[0] is > activeStories[1]");
+          let nv0 = activeStories[0] - 1;
+          let nv1 = nv0 + 1;
+          setActiveStories([nv0, nv1]);
+        } else {
+          let nv0 = activeStories[0] - 1;
+          let nv1 = activeStories[1] - 1;
+          setActiveStories([nv0, nv1]);
+        }
+
         gsapSwipeAnimation();
       }
     }
+  }
+
+  function backToStart() {
+    setStatusOfIndicators(0);
+    setActiveStories([0, 1]);
+    tl3Reverse.current.revert();
+    tl2Reverse.current.revert();
+    tl1Reverse.current.revert();
+    tlSecondReverse.current.revert();
   }
 
   function handleReversePage(mode) {
@@ -1161,54 +1293,59 @@ function Home(props) {
     // if (activeStories[0] == props.allStories.length - 1) {
     //   return;
     // }
-    if (statusOfIndicators == 0) {
-      //tlSecondReverse.current.play(0);
-      setStatusOfIndicators(-1);
-    } else if (statusOfIndicators == -1) {
-      //tlSecondReverse.current.play(0);
-      setStatusOfIndicators(-2);
-    } else if (statusOfIndicators == -2) {
-      //tlSecondReverse.current.play(0);
-      setStatusOfIndicators(-3);
-    } else if (statusOfIndicators == -3) {
-      //tlSecondReverse.current.play(0);
-      setStatusOfIndicators(-4);
-    } else if (statusOfIndicators == -4) {
-      setStatusOfIndicators(-5);
-      tlSecondReverse.current.play(0);
-    } else if (statusOfIndicators == -5) {
-      setStatusOfIndicators(-6);
-      tlSecondReverse.current.play(0);
-    } else if (statusOfIndicators == -6) {
-      setStatusOfIndicators(-7);
-      tlSecondReverse.current.play(0);
-    } else if (statusOfIndicators == -7) {
-      console.log("------------------------------------------ -7");
-      if (activeStories[0] == props.allStories.length - 3) {
-        console.log("------------------------------------------ tl3");
 
-        tl3Reverse.current.play(0);
-      } else if (activeStories[0] == props.allStories.length - 2) {
-        console.log("------------------------------------------ -tl2");
+    setActiveDot((pre) => pre + 1);
 
-        tl2Reverse.current.play(0);
-      } else if (activeStories[0] == props.allStories.length - 1) {
-        console.log("------------------------------------------ -tl1");
-        return;
-        //tl1Reverse.current.play(0);
-      } else {
-        console.log("------------------------------------------ tlsecond");
+    // // // setActiveIndicator((prev) => {
+    // // //   if (prev == 6) {
+    // // //     return 6;
+    // // //   } else {
+    // // //     return prev + 1;
+    // // //   }
+    // // // });
+    // // // if (statusOfIndicators == 0) {
+    // // //   setStatusOfIndicators(-1);
+    // // // } else if (statusOfIndicators == -1) {
+    // // //   setStatusOfIndicators(-2);
+    // // // } else if (statusOfIndicators == -2) {
+    // // //   setStatusOfIndicators(-3);
+    // // // } else if (statusOfIndicators == -3) {
+    // // //   setStatusOfIndicators(-4);
+    // // // } else if (statusOfIndicators == -4) {
+    // // //   setStatusOfIndicators(-5);
+    // // //   tlSecondReverse.current.play(0);
+    // // // } else if (statusOfIndicators == -5) {
+    // // //   setStatusOfIndicators(-6);
+    // // //   tlSecondReverse.current.play(0);
+    // // // } else if (statusOfIndicators == -6) {
+    // // //   setStatusOfIndicators(-7);
+    // // //   tlSecondReverse.current.play(0);
+    // // // } else if (statusOfIndicators == -7) {
+    // // //   console.log("------------------------------------------ -7");
+    // // //   if (activeStories[0] == props.allStories.length - 3) {
+    // // //     console.log("------------------------------------------ tl3");
 
-        tlSecondReverse.current.play(0);
-      }
-    }
+    // // //     tl3Reverse.current.play(0);
+    // // //   } else if (activeStories[0] == props.allStories.length - 2) {
+    // // //     console.log("------------------------------------------ -tl2");
 
-    console.log(
-      "TESTING=========== " +
-        activeStories[0] +
-        " === " +
-        props.allStories.length
-    );
+    // // //     tl2Reverse.current.play(0);
+    // // //   } else if (activeStories[0] == props.allStories.length - 1) {
+    // // //     console.log("------------------------------------------ -tl1");
+    // // //     return;
+    // // //   } else {
+    // // //     console.log("------------------------------------------ tlsecond");
+
+    // // //     tlSecondReverse.current.play(0);
+    // // //   }
+    // // // }
+
+    // // // console.log(
+    // // //   "TESTING=========== " +
+    // // //     activeStories[0] +
+    // // //     " === " +
+    // // //     props.allStories.length
+    // // // );
     if (activeStories[0] == props.allStories.length - 3) {
       console.log("newanimation");
     }
@@ -1466,6 +1603,114 @@ function Home(props) {
     }
   }
 
+  const getDotClassName = (index) => {
+    if (visibleDots.includes(index)) {
+      return "";
+    }
+    return "small";
+  };
+
+  const getDotScale = (indexOfIndivisualDot) => {
+    console.log(
+      "getting dotScale for indexOfIndivisualDot " + indexOfIndivisualDot
+    );
+
+    // visibleDots.map((eachNumofVisibleDotsArray, i) => {
+
+    //   if (eachNumofVisibleDotsArray == indexOfIndivisualDot) {
+    //     console.log(
+    //       "indexOfIndivisualDot matched index " + i + " of visibleDots array"
+    //     );
+    //     return "medium";
+    //   }
+
+    // });
+
+    if (visibleDots.includes(indexOfIndivisualDot)) {
+      return "large";
+    } else {
+      return "small";
+    }
+  };
+
+  const getDotStyle = () => {
+    let style = {
+      height: "16px",
+      width: "16px",
+      transform: `translateX(${transitionX + 20}`,
+    };
+
+    // if (this.state.direction === 'forwards') {
+    //   if (this.props.active < (this.props.visible - 2)) {
+    //     style = {
+    //       ...style,
+    //     };
+    //   } else if ((this.props.length - 3) < this.props.active) {
+    //     style = {
+    //       ...style,
+    //       transform: `translateX(-${(this.props.length - (this.props.visible + 1)) * (this.props.size + (2 * this.props.margin))}px)`,
+    //     };
+    //   } else if (!this.state.changed) {
+    //     style = {
+    //       ...style,
+    //       transform: `translateX(-${(this.props.active - (this.props.visible - 2)) * (this.props.size + (2 * this.props.margin))}px)`,
+    //     };
+    //   } else {
+    //     style = {
+    //       ...style,
+    //       transform: `translateX(-${this.state.translate}px)`,
+    //     };
+    //   }
+    // } else if (this.props.active < (2)) {
+    //   style = {
+    //     ...style,
+    //   };
+    // } else if ((this.props.length - this.props.visible) < this.props.active) {
+    //   style = {
+    //     ...style,
+    //     transform: `translateX(-${(this.props.length - (this.props.visible + 1)) * (this.props.size + (2 * this.props.margin))}px)`,
+    //   };
+    // } else if (!this.state.changed) {
+    //   style = {
+    //     ...style,
+    //     transform: `translateX(-${(this.props.active - 2) * (this.props.size + (2 * this.props.margin))}px)`,
+    //   };
+    // } else {
+    //   style = {
+    //     ...style,
+    //     transform: `translateX(-${this.state.translate}px)`,
+    //   };
+    // }
+    return style;
+  };
+
+  const getDots = () => {
+    const dots = [];
+
+    props.allStories.map((s, i) => {
+      dots.push(
+        <div
+          // transitionX={transitionX}
+          // allStories={props.allStories}
+          style={getDotStyle()}
+          className="dot-holder"
+          key={i}
+        >
+          <div
+            // activeDot={activeDot}
+            // dotScale={getDotScale(i)}
+            // i={i}
+            key={`${i}-inner`}
+            className={`react-carousel-dots-dot
+                      ${getDotClassName(i)}
+                      ${activeDot === i ? "active" : ""}`}
+          />
+        </div>
+      );
+    });
+    return dots;
+  };
+
   // const drawDots = props.allStories.map((i, s) => {
   //   return <Dot key={i} />;
   // });
@@ -1621,12 +1866,14 @@ function Home(props) {
           </ItemWrapper>
         </CarouselItem>
       </Carousel>
-      <Indicators allStories={props.allStories} activeStories={activeStories}>
+      {/* <Indicators allStories={props.allStories} activeStories={activeStories}>
         <DotWrapper cellSize={cellSize}>
           <DotLeftZero
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             statusOfIndicators={statusOfIndicators}
             className="dotLeftZero"
           />
@@ -1634,6 +1881,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             statusOfIndicators={statusOfIndicators}
             className="dotLeftLow"
           />
@@ -1641,6 +1890,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             statusOfIndicators={statusOfIndicators}
             className="dotLeftMid"
           />
@@ -1648,6 +1899,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             statusOfIndicators={statusOfIndicators}
             className="dotLeft"
           />
@@ -1655,6 +1908,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             statusOfIndicators={statusOfIndicators}
             className="dot"
           />
@@ -1662,6 +1917,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             statusOfIndicators={statusOfIndicators}
             className="dot"
           />
@@ -1669,6 +1926,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             statusOfIndicators={statusOfIndicators}
             className="dot"
           />
@@ -1676,6 +1935,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             statusOfIndicators={statusOfIndicators}
             className="dotRight"
           />
@@ -1683,6 +1944,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             activeStories={activeStories}
             allStories={props.allStories}
             statusOfIndicators={statusOfIndicators}
@@ -1692,6 +1955,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             activeStories={activeStories}
             allStories={props.allStories}
             statusOfIndicators={statusOfIndicators}
@@ -1701,6 +1966,8 @@ function Home(props) {
             high={high}
             med={med}
             low={low}
+            activeIndicator={activeIndicator}
+            directionOfFlow={directionOfFlow}
             activeStories={activeStories}
             allStories={props.allStories}
             statusOfIndicators={statusOfIndicators}
@@ -1708,6 +1975,21 @@ function Home(props) {
           />
         </DotWrapper>
       </Indicators>
+      <button onClick={backToStart}>back to start</button> */}
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
+        <AllDotsWrapper
+          allDotsWrapperWidth={allDotsWrapperWidth}
+          allStories={props.allStories}
+        >
+          {getDots()}
+        </AllDotsWrapper>
+      </div>
+      {/* <div style={{ display: "grid" }}>
+        <div style={{ justifySelf: "center" }}>
+          <Dots length={10} active={activeDot} />
+        </div>
+      </div> */}
     </HomeWrapper>
   );
 }
