@@ -889,7 +889,7 @@ function Home(props) {
 		visibleDots[0],
 		visibleDots[10],
 	]);
-
+	const isMounted = useRef(false);
 	const app = useRef();
 	// store the timeline in a ref.
 	const tl = useRef();
@@ -1197,27 +1197,13 @@ function Home(props) {
 		window.localStorage.setItem("allStories", JSON.stringify(props.allStories));
 	}, [props.allStories]);
 
-	// useEffect(() => {
-	// 	console.log(
-	// 		"activeDot is " + activeDot + ", visibleDots[3] is " + visibleDots[3]
-	// 	);
-
-	// 	//setAllDotsWrapperWidth((pre) => pre + 20);
-	// 	//}
-
-	// 	// setVisibleDots((pre) => {
-	// 	// 	let na = [];
-	// 	// 	if (activeStories[0] == 0) {
-	// 	// 		return pre;
-	// 	// 	} else {
-	// 	// 		pre.map((item, i) => {
-	// 	// 			console.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-	// 	// 			na[i] = item + 1;
-	// 	// 		});
-	// 	// 		return na;
-	// 	// 	}
-	// 	// });
-	// }, [activeDot]);
+	useEffect(() => {
+		if (isMounted.current) {
+			setTransitionX((pre) => pre - 20);
+		} else {
+			isMounted.current = true;
+		}
+	}, [visibleDots]);
 
 	function handleForwardPage(mode) {
 		setDirectionOfFlow("forward");
@@ -1310,10 +1296,25 @@ function Home(props) {
 		// if (activeStories[0] == props.allStories.length - 1) {
 		//   return;
 		// }
+		console.log("HAAAAAAANNDDLLEEERREEVEERRSSSEEE" + activeDot);
+		setActiveDot((pre) => {
+			console.log("HAAAAAAANNDDLLEEERREEVEERRSSSEEE PRE Type " + typeof pre);
+			let nn = pre + 22;
 
-		setActiveDot((pre) => pre + 1);
+			console.log("HAAAAAAANNDDLLEEERREEVEERRSSSEEE " + typeof nn);
+			console.log("HAAAAAAANNDDLLEEERREEVEERRSSSEEE nn " + nn);
+			console.log("HAAAAAAANNDDLLEEERREEVEERRSSSEEE cals " + calc(pre + 22));
 
-		if (activeDot + 3 == visibleDots[7]) {
+			return pre + 1;
+		});
+
+		console.log("HAAAAAAANNDDLLEEERREEVEERRSSSEEE" + activeDot);
+		console.log("HAAAAAAANNDDLLEEERREEVEERRSSSEEE" + props.allStories.length);
+
+		if (
+			activeDot + 3 == visibleDots[7] &&
+			activeDot + 1 <= props.allStories.length
+		) {
 			setVisibleDots((pre) => {
 				let newArray = [];
 
@@ -1325,56 +1326,6 @@ function Home(props) {
 			});
 		}
 
-		// // // setActiveIndicator((prev) => {
-		// // //   if (prev == 6) {
-		// // //     return 6;
-		// // //   } else {
-		// // //     return prev + 1;
-		// // //   }
-		// // // });
-		// // // if (statusOfIndicators == 0) {
-		// // //   setStatusOfIndicators(-1);
-		// // // } else if (statusOfIndicators == -1) {
-		// // //   setStatusOfIndicators(-2);
-		// // // } else if (statusOfIndicators == -2) {
-		// // //   setStatusOfIndicators(-3);
-		// // // } else if (statusOfIndicators == -3) {
-		// // //   setStatusOfIndicators(-4);
-		// // // } else if (statusOfIndicators == -4) {
-		// // //   setStatusOfIndicators(-5);
-		// // //   tlSecondReverse.current.play(0);
-		// // // } else if (statusOfIndicators == -5) {
-		// // //   setStatusOfIndicators(-6);
-		// // //   tlSecondReverse.current.play(0);
-		// // // } else if (statusOfIndicators == -6) {
-		// // //   setStatusOfIndicators(-7);
-		// // //   tlSecondReverse.current.play(0);
-		// // // } else if (statusOfIndicators == -7) {
-		// // //   console.log("------------------------------------------ -7");
-		// // //   if (activeStories[0] == props.allStories.length - 3) {
-		// // //     console.log("------------------------------------------ tl3");
-
-		// // //     tl3Reverse.current.play(0);
-		// // //   } else if (activeStories[0] == props.allStories.length - 2) {
-		// // //     console.log("------------------------------------------ -tl2");
-
-		// // //     tl2Reverse.current.play(0);
-		// // //   } else if (activeStories[0] == props.allStories.length - 1) {
-		// // //     console.log("------------------------------------------ -tl1");
-		// // //     return;
-		// // //   } else {
-		// // //     console.log("------------------------------------------ tlsecond");
-
-		// // //     tlSecondReverse.current.play(0);
-		// // //   }
-		// // // }
-
-		// // // console.log(
-		// // //   "TESTING=========== " +
-		// // //     activeStories[0] +
-		// // //     " === " +
-		// // //     props.allStories.length
-		// // // );
 		if (activeStories[0] == props.allStories.length - 3) {
 			console.log("newanimation");
 		}
@@ -1656,7 +1607,7 @@ function Home(props) {
 	};
 
 	const getDotClassName = (index) => {
-		console.log("GETDOTCLASSNAME---------------------======= " + index);
+		// console.log("GETDOTCLASSNAME---------------------======= " + index);
 		if (index + 3 == visibleDots[2] || index + 3 == visibleDots[8]) {
 			return "medium";
 		} else if (index + 3 == visibleDots[1] || index + 3 == visibleDots[9]) {
@@ -1671,63 +1622,15 @@ function Home(props) {
 	};
 
 	const getDotStyle = () => {
-		console.log("-----------------=GETDOTSTYLE=-------------------------");
+		//console.log("-----------------=GETDOTSTYLE=-------------------------");
 		let style = {
 			height: "16px",
 			width: "16px",
+			transform: `translateX(${transitionX}px)`,
 		};
-		console.log("-----------------------== activeDot = " + activeDot);
-		console.log("-----------------------== visibleDots = " + visibleDots);
+		// console.log("-----------------------== activeDot = " + activeDot);
+		// console.log("-----------------------== visibleDots = " + visibleDots);
 
-		// if (activeDot + 3 == visibleDots[7]) {
-		// 	style = {
-		// 		...style,
-		// 		transform: `translateX(${transitionX - 20}px)`,
-		// 		//transform: `translateX(${transitionX}px)`,
-		// 	};
-		// }
-
-		// if (this.state.direction === 'forwards') {
-		//   if (this.props.active < (this.props.visible - 2)) {
-		//     style = {
-		//       ...style,
-		//     };
-		//   } else if ((this.props.length - 3) < this.props.active) {
-		//     style = {
-		//       ...style,
-		//       transform: `translateX(-${(this.props.length - (this.props.visible + 1)) * (this.props.size + (2 * this.props.margin))}px)`,
-		//     };
-		//   } else if (!this.state.changed) {
-		//     style = {
-		//       ...style,
-		//       transform: `translateX(-${(this.props.active - (this.props.visible - 2)) * (this.props.size + (2 * this.props.margin))}px)`,
-		//     };
-		//   } else {
-		//     style = {
-		//       ...style,
-		//       transform: `translateX(-${this.state.translate}px)`,
-		//     };
-		//   }
-		// } else if (this.props.active < (2)) {
-		//   style = {
-		//     ...style,
-		//   };
-		// } else if ((this.props.length - this.props.visible) < this.props.active) {
-		//   style = {
-		//     ...style,
-		//     transform: `translateX(-${(this.props.length - (this.props.visible + 1)) * (this.props.size + (2 * this.props.margin))}px)`,
-		//   };
-		// } else if (!this.state.changed) {
-		//   style = {
-		//     ...style,
-		//     transform: `translateX(-${(this.props.active - 2) * (this.props.size + (2 * this.props.margin))}px)`,
-		//   };
-		// } else {
-		//   style = {
-		//     ...style,
-		//     transform: `translateX(-${this.state.translate}px)`,
-		//   };
-		// }
 		return style;
 	};
 
@@ -1735,6 +1638,11 @@ function Home(props) {
 		const dots = [];
 
 		props.allStories.map((s, i) => {
+			console.log(
+				"About to MAP and they're are a total of " +
+					props.allStories.length +
+					" stories."
+			);
 			dots.push(
 				<div
 					//transitionX={transitionX}
@@ -1913,116 +1821,8 @@ function Home(props) {
 					</ItemWrapper>
 				</CarouselItem>
 			</Carousel>
-			{/* <Indicators allStories={props.allStories} activeStories={activeStories}>
-        <DotWrapper cellSize={cellSize}>
-          <DotLeftZero
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            statusOfIndicators={statusOfIndicators}
-            className="dotLeftZero"
-          />
-          <DotLeftLow
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            statusOfIndicators={statusOfIndicators}
-            className="dotLeftLow"
-          />
-          <DotLeftMid
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            statusOfIndicators={statusOfIndicators}
-            className="dotLeftMid"
-          />
-          <DotLeft
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            statusOfIndicators={statusOfIndicators}
-            className="dotLeft"
-          />
-          <Dot1
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            statusOfIndicators={statusOfIndicators}
-            className="dot"
-          />
-          <Dot2
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            statusOfIndicators={statusOfIndicators}
-            className="dot"
-          />
-          <Dot3
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            statusOfIndicators={statusOfIndicators}
-            className="dot"
-          />
-          <DotRight
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            statusOfIndicators={statusOfIndicators}
-            className="dotRight"
-          />
-          <DotRightMid
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            activeStories={activeStories}
-            allStories={props.allStories}
-            statusOfIndicators={statusOfIndicators}
-            className="dotRightMid"
-          />
-          <DotRightLow
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            activeStories={activeStories}
-            allStories={props.allStories}
-            statusOfIndicators={statusOfIndicators}
-            className="dotRightLow"
-          />
-          <DotRightZero
-            high={high}
-            med={med}
-            low={low}
-            activeIndicator={activeIndicator}
-            directionOfFlow={directionOfFlow}
-            activeStories={activeStories}
-            allStories={props.allStories}
-            statusOfIndicators={statusOfIndicators}
-            className="dotRightZero"
-          />
-        </DotWrapper>
-      </Indicators>
-      <button onClick={backToStart}>back to start</button> */}
+
+			<button onClick={backToStart}>back to start</button>
 
 			<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
 				<AllDotsWrapper
