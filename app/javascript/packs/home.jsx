@@ -477,6 +477,7 @@ function Home(props) {
 	const isMountedForVisibleDotsUseEffect = useRef(false)
 	const isMountedForactiveDotUseEffect = useRef(false)
 	const whatMode = useRef("")
+	const whatDirection = useRef("")
 
 	const [loadingStories, setLoadingStories] = React.useState(false)
 	const [activeStories, setActiveStories] = useState([0, 1])
@@ -528,10 +529,18 @@ function Home(props) {
 	//shifts the indicator dots to the left everytime visibleDots changes
 	useEffect(() => {
 		if (isMountedForVisibleDotsUseEffect.current) {
-			if (visibleDots[7] - 3 == props.allStories.length) {
-				console.log("AT the ned of the line")
-			} else {
-				setTransitionX((pre) => pre - 20)
+			if (whatDirection.current == "reverse") {
+				if (visibleDots[7] - 3 == props.allStories.length) {
+					console.log("AT the ned of the line")
+				} else {
+					setTransitionX((pre) => pre - 20)
+				}
+			} else if (whatDirection.current == "forward") {
+				if (visibleDots[7] - 3 == props.allStories.length) {
+					console.log("AT the ned of the line")
+				} else {
+					setTransitionX((pre) => pre - 20)
+				}
 			}
 		} else {
 			isMountedForVisibleDotsUseEffect.current = true
@@ -544,8 +553,10 @@ function Home(props) {
 	useEffect(() => {
 		if (isMountedForactiveDotUseEffect.current) {
 			console.log("inside useEffect and whatMode is = " + whatMode.current)
+			console.log("inside useEffect and whatDirection is = " + whatDirection.current)
 
 			const mode = whatMode.current
+			const direction = whatDirection.current
 
 			console.log(
 				"activeDot USEEffect activeDot = " +
@@ -554,241 +565,274 @@ function Home(props) {
 					props.allStories.length
 			)
 
-			//Indicator Dots Logic
-			if (activeDot + 3 == visibleDots[7] && activeDot + 1 <= props.allStories.length) {
-				setVisibleDots((pre) => {
-					let newArray = []
+			if (direction == "reverse") {
+				//
+				//
+				//Indicator Dots Logic
 
-					pre.map((n, i) => {
-						newArray[i] = n + 1
+				console.log(
+					"--------=-=-=-==--=- inside DOtLogic activeDot ===-=-=---=-=-=-=-=-=-=-= " + activeDot
+				)
+				console.log(
+					"--------=-=-=-==--=- inside DOtLogic visibleDots[7] ===-=-=---=-=-=-=-=-=-=-= " +
+						visibleDots[7]
+				)
+
+				//visible dot default is 7, so activeDot + 3 will == 7 when the indicator reaches
+				//position 7 and on next right arrow click, dots will shift to the left
+				if (activeDot + 3 == visibleDots[7] && activeDot + 1 <= props.allStories.length) {
+					setVisibleDots((pre) => {
+						let newArray = []
+
+						pre.map((n, i) => {
+							newArray[i] = n + 1
+						})
+
+						return newArray
 					})
+				}
+				//
+				//
+				//
+				//Story Logic
+				let storiesLeft = props.allStories.length - (activeStories[1] + 1)
 
-					return newArray
-				})
-			}
+				let atLastStory = false
 
-			//Story Logic
-			let storiesLeft = props.allStories.length - (activeStories[1] + 1)
+				if (activeStories[0] + 1 == props.allStories.length) {
+					atLastStory = true
+				}
+				console.log("activeStories[0] ======================== " + activeStories[0])
+				console.log("atLastStory ======================== " + atLastStory)
 
-			let atLastStory = false
+				if (atLastStory) {
+					console.log("==========At====The=====End========")
+				} else {
+					if (storiesLeft >= 2) {
+						console.log("there are " + storiesLeft + " stories left in allStories array")
 
-			if (activeStories[0] + 1 == props.allStories.length) {
-				atLastStory = true
-			}
-			console.log("activeStories[0] ======================== " + activeStories[0])
-			console.log("atLastStory ======================== " + atLastStory)
+						// shift active stories up by two and animate change
+						if (mode == "desktop") {
+							if (activeStories[0] > activeStories[1]) {
+								let nv1 = activeStories[1] + 2
+								let nv0 = nv1 - 1
 
-			if (atLastStory) {
-				console.log("==========At====The=====End========")
-			} else {
-				if (storiesLeft >= 2) {
-					console.log("there are " + storiesLeft + " stories left in allStories array")
+								setActiveStories([nv0, nv1])
 
-					// shift active stories up by two and animate change
-					if (mode == "desktop") {
-						if (activeStories[0] > activeStories[1]) {
-							let nv1 = activeStories[1] + 2
-							let nv0 = nv1 - 1
+								gsapSwipeAnimationReverse()
+							} else {
+								let nv0 = activeStories[0] + 2
+								let nv1 = activeStories[1] + 2
 
-							setActiveStories([nv0, nv1])
+								setActiveStories([nv0, nv1])
 
-							gsapSwipeAnimationReverse()
-						} else {
-							let nv0 = activeStories[0] + 2
-							let nv1 = activeStories[1] + 2
+								gsapSwipeAnimationReverse()
+							}
+						} else if (mode == "cellphone") {
+							console.log("storiesLeft >= 2 and mode cellphone")
+							if (activeStories[0] > activeStories[1]) {
+								console.log("activeStories[0] was > activeStories[1]")
+								let nv1 = activeStories[1] + 1
+								let nv0 = nv1 - 1
 
-							setActiveStories([nv0, nv1])
+								setActiveStories([nv0, nv1])
 
-							gsapSwipeAnimationReverse()
+								gsapSwipeAnimationReverse()
+							} else {
+								let nv0 = activeStories[0] + 1
+								let nv1 = activeStories[1] + 1
+
+								setActiveStories([nv0, nv1])
+
+								gsapSwipeAnimationReverse()
+							}
 						}
-					} else if (mode == "cellphone") {
-						console.log("storiesLeft >= 2 and mode cellphone")
-						if (activeStories[0] > activeStories[1]) {
-							console.log("activeStories[0] was > activeStories[1]")
-							let nv1 = activeStories[1] + 1
-							let nv0 = nv1 - 1
+					} else if (storiesLeft == 1) {
+						console.log(
+							"there is " + storiesLeft + " story left in allStories array, fetching 1 more"
+						)
+						if (mode == "desktop") {
+							setLoadingStories(true)
+							axios
+								.post(
+									"/reverse/",
+									{
+										data: {
+											secondToLastStory_ID: (props.allStories[activeStories[1]] + 1).id,
+											getNumOfStories: 1,
+										},
+									},
+									{ withCredentials: true }
+								)
+								.then((response) => {
+									console.log(
+										"============ fetch response, asked for 1 and got " +
+											response.data.stories.length +
+											" back."
+									)
 
-							setActiveStories([nv0, nv1])
+									if (response.data.stories.length == 1) {
+										props.setAllStories((prevStories) => [...prevStories, ...response.data.stories])
 
-							gsapSwipeAnimationReverse()
-						} else {
+										let nv0 = activeStories[0] + 2
+										let nv1 = activeStories[1] + 2
+
+										setActiveStories([nv0, nv1])
+										gsapSwipeAnimationReverse()
+
+										setLoadingStories(false)
+									} else if (response.data.stories.length == 0) {
+										let nv0 = activeStories[0] + 2
+										let nv1 = 0
+
+										setActiveStories([nv0, nv1])
+										gsapSwipeAnimationReverse()
+
+										setLoadingStories(false)
+									}
+								})
+								.catch((error) => {
+									console.log("handleReversePageErrors", error)
+								})
+						} else if (mode == "cellphone") {
+							console.log("storiesLeft == 1 and mode cellphone")
+
 							let nv0 = activeStories[0] + 1
 							let nv1 = activeStories[1] + 1
 
 							setActiveStories([nv0, nv1])
-
 							gsapSwipeAnimationReverse()
 						}
-					}
-				} else if (storiesLeft == 1) {
-					console.log(
-						"there is " + storiesLeft + " story left in allStories array, fetching 1 more"
-					)
-					if (mode == "desktop") {
-						setLoadingStories(true)
-						axios
-							.post(
-								"/reverse/",
-								{
-									data: {
-										secondToLastStory_ID: (props.allStories[activeStories[1]] + 1).id,
-										getNumOfStories: 1,
+					} else if (storiesLeft == 0) {
+						console.log(
+							"there are " + storiesLeft + " stories left in allStories array, fetching 2 more"
+						)
+						if (mode == "desktop") {
+							setLoadingStories(true)
+							axios
+								.post(
+									"/reverse/",
+									{
+										data: {
+											secondToLastStory_ID: props.allStories[activeStories[1]].id,
+											getNumOfStories: 2,
+										},
 									},
-								},
-								{ withCredentials: true }
-							)
-							.then((response) => {
-								console.log(
-									"============ fetch response, asked for 1 and got " +
-										response.data.stories.length +
-										" back."
+									{ withCredentials: true }
 								)
+								.then((response) => {
+									console.log(
+										"============ fetch response, asked for 2 and got " +
+											response.data.stories.length +
+											" back."
+									)
 
-								if (response.data.stories.length == 1) {
-									props.setAllStories((prevStories) => [...prevStories, ...response.data.stories])
+									if (response.data.stories.length == 1) {
+										props.setAllStories((prevStories) => [...prevStories, ...response.data.stories])
 
-									let nv0 = activeStories[0] + 2
-									let nv1 = activeStories[1] + 2
+										let nv0 = activeStories[0] + 2
+										let nv1 = 0
 
-									setActiveStories([nv0, nv1])
-									gsapSwipeAnimationReverse()
+										setActiveStories([nv0, nv1])
+										gsapSwipeAnimationReverse()
 
-									setLoadingStories(false)
-								} else if (response.data.stories.length == 0) {
-									let nv0 = activeStories[0] + 2
-									let nv1 = 0
+										setLoadingStories(false)
+									} else if (response.data.stories.length == 0) {
+										let nv0 = 0
+										let nv1 = 1
 
-									setActiveStories([nv0, nv1])
-									gsapSwipeAnimationReverse()
+										setActiveStories([nv0, nv1])
+										gsapSwipeAnimationReverse()
 
-									setLoadingStories(false)
-								}
-							})
-							.catch((error) => {
-								console.log("handleReversePageErrors", error)
-							})
-					} else if (mode == "cellphone") {
-						console.log("storiesLeft == 1 and mode cellphone")
+										setLoadingStories(false)
+									} else if (response.data.stories.length == 2) {
+										props.setAllStories((prevStories) => [...prevStories, ...response.data.stories])
+										let nv0 = activeStories[0] + 2
+										let nv1 = activeStories[1] + 2
 
-						let nv0 = activeStories[0] + 1
-						let nv1 = activeStories[1] + 1
+										setActiveStories([nv0, nv1])
+										gsapSwipeAnimationReverse()
 
-						setActiveStories([nv0, nv1])
-						gsapSwipeAnimationReverse()
-					}
-				} else if (storiesLeft == 0) {
-					console.log(
-						"there are " + storiesLeft + " stories left in allStories array, fetching 2 more"
-					)
-					if (mode == "desktop") {
-						setLoadingStories(true)
-						axios
-							.post(
-								"/reverse/",
-								{
-									data: {
-										secondToLastStory_ID: props.allStories[activeStories[1]].id,
-										getNumOfStories: 2,
+										setLoadingStories(false)
+									}
+								})
+								.catch((error) => {
+									console.log("handleReversePageErrors", error)
+								})
+						} else if (mode == "cellphone") {
+							console.log("333333333333333333333333333333")
+
+							setLoadingStories(true)
+							axios
+								.post(
+									"/reverse/",
+									{
+										data: {
+											secondToLastStory_ID: props.allStories[activeStories[1]].id,
+											getNumOfStories: 2,
+										},
 									},
-								},
-								{ withCredentials: true }
-							)
-							.then((response) => {
-								console.log(
-									"============ fetch response, asked for 2 and got " +
-										response.data.stories.length +
-										" back."
+									{ withCredentials: true }
 								)
+								.then((response) => {
+									console.log(
+										"============ fetch response, asked for 2 and got " +
+											response.data.stories.length +
+											" back."
+									)
 
-								if (response.data.stories.length == 1) {
-									props.setAllStories((prevStories) => [...prevStories, ...response.data.stories])
+									if (response.data.stories.length == 1) {
+										props.setAllStories((prevStories) => [...prevStories, ...response.data.stories])
 
-									let nv0 = activeStories[0] + 2
-									let nv1 = 0
+										let nv0 = activeStories[0] + 1
+										let nv1 = activeStories[1] + 1
 
-									setActiveStories([nv0, nv1])
-									gsapSwipeAnimationReverse()
+										setActiveStories([nv0, nv1])
+										gsapSwipeAnimationReverse()
 
-									setLoadingStories(false)
-								} else if (response.data.stories.length == 0) {
-									let nv0 = 0
-									let nv1 = 1
+										setLoadingStories(false)
+									} else if (response.data.stories.length == 0) {
+										console.log("---------------     everything was zero     -----------")
 
-									setActiveStories([nv0, nv1])
-									gsapSwipeAnimationReverse()
+										let nv0 = activeStories[0] + 1
+										let nv1 = 0
 
-									setLoadingStories(false)
-								} else if (response.data.stories.length == 2) {
-									props.setAllStories((prevStories) => [...prevStories, ...response.data.stories])
-									let nv0 = activeStories[0] + 2
-									let nv1 = activeStories[1] + 2
+										setActiveStories([nv0, nv1])
+										gsapSwipeAnimationReverse()
 
-									setActiveStories([nv0, nv1])
-									gsapSwipeAnimationReverse()
+										setLoadingStories(false)
+									} else if (response.data.stories.length == 2) {
+										props.setAllStories((prevStories) => [...prevStories, ...response.data.stories])
+										let nv0 = activeStories[0] + 1
+										let nv1 = activeStories[1] + 1
 
-									setLoadingStories(false)
-								}
-							})
-							.catch((error) => {
-								console.log("handleReversePageErrors", error)
-							})
-					} else if (mode == "cellphone") {
-						console.log("333333333333333333333333333333")
+										setActiveStories([nv0, nv1])
+										gsapSwipeAnimationReverse()
 
-						setLoadingStories(true)
-						axios
-							.post(
-								"/reverse/",
-								{
-									data: {
-										secondToLastStory_ID: props.allStories[activeStories[1]].id,
-										getNumOfStories: 2,
-									},
-								},
-								{ withCredentials: true }
-							)
-							.then((response) => {
-								console.log(
-									"============ fetch response, asked for 2 and got " +
-										response.data.stories.length +
-										" back."
-								)
-
-								if (response.data.stories.length == 1) {
-									props.setAllStories((prevStories) => [...prevStories, ...response.data.stories])
-
-									let nv0 = activeStories[0] + 1
-									let nv1 = activeStories[1] + 1
-
-									setActiveStories([nv0, nv1])
-									gsapSwipeAnimationReverse()
-
-									setLoadingStories(false)
-								} else if (response.data.stories.length == 0) {
-									console.log("---------------     everything was zero     -----------")
-
-									let nv0 = activeStories[0] + 1
-									let nv1 = 0
-
-									setActiveStories([nv0, nv1])
-									gsapSwipeAnimationReverse()
-
-									setLoadingStories(false)
-								} else if (response.data.stories.length == 2) {
-									props.setAllStories((prevStories) => [...prevStories, ...response.data.stories])
-									let nv0 = activeStories[0] + 1
-									let nv1 = activeStories[1] + 1
-
-									setActiveStories([nv0, nv1])
-									gsapSwipeAnimationReverse()
-
-									setLoadingStories(false)
-								}
-							})
-							.catch((error) => {
-								console.log("handleReversePageErrors", error)
-							})
+										setLoadingStories(false)
+									}
+								})
+								.catch((error) => {
+									console.log("handleReversePageErrors", error)
+								})
+						}
 					}
+				}
+			} else if (direction == "forward") {
+				//
+				//
+				//Indicator Dots Logic
+				console.log("started dot Logic forward " + activeDot + "  " + visibleDots[3])
+				if (activeDot + 5 == visibleDots[3]) {
+					// setVisibleDots((pre) => {
+					// 	let newArray = []
+					// 	pre.map((n, i) => {
+					// 		newArray[i] = n - 1
+					// 	})
+					// 	return newArray
+					// })
+
+					console.log("start Scrolling left 7878787878787878")
 				}
 			}
 		} else {
@@ -802,48 +846,17 @@ function Home(props) {
 	//
 
 	function handleForwardPage(mode) {
-		setDirectionOfFlow("forward")
-		//setLoadingStories(true);
-		//setStatusOfIndicators((pre) => pre + 3);
-		//tl1Reverse.current.reverse();
-		//tl2Reverse.current.reverse();
-
-		setActiveIndicator((prev) => {
-			if (prev == 2) {
-				tl3Reverse.current.reverse()
-				return prev - 1
-			} else if (prev == 1) {
-				return 1
-			} else {
-				return prev - 1
-			}
-		})
-
-		if (activeStories[0] == 0) {
-			gsapDeadEndAnimation()
-		} else if (activeStories[0] == 1) {
-			setActiveStories([0, 1])
-			gsapSwipeAnimation()
+		// mode is either "cellphone" or "desktop"
+		// sets the useRef with mode "desktop" or "cellphone"
+		// so it can be accessed in the useEffect thats run after setActiveDot
+		whatDirection.current = "forward"
+		whatMode.current = mode
+		if (activeDot > 0) {
+			setActiveDot((pre) => {
+				return pre - 1
+			})
 		} else {
-			if (mode == "desktop") {
-				let nv0 = activeStories[0] - 2
-				let nv1 = activeStories[1] - 2
-				setActiveStories([nv0, nv1])
-				gsapSwipeAnimation()
-			} else if (mode == "cellphone") {
-				if (activeStories[0] > activeStories[1]) {
-					console.log("activeStories[0] is > activeStories[1]")
-					let nv0 = activeStories[0] - 1
-					let nv1 = nv0 + 1
-					setActiveStories([nv0, nv1])
-				} else {
-					let nv0 = activeStories[0] - 1
-					let nv1 = activeStories[1] - 1
-					setActiveStories([nv0, nv1])
-				}
-
-				gsapSwipeAnimation()
-			}
+			console.log("did nothing because activeDot was zero " + activeDot)
 		}
 	}
 
@@ -851,10 +864,15 @@ function Home(props) {
 		// mode is either "cellphone" or "desktop"
 		// sets the useRef with mode "desktop" or "cellphone"
 		// so it can be accessed in the useEffect thats run after setActiveDot
-
+		whatDirection.current = "reverse"
 		whatMode.current = mode
 		if (activeDot + 1 == props.allStories.length) {
-			//do nothing
+			console.log(
+				"did nothing because activeDot was same as allstories.length" +
+					activeDot +
+					" == " +
+					props.allStories.length
+			)
 		} else {
 			setActiveDot((pre) => {
 				return pre + 1
@@ -866,6 +884,7 @@ function Home(props) {
 		(index) => {
 			//console.log("======Running getDotClassName usecallback inside home function=======")
 
+			// if (whatDirection.current == "reverse" || whatDirection.current == "") {
 			if (index + 3 == visibleDots[2] || index + 3 == visibleDots[8]) {
 				return "medium"
 			} else if (index + 3 == visibleDots[1] || index + 3 == visibleDots[9]) {
@@ -877,6 +896,19 @@ function Home(props) {
 			} else {
 				return "invisible"
 			}
+			// } else if (whatDirection.current == "forward") {
+			// 	if (index + 3 == visibleDots[2] || index + 3 == visibleDots[8]) {
+			// 		return "medium"
+			// 	} else if (index + 3 == visibleDots[1] || index + 3 == visibleDots[9]) {
+			// 		return "small"
+			// 	} else if (index + 3 == visibleDots[0] || index + 3 == visibleDots[10]) {
+			// 		return "invisible"
+			// 	} else if (index + 3 >= visibleDots[2] && index + 3 <= visibleDots[7]) {
+			// 		return ""
+			// 	} else {
+			// 		return "invisible"
+			// 	}
+			// }
 		},
 		[visibleDots]
 	)
