@@ -528,6 +528,7 @@ function Home(props) {
 	//
 	//shifts the indicator dots to the left everytime visibleDots changes
 	useEffect(() => {
+		console.log("inUSeEffEct for visibledots, whatDirection.current is " + whatDirection.current)
 		if (isMountedForVisibleDotsUseEffect.current) {
 			if (whatDirection.current == "reverse") {
 				if (visibleDots[7] - 3 == props.allStories.length) {
@@ -536,10 +537,10 @@ function Home(props) {
 					setTransitionX((pre) => pre - 20)
 				}
 			} else if (whatDirection.current == "forward") {
-				if (visibleDots[7] - 3 == props.allStories.length) {
+				if (visibleDots[0] == 0) {
 					console.log("AT the ned of the line")
 				} else {
-					setTransitionX((pre) => pre - 20)
+					setTransitionX((pre) => pre + 20)
 				}
 			}
 		} else {
@@ -823,17 +824,19 @@ function Home(props) {
 				//
 				//Indicator Dots Logic
 				console.log("started dot Logic forward " + activeDot + "  " + visibleDots[3])
-				if (activeDot + 5 == visibleDots[3]) {
-					// setVisibleDots((pre) => {
-					// 	let newArray = []
-					// 	pre.map((n, i) => {
-					// 		newArray[i] = n - 1
-					// 	})
-					// 	return newArray
-					// })
+				if (activeDot + 4 == visibleDots[3]) {
+					setVisibleDots((pre) => {
+						let newArray = []
+						pre.map((n, i) => {
+							newArray[i] = n - 1
+						})
+						return newArray
+					})
 
 					console.log("start Scrolling left 7878787878787878")
 				}
+
+				console.log("move Stories Back (forward")
 			}
 		} else {
 			isMountedForactiveDotUseEffect.current = true
@@ -856,7 +859,7 @@ function Home(props) {
 				return pre - 1
 			})
 		} else {
-			console.log("did nothing because activeDot was zero " + activeDot)
+			console.log("did nothing because activeDot was already at zero " + activeDot)
 		}
 	}
 
@@ -884,31 +887,31 @@ function Home(props) {
 		(index) => {
 			//console.log("======Running getDotClassName usecallback inside home function=======")
 
-			// if (whatDirection.current == "reverse" || whatDirection.current == "") {
-			if (index + 3 == visibleDots[2] || index + 3 == visibleDots[8]) {
-				return "medium"
-			} else if (index + 3 == visibleDots[1] || index + 3 == visibleDots[9]) {
-				return "small"
-			} else if (index + 3 == visibleDots[0] || index + 3 == visibleDots[10]) {
-				return "invisible"
-			} else if (index + 3 >= visibleDots[2] && index + 3 <= visibleDots[7]) {
-				return ""
-			} else {
-				return "invisible"
+			if (whatDirection.current == "reverse" || whatDirection.current == "") {
+				if (index + 3 == visibleDots[2] || index + 3 == visibleDots[8]) {
+					return "medium"
+				} else if (index + 3 == visibleDots[1] || index + 3 == visibleDots[9]) {
+					return "small"
+				} else if (index + 3 == visibleDots[0] || index + 3 == visibleDots[10]) {
+					return "invisible"
+				} else if (index + 3 >= visibleDots[3] && index + 3 <= visibleDots[7]) {
+					return ""
+				} else {
+					return "invisible"
+				}
+			} else if (whatDirection.current == "forward") {
+				if (index + 4 == visibleDots[2] || index + 4 == visibleDots[8]) {
+					return "medium"
+				} else if (index + 4 == visibleDots[1] || index + 4 == visibleDots[9]) {
+					return "small"
+				} else if (index + 4 == visibleDots[0] || index + 4 == visibleDots[10]) {
+					return "invisible"
+				} else if (index + 4 >= visibleDots[3] && index + 4 <= visibleDots[7]) {
+					return ""
+				} else {
+					return "invisible"
+				}
 			}
-			// } else if (whatDirection.current == "forward") {
-			// 	if (index + 3 == visibleDots[2] || index + 3 == visibleDots[8]) {
-			// 		return "medium"
-			// 	} else if (index + 3 == visibleDots[1] || index + 3 == visibleDots[9]) {
-			// 		return "small"
-			// 	} else if (index + 3 == visibleDots[0] || index + 3 == visibleDots[10]) {
-			// 		return "invisible"
-			// 	} else if (index + 3 >= visibleDots[2] && index + 3 <= visibleDots[7]) {
-			// 		return ""
-			// 	} else {
-			// 		return "invisible"
-			// 	}
-			// }
 		},
 		[visibleDots]
 	)
