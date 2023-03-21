@@ -492,17 +492,17 @@ function Home(props) {
 	//
 	//sets initial sories to local state for caching
 	useEffect(() => {
-		console.log("start of function UE=================", props.allStories)
+		//console.log("start of function UE=================", props.allStories)
 
 		if (
 			window.localStorage.getItem("allStories") !== null &&
 			JSON.parse(window.localStorage.getItem("allStories")).length > 0 &&
 			props.allStoriesFromController.length > 0
 		) {
-			console.log(
-				"compare it LOCAL=======",
-				JSON.parse(window.localStorage.getItem("allStories"))[0].id
-			)
+			// console.log(
+			// 	"compare it LOCAL=======",
+			// 	JSON.parse(window.localStorage.getItem("allStories"))[0].id
+			// )
 
 			if (
 				props.allStoriesFromController[0].id ==
@@ -511,10 +511,10 @@ function Home(props) {
 				props.setAllStories(JSON.parse(window.localStorage.getItem("allStories")))
 			}
 
-			console.log(
-				"check to see whats up with localstorage",
-				typeof window.localStorage.getItem("allStories")
-			)
+			// console.log(
+			// 	"check to see whats up with localstorage",
+			// 	typeof window.localStorage.getItem("allStories")
+			// )
 		}
 		// }
 	}, [])
@@ -557,14 +557,12 @@ function Home(props) {
 					if (visibleDots[7] - 3 == props.allStories.length) {
 						console.log("AT the ned of the line")
 					} else {
+						console.log("settttttttttttttttttttttttttttttttttting TTTTTTTTTTTT")
 						setTransitionX((pre) => pre - 20)
 					}
 				} else if (whatDirection.current == "forward") {
-					if (visibleDots[0] == 0) {
-						console.log("AT the ned of the line")
-					} else {
-						setTransitionX((pre) => pre + 20)
-					}
+					//doesnt happen here unless clickhandler logis says so
+					setTransitionX((pre) => pre + 20)
 				}
 			} else if (whatMode.current == "desktop") {
 				if (whatDirection.current == "reverse") {
@@ -591,38 +589,23 @@ function Home(props) {
 	//changes Stories and activeDot position everytime activeDot changes
 	useEffect(() => {
 		if (isMountedForactiveDotUseEffect.current) {
-			console.log("inside useEffect and whatMode is = " + whatMode.current)
-			console.log("inside useEffect and whatDirection is = " + whatDirection.current)
-
 			const mode = whatMode.current
 			const direction = whatDirection.current
-
-			console.log(
-				"activeDot USEEffect activeDot = " +
-					activeDot +
-					" and AS.length is " +
-					props.allStories.length
-			)
+			console.log("inside activeDots useEffect and whatMode is = " + whatMode.current)
+			console.log("inside activeDots useEffect and whatDirection is = " + whatDirection.current)
+			console.log("inside activeDots useEffect and activeDot is = " + activeDot)
+			console.log("inside activeDots useEffect -length is = " + props.allStories.length)
 
 			if (direction == "reverse") {
 				//
 				//
 				//Indicator Dots Logic
 
-				console.log(
-					"--------=-=-=-==--=- inside DOtLogic activeDot ===-=-=---=-=-=-=-=-=-=-= " + activeDot
-				)
-				console.log(
-					"--------=-=-=-==--=- inside DOtLogic visibleDots[7] ===-=-=---=-=-=-=-=-=-=-= " +
-						visibleDots[7]
-				)
-
-				console.log("--------=-=-=-==--=- inside DOtLogic mode ===-=-=---=-=-=-=-=-=-=-= " + mode)
-
 				//visible dot default is 7, so activeDot + 3 will == 7 when the indicator reaches
 				//position 7 and on next right arrow click, dots will shift to the left
 				if (mode == "cellphone") {
-					if (activeDot + 3 == visibleDots[7] && activeDot + 1 <= props.allStories.length) {
+					if (activeDot + 3 == visibleDots[8] && activeDot + 1 <= props.allStories.length) {
+						console.log("Setting visisble dots by 1")
 						setVisibleDots((pre) => {
 							let newArray = []
 
@@ -632,6 +615,8 @@ function Home(props) {
 
 							return newArray
 						})
+					} else {
+						console.log("Dont change visisble dots Logic etc..........................")
 					}
 				} else if (mode == "desktop") {
 					if (
@@ -639,15 +624,31 @@ function Home(props) {
 						(activeDot + 4 == visibleDots[7] && activeDot + 1 <= props.allStories.length) ||
 						activeDot <= props.allStories.length
 					) {
-						setVisibleDots((pre) => {
-							let newArray = []
+						let StoriesLeftInArray = props.allStories.length - (activeStories[1] + 1)
+						console.log("props.allStories.length - activeStories[1] " + StoriesLeftInArray)
+						if (StoriesLeftInArray < 2) {
+							console.log("BBBBBBBBBBBBBBBBBBBBiiiiiiiiiiiiiiiNNNNNNNNnnGGGGGGGGooooooooooo")
+							setVisibleDots((pre) => {
+								let newArray = []
 
-							pre.map((n, i) => {
-								newArray[i] = n + 2
+								pre.map((n, i) => {
+									newArray[i] = n + 1
+								})
+
+								return newArray
 							})
+						} else {
+							console.log("BBBBBBBBBBBBBBBBBBBBiiiiiiiiiiiiiiiNNNNNNNNnnGGGGGGGGooooooooooo222")
+							setVisibleDots((pre) => {
+								let newArray = []
 
-							return newArray
-						})
+								pre.map((n, i) => {
+									newArray[i] = n + 2
+								})
+
+								return newArray
+							})
+						}
 					}
 				}
 				//
@@ -661,11 +662,9 @@ function Home(props) {
 				if (activeStories[0] + 1 == props.allStories.length) {
 					atLastStory = true
 				}
-				console.log("activeStories[0] ======================== " + activeStories[0])
-				console.log("atLastStory ======================== " + atLastStory)
 
 				if (atLastStory) {
-					console.log("==========At====The=====End========")
+					console.log("==========At====The=====End======== LASTSTORY was TRUE")
 				} else {
 					if (storiesLeft >= 2) {
 						console.log("there are " + storiesLeft + " stories left in allStories array")
@@ -950,15 +949,20 @@ function Home(props) {
 		whatDirection.current = "forward"
 		whatMode.current = mode
 
+		console.log(
+			"Entering HandleReverse, MODE is " + mode + " and direction is " + whatDirection.current
+		)
+
 		if (mode == "desktop") {
 		} else if (mode == "cellphone") {
-		}
-		if (activeDot > 0) {
-			setActiveDot((pre) => {
-				return pre - 1
-			})
-		} else {
-			console.log("did nothing because activeDot was already at zero " + activeDot)
+			if (activeDot > 0) {
+				console.log("Decreasing activeDot by 1")
+				setActiveDot((pre) => {
+					return pre - 1
+				})
+			} else {
+				console.log("did nothing because activeDot was already at zero " + activeDot)
+			}
 		}
 	}
 
@@ -969,30 +973,30 @@ function Home(props) {
 		whatDirection.current = "reverse"
 		whatMode.current = mode
 
+		console.log(
+			"Entering HandleReverse, MODE is " + mode + " and direction is " + whatDirection.current
+		)
 		if (mode == "desktop") {
 			//get stories left, if 1, then shift one only
 			let dotsLeft = props.allStories.length - (activeStories[1] + 1)
-
-			console.log(
-				"stories left was " +
-					dotsLeft +
-					" cuz activeStories[1] was " +
-					props.allStories.length +
-					" - " +
-					activeStories[1] +
-					" + " +
-					"1"
-			)
-			if (activeDot + 1 == props.allStories.length) {
-				console.log(
-					"did nothing because activeDot was same as allstories.length" +
-						activeDot +
-						" == " +
-						props.allStories.length
-				)
-			} else {
+			if (dotsLeft >= 2) {
+				if (activeDot + 1 == props.allStories.length) {
+					console.log(
+						"did nothing because activeDot was same as allstories.length" +
+							activeDot +
+							" == " +
+							props.allStories.length
+					)
+				} else {
+					console.log("Increasing activeDot by 2")
+					setActiveDot((pre) => {
+						return pre + 2
+					})
+				}
+			} else if (dotsLeft == 1) {
+				console.log("Increasing activeDot by 1")
 				setActiveDot((pre) => {
-					return pre + 2
+					return pre + 1
 				})
 			}
 		} else if (mode == "cellphone") {
@@ -1004,6 +1008,7 @@ function Home(props) {
 						props.allStories.length
 				)
 			} else {
+				console.log("Increasing activeDot by 1")
 				setActiveDot((pre) => {
 					return pre + 1
 				})
@@ -1028,13 +1033,13 @@ function Home(props) {
 					return "invisible"
 				}
 			} else if (whatDirection.current == "forward") {
-				if (index + 4 == visibleDots[2] || index + 4 == visibleDots[8]) {
+				if (index + 3 == visibleDots[2] || index + 3 == visibleDots[8]) {
 					return "medium"
-				} else if (index + 4 == visibleDots[1] || index + 4 == visibleDots[9]) {
+				} else if (index + 3 == visibleDots[1] || index + 3 == visibleDots[9]) {
 					return "small"
-				} else if (index + 4 == visibleDots[0] || index + 4 == visibleDots[10]) {
+				} else if (index + 3 == visibleDots[0] || index + 3 == visibleDots[10]) {
 					return "invisible"
-				} else if (index + 4 >= visibleDots[3] && index + 4 <= visibleDots[7]) {
+				} else if (index + 3 >= visibleDots[3] && index + 3 <= visibleDots[7]) {
 					return ""
 				} else {
 					return "invisible"
@@ -1044,8 +1049,8 @@ function Home(props) {
 		[visibleDots]
 	)
 
-	const getDotStyle = useCallback(() => {
-		//console.log("======Running getDotsStyle usecallback inside home function=======")
+	const getDotStyle = () => {
+		console.log("======Running getDotsStyle usecallback inside home function======= " + transitionX)
 
 		let style = {
 			height: "16px",
@@ -1054,17 +1059,14 @@ function Home(props) {
 		}
 
 		return style
-	}, [transitionX])
+	}
 
-	const getDots = useCallback(() => {
+	const getDots = () => {
 		//console.log("======Running getDots usecallback inside home function=======")
 		const dots = []
 
 		if (whatModeAuto == "desktop") {
 			props.allStories.map((s, i) => {
-				console.log(
-					"About to MAP and they're are a total of " + props.allStories.length + " stories."
-				)
 				dots.push(
 					<div style={getDotStyle()} className="dot-holder" key={i}>
 						<div
@@ -1079,9 +1081,9 @@ function Home(props) {
 			return dots
 		} else if (whatModeAuto == "cellphone") {
 			props.allStories.map((s, i) => {
-				console.log(
-					"About to MAP and they're are a total of " + props.allStories.length + " stories."
-				)
+				// console.log(
+				// 	"About to MAP and they're are a total of " + props.allStories.length + " stories."
+				// )
 				dots.push(
 					<div style={getDotStyle()} className="dot-holder" key={i}>
 						<div
@@ -1095,7 +1097,8 @@ function Home(props) {
 			})
 			return dots
 		}
-	}, [props.allStories, activeDot])
+	}
+	// }, [props.allStories, activeDot])
 
 	//
 	//

@@ -1,30 +1,30 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react"
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import axios from "axios";
-import Header from "./header";
-import Home from "./home";
-import Act from "./act";
-import SignupSection from "./signup";
-import Shop from "./shop";
-import Footer from "./footer";
-import styled, { ThemeProvider } from "styled-components";
-import GlobalStyles from "./global";
-import Article from "./article";
-import SideMenu from "./sidemenu";
-import StoryFlipper from "./storyFlipper";
-import Login from "./pages/login";
-import Forgot from "./pages/forgot";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
+import axios from "axios"
+import Header from "./header"
+import Home from "./home"
+import Act from "./act"
+import SignupSection from "./signup"
+import Shop from "./shop"
+import Footer from "./footer"
+import styled, { ThemeProvider } from "styled-components"
+import GlobalStyles from "./global"
+import Article from "./article"
+import SideMenu from "./sidemenu"
+import StoryFlipper from "./storyFlipper"
+import Login from "./pages/login"
+import Forgot from "./pages/forgot"
 //import Signup from './pages/signup'
-import Edit from "./pages/edit";
-import Change from "./pages/change_pw";
-import Resend from "./pages/resend";
-import EditStory from "./EditStory";
-import StoryFlipperOriginal from "./StoryFlipperOriginal";
+import Edit from "./pages/edit"
+import Change from "./pages/change_pw"
+import Resend from "./pages/resend"
+import EditStory from "./EditStory"
+import StoryFlipperOriginal from "./StoryFlipperOriginal"
 
-import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer"
 
 ///////////////////////////////// MAIN APP STARTING POINT ///////////////
 function App({ d }) {
@@ -36,24 +36,24 @@ function App({ d }) {
 	// const secondToLastStory = d.stories[1];
 	// const thirdToLastStory = d.stories[2];
 	// const fourthToLastStory = d.stories[3];
-	const current_user = d.current_user;
-	const artData = d.artData;
+	const current_user = d.current_user
+	const artData = d.artData
 
 	const [userState, setUserState] = useState({
 		loggedInStatus: "NOT_LOGGED_IN",
 		emailStatus: "EMAIL_NOT_VERIFIED",
 		user: {},
-	});
+	})
 
-	const [openSideMenu, setOpenSideMenu] = useState(false);
-	const [loginClicked, setLoginClicked] = useState(false);
-	const [allStories, setAllStories] = useState(d.stories);
+	const [openSideMenu, setOpenSideMenu] = useState(false)
+	const [loginClicked, setLoginClicked] = useState(false)
+	const [allStories, setAllStories] = useState(d.stories)
 	// const [lastStory, setLastStory] = useState(d.stories[0]);
 	// const [secondToLastStory, setSecondToLastStory] = useState(d.stories[1]);
 	// const [thirdToLastStory, setThirdToLastStory] = useState(d.stories[2]);
 	// const [fourthToLastStory, setFourthToLastStory] = useState(d.stories[3]);
-	const allStoriesFromController = d.stories;
-	const page = d.page;
+	const allStoriesFromController = d.stories
+	const page = d.page
 
 	const theme = {
 		white: "#ffffff",
@@ -64,7 +64,7 @@ function App({ d }) {
 		darkBlue: "#000321", //(0,3,33)
 		blueGray: "#0E2021",
 		black: "#181818", //(0,0,0)
-	};
+	}
 
 	// const {
 	//   ref: intersectionObserverRef,
@@ -76,7 +76,7 @@ function App({ d }) {
 	//   triggerOnce: true,
 	// });
 
-	console.log("==============APP===============" + JSON.stringify(d));
+	console.log("==============APP===============" + JSON.stringify(d))
 	//console.log("==============APP props===============", controllerProps)
 
 	//global APP state
@@ -100,8 +100,8 @@ function App({ d }) {
 			...userState,
 			loggedInStatus: "LOGGED_IN",
 			user: data.user,
-		});
-	};
+		})
+	}
 
 	const handleLogOutClick = () => {
 		axios
@@ -115,7 +115,7 @@ function App({ d }) {
 				{ withCredentials: true }
 			)
 			.then((response) => {
-				console.log(response);
+				console.log(response)
 
 				//Server says logged_in but appState says not logged in
 				//Server says logged_in but appState says not logged in
@@ -124,79 +124,79 @@ function App({ d }) {
 					...userState,
 					loggedInStatus: "NOT_LOGGED_IN",
 					user: {},
-				});
+				})
 			})
 			.catch((error) => {
-				console.log("Logout? error", error);
-			});
-	};
+				console.log("Logout? error", error)
+			})
+	}
 
 	// reference for lookupSection to scroll to, when click on nav link
-	const LookupScrollToRef = useRef();
-	const LookupInputRef = useRef();
+	const LookupScrollToRef = useRef()
+	const LookupInputRef = useRef()
 
-	const section2ScrollToRef = useRef();
+	const section2ScrollToRef = useRef()
 
 	// when click on nav link, scrolls to LookupScrollToRef
 	const scrollToRef = (ref) => {
-		console.log("in scrollToRef ");
-		console.log(ref);
-		console.log(LookupInputRef);
+		console.log("in scrollToRef ")
+		console.log(ref)
+		console.log(LookupInputRef)
 
 		var scrollOptions = {
 			left: 0,
 			top: ref.current.offsetTop,
 			behavior: "smooth",
-		};
+		}
 
-		window.scrollTo(scrollOptions);
+		window.scrollTo(scrollOptions)
 		//window.scrollTo(0, ref.current.offsetTop)
 
-		setOpenSideMenu(false);
+		setOpenSideMenu(false)
 
 		setTimeout(function () {
-			LookupInputRef.current.focus();
-		}, 420);
-	};
+			LookupInputRef.current.focus()
+		}, 420)
+	}
 
 	const scrollToRef2 = (ref) => {
-		console.log("IN SCROLLTOREF2");
-		console.log(ref);
+		console.log("IN SCROLLTOREF2")
+		console.log(ref)
 
 		var scrollOptions = {
 			left: 0,
 			top: ref.current.offsetTop,
 			behavior: "smooth",
-		};
+		}
 
-		window.scrollTo(scrollOptions);
+		window.scrollTo(scrollOptions)
 
 		//window.scrollTo(0, ref.current.offsetTop)
-	};
+	}
 
 	const executeScrollForLookupSection = useCallback(() => {
-		console.log("in executeScrollForLookupSection ");
+		console.log("in executeScrollForLookupSection ")
 
-		scrollToRef(LookupScrollToRef);
-		setOpenSideMenu(false);
-	});
+		scrollToRef(LookupScrollToRef)
+		setOpenSideMenu(false)
+	})
 
 	const executeScrollForSection2 = useCallback(() => {
-		scrollToRef2(section2ScrollToRef);
-		setOpenSideMenu(false);
-	});
+		scrollToRef2(section2ScrollToRef)
+		setOpenSideMenu(false)
+	})
 
 	const executeScrollForLookupSectionTwo = () => {
-		scrollToRef2(section2ScrollToRef);
-		setOpenSideMenu(false);
-	};
+		scrollToRef2(section2ScrollToRef)
+		setOpenSideMenu(false)
+	}
 
 	useEffect(() => {
 		//const mode = process.env.NODE_ENV == "development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
 
-		console.log("==============APP useEffects===============");
+		console.log("==============APP useEffects===============")
 		if (current_user != null) {
-			console.log("currentUser exists, so bypass session logged_in call");
+			console.log("currentUser exists, so bypass session logged_in call")
 			//   setAppState({
 			//     ...appState,
 			//     loggedInStatus: "LOGGED_IN",
@@ -212,14 +212,10 @@ function App({ d }) {
 				loggedInStatus: "LOGGED_IN",
 				user: current_user,
 				emailStatus:
-					current_user.email_confirmed == "true"
-						? "EMAIL_VERIFIED"
-						: "EMAIL_NOT_VERIFIED",
-			});
+					current_user.email_confirmed == "true" ? "EMAIL_VERIFIED" : "EMAIL_NOT_VERIFIED",
+			})
 		} else {
-			console.log(
-				"currentUser did not exist, so run logged_in call from server"
-			);
+			console.log("currentUser did not exist, so run logged_in call from server")
 			axios
 				.get("/logged_in", { withCredentials: true })
 				.then((response) => {
@@ -254,9 +250,9 @@ function App({ d }) {
 					//    console.log("WTTFFF", "cccccc")
 					// }
 				})
-				.catch((error) => console.log("Logged in? error", error));
+				.catch((error) => console.log("Logged in? error", error))
 		}
-	}, []);
+	}, [])
 
 	//   useEffect(() => {
 	//     document.addEventListener(
@@ -271,15 +267,15 @@ function App({ d }) {
 	//   }, []);
 
 	useEffect(() => {
-		console.log("1111111111111111111111111111111111111111111111111===");
+		//console.log("1111111111111111111111111111111111111111111111111===");
 		if (typeof window != "undefined" && window.document) {
 			if (openSideMenu) {
-				document.body.style.overflow = "hidden";
+				document.body.style.overflow = "hidden"
 			} else {
-				document.body.style.overflow = "unset";
+				document.body.style.overflow = "unset"
 			}
 		}
-	}, [openSideMenu]);
+	}, [openSideMenu])
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -345,13 +341,7 @@ function App({ d }) {
 					<Route
 						exact
 						path="/blog/:id"
-						element={
-							<Article
-								tester="testing123"
-								userState={userState}
-								artData={artData}
-							/>
-						}
+						element={<Article tester="testing123" userState={userState} artData={artData} />}
 					/>
 				</Routes>
 				<PayPalScriptProvider
@@ -393,8 +383,8 @@ function App({ d }) {
                <Footer/> */}
 			</Router>
 		</ThemeProvider>
-	);
+	)
 }
 
 // export default props => <App {...props} />;
-export default App;
+export default App

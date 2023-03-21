@@ -1,23 +1,23 @@
-import axios from "axios";
-import { element } from "prop-types";
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import StoryCard from "./storyCard";
-import styled from "styled-components";
+import axios from "axios"
+import { element } from "prop-types"
+import React, { useState, useEffect, useCallback, useRef } from "react"
+import StoryCard from "./storyCard"
+import styled from "styled-components"
 function storyFlipper({ allStories, setAllStories }) {
-	const [stories, setStories] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
-	const [hasNextPage, setHasNextPage] = useState(true);
+	const [stories, setStories] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
+	const [hasNextPage, setHasNextPage] = useState(true)
 
-	const intObserver = useRef();
-	const lastItemIdRef = useRef();
-	const elementRef = useRef(null);
-	console.log("in storyFlipper");
+	const intObserver = useRef()
+	const lastItemIdRef = useRef()
+	const elementRef = useRef(null)
+	console.log("in storyFlipper")
 
 	const StoryFlipperWrapper = styled.div`
 		@media only screen and (min-width: 985px) {
 			display: none;
 		}
-	`;
+	`
 
 	// useEffect(() => {
 	// 	console.log(
@@ -73,47 +73,44 @@ function storyFlipper({ allStories, setAllStories }) {
 	//}, [inView]);
 
 	function onIntersection(entries) {
-		console.log("EEEEEEEUUURRRIIIKKKKAAAA", entries);
+		//console.log("EEEEEEEUUURRRIIIKKKKAAAA", entries)
 
 		if (entries[0].isIntersecting) {
 			setAllStories((prevStories) => {
-				console.log("PPPPPPPPPPPPPPPSSSSSSSSSSSSSS", prevStories);
-				let lastID;
+				//console.log("PPPPPPPPPPPPPPPSSSSSSSSSSSSSS", prevStories)
+				let lastID
 				prevStories.map((s, i) => {
 					if (prevStories.length === i + 1) {
-						lastID = s.id;
-						console.log(
-							"in________function onIntersection(entries) LAST ID is = " +
-								lastID
-						);
-						getMore(lastID);
+						lastID = s.id
+						console.log("in________function onIntersection(entries) LAST ID is = " + lastID)
+						getMore(lastID)
 					}
-				});
+				})
 
-				return prevStories;
-			});
+				return prevStories
+			})
 		} else {
-			console.log("do nada");
+			//console.log("do nada")
 		}
 	}
 
 	useEffect(() => {
-		console.log("UEUEUEUEUEUEUEUE");
-		const observer = new IntersectionObserver(onIntersection);
+		//console.log("UEUEUEUEUEUEUEUE");
+		const observer = new IntersectionObserver(onIntersection)
 
 		if (observer && elementRef.current) {
-			observer.observe(elementRef.current);
+			observer.observe(elementRef.current)
 		}
 
 		return () => {
 			if (observer) {
-				observer.disconnect();
+				observer.disconnect()
 			}
-		};
-	}, []);
+		}
+	}, [])
 
 	const getMore = (lastID) => {
-		console.log("in________GETMORE useCallback");
+		console.log("in________GETMORE useCallback")
 		//console.log("in________GETMORE useCallback allStories", allStories);
 
 		//get the lastID
@@ -124,7 +121,7 @@ function storyFlipper({ allStories, setAllStories }) {
 		//     console.log("in________GETMORE useCallback LAST ID is = " + lastID);
 		//   }
 		// });
-		setIsLoading(true);
+		setIsLoading(true)
 		axios
 			.post(
 				"/story_flipper/more",
@@ -136,19 +133,19 @@ function storyFlipper({ allStories, setAllStories }) {
 				{ withCredentials: true }
 			)
 			.then((response) => {
-				console.log("RESPONSE from story_flipper", response.data);
+				console.log("RESPONSE from story_flipper", response.data)
 
-				setIsLoading(false);
+				setIsLoading(false)
 				if (response.data.newStories.length > 0) {
-					setAllStories((prev) => [...prev, ...response.data.newStories]);
+					setAllStories((prev) => [...prev, ...response.data.newStories])
 				} else if (response.data.newStories == 0) {
-					setHasNextPage(false);
+					setHasNextPage(false)
 				}
 			})
 			.catch((error) => {
-				console.log("handle_getMore_Errors", error);
-			});
-	};
+				console.log("handle_getMore_Errors", error)
+			})
+	}
 
 	// const lastPostRef = (node) => {
 	// 	console.log(
@@ -236,14 +233,14 @@ function storyFlipper({ allStories, setAllStories }) {
 
 	const displayStories = allStories.map((s, i) => {
 		if (allStories.length === i + 1) {
-			console.log("inside displayStories = allStories.map LAST");
+			//console.log("inside displayStories = allStories.map LAST")
 			//setLastID(s.id);
-			return <StoryCard key={i} i={i} s={s} lastID={s.id} />;
+			return <StoryCard key={i} i={i} s={s} lastID={s.id} />
 		}
-		console.log("inside displayStories = allStories.map REGULAR");
+		//console.log("inside displayStories = allStories.map REGULAR")
 
-		return <StoryCard key={i} i={i} s={s} />;
-	});
+		return <StoryCard key={i} i={i} s={s} />
+	})
 
 	return (
 		<StoryFlipperWrapper>
@@ -256,7 +253,7 @@ function storyFlipper({ allStories, setAllStories }) {
 				</p>
 			)}
 		</StoryFlipperWrapper>
-	);
+	)
 }
 
-export default storyFlipper;
+export default storyFlipper

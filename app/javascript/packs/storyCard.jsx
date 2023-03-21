@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import slugify from "react-slugify";
+import React from "react"
+import styled from "styled-components"
+import { Link } from "react-router-dom"
+import slugify from "react-slugify"
 
 const LinkWrapper1 = styled(Link)`
 	//grid-area: 1/1/3/2;
@@ -10,7 +10,7 @@ const LinkWrapper1 = styled(Link)`
 	width: 100%;
 	justify-self: center;
 	display: grid;
-`;
+`
 
 const Div1 = styled.div`
 	box-shadow: 0 2px 5px 0 rgba(227, 181, 90, 0.2);
@@ -41,7 +41,7 @@ const Div1 = styled.div`
 		border-radius: 4px;
 		outline: none;
 	}
-`;
+`
 
 const Div1OverlayWrapper = styled.div`
 	pointer-events: none;
@@ -55,23 +55,11 @@ const Div1OverlayWrapper = styled.div`
 	z-index: 1;
 
 	background: rgb(0, 0, 0);
-	background: -moz-linear-gradient(
-		0deg,
-		rgba(0, 0, 0, 1) 10%,
-		rgba(255, 145, 145, 0) 34%
-	);
-	background: -webkit-linear-gradient(
-		0deg,
-		rgba(0, 0, 0, 1) 10%,
-		rgba(255, 145, 145, 0) 34%
-	);
-	background: linear-gradient(
-		0deg,
-		rgba(0, 0, 0, 1) 10%,
-		rgba(255, 145, 145, 0) 34%
-	);
+	background: -moz-linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(255, 145, 145, 0) 34%);
+	background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(255, 145, 145, 0) 34%);
+	background: linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(255, 145, 145, 0) 34%);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff9191",GradientType=1);
-`;
+`
 
 const StoryOneTitle = styled.h1`
 	//grid-area: 1 /1 /2/2;
@@ -90,7 +78,7 @@ const StoryOneTitle = styled.h1`
 	align-self: end;
 	justify-self: center;
 	text-align: center;
-`;
+`
 
 const StoryFlipperWrapper = styled.div`
 	display: grid;
@@ -98,10 +86,10 @@ const StoryFlipperWrapper = styled.div`
 	grid-template-columns: 1fr;
 
 	grid-gap: 10px;
-`;
+`
 // const Post = React.forwardRef(({ post }, ref) => {
 const storyCard = React.forwardRef(({ s, i, lastID }, ref) => {
-	console.log("Insiode StoryCXard and ref ios ", ref);
+	//console.log("Insiode StoryCXard and ref ios ", ref);
 
 	const body = (
 		<>
@@ -123,7 +111,7 @@ const storyCard = React.forwardRef(({ s, i, lastID }, ref) => {
 				<StoryOneTitle>{s.title}</StoryOneTitle>
 			</Div1OverlayWrapper>
 		</>
-	);
+	)
 
 	const content = ref ? (
 		<StoryFlipperWrapper data-last={lastID} ref={ref} key={i}>
@@ -131,9 +119,9 @@ const storyCard = React.forwardRef(({ s, i, lastID }, ref) => {
 		</StoryFlipperWrapper>
 	) : (
 		<StoryFlipperWrapper key={i}>{body}</StoryFlipperWrapper>
-	);
+	)
 
-	return content;
-});
+	return content
+})
 
-export default storyCard;
+export default storyCard
