@@ -32,7 +32,9 @@
             fromPath: @path,
             artData: @seeIfStoryExists,
             page: @page,
-            stories: @stories} %>
+            stories: @stories,
+            allStoriesPlaceholder: @allStoriesPlaceholder,
+            totalNumOfStoriesOnServer: @totalNumOfStoriesOnServer} %>
 
 <%= react_component("App", props: {d: @data}, prerender: false) %>
 

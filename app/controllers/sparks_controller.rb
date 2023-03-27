@@ -97,6 +97,12 @@ class SparksController < ApplicationController
             @thirdToLastStory = Story.third_to_last
             @fourthToLastStory = Story.order('created_at DESC').fourth()
             @googleGeoApi = Rails.application.credentials.dig(:google, :geoapi)
+
+            @allStoriesPlaceholder = []
+            s = Story.all
+            s.map{|x| @allStoriesPlaceholder.push(x.id)}
+
+            @totalNumOfStoriesOnServer = Story.count
         
 
             
