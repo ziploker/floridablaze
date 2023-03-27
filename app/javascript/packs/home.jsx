@@ -1310,6 +1310,10 @@ function Home(props) {
     } else if (whatModeAuto == "cellphone") {
       //   props.allStories.map((s, i) => {
       props.allStoriesPlaceholder.map((s, i) => {
+        // const threeHeaders = Array.from({length: 3}, (_, index) => {
+        //   return <Header key={index} />;
+        // });
+
         // console.log(
         // 	"About to MAP and they're are a total of " + props.allStories.length + " stories."
         // )
@@ -1492,7 +1496,7 @@ function Home(props) {
         <div
           style={getAllDotsWrapperStyle()}
           className="allDotsWrapper"
-          allStories={props.allStories}
+          //allStories={props.allStories}
         >
           {getDots()}
         </div>
