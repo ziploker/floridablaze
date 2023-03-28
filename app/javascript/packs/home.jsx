@@ -1288,12 +1288,23 @@ function Home(props) {
     return style;
   };
 
+  const AllTheDots = Array.from({ length: 8 }, (_, i) => {
+    // <div style={getDotStyle()} className="dot-holder" key={i}>
+    //   <div
+    //     key={`${i}-inner`}
+    //     className={`eachDot
+    // 				  ${getDotClassName(i)}
+    // 				  ${activeDot === i || activeDot + 1 === i ? "active" : ""}`}
+    //   />
+    // </div>;
+    "<h1>Testing 123 </h1>;";
+  });
+
   const getDots = () => {
     //console.log("======Running getDots usecallback inside home function=======")
     const dots = [];
 
     if (whatModeAuto == "desktop") {
-      //   props.allStories.map((s, i) => {
       props.allStoriesPlaceholder.map((s, i) => {
         dots.push(
           <div style={getDotStyle()} className="dot-holder" key={i}>
@@ -1306,17 +1317,11 @@ function Home(props) {
           </div>
         );
       });
+
       return dots;
     } else if (whatModeAuto == "cellphone") {
       //   props.allStories.map((s, i) => {
       props.allStoriesPlaceholder.map((s, i) => {
-        // const threeHeaders = Array.from({length: 3}, (_, index) => {
-        //   return <Header key={index} />;
-        // });
-
-        // console.log(
-        // 	"About to MAP and they're are a total of " + props.allStories.length + " stories."
-        // )
         dots.push(
           <div style={getDotStyle()} className="dot-holder" key={i}>
             <div
@@ -1498,7 +1503,8 @@ function Home(props) {
           className="allDotsWrapper"
           //allStories={props.allStories}
         >
-          {getDots()}
+          {/* {getDots()} */}
+          AllTheDots
         </div>
         {/* </AllDotsWrapper> */}
       </div>
