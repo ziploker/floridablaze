@@ -43,9 +43,7 @@
 .allDotsWrapper {
   grid-area: 1/2/2/3;
   display: grid;
-  /* grid-template-columns: ${(props) =>
-    `repeat(${props.allStories.length + 11}, 20px)`}; */
-  /* grid-template-columns: repeat(30, 20px); */
+
   overflow: hidden;
   width: 220px;
   justify-self: center;

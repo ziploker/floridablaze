@@ -359,19 +359,6 @@ const ItemWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const AllDotsWrapper = styled.div`
-  grid-area: 1/2/2/3;
-  display: grid;
-  grid-template-columns: ${(props) =>
-    `repeat(${props.allStories.length + 11}, 20px)`};
-  overflow: hidden;
-  width: 220px;
-  justify-self: center;
-  margin-bottom: 13px;
-
-  transition: transform 0.5s ease;
-`;
-
 //
 //
 //
@@ -1288,60 +1275,37 @@ function Home(props) {
     return style;
   };
 
-  const AllTheDots = Array.from({ length: 8 }, (_, i) => {
-    // <div style={getDotStyle()} className="dot-holder" key={i}>
-    //   <div
-    //     key={`${i}-inner`}
-    //     className={`eachDot
-    // 				  ${getDotClassName(i)}
-    // 				  ${activeDot === i || activeDot + 1 === i ? "active" : ""}`}
-    //   />
-    // </div>;
-    "<h1>Testing 123 </h1>;";
-  });
+  const desktopIndicatorDots = Array.from(
+    { length: props.allStories.length },
+    (_, i) => {
+      return (
+        <div style={getDotStyle()} className="dot-holder" key={i}>
+          <div
+            key={`${i}-inner`}
+            className={`eachDot
+    				  ${getDotClassName(i)}
+    				  ${activeDot === i || activeDot + 1 === i ? "active" : ""}`}
+          />
+        </div>
+      );
+    }
+  );
 
-  const getDots = () => {
-    //console.log("======Running getDots usecallback inside home function=======")
-    const dots = [];
-
-    if (whatModeAuto == "desktop") {
-      props.allStoriesPlaceholder.map((s, i) => {
-        dots.push(
-          <div style={getDotStyle()} className="dot-holder" key={i}>
-            <div
-              key={`${i}-inner`}
-              className={`eachDot
-						  ${getDotClassName(i)}
-						  ${activeDot === i || activeDot + 1 === i ? "active" : ""}`}
-            />
-          </div>
-        );
-      });
-
-      return dots;
-    } else if (whatModeAuto == "cellphone") {
-      //   props.allStories.map((s, i) => {
-      props.allStoriesPlaceholder.map((s, i) => {
-        dots.push(
-          <div style={getDotStyle()} className="dot-holder" key={i}>
-            <div
-              key={`${i}-inner`}
-              className={`eachDot
+  const cellphoneIndicatorDots = Array.from(
+    { length: props.allStories.length },
+    (_, i) => {
+      return (
+        <div style={getDotStyle()} className="dot-holder" key={i}>
+          <div
+            key={`${i}-inner`}
+            className={`eachDot
 						  ${getDotClassName(i)}
 						  ${activeDot === i ? "active" : ""}`}
-            />
-          </div>
-        );
-      });
-      return dots;
+          />
+        </div>
+      );
     }
-  };
-  // }, [props.allStories, activeDot])
-
-  //
-  //
-  //
-  //
+  );
 
   return (
     <HomeWrapper>
@@ -1497,16 +1461,11 @@ function Home(props) {
       </Carousel>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
-        {/* <AllDotsWrapper allStories={props.allStories}> */}
-        <div
-          style={getAllDotsWrapperStyle()}
-          className="allDotsWrapper"
-          //allStories={props.allStories}
-        >
-          {/* {getDots()} */}
-          AllTheDots
+        <div style={getAllDotsWrapperStyle()} className="allDotsWrapper">
+          {whatModeAuto == "desktop"
+            ? desktopIndicatorDots
+            : cellphoneIndicatorDots}
         </div>
-        {/* </AllDotsWrapper> */}
       </div>
     </HomeWrapper>
   );
