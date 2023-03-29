@@ -194,16 +194,18 @@ const ActHeaderWrapper = styled.div`
 	display: grid;
 	grid-area: 1/3/2/4;
 	width: 100%;
+	margin-top: 20px;
 
 	@media only screen and (min-width: 1026px) {
-		margin: 0 0 0 60px;
+		margin: 20px 0 0 30px;
 	}
 
 	@media only screen and (max-width: 985px) {
 		justify-self: start;
 		grid-area: 1/2/2/3;
-		margin-top: 25px;
-		margin-bottom: 16px;
+		/* margin-top: 25px;
+		margin-bottom: 16px; */
+		margin: 20px 0 16px 0px;
 	}
 `
 
@@ -218,7 +220,7 @@ const ActHeader = styled.h1`
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: 800;
-	font-size: min(16vw, 100px);
+	font-size: min(16vw, 97px);
 	align-self: center;
 	line-height: 100%;
 	//line-height: 100px;
@@ -279,17 +281,19 @@ const ActSubheader = styled.h2`
 
 const ActBulletPointsWrapper = styled.div`
 	grid-area: 2/3/3/4;
+	margin-top: 20px;
 	margin-bottom: 16px;
 
 	width: 100%;
 
 	@media only screen and (min-width: 1026px) {
-		margin: 0 0 26px 60px;
+		margin: 20px 0 26px 30px;
 	}
 
 	@media only screen and (max-width: 985px) {
 		justify-self: center;
 		grid-area: 2/2/3/3;
+		margin: 20px 0 26px 0px;
 	}
 `
 
