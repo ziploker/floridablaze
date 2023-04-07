@@ -676,12 +676,14 @@ const NextSteps = styled.div`
     color: white;
     letter-spacing: 0.15em;
     font-weight: 800;
+    //margin: 0 0 0 18px;
   }
 
   h2 {
     color: #ffffffa8;
     font-size: 1.1em;
     letter-spacing: 0.15em;
+    //margin: 0 0 0 18px;
   }
 
   div {
@@ -701,6 +703,24 @@ const NextSteps = styled.div`
       padding: 0 20px;
     }
   }
+`;
+
+const LinerVertical = styled.div`
+  position: absolute;
+  width: 3px;
+  height: 109px;
+  top: 109px;
+  right: 130px;
+  background: hsl(38.57142857142857, 100%, 13.725490196078432%);
+`;
+
+const LinerHorizontal = styled.div`
+  position: absolute;
+  width: 240px;
+  height: 3px;
+  top: 131px;
+  right: 106px;
+  background: hsl(38.57142857142857, 100%, 13.725490196078432%);
 `;
 
 const ResultSectionInfoBox = styled.div`
@@ -2865,6 +2885,8 @@ function Act(props, ref) {
                 </p>
               </div>
             </NextSteps>
+            <LinerVertical />
+            <LinerHorizontal />
           </MiddleBarResultSection>
 
           <TriplePlayWrapper
