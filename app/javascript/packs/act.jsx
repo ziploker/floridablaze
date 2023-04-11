@@ -33,6 +33,8 @@ import orangeSearch from "../../assets/images/orangeSearch.png"
 import orangeMailbox from "../../assets/images/orangeMailbox.png"
 import orangeShare from "../../assets/images/orangeShare.png"
 
+import mailIcon from "../../assets/images/Letterbox.png"
+
 /////////////////////////////////////////////////////////////
 
 const formData = new FormData()
@@ -990,9 +992,9 @@ const CardOneWrapper = styled.div`
 
 	border-radius: 16.4px;
 	border-left: ${(props) =>
-		props.whichTabIsActive == 1 ? "2px solid orange" : "2px solid #DECDD1"};
+		props.whichEmailIsActive == 1 ? "2px solid orange" : "2px solid #DECDD1"};
 	border-bottom: ${(props) =>
-		props.whichTabIsActive == 1 ? "2px solid orange" : "2px solid #DECDD1"};
+		props.whichEmailIsActive == 1 ? "2px solid orange" : "2px solid #DECDD1"};
 `
 
 const CardOneSub = styled.div`
@@ -1063,9 +1065,9 @@ const CardTwoWrapper = styled.div`
 	border-radius: 16.4px;
 
 	border-left: ${(props) =>
-		props.whichTabIsActive == 2 ? "2px solid orange" : "2px solid orange"};
+		props.whichEmailIsActive == 2 ? "2px solid orange" : "2px solid orange"};
 	border-bottom: ${(props) =>
-		props.whichTabIsActive == 2 ? "2px solid orange" : "2px solid orange"};
+		props.whichEmailIsActive == 2 ? "2px solid orange" : "2px solid orange"};
 `
 
 const CardTemplate = styled.img`
@@ -1192,6 +1194,7 @@ const TriplePlayWrapper = styled.div`
 `
 
 const Letter = styled.div`
+	width: 100%;
 	@media only screen and (max-width: 1000px) {
 		grid-area: 1/1/2/3;
 		//margin: 0px auto;
@@ -1484,35 +1487,95 @@ const FlashSuccess = styled.h4`
 	display: ${(props) => (props.successFlag ? "initial" : "none")};
 `
 
-const ButtonTabWrapper = styled.div`
+const ButtonTabsWrapper = styled.div`
 	grid-area: 1/1/2/2;
+
+	display: grid;
+	grid-template-columns: 70% 30%;
+	height: 60px;
 `
 
-const ButtonTabOne = styled.button`
-	overflow: hidden;
-	border: 1px solid #ccc;
-	background-color: ${(props) => (props.whichTabIsActive === 1 ? "#ccc" : "#f1f1f1")};
+const DemoIndicatorDotsWrapper = styled.div`
+	width: 100%;
+	display: grid;
+`
 
-	float: left;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	padding: 6px 16px;
-	transition: 0.3s;
-	font-size: 13px;
+const DemoIndicatorDots = styled.div`
+	display: grid;
+	grid-template-columns: repeat(2, 20px);
+
+	justify-self: center;
+	align-self: center;
+`
+
+const Dot1 = styled.div`
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background-color: white;
+	border: 1px solid black;
+	box-sizing: border-box;
+	transition: transform 0.5s ease;
+`
+const Dot2 = styled.div`
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background-color: white;
+	border: 1px solid black;
+	box-sizing: border-box;
+	transition: transform 0.5s ease;
+`
+
+const ButtonOneTabWrapper = styled.div`
+	display: grid;
 	border-top-left-radius: 13px;
+	border-right: 1px solid #77767657;
+	border-bottom: ${(props) => (props.whichTabIsActive === 1 ? "none" : "1px solid #77767657")};
 
+	grid-template-columns: 1fr 1fr;
+	cursor: pointer;
+	background-color: ${(props) => (props.whichTabIsActive === 1 ? "#fcfcfc" : "#ddd")};
 	&:hover {
-		background-color: ${(props) => (props.whichTabIsActive === 1 ? "#ccc" : "#ddd")};
+		background-color: ${(props) => (props.whichTabIsActive === 1 ? "#fcfcfc" : "#e9e9e9")};
 	}
+`
+const MailIcon = styled.img`
+	justify-self: end;
+	align-self: center;
+`
+
+const ButtonTabOne = styled.div`
+	overflow: hidden;
+	//border: 1px solid #ccc;
+
+	//float: left;
+	outline: none;
+	align-self: center;
+	padding: 6px 16px;
+	transition: 0.3s;
+	font-size: 1.3em;
+	//border-top-left-radius: 13px;
 
 	//background-color: #ccc;
 `
 
-const ButtonTabTwo = styled.button`
+const ButtonTwoTabWrapper = styled.div`
+	display: grid;
+	border-top-right-radius: 13px;
+	cursor: pointer;
+	border-left: 1px solid #77767657;
+	border-bottom: ${(props) => (props.whichTabIsActive === 2 ? "none" : "1px solid #77767657")};
+
+	background-color: ${(props) => (props.whichTabIsActive === 2 ? "#fcfcfc" : "#ddd")};
+	&:hover {
+		background-color: ${(props) => (props.whichTabIsActive === 2 ? "#fcfcfc" : "#e9e9e9")};
+	}
+`
+
+const ButtonTabTwo = styled.div`
 	overflow: hidden;
-	border: 1px solid #ccc;
-	background-color: ${(props) => (props.whichTabIsActive === 2 ? "#ccc" : "#f1f1f1")};
+	//border: 1px solid #ccc;
 
 	float: left;
 	border: none;
@@ -1520,22 +1583,36 @@ const ButtonTabTwo = styled.button`
 	cursor: pointer;
 	padding: 6px 16px;
 	transition: 0.3s;
-	font-size: 13px;
-	border-bottom-right-radius: 13px;
-	&:hover {
-		background-color: ${(props) => (props.whichTabIsActive === 2 ? "#ccc" : "#ddd")};
-	}
+	align-self: center;
+	justify-self: center;
+
+	font-size: 1.3em;
+	//border-bottom-right-radius: 13px;
 
 	//background-color: #ccc;
+`
+
+const DemoWrapper = styled.div`
+	padding: 45px 120px;
+`
+
+const LetterDemoWrapper = styled.div`
+	padding: 45px 120px;
+	display: ${(props) => (props.whichTabIsActive == 1 ? "initial" : "none")};
+`
+
+const EmailDemoWrapper = styled.div`
+	padding: 45px 120px;
+	display: ${(props) => (props.whichTabIsActive == 1 ? "none" : "initial")};
 `
 
 const SubjectBox = styled.div`
-	width: 96%;
+	/* width: 96%; */
 	justify-self: center;
 	border: 1px solid orange;
 	position: relative;
 	height: 35px;
-	margin: 30px 0px 0px 0px;
+	//margin: 45px 0px 0px 0px;
 
 	h2 {
 		position: absolute;
@@ -1555,11 +1632,11 @@ const SubjectBox = styled.div`
 `
 
 const BodyBox = styled.div`
-	width: 96%;
+	//width: 96%;
 	justify-self: center;
 	border: 1px solid orange;
 	position: relative;
-	margin: 20px 0px;
+	margin: 40px 0px;
 	border-bottom-left-radius: 13px;
 	border-bottom-right-radius: 13px;
 
@@ -1792,7 +1869,9 @@ function Act(props, ref) {
 
 	const autoCompleteRef = useRef(null)
 	const [recaptchaResponse, setRecaptchaResponse] = React.useState("")
+	const [whichEmailIsActive, setWhichEmailIsActive] = React.useState(1)
 	const [whichTabIsActive, setWhichTabIsActive] = React.useState(1)
+
 	const [isLoading, setIsLoading] = React.useState(false)
 	const [isButtonLoading, setIsButtonLoading] = React.useState(false)
 	const [showLoader, setShowLoader] = React.useState(false)
@@ -2534,7 +2613,7 @@ function Act(props, ref) {
 		console.log("getHeader start &&&&&&&&&&&&&&&&&&&&&&")
 		console.log(results)
 
-		if (whichTabIsActive === 1) {
+		if (whichEmailIsActive === 1) {
 			if (results.one.chamber !== undefined && results.one.chamber == "Senate") {
 				if (results.one.lastName != "") {
 					return <h3>Dear Senator {results.one.lastName}, </h3>
@@ -2550,7 +2629,7 @@ function Act(props, ref) {
 			} else {
 				return null
 			}
-		} else if (whichTabIsActive === 2) {
+		} else if (whichEmailIsActive === 2) {
 			if (results.two.chamber !== undefined && results.two.chamber == "Senate") {
 				if (results.two.lastName != "") {
 					return <h3>Dear Senator {results.two.lastName}, </h3>
@@ -2571,7 +2650,7 @@ function Act(props, ref) {
 		}
 	}
 
-	const HandleButtonTabOne = (e) => {
+	const HandleLetterButton = (e) => {
 		console.log(e.target.value)
 
 		if (whichTabIsActive !== 1) {
@@ -2579,10 +2658,25 @@ function Act(props, ref) {
 		}
 	}
 
-	const HandleButtonTabTwo = (e) => {
+	const HandleEmailButton = (e) => {
 		console.log(e.target.value)
+
 		if (whichTabIsActive !== 2) {
 			setWhichTabIsActive(2)
+		}
+	}
+	const HandleButtonTabOne = (e) => {
+		console.log(e.target.value)
+
+		if (whichEmailIsActive !== 1) {
+			setWhichEmailIsActive(1)
+		}
+	}
+
+	const HandleButtonTabTwo = (e) => {
+		console.log(e.target.value)
+		if (whichEmailIsActive !== 2) {
+			setWhichEmailIsActive(2)
 		}
 	}
 
@@ -2791,7 +2885,7 @@ function Act(props, ref) {
 
 					<MiddleBarResultSection>
 						<CardOne>
-							<CardOneWrapper whichTabIsActive={whichTabIsActive}>
+							<CardOneWrapper whichEmailIsActive={whichEmailIsActive}>
 								<CardPicture src={results.one.image ? results.one.image : ""}></CardPicture>
 
 								<CardTemplate src={cardTemplate}></CardTemplate>
@@ -2803,7 +2897,7 @@ function Act(props, ref) {
 						</CardOne>
 
 						<CardTwo>
-							<CardTwoWrapper whichTabIsActive={whichTabIsActive}>
+							<CardTwoWrapper whichEmailIsActive={whichEmailIsActive}>
 								<CardPicture src={results.two.image ? results.two.image : ""}></CardPicture>
 
 								<CardTemplate src={cardTemplate}></CardTemplate>
@@ -2830,71 +2924,84 @@ function Act(props, ref) {
 
 					<TriplePlayWrapper resultFromFlorida={resultFromFlorida} showCards={showCards}>
 						<Letter resultFromFlorida={resultFromFlorida} showCards={showCards}>
-							<ButtonTabWrapper>
-								<ButtonTabOne
-									value={1}
+							<ButtonTabsWrapper>
+								<ButtonOneTabWrapper
+									//value={1}
 									whichTabIsActive={whichTabIsActive}
-									onClick={HandleButtonTabOne}
+									//onClick={HandleButtonTabOne}
+									onClick={HandleLetterButton}
 								>
-									Email One
-								</ButtonTabOne>
-								<ButtonTabTwo
-									value={2}
+									<MailIcon src={mailIcon} />
+									<ButtonTabOne>
+										Letters <span style={{ fontSize: ".6em" }}>(via USPS)</span>
+									</ButtonTabOne>
+								</ButtonOneTabWrapper>
+								<ButtonTwoTabWrapper
+									//value={2}
 									whichTabIsActive={whichTabIsActive}
-									onClick={HandleButtonTabTwo}
+									//onClick={HandleButtonTabTwo}
+									onClick={HandleEmailButton}
 								>
-									Email Two
-								</ButtonTabTwo>
-							</ButtonTabWrapper>
+									<ButtonTabTwo>EmaiL</ButtonTabTwo>
+								</ButtonTwoTabWrapper>
+							</ButtonTabsWrapper>
 
-							<SubjectBox>
-								<h2>subject</h2>
-								<h3>We need a more sensible approach to marijuana laws.</h3>
-							</SubjectBox>
+							<DemoIndicatorDotsWrapper>
+								<DemoIndicatorDots>
+									<Dot1 />
+									<Dot2 />
+								</DemoIndicatorDots>
+							</DemoIndicatorDotsWrapper>
 
-							<BodyBox>
-								<h2>body</h2>
+							<EmailDemoWrapper whichTabIsActive={whichTabIsActive}>
+								<SubjectBox>
+									<h2>subject</h2>
+									<h3>We need a more sensible approach to marijuana laws.</h3>
+								</SubjectBox>
 
-								<GetHeader />
+								<BodyBox>
+									<h2>body</h2>
 
-								<p>
-									I am a constituent of (
-									<i>
-										{whichTabIsActive === 1
-											? results.one.fullDistrict + " district " + results.one.district
-											: results.two.fullDistrict + " district " + results.two.district}
-									</i>
-									). I am writing to urge you to support legalizing and regulating marijuana for
-									adults. Many other states are currently benefiting from this common sense
-									approach. Why is our state lagging behind?
-								</p>
-								<p>
-									Prohibition has never worked and causes an increase in unregulated sales.
-									Legalizing marijuana for recreational use would virtually eliminate the black
-									market, create thousands of jobs in a growing industry and bring in millions of
-									dolars of tax revenue.
-								</p>
-								<p>
-									As a Legislator, you are in a position where you can make a difference. Can i
-									count on you to end marijuana prohibition?
-								</p>
+									<GetHeader />
 
-								<div className="closing">
-									Sincerely, <br />
-									<sub>
-										{props.userState.loggedInStatus == "LOGGED_IN"
-											? props.userState.user.full_name
-											: "[Your Name Here]"}
-									</sub>{" "}
-									<br />
-									<sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
-									<sub>
-										{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}
-									</sub>{" "}
-									<br />
-								</div>
+									<p>
+										I am a constituent of (
+										<i>
+											{whichEmailIsActive === 1
+												? results.one.fullDistrict + " district " + results.one.district
+												: results.two.fullDistrict + " district " + results.two.district}
+										</i>
+										). I am writing to urge you to support legalizing and regulating marijuana for
+										adults. Many other states are currently benefiting from this common sense
+										approach. Why is our state lagging behind?
+									</p>
+									<p>
+										Prohibition has never worked and causes an increase in unregulated sales.
+										Legalizing marijuana for recreational use would virtually eliminate the black
+										market, create thousands of jobs in a growing industry and bring in millions of
+										dolars of tax revenue.
+									</p>
+									<p>
+										As a Legislator, you are in a position where you can make a difference. Can i
+										count on you to end marijuana prohibition?
+									</p>
 
-								{/* <FlashError userState={props.userState}>
+									<div className="closing">
+										Sincerely, <br />
+										<sub>
+											{props.userState.loggedInStatus == "LOGGED_IN"
+												? props.userState.user.full_name
+												: "[Your Name Here]"}
+										</sub>{" "}
+										<br />
+										<sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
+										<sub>
+											{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}
+										</sub>{" "}
+										<br />
+									</div>
+
+									{/* <FlashError userState={props.userState}>
                   ** Please{" "}
                   <a href="#" onClick={loginFromDeadEnd}>
                     Login
@@ -2905,7 +3012,12 @@ function Act(props, ref) {
                   </a>{" "}
                   to continue.
                 </FlashError> */}
-							</BodyBox>
+								</BodyBox>
+							</EmailDemoWrapper>
+
+							<LetterDemoWrapper whichTabIsActive={whichTabIsActive}>
+								<h1>Letter goes here</h1>
+							</LetterDemoWrapper>
 						</Letter>
 
 						{/* <OfferOne>
