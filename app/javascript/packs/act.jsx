@@ -1512,7 +1512,9 @@ const Dot1 = styled.div`
 	width: 16px;
 	height: 16px;
 	border-radius: 50%;
+	//background-color: ${(props) => (props.whichTabIsActive == 1 ? "black" : "white")};
 	background-color: white;
+
 	border: 1px solid black;
 	box-sizing: border-box;
 	transition: transform 0.5s ease;
@@ -1521,6 +1523,7 @@ const Dot2 = styled.div`
 	width: 16px;
 	height: 16px;
 	border-radius: 50%;
+	//background-color: ${(props) => (props.whichTabIsActive == 2 ? "black" : "white")};
 	background-color: white;
 	border: 1px solid black;
 	box-sizing: border-box;
@@ -1543,6 +1546,7 @@ const ButtonOneTabWrapper = styled.div`
 const MailIcon = styled.img`
 	justify-self: end;
 	align-self: center;
+	opacity: ${(props) => (props.whichTabIsActive == 1 ? "1" : ".3")};
 `
 
 const ButtonTabOne = styled.div`
@@ -1553,8 +1557,10 @@ const ButtonTabOne = styled.div`
 	outline: none;
 	align-self: center;
 	padding: 6px 16px;
-	transition: 0.3s;
+	//transition: 0.3s;
 	font-size: 1.3em;
+	opacity: ${(props) => (props.whichTabIsActive == 1 ? "1" : ".3")};
+	font-weight: ${(props) => (props.whichTabIsActive == 1 ? "600" : "initial")};
 	//border-top-left-radius: 13px;
 
 	//background-color: #ccc;
@@ -1582,9 +1588,11 @@ const ButtonTabTwo = styled.div`
 	outline: none;
 	cursor: pointer;
 	padding: 6px 16px;
-	transition: 0.3s;
+	//transition: 0.3s;
 	align-self: center;
 	justify-self: center;
+	opacity: ${(props) => (props.whichTabIsActive == 2 ? "1" : ".3")};
+	font-weight: ${(props) => (props.whichTabIsActive == 2 ? "600" : "initial")};
 
 	font-size: 1.3em;
 	//border-bottom-right-radius: 13px;
@@ -2931,8 +2939,8 @@ function Act(props, ref) {
 									//onClick={HandleButtonTabOne}
 									onClick={HandleLetterButton}
 								>
-									<MailIcon src={mailIcon} />
-									<ButtonTabOne>
+									<MailIcon whichTabIsActive={whichTabIsActive} src={mailIcon} />
+									<ButtonTabOne whichTabIsActive={whichTabIsActive}>
 										Letters <span style={{ fontSize: ".6em" }}>(via USPS)</span>
 									</ButtonTabOne>
 								</ButtonOneTabWrapper>
@@ -2942,7 +2950,7 @@ function Act(props, ref) {
 									//onClick={HandleButtonTabTwo}
 									onClick={HandleEmailButton}
 								>
-									<ButtonTabTwo>EmaiL</ButtonTabTwo>
+									<ButtonTabTwo whichTabIsActive={whichTabIsActive}>EmaiL</ButtonTabTwo>
 								</ButtonTwoTabWrapper>
 							</ButtonTabsWrapper>
 
