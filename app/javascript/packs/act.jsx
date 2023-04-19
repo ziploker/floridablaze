@@ -35,6 +35,8 @@ import orangeShare from "../../assets/images/orangeShare.png"
 
 import mailIcon from "../../assets/images/Letterbox.png"
 
+import rightArrow from "../../assets/images/scroll-arrow.png"
+
 /////////////////////////////////////////////////////////////
 
 const formData = new FormData()
@@ -1497,37 +1499,53 @@ const ButtonTabsWrapper = styled.div`
 
 const DemoIndicatorDotsWrapper = styled.div`
 	width: 100%;
+	height: 100px;
 	display: grid;
 `
 
 const DemoIndicatorDots = styled.div`
 	display: grid;
-	grid-template-columns: repeat(2, 20px);
+	grid-template-columns: 150px 20px 20px 150px;
+	grid-template-areas: ". dot1 dot2 info";
 
 	justify-self: center;
 	align-self: center;
+
+	span {
+		grid-area: info;
+		align-self: center;
+		justify-self: start;
+		margin-left: 8px;
+		font-size: 0.9em;
+	}
 `
 
 const Dot1 = styled.div`
 	width: 16px;
 	height: 16px;
 	border-radius: 50%;
+	grid-area: dot1;
 	//background-color: ${(props) => (props.whichTabIsActive == 1 ? "black" : "white")};
 	background-color: white;
 
 	border: 1px solid black;
 	box-sizing: border-box;
 	transition: transform 0.5s ease;
+	align-self: center;
+	justify-self: center;
 `
 const Dot2 = styled.div`
 	width: 16px;
 	height: 16px;
 	border-radius: 50%;
+	grid-area: dot2;
 	//background-color: ${(props) => (props.whichTabIsActive == 2 ? "black" : "white")};
 	background-color: white;
 	border: 1px solid black;
 	box-sizing: border-box;
 	transition: transform 0.5s ease;
+	align-self: center;
+	justify-self: center;
 `
 
 const ButtonOneTabWrapper = styled.div`
@@ -1610,12 +1628,39 @@ const LetterDemoWrapper = styled.div`
 `
 
 const EmailDemoWrapper = styled.div`
-	padding: 45px 120px;
-	display: ${(props) => (props.whichTabIsActive == 1 ? "none" : "initial")};
+	//padding: 45px 120px;
+	display: ${(props) => (props.whichTabIsActive == 1 ? "none" : "grid")};
+
+	grid-template-columns: 120px 1fr 120px;
+`
+
+const EmailDemoLeft = styled.div`
+	justify-self: center;
+`
+
+const EmailDemoCenter = styled.div``
+
+const EmailDemoRight = styled.div`
+	justify-self: center;
+`
+
+const RightArrow = styled.img`
+	max-width: 60px;
+	margin-top: 69px;
+	cursor: pointer;
+`
+
+const LeftArrow = styled.img`
+	max-width: 60px;
+	margin-top: 69px;
+	cursor: pointer;
+
+	transform: scaleX(-1);
 `
 
 const SubjectBox = styled.div`
 	/* width: 96%; */
+	//margin-top: 69px;
 	justify-self: center;
 	border: 1px solid orange;
 	position: relative;
@@ -2958,58 +3003,63 @@ function Act(props, ref) {
 								<DemoIndicatorDots>
 									<Dot1 />
 									<Dot2 />
+									<span>(Email 1 of 2)</span>
 								</DemoIndicatorDots>
 							</DemoIndicatorDotsWrapper>
 
 							<EmailDemoWrapper whichTabIsActive={whichTabIsActive}>
-								<SubjectBox>
-									<h2>subject</h2>
-									<h3>We need a more sensible approach to marijuana laws.</h3>
-								</SubjectBox>
+								<EmailDemoLeft>
+									<LeftArrow src={rightArrow} />
+								</EmailDemoLeft>
+								<EmailDemoCenter>
+									<SubjectBox>
+										<h2>subject</h2>
+										<h3>We need a more sensible approach to marijuana laws.</h3>
+									</SubjectBox>
 
-								<BodyBox>
-									<h2>body</h2>
+									<BodyBox>
+										<h2>body</h2>
 
-									<GetHeader />
+										<GetHeader />
 
-									<p>
-										I am a constituent of (
-										<i>
-											{whichEmailIsActive === 1
-												? results.one.fullDistrict + " district " + results.one.district
-												: results.two.fullDistrict + " district " + results.two.district}
-										</i>
-										). I am writing to urge you to support legalizing and regulating marijuana for
-										adults. Many other states are currently benefiting from this common sense
-										approach. Why is our state lagging behind?
-									</p>
-									<p>
-										Prohibition has never worked and causes an increase in unregulated sales.
-										Legalizing marijuana for recreational use would virtually eliminate the black
-										market, create thousands of jobs in a growing industry and bring in millions of
-										dolars of tax revenue.
-									</p>
-									<p>
-										As a Legislator, you are in a position where you can make a difference. Can i
-										count on you to end marijuana prohibition?
-									</p>
+										<p>
+											I am a constituent of (
+											<i>
+												{whichEmailIsActive === 1
+													? results.one.fullDistrict + " district " + results.one.district
+													: results.two.fullDistrict + " district " + results.two.district}
+											</i>
+											). I am writing to urge you to support legalizing and regulating marijuana for
+											adults. Many other states are currently benefiting from this common sense
+											approach. Why is our state lagging behind?
+										</p>
+										<p>
+											Prohibition has never worked and causes an increase in unregulated sales.
+											Legalizing marijuana for recreational use would virtually eliminate the black
+											market, create thousands of jobs in a growing industry and bring in millions
+											of dolars of tax revenue.
+										</p>
+										<p>
+											As a Legislator, you are in a position where you can make a difference. Can i
+											count on you to end marijuana prohibition?
+										</p>
 
-									<div className="closing">
-										Sincerely, <br />
-										<sub>
-											{props.userState.loggedInStatus == "LOGGED_IN"
-												? props.userState.user.full_name
-												: "[Your Name Here]"}
-										</sub>{" "}
-										<br />
-										<sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
-										<sub>
-											{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}
-										</sub>{" "}
-										<br />
-									</div>
+										<div className="closing">
+											Sincerely, <br />
+											<sub>
+												{props.userState.loggedInStatus == "LOGGED_IN"
+													? props.userState.user.full_name
+													: "[Your Name Here]"}
+											</sub>{" "}
+											<br />
+											<sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
+											<sub>
+												{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}
+											</sub>{" "}
+											<br />
+										</div>
 
-									{/* <FlashError userState={props.userState}>
+										{/* <FlashError userState={props.userState}>
                   ** Please{" "}
                   <a href="#" onClick={loginFromDeadEnd}>
                     Login
@@ -3020,7 +3070,11 @@ function Act(props, ref) {
                   </a>{" "}
                   to continue.
                 </FlashError> */}
-								</BodyBox>
+									</BodyBox>
+								</EmailDemoCenter>
+								<EmailDemoRight>
+									<RightArrow src={rightArrow} />
+								</EmailDemoRight>
 							</EmailDemoWrapper>
 
 							<LetterDemoWrapper whichTabIsActive={whichTabIsActive}>
