@@ -1791,6 +1791,109 @@ const BodyBox = styled.div`
 	}
 `
 
+const LetterDemo = styled.div`
+	//width: 96%;
+	justify-self: center;
+	border: 1px solid orange;
+	position: relative;
+	//margin: 40px 0px;
+	border-bottom-left-radius: 13px;
+	border-bottom-right-radius: 13px;
+
+	h2 {
+		position: absolute;
+		font-size: 0.6em;
+		background-color: white;
+		left: 10px;
+		top: -10px;
+		padding: 3px 6px;
+	}
+
+	h1 {
+		justify-self: start;
+		//font-size: .8rem;
+		//grid-area: 1/4/4/5;
+		//z-index: 1;
+		//line-height: 30px;
+		//display: inline-block;
+		margin: 10px auto 16px auto;
+		justify-self: center;
+		text-align: center;
+	}
+
+	.email1 {
+		justify-self: start;
+		//font-size: .8em;
+		font-weight: 300;
+		//grid-area: 1/4/4/5;
+		//z-index: 1;
+		//line-height: 30px;
+		//display: inline-block;
+		margin-bottom: 8px;
+		justify-self: center;
+		text-align: center;
+	}
+
+	.email2 {
+		justify-self: start;
+		//font-size: .8em;
+		font-weight: 300;
+		//grid-area: 1/4/4/5;
+		//z-index: 1;
+		//line-height: 30px;
+		//display: inline-block;
+		justify-self: center;
+		text-align: center;
+	}
+
+	h3 {
+		justify-self: start;
+		font-size: 0.8em;
+		font-weight: initial;
+		margin-top: 30px;
+		grid-area: 2/1/3/2;
+		margin-left: 16px;
+	}
+
+	p {
+		/* @media only screen and (max-width: 1000px){
+
+      padding: 0px;
+
+
+    } */
+		//text-indent: 2rem;
+		font-size: 0.8em;
+		font-weight: 300;
+		margin-top: 15px;
+		/* grid-area: 5/2/6/5; */
+		grid-area: 3/1/4/2;
+		padding: 0px 15px;
+		line-height: 1.8em;
+	}
+
+	div {
+		font-size: 0.9em;
+		font-weight: 300;
+		//min-height: 100px;
+	}
+
+	.closing {
+		/* @media only screen and (max-width: 1000px){
+
+      padding: 0px;
+      margin-top: 16px;
+
+
+    } */
+		padding: 30px 15px;
+		justify-self: start;
+		//grid-area: 6/2/7/5;
+		/* grid-area: 1/1/2/2 */
+		grid-area: 4/1/5/2;
+	}
+`
+
 const TopBarResultSection = styled.div`
 	//width: 500px;
 	//height: 300px;
@@ -3026,7 +3129,7 @@ function Act(props, ref) {
 							</DemoIndicatorDotsWrapper>
 
 							<EmailDemoWrapper whichTabIsActive={whichTabIsActive}>
-								<EmailDemoLeft>
+								<EmailDemoLeft onClick={handleEmailDemoRight}>
 									<LeftArrow src={rightArrow} />
 								</EmailDemoLeft>
 								<EmailDemoCenter>
@@ -3096,13 +3199,157 @@ function Act(props, ref) {
 							</EmailDemoWrapper>
 
 							<LetterDemoWrapper whichTabIsActive={whichTabIsActive}>
-								<EmailDemoLeft>
+								<EmailDemoLeft onClick={handleEmailDemoRight}>
 									<LeftArrow src={rightArrow} />
 								</EmailDemoLeft>
 								<LetterDemoCenter>
-									<h1>Letter goes here</h1>
+									<LetterDemo>
+										{/* <h2>body</h2> */}
+
+										<GetHeader />
+
+										<p>
+											I am a constituent of (
+											<i>
+												{whichEmailIsActive === 1
+													? results.one.fullDistrict + " district " + results.one.district
+													: results.two.fullDistrict + " district " + results.two.district}
+											</i>
+											). I am writing to urge you to support legalizing and regulating marijuana for
+											adults. Many other states are currently benefiting from this common sense
+											approach. Why is our state lagging behind?
+										</p>
+										<p>
+											Prohibition has never worked and causes an increase in unregulated sales.
+											Legalizing marijuana for recreational use would virtually eliminate the black
+											market, create thousands of jobs in a growing industry and bring in millions
+											of dolars of tax revenue.
+										</p>
+										<p>
+											As a Legislator, you are in a position where you can make a difference. Can i
+											count on you to end marijuana prohibition?
+										</p>
+
+										<div className="closing">
+											Sincerely, <br />
+											<sub>
+												{props.userState.loggedInStatus == "LOGGED_IN"
+													? props.userState.user.full_name
+													: "[Your Name Here]"}
+											</sub>{" "}
+											<br />
+											<sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
+											<sub>
+												{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}
+											</sub>{" "}
+											<br />
+										</div>
+
+										{/* <FlashError userState={props.userState}>
+                  ** Please{" "}
+                  <a href="#" onClick={loginFromDeadEnd}>
+                    Login
+                  </a>{" "}
+                  or{" "}
+                  <a href="#" onClick={props.executeScrollForSection2}>
+                    Signup
+                  </a>{" "}
+                  to continue.
+                </FlashError> */}
+
+										<OfferTwo>
+											<h1>Letter</h1>
+											{/* <BsMailbox
+								style={{
+									gridArea: "2/1/3/3",
+									justifySelf: "center",
+									alignSelf: "start",
+
+									width: "45px",
+									height: "45px",
+								}}
+							/> */}
+
+											<BulletPointText>
+												a printed letter will be mailed to each of your representatives via United
+												States Postal Service.
+											</BulletPointText>
+
+											<BulletPointText2>
+												most effective way to get your point across.
+											</BulletPointText2>
+											<h2>$2.99</h2>
+
+											<ShowOfferSectionWrapper>
+												<ShowOfferSection>
+													<PayPalButtons
+														style={{ layout: "vertical" }}
+														createOrder={(data, actions) => {
+															return actions.order.create({
+																purchase_units: [
+																	{
+																		amount: {
+																			value: "2.99",
+																		},
+																	},
+																],
+															})
+														}}
+														forceReRender={[results]}
+														onApprove={(data, actions) => {
+															return actions.order.capture().then((details) => {
+																//const name = details.payer.name.given_name;
+																//alert(`Transaction completed by ${name}`);
+																// console.log("STATUS = " + details.status)
+
+																// console.log(details)
+
+																// console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
+																// console.log("email: " + details.payer.email_address);
+																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
+																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
+																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
+																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
+																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
+																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
+																//console.log("DATA", data)
+
+																//console.log("insiiiiiide1 " + results.inspect);
+
+																axios
+																	.post(
+																		"/send/letters",
+																		{
+																			data: {
+																				ppResults: data,
+																				infoOnReps: results,
+																				buyerDetails: details,
+																			},
+																		},
+																		{ withCredentials: true }
+																	)
+																	.then((response) => {
+																		//console.log("resoooooooooooooooonse = " + response.inspect)
+																		//addAllCommentsToStateForReplyButtonToWork(response.data.comments)
+																		//addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
+																		//setArtData(response.data.article)
+																		//setArtDataComments(response.data.comments)
+																		//setIsCommentsLoading(false)
+																		//setIsCommentsLoading(false)
+																		//setCurrentUser(@current_user)
+																	})
+																	.catch((error) => {
+																		//console.log("articleErrors", error)
+																	})
+															})
+														}}
+													/>
+												</ShowOfferSection>
+											</ShowOfferSectionWrapper>
+										</OfferTwo>
+									</LetterDemo>
 								</LetterDemoCenter>
-								<EmailDemoRight>
+								<EmailDemoRight onClick={handleEmailDemoRight}>
 									<RightArrow src={rightArrow} />
 								</EmailDemoRight>
 							</LetterDemoWrapper>
