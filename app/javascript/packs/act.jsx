@@ -3256,10 +3256,10 @@ function Act(props, ref) {
                   </a>{" "}
                   to continue.
                 </FlashError> */}
-
-										<OfferTwo>
-											<h1>Letter</h1>
-											{/* <BsMailbox
+									</LetterDemo>
+									<OfferTwo>
+										<h1>Letter</h1>
+										{/* <BsMailbox
 								style={{
 									gridArea: "2/1/3/3",
 									justifySelf: "center",
@@ -3270,84 +3270,83 @@ function Act(props, ref) {
 								}}
 							/> */}
 
-											<BulletPointText>
-												a printed letter will be mailed to each of your representatives via United
-												States Postal Service.
-											</BulletPointText>
+										<BulletPointText>
+											a printed letter will be mailed to each of your representatives via United
+											States Postal Service.
+										</BulletPointText>
 
-											<BulletPointText2>
-												most effective way to get your point across.
-											</BulletPointText2>
-											<h2>$2.99</h2>
+										<BulletPointText2>
+											most effective way to get your point across.
+										</BulletPointText2>
+										<h2>$2.99</h2>
 
-											<ShowOfferSectionWrapper>
-												<ShowOfferSection>
-													<PayPalButtons
-														style={{ layout: "vertical" }}
-														createOrder={(data, actions) => {
-															return actions.order.create({
-																purchase_units: [
+										<ShowOfferSectionWrapper>
+											<ShowOfferSection>
+												<PayPalButtons
+													style={{ layout: "vertical" }}
+													createOrder={(data, actions) => {
+														return actions.order.create({
+															purchase_units: [
+																{
+																	amount: {
+																		value: "2.99",
+																	},
+																},
+															],
+														})
+													}}
+													forceReRender={[results]}
+													onApprove={(data, actions) => {
+														return actions.order.capture().then((details) => {
+															//const name = details.payer.name.given_name;
+															//alert(`Transaction completed by ${name}`);
+															// console.log("STATUS = " + details.status)
+
+															// console.log(details)
+
+															// console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
+															// console.log("email: " + details.payer.email_address);
+															// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
+															// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
+															// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
+															// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
+															// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
+															// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
+															//console.log("DATA", data)
+
+															//console.log("insiiiiiide1 " + results.inspect);
+
+															axios
+																.post(
+																	"/send/letters",
 																	{
-																		amount: {
-																			value: "2.99",
+																		data: {
+																			ppResults: data,
+																			infoOnReps: results,
+																			buyerDetails: details,
 																		},
 																	},
-																],
-															})
-														}}
-														forceReRender={[results]}
-														onApprove={(data, actions) => {
-															return actions.order.capture().then((details) => {
-																//const name = details.payer.name.given_name;
-																//alert(`Transaction completed by ${name}`);
-																// console.log("STATUS = " + details.status)
-
-																// console.log(details)
-
-																// console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
-																// console.log("email: " + details.payer.email_address);
-																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
-																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
-																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
-																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
-																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
-																// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
-																//console.log("DATA", data)
-
-																//console.log("insiiiiiide1 " + results.inspect);
-
-																axios
-																	.post(
-																		"/send/letters",
-																		{
-																			data: {
-																				ppResults: data,
-																				infoOnReps: results,
-																				buyerDetails: details,
-																			},
-																		},
-																		{ withCredentials: true }
-																	)
-																	.then((response) => {
-																		//console.log("resoooooooooooooooonse = " + response.inspect)
-																		//addAllCommentsToStateForReplyButtonToWork(response.data.comments)
-																		//addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
-																		//setArtData(response.data.article)
-																		//setArtDataComments(response.data.comments)
-																		//setIsCommentsLoading(false)
-																		//setIsCommentsLoading(false)
-																		//setCurrentUser(@current_user)
-																	})
-																	.catch((error) => {
-																		//console.log("articleErrors", error)
-																	})
-															})
-														}}
-													/>
-												</ShowOfferSection>
-											</ShowOfferSectionWrapper>
-										</OfferTwo>
-									</LetterDemo>
+																	{ withCredentials: true }
+																)
+																.then((response) => {
+																	//console.log("resoooooooooooooooonse = " + response.inspect)
+																	//addAllCommentsToStateForReplyButtonToWork(response.data.comments)
+																	//addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
+																	//setArtData(response.data.article)
+																	//setArtDataComments(response.data.comments)
+																	//setIsCommentsLoading(false)
+																	//setIsCommentsLoading(false)
+																	//setCurrentUser(@current_user)
+																})
+																.catch((error) => {
+																	//console.log("articleErrors", error)
+																})
+														})
+													}}
+												/>
+											</ShowOfferSection>
+										</ShowOfferSectionWrapper>
+									</OfferTwo>
 								</LetterDemoCenter>
 								<EmailDemoRight onClick={handleEmailDemoRight}>
 									<RightArrow src={rightArrow} />
