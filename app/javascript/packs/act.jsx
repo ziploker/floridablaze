@@ -1339,7 +1339,8 @@ const LetterOffer = styled.div`
 	display: grid;
 
 	h1 {
-		font-family: "MuseoModerno", sans-serif, cursive;
+		font-family: "MuseoModerno", cursive;
+		font-weight: 400;
 	}
 `
 
