@@ -1338,23 +1338,81 @@ const OfferOne = styled.div`
 const LetterOffer = styled.div`
 	display: grid;
 
-	h1 {
-		font-family: "MuseoModerno", cursive;
-		font-weight: 400;
+	border 1px solid orange;
+	h2{
+		color: gray;
+		font-size: .8em;
+
 	}
+
+	
+`
+
+const Price = styled.h1`
+	font-family: "MuseoModerno", cursive;
+	font-weight: 400;
+	font-size: 3em;
 `
 
 const Row1 = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 4fr;
+	grid-template-columns: min-content 1fr;
+	margin-bottom: 5px;
 `
 
 const Pic1 = styled.img`
-	width: 30px;
-	height: 30px;
+	width: 43px;
+	height: 43px;
+	border-radius: 50px;
 `
 
-const Description1 = styled.div``
+const Description1 = styled.div`
+	margin-left: 20px;
+	align-self: center;
+	font-size: 0.8em;
+`
+
+const CheckmarkRow = styled.div`
+	display: grid;
+	grid-template-columns: min-content 1fr;
+	margin-top: 50px;
+`
+
+const CheckMarkParagraph = styled.p`
+	font-size: 0.6em;
+	margin-left: 13px;
+	margin-top: 3px;
+`
+
+const GreenCheckmarkWrapper = styled.div`
+	width: 18px;
+	height: 18px;
+	background: green;
+	border-radius: 50px;
+	margin-left: 13px;
+	position: relative;
+	align-self: center;
+`
+
+const GreenCheckmark = styled.div`
+	display: inline-block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	transform: rotate(45deg);
+	height: 15px;
+	width: 6px;
+	margin-left: 50%;
+	border-bottom: 4px solid white;
+	border-right: 3px solid white;
+`
+
+const CheckmarkDescription = styled.h1`
+	font-size: 0.8em;
+	margin-left: 5px;
+	color; gray;
+	
+`
 
 const Price1 = styled.div``
 
@@ -3436,7 +3494,7 @@ function Act(props, ref) {
 
 									<LetterOffer>
 										<h2>Total</h2>
-										<h1>$2.99</h1>
+										<Price>$2.99</Price>
 
 										<Row1>
 											<Pic1 src={results.one.image ? results.one.image : ""}></Pic1>
@@ -3450,6 +3508,16 @@ function Act(props, ref) {
 												Senator {results.two.name ? results.two.name : ""}
 											</Description1>
 										</Row1>
+										<CheckmarkRow>
+											<GreenCheckmarkWrapper>
+												<GreenCheckmark></GreenCheckmark>
+											</GreenCheckmarkWrapper>
+											<CheckmarkDescription>It's easy</CheckmarkDescription>
+										</CheckmarkRow>
+										<CheckMarkParagraph>
+											a printed letter will be mailed to each of your representatives via United
+											States Postal Service.
+										</CheckMarkParagraph>
 									</LetterOffer>
 								</LetterDemoCenter>
 								<EmailDemoRight onClick={handleEmailDemoRight}>
