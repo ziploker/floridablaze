@@ -1335,29 +1335,42 @@ const OfferOne = styled.div`
 </LetterOffer> */
 }
 
+const LetterOfferWrapper = styled.div`
+	display: inline-block;
+	position: absolute;
+	left: 42%;
+	top: 69%;
+`
 const LetterOffer = styled.div`
 	display: grid;
-
-	border 1px solid orange;
-	h2{
+	grid-template-columns: minmax(200px, 250px);
+	border: 1px solid orange;
+	background-color: #e4e4e4;
+	h2 {
 		color: gray;
-		font-size: .8em;
-
+		font-size: 0.8em;
+		justify-self: center;
+		margin-top: 8px;
 	}
-
-	
 `
 
 const Price = styled.h1`
 	font-family: "MuseoModerno", cursive;
 	font-weight: 400;
 	font-size: 3em;
+	justify-self: center;
 `
 
 const Row1 = styled.div`
 	display: grid;
 	grid-template-columns: min-content 1fr;
-	margin-bottom: 5px;
+
+	margin: 3px 3% 3px 6%;
+`
+
+const CheckmarkMainWrapper = styled.div`
+	width: 200px;
+	justify-self: center;
 `
 
 const Pic1 = styled.img`
@@ -1367,7 +1380,7 @@ const Pic1 = styled.img`
 `
 
 const Description1 = styled.div`
-	margin-left: 20px;
+	margin-left: 6px;
 	align-self: center;
 	font-size: 0.8em;
 `
@@ -1728,7 +1741,9 @@ const LetterDemoWrapper = styled.div`
 	grid-template-columns: 120px 1fr 120px;
 `
 
-const LetterDemoCenter = styled.div``
+const LetterDemoCenter = styled.div`
+	position: relative;
+`
 
 const EmailDemoWrapper = styled.div`
 	//padding: 45px 120px;
@@ -3491,34 +3506,49 @@ function Act(props, ref) {
                       </ShowOfferSection>
                     </ShowOfferSectionWrapper>
                   </OfferTwo> */}
+									<LetterOfferWrapper>
+										<LetterOffer>
+											<h2>Total</h2>
+											<Price>$2.99</Price>
 
-									<LetterOffer>
-										<h2>Total</h2>
-										<Price>$2.99</Price>
+											<Row1>
+												<Pic1 src={results.one.image ? results.one.image : ""}></Pic1>
+												<Description1>
+													Representative {results.one.name ? results.one.name : ""}
+												</Description1>
+											</Row1>
+											<Row1>
+												<Pic1 src={results.two.image ? results.two.image : ""}></Pic1>
+												<Description1>
+													Senator {results.two.name ? results.two.name : ""}
+												</Description1>
+											</Row1>
+											<CheckmarkMainWrapper>
+												<CheckmarkRow>
+													<GreenCheckmarkWrapper>
+														<GreenCheckmark></GreenCheckmark>
+													</GreenCheckmarkWrapper>
+													<CheckmarkDescription>It's easy</CheckmarkDescription>
+												</CheckmarkRow>
+												<CheckMarkParagraph>
+													a printed letter will be mailed to each of your representatives via United
+													States Postal Service.
+												</CheckMarkParagraph>
+											</CheckmarkMainWrapper>
 
-										<Row1>
-											<Pic1 src={results.one.image ? results.one.image : ""}></Pic1>
-											<Description1>
-												Representative {results.one.name ? results.one.name : ""}
-											</Description1>
-										</Row1>
-										<Row1>
-											<Pic1 src={results.two.image ? results.two.image : ""}></Pic1>
-											<Description1>
-												Senator {results.two.name ? results.two.name : ""}
-											</Description1>
-										</Row1>
-										<CheckmarkRow>
-											<GreenCheckmarkWrapper>
-												<GreenCheckmark></GreenCheckmark>
-											</GreenCheckmarkWrapper>
-											<CheckmarkDescription>It's easy</CheckmarkDescription>
-										</CheckmarkRow>
-										<CheckMarkParagraph>
-											a printed letter will be mailed to each of your representatives via United
-											States Postal Service.
-										</CheckMarkParagraph>
-									</LetterOffer>
+											<CheckmarkMainWrapper>
+												<CheckmarkRow>
+													<GreenCheckmarkWrapper>
+														<GreenCheckmark></GreenCheckmark>
+													</GreenCheckmarkWrapper>
+													<CheckmarkDescription>100% effective</CheckmarkDescription>
+												</CheckmarkRow>
+												<CheckMarkParagraph>
+													Sending a letter via USPS is most effective way to get your point across.
+												</CheckMarkParagraph>
+											</CheckmarkMainWrapper>
+										</LetterOffer>
+									</LetterOfferWrapper>
 								</LetterDemoCenter>
 								<EmailDemoRight onClick={handleEmailDemoRight}>
 									<RightArrow src={rightArrow} />
