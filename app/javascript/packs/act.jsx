@@ -1746,6 +1746,7 @@ const LetterDemoWrapper = styled.div`
 
 const LetterDemoCenter = styled.div`
 	position: relative;
+	display: grid;
 `
 
 const EmailDemoWrapper = styled.div`
