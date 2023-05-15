@@ -1620,10 +1620,10 @@ const DemoIndicatorDotsWrapper = styled.div`
 
 const DemoIndicatorDots = styled.div`
 	display: grid;
-	grid-template-columns: min-content 20px 20px max-content min-content;
+	grid-template-columns: min-content 12px 12px max-content min-content;
 	grid-template-areas: ". dot1 dot2 info";
 
-	justify-self: center;
+	justify-self: start;
 	align-self: center;
 `
 
@@ -1636,8 +1636,8 @@ const DotSpan = styled.span`
 `
 
 const Dot1 = styled.div`
-	width: 16px;
-	height: 16px;
+	width: 8px;
+	height: 8px;
 	border-radius: 50%;
 	grid-area: dot1;
 	background-color: ${(props) => (props.whichEmailIsActive == 1 ? "black" : "white")};
@@ -1650,8 +1650,8 @@ const Dot1 = styled.div`
 	justify-self: center;
 `
 const Dot2 = styled.div`
-	width: 16px;
-	height: 16px;
+	width: 8px;
+	height: 8px;
 	border-radius: 50%;
 	grid-area: dot2;
 	background-color: ${(props) => (props.whichEmailIsActive == 2 ? "black" : "white")};
@@ -1742,6 +1742,7 @@ const LetterDemoWrapper = styled.div`
 	display: ${(props) => (props.whichTabIsActive == 1 ? "grid" : "none")};
 	grid-gap: 20px;
 	grid-template-columns: 1fr 3fr min-content 1fr;
+	margin: 50px auto;
 `
 
 const LetterDemoCenter = styled.div`
@@ -1773,7 +1774,7 @@ const EmailDemoRight = styled.div`
 `
 
 const RightArrow = styled.img`
-	width: 20px;
+	width: 15px;
 	cursor: pointer;
 	justify-self: center;
 	align-self: center;
@@ -1782,7 +1783,7 @@ const RightArrow = styled.img`
 const LeftArrow = styled.img`
 	//max-width: 60px;
 	//margin-top: 69px;
-	width: 20px;
+	width: 15px;
 	cursor: pointer;
 	justify-self: center;
 	align-self: center;
