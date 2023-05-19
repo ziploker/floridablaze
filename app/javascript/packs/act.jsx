@@ -1368,6 +1368,12 @@ const Price = styled.h1`
 const Row1 = styled.div`
 	display: grid;
 	grid-template-columns: min-content 1fr;
+	border-top: 1px orange solid;
+	border-right: 1px orange solid;
+
+	border-top-right-radius: 23px;
+	border-top-left-radius: 23px;
+	border-bottom-right-radius: 23px;
 
 	margin: 3px 3% 3px 6%;
 `
@@ -1761,7 +1767,13 @@ const EmailDemoWrapper = styled.div`
 	//padding: 45px 120px;
 	display: ${(props) => (props.whichTabIsActive == 1 ? "none" : "grid")};
 
-	grid-template-columns: 120px 1fr min-content 120px;
+	//grid-gap: 20px;
+	grid-template-columns: 1fr 3fr 20px min-content 1fr;
+	grid-template-rows: 22px auto;
+	grid-template-areas:
+		".  dots   dots dots  ."
+		". center  . offer .";
+	margin: 50px auto;
 `
 
 const EmailDemoLeft = styled.div`
@@ -1771,7 +1783,11 @@ const EmailDemoLeft = styled.div`
 	margin-right: 8px;
 `
 
-const EmailDemoCenter = styled.div``
+const EmailDemoCenter = styled.div`
+	position: relative;
+	display: grid;
+	grid-area: center;
+`
 
 const EmailDemoRight = styled.div`
 	justify-self: center;
@@ -3258,56 +3274,74 @@ function Act(props, ref) {
 							</DemoIndicatorDotsWrapper> */}
 
 							<EmailDemoWrapper whichTabIsActive={whichTabIsActive}>
-								<div />
+								<EmailDemoLeft onClick={handleEmailDemoRight}>
+									{/* <LeftArrow src={rightArrow} /> */}
+								</EmailDemoLeft>
+								<DemoIndicatorDots>
+									<EmailDemoLeft onClick={handleEmailDemoRight}>
+										<LeftArrow src={rightArrow} />
+									</EmailDemoLeft>
+									<Dot1 whichEmailIsActive={whichEmailIsActive} />
+									<Dot2 whichEmailIsActive={whichEmailIsActive} />
+									<DotSpan>
+										({whichTabIsActive == 1 ? "Letter " : "Email "}
+										{whichEmailIsActive == 1 ? "1 of 2" : "2 of 2"})
+									</DotSpan>
+									<EmailDemoRight onClick={handleEmailDemoRight}>
+										<RightArrow src={rightArrow} />
+									</EmailDemoRight>
+								</DemoIndicatorDots>
 								<EmailDemoCenter>
-									<SubjectBox>
-										<h2>subject</h2>
-										<h3>We need a more sensible approach to marijuana laws.</h3>
-									</SubjectBox>
+									<div>
+										<SubjectBox>
+											<h2>subject</h2>
+											<h3>We need a more sensible approach to marijuana laws.</h3>
+										</SubjectBox>
 
-									<BodyBox>
-										<h2>body</h2>
+										<BodyBox>
+											<h2>body</h2>
 
-										<GetHeader />
+											<GetHeader />
 
-										<p>
-											I am a constituent of (
-											<i>
-												{whichEmailIsActive === 1
-													? results.one.fullDistrict + " district " + results.one.district
-													: results.two.fullDistrict + " district " + results.two.district}
-											</i>
-											). I am writing to urge you to support legalizing and regulating marijuana for
-											adults. Many other states are currently benefiting from this common sense
-											approach. Why is our state lagging behind?
-										</p>
-										<p>
-											Prohibition has never worked and causes an increase in unregulated sales.
-											Legalizing marijuana for recreational use would virtually eliminate the black
-											market, create thousands of jobs in a growing industry and bring in millions
-											of dolars of tax revenue.
-										</p>
-										<p>
-											As a Legislator, you are in a position where you can make a difference. Can i
-											count on you to end marijuana prohibition?
-										</p>
+											<p>
+												I am a constituent of (
+												<i>
+													{whichEmailIsActive === 1
+														? results.one.fullDistrict + " district " + results.one.district
+														: results.two.fullDistrict + " district " + results.two.district}
+												</i>
+												). I am writing to urge you to support legalizing and regulating marijuana
+												for adults. Many other states are currently benefiting from this common
+												sense approach. Why is our state lagging behind?
+											</p>
+											<p>
+												Prohibition has never worked and causes an increase in unregulated sales.
+												Legalizing marijuana for recreational use would virtually eliminate the
+												black market, create thousands of jobs in a growing industry and bring in
+												millions of dolars of tax revenue.
+											</p>
+											<p>
+												As a Legislator, you are in a position where you can make a difference. Can
+												i count on you to end marijuana prohibition?
+											</p>
 
-										<div className="closing">
-											Sincerely, <br />
-											<sub>
-												{props.userState.loggedInStatus == "LOGGED_IN"
-													? props.userState.user.full_name
-													: "[Your Name Here]"}
-											</sub>{" "}
-											<br />
-											<sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub> <br />
-											<sub>
-												{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}
-											</sub>{" "}
-											<br />
-										</div>
+											<div className="closing">
+												Sincerely, <br />
+												<sub>
+													{props.userState.loggedInStatus == "LOGGED_IN"
+														? props.userState.user.full_name
+														: "[Your Name Here]"}
+												</sub>{" "}
+												<br />
+												<sub>{addressLineOne !== "" ? addressLineOne : "[Your address]"}</sub>{" "}
+												<br />
+												<sub>
+													{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}
+												</sub>{" "}
+												<br />
+											</div>
 
-										{/* <FlashError userState={props.userState}>
+											{/* <FlashError userState={props.userState}>
                   ** Please{" "}
                   <a href="#" onClick={loginFromDeadEnd}>
                     Login
@@ -3318,12 +3352,119 @@ function Act(props, ref) {
                   </a>{" "}
                   to continue.
                 </FlashError> */}
-									</BodyBox>
+										</BodyBox>
+									</div>
 								</EmailDemoCenter>
-								{/* <EmailDemoRight onClick={handleEmailDemoRight}>
-                  <RightArrow src={rightArrow} />
-                </EmailDemoRight> */}
-								<OfferOne>
+								<LetterOfferWrapper>
+									<LetterOffer>
+										<h2>Total</h2>
+										<Price>$2.99</Price>
+
+										<Row1>
+											<Pic1 src={results.one.image ? results.one.image : ""}></Pic1>
+											<Description1>
+												Representative {results.one.name ? results.one.name : ""}
+											</Description1>
+										</Row1>
+										<Row1>
+											<Pic1 src={results.two.image ? results.two.image : ""}></Pic1>
+											<Description1>
+												Senator {results.two.name ? results.two.name : ""}
+											</Description1>
+										</Row1>
+										<CheckmarkMainWrapper>
+											<CheckmarkRow>
+												<GreenCheckmarkWrapper>
+													<GreenCheckmark></GreenCheckmark>
+												</GreenCheckmarkWrapper>
+												<CheckmarkDescription>It's easy</CheckmarkDescription>
+											</CheckmarkRow>
+											<CheckMarkParagraph>
+												a printed letter will be mailed to each of your representatives via United
+												States Postal Service.
+											</CheckMarkParagraph>
+										</CheckmarkMainWrapper>
+
+										<CheckmarkMainWrapper>
+											<CheckmarkRow>
+												<GreenCheckmarkWrapper>
+													<GreenCheckmark></GreenCheckmark>
+												</GreenCheckmarkWrapper>
+												<CheckmarkDescription>100% effective</CheckmarkDescription>
+											</CheckmarkRow>
+											<CheckMarkParagraph>
+												Sending a letter via USPS is most effective way to get your point across.
+											</CheckMarkParagraph>
+										</CheckmarkMainWrapper>
+										{/* <ShowOfferSectionWrapper> */}
+										<ShowOfferSection>
+											<PayPalButtons
+												style={{ layout: "vertical" }}
+												createOrder={(data, actions) => {
+													return actions.order.create({
+														purchase_units: [
+															{
+																amount: {
+																	value: "2.99",
+																},
+															},
+														],
+													})
+												}}
+												forceReRender={[results]}
+												onApprove={(data, actions) => {
+													return actions.order.capture().then((details) => {
+														//const name = details.payer.name.given_name;
+														//alert(`Transaction completed by ${name}`);
+														// console.log("STATUS = " + details.status)
+
+														// console.log(details)
+
+														// console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
+														// console.log("email: " + details.payer.email_address);
+														// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
+														// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
+														// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
+														// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
+														// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
+														// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
+														//console.log("DATA", data)
+
+														//console.log("insiiiiiide1 " + results.inspect);
+
+														axios
+															.post(
+																"/send/letters",
+																{
+																	data: {
+																		ppResults: data,
+																		infoOnReps: results,
+																		buyerDetails: details,
+																	},
+																},
+																{ withCredentials: true }
+															)
+															.then((response) => {
+																//console.log("resoooooooooooooooonse = " + response.inspect)
+																//addAllCommentsToStateForReplyButtonToWork(response.data.comments)
+																//addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
+																//setArtData(response.data.article)
+																//setArtDataComments(response.data.comments)
+																//setIsCommentsLoading(false)
+																//setIsCommentsLoading(false)
+																//setCurrentUser(@current_user)
+															})
+															.catch((error) => {
+																//console.log("articleErrors", error)
+															})
+													})
+												}}
+											/>
+										</ShowOfferSection>
+										{/* </ShowOfferSectionWrapper> */}
+									</LetterOffer>
+								</LetterOfferWrapper>
+								{/* <OfferOne>
 									<BulletPointText>
 										Personalized email will be sent to each of your representatives.
 									</BulletPointText>
@@ -3379,8 +3520,10 @@ function Act(props, ref) {
 										className="testClass"
 										size="compact"
 									/>
-								</OfferOne>
-								<div />
+								</OfferOne> */}
+								<EmailDemoRight onClick={handleEmailDemoRight}>
+									{/* <RightArrow src={rightArrow} /> */}
+								</EmailDemoRight>
 							</EmailDemoWrapper>
 
 							<LetterDemoWrapper whichTabIsActive={whichTabIsActive}>
