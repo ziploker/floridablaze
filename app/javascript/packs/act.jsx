@@ -5,6 +5,8 @@ import mega from "../../assets/images/megav3.png";
 import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
+import samplepic2 from "../../assets/images/dummy_avatar.png";
+
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import styled, { keyframes } from "styled-components";
 //import { RiMailSendLine } from "react-icons/ri";
@@ -1430,10 +1432,21 @@ const CheckmarkMainWrapper = styled.div`
   margin-top: 10px;
 `;
 
-const Pic1 = styled.img`
+const Pic1Wrapper = styled.div`
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(${samplepic2});
+  border-radius: 50px;
   width: 43px;
   height: 43px;
+`;
+
+const Pic1 = styled.img`
   border-radius: 50px;
+  width: 100%;
+  width: 43px;
+  height: 43px;
+  border: 2px solid white;
 `;
 
 const Description1 = styled.div`
@@ -1810,7 +1823,7 @@ const LetterDemoWrapper = styled.div`
   grid-template-areas:
     ".  dots   dots dots  ."
     ". center  . offer .";
-  margin: 50px auto;
+  margin: 15px auto;
 `;
 
 const LetterDemoCenter = styled.div`
@@ -1829,7 +1842,7 @@ const EmailDemoWrapper = styled.div`
   grid-template-areas:
     ".  dots   dots dots  ."
     ". center  . offer .";
-  margin: 50px auto;
+  margin: 15px auto;
 `;
 
 const EmailDemoLeft = styled.div`
@@ -3430,7 +3443,7 @@ function Act(props, ref) {
                 <EmailDemoLeft onClick={handleEmailDemoRight}>
                   {/* <LeftArrow src={rightArrow} /> */}
                 </EmailDemoLeft>
-                <DemoIndicatorDots>
+                {/* <DemoIndicatorDots>
                   <EmailDemoLeft onClick={handleEmailDemoRight}>
                     <LeftArrow src={rightArrow} />
                   </EmailDemoLeft>
@@ -3443,7 +3456,7 @@ function Act(props, ref) {
                   <EmailDemoRight onClick={handleEmailDemoRight}>
                     <RightArrow src={rightArrow} />
                   </EmailDemoRight>
-                </DemoIndicatorDots>
+                </DemoIndicatorDots> */}
                 <EmailDemoCenter>
                   <div>
                     <SubjectBox>
@@ -3532,9 +3545,11 @@ function Act(props, ref) {
                       onClick={() => handleWhichDemoToSelect("1")}
                       whichEmailIsActive={whichEmailIsActive}
                     >
-                      <Pic1
-                        src={results.one.image ? results.one.image : ""}
-                      ></Pic1>
+                      <Pic1Wrapper>
+                        <Pic1
+                          src={results.one.image ? results.one.image : ""}
+                        ></Pic1>
+                      </Pic1Wrapper>
                       <Description1>
                         Representative{" "}
                         {results.one.name ? results.one.name : ""}
@@ -3712,7 +3727,7 @@ function Act(props, ref) {
                 <EmailDemoLeft onClick={handleEmailDemoRight}>
                   {/* <LeftArrow src={rightArrow} /> */}
                 </EmailDemoLeft>
-                <DemoIndicatorDots>
+                {/* <DemoIndicatorDots>
                   <EmailDemoLeft onClick={handleEmailDemoRight}>
                     <LeftArrow src={rightArrow} />
                   </EmailDemoLeft>
@@ -3725,7 +3740,7 @@ function Act(props, ref) {
                   <EmailDemoRight onClick={handleEmailDemoRight}>
                     <RightArrow src={rightArrow} />
                   </EmailDemoRight>
-                </DemoIndicatorDots>
+                </DemoIndicatorDots> */}
                 <LetterDemoCenter>
                   <LetterDemo>
                     {/* <h2>body</h2> */}
@@ -3883,9 +3898,11 @@ function Act(props, ref) {
                       onClick={() => handleWhichDemoToSelect("1")}
                       whichEmailIsActive={whichEmailIsActive}
                     >
-                      <Pic1
-                        src={results.one.image ? results.one.image : ""}
-                      ></Pic1>
+                      <Pic1Wrapper>
+                        <Pic1
+                          src={results.one.image ? results.one.image : ""}
+                        ></Pic1>
+                      </Pic1Wrapper>
                       <Description1>
                         Representative{" "}
                         {results.one.name ? results.one.name : ""}
