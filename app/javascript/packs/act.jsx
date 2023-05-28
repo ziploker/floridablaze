@@ -610,7 +610,7 @@ const ResultSection = styled.div`
 		"  .    middle   . "
 		"  .    bottom     . ";
 
-	width: 100vw;
+	width: 100%;
 
 	//grid-area: x cardOne x cardTwo infoBox x;
 
@@ -964,7 +964,7 @@ const CardOne = styled.div`
 	//grid-template-columns: 85% 15%;
 	//grid-template-rows: 73% 17% 10%;
 	//margin-top: 25px;
-	opacity: 0.2;
+	//opacity: 0.2;
 	grid-area: cardOne;
 
 	width: 100%;
@@ -1013,7 +1013,7 @@ const CardOneSub = styled.div`
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	background: white;
-	font-size: 0.7em;
+	font-size: 0.5em;
 	text-align: center;
 	padding: 3px 0px;
 
@@ -1032,7 +1032,7 @@ const CardTwo = styled.div`
 
 	//margin-top: 25px;
 	grid-area: cardTwo;
-	opacity: 0.2;
+	//opacity: 0.2;
 	justify-self: end;
 	height: 0px;
 	padding-top: calc(310 / 220 * 100%);
@@ -1154,7 +1154,7 @@ const ShowOfferSection = styled.div`
   right: 0; */
 	//padding: 0px 10% 0px 10%;
 	//background-color: white;
-	margin-top: 20px;
+	margin-top: 25px;
 `
 
 const ResultsBlurb = styled.div`
@@ -1355,7 +1355,7 @@ const LetterOffer = styled.div`
 		font-size: 0.8em;
 		//justify-self: center;
 		margin-top: 8px;
-		margin-left: 6%;
+		//margin-left: 6%;
 	}
 `
 
@@ -1364,49 +1364,58 @@ const Price = styled.h1`
 	font-weight: 400;
 	font-size: 3em;
 	//justify-self: center;
-	margin-left: 6%;
+	margin: 5px 0 0 0;
 `
 
 const Row1 = styled.div`
 	display: grid;
 	grid-template-columns: min-content 1fr;
-	border-top: ${(props) => (props.whichEmailIsActive == 1 ? "1px orange solid" : "initial")};
-	border-right: ${(props) => (props.whichEmailIsActive == 1 ? "1px orange solid" : "initial")};
+	border-top: ${(props) =>
+		props.whichEmailIsActive == 1 ? "1px orange solid" : "1px white solid"};
+	border-right: ${(props) =>
+		props.whichEmailIsActive == 1 ? "1px orange solid" : "1px white solid"};
 	cursor: pointer;
 	border-top-right-radius: 23px;
 	border-top-left-radius: 23px;
 	border-bottom-right-radius: 23px;
 
-	margin: 3px 3% 3px 6%;
+	margin: 3px 0 8px 0;
 
 	&:hover {
-		border-top: 1px #f5c896 solid;
-		border-right: 1px #f5c896 solid;
+		border-top: ${(props) =>
+			props.whichEmailIsActive == 1 ? "1px orange solid" : "1px #f5c896 solid"};
+		border-right: ${(props) =>
+			props.whichEmailIsActive == 1 ? "1px orange solid" : "1px #f5c896 solid"};
 	}
 `
 
 const Row2 = styled.div`
 	display: grid;
 	grid-template-columns: min-content 1fr;
-	border-top: ${(props) => (props.whichEmailIsActive == 2 ? "1px orange solid" : "initial")};
-	border-right: ${(props) => (props.whichEmailIsActive == 2 ? "1px orange solid" : "initial")};
+	border-top: ${(props) =>
+		props.whichEmailIsActive == 2 ? "1px orange solid" : "1px white solid"};
+	border-right: ${(props) =>
+		props.whichEmailIsActive == 2 ? "1px orange solid" : "1px white solid"};
 	cursor: pointer;
 	border-top-right-radius: 23px;
 	border-top-left-radius: 23px;
 	border-bottom-right-radius: 23px;
 
-	margin: 3px 3% 3px 6%;
+	margin: 3px 3px 3px 0;
 
 	&:hover {
-		border-top: 1px #f5c896 solid;
-		border-right: 1px #f5c896 solid;
+		border-top: ${(props) =>
+			props.whichEmailIsActive == 2 ? "1px orange solid" : "1px #f5c896 solid"};
+		border-right: ${(props) =>
+			props.whichEmailIsActive == 2 ? "1px orange solid" : "1px #f5c896 solid"};
 	}
 `
 
 const CheckmarkMainWrapper = styled.div`
 	width: 200px;
-	justify-self: center;
-	margin-top: 10px;
+	//justify-self: center;
+	margin-top: 17px;
+	//margin-left: 6%;
 `
 
 const Pic1Wrapper = styled.div`
@@ -1439,7 +1448,7 @@ const CheckmarkRow = styled.div`
 
 const CheckMarkParagraph = styled.p`
 	font-size: 0.6em;
-	margin-left: 13px;
+	//margin-left: 13px;
 	margin-top: 3px;
 `
 
@@ -1448,7 +1457,7 @@ const GreenCheckmarkWrapper = styled.div`
 	height: 18px;
 	background: green;
 	border-radius: 50px;
-	margin-left: 13px;
+	//margin-left: 13px;
 	position: relative;
 	align-self: center;
 `
@@ -1798,7 +1807,9 @@ const LetterDemoWrapper = styled.div`
 	//padding: 45px 120px;
 	display: ${(props) => (props.whichTabIsActive == 1 ? "grid" : "none")};
 	//grid-gap: 20px;
-	grid-template-columns: 1fr 3fr 20px min-content 1fr;
+	//grid-template-columns: 1fr 3fr 20px min-content 1fr;
+	grid-template-columns: 10% 2.5fr 20px 1fr 10%;
+
 	grid-template-rows: 22px auto;
 	grid-template-areas:
 		".  dots   dots dots  ."
@@ -1817,7 +1828,8 @@ const EmailDemoWrapper = styled.div`
 	display: ${(props) => (props.whichTabIsActive == 1 ? "none" : "grid")};
 
 	//grid-gap: 20px;
-	grid-template-columns: 1fr 3fr 20px min-content 1fr;
+	//grid-template-columns: 1fr 3fr 20px min-content 1fr;
+	grid-template-columns: 10% 2.5fr 20px 1fr 10%;
 	grid-template-rows: 22px auto;
 	grid-template-areas:
 		".  dots   dots dots  ."
