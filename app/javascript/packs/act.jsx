@@ -2214,6 +2214,16 @@ const MiddleBarResultSection = styled.div`
     minmax(120px, 150px) 1fr;
 
   grid-template-areas: " cardOne . cardTwo nextSteps";
+
+  @media only screen and (max-width: 985px) {
+    grid-template-columns:
+      1fr minmax(10px, 12px)
+      1fr;
+
+    grid-template-areas:
+      " cardOne       .      cardTwo "
+      " nextSteps nextSteps nextSteps";
+  }
 `;
 
 var selectFirstOnEnter = (input) => {
