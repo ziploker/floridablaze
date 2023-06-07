@@ -733,7 +733,7 @@ const LinerVertical = styled.div`
   right: 0px;
   background: hsl(38.57142857142857, 100%, 13.725490196078432%);
 
-  @media only screen and (max-width: 873px) {
+  @media only screen and (max-width: 985px) {
     display: none;
   }
 `;
@@ -746,7 +746,7 @@ const LinerHorizontal = styled.div`
   right: 0px;
   background: hsl(38.57142857142857, 100%, 13.725490196078432%);
 
-  @media only screen and (max-width: 873px) {
+  @media only screen and (max-width: 985px) {
     display: none;
   }
 `;
@@ -1028,11 +1028,7 @@ const CardOneWrapper = styled.div`
   grid-template-columns: 85% 15%;
   grid-template-rows: 73% 17% 10%;
 
-  border-radius: 16.4px;
-  border-left: ${(props) =>
-    props.whichEmailIsActive == 1 ? "2px solid orange" : "2px solid #DECDD1"};
-  border-bottom: ${(props) =>
-    props.whichEmailIsActive == 1 ? "2px solid orange" : "2px solid #DECDD1"};
+  //border-radius: 16.4px;
 `;
 
 const CardOneSub = styled.div`
@@ -1044,10 +1040,10 @@ const CardOneSub = styled.div`
   //width: 100%;
   //opacity: .8;
   color: black;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
   background: white;
-  font-size: 0.5em;
+  font-size: 2.2vw;
   text-align: center;
   padding: 3px 0px;
 
@@ -1057,6 +1053,11 @@ const CardOneSub = styled.div`
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  @media only screen and (max-width: 985px) {
+  }
+
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `;
 
 const CardTwoSub = styled(CardOneSub)``;
@@ -1086,7 +1087,6 @@ const CardTwo = styled.div`
     padding-top: calc(310/220*100%);
     height: 0px;
     width: 100%; */
-  } */
 `;
 
 const CardTwoWrapper = styled.div`
@@ -1100,12 +1100,7 @@ const CardTwoWrapper = styled.div`
   grid-template-columns: 85% 15%;
   grid-template-rows: 73% 17% 10%;
 
-  border-radius: 16.4px;
-
-  border-left: ${(props) =>
-    props.whichEmailIsActive == 2 ? "2px solid orange" : "2px solid orange"};
-  border-bottom: ${(props) =>
-    props.whichEmailIsActive == 2 ? "2px solid orange" : "2px solid orange"};
+  //border-radius: 16.4px;
 `;
 
 const CardTemplate = styled.img`
@@ -1118,18 +1113,20 @@ const CardTemplate = styled.img`
 const CardPicture = styled.img`
   grid-area: 1/1/-1/-1;
 
-  width: 100%;
-  height: 100%;
+  width: 98%;
+  height: 98%;
   border-radius: 16px;
   border: 1px solid white;
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url(${samplepic});
+  justify-self: center;
+  align-self: center;
 `;
 
 const CardNameOfRep = styled.h1`
   color: black;
-  font-size: 9px;
+  font-size: 31px;
   line-height: 1.1em;
   z-index: 1;
   /* position: absolute;
@@ -1890,12 +1887,12 @@ const EmailDemoWrapper = styled.div`
   }
 `;
 
-const EmailDemoLeft = styled.div`
-  justify-self: end;
-  align-self: center;
-  display: grid;
-  margin-right: 8px;
-`;
+// const EmailDemoLeft = styled.div`
+//   justify-self: end;
+//   align-self: center;
+//   display: grid;
+//   margin-right: 8px;
+// `;
 
 const EmailDemoCenter = styled.div`
   position: relative;
@@ -1903,12 +1900,12 @@ const EmailDemoCenter = styled.div`
   grid-area: center;
 `;
 
-const EmailDemoRight = styled.div`
-  justify-self: center;
-  align-self: center;
-  display: grid;
-  margin-left: 8px;
-`;
+// const EmailDemoRight = styled.div`
+//   justify-self: center;
+//   align-self: center;
+//   display: grid;
+//   margin-left: 8px;
+// `;
 
 const RightArrow = styled.img`
   width: 15px;
@@ -3499,9 +3496,9 @@ function Act(props, ref) {
 							</DemoIndicatorDotsWrapper> */}
 
               <EmailDemoWrapper whichTabIsActive={whichTabIsActive}>
-                <EmailDemoLeft onClick={handleEmailDemoRight}>
-                  {/* <LeftArrow src={rightArrow} /> */}
-                </EmailDemoLeft>
+                {/* <EmailDemoLeft onClick={handleEmailDemoRight}> */}
+                {/* <LeftArrow src={rightArrow} /> */}
+                {/* </EmailDemoLeft> */}
                 {/* <DemoIndicatorDots>
                   <EmailDemoLeft onClick={handleEmailDemoRight}>
                     <LeftArrow src={rightArrow} />
@@ -3777,15 +3774,15 @@ function Act(props, ref) {
 										size="compact"
 									/>
 								</OfferOne> */}
-                <EmailDemoRight onClick={handleEmailDemoRight}>
-                  {/* <RightArrow src={rightArrow} /> */}
-                </EmailDemoRight>
+                {/* <EmailDemoRight onClick={handleEmailDemoRight}> */}
+                {/* <RightArrow src={rightArrow} /> */}
+                {/* </EmailDemoRight> */}
               </EmailDemoWrapper>
 
               <LetterDemoWrapper whichTabIsActive={whichTabIsActive}>
-                <EmailDemoLeft onClick={handleEmailDemoRight}>
-                  {/* <LeftArrow src={rightArrow} /> */}
-                </EmailDemoLeft>
+                {/* <EmailDemoLeft onClick={handleEmailDemoRight}> */}
+                {/* <LeftArrow src={rightArrow} /> */}
+                {/* </EmailDemoLeft> */}
                 {/* <DemoIndicatorDots>
                   <EmailDemoLeft onClick={handleEmailDemoRight}>
                     <LeftArrow src={rightArrow} />
@@ -4073,9 +4070,9 @@ function Act(props, ref) {
                     {/* </ShowOfferSectionWrapper> */}
                   </LetterOffer>
                 </LetterOfferWrapper>
-                <EmailDemoRight onClick={handleEmailDemoRight}>
-                  {/* <RightArrow src={rightArrow} /> */}
-                </EmailDemoRight>
+                {/* <EmailDemoRight onClick={handleEmailDemoRight}> */}
+                {/* <RightArrow src={rightArrow} /> */}
+                {/* </EmailDemoRight> */}
               </LetterDemoWrapper>
             </Letter>
 
