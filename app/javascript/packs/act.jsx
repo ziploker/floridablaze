@@ -658,20 +658,21 @@ const NextSteps = styled.div`
 	grid-template-columns: 1fr;
 	grid-template-rows: min-content 1fr;
 	min-width: 243px;
-
-	grid-area: nextSteps;
 	margin: 0 0 0 20px;
+	grid-area: nextSteps;
+	width: 95%;
+
 	h1 {
-		margin: -5px 0 0 0;
+		//margin: -5px 0 0 0;
 		padding: 0;
 		color: white;
-		letter-spacing: 0.15em;
+		letter-spacing: 0.06em;
 		font-weight: 800;
-		font-size: 3em;
-		//margin: 0 0 0 18px;
+		font-size: 4em;
+		margin: 0 0 20px 0;
 
 		@media only screen and (max-width: 873px) {
-			font-size: 2em;
+			//font-size: 2em;
 		}
 	}
 
@@ -685,7 +686,7 @@ const NextSteps = styled.div`
 	div {
 		grid-area: 2/1/3/-1;
 		//margin: 15px 0 0 0;
-		width: 60%;
+		width: 80%;
 
 		//border-radius: 22px;
 		//background: #e3b55a;
@@ -694,17 +695,22 @@ const NextSteps = styled.div`
 
 		display: grid;
 
-		@media only screen and (max-width: 873px) {
-			//width: 221px;
+		@media only screen and (max-width: 985px) {
+			//width: 95%;
 		}
 		p {
 			color: white;
 			font-family: "poppins", Sans-Serif;
 			line-height: 1.6em;
+			font-size: 1.6em;
 			align-self: center;
 			justify-self: center;
 			padding: 0 8px;
 		}
+	}
+
+	@media only screen and (max-width: 985px) {
+		margin: 50px 0 0 0;
 	}
 `
 
@@ -1135,7 +1141,7 @@ const CardNameOfRep = styled.h1`
 	@media only screen and (max-width: 985px) {
 		//border-top-left-radius: 13px;
 		//border-top-right-radius: 13px;
-		font-size: 2.2vw;
+		font-size: 3vw;
 	}
 
 	@media only screen and (max-width: 450px) {
@@ -1828,6 +1834,10 @@ const ButtonTabTwo = styled.div`
 
 const DemoWrapper = styled.div`
 	padding: 45px 120px;
+
+	p {
+		font-size: 1.5em;
+	}
 `
 
 const LetterDemoWrapper = styled.div`
@@ -1843,8 +1853,12 @@ const LetterDemoWrapper = styled.div`
 		". center  . offer .";
 	margin: 15px auto;
 
-	@media only screen and (max-width: 685px) {
-		grid-template-columns: 1% 2.5fr 20px 1fr 1%;
+	@media only screen and (max-width: 985px) {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"dots"
+			"center"
+			"offer";
 	}
 `
 
@@ -2008,11 +2022,11 @@ const BodyBox = styled.div`
 
     } */
 		//text-indent: 2rem;
-		font-size: 0.8em;
+		font-size: 1.5em;
 		font-weight: 300;
 		margin-top: 15px;
 		/* grid-area: 5/2/6/5; */
-		grid-area: 3/1/4/2;
+		//grid-area: 3/1/4/2;
 		padding: 0px 15px;
 		line-height: 1.8em;
 	}
@@ -2096,8 +2110,8 @@ const LetterDemo = styled.div`
 
 	h3 {
 		justify-self: start;
-		font-size: 0.8em;
-		font-weight: initial;
+		font-size: 1.4em;
+		font-weight: bold;
 		margin-top: 30px;
 		grid-area: 2/1/3/2;
 		margin-left: 16px;
@@ -2111,11 +2125,11 @@ const LetterDemo = styled.div`
 
     } */
 		//text-indent: 2rem;
-		font-size: 0.8em;
+		font-size: 1.5em;
 		font-weight: 300;
 		margin-top: 15px;
 		/* grid-area: 5/2/6/5; */
-		grid-area: 3/1/4/2;
+		//grid-area: 3/1/4/2;
 		padding: 0px 15px;
 		line-height: 1.8em;
 	}
@@ -2155,6 +2169,7 @@ const TopBar = styled.div`
 		margin: 0 0 15px 0;
 		font-weight: 600;
 		letter-spacing: 0.03em;
+		font-size: 3em;
 	}
 
 	h2 {
@@ -2163,19 +2178,21 @@ const TopBar = styled.div`
 		margin: 0 0 3px 0;
 		font-weight: 400;
 		//letter-spacing: 0.1em;
+		font-size: 1.8em;
 	}
 
 	div {
-		display: grid;
-		grid-template-columns: max-content max-content;
+		//display: grid;
+		//grid-template-columns: max-content max-content;
 		//grid-template-rows: min-content;
 		h3 {
 			color: #b4b2b2;
 			letter-spacing: 0.03em;
 			align-self: end;
+			font-size: 1.5em;
 		}
 		h5 {
-			margin: 0 0 4px 20px;
+			//margin: 0 0 4px 20px;
 			align-self: end;
 			justify-self: start;
 			font-size: 0.6em;
@@ -2197,6 +2214,7 @@ const MiddleBarResultSection = styled.div`
 	position: relative;
 	grid-area: top;
 	justify-self: center;
+	width: 100%;
 	grid-template-columns:
 		minmax(120px, 150px) minmax(10px, 12px)
 		minmax(120px, 150px) 1fr;
@@ -3367,7 +3385,7 @@ function Act(props, ref) {
 										? addressObject.address
 										: "123 Main St Miami, FL 33155"}
 								</h3>
-								<h5 onClick={resetSearch}>New Search ?</h5>
+								<h5 onClick={resetSearch}>new search</h5>
 							</div>
 						</TopBar>
 						<CardOne>
