@@ -596,21 +596,20 @@ const Span = styled.span`
 `
 const ResultSection = styled.div`
 	///@media only screen and (max-width: 1000px) {
-	grid-area: 1/1/-1/-1;
+	//grid-area: 1/1/-1/-1;
 	//margin: 0px auto;
 	//padding: 0px 15px 32px 15px;
-	grid-template-columns: minmax(5px, 1fr) 11fr minmax(5px, 1fr);
+	width: 97%;
+	margin: 0 auto;
+	grid-template-columns: 1fr;
 
 	grid-template-rows:
-		minmax(min-content, max-content) minmax(min-content, max-content)
+		minmax(min-content, max-content)
 		minmax(min-content, max-content);
 
 	grid-template-areas:
-		"  .     top        . "
-		"  .    middle   . "
-		"  .    bottom     . ";
-
-	width: 100%;
+		"       top         "
+		"      bottom      ";
 
 	//grid-area: x cardOne x cardTwo infoBox x;
 
@@ -696,7 +695,7 @@ const NextSteps = styled.div`
 		display: grid;
 
 		@media only screen and (max-width: 873px) {
-			width: 221px;
+			//width: 221px;
 		}
 		p {
 			color: white;
@@ -1210,7 +1209,7 @@ const TriplePlayWrapper = styled.div`
 
 	grid-area: bottom;
 	width: 100%;
-	margin-top: 30px;
+	margin-top: 50px;
 	//display: grid;
 	//grid-template-columns: 50% 1fr 1fr;
 	//grid-gap: 5px;
@@ -1388,7 +1387,7 @@ const LetterOffer = styled.div`
 `
 
 const Price = styled.h1`
-	font-family: "MuseoModerno", cursive;
+	font-family: "MuseoModerno", sans-serif;
 	font-weight: 400;
 	font-size: 3em;
 	//justify-self: center;
@@ -1836,7 +1835,7 @@ const LetterDemoWrapper = styled.div`
 	display: ${(props) => (props.whichTabIsActive == 1 ? "grid" : "none")};
 	//grid-gap: 20px;
 	//grid-template-columns: 1fr 3fr 20px min-content 1fr;
-	grid-template-columns: 10% 2.5fr 20px 1fr 10%;
+	grid-template-columns: 20px 2.5fr 20px 1fr 20px;
 
 	grid-template-rows: 22px auto;
 	grid-template-areas:
@@ -2143,13 +2142,14 @@ const LetterDemo = styled.div`
 	}
 `
 
-const TopBarResultSection = styled.div`
+const TopBar = styled.div`
 	//width: 500px;
 	//height: 300px;
 	//border: 1px solid orange;
-	margin: 30px 0 20px 0;
+	grid-area: topbar;
+	justify-self: start;
+	margin: 48px 0;
 
-	grid-area: top;
 	h1 {
 		color: white;
 		margin: 0 0 15px 0;
@@ -2187,23 +2187,32 @@ const TopBarResultSection = styled.div`
 			}
 		}
 	}
+
+	/* @media only screen and (max-width: 985px) {
+		margin: 0 auto;
+	} */
 `
 const MiddleBarResultSection = styled.div`
 	display: grid;
 	position: relative;
-	grid-area: middle;
+	grid-area: top;
+	justify-self: center;
 	grid-template-columns:
 		minmax(120px, 150px) minmax(10px, 12px)
 		minmax(120px, 150px) 1fr;
 
-	grid-template-areas: " cardOne . cardTwo nextSteps";
+	grid-template-areas:
+		"topbar topbar topbar topbar"
+		" cardOne . cardTwo nextSteps";
 
 	@media only screen and (max-width: 985px) {
+		margin: 0 auto;
 		grid-template-columns:
 			1fr minmax(10px, 12px)
 			1fr;
 
 		grid-template-areas:
+			"topbar topbar topbar"
 			" cardOne       .      cardTwo "
 			" nextSteps nextSteps nextSteps";
 	}
@@ -3345,23 +3354,22 @@ function Act(props, ref) {
            
           </ResultSectionInfoBox> */}
 
-					<TopBarResultSection>
-						<h1>Results</h1>
-						<h2>We located your State Representatives !!</h2>
-
-						<div>
-							<h3>
-								{addressObject && addressObject.formatted_address
-									? addressObject.formatted_address
-									: addressObject && addressObject.address
-									? addressObject.address
-									: "123 Main St Miami, FL 33155"}
-							</h3>
-							<h5 onClick={resetSearch}>New Search ?</h5>
-						</div>
-					</TopBarResultSection>
-
 					<MiddleBarResultSection>
+						<TopBar>
+							<h1>Results</h1>
+							<h2>We located your State Representatives !!</h2>
+
+							<div>
+								<h3>
+									{addressObject && addressObject.formatted_address
+										? addressObject.formatted_address
+										: addressObject && addressObject.address
+										? addressObject.address
+										: "123 Main St Miami, FL 33155"}
+								</h3>
+								<h5 onClick={resetSearch}>New Search ?</h5>
+							</div>
+						</TopBar>
 						<CardOne>
 							<CardOneWrapper whichEmailIsActive={whichEmailIsActive}>
 								<CardPicture src={results.one.image ? results.one.image : ""}></CardPicture>
@@ -3396,8 +3404,8 @@ function Act(props, ref) {
 								</p>
 							</div>
 						</NextSteps>
-						<LinerVertical />
-						<LinerHorizontal />
+						{/* <LinerVertical />
+						<LinerHorizontal /> */}
 					</MiddleBarResultSection>
 
 					<TriplePlayWrapper resultFromFlorida={resultFromFlorida} showCards={showCards}>

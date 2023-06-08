@@ -12,7 +12,7 @@ const CarouselMain = styled.div`
 		margin: 0px auto 10px auto;
 	}
 
-	@media only screen and (min-width: 985px) {
+	@media only screen and (min-width: 986px) {
 		display: none;
 	}
 `

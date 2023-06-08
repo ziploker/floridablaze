@@ -32,8 +32,7 @@ const HomeWrapper = styled.div`
 `
 
 const News = styled.div`
-	@media only screen and (min-width: 985px) {
-		/* @media only screen and (max-width: 1111px) {
+	/* @media only screen and (max-width: 1111px) {
 			//@media only screen and (max-width: 866px) {
 			//margin-top: 0px;
 			margin: 20px 10px 43px 10px;
@@ -50,9 +49,9 @@ const News = styled.div`
 				".";
 		} */
 
-		//@media only screen and (min-width: 867px) and (max-width: 1111px) {
+	//@media only screen and (min-width: 867px) and (max-width: 1111px) {
 
-		/* grid-template-columns:
+	/* grid-template-columns:
 			minmax(20px, 1fr)
 			minmax(200px, 600px)
 			10px
@@ -67,14 +66,14 @@ const News = styled.div`
 			"leftArrow     three  .   four  rightArrow"
 			"leftArrow     three  .   four  rightArrow"
 			"    .           .    .    .        .     "; */
-		//}
+	//}
 
-		min-height: 100%;
+	min-height: 100%;
 
-		display: grid;
-		justify-content: center;
+	display: grid;
+	justify-content: center;
 
-		/* grid-template-columns:
+	/* grid-template-columns:
 			minmax(30px, 1fr) minmax(200px, 600px) minmax(10px, 1fr) minmax(
 				200px,
 				600px
@@ -87,39 +86,39 @@ const News = styled.div`
 			"leftArrow   one . two . three   rightArrow"
 			"    .        .  .  .  .   .     ."; */
 
-		grid-template-columns:
-			minmax(30px, 50px) 1fr minmax(10px, 30px) 1fr
-			minmax(30px, 50px);
-		/* minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr); */
+	grid-template-columns:
+		minmax(30px, 50px) 1fr minmax(10px, 30px) 1fr
+		minmax(30px, 50px);
+	/* minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr); */
 
-		grid-template-areas:
-			"leftArrow   one . two rightArrow"
-			"leftArrow   one . two rightArrow"
-			"leftArrow   one . two rightArrow"
-			"    .        .  .  .      .     ";
-		//grid-gap: 20px;
+	grid-template-areas:
+		"leftArrow   one . two rightArrow"
+		"leftArrow   one . two rightArrow"
+		"leftArrow   one . two rightArrow"
+		"    .        .  .  .      .     ";
+	//grid-gap: 20px;
 
-		margin-top: 30px;
+	margin-top: 30px;
 
-		/* display: grid;
+	/* display: grid;
 		justify-content: center;
 		grid-template-columns: 1fr 1fr 1fr;
 		grid-template-areas:
 			"featured one two  ." */
 
-		/* @media only screen and (min-width: 2000px){
+	/* @media only screen and (min-width: 2000px){
 			grid-template-columns: 10vw 1fr 1fr 1fr 10vw;
 
 		} */
 
-		/* @media only screen and (min-width: 1850px) {
+	/* @media only screen and (min-width: 1850px) {
 			grid-template-columns:
 				minmax(20px, 1fr) minmax(600px, 700px) minmax(600px, 700px)
 				minmax(600px, 700px) minmax(20px, 1fr);
 		} */
+	@media only screen and (max-width: 985px) {
+		display: none;
 	}
-
-	display: none;
 `
 
 const LeftArrow = styled.img`
@@ -140,7 +139,7 @@ const LinkWrapper1 = styled(Link)`
 	width: 100%;
 	justify-self: center;
 	display: grid;
-	@media only screen and (min-width: 985px) {
+	@media only screen and (min-width: 986px) {
 		grid-area: one;
 		width: 100%;
 		justify-self: center;
@@ -156,7 +155,7 @@ const LinkWrapper2 = styled(Link)`
 	width: 100%;
 	justify-self: center;
 	display: grid;
-	@media only screen and (min-width: 985px) {
+	@media only screen and (min-width: 986px) {
 		grid-area: two;
 		width: 100%;
 		justify-self: center;
@@ -246,7 +245,7 @@ const Div1OverlayWrapper = styled.div`
 	background: linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(255, 145, 145, 0) 34%);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff9191",GradientType=1);
 
-	@media only screen and (min-width: 985px) {
+	@media only screen and (min-width: 986px) {
 		grid-area: one;
 	}
 `
@@ -255,7 +254,7 @@ const Div2OverlayWrapper = styled(Div1OverlayWrapper)`
 	//grid-area: two;
 	grid-area: 1/1/-1/-1;
 
-	@media only screen and (min-width: 985px) {
+	@media only screen and (min-width: 986px) {
 		grid-area: two;
 	}
 `
@@ -509,14 +508,14 @@ function Home(props) {
 
 	useEffect(() => {
 		function setModeAutoUseState() {
-			if (window.innerWidth <= 985) {
+			if (window.innerWidth <= 986) {
 				setWhatModeAuto("cellphone")
 			} else {
 				setWhatModeAuto("desktop")
 			}
 		}
 
-		if (window.innerWidth <= 985) {
+		if (window.innerWidth <= 986) {
 			setWhatModeAuto("cellphone")
 		} else {
 			setWhatModeAuto("desktop")
