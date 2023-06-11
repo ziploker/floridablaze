@@ -1424,18 +1424,18 @@ const Strip = styled.div`
 
 const Total = styled.h2`
   color: gray;
-  font-size: 3em;
+  font-size: 4em;
   //justify-self: center;
-  margin: 94px 0 10px 50px;
+  margin: 62px 0 24px 50px;
   //margin-left: 6%;
 `;
 
 const Price = styled.h1`
   font-family: "MuseoModerno", sans-serif;
   font-weight: 400;
-  font-size: 6em;
+  font-size: 7em;
   //justify-self: center;
-  margin: 0 0 10px 48px;
+  margin: 0 0 46px 48px;
 `;
 
 const Row1 = styled.div`
@@ -1497,20 +1497,22 @@ const Pic1 = styled.img`
 const Description1 = styled.div`
   margin-left: 6px;
   align-self: center;
-  font-size: 1.5em;
+  //font-size: 1.5em;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: minmax(min-content, max-content) minmax(
-      min-content,
-      max-content
-    );
+  grid-template-rows: 1fr 1fr;
+`;
+
+const D1Wrapper = styled.div`
+  align-self: end;
+  padding: 0 0 0 20px;
 `;
 
 const D1 = styled.h2`
   display: inline-block;
-  font-size: 1.3em;
-  padding: 20px 25px 5px 20px;
-  align-self: end;
+  font-size: 1.5em;
+  padding: 28px 30px 25px 0;
+  margin 0;
   border-top-right-radius: 91px;
   //border-top-left-radius: 55px;
   border-bottom-right-radius: 91px;
@@ -1522,7 +1524,7 @@ const D1 = styled.h2`
 
 const D2 = styled.h3`
   display: inline-block;
-  padding: 5px 25px 20px 20px;
+  padding: 0px 25px 20px 20px;
   border-top-right-radius: 91px;
   font-size: 1em;
   //border-top-left-radius: 55px;
@@ -1537,7 +1539,7 @@ const D2 = styled.h3`
 const Description2 = styled.div`
   margin-left: 6px;
   align-self: center;
-  font-size: 1.5em;
+  //font-size: 1.5em;
   border-top: ${(props) =>
     props.whichEmailIsActive == 2 ? "1px orange solid" : "1px white solid"};
   border-right: ${(props) =>
@@ -4244,9 +4246,12 @@ function Act(props, ref) {
                     ></Pic1>
                   </Pic1Wrapper>
                   <Description1>
-                    <D1 whichEmailIsActive={whichEmailIsActive}>
-                      Representative {results.one.name ? results.one.name : ""}
-                    </D1>
+                    <D1Wrapper>
+                      <D1 whichEmailIsActive={whichEmailIsActive}>
+                        Representative{" "}
+                        {results.one.name ? results.one.name : ""}
+                      </D1>
+                    </D1Wrapper>
                     <D2>1 letter delivered via USPS</D2>
                   </Description1>
                 </Row1>
