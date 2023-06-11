@@ -6,7 +6,7 @@ import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
 import samplepic2 from "../../assets/images/dummy_avatar.png";
-
+// testing123123
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import styled, { keyframes } from "styled-components";
 //import { RiMailSendLine } from "react-icons/ri";
