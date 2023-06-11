@@ -105,7 +105,7 @@ const SignupWrapper = styled.div`
   position: relative;
 
   background-color: #ffffff;
-  display: grid;
+  display: ${(props) => (props.showOffer ? "none" : "grid")};
 
   align-items: center;
   justify-content: center;
@@ -501,7 +501,7 @@ const LeftSection = styled.div`
   h1 {
     color: rgb(6, 7, 1, 0.9);
     padding: 0 0 0 20px;
-
+margin 0;
     font-size: 3em;
     word-break: keep-all;
     background: white;
@@ -649,33 +649,33 @@ const Spacer = styled.h2`
   }
 `;
 
-const ActHeader = styled.h1`
-  @media only screen and (max-width: 720px) {
-    grid-area: 1/1/2/-1;
-    //justify-self: center;
-    font-size: 15vw;
-  }
+// const ActHeader = styled.h1`
+//   @media only screen and (max-width: 720px) {
+//     grid-area: 1/1/2/-1;
+//     //justify-self: center;
+//     font-size: 15vw;
+//   }
 
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 10vw;
-  //line-height: 100px;
-  /* identical to box height */
+//   font-family: Poppins;
+//   font-style: normal;
+//   font-weight: 800;
+//   font-size: 10vw;
+//   //line-height: 100px;
+//   /* identical to box height */
 
-  letter-spacing: -0.08em;
+//   letter-spacing: -0.08em;
 
-  color: #ffffff;
-  grid-area: 1/3/2/-1;
-  align-self: end;
+//   color: #ffffff;
+//   grid-area: 1/3/2/-1;
+//   align-self: end;
 
-  //line-height: 100%;
-  margin: -10px 0px 0px 20px;
-  padding-top: 20px;
-  //z-index: 1;
+//   //line-height: 100%;
+//   margin: -10px 0px 0px 20px;
+//   padding-top: 20px;
+//   //z-index: 1;
 
-  opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
-`;
+//   opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
+// `;
 
 const formData = new FormData();
 ///////////////////////////////////  SIGN_UP_PAGE //////////////////////////////
@@ -1039,7 +1039,11 @@ function Signup(props, ref) {
     return null;
   } else {
     return (
-      <SignupWrapper className="homeWrapper" ref={section2ScrollToRef}>
+      <SignupWrapper
+        className="homeWrapper"
+        ref={section2ScrollToRef}
+        showOffer={props.showOffer}
+      >
         <SignupMaskWrapper>
           {/* <SignupMask src={width > 850 ? floridaMaskBig : width > 400 ? floridaMaskCell : floridaMaskThinLongist}/> */}
           <SignupMaskImageContainer>

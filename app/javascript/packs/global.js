@@ -18,7 +18,24 @@ const GlobalStyles = createGlobalStyle`
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  //position: relative;
+  //overflow-x: hidden;
+}
+
 html {
+  margin: 0;
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -48,13 +65,19 @@ main {
   display: block;
 }
 
+a,
+a:active,
+a:focus {
+  outline: none; /* Works in Firefox, Chrome, IE8 and above */
+}
+
 /*
   Correct the font size and margin on h1 elements within section and
  article contexts in Chrome, Firefox, and Safari.
  */
 
 h1 {
-  font-size: 2em;
+  //font-size: 2em;
   //margin: 0;
 }
 

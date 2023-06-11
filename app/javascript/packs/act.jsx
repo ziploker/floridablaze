@@ -1206,7 +1206,7 @@ const ShowOfferSection = styled.div`
   right: 0; */
   //padding: 0px 10% 0px 10%;
   //background-color: white;
-  margin: 25px auto 0 auto;
+  margin: 70px auto 0 auto;
   width: 95%;
   max-width: 1000px;
 `;
@@ -1444,7 +1444,7 @@ const Row1 = styled.div`
 
   cursor: pointer;
 
-  margin: 30px 20px 10px 48px;
+  margin: 30px 20px 60px 48px;
 
   /* &:hover {
 		border-top: ${(props) =>
@@ -1477,7 +1477,7 @@ const CheckmarkMainWrapper = styled.div`
   //margin-left: 6%;
 `;
 
-const Pic1Wrapper = styled.div`
+const PicWrapper = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url(${samplepic2});
@@ -1491,7 +1491,23 @@ const Pic1 = styled.img`
 
   width: 175px;
   height: 175px;
-  border: 2px solid white;
+  //border: 2px solid white;
+  border: ${(props) =>
+    props.whichEmailIsActive == 1 ? "7px orange solid" : "7px white solid"};
+  border: ${(props) =>
+    props.whichEmailIsActive == 1 ? "7px orange solid" : "7px white solid"};
+`;
+
+const Pic2 = styled.img`
+  border-radius: 50px;
+
+  width: 175px;
+  height: 175px;
+  //border: 2px solid white;
+  border: ${(props) =>
+    props.whichEmailIsActive == 2 ? "7px orange solid" : "7px white solid"};
+  border: ${(props) =>
+    props.whichEmailIsActive == 2 ? "7px orange solid" : "7px white solid"};
 `;
 
 const Description1 = styled.div`
@@ -1503,47 +1519,37 @@ const Description1 = styled.div`
   grid-template-rows: 1fr 1fr;
 `;
 
-const D1Wrapper = styled.div`
+const DWrapper = styled.div`
   align-self: end;
-  padding: 0 0 0 20px;
+  padding: 0 0 0 37px;
 `;
 
 const D1 = styled.h2`
   display: inline-block;
-  font-size: 1.5em;
-  padding: 28px 30px 25px 0;
+  font-size: 1.9em;
+  //padding: 28px 30px 25px 0;
   margin 0;
+  color: #424242;
   border-top-right-radius: 91px;
   //border-top-left-radius: 55px;
   border-bottom-right-radius: 91px;
-  border-top: ${(props) =>
-    props.whichEmailIsActive == 1 ? "1px orange solid" : "1px white solid"};
-  border-right: ${(props) =>
-    props.whichEmailIsActive == 1 ? "1px orange solid" : "1px white solid"};
+  
 `;
 
 const D2 = styled.h3`
   display: inline-block;
-  padding: 0px 25px 20px 20px;
+  padding: 0 0 0 37px;
   border-top-right-radius: 91px;
-  font-size: 1em;
+  font-size: 1.5em;
   //border-top-left-radius: 55px;
   border-bottom-right-radius: 91px;
   align-self: top;
-  border-top: ${(props) =>
-    props.whichEmailIsActive == 2 ? "1px orange solid" : "1px white solid"};
-  border-right: ${(props) =>
-    props.whichEmailIsActive == 2 ? "1px orange solid" : "1px white solid"};
 `;
 
 const Description2 = styled.div`
   margin-left: 6px;
   align-self: center;
   //font-size: 1.5em;
-  border-top: ${(props) =>
-    props.whichEmailIsActive == 2 ? "1px orange solid" : "1px white solid"};
-  border-right: ${(props) =>
-    props.whichEmailIsActive == 2 ? "1px orange solid" : "1px white solid"};
 `;
 
 const CheckmarkRow = styled.div`
@@ -2373,7 +2379,7 @@ function Act(props, ref) {
   const { LookupInputRef } = ref;
   const [tester, setTester] = useState("testing");
   const [addressObject, setAddressObject] = useState(null);
-  const [showCards, setShowCards] = React.useState(true);
+  const [showCards, setShowCards] = React.useState(false);
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
 
   const [searchButtonActive, setSearchButtonActive] = React.useState(false);
@@ -2478,48 +2484,48 @@ function Act(props, ref) {
   // 	},
   // 	hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
   // })
-  //   const [results, setResults] = React.useState({ one: {}, two: {} });
+  const [results, setResults] = React.useState({ one: {}, two: {} });
 
-  const [results, setResults] = React.useState({
-    one: {
-      resultFromFlorida: "true",
-      name: "Juan Carlos Porras",
-      firstName: "",
-      lastName: "",
-      image:
-        "https://myfloridahouse.gov//FileStores/Web/Imaging/Member/4898.jpg",
-      id: "ocd-person/6c673f21-8f64-44b7-831f-d3d2e9c78eb3",
-      email: "JuanCarlos.Porras@myfloridahouse.gov",
-      chamber: "House",
-      party: "Republican",
-      parent: "Florida Legislature",
-      district: "119",
-      fullDistrict: "Florida State House district 119",
-      fullDistrictTrunk: "Florida State House district 119",
-      address:
-        "1102 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
-      classification: "lower",
-    },
-    two: {
-      name: "Ana Maria Rodriguez",
-      firstName: "",
-      lastName: "",
-      image:
-        "https://flsenate.gov/PublishedContent/Senators/2022-2024/Photos/s40_5379.jpg",
-      id: "ocd-person/afd55a58-b8f6-4dd7-9d93-a2207b65e425",
-      email: "rodriguez.anamaria.web@flsenate.gov",
-      chamber: "Senate",
-      party: "Republican",
-      parent: "Florida Legislature",
-      district: "40",
-      fullDistrict: "Florida State Senate district 40",
-      fullDistrictTrunk: "Florida State Senate district 40",
-      address:
-        "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
-      classification: "upper",
-    },
-    hash: "b9480b5225ee9bc8cdfe1c6b2f2ea1ebc100687e",
-  });
+  // // const [results, setResults] = React.useState({
+  // //   one: {
+  // //     resultFromFlorida: "true",
+  // //     name: "Juan Carlos Porras",
+  // //     firstName: "",
+  // //     lastName: "",
+  // //     image:
+  // //       "https://myfloridahouse.gov//FileStores/Web/Imaging/Member/4898.jpg",
+  // //     id: "ocd-person/6c673f21-8f64-44b7-831f-d3d2e9c78eb3",
+  // //     email: "JuanCarlos.Porras@myfloridahouse.gov",
+  // //     chamber: "House",
+  // //     party: "Republican",
+  // //     parent: "Florida Legislature",
+  // //     district: "119",
+  // //     fullDistrict: "Florida State House district 119",
+  // //     fullDistrictTrunk: "Florida State House district 119",
+  // //     address:
+  // //       "1102 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
+  // //     classification: "lower",
+  // //   },
+  // //   two: {
+  // //     name: "Ana Maria Rodriguez",
+  // //     firstName: "",
+  // //     lastName: "",
+  // //     image:
+  // //       "https://flsenate.gov/PublishedContent/Senators/2022-2024/Photos/s40_5379.jpg",
+  // //     id: "ocd-person/afd55a58-b8f6-4dd7-9d93-a2207b65e425",
+  // //     email: "rodriguez.anamaria.web@flsenate.gov",
+  // //     chamber: "Senate",
+  // //     party: "Republican",
+  // //     parent: "Florida Legislature",
+  // //     district: "40",
+  // //     fullDistrict: "Florida State Senate district 40",
+  // //     fullDistrictTrunk: "Florida State Senate district 40",
+  // //     address:
+  // //       "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
+  // //     classification: "upper",
+  // //   },
+  // //   hash: "b9480b5225ee9bc8cdfe1c6b2f2ea1ebc100687e",
+  // // });
 
   ///////////////////////////////////////////////////////////////
 
@@ -2704,6 +2710,7 @@ function Act(props, ref) {
         setShowStatusSpinner(false);
         //props.setShowStatusCheck(true)
         setShowCards(true);
+        props.setShowOffer(true);
 
         //props.setBullet1("COMPLETED")
 
@@ -2865,6 +2872,7 @@ function Act(props, ref) {
         setShowStatusSpinner(false);
         //props.setShowStatusCheck(true)
         setShowCards(true);
+        props.setShowOffer(true);
 
         //props.setBullet1("COMPLETED")
 
@@ -3007,6 +3015,7 @@ function Act(props, ref) {
                 setShowStatusSpinner(false);
                 //props.setShowStatusCheck(true)
                 setShowCards(true);
+                props.setShowOffer(true);
 
                 //props.setBullet1("COMPLETED")
 
@@ -3064,6 +3073,7 @@ function Act(props, ref) {
             setShowStatusSpinner(false);
             //props.setShowStatusCheck(true)
             setShowCards(true);
+            props.setShowOffer(true);
 
             //props.setBullet1("COMPLETED")
 
@@ -3694,11 +3704,11 @@ function Act(props, ref) {
                       onClick={() => handleWhichDemoToSelect("1")}
                       whichEmailIsActive={whichEmailIsActive}
                     >
-                      <Pic1Wrapper>
+                      <PicWrapper>
                         <Pic1
                           src={results.one.image ? results.one.image : ""}
                         ></Pic1>
-                      </Pic1Wrapper>
+                      </PicWrapper>
                       <Description1 whichEmailIsActive={whichEmailIsActive}>
                         Representative{" "}
                         {results.one.name ? results.one.name : ""}
@@ -3708,9 +3718,9 @@ function Act(props, ref) {
                       onClick={() => handleWhichDemoToSelect("2")}
                       whichEmailIsActive={whichEmailIsActive}
                     >
-                      <Pic1
+                      <Pic2
                         src={results.two.image ? results.two.image : ""}
-                      ></Pic1>
+                      ></Pic2>
                       <Description2 whichEmailIsActive={whichEmailIsActive}>
                         Senator {results.two.name ? results.two.name : ""}
                       </Description2>
@@ -4240,18 +4250,19 @@ function Act(props, ref) {
                   onClick={() => handleWhichDemoToSelect("1")}
                   whichEmailIsActive={whichEmailIsActive}
                 >
-                  <Pic1Wrapper>
+                  <PicWrapper>
                     <Pic1
                       src={results.one.image ? results.one.image : ""}
+                      whichEmailIsActive={whichEmailIsActive}
                     ></Pic1>
-                  </Pic1Wrapper>
+                  </PicWrapper>
                   <Description1>
-                    <D1Wrapper>
+                    <DWrapper>
                       <D1 whichEmailIsActive={whichEmailIsActive}>
                         Representative{" "}
                         {results.one.name ? results.one.name : ""}
                       </D1>
-                    </D1Wrapper>
+                    </DWrapper>
                     <D2>1 letter delivered via USPS</D2>
                   </Description1>
                 </Row1>
@@ -4259,14 +4270,22 @@ function Act(props, ref) {
                   onClick={() => handleWhichDemoToSelect("2")}
                   whichEmailIsActive={whichEmailIsActive}
                 >
-                  <Pic1 src={results.two.image ? results.two.image : ""}></Pic1>
+                  <PicWrapper>
+                    <Pic2
+                      src={results.two.image ? results.two.image : ""}
+                      whichEmailIsActive={whichEmailIsActive}
+                    ></Pic2>
+                  </PicWrapper>
                   <Description2>
-                    <D2 whichEmailIsActive={whichEmailIsActive}>
-                      Senator {results.two.name ? results.two.name : ""}
-                    </D2>
+                    <DWrapper>
+                      <D1 whichEmailIsActive={whichEmailIsActive}>
+                        Senator {results.two.name ? results.two.name : ""}
+                      </D1>
+                    </DWrapper>
+                    <D2>1 letter delivered via USPS</D2>
                   </Description2>
                 </Row2>
-                <CheckmarkMainWrapper>
+                {/* <CheckmarkMainWrapper>
                   <CheckmarkRow>
                     <GreenCheckmarkWrapper>
                       <GreenCheckmark></GreenCheckmark>
@@ -4290,7 +4309,7 @@ function Act(props, ref) {
                     Sending a letter via USPS is most effective way to get your
                     point across.
                   </CheckMarkParagraph>
-                </CheckmarkMainWrapper>
+                </CheckmarkMainWrapper> */}
                 {/* <ShowOfferSectionWrapper> */}
                 <ShowOfferSection>
                   <PayPalButtons

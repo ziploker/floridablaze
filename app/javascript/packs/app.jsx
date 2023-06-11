@@ -46,6 +46,7 @@ function App({ d }) {
   });
 
   const [openSideMenu, setOpenSideMenu] = useState(false);
+  const [showOffer, setShowOffer] = useState(false);
   const [loginClicked, setLoginClicked] = useState(false);
   const [allStoriesPlaceholder, setAllStoriesPlaceholder] = useState(
     d.allStoriesPlaceholder
@@ -328,6 +329,7 @@ function App({ d }) {
                 setAllStories={setAllStories}
                 allStoriesPlaceholder={allStoriesPlaceholder}
                 totalNumOfStoriesOnServer={totalNumOfStoriesOnServer}
+                showOffer={showOffer}
                 //stories={d.stories}
                 // lastStory={lastStory}
                 // secondToLastStory={secondToLastStory}
@@ -381,20 +383,24 @@ function App({ d }) {
             setOpenSideMenu={setOpenSideMenu}
             executeScrollForLookupSection={executeScrollForLookupSection}
             executeScrollForLookupSectionTwo={executeScrollForLookupSectionTwo}
+            showOffer={showOffer}
+            setShowOffer={setShowOffer}
           />
         </PayPalScriptProvider>
         <SignupSection
           ref={{ section2ScrollToRef: section2ScrollToRef }}
           handleSuccessfulAuth={handleSuccessfulAuth}
+          showOffer={showOffer}
         />
 
         {/* <Footer intersectionObserverRef={intersectionObserverRef} /> */}
-        <Footer />
+        <Footer showOffer={showOffer} />
 
         <StoryFlipper
           //inView={inView}
           allStories={allStories}
           setAllStories={setAllStories}
+          showOffer={showOffer}
         />
 
         {/* <LookupSection appState={appState} ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}}/>
