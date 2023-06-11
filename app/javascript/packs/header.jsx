@@ -47,7 +47,9 @@ const LogoText = styled.img`
   padding: 0 0 0 15px;
   justify-self: start;
   align-self: center;
-  width: ${(props) => (props.logoScrolled ? "200px" : "100%")};
+  /* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
+  width: ${(props) => (props.logoScrolled ? "200px" : "250px")};
+
   cursor: pointer;
 
   z-index: 51;

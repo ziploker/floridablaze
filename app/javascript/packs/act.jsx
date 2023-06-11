@@ -159,7 +159,8 @@ const ActSection = styled.section`
   grid-area: 1/1/-1/-1;
   transition: opacity 0.4s;
   //padding-bottom: 40px;
-
+  margin-top: 30px;
+  padding-top: 30px;
   //z-index: ${(props) => (props.showCards || props.showLetter ? "0" : "10")};
   z-index: ${(props) => (props.showCards ? "0" : "10")};
 
@@ -219,17 +220,13 @@ const ActHeaderWrapper = styled.div`
 `;
 
 const ActHeader = styled.h1`
-  @media only screen and (max-width: 350px) {
-    font-size: 50px;
-  }
-
-  @media only screen and (max-width: 250px) {
-    font-size: 40px;
+  @media only screen and (max-width: 660px) {
+    font-size: 5em;
   }
   font-family: Poppins;
   font-style: normal;
   font-weight: 800;
-  font-size: min(16vw, 97px);
+  font-size: 7em;
   align-self: center;
   line-height: 100%;
   //line-height: 100px;

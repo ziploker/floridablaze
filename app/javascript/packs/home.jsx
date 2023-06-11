@@ -1280,6 +1280,7 @@ function Home(props) {
       display: "grid",
       gridTemplateColumns: "1fr 1fr 1fr",
       backgroundColor: whatModeAuto == "desktop" ? "#c4c4c4" : "white",
+      marginTop: "25px",
     };
 
     return style;
