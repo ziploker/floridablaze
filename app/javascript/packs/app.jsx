@@ -288,6 +288,12 @@ function App({ d }) {
     }
   }, [openSideMenu]);
 
+  const initialOptions = {
+    "client-id":
+      //"ASxYc6NaKEnx3gEKnVzv60MvRjC2tM4F-CFZgepkJwnAL1Cr9c3MfgRtr9OCMqOa-egcSu3dEpee205c",
+      "ARoxFsYDjhh3TqvSuq-WCN4jIEIFuyTm_HUPob8uDtr0H8c-A4ko4Tb2X1A9Sl2pwTRERBClsNWrleR6",
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
@@ -363,13 +369,7 @@ function App({ d }) {
             }
           />
         </Routes>
-        <PayPalScriptProvider
-          options={{
-            "client-id":
-              //"ASxYc6NaKEnx3gEKnVzv60MvRjC2tM4F-CFZgepkJwnAL1Cr9c3MfgRtr9OCMqOa-egcSu3dEpee205c",
-              "ARoxFsYDjhh3TqvSuq-WCN4jIEIFuyTm_HUPob8uDtr0H8c-A4ko4Tb2X1A9Sl2pwTRERBClsNWrleR6",
-          }}
-        >
+        <PayPalScriptProvider options={initialOptions}>
           <Act
             ref={{
               LookupScrollToRef: LookupScrollToRef,
