@@ -394,7 +394,7 @@ template {
 }
 
 .pac-item {
-	padding: 8px 0;
+	padding: 10px 0;
 }
 
 

@@ -223,7 +223,7 @@ const ActHeader = styled.h1`
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: 800;
-	font-size: 7em;
+	font-size: 8em;
 	align-self: center;
 	line-height: 100%;
 	//line-height: 100px;
@@ -290,20 +290,20 @@ const ActBulletPointsWrapper = styled.div`
 	width: 100%;
 
 	@media only screen and (min-width: 1026px) {
-		margin: 20px 0 26px 30px;
+		margin: 40px 0 40px 0px;
 	}
 
 	@media only screen and (max-width: 985px) {
 		justify-self: center;
 		grid-area: 2/2/3/3;
-		margin: 20px 0 26px 0px;
+		margin: 40px 0 40px 0px;
 	}
 `
 
 const ActBulletWrapper = styled.div`
 	display: grid;
 	grid-template-columns: minmax(75px, min-content) 1fr;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 `
 
 const BulletImage = styled.img`
