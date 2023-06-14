@@ -1,8 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=MuseoModerno&display=swap");
 
 .pac-item span:not(:first-child) {
-  font-size: 36px;
-  color: orange;
+	font-size: 36px;
+	color: rgb(61, 61, 61);
+}
+
+.pac-item {
+	padding: 8px 0;
 }
 
 // .pac-container {
@@ -25,19 +29,19 @@
 // }
 
 .testClass {
-  //width: 81%;
-  grid-area: 8/1/9/3;
-  //background: white;
-  justify-self: center;
-  padding-left: 5px;
+	//width: 81%;
+	grid-area: 8/1/9/3;
+	//background: white;
+	justify-self: center;
+	padding-left: 5px;
 
-  div {
-    div {
-      //width: 216px !important;
+	div {
+		div {
+			//width: 216px !important;
 
-      iframe {
-        //width: 216px;
-      }
-    }
-  }
+			iframe {
+				//width: 216px;
+			}
+		}
+	}
 }
