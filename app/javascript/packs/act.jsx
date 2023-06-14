@@ -28,7 +28,7 @@ import axios from "axios";
 //import Autocomplete from "react-google-autocomplete";
 //import { usePlacesWidget } from "react-google-autocomplete";
 
-import "../../assets/stylesheets/actstyles.scss";
+import "../../assets/stylesheets/act-style1.scss";
 import SearchLocationInput from "../packs/SearchLocationInput.js";
 
 import orangeSearch from "../../assets/images/orangeSearch.png";
