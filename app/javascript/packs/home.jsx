@@ -140,7 +140,7 @@ const LinkWrapper1 = styled(Link)`
   width: 100%;
   justify-self: center;
   display: grid;
-  @media only screen and (min-width: 986px) {
+  @media only screen and (min-width: 985px) {
     grid-area: one;
     width: 100%;
     justify-self: center;
@@ -156,7 +156,7 @@ const LinkWrapper2 = styled(Link)`
   width: 100%;
   justify-self: center;
   display: grid;
-  @media only screen and (min-width: 986px) {
+  @media only screen and (min-width: 985px) {
     grid-area: two;
     width: 100%;
     justify-self: center;
@@ -258,7 +258,7 @@ const Div1OverlayWrapper = styled.div`
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff9191",GradientType=1);
 
-  @media only screen and (min-width: 986px) {
+  @media only screen and (min-width: 985px) {
     grid-area: one;
   }
 `;
@@ -267,7 +267,7 @@ const Div2OverlayWrapper = styled(Div1OverlayWrapper)`
   //grid-area: two;
   grid-area: 1/1/-1/-1;
 
-  @media only screen and (min-width: 986px) {
+  @media only screen and (min-width: 985px) {
     grid-area: two;
   }
 `;
@@ -343,7 +343,7 @@ const BackgroundGray = styled.div`
   @media only screen and (max-width: 866px) {
     display: none;
   }
-  background: #c4c4c4;
+  //background: #c4c4c4;
   grid-area: 3/1/-1/-1;
   z-index: -1;
   padding: 25px 0px;
@@ -1279,8 +1279,8 @@ function Home(props) {
     let style = {
       display: "grid",
       gridTemplateColumns: "1fr 1fr 1fr",
-      backgroundColor: whatModeAuto == "desktop" ? "#c4c4c4" : "white",
-      marginTop: "25px",
+      // backgroundColor: whatModeAuto == "desktop" ? "#c4c4c4" : "white",
+      padding: "25px 0",
     };
 
     return style;

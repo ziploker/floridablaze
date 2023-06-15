@@ -343,7 +343,6 @@ function App({ d }) {
               />
             }
           />
-
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/resend" element={<Resend />} />
           <Route exact path="/change_pw/:token" element={<Change />} />
