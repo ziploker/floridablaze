@@ -122,7 +122,7 @@ const ActGrid = styled.div`
   //overflow: hidden;
   //display: grid;
   position: relative;
-  max-width: 1383px;
+  //max-width: 1383px;
   margin: 0 auto;
   //grid-template-columns: 43% 57%;
   //grid-template-columns: minmax(20px, 1fr) minmax(335px, 350px) minmax(350px,600px) minmax(20px, 1fr);
@@ -145,7 +145,8 @@ const ActSection = styled.section`
   }
 
   display: ${(props) => (props.showCards ? "none" : "grid")};
-
+  max-width: 1300px;
+  margin: 0 auto;
   position: relative;
   //grid-template-columns: 43% 57%;
   /* grid-template-columns:
@@ -346,7 +347,7 @@ const Form = styled.div`
   }
   @media only screen and (max-width: 985px) {
     grid-area: 3/1/4/-1;
-    padding: 0 10px;
+    padding: 0 6%;
     justify-self: center;
   }
 
