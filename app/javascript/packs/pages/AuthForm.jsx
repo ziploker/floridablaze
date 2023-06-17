@@ -56,8 +56,12 @@ const FormItem = styled.div`
 
 const FormItemSqueeze = styled.div`
 	position: relative;
-	margin: 0 0 75px 0;
+	margin: 0 0 50px 0;
 	padding: 0;
+
+	@media only screen and (max-width: 985px) {
+		margin: 0 0 75px 0;
+	}
 `
 
 const FormItemEmail = styled.div`
@@ -76,7 +80,7 @@ const Label = styled.label`
 
 	display: inline-block;
 	position: absolute;
-	top: -36px;
+	top: -20px;
 	left: 24px;
 	//border-top: 1px solid #cbcbd2;
 	//border-left: 1px solid #cbcbd2;
@@ -91,13 +95,18 @@ const Label = styled.label`
 	//background-color: white;
 	border-radius: 5px;
 
-	font-size: 2em;
+	font-size: 1em;
 
 	text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 2px 0 0 #fff, -2px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff,
 		0 2px 0 #fff, 0 -2px 0 #fff;
+
+	@media only screen and (max-width: 985px) {
+		font-size: 2em;
+		top: -36px;
+	}
 `
 const EmailLabel = styled(Label)`
-	left: 48px;
+	//left: 24px;
 `
 
 const Input = styled.input`

@@ -11,7 +11,7 @@ const FooterWrapper = styled.div`
 		minmax(20px, 100px) minmax(133px, 1fr) minmax(133px, 1fr)
 		minmax(20px, 100px); */
 
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1.5fr 1fr 1.5fr 1fr;
 	//grid-template-rows: minmax(160px, 40%) 1fr;
 	grid-template-rows: initial;
 	//grid-template-rows: 0px 1fr;
@@ -153,7 +153,7 @@ const SubscribeSection = styled.div`
 
 const Follow = styled.div`
 	//@media only screen and (max-width: 985px) {
-	grid-area: 1/3/2/4;
+	grid-area: 1/4/2/5;
 
 	padding-top: 170px;
 	//}
