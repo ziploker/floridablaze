@@ -7,15 +7,14 @@ import axios from "axios";
 import footerImage from "../../assets/images/footerImageCrop.png";
 
 const FooterWrapper = styled.div`
-  @media only screen and (max-width: 575px) {
-    grid-template-columns:
-      minmax(20px, 100px) minmax(133px, 1fr) minmax(133px, 1fr)
-      minmax(20px, 100px);
-    //grid-template-rows: minmax(160px, 40%) 1fr;
-    grid-template-rows: initial;
-    //grid-template-rows: 0px 1fr;
-    height: auto;
-  }
+  grid-template-columns:
+    minmax(20px, 100px) minmax(133px, 1fr) minmax(133px, 1fr)
+    minmax(20px, 100px);
+  //grid-template-rows: minmax(160px, 40%) 1fr;
+  grid-template-rows: initial;
+  //grid-template-rows: 0px 1fr;
+  height: auto;
+
   /* background: pink;
     background-image: url(${footerImage});
     
@@ -32,10 +31,8 @@ const FooterWrapper = styled.div`
   //grid-template-columns: 1fr;
   position: relative;
 
-  grid-template-columns:
-    minmax(20px, 1fr) minmax(min-content, 200px) minmax(min-content, 200px)
-    minmax(min-content, 250px) minmax(20px, 1fr);
-  grid-template-rows: 100px min-content min-content;
+  //grid-template-columns: 2% 1fr 1fr 2fr 2%;
+  //grid-template-rows: 100px min-content min-content;
   /* grid-template-areas:
         "spacer"
         "footerLeaf"; */
@@ -46,12 +43,12 @@ const FooterWrapper = styled.div`
 `;
 
 const FooterImage = styled.img`
-  @media only screen and (max-width: 575px) {
-    grid-area: 1/1/3/-1;
-  }
+  //@media only screen and (max-width: 985px) {
+  grid-area: 1/1/3/-1;
+  // }
 
   //grid-area: footerLeaf;
-  grid-area: 1/1/-1/-1;
+  //grid-area: 1/1/-1/-1;
   height: 100%;
   width: 100%;
   min-width: 500px;
@@ -61,18 +58,18 @@ const FooterImage = styled.img`
 `;
 
 const SubscribeSection = styled.div`
-  @media only screen and (max-width: 575px) {
-    grid-area: 3/2/4/4;
-    justify-self: start;
-    align-self: start;
-  }
+  //@media only screen and (max-width: 985px) {
+  grid-area: 2/1/3/-1;
+  justify-self: center;
+  align-self: start;
+  //}
 
   //margin: 25px 0px 40px 0px;
   z-index: 3;
   background: black;
-  grid-area: 2/4/3/5;
-  justify-self: end;
-  align-self: start;
+  //grid-area: 2/4/3/5;
+  //justify-self: end;
+  //align-self: start;
   margin-bottom: 20px;
 
   h2 {
@@ -153,30 +150,32 @@ const SubscribeSection = styled.div`
 `;
 
 const Follow = styled.div`
-  @media only screen and (max-width: 575px) {
-    grid-area: 1/3/2/4;
+  //@media only screen and (max-width: 985px) {
+  grid-area: 1/3/2/4;
 
-    padding-top: 80px;
-  }
+  padding-top: 135px;
+  //}
 
-  grid-area: 2/3/3/4;
+  //grid-area: 2/3/3/4;
   color: white;
-  justify-self: start;
+  justify-self: center;
   align-self: start;
   margin-bottom: 20px;
   z-index: 3;
 
   h1 {
     font-family: poppins;
-    font-size: 1.5em;
-    margin-bottom: 5px;
+    font-size: 4em;
+    margin-bottom: 30px;
   }
 
   ul {
     list-style-type: none;
-
+    l1 {
+      margin-bottom: 1.5em;
+    }
     a {
-      font-size: 12px;
+      font-size: 2em;
 
       letter-spacing: normal;
       line-height: 19px;
@@ -190,29 +189,33 @@ const Follow = styled.div`
 `;
 
 const Explore = styled.div`
-  @media only screen and (max-width: 575px) {
-    grid-area: 1/2/2/3;
+  //@media only screen and (max-width: 985px) {
+  grid-area: 1/2/2/3;
 
-    padding-top: 80px;
-  }
-  grid-area: 2/2/3/3;
+  padding-top: 135px;
+  //}
+  //grid-area: 2/2/3/3;
   color: white;
-  justify-self: start;
+  justify-self: center;
   align-self: start;
   margin-bottom: 20px;
   z-index: 3;
 
   h1 {
     font-family: poppins;
-    font-size: 1.5em;
-    margin-bottom: 5px;
+    font-size: 4em;
+    margin-bottom: 30px;
   }
 
   ul {
     list-style-type: none;
 
+    l1 {
+      margin-bottom: 1.5em;
+    }
+
     a {
-      font-size: 12px;
+      font-size: 2em;
 
       letter-spacing: normal;
       line-height: 19px;
@@ -226,33 +229,33 @@ const Explore = styled.div`
 `;
 
 const Legal = styled.div`
-  @media only screen and (max-width: 575px) {
-    grid-area: 4/2/5/4;
+  //@media only screen and (max-width: 985px) {
+  grid-area: 4/2/5/4;
 
-    align-self: end;
-    padding: 8px 0px 16px 0px;
-    margin-left: 26px;
-  }
+  align-self: end;
+  padding: 8px 0px 16px 0px;
+  margin-left: 26px;
+  //}
 
   padding: 20px 0px;
   background-color: black;
   z-index: 3;
   font-size: 0.2em;
-  grid-area: 3/3/4/5;
-  align-self: end;
+  //grid-area: 3/3/4/5;
+  //align-self: end;
   justify-self: start;
   color: white;
   //width: 100%;
   text-align: center;
   font-family: poppins;
-  padding-bottom: 20px;
+  //padding-bottom: 20px;
 `;
 
 const BlackBG = styled.div`
-  @media only screen and (max-width: 575px) {
-    grid-area: 3/1/5/-1;
-    background-color: black;
-  }
+  //@media only screen and (max-width: 985px) {
+  grid-area: 3/1/5/-1;
+  background-color: black;
+  //}
 `;
 
 const TopSectionWrapper = styled.div`

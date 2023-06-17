@@ -1209,6 +1209,7 @@ const ShowOfferSection = styled.div`
   right: 0; */
   //padding: 0px 10% 0px 10%;
   //background-color: white;
+  display: ${(props) => (props.showCards ? "initial" : "none")};
   margin: 70px auto 0 auto;
   width: 95%;
   max-width: 1000px;
@@ -3756,7 +3757,7 @@ function Act(props, ref) {
                       </CheckMarkParagraph>
                     </CheckmarkMainWrapper>
                     {/* <ShowOfferSectionWrapper> */}
-                    <ShowOfferSection>
+                    <ShowOfferSection showCards={showCards}>
                       <PayPalButtons
                         // style={{
                         //   layout: "horizontal",

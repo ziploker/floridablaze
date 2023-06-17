@@ -395,12 +395,12 @@ function App({ d }) {
         {/* <Footer intersectionObserverRef={intersectionObserverRef} /> */}
         <Footer showOffer={showOffer} />
 
-        <StoryFlipper
+        {/* <StoryFlipper
           //inView={inView}
           allStories={allStories}
           setAllStories={setAllStories}
           showOffer={showOffer}
-        />
+        /> */}
 
         {/* <LookupSection appState={appState} ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}}/>
                 <Section2 ref={{section2ScrollToRef: section2ScrollToRef}} stories={appState.stories} appState={appState} setAppState={setAppState} handleSuccessfulAuth={handleSuccessfulAuth} />
