@@ -11,7 +11,7 @@ const FooterWrapper = styled.div`
 		minmax(20px, 100px) minmax(133px, 1fr) minmax(133px, 1fr)
 		minmax(20px, 100px); */
 
-	grid-template-columns: minMax(2%, 300px) 1fr 1fr minMax(2%, 8%);
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	//grid-template-rows: minmax(160px, 40%) 1fr;
 	grid-template-rows: initial;
 	//grid-template-rows: 0px 1fr;
@@ -202,7 +202,7 @@ const Explore = styled.div`
 	align-self: start;
 	margin-bottom: 20px;
 	z-index: 3;
-	min-width: 360px;
+	//min-width: 360px;
 
 	h1 {
 		font-family: poppins;
