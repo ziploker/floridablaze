@@ -48,7 +48,7 @@ const LogoText = styled.img`
   justify-self: start;
   align-self: center;
   /* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
-  width: ${(props) => (props.logoScrolled ? "200px" : "250px")};
+  width: ${(props) => (props.logoScrolled ? "300px" : "350px")};
 
   cursor: pointer;
 
@@ -173,7 +173,7 @@ const HamburgerMenu = styled.div`
 
 	@media only screen and (max-width: 1111px) {
 		position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
-		top: ${(props) => (props.hamburgerScrolled ? "7px" : "initial")};
+		top: ${(props) => (props.hamburgerScrolled ? "18px" : "initial")};
 	}
 
 	button {
@@ -194,7 +194,7 @@ const TopBackgroundBar = styled.div`
   opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
   top: 0;
   width: 100%;
-  height: 40px;
+  height: 60px;
   background-color: black;
   transition: all 0.2s linear;
   z-index: 51;
