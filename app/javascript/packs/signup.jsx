@@ -507,6 +507,7 @@ const LeftSection = styled.div`
     //margin: 500px 0px 0px 0px;
     grid-area: 2/2/3/3;
     border-right: initial;
+    max-width: initial;
     
     h1{
       font-size: 7em;

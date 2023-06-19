@@ -386,7 +386,6 @@ const MainAddressInput = styled.input`
   width: 100%;
   padding: 0.2em 0.5em;
   text-shadow: 0 1px 1px hsl(0 0% 0% / 20%);
-  font: normal 1.5em system-ui, sans-serif;
 `;
 
 const Button = styled.button`
