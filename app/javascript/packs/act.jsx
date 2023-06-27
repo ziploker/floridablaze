@@ -611,33 +611,31 @@ const Span = styled.span`
   color: white;
 `;
 const ResultSection = styled.div`
-  ///@media only screen and (max-width: 1000px) {
-  //grid-area: 1/1/-1/-1;
-  //margin: 0px auto;
-  //padding: 0px 15px 32px 15px;
-  //width: 97%;
-
-  grid-template-columns: 10px 1fr 10px;
+  grid-template-columns: 10px 2fr 1fr 10px;
+  grid-template-areas:
+    "  .     top top      .   "
+    "  .    bottom offering   .  ";
 
   grid-template-rows:
     minmax(min-content, max-content)
-    minmax(min-content, max-content)
     minmax(min-content, max-content);
+  @media only screen and (max-width: 1100px) {
+    grid-template-columns: 10px 1fr 10px;
 
-  grid-template-areas:
-    "  .     top      .   "
-    "  .    bottom    .  "
-    "  .    offering    .  ";
+    grid-template-rows:
+      minmax(min-content, max-content)
+      minmax(min-content, max-content)
+      minmax(min-content, max-content);
 
-  //grid-area: x cardOne x cardTwo infoBox x;
+    grid-template-areas:
+      "  .     top      .   "
+      "  .    bottom    .  "
+      "  .    offering    .  ";
 
-  //max-width: 70vw;
-  ///}
+    //grid-area: x cardOne x cardTwo infoBox x;
 
-  @media only screen and (max-width: 985px) {
-    /* grid-template-columns:
-      minmax(10px, 1fr) minmax(100px, 150px) minmax(4px, 8px)
-      minmax(100px, 150px) minmax(10px, 1fr); */
+    //max-width: 70vw;
+    ///}
   }
 
   display: grid;
@@ -1208,7 +1206,7 @@ const ShowOfferSection = styled.div`
   right: 0; */
   //padding: 0px 10% 0px 10%;
   //background-color: white;
-  display: ${(props) => (props.showCards ? "initial" : "none")};
+  display: ${(props) => (props.showCards ? "WTF" : "none")};
   margin: 70px auto 0 auto;
   width: 95%;
   max-width: 1000px;
@@ -1241,7 +1239,7 @@ const TriplePlayWrapper = styled.div`
 
   grid-area: bottom;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 30px;
   //display: grid;
   //grid-template-columns: 50% 1fr 1fr;
   //grid-gap: 5px;
@@ -1258,8 +1256,9 @@ const TriplePlayWrapper = styled.div`
 `;
 
 const Letter = styled.div`
-  width: 100%;
-  @media only screen and (max-width: 1000px) {
+  width: 99%;
+
+  /* @media only screen and (max-width: 1000px) {
     grid-area: 1/1/2/3;
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
@@ -1268,7 +1267,7 @@ const Letter = styled.div`
     //min-width: inherit;
     //margin-top: 20px;
     justify-self: center;
-  }
+  } */
 
   /* @media only screen and (max-width: 985px){
 
@@ -1325,6 +1324,9 @@ const Letter = styled.div`
     grid-area: 1/4/4/5;
     margin: 0;
   } */
+  @media only screen and (max-width: 985px) {
+    width: 100%;
+  }
 `;
 
 const OfferOne = styled.div`
@@ -1405,7 +1407,8 @@ const LetterOfferWrapper = styled.div`
   /* position: absolute;
   left: 42%;
   top: 69%; */
-
+  max-width: 800px;
+  justify-self: center;
   display: grid;
 `;
 const LetterOffer = styled.div`
@@ -1429,16 +1432,28 @@ const Total = styled.h2`
   color: gray;
   font-size: 4em;
   //justify-self: center;
-  margin: 62px 0 24px 50px;
+
+  margin: 25px 0 24px 20px;
+
+  @media only screen and (max-width: 1100px) {
+    margin: 62px 0 24px 50px;
+  }
+
   //margin-left: 6%;
 `;
 
 const Price = styled.h1`
   font-family: "MuseoModerno", sans-serif;
   font-weight: 400;
-  font-size: 7em;
+  font-size: 5em;
   //justify-self: center;
-  margin: 0 0 46px 48px;
+
+  margin: 0 0 46px 20px;
+
+  @media only screen and (max-width: 1100px) {
+    margin: 0 0 46px 48px;
+    font-size: 7em;
+  }
 `;
 
 const Row1 = styled.div`
@@ -1447,8 +1462,11 @@ const Row1 = styled.div`
 
   cursor: pointer;
 
-  margin: 30px 20px 60px 48px;
+  margin: 30px 20px 60px 20px;
 
+  @media only screen and (max-width: 1100px) {
+    margin: 30px 20px 60px 48px;
+  }
   /* &:hover {
 		border-top: ${(props) =>
     props.whichEmailIsActive == 1 ? "1px orange solid" : "1px #f5c896 solid"};
@@ -1463,7 +1481,11 @@ const Row2 = styled.div`
 
   cursor: pointer;
 
-  margin: 30px 20px 10px 48px;
+  margin: 30px 20px 10px 20px;
+
+  @media only screen and (max-width: 1100px) {
+    margin: 30px 20px 10px 48px;
+  }
 
   /* &:hover {
 		border-top: ${(props) =>
@@ -1485,32 +1507,48 @@ const PicWrapper = styled.div`
   background-repeat: no-repeat;
   background-image: url(${samplepic2});
   border-radius: 50px;
-  width: 175px;
-  height: 175px;
+  width: 100px;
+  height: 100px;
+
+  @media only screen and (max-width: 1100px) {
+    width: 175px;
+    height: 175px;
+  }
 `;
 
 const Pic1 = styled.img`
   border-radius: 50px;
 
-  width: 175px;
-  height: 175px;
   //border: 2px solid white;
   border: ${(props) =>
     props.whichEmailIsActive == 1 ? "7px orange solid" : "7px white solid"};
   border: ${(props) =>
     props.whichEmailIsActive == 1 ? "7px orange solid" : "7px white solid"};
+  width: 100px;
+  height: 100px;
+
+  @media only screen and (max-width: 1100px) {
+    width: 175px;
+    height: 175px;
+  }
 `;
 
 const Pic2 = styled.img`
   border-radius: 50px;
 
-  width: 175px;
-  height: 175px;
   //border: 2px solid white;
   border: ${(props) =>
     props.whichEmailIsActive == 2 ? "7px orange solid" : "7px white solid"};
   border: ${(props) =>
     props.whichEmailIsActive == 2 ? "7px orange solid" : "7px white solid"};
+
+  width: 100px;
+  height: 100px;
+
+  @media only screen and (max-width: 1100px) {
+    width: 175px;
+    height: 175px;
+  }
 `;
 
 const Description1 = styled.div`
@@ -1524,29 +1562,43 @@ const Description1 = styled.div`
 
 const DWrapper = styled.div`
   align-self: end;
-  padding: 0 0 0 37px;
+  padding: 0 0 0 10px;
+
+  @media only screen and (max-width: 1100px) {
+    padding: 0 0 0 37px;
+  }
 `;
 
 const D1 = styled.h2`
   display: inline-block;
-  font-size: 1.9em;
+  font-size: 1.5em;
   //padding: 28px 30px 25px 0;
   margin 0;
   color: #424242;
   border-top-right-radius: 91px;
   //border-top-left-radius: 55px;
   border-bottom-right-radius: 91px;
+
+  @media only screen and (max-width: 1100px) {
+    font-size: 1.9em;
+  }
   
 `;
 
 const D2 = styled.h3`
   display: inline-block;
-  padding: 0 0 0 37px;
+  padding: 0 0 0 10px;
   border-top-right-radius: 91px;
-  font-size: 1.5em;
+  font-size: 1.2em;
   //border-top-left-radius: 55px;
   border-bottom-right-radius: 91px;
   align-self: top;
+  margin-top: 10px;
+
+  @media only screen and (max-width: 1100px) {
+    font-size: 1.5em;
+    padding: 0 0 0 37px;
+  }
 `;
 
 const Description2 = styled.div`
@@ -1935,21 +1987,23 @@ const LetterDemoWrapper = styled.div`
   display: ${(props) => (props.whichTabIsActive == 1 ? "grid" : "none")};
   //grid-gap: 20px;
   //grid-template-columns: 1fr 3fr 20px min-content 1fr;
-  grid-template-columns: 20px 2.5fr 20px 1fr 20px;
+  grid-template-columns: 1fr;
 
   grid-template-rows: 22px auto;
   grid-template-areas:
-    ".  dots   dots dots  ."
-    ". center  . offer .";
+    "dots"
+    "center"
+    "offer";
+
   margin: 15px auto;
 
-  @media only screen and (max-width: 985px) {
+  /* @media only screen and (max-width: 985px) {
     grid-template-columns: 1fr;
     grid-template-areas:
       "dots"
       "center"
       "offer";
-  }
+  } */
 `;
 
 const LetterDemoCenter = styled.div`
@@ -2382,7 +2436,7 @@ function Act(props, ref) {
   const { LookupInputRef } = ref;
   const [tester, setTester] = useState("testing");
   const [addressObject, setAddressObject] = useState(null);
-  const [showCards, setShowCards] = React.useState(false);
+  const [showCards, setShowCards] = React.useState(true);
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
 
   const [searchButtonActive, setSearchButtonActive] = React.useState(false);
@@ -2487,48 +2541,48 @@ function Act(props, ref) {
   // 	},
   // 	hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
   // })
-  const [results, setResults] = React.useState({ one: {}, two: {} });
+  // //const [results, setResults] = React.useState({ one: {}, two: {} });
 
-  // // const [results, setResults] = React.useState({
-  // //   one: {
-  // //     resultFromFlorida: "true",
-  // //     name: "Juan Carlos Porras",
-  // //     firstName: "",
-  // //     lastName: "",
-  // //     image:
-  // //       "https://myfloridahouse.gov//FileStores/Web/Imaging/Member/4898.jpg",
-  // //     id: "ocd-person/6c673f21-8f64-44b7-831f-d3d2e9c78eb3",
-  // //     email: "JuanCarlos.Porras@myfloridahouse.gov",
-  // //     chamber: "House",
-  // //     party: "Republican",
-  // //     parent: "Florida Legislature",
-  // //     district: "119",
-  // //     fullDistrict: "Florida State House district 119",
-  // //     fullDistrictTrunk: "Florida State House district 119",
-  // //     address:
-  // //       "1102 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
-  // //     classification: "lower",
-  // //   },
-  // //   two: {
-  // //     name: "Ana Maria Rodriguez",
-  // //     firstName: "",
-  // //     lastName: "",
-  // //     image:
-  // //       "https://flsenate.gov/PublishedContent/Senators/2022-2024/Photos/s40_5379.jpg",
-  // //     id: "ocd-person/afd55a58-b8f6-4dd7-9d93-a2207b65e425",
-  // //     email: "rodriguez.anamaria.web@flsenate.gov",
-  // //     chamber: "Senate",
-  // //     party: "Republican",
-  // //     parent: "Florida Legislature",
-  // //     district: "40",
-  // //     fullDistrict: "Florida State Senate district 40",
-  // //     fullDistrictTrunk: "Florida State Senate district 40",
-  // //     address:
-  // //       "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
-  // //     classification: "upper",
-  // //   },
-  // //   hash: "b9480b5225ee9bc8cdfe1c6b2f2ea1ebc100687e",
-  // // });
+  const [results, setResults] = React.useState({
+    one: {
+      resultFromFlorida: "true",
+      name: "Juan Carlos Porras",
+      firstName: "",
+      lastName: "",
+      image:
+        "https://myfloridahouse.gov//FileStores/Web/Imaging/Member/4898.jpg",
+      id: "ocd-person/6c673f21-8f64-44b7-831f-d3d2e9c78eb3",
+      email: "JuanCarlos.Porras@myfloridahouse.gov",
+      chamber: "House",
+      party: "Republican",
+      parent: "Florida Legislature",
+      district: "119",
+      fullDistrict: "Florida State House district 119",
+      fullDistrictTrunk: "Florida State House district 119",
+      address:
+        "1102 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
+      classification: "lower",
+    },
+    two: {
+      name: "Ana Maria Rodriguez",
+      firstName: "",
+      lastName: "",
+      image:
+        "https://flsenate.gov/PublishedContent/Senators/2022-2024/Photos/s40_5379.jpg",
+      id: "ocd-person/afd55a58-b8f6-4dd7-9d93-a2207b65e425",
+      email: "rodriguez.anamaria.web@flsenate.gov",
+      chamber: "Senate",
+      party: "Republican",
+      parent: "Florida Legislature",
+      district: "40",
+      fullDistrict: "Florida State Senate district 40",
+      fullDistrictTrunk: "Florida State Senate district 40",
+      address:
+        "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
+      classification: "upper",
+    },
+    hash: "b9480b5225ee9bc8cdfe1c6b2f2ea1ebc100687e",
+  });
 
   ///////////////////////////////////////////////////////////////
 
@@ -4314,7 +4368,7 @@ function Act(props, ref) {
                   </CheckMarkParagraph>
                 </CheckmarkMainWrapper> */}
                 {/* <ShowOfferSectionWrapper> */}
-                <ShowOfferSection>
+                <ShowOfferSection showCards={showCards}>
                   <PayPalButtons
                     style={{
                       layout: "vertical",

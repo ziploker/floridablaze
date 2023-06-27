@@ -46,7 +46,7 @@ function App({ d }) {
   });
 
   const [openSideMenu, setOpenSideMenu] = useState(false);
-  const [showOffer, setShowOffer] = useState(false);
+  const [showOffer, setShowOffer] = useState(true);
   const [loginClicked, setLoginClicked] = useState(false);
   const [allStoriesPlaceholder, setAllStoriesPlaceholder] = useState(
     d.allStoriesPlaceholder
