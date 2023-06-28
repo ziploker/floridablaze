@@ -2227,7 +2227,7 @@ const LetterDemo = styled.div`
 		font-weight: bold;
 		margin-top: 30px;
 		grid-area: 2/1/3/2;
-		margin-left: 16px;
+		margin-left: 50px;
 	}
 
 	p {
@@ -2238,13 +2238,13 @@ const LetterDemo = styled.div`
 
     } */
 		//text-indent: 2rem;
-		font-size: 1.5em;
+		font-size: 1em;
 		font-weight: 300;
-		margin-top: 15px;
+		margin-top: 20px;
 		/* grid-area: 5/2/6/5; */
 		//grid-area: 3/1/4/2;
-		padding: 0px 15px;
-		line-height: 1.8em;
+		padding: 0px 50px;
+		line-height: 1.5em;
 	}
 
 	div {
@@ -2262,7 +2262,7 @@ const LetterDemo = styled.div`
 
     } */
 		font-size: 1.5em;
-		padding: 30px 15px;
+		padding: 30px 50px;
 		justify-self: start;
 		//grid-area: 6/2/7/5;
 		/* grid-area: 1/1/2/2 */
@@ -2309,10 +2309,11 @@ const TopBar = styled.div`
 			//margin: 0 0 4px 20px;
 			align-self: end;
 			justify-self: start;
-			font-size: 0.6em;
+			font-size: 1em;
 			color: #cab184;
 			cursor: pointer;
 			color: orange;
+			margin-top: 5px;
 			&:hover {
 				color: #f1ba52;
 			}
@@ -2330,8 +2331,8 @@ const MiddleBarResultSection = styled.div`
 	justify-self: center;
 	width: 100%;
 	grid-template-columns:
-		minmax(120px, 150px) minmax(10px, 12px)
-		minmax(120px, 150px) 1fr;
+		minmax(120px, 222px) minmax(10px, 12px)
+		minmax(120px, 222px) 1fr;
 
 	grid-template-areas:
 		"topbar topbar topbar topbar"
