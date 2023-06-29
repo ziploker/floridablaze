@@ -55,9 +55,13 @@ const StyledBurger = styled.button`
 				color: black;
 			}
 
-			font-size: 1.6em;
+			font-size: 1.2em;
 			height: auto;
 			color: ${({ hamburgerScrolled }) => (hamburgerScrolled ? "black" : "white")};
+
+			@media only screen and (max-width: 420px) {
+				font-size: 1em;
+			}
 		}
 
 		:nth-child(3) {

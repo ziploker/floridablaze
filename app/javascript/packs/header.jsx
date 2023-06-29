@@ -54,15 +54,16 @@ const LogoText = styled.img`
 	span {
 		color: rgb(241, 203, 203);
 	}
-	@media only screen and (max-width: 400px) {
-		width: 184px;
+	@media only screen and (max-width: 600px) {
+		width: 280px;
 	}
-	@media only screen and (max-width: 281px) {
-		width: 150px;
+	@media only screen and (max-width: 500px) {
+		width: 200px;
 	}
-	@media only screen and (max-width: 218px) {
-		width: 120px;
-	}
+	
+	@media only screen and (max-width: 385px) {
+		width: 160px;
+	} */
 `
 
 const HeaderLeafImage = styled.img`
@@ -165,7 +166,7 @@ const HamburgerMenu = styled.div`
 	grid-area: 1/3/2/4;
 	justify-self: end;
 	align-self: center;
-	padding-right: 5em;
+	padding-right: 3em;
 
 	@media only screen and (max-width: 1111px) {
 		position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
@@ -177,11 +178,14 @@ const HamburgerMenu = styled.div`
 			background: white;
 			color: white; */
 
-			/* @media only screen and (max-width: 266px) {
+		/* @media only screen and (max-width: 266px) {
 				background: black;
 				color: black;
 			} */
-		}
+	}
+
+	@media only screen and (max-width: 420px) {
+		padding-right: 1.1em;
 	}
 `
 

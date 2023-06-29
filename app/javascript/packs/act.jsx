@@ -1567,7 +1567,7 @@ const D2 = styled.h3`
 	display: inline-block;
 	padding: 0 0 0 10px;
 	border-top-right-radius: 91px;
-	font-size: 1.2em;
+	font-size: 1em;
 	//border-top-left-radius: 55px;
 	border-bottom-right-radius: 91px;
 	align-self: top;
@@ -3536,8 +3536,9 @@ function Act(props, ref) {
 							{/* <h2>checkout the letters</h2> */}
 							<div>
 								<p>
-									a printed letter will be mailed to each of your representatives via United States
-									Postal Service.
+									Checkout the personalized letter we generated below. <br />
+									We'll take care of preparing the letters and mail them to each of your
+									Representatives via United States Postal Service.
 								</p>
 							</div>
 						</NextSteps>
@@ -3690,8 +3691,9 @@ function Act(props, ref) {
 												<CheckmarkDescription>It's easy</CheckmarkDescription>
 											</CheckmarkRow>
 											<CheckMarkParagraph>
-												a printed letter will be mailed to each of your representatives via United
-												States Postal Service.
+												Checkout the personalized letter we generated below. <br />
+												We'll take care of preparing the letters and mail them to each of your
+												Representatives via United States Postal Service.
 											</CheckMarkParagraph>
 										</CheckmarkMainWrapper>
 
