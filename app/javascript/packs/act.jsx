@@ -619,7 +619,7 @@ const ResultSection = styled.div`
   grid-template-rows:
     minmax(min-content, max-content)
     minmax(min-content, max-content);
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     grid-template-columns: 10px 1fr 10px;
 
     grid-template-rows:
@@ -1410,6 +1410,7 @@ const LetterOfferWrapper = styled.div`
   max-width: 800px;
   justify-self: center;
   display: grid;
+  margin-top: 30px;
 `;
 const LetterOffer = styled.div`
   justify-self: center;
@@ -1424,7 +1425,7 @@ const Strip = styled.div`
   grid-area: strip;
   /* background-color: #eee4e4; */
   background-color: white;
-  margin: 30px 0;
+  //margin: 30px 0;
   border-radius: 18px;
 `;
 
@@ -1435,7 +1436,7 @@ const Total = styled.h2`
 
   margin: 25px 0 24px 20px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     margin: 62px 0 24px 50px;
   }
 
@@ -1450,7 +1451,7 @@ const Price = styled.h1`
 
   margin: 0 0 46px 20px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     margin: 0 0 46px 48px;
     font-size: 7em;
   }
@@ -1464,7 +1465,7 @@ const Row1 = styled.div`
 
   margin: 30px 20px 60px 20px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     margin: 30px 20px 60px 48px;
   }
   /* &:hover {
@@ -1483,7 +1484,7 @@ const Row2 = styled.div`
 
   margin: 30px 20px 10px 20px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     margin: 30px 20px 10px 48px;
   }
 
@@ -1510,7 +1511,7 @@ const PicWrapper = styled.div`
   width: 100px;
   height: 100px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     width: 175px;
     height: 175px;
   }
@@ -1527,7 +1528,7 @@ const Pic1 = styled.img`
   width: 100px;
   height: 100px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     width: 175px;
     height: 175px;
   }
@@ -1545,7 +1546,7 @@ const Pic2 = styled.img`
   width: 100px;
   height: 100px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     width: 175px;
     height: 175px;
   }
@@ -1564,7 +1565,7 @@ const DWrapper = styled.div`
   align-self: end;
   padding: 0 0 0 10px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     padding: 0 0 0 37px;
   }
 `;
@@ -1589,13 +1590,13 @@ const D2 = styled.h3`
   display: inline-block;
   padding: 0 0 0 10px;
   border-top-right-radius: 91px;
-  font-size: 1.2em;
+  font-size: 1em;
   //border-top-left-radius: 55px;
   border-bottom-right-radius: 91px;
   align-self: top;
   margin-top: 10px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     font-size: 1.5em;
     padding: 0 0 0 37px;
   }
@@ -2258,7 +2259,7 @@ const LetterDemo = styled.div`
     font-weight: bold;
     margin-top: 30px;
     grid-area: 2/1/3/2;
-    margin-left: 16px;
+    margin-left: 50px;
   }
 
   p {
@@ -2269,13 +2270,13 @@ const LetterDemo = styled.div`
 
     } */
     //text-indent: 2rem;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: 300;
-    margin-top: 15px;
+    margin-top: 20px;
     /* grid-area: 5/2/6/5; */
     //grid-area: 3/1/4/2;
-    padding: 0px 15px;
-    line-height: 1.8em;
+    padding: 0px 50px;
+    line-height: 1.5em;
   }
 
   div {
@@ -2292,7 +2293,8 @@ const LetterDemo = styled.div`
 
 
     } */
-    padding: 30px 15px;
+    font-size: 1.5em;
+    padding: 30px 50px;
     justify-self: start;
     //grid-area: 6/2/7/5;
     /* grid-area: 1/1/2/2 */
@@ -2339,10 +2341,11 @@ const TopBar = styled.div`
       //margin: 0 0 4px 20px;
       align-self: end;
       justify-self: start;
-      font-size: 0.6em;
+      font-size: 1em;
       color: #cab184;
       cursor: pointer;
       color: orange;
+      margin-top: 5px;
       &:hover {
         color: #f1ba52;
       }
@@ -2360,8 +2363,8 @@ const MiddleBarResultSection = styled.div`
   justify-self: center;
   width: 100%;
   grid-template-columns:
-    minmax(120px, 150px) minmax(10px, 12px)
-    minmax(120px, 150px) 1fr;
+    minmax(120px, 222px) minmax(10px, 12px)
+    minmax(120px, 222px) 1fr;
 
   grid-template-areas:
     "topbar topbar topbar topbar"
@@ -3607,8 +3610,9 @@ function Act(props, ref) {
               {/* <h2>checkout the letters</h2> */}
               <div>
                 <p>
-                  a printed letter will be mailed to each of your
-                  representatives via United States Postal Service.
+                  Checkout the personalized letter we generated below. <br />
+                  We'll take care of preparing the letters and mail them to each
+                  of your Representatives via United States Postal Service.
                 </p>
               </div>
             </NextSteps>
@@ -3790,8 +3794,11 @@ function Act(props, ref) {
                         <CheckmarkDescription>It's easy</CheckmarkDescription>
                       </CheckmarkRow>
                       <CheckMarkParagraph>
-                        a printed letter will be mailed to each of your
-                        representatives via United States Postal Service.
+                        Checkout the personalized letter we generated below.{" "}
+                        <br />
+                        We'll take care of preparing the letters and mail them
+                        to each of your Representatives via United States Postal
+                        Service.
                       </CheckMarkParagraph>
                     </CheckmarkMainWrapper>
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { createGlobalStyle } from "styled-components";
+import React, { useEffect, useState } from "react"
+import { createGlobalStyle } from "styled-components"
 //light blue   #56c5cc 	(86,197,204)
 //pink         #f14f7b 	(241,79,123)
 //orange       #f7aa1c 	(247,170,28)
@@ -49,7 +49,8 @@ html {
 
 body {
   margin: 0 auto;
-  max-width: 2000px
+  max-width: 2000px;
+  min-width: 250px;
   body:not(.user-is-tabbing) button:focus,
 body:not(.user-is-tabbing) input:focus,
 body:not(.user-is-tabbing) select:focus,
@@ -402,6 +403,6 @@ template {
   
   
   
-`;
+`
 
-export default (props) => <GlobalStyles {...props} />;
+export default (props) => <GlobalStyles {...props} />
