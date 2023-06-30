@@ -7,6 +7,7 @@ import { createGlobalStyle } from "styled-components"
 //black        #000000 	(0,0,0)
 
 const GlobalStyles = createGlobalStyle`
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&family=PT+Serif&display=swap");
 
   /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -82,6 +83,15 @@ h1 {
   //font-size: 2em;
   //margin: 0;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Fira Sans';
+  font-weight: 800;
+}
 
 /* Grouping content
    ========================================================================== */
@@ -103,7 +113,6 @@ hr {
  */
 
 pre {
-  font-family: monospace, monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -146,7 +155,6 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -203,7 +211,6 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */

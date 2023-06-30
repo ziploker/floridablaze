@@ -478,7 +478,6 @@ const LeftSection = styled.div`
   height: 100%;
   //margin-right: 4.20em;
   //padding-left: 60px;
-  font-family: Poppins;
   font-style: normal;
   font-weight: 800;
   min-width: 420px;
@@ -642,7 +641,6 @@ const WeedBulletText4 = styled.h2`
 	}
 `
 const Spacer = styled.h2`
-	font-family: Poppins;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 2.5vw;
@@ -665,7 +663,6 @@ const Spacer = styled.h2`
 //     font-size: 15vw;
 //   }
 
-//   font-family: Poppins;
 //   font-style: normal;
 //   font-weight: 800;
 //   font-size: 10vw;

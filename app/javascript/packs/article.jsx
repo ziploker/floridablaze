@@ -1,24 +1,24 @@
-import React, { useEffect, useState, useRef, usePrevious } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import { useLocation, useMatch, useParams } from "react-router-dom";
+import React, { useEffect, useState, useRef, usePrevious } from "react"
+import styled from "styled-components"
+import axios from "axios"
+import { useLocation, useMatch, useParams } from "react-router-dom"
 
 //import { useLocation } from "react-router-dom";
 
 // import TimeAgo from 'javascript-time-ago'
 // TimeAgo.addDefaultLocale(en)
-import ReactTimeAgo from "react-time-ago";
+import ReactTimeAgo from "react-time-ago"
 //import en from "javascript-time-ago/locale/en";
-import CommentForm from "./commentForm";
+import CommentForm from "./commentForm"
 //import CommentReplyForm from './commentReplyForm'
-import CommentReplyForm from "./commentReplyForm";
-import defaultAvatar from "../../assets/images/man3.png";
+import CommentReplyForm from "./commentReplyForm"
+import defaultAvatar from "../../assets/images/man3.png"
 
 //import './article.styled.scss'
 
 //import '../../assets/stylesheets/article_styled.scss'
 
-import Comments from "./comments.jsx";
+import Comments from "./comments.jsx"
 
 //import LookupSection from './lookupSection.jsx'
 
@@ -29,9 +29,9 @@ import {
 	TwitterIcon,
 	WhatsappShareButton,
 	WhatsappIcon,
-} from "react-share";
+} from "react-share"
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 
 const ArticleSection = styled.div`
 	/* display: grid;
@@ -51,7 +51,7 @@ const ArticleSection = styled.div`
 	@media only screen and (max-width: 900px) {
 		grid-template-columns: 1fr;
 	}
-`;
+`
 
 const NewsWrapper = styled.div`
 	display: grid;
@@ -66,14 +66,14 @@ const NewsWrapper = styled.div`
 		"image"
 		"body"
 		"comments";
-`;
+`
 
 const StoryTitleWrapper = styled.div`
 	grid-area: 1/1/2/2;
 	//margin: 16px;
 	padding-bottom: 15px;
 	justify-self: start;
-`;
+`
 
 const StoryTitle = styled.h1`
 	color: #303030;
@@ -97,7 +97,7 @@ const StoryTitle = styled.h1`
 
 
     } */
-`;
+`
 
 const InfoBar = styled.div`
 	display: grid;
@@ -121,7 +121,7 @@ const InfoBar = styled.div`
 			"social social "
 			"flexbox flexbox ";
 	}
-`;
+`
 
 const FlexBar = styled.div`
 	display: flex;
@@ -132,7 +132,7 @@ const FlexBar = styled.div`
 		justify-content: start;
 		margin-top: 8px;
 	}
-`;
+`
 
 const StoryImageWrapper = styled.div`
 	width: 100%;
@@ -144,7 +144,7 @@ const StoryImageWrapper = styled.div`
 	position: relative;
 
 	grid-area: 2/1/3/2;
-`;
+`
 
 const StoryImage = styled.img`
 	position: absolute;
@@ -152,7 +152,7 @@ const StoryImage = styled.img`
 	left: 0;
 	width: 100%;
 	height: 100%;
-`;
+`
 
 const Caption = styled.div`
 	font-size: 13px;
@@ -163,7 +163,7 @@ const Caption = styled.div`
 	//margin: 0 20px;
 	border-bottom: 1px solid #c0c0c0;
 	grid-area: 3/1/4/2;
-`;
+`
 const StoryShareButtons = styled.div`
 	display: flex;
 	justify-content: end;
@@ -179,7 +179,7 @@ const StoryShareButtons = styled.div`
 		height: 25px;
 		margin-bottom: 3px;
 	}
-`;
+`
 
 const PWrapper = styled.div`
 	//font-size: .9em;
@@ -188,12 +188,11 @@ const PWrapper = styled.div`
 	//text-indent: 45px;
 	margin-top: 16px;
 	//padding: 0px 20px;
-	font-family: "IBM Plex Serif", serif;
 
 	p {
 		margin-bottom: 20px;
 	}
-`;
+`
 
 const Loading = styled.div`
 	width: 100vw;
@@ -207,7 +206,7 @@ const Loading = styled.div`
 		line-height: 100vh;
 		vertical-align: middle;
 	}
-`;
+`
 
 // const Comments = styled.div`
 
@@ -226,9 +225,9 @@ const BorderDiv = styled.div`
 
 	bottom: 0px;
 	pointer-events: none;
-`;
+`
 
-const CommentReply = styled.div``;
+const CommentReply = styled.div``
 
 const CommentBody = styled.p`
 	overflow-wrap: break-word;
@@ -238,7 +237,7 @@ const CommentBody = styled.p`
 
 	word-break: break-word;
 	padding-left: 35px;
-`;
+`
 
 const AuthorAvartar = styled.img`
 	width: 40px;
@@ -248,11 +247,11 @@ const AuthorAvartar = styled.img`
 	border: 1px solid gray;
 	border-radius: 50%;
 	margin-right: 8px;
-`;
+`
 
 const AvatarTest = styled.img`
 	display: none;
-`;
+`
 
 const Reply = styled.div`
 	//grid-area: reply;
@@ -264,20 +263,20 @@ const Reply = styled.div`
 	&:hover {
 		color: black;
 	}
-`;
+`
 
 const TopBarWrapper = styled.div`
 	display: flex;
 	position: relative;
 	z-index: -1;
-`;
+`
 
 const BottomBarWrapper = styled.div`
 	grid-area: bottomBar;
 	display: flex;
 	flex-direction: row;
 	padding-left: 35px;
-`;
+`
 
 const VoteUp = styled.div`
 	cursor: pointer;
@@ -296,7 +295,7 @@ const VoteUp = styled.div`
 	span {
 		font-size: 13px;
 	}
-`;
+`
 
 const VoteDown = styled.div`
 	cursor: pointer;
@@ -315,7 +314,7 @@ const VoteDown = styled.div`
 	span {
 		font-size: 13px;
 	}
-`;
+`
 
 const SideAds = styled.div`
 	border: 10px solid white;
@@ -330,36 +329,31 @@ const SideAds = styled.div`
 	@media only screen and (max-width: 900px) {
 		display: none;
 	}
-`;
+`
 
 function Article({ artData, userState }) {
 	//let artData;
 
-	const location = useLocation();
-	console.log(
-		"0000000000000000000000000000000000000000000 useLocation",
-		location
-	);
+	const location = useLocation()
+	console.log("0000000000000000000000000000000000000000000 useLocation", location)
 
-	console.log("==============Article===============start", artData);
-	console.log("==============Article=============== location", location);
+	console.log("==============Article===============start", artData)
+	console.log("==============Article=============== location", location)
 
 	if (artData && artData != null) {
-		console.log("==============Article=============== artdata was full");
-		console.log("==============Article=============== location", location);
+		console.log("==============Article=============== artdata was full")
+		console.log("==============Article=============== location", location)
 
-		artData = artData;
-		console.log(
-			"artData set via props.artData - direct link to article - sparks#index"
-		);
+		artData = artData
+		console.log("artData set via props.artData - direct link to article - sparks#index")
 	} else {
 		// if (art && art != null) {
-		console.log("==============Article=============== artdata = null", artData);
-		console.log("==============Article=============== location", location);
+		console.log("==============Article=============== artdata = null", artData)
+		console.log("==============Article=============== location", location)
 
-		const { art, pathname } = location.state;
-		artData = art;
-		console.log("artData set via props.location.art - link via home page");
+		const { art, pathname } = location.state
+		artData = art
+		console.log("artData set via props.location.art - link via home page")
 	}
 
 	// if (props.location){
@@ -393,7 +387,7 @@ function Article({ artData, userState }) {
 
 	//const [isCommentsLoading, setIsCommentsLoading] = useState(true);
 
-	let obj = {};
+	let obj = {}
 
 	//const usersFromController = props.users;
 	//const articleFromController = props.article;
@@ -460,29 +454,29 @@ function Article({ artData, userState }) {
 
 		if (id.length > 0) {
 			//console.log("LengthnnnLengthnnnLengthnnnLength is = " + id[0].toString());
-			return id[0];
+			return id[0]
 		}
-	};
+	}
 
 	const getReplyArray = (childrenCommentArray) => {
-		let tempArray = [];
+		let tempArray = []
 
 		childrenCommentArray.map((x, i) => {
-			x.id;
+			x.id
 
-			tempArray.push(x.id + ", ");
-		});
+			tempArray.push(x.id + ", ")
+		})
 
-		return tempArray;
+		return tempArray
 
 		//console.log("getReplyArraydfdfdfdfdfdfdfgetReplyArray = " + JSON.stringify(childrenCommentArray, null, 4))
-	};
+	}
 
 	function addAllCommentsToStateForReplyButtonToWork(c) {
 		//{console.log("the addAllCommentsToStateForReplyButtonToWork Object about to be mapped is " + JSON.stringify(c, null, 4))}
 
-		let newArray = [];
-		let newState = {};
+		let newArray = []
+		let newState = {}
 
 		function getAllId(arr, key) {
 			//console.log("================ in getAllId =======================")
@@ -501,35 +495,35 @@ function Article({ artData, userState }) {
 					// console.log("item = " + JSON.stringify(item, null, 4))
 
 					if (keys === key) {
-						newArray.push(item[key]);
+						newArray.push(item[key])
 					} else if (Array.isArray(item[keys])) {
-						getAllId(item[keys], key);
+						getAllId(item[keys], key)
 					}
 				}
-			});
+			})
 
 			//console.log("================ OUT getAllId =======================")
 		}
 
-		getAllId(c, "id");
+		getAllId(c, "id")
 		//console.log(newArray)
 
 		newArray.forEach(function (item) {
 			//console.log("xxxitemx = " + item)
 
-			newState[item] = "false";
-		});
+			newState[item] = "false"
+		})
 
 		//console.log("newState = " + JSON.stringify(newState, null, 4))
 
-		setRows(newState);
+		setRows(newState)
 	}
 
 	function addAllCommentsToStateForShowMoreButtonToWork(c) {
 		//{console.log("the addAllCommentsToStateForReplyButtonToWork Object about to be mapped is " + JSON.stringify(c, null, 4))}
 
-		let newArray = [];
-		let newState = {};
+		let newArray = []
+		let newState = {}
 
 		function getAllId(arr, key) {
 			//console.log("================ in getAllId =======================")
@@ -548,24 +542,24 @@ function Article({ artData, userState }) {
 					// console.log("item = " + JSON.stringify(item, null, 4))
 
 					if (keys === key) {
-						newArray.push(item[key]);
+						newArray.push(item[key])
 					} else if (Array.isArray(item[keys])) {
-						getAllId(item[keys], key);
+						getAllId(item[keys], key)
 					}
 				}
-			});
+			})
 
 			//console.log("================ OUT getAllId =======================")
 		}
 
-		getAllId(c, "id");
+		getAllId(c, "id")
 		//console.log(newArray)
 
 		newArray.forEach(function (item) {
 			//console.log("xxxitemx = " + item)
 
-			newState[item] = "NO_SHRINK";
-		});
+			newState[item] = "NO_SHRINK"
+		})
 
 		//console.log("newState = " + JSON.stringify(newState, null, 4))
 
@@ -587,13 +581,8 @@ function Article({ artData, userState }) {
 		<>
 			{/* <AvatarTest src={artData.author_avatar}
                 onLoad={() => setAvatarLoaded(true)}></AvatarTest> */}
-			{Object.keys(userState.user).length > 0 &&
-			userState.user.isAdmin == true ? (
-				<Link
-					key={"b"}
-					to={"/story_editor/" + artData.id}
-					state={{ art: artData }}
-				>
+			{Object.keys(userState.user).length > 0 && userState.user.isAdmin == true ? (
+				<Link key={"b"} to={"/story_editor/" + artData.id} state={{ art: artData }}>
 					edit STORY
 				</Link>
 			) : null}
@@ -610,9 +599,7 @@ function Article({ artData, userState }) {
 						{/* <AuthorAvartar src={avatarLoaded ? artData.author_avatar : defaultAvatar } /> */}
 						<AuthorAvartar src={artData.author_avatar} />
 
-						<h4 style={{ fontSize: ".7rem", lineHeight: "normal" }}>
-							by FloridaBlaze
-						</h4>
+						<h4 style={{ fontSize: ".7rem", lineHeight: "normal" }}>by FloridaBlaze</h4>
 						<div style={{ margin: "0px 5px" }}>|</div>
 						<h4
 							style={{
@@ -629,23 +616,17 @@ function Article({ artData, userState }) {
 
 					<StoryShareButtons>
 						<FacebookShareButton
-							children={
-								<FacebookIcon size={20} round={false} borderRadius={90} />
-							}
+							children={<FacebookIcon size={20} round={false} borderRadius={90} />}
 							url={"www.420.com"}
 							style={{ marginRight: "3px" }}
 						/>
 						<TwitterShareButton
-							children={
-								<TwitterIcon size={20} round={false} borderRadius={90} />
-							}
+							children={<TwitterIcon size={20} round={false} borderRadius={90} />}
 							url={"www.420.com"}
 							style={{ marginRight: "3px" }}
 						/>
 						<WhatsappShareButton
-							children={
-								<WhatsappIcon size={20} round={false} borderRadius={90} />
-							}
+							children={<WhatsappIcon size={20} round={false} borderRadius={90} />}
 							url={"www.420.com"}
 						/>
 					</StoryShareButtons>
@@ -686,7 +667,7 @@ function Article({ artData, userState }) {
 				<SideAds />
 			</ArticleSection>
 		</>
-	);
+	)
 }
 
-export default Article;
+export default Article
