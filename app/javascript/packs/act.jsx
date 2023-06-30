@@ -619,7 +619,7 @@ const ResultSection = styled.div`
   grid-template-rows:
     minmax(min-content, max-content)
     minmax(min-content, max-content);
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     grid-template-columns: 10px 1fr 10px;
 
     grid-template-rows:
@@ -1435,7 +1435,7 @@ const Total = styled.h2`
 
   margin: 25px 0 24px 20px;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     margin: 62px 0 24px 50px;
   }
 
@@ -1450,7 +1450,7 @@ const Price = styled.h1`
 
   margin: 0 0 46px 20px;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     margin: 0 0 46px 48px;
     font-size: 7em;
   }
@@ -1464,7 +1464,7 @@ const Row1 = styled.div`
 
   margin: 30px 20px 60px 20px;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     margin: 30px 20px 60px 48px;
   }
   /* &:hover {
@@ -1483,7 +1483,7 @@ const Row2 = styled.div`
 
   margin: 30px 20px 10px 20px;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     margin: 30px 20px 10px 48px;
   }
 
@@ -1510,7 +1510,7 @@ const PicWrapper = styled.div`
   width: 100px;
   height: 100px;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     width: 175px;
     height: 175px;
   }
@@ -1527,7 +1527,7 @@ const Pic1 = styled.img`
   width: 100px;
   height: 100px;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     width: 175px;
     height: 175px;
   }
@@ -1545,7 +1545,7 @@ const Pic2 = styled.img`
   width: 100px;
   height: 100px;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     width: 175px;
     height: 175px;
   }
@@ -1564,7 +1564,7 @@ const DWrapper = styled.div`
   align-self: end;
   padding: 0 0 0 10px;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     padding: 0 0 0 37px;
   }
 `;
@@ -1579,7 +1579,7 @@ const D1 = styled.h2`
   //border-top-left-radius: 55px;
   border-bottom-right-radius: 91px;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     font-size: 1.9em;
   }
   
@@ -1595,7 +1595,7 @@ const D2 = styled.h3`
   align-self: top;
   margin-top: 10px;
 
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1000px) {
     font-size: 1.5em;
     padding: 0 0 0 37px;
   }
