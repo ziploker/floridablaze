@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { createGlobalStyle } from "styled-components"
+import React, { useEffect, useState } from "react";
+import { createGlobalStyle } from "styled-components";
 //light blue   #56c5cc 	(86,197,204)
 //pink         #f14f7b 	(241,79,123)
 //orange       #f7aa1c 	(247,170,28)
@@ -406,10 +406,13 @@ template {
 	padding: 10px 0;
 }
 
+p{
 
+  font-family: 'PT Serif';
+}
   
   
   
-`
+`;
 
-export default (props) => <GlobalStyles {...props} />
+export default (props) => <GlobalStyles {...props} />;
