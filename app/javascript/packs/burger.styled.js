@@ -26,7 +26,7 @@ const StyledBurger = styled.button`
 		outline: none;
 	}
 
-	@media only screen and (min-width: 1000px) {
+	@media only screen and (min-width: 1001px) {
 		display: none;
 	}
 
@@ -65,6 +65,7 @@ const StyledBurger = styled.button`
 		}
 
 		:nth-child(3) {
+			margin-top: 1px;
 			transform: ${({ openSideMenu }) => (openSideMenu ? "rotate(-45deg)" : "rotate(0)")};
 			background: ${({ hamburgerScrolled }) => (hamburgerScrolled ? "black" : "white")};
 			@media only screen and (max-width: 281px) {

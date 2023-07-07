@@ -19,10 +19,10 @@ import company_logo from "../../assets/images/company_logo.svg"
 const HeaderWrapper = styled.div`
 	position: relative;
 	display: grid;
-	grid-template-columns: minmax(200px, 300px) 1fr minmax(min-content, max-content);
+	grid-template-columns: minmax(180px, 280px) 1fr;
 	/* grid-template-rows: 85px; */
 	grid-template-rows: 65px;
-	grid-template-areas: "headerLogo . headerLeaf ";
+	grid-template-areas: "headerLogo headerLeaf ";
 	min-width: 100vw;
 	max-width: 3000px;
 	overflow: hidden;
@@ -38,18 +38,20 @@ const LogoText = styled.img`
 	//font-size: 22px;
 	//letter-spacing: -1px;
 	//color: #010101;
-	margin-bottom: 10px;
+	
 	transition: all 0.2s linear;
 	grid-area: headerLogo;
-	padding: 0 0 0 50px;
+	margin: 0 0 10px 50px;
 	justify-self: start;
 	align-self: center;
   display: inline-block;
   font-size: 1em;
   /* font-size: ${(props) => (props.logoScrolled ? "1em" : "2em")}; */
 	/* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
-	width: ${(props) => (props.logoScrolled ? "175px" : "250px")};
-  //width: 100%;
+	//width: ${(props) => (props.logoScrolled ? "175px" : "250px")};
+  width: 100%;
+  max-width: 420px;
+  min-width: 100px;
 	cursor: pointer;
 
 	z-index: 51;
@@ -57,9 +59,12 @@ const LogoText = styled.img`
 	span {
 		color: rgb(241, 203, 203);
 	}
-	/* @media only screen and (max-width: 600px) {
-		width: 280px;
+	@media only screen and (max-width: 700px) {
+		//width: 200px;
+		margin: 0 0 10px 10px;
 	}
+
+	/*
 	@media only screen and (max-width: 500px) {
 		width: 200px;
 	}
@@ -83,10 +88,12 @@ const HeaderLeafImage = styled.img`
     display: none;
   } */
 
-	width: 420px;
+	width: 100%;
+	max-width: 420px;
+	min-width: 250px;
 	//margin-bottom: -4px;
-	min-width: 400px;
-	max-height: 100%;
+	//min-width: 400px;
+	height: 100%;
 	//max-width: 84%;
 	grid-area: headerLeaf;
 	justify-self: end;
@@ -179,15 +186,19 @@ const Outter = styled.div`
 
 const HamburgerMenu = styled.div`
 	position: relative;
-	grid-area: 1/3/2/4;
+	/* grid-area: 1/2/2/3;
 	justify-self: end;
 	align-self: center;
-	padding-right: 3em;
+	padding-right: 3em; */
 
-	@media only screen and (max-width: 1000px) {
+	position: fixed;
+	top: 21px;
+	right: 15px;
+
+	/* @media only screen and (max-width: 1000px) {
 		position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
 		top: ${(props) => (props.hamburgerScrolled ? "18px" : "initial")};
-	}
+	} */
 
 	button {
 		/* div {
@@ -200,9 +211,9 @@ const HamburgerMenu = styled.div`
 			} */
 	}
 
-	@media only screen and (max-width: 420px) {
+	/* @media only screen and (max-width: 420px) {
 		padding-right: 1.1em;
-	}
+	} */
 `
 
 const TopBackgroundBar = styled.div`
