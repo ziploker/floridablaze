@@ -32,9 +32,9 @@ const StyledBurger = styled.button`
 
 	div {
 		//width: 50px;
-		height: 0.13rem;
+		height: 1px;
 		background: ${({ hamburgerScrolled }) => (hamburgerScrolled ? "black" : "white")};
-		@media only screen and (max-width: 281px) {
+		@media only screen and (max-width: 330px) {
 			background: black;
 		}
 		border-radius: 10px;
@@ -51,24 +51,23 @@ const StyledBurger = styled.button`
 			transform: ${({ openSideMenu }) => (openSideMenu ? "translateX(5px)" : "translateX(0)")};
 			background: inherit;
 			width: ${({ openSideMenu }) => (openSideMenu ? "50px" : "initial")};
-			@media only screen and (max-width: 281px) {
+			@media only screen and (max-width: 330px) {
 				color: black;
 			}
 
-			font-size: 1em;
+			font-size: 0.7em;
 			height: auto;
 			color: ${({ hamburgerScrolled }) => (hamburgerScrolled ? "black" : "white")};
 
-			@media only screen and (max-width: 420px) {
-				font-size: 1em;
-			}
+			/* @media only screen and (max-width: 420px) {
+				font-size: 0.7em;
+			} */
 		}
 
 		:nth-child(3) {
-			margin-top: 1px;
 			transform: ${({ openSideMenu }) => (openSideMenu ? "rotate(-45deg)" : "rotate(0)")};
 			background: ${({ hamburgerScrolled }) => (hamburgerScrolled ? "black" : "white")};
-			@media only screen and (max-width: 281px) {
+			@media only screen and (max-width: 330px) {
 				background: black;
 			}
 		}

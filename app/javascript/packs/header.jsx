@@ -44,14 +44,14 @@ const LogoText = styled.img`
 	margin: 0 0 10px 50px;
 	justify-self: start;
 	align-self: center;
-  display: inline-block;
-  font-size: 1em;
-  /* font-size: ${(props) => (props.logoScrolled ? "1em" : "2em")}; */
-	/* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
-	//width: ${(props) => (props.logoScrolled ? "175px" : "250px")};
-  width: 100%;
-  max-width: 420px;
-  min-width: 100px;
+	display: inline-block;
+	font-size: 1em;
+	/* font-size: ${(props) => (props.logoScrolled ? "1em" : "2em")}; */
+		/* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
+		//width: ${(props) => (props.logoScrolled ? "175px" : "250px")};
+	width: 100%;
+	max-width: 420px;
+	min-width: 100px;
 	cursor: pointer;
 
 	z-index: 51;
@@ -83,10 +83,10 @@ const HeaderLeafImage = styled.img`
   @media only screen and (max-width: 420px) {
     margin-right: -200px;
   }
-
-  @media only screen and (max-width: 281px) {
-    display: none;
-  } */
+*/
+	@media only screen and (max-width: 330px) {
+		display: none;
+	}
 
 	width: 100%;
 	max-width: 420px;
@@ -192,8 +192,18 @@ const HamburgerMenu = styled.div`
 	padding-right: 3em; */
 
 	position: fixed;
-	top: 21px;
-	right: 15px;
+	top: 23px;
+	right: 13px;
+
+	@media only screen and (max-width: 330px) {
+		grid-area: 1/2/2/3;
+		justify-self: end;
+		align-self: center;
+		padding: 0 10px;
+		position: initial;
+		top: initial;
+		right: initial;
+	}
 
 	/* @media only screen and (max-width: 1000px) {
 		position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
