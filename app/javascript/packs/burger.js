@@ -1,7 +1,7 @@
 // Burger.js
-import React from "react";
+import React from "react"
 
-import StyledBurger from "./burger.styled";
+import StyledBurger from "./burger.styled"
 
 const Burger = (props) => {
 	return (
@@ -9,14 +9,14 @@ const Burger = (props) => {
 			openSideMenu={props.openSideMenu}
 			hamburgerScrolled={props.hamburgerScrolled}
 			onClick={() => {
-				props.setOpenSideMenu(!props.openSideMenu);
+				props.setOpenSideMenu(!props.openSideMenu)
 			}}
 		>
 			<div />
-			<div>MENU</div>
+			<div />
 			<div />
 		</StyledBurger>
-	);
-};
+	)
+}
 
-export default Burger;
+export default Burger

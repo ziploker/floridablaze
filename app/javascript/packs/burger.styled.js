@@ -9,7 +9,7 @@ const StyledBurger = styled.button`
 	display: grid;
 	flex-direction: column;
 	justify-content: space-around;
-	width: 2rem;
+	//width: 2rem;
 	height: 1.5rem;
 	background: transparent;
 	//background: pink;
@@ -31,8 +31,9 @@ const StyledBurger = styled.button`
 	}
 
 	div {
-		//width: 50px;
-		height: 1px;
+		width: 50px;
+		//width: ${({ openSideMenu }) => (openSideMenu ? "25px" : "50px")};
+		height: 3px;
 		background: ${({ hamburgerScrolled }) => (hamburgerScrolled ? "black" : "white")};
 		@media only screen and (max-width: 330px) {
 			background: black;
@@ -40,7 +41,7 @@ const StyledBurger = styled.button`
 		border-radius: 10px;
 		transition: all 0.3s linear;
 		position: relative;
-		transform-origin: 1px;
+		transform-origin: 14px 0;
 
 		:first-child {
 			transform: ${({ openSideMenu }) => (openSideMenu ? "rotate(45deg)" : "rotate(0)")};
@@ -49,19 +50,26 @@ const StyledBurger = styled.button`
 		:nth-child(2) {
 			opacity: ${({ openSideMenu }) => (openSideMenu ? "0" : "1")};
 			transform: ${({ openSideMenu }) => (openSideMenu ? "translateX(5px)" : "translateX(0)")};
-			background: inherit;
+			background: ${({ hamburgerScrolled }) => (hamburgerScrolled ? "black" : "white")};
+			@media only screen and (max-width: 330px) {
+				background: black;
+			}
 			width: ${({ openSideMenu }) => (openSideMenu ? "50px" : "initial")};
 			@media only screen and (max-width: 330px) {
 				color: black;
 			}
 
 			font-size: 0.7em;
-			height: auto;
+
 			color: ${({ hamburgerScrolled }) => (hamburgerScrolled ? "black" : "white")};
 
 			/* @media only screen and (max-width: 420px) {
 				font-size: 0.7em;
 			} */
+			border-radius: 10px;
+			transition: all 0.3s linear;
+			position: relative;
+			transform-origin: 1px;
 		}
 
 		:nth-child(3) {
@@ -70,6 +78,7 @@ const StyledBurger = styled.button`
 			@media only screen and (max-width: 330px) {
 				background: black;
 			}
+			//width: ${({ openSideMenu }) => (openSideMenu ? "25px" : "50px")};
 		}
 	}
 `

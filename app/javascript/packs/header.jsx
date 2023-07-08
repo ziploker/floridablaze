@@ -44,14 +44,14 @@ const LogoText = styled.img`
 	margin: 0 0 10px 50px;
 	justify-self: start;
 	align-self: center;
-	display: inline-block;
-	font-size: 1em;
+	//display: inline-block;
+	
 	/* font-size: ${(props) => (props.logoScrolled ? "1em" : "2em")}; */
 		/* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
-		//width: ${(props) => (props.logoScrolled ? "175px" : "250px")};
-	width: 100%;
-	max-width: 420px;
-	min-width: 100px;
+	width: ${(props) => (props.logoScrolled ? "175px" : "250px")};
+	//width: 100%;
+	//max-width: 420px;
+	//min-width: 100px;
 	cursor: pointer;
 
 	z-index: 51;
@@ -192,8 +192,11 @@ const HamburgerMenu = styled.div`
 	padding-right: 3em; */
 
 	position: fixed;
-	top: 23px;
-	right: 13px;
+	//top: 25px;
+	right: 22px;
+	transition: all 0.2s linear;
+	//position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
+	top: ${(props) => (props.hamburgerScrolled ? "9px" : "25px")};
 
 	@media only screen and (max-width: 330px) {
 		grid-area: 1/2/2/3;
