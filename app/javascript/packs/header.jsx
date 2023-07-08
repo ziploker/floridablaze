@@ -31,8 +31,9 @@ const HeaderWrapper = styled.div`
 `
 
 const LogoText = styled.img`
-	position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
-	top: ${(props) => (props.logoScrolled ? "10px" : "initial")};
+	//position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
+	position: fixed;
+	//top: ${(props) => (props.logoScrolled ? "10px" : "initial")};
 	//font-style: normal;
 	//font-weight: normal;
 	//font-size: 22px;
@@ -118,9 +119,11 @@ const LongNav = styled.nav`
 	justify-self: end;
 	margin: 0 -25px;
 	display: flex;
-	position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
-	top: ${(props) => (props.longNavScrolled ? "-3px" : "initial")};
-	color: ${(props) => (props.longNavScrolled ? "black" : "white")};
+	//position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
+	position: fixed;
+
+	top: ${(props) => (props.longNavScrolled ? "0px" : "initial")};
+	color: ${(props) => (props.logoScrolledChangeColor ? "black" : "white")};
 	//height: 100%;
 
 	ul {
@@ -234,7 +237,7 @@ const TopBackgroundBar = styled.div`
 	opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
 	top: 0;
 	width: 100%;
-	height: 35px;
+	height: 47px;
 	background-color: black;
 	transition: all 0.2s linear;
 	z-index: 51;
@@ -269,6 +272,8 @@ function Header(props) {
 
 	// if true, element reached the top of viewport, ready to be "sticky"
 	const [logoScrolled, setLogoScrolled] = React.useState(false)
+	const [logoScrolledChangeColor, setLogoScrolledChangeColor] = React.useState(false)
+
 	const [hamburgerScrolled, setHamburgerScrolled] = React.useState(false)
 	const [longNavScrolled, setLongNavScrolled] = React.useState(false)
 
@@ -372,7 +377,10 @@ function Header(props) {
 		// );
 		//console.log("===================inner width===", window.innerWidth);
 		window.scrollY >= pixlesFromLogoToTop - 4 ? setLogoScrolled(true) : setLogoScrolled(false)
+		window.scrollY >= 28 ? setLogoScrolledChangeColor(true) : setLogoScrolledChangeColor(false)
 
+		//window.scrollY > 0 ? setLogoScrolled(true) : setLogoScrolled(false)
+		//console.log("scrolllllY", window.scrollY)
 		window.scrollY >= pixlesFromHamburgerToTop - 7
 			? setHamburgerScrolled(true)
 			: setHamburgerScrolled(false)
@@ -432,6 +440,7 @@ function Header(props) {
 					ref={longNavRef}
 					longNavScrolled={logoScrolled}
 					hamburgerScrolled={hamburgerScrolled}
+					logoScrolledChangeColor={logoScrolledChangeColor}
 				>
 					{/* <UlWrapper> */}
 					<ul>
