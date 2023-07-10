@@ -43,7 +43,8 @@ const LogoText = styled.img`
 	
 	transition: all 0.2s linear;
 	grid-area: headerLogo;
-	margin: 0 0 10px 50px;
+	top:10px;
+  left: 50px;
 	justify-self: start;
 	align-self: center;
 	//display: inline-block;
@@ -63,7 +64,9 @@ const LogoText = styled.img`
 	}
 	@media only screen and (max-width: 700px) {
 		//width: 200px;
-		margin: 0 0 10px 10px;
+		//margin: 0 0 10px 10px;
+    left: 50px;
+    top: 11px;
 	}
 
 	/*
@@ -114,7 +117,7 @@ const LongNav = styled.nav`
   @media only screen and (max-width: 1000px) {
     display: none;
   }
-  //transition: all 0.2s linear;
+  transition: all 0.2s linear;
   grid-area: headerLeaf;
   color: white;
   align-self: center;
@@ -208,7 +211,7 @@ const HamburgerMenu = styled.div`
 	align-self: center;
 	padding-right: 3em; */
 
-  position: fixed;
+  position: absolute;
   //top: 25px;
   right: 22px;
   transition: all 0.2s linear;
@@ -253,7 +256,7 @@ const TopBackgroundBar = styled.div`
   width: 100%;
   height: 47px;
   background-color: black;
-  transition: all 0.2s linear;
+  //transition: all 0.2s linear;
   z-index: 51;
   -webkit-backface-visibility: hidden;
 
