@@ -2,37 +2,38 @@
 ///////////////////   IMPORTS  /////////////////////////
 ///////////////////////////////////////////////////////
 
-import React, { useEffect, useState, useRef } from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import React, { useEffect, useState, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
-import styled from "styled-components"
-import headerLeaf from "../../assets/images/headerLeafv2.png"
+import styled from "styled-components";
+import headerLeaf from "../../assets/images/headerLeafv2.png";
 //import headerLogo from '../../assets/images/logo.png'
-import Burger from "./burger"
-import SideMenu from "./sidemenu"
-import company_logo from "../../assets/images/company_logo.svg"
+import Burger from "./burger";
+import SideMenu from "./sidemenu";
+import company_logo from "../../assets/images/company_logo.svg";
 
 ////////////////////////////////////////////////////////
 //////////////   STYLED COMPONENTS  ///////////////////
 ///////////////////////////////////////////////////////
 
 const HeaderWrapper = styled.div`
-	position: relative;
-	display: grid;
-	grid-template-columns: minmax(180px, 280px) 1fr;
-	/* grid-template-rows: 85px; */
-	grid-template-rows: 65px;
-	grid-template-areas: "headerLogo headerLeaf ";
-	min-width: 100vw;
-	max-width: 3000px;
-	overflow: hidden;
-	grid-gap: 8px;
-	z-index: 51;
-`
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(180px, 280px) 1fr;
+  /* grid-template-rows: 85px; */
+  grid-template-rows: 65px;
+  grid-template-areas: "headerLogo headerLeaf ";
+  min-width: 100vw;
+  max-width: 3000px;
+  overflow: hidden;
+  grid-gap: 8px;
+  z-index: 51;
+`;
 
 const LogoText = styled.img`
 	//position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
 	position: fixed;
+  opacity: .4;
 	//top: ${(props) => (props.logoScrolled ? "10px" : "initial")};
 	//font-style: normal;
 	//font-weight: normal;
@@ -73,10 +74,10 @@ const LogoText = styled.img`
 	@media only screen and (max-width: 385px) {
 		width: 160px;
 	} */ */
-`
+`;
 
 const HeaderLeafImage = styled.img`
-	/* @media only screen and (max-width: 1100px) {
+  /* @media only screen and (max-width: 1100px) {
     margin-right: -110px;
     max-width: 100%;
   }
@@ -85,166 +86,179 @@ const HeaderLeafImage = styled.img`
     margin-right: -200px;
   }
 */
-	@media only screen and (max-width: 330px) {
-		display: none;
-	}
+  @media only screen and (max-width: 330px) {
+    display: none;
+  }
 
-	width: 100%;
-	max-width: 420px;
-	min-width: 250px;
-	//margin-bottom: -4px;
-	//min-width: 400px;
-	height: 100%;
-	//max-width: 84%;
-	grid-area: headerLeaf;
-	justify-self: end;
-	align-self: center;
+  width: 100%;
+  max-width: 420px;
+  min-width: 250px;
+  //margin-bottom: -4px;
+  //min-width: 400px;
+  height: 100%;
+  //max-width: 84%;
+  grid-area: headerLeaf;
+  justify-self: end;
+  align-self: center;
 
-	/* opacity: ${(props) => (props.hamburgerScrolled || props.longNavScrolled ? "0" : "1")}; */
+  /* opacity: ${(props) =>
+    props.hamburgerScrolled || props.longNavScrolled ? "0" : "1"}; */
 
-	//transition: all 0.2s linear;
-`
+  //transition: all 0.2s linear;
+`;
 
 const UlWrapper = styled.div`
-	display: grid;
-`
+  display: grid;
+`;
 const LongNav = styled.nav`
-	@media only screen and (max-width: 1000px) {
-		display: none;
-	}
-	//transition: all 0.2s linear;
-	grid-area: headerLeaf;
-	color: white;
-	align-self: center;
-	justify-self: end;
-	margin: 0 -25px;
-	display: flex;
-	//position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
-	position: fixed;
+  @media only screen and (max-width: 1000px) {
+    display: none;
+  }
+  //transition: all 0.2s linear;
+  grid-area: headerLeaf;
+  color: white;
+  align-self: center;
+  justify-self: end;
+  margin: 0 -25px;
+  display: flex;
+  //position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
+  position: fixed;
 
-	top: ${(props) => (props.longNavScrolled ? "0px" : "initial")};
-	color: ${(props) => (props.logoScrolledChangeColor ? "black" : "white")};
-	//height: 100%;
+  top: ${(props) => (props.longNavScrolled ? "0px" : "initial")};
+  /* color: ${(props) =>
+    props.logoScrolledChangeColor && props.scrollDir == "scrolling down"
+      ? "black"
+      : "white"}; */
 
-	ul {
-		list-style: none;
-		margin-right: 40px;
-		display: grid;
-		align-items: baseline;
-		color: inherit;
-		align-self: center;
-		grid-template-columns: repeat(6, min-content);
-		font-family: "Fira Sans";
+  color: ${(props) =>
+    props.scrollDir == "scrolling down"
+      ? props.leafScrolledSoChangeColorDown
+        ? "black"
+        : "white"
+      : props.leafScrolledSoChangeColorUp
+      ? "white"
+      : "black"};
+  //height: 100%;
 
-		li {
-			/* @media only screen and (max-width: 666px) {
+  ul {
+    list-style: none;
+    margin-right: 40px;
+    display: grid;
+    align-items: baseline;
+    color: inherit;
+    align-self: center;
+    grid-template-columns: repeat(6, min-content);
+    font-family: "Fira Sans";
+
+    li {
+      /* @media only screen and (max-width: 666px) {
         padding: 0px 12px;
       } */
 
-			/* @media only screen and (min-width: 1396px) {
+      /* @media only screen and (min-width: 1396px) {
         font-size: 39px;
       } */
-			align-self: baseline;
-			//display: inline-block;
-			padding: 0px 5px;
-			transition: font-size 0.1s linear;
-			font-weight: 400;
-			font-size: ${(props) => (props.longNavScrolled ? "1.8vw" : "2vw")};
-			line-height: 45px;
-			color: inherit;
-			text-decoration: none;
-			display: grid;
+      align-self: baseline;
+      //display: inline-block;
+      padding: 0px 5px;
+      transition: font-size 0.1s linear;
+      font-weight: 400;
+      font-size: ${(props) => (props.longNavScrolled ? "1.8vw" : "2vw")};
+      line-height: 45px;
+      color: inherit;
+      text-decoration: none;
+      display: grid;
 
-			cursor: pointer;
-			&:hover {
-				color: rgb(241, 203, 203);
-			}
+      cursor: pointer;
+      &:hover {
+        color: rgb(241, 203, 203);
+      }
 
-			a {
-				/* @media only screen and (min-width: 1396px) {
+      a {
+        /* @media only screen and (min-width: 1396px) {
           font-size: 21px;
         } */
 
-				transition: all 0.3s ease 0s;
-				font-weight: 500;
-				font-size: ${(props) => (props.longNavScrolled ? ".8vw" : "1vw")};
-				line-height: 45px;
-				color: inherit;
-			}
+        transition: all 0.3s ease 0s;
+        font-weight: 500;
+        font-size: ${(props) => (props.longNavScrolled ? ".8vw" : "1vw")};
+        line-height: 45px;
+        color: inherit;
+      }
 
-			span {
-				font-size: 1em;
-			}
-		}
-	}
-`
+      span {
+        font-size: 1em;
+      }
+    }
+  }
+`;
 
 const Outter = styled.div`
-	width: 100%;
-	//height: 100vh;
-	//position: relative;
-	overflow: hidden;
-	//z-index: 505;
-`
+  width: 100%;
+  //height: 100vh;
+  //position: relative;
+  overflow: hidden;
+  //z-index: 505;
+`;
 
 const HamburgerMenu = styled.div`
-	position: relative;
-	/* grid-area: 1/2/2/3;
+  position: relative;
+  /* grid-area: 1/2/2/3;
 	justify-self: end;
 	align-self: center;
 	padding-right: 3em; */
 
-	position: fixed;
-	//top: 25px;
-	right: 22px;
-	transition: all 0.2s linear;
-	//position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
-	top: ${(props) => (props.hamburgerScrolled ? "9px" : "25px")};
+  position: fixed;
+  //top: 25px;
+  right: 22px;
+  transition: all 0.2s linear;
+  //position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
+  top: ${(props) => (props.hamburgerScrolled ? "9px" : "25px")};
 
-	@media only screen and (max-width: 330px) {
-		grid-area: 1/2/2/3;
-		justify-self: end;
-		align-self: center;
-		padding: 0 10px;
-		position: initial;
-		top: initial;
-		right: initial;
-	}
+  @media only screen and (max-width: 330px) {
+    grid-area: 1/2/2/3;
+    justify-self: end;
+    align-self: center;
+    padding: 0 10px;
+    position: initial;
+    top: initial;
+    right: initial;
+  }
 
-	/* @media only screen and (max-width: 1000px) {
+  /* @media only screen and (max-width: 1000px) {
 		position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
 		top: ${(props) => (props.hamburgerScrolled ? "18px" : "initial")};
 	} */
 
-	button {
-		/* div {
+  button {
+    /* div {
 			background: white;
 			color: white; */
 
-		/* @media only screen and (max-width: 266px) {
+    /* @media only screen and (max-width: 266px) {
 				background: black;
 				color: black;
 			} */
-	}
+  }
 
-	/* @media only screen and (max-width: 420px) {
+  /* @media only screen and (max-width: 420px) {
 		padding-right: 1.1em;
 	} */
-`
+`;
 
 const TopBackgroundBar = styled.div`
-	position: fixed;
-	opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
-	top: 0;
-	width: 100%;
-	height: 47px;
-	background-color: black;
-	transition: all 0.2s linear;
-	z-index: 51;
-	-webkit-backface-visibility: hidden;
+  position: fixed;
+  opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
+  top: 0;
+  width: 100%;
+  height: 47px;
+  background-color: black;
+  transition: all 0.2s linear;
+  z-index: 51;
+  -webkit-backface-visibility: hidden;
 
-	background-color: #f4f4f4;
-	/* background: rgb(255, 255, 255);
+  background-color: #f4f4f4;
+  /* background: rgb(255, 255, 255);
 	background: -moz-linear-gradient(
 		90deg,
 		rgba(255, 255, 255, 0.8897758932674632) 38%,
@@ -261,249 +275,314 @@ const TopBackgroundBar = styled.div`
 		rgba(0, 0, 0, 0.9009803750601804) 59%
 	);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#000000",GradientType=1); */
-`
+`;
 
 ////////////////////////////////////////////////////////
 ///////////////   HEADER FUNCTION   ///////////////////
 ///////////////////////////////////////////////////////
 function Header(props) {
-	console.log("==============Header===============")
-	console.log("==============Header Props===============", props)
+  console.log("==============Header===============");
+  console.log("==============Header Props===============", props);
 
-	// if true, element reached the top of viewport, ready to be "sticky"
-	const [logoScrolled, setLogoScrolled] = React.useState(false)
-	const [logoScrolledChangeColor, setLogoScrolledChangeColor] = React.useState(false)
+  // if true, element reached the top of viewport, ready to be "sticky"
+  const [scrollDir, setScrollDir] = useState("scrolling down");
 
-	const [hamburgerScrolled, setHamburgerScrolled] = React.useState(false)
-	const [longNavScrolled, setLongNavScrolled] = React.useState(false)
+  const [logoScrolled, setLogoScrolled] = React.useState(false);
+  const [leafScrolledSoChangeColorDown, setLeafScrolledSoChangeColorDown] =
+    React.useState(false);
 
-	// initial distance from element to top of viewport
-	const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(26.75)
-	const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] = useState(30.5)
-	const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(19.366668701171875)
+  const [leafScrolledSoChangeColorUp, setLeafScrolledSoChangeColorUp] =
+    React.useState(false);
 
-	// refs for elements that need stickyness or effects
-	const logoTextRef = useRef()
-	const hamburgerRef = React.useRef()
-	const longNavRef = React.useRef()
+  const [hamburgerScrolled, setHamburgerScrolled] = React.useState(false);
+  const [longNavScrolled, setLongNavScrolled] = React.useState(false);
 
-	const locationFromHook = useLocation()
-	const navigate = useNavigate()
-	// scroll listener
-	useEffect(() => {
-		window.addEventListener("scroll", handleScroll)
-	})
+  // initial distance from element to top of viewport
+  const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(26.75);
+  const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] =
+    useState(30.5);
+  const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] =
+    useState(19.366668701171875);
 
-	// set initial values for "sticky" feature
-	useEffect(() => {
-		//
-		setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top)
-		//
-		window.innerWidth <= 500
-			? setPixlesFromHamburgerToTop(hamburgerRef.current.getBoundingClientRect().top)
-			: null
-		//
-		window.innerWidth > 500
-			? setPixlesFromLongNavToTop(longNavRef.current.getBoundingClientRect().top)
-			: null
-		// console.log("END_OF_USE_EFFECT _window.innerWidth = ", window.innerWidth);
-		// console.log(
-		//   "END_OF_USE_EFFECT _LogoTextToTop = ",
-		//   logoTextRef.current.getBoundingClientRect().top
-		// );
-		// console.log(
-		//   "END_OF_USE_EFFECT _HamburgerToTop = ",
-		//   hamburgerRef.current.getBoundingClientRect().top
-		// );
+  // refs for elements that need stickyness or effects
+  const logoTextRef = useRef();
+  const hamburgerRef = React.useRef();
+  const longNavRef = React.useRef();
 
-		// console.log(
-		//   "END_OF_USE_EFFECT _LongNavToTop = ",
-		//   longNavRef.current.getBoundingClientRect().top
-		// );
-	}, [])
+  const locationFromHook = useLocation();
+  const navigate = useNavigate();
+  // scroll listener
 
-	////sticky nav end
-	useEffect(() => {
-		// make it so this header doesnt load on certin pages
-		if (
-			locationFromHook.pathname === "/login" ||
-			locationFromHook.pathname === "/signup" ||
-			locationFromHook.pathname === "/forgot" ||
-			locationFromHook.pathname === "/edit" ||
-			locationFromHook.pathname === "/change"
-		) {
-			return
-		} else {
-			//function to pass to mousedown listener, to close side menu if need be.
-			listener = (event) => {
-				//if you click in the menu,  dont close it
-				if (hamburgerRef.current.contains(event.target)) {
-					return
-				}
+  useEffect(() => {
+    const threshold = 0;
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
 
-				//if you click anywhere outside the side menu, close it.
-				//mouseDownHandler();
-				props.setOpenSideMenu(false)
-			}
-		}
+    const updateScrollDir = () => {
+      const scrollY = window.pageYOffset;
 
-		//resize and/or orientationchange listener
-		const handleResize = () => {
-			//closed sideMenu on orientation change, if it gets bigger than 850px
-			if (window.innerWidth > 500) {
-				props.setOpenSideMenu(false)
-			}
-		}
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false;
+        return;
+      }
+      setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+      ticking = false;
+    };
 
-		//set up event listeners
-		window.addEventListener("resize", handleResize)
-		window.addEventListener("orientationchange", handleResize)
-		document.addEventListener("mousedown", listener)
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
 
-		return () => {
-			document.removeEventListener("mousedown", listener)
-			console.log("cleanup")
-			console.log("cleanup done, openSideMenu = " + props.openSideMenu)
-		}
-	}, [hamburgerRef])
-	//}, [hamburgerRef, mouseDownHandler]);
+    window.addEventListener("scroll", onScroll);
+    console.log(scrollDir);
 
-	// sets the state so the element can stick
-	const handleScroll = () => {
-		//console.log("===================window.scrollY===", window.scrollY);
-		// console.log(
-		//   "===================pixlesFromLongNavToTop===",
-		//   pixlesFromLongNavToTop
-		// );
-		//console.log("===================inner width===", window.innerWidth);
-		window.scrollY >= pixlesFromLogoToTop - 4 ? setLogoScrolled(true) : setLogoScrolled(false)
-		window.scrollY >= 28 ? setLogoScrolledChangeColor(true) : setLogoScrolledChangeColor(false)
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollDir]);
 
-		//window.scrollY > 0 ? setLogoScrolled(true) : setLogoScrolled(false)
-		//console.log("scrolllllY", window.scrollY)
-		window.scrollY >= pixlesFromHamburgerToTop - 7
-			? setHamburgerScrolled(true)
-			: setHamburgerScrolled(false)
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
 
-		window.scrollY >= pixlesFromLongNavToTop && window.innerWidth > 500
-			? setLongNavScrolled(true)
-			: setLongNavScrolled(false)
-	}
+  // set initial values for "sticky" feature
+  useEffect(() => {
+    //
+    setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top);
+    //
+    window.innerWidth <= 500
+      ? setPixlesFromHamburgerToTop(
+          hamburgerRef.current.getBoundingClientRect().top
+        )
+      : null;
+    //
+    window.innerWidth > 500
+      ? setPixlesFromLongNavToTop(
+          longNavRef.current.getBoundingClientRect().top
+        )
+      : null;
+    // console.log("END_OF_USE_EFFECT _window.innerWidth = ", window.innerWidth);
+    // console.log(
+    //   "END_OF_USE_EFFECT _LogoTextToTop = ",
+    //   logoTextRef.current.getBoundingClientRect().top
+    // );
+    // console.log(
+    //   "END_OF_USE_EFFECT _HamburgerToTop = ",
+    //   hamburgerRef.current.getBoundingClientRect().top
+    // );
 
-	// scroll to top
-	function scrollToTop() {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth",
-		})
-	}
+    // console.log(
+    //   "END_OF_USE_EFFECT _LongNavToTop = ",
+    //   longNavRef.current.getBoundingClientRect().top
+    // );
+  }, []);
 
-	//put directly in function, delete this if it works
-	function mouseDownHandler() {
-		props.setOpenSideMenu(false)
-		console.log("mouseDownEventTriggered & openSideMenu = " + props.openSideMenu)
-	}
+  ////sticky nav end
+  useEffect(() => {
+    // make it so this header doesnt load on certin pages
+    if (
+      locationFromHook.pathname === "/login" ||
+      locationFromHook.pathname === "/signup" ||
+      locationFromHook.pathname === "/forgot" ||
+      locationFromHook.pathname === "/edit" ||
+      locationFromHook.pathname === "/change"
+    ) {
+      return;
+    } else {
+      //function to pass to mousedown listener, to close side menu if need be.
+      listener = (event) => {
+        //if you click in the menu,  dont close it
+        if (hamburgerRef.current.contains(event.target)) {
+          return;
+        }
 
-	function doSomething() {
-		scrollToTop()
-		props.setLoginClicked(true)
-		props.setOpenSideMenu(false)
-	}
+        //if you click anywhere outside the side menu, close it.
+        //mouseDownHandler();
+        props.setOpenSideMenu(false);
+      };
+    }
 
-	let listener
+    //resize and/or orientationchange listener
+    const handleResize = () => {
+      //closed sideMenu on orientation change, if it gets bigger than 850px
+      if (window.innerWidth > 500) {
+        props.setOpenSideMenu(false);
+      }
+    };
 
-	// if (locationFromHook.pathname === "/edit") {
-	// 	return null;
-	// } else {
-	return (
-		<>
-			<TopBackgroundBar hamburgerScrolled={hamburgerScrolled} logoScrolled={logoScrolled} />
+    //set up event listeners
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleResize);
+    document.addEventListener("mousedown", listener);
 
-			<HeaderWrapper openSideMenu={props.openSideMenu} logoScrolled={logoScrolled}>
-				<LogoText
-					onClick={() => {
-						navigate("/")
-					}}
-					src={company_logo}
-					ref={logoTextRef}
-					logoScrolled={logoScrolled}
-				></LogoText>
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      console.log("cleanup");
+      console.log("cleanup done, openSideMenu = " + props.openSideMenu);
+    };
+  }, [hamburgerRef]);
+  //}, [hamburgerRef, mouseDownHandler]);
 
-				<h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1>
+  // sets the state so the element can stick
+  const handleScroll = () => {
+    //console.log("===================window.scrollY===", window.scrollY);
+    // console.log(
+    //   "===================pixlesFromLongNavToTop===",
+    //   pixlesFromLongNavToTop
+    // );
+    console.log("===================inner width===", window.scrollY);
+    window.scrollY >= pixlesFromLogoToTop - 4
+      ? setLogoScrolled(true)
+      : setLogoScrolled(false);
+    window.scrollY >= 28
+      ? setLeafScrolledSoChangeColorDown(true)
+      : setLeafScrolledSoChangeColorDown(false);
 
-				<HeaderLeafImage
-					src={headerLeaf}
-					longNavScrolled={longNavScrolled}
-					logoScrolled={logoScrolled}
-				></HeaderLeafImage>
-				<LongNav
-					ref={longNavRef}
-					longNavScrolled={logoScrolled}
-					hamburgerScrolled={hamburgerScrolled}
-					logoScrolledChangeColor={logoScrolledChangeColor}
-				>
-					{/* <UlWrapper> */}
-					<ul>
-						<li key={0}>news</li>
-						<li key={1}>
-							<span onClick={props.executeScrollForLookupSection}>act</span>
-						</li>
-						<li key={2}>shop</li>
+    window.scrollY <= 38
+      ? setLeafScrolledSoChangeColorUp(true)
+      : setLeafScrolledSoChangeColorUp(false);
 
-						{props.userState.loggedInStatus == "LOGGED_IN"
-							? [
-									<li style={{ padding: "0 0 0 4px" }} key={3}>
-										<a key={"a"} onClick={props.handleLogOutClick}>
-											Logout
-										</a>
-									</li>,
-									<span style={{ fontSize: ".8em", padding: "0 2px" }}>|</span>,
-									<li style={{ padding: "0" }} key={4}>
-										<Link style={{ textDecoration: "none" }} key={"b"} to="/edit">
-											edit
-										</Link>
-									</li>,
-							  ]
-							: [
-									<li style={{ padding: "0 0 0 4px" }} key={3}>
-										<a key={"c"} onClick={doSomething}>
-											Login
-										</a>
-									</li>,
-									<span style={{ fontSize: ".8em", padding: "0 2px" }}>|</span>,
-									<li style={{ padding: "0" }} key={4}>
-										<a key={"d"} onClick={props.executeScrollForSection2}>
-											Signup
-										</a>
-									</li>,
-							  ]}
-					</ul>
-					{/* </UlWrapper> */}
-				</LongNav>
+    //window.scrollY > 0 ? setLogoScrolled(true) : setLogoScrolled(false)
+    //console.log("scrolllllY", window.scrollY)
+    window.scrollY >= pixlesFromHamburgerToTop - 7
+      ? setHamburgerScrolled(true)
+      : setHamburgerScrolled(false);
 
-				<HamburgerMenu hamburgerScrolled={hamburgerScrolled} ref={hamburgerRef}>
-					<Burger
-						openSideMenu={props.openSideMenu}
-						setOpenSideMenu={props.setOpenSideMenu}
-						hamburgerScrolled={hamburgerScrolled}
-					/>
-				</HamburgerMenu>
-			</HeaderWrapper>
+    window.scrollY >= pixlesFromLongNavToTop && window.innerWidth > 500
+      ? setLongNavScrolled(true)
+      : setLongNavScrolled(false);
+  };
 
-			<Outter>
-				<SideMenu
-					//doSomething={doSomething}
-					hamburgerScrolled={hamburgerScrolled}
-					openSideMenu={props.openSideMenu}
-					setOpenSideMenu={props.setOpenSideMenu}
-					//executeScroll={executeScroll}
-					userState={props.userState}
-					executeScrollForLookupSection={props.executeScrollForLookupSection}
-					executeScrollForSection2={props.executeScrollForSection2}
-				/>
-			</Outter>
-		</>
-	)
+  // scroll to top
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  //put directly in function, delete this if it works
+  function mouseDownHandler() {
+    props.setOpenSideMenu(false);
+    console.log(
+      "mouseDownEventTriggered & openSideMenu = " + props.openSideMenu
+    );
+  }
+
+  function doSomething() {
+    scrollToTop();
+    props.setLoginClicked(true);
+    props.setOpenSideMenu(false);
+  }
+
+  let listener;
+
+  // if (locationFromHook.pathname === "/edit") {
+  // 	return null;
+  // } else {
+  return (
+    <>
+      <TopBackgroundBar
+        hamburgerScrolled={hamburgerScrolled}
+        logoScrolled={logoScrolled}
+      />
+
+      <HeaderWrapper
+        openSideMenu={props.openSideMenu}
+        logoScrolled={logoScrolled}
+      >
+        <LogoText
+          onClick={() => {
+            navigate("/");
+          }}
+          src={company_logo}
+          ref={logoTextRef}
+          logoScrolled={logoScrolled}
+        ></LogoText>
+
+        <h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1>
+
+        <HeaderLeafImage
+          src={headerLeaf}
+          longNavScrolled={longNavScrolled}
+          logoScrolled={logoScrolled}
+        ></HeaderLeafImage>
+        <LongNav
+          ref={longNavRef}
+          longNavScrolled={logoScrolled}
+          hamburgerScrolled={hamburgerScrolled}
+          leafScrolledSoChangeColorDown={leafScrolledSoChangeColorDown}
+          leafScrolledSoChangeColorUp={leafScrolledSoChangeColorUp}
+          scrollDir={scrollDir}
+        >
+          {/* <UlWrapper> */}
+          <ul>
+            <li key={0}>news</li>
+            <li key={1}>
+              <span onClick={props.executeScrollForLookupSection}>act</span>
+            </li>
+            <li key={2}>shop</li>
+
+            {props.userState.loggedInStatus == "LOGGED_IN"
+              ? [
+                  <li style={{ padding: "0 0 0 4px" }} key={3}>
+                    <a key={"a"} onClick={props.handleLogOutClick}>
+                      Logout
+                    </a>
+                  </li>,
+                  <span style={{ fontSize: ".8em", padding: "0 2px" }}>|</span>,
+                  <li style={{ padding: "0" }} key={4}>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      key={"b"}
+                      to="/edit"
+                    >
+                      edit
+                    </Link>
+                  </li>,
+                ]
+              : [
+                  <li style={{ padding: "0 0 0 4px" }} key={3}>
+                    <a key={"c"} onClick={doSomething}>
+                      Login
+                    </a>
+                  </li>,
+                  <span style={{ fontSize: ".8em", padding: "0 2px" }}>|</span>,
+                  <li style={{ padding: "0" }} key={4}>
+                    <a key={"d"} onClick={props.executeScrollForSection2}>
+                      Signup
+                    </a>
+                  </li>,
+                ]}
+          </ul>
+          {/* </UlWrapper> */}
+        </LongNav>
+
+        <HamburgerMenu hamburgerScrolled={hamburgerScrolled} ref={hamburgerRef}>
+          <Burger
+            openSideMenu={props.openSideMenu}
+            setOpenSideMenu={props.setOpenSideMenu}
+            hamburgerScrolled={hamburgerScrolled}
+          />
+        </HamburgerMenu>
+      </HeaderWrapper>
+
+      <Outter>
+        <SideMenu
+          //doSomething={doSomething}
+          hamburgerScrolled={hamburgerScrolled}
+          openSideMenu={props.openSideMenu}
+          setOpenSideMenu={props.setOpenSideMenu}
+          //executeScroll={executeScroll}
+          userState={props.userState}
+          executeScrollForLookupSection={props.executeScrollForLookupSection}
+          executeScrollForSection2={props.executeScrollForSection2}
+        />
+      </Outter>
+    </>
+  );
 }
 
-export default Header
+export default Header;
