@@ -40,18 +40,19 @@ const LogoText = styled.img`
 	//font-size: 22px;
 	//letter-spacing: -1px;
 	//color: #010101;
-	
-	transition: all 0.2s linear;
+	margin-left: 50px;
+	transition: all 0.5s linear;
 	grid-area: headerLogo;
 	top:10px;
-  left: 50px;
+  	//left: 50px;
 	justify-self: start;
 	align-self: center;
 	//display: inline-block;
 	
 	/* font-size: ${(props) => (props.logoScrolled ? "1em" : "2em")}; */
 		/* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
-	width: ${(props) => (props.logoScrolled ? "175px" : "250px")};
+	/* width: ${(props) => (props.logoScrolled ? "175px" : "250px")}; */
+	width: 250px;
   //height: 45px;
 	//width: 100%;
 	//max-width: 420px;
@@ -66,9 +67,14 @@ const LogoText = styled.img`
 	@media only screen and (max-width: 700px) {
 		//width: 200px;
 		//margin: 0 0 10px 10px;
-    left: 50px;
+    //left: 50px;
     top: 11px;
 	}
+
+	/* @media only screen and (min-width: 1999px) {
+
+position: initial;
+	} */
 
 	/*
 	@media only screen and (max-width: 500px) {
@@ -95,7 +101,7 @@ const HeaderLeafImage = styled.img`
 	}
 
 	width: 100%;
-	max-width: 420px;
+	max-width: 520px;
 	min-width: 250px;
 	//margin-bottom: -4px;
 	//min-width: 400px;
@@ -108,6 +114,10 @@ const HeaderLeafImage = styled.img`
 	/* opacity: ${(props) => (props.hamburgerScrolled || props.longNavScrolled ? "0" : "1")}; */
 
 	//transition: all 0.2s linear;
+
+	@media only screen and (max-width: 1000px) {
+		max-width: 420px;
+	}
 `
 
 const UlWrapper = styled.div`
@@ -117,7 +127,7 @@ const LongNav = styled.nav`
 	@media only screen and (max-width: 1000px) {
 		display: none;
 	}
-	//transition: all 0.2s linear;
+	transition: all 0.2s linear;
 	grid-area: headerLeaf;
 	color: white;
 	align-self: center;
@@ -127,7 +137,7 @@ const LongNav = styled.nav`
 	//position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
 	position: fixed;
 
-	top: ${(props) => (props.longNavScrolled ? "0px" : "initial")};
+	//top: ${(props) => (props.longNavScrolled ? "0px" : "initial")};
 	/* color: ${(props) =>
 		props.logoScrolledChangeColor && props.scrollDir == "scrolling down" ? "black" : "white"}; */
 
@@ -162,9 +172,10 @@ const LongNav = styled.nav`
 			align-self: baseline;
 			//display: inline-block;
 			padding: 0px 5px;
-			transition: font-size 0.1s linear;
+			//transition: font-size 0.1s linear;
 			font-weight: 400;
-			font-size: ${(props) => (props.longNavScrolled ? "1.8vw" : "2vw")};
+			/* font-size: ${(props) => (props.longNavScrolled ? "1.8vw" : "2vw")}; */
+			font-size: 2vw;
 			line-height: 45px;
 			color: inherit;
 			text-decoration: none;
@@ -175,16 +186,27 @@ const LongNav = styled.nav`
 				color: rgb(241, 203, 203);
 			}
 
-			a {
-				/* @media only screen and (min-width: 1396px) {
-          font-size: 21px;
-        } */
+			@media only screen and (min-width: 1500px) {
+				font-size: 30px;
+				
+			}
 
-				transition: all 0.3s ease 0s;
+			a {
+
+				//transition: all 0.3s ease 0s;
 				font-weight: 500;
-				font-size: ${(props) => (props.longNavScrolled ? ".8vw" : "1vw")};
+				/* font-size: ${(props) => (props.longNavScrolled ? ".8vw" : "1vw")}; */
+				font-size: 1vw;
 				line-height: 45px;
 				color: inherit;
+				@media only screen and (min-width: 1500px) {
+				
+					font-size: 15px;
+				}
+				
+			}
+
+				
 			}
 
 			span {
@@ -252,7 +274,7 @@ const TopBackgroundBar = styled.div`
 	opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
 	top: 0;
 	width: 100%;
-	height: 47px;
+	height: 55px;
 	background-color: black;
 	//transition: all 0.2s linear;
 	z-index: 51;
