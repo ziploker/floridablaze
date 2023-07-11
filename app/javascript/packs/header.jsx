@@ -71,6 +71,14 @@ const LogoText = styled.img`
     top: 11px;
 	}
 
+	@media only screen and (max-width: 985px) {
+		margin-left: 20px;
+	}
+
+	@media only screen and (max-width: 520px) {
+		width: 164px;
+	}
+
 	/* @media only screen and (min-width: 1999px) {
 
 position: initial;
@@ -236,16 +244,17 @@ const HamburgerMenu = styled.div`
 	right: 22px;
 	transition: all 0.2s linear;
 	//position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
-	top: ${(props) => (props.hamburgerScrolled ? "9px" : "25px")};
+	top: ${(props) => (props.hamburgerScrolled ? "17px" : "25px")};
 
 	@media only screen and (max-width: 330px) {
-		grid-area: 1/2/2/3;
-		justify-self: end;
-		align-self: center;
-		padding: 0 10px;
-		position: initial;
-		top: initial;
-		right: initial;
+		//grid-area: 1/2/2/3;
+		//justify-self: end;
+		//align-self: center;
+		//padding: 0 10px;
+		//position: initial;
+		//top: initial;
+		//right: initial;
+		top: 14px;
 	}
 
 	/* @media only screen and (max-width: 1000px) {
@@ -274,6 +283,8 @@ const TopBackgroundBar = styled.div`
 	opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
 	top: 0;
 	width: 100%;
+	max-width: 2000px;
+	min-width: 269px;
 	height: 55px;
 	background-color: black;
 	//transition: all 0.2s linear;

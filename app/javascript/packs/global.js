@@ -51,7 +51,7 @@ html {
 body {
   margin: 0 auto;
   max-width: 2000px;
-  min-width: 250px;
+  min-width: 269px;
   body:not(.user-is-tabbing) button:focus,
 body:not(.user-is-tabbing) input:focus,
 body:not(.user-is-tabbing) select:focus,
