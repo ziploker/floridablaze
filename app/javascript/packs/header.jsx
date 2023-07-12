@@ -287,7 +287,7 @@ const TopBackgroundBar = styled.div`
 	min-width: 269px;
 	height: 55px;
 	background-color: black;
-	//transition: all 0.2s linear;
+	//transition: all 0.1s linear;
 	z-index: 51;
 	-webkit-backface-visibility: hidden;
 

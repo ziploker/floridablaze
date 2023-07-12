@@ -177,16 +177,65 @@ class LookupsController < ApplicationController
       primaryOpenStatesQuery = openStatesQueryBuilderPrimary(@lat, @lng).to_json
 
       puts "qqq " + primaryOpenStatesQuery
-      primaryOpenStatesResponse = HTTParty.get('https://openstates.org/graphql', {
+
+      testQ = '{
+        people(latitude: 25.8493855, longitude: -80.11972159999999, first: 100) {
+          edges {
+            node {
+              name
+              image
+              id
+              sortName
+              familyName
+              givenName
+              currentMemberships {
+                id
+              }
+              links {
+                note
+                url
+              }
+              contactDetails {
+                type
+                value
+                note
+                label
+              }
+              chamber: currentMemberships(classification: ["upper", "lower"]) {
+                post {
+                  label
+                  division {
+                    name
+                  }
+                }
+                organization {
+                  name
+                  classification
+                  parent {
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
+      }'
+      primaryOpenStatesResponse = HTTParty.post('https://openstates.org/graphql', {
   
           method: 'POST',
           
-          headers: { "Content-Type" => "application/json",
-                      "X-API-KEY" => "#{@openstatesApi}"},
           
-          body: '{"query" : '+ primaryOpenStatesQuery + '}'
-      }).to_dot
-  
+          
+          body: '{"query" : '+ primaryOpenStatesQuery + '}',
+          headers: { "Content-Type" => "application/json",
+                      "X-API-KEY" => "#{@openstatesApi}",
+                      'Accept' => 'application/json'},
+                      
+      })
+  puts "==========  gooooo"
+  puts primaryOpenStatesResponse
+  puts "gooooooooooooooooo "
+  puts primaryOpenStatesResponse.to_dot
       puts "=====================start: openstates query 1of3 =================="
       puts primaryOpenStatesResponse.to_yaml
       puts "=====================end: openstates query 1of3=================="
@@ -517,7 +566,7 @@ class LookupsController < ApplicationController
       #get openstates query 2of3 and convert it to json
       #should return adl info for house and/or senate legislator
       openStatesQuery2of3 = openStatesQueryBuilderSecondary(sendToFrontEnd["one"]["id"]).to_json
-      openStatesResponse2of3 = HTTParty.get('https://openstates.org/graphql', {
+      openStatesResponse2of3 = HTTParty.post('https://openstates.org/graphql', {
   
           method: 'POST',
           
@@ -566,7 +615,7 @@ class LookupsController < ApplicationController
       #get openstates query 3of3 and convert it to json
       #should return adl info for house and/or senate legislator
       openStatesQuery3of3 = openStatesQueryBuilderSecondary(sendToFrontEnd["two"]["id"]).to_json
-      openStatesResponse3of3 = HTTParty.get('https://openstates.org/graphql', {
+      openStatesResponse3of3 = HTTParty.post('https://openstates.org/graphql', {
   
           method: 'POST',
           
@@ -946,7 +995,7 @@ class LookupsController < ApplicationController
 
 
 
-        recaptchaVerificationResults = HTTParty.get("https://www.google.com/recaptcha/api/siteverify?secret=#{recaptchaSecret}&response=#{recaptchaResultsSentBackFromClientToBeChecked}", {
+        recaptchaVerificationResults = HTTParty.post("https://www.google.com/recaptcha/api/siteverify?secret=#{recaptchaSecret}&response=#{recaptchaResultsSentBackFromClientToBeChecked}", {
 
           method: 'POST',
           
@@ -1777,7 +1826,7 @@ class LookupsController < ApplicationController
 
     puts params["data"]["letterID"]
 
-    getLetterResponse = HTTParty.get('https://api.postgrid.com/print-mail/v1/letters/letter_kPcarR9g1poy4BpCQQmHAU?expand[]=template', {
+    getLetterResponse = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters/letter_kPcarR9g1poy4BpCQQmHAU?expand[]=template', {
   
       method: 'POST',
       
