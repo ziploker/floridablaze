@@ -166,7 +166,7 @@ class LookupsController < ApplicationController
       puts "=====================start: google api call results=================="
       puts "lat = " + @lat
       puts "lng = " + @lng
-      puts @openstatesApi
+      #puts @openstatesApi
       puts "=====================end: google api call results=================="
       
       
@@ -232,9 +232,7 @@ class LookupsController < ApplicationController
                       'Accept' => 'application/json'},
                       
       })
-  puts "==========  gooooo"
-  puts primaryOpenStatesResponse
-  puts "gooooooooooooooooo "
+  
   puts primaryOpenStatesResponse.to_dot
       puts "=====================start: openstates query 1of3 =================="
       puts primaryOpenStatesResponse.to_yaml

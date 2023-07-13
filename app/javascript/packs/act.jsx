@@ -2392,7 +2392,7 @@ function Act(props, ref) {
 	const { LookupInputRef } = ref
 	const [tester, setTester] = useState("testing")
 	const [addressObject, setAddressObject] = useState(null)
-	const [showCards, setShowCards] = React.useState(false)
+	const [showCards, setShowCards] = React.useState(true)
 	const [resultFromFlorida, setResultFromFlorida] = React.useState("true")
 
 	const [searchButtonActive, setSearchButtonActive] = React.useState(false)
@@ -2412,7 +2412,7 @@ function Act(props, ref) {
 	const [select, setSelect] = useState(null)
 	const [sendEmailsToRepFlashMsg, setSendEmailsToRepFlashMsg] = React.useState("")
 	const [successFlag, setSuccessFlag] = React.useState(true)
-	const scrolll = props.executeScrollForLookupSectionTwo
+	const scroll = props.executeScrollForLookupSectionTwo
 	const myRef = useRef(null)
 	const addressInputRef = useRef(null)
 
@@ -2496,48 +2496,44 @@ function Act(props, ref) {
 	// 	},
 	// 	hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
 	// })
-	const [results, setResults] = React.useState({ one: {}, two: {} })
+	////const [results, setResults] = React.useState({ one: {}, two: {} })
 
-	// //   const [results, setResults] = React.useState({
-	// //     one: {
-	// //       resultFromFlorida: "true",
-	// //       name: "Juan Carlos Porras",
-	// //       firstName: "",
-	// //       lastName: "",
-	// //       image:
-	// //         "https://myfloridahouse.gov//FileStores/Web/Imaging/Member/4898.jpg",
-	// //       id: "ocd-person/6c673f21-8f64-44b7-831f-d3d2e9c78eb3",
-	// //       email: "JuanCarlos.Porras@myfloridahouse.gov",
-	// //       chamber: "House",
-	// //       party: "Republican",
-	// //       parent: "Florida Legislature",
-	// //       district: "119",
-	// //       fullDistrict: "Florida State House district 119",
-	// //       fullDistrictTrunk: "Florida State House district 119",
-	// //       address:
-	// //         "1102 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
-	// //       classification: "lower",
-	// //     },
-	// //     two: {
-	// //       name: "Ana Maria Rodriguez",
-	// //       firstName: "",
-	// //       lastName: "",
-	// //       image:
-	// //         "https://flsenate.gov/PublishedContent/Senators/2022-2024/Photos/s40_5379.jpg",
-	// //       id: "ocd-person/afd55a58-b8f6-4dd7-9d93-a2207b65e425",
-	// //       email: "rodriguez.anamaria.web@flsenate.gov",
-	// //       chamber: "Senate",
-	// //       party: "Republican",
-	// //       parent: "Florida Legislature",
-	// //       district: "40",
-	// //       fullDistrict: "Florida State Senate district 40",
-	// //       fullDistrictTrunk: "Florida State Senate district 40",
-	// //       address:
-	// //         "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
-	// //       classification: "upper",
-	// //     },
-	// //     hash: "b9480b5225ee9bc8cdfe1c6b2f2ea1ebc100687e",
-	// //   });
+	const [results, setResults] = React.useState({
+		one: {
+			resultFromFlorida: "true",
+			name: "Juan Carlos Porras",
+			firstName: "",
+			lastName: "",
+			image: "https://myfloridahouse.gov//FileStores/Web/Imaging/Member/4898.jpg",
+			id: "ocd-person/6c673f21-8f64-44b7-831f-d3d2e9c78eb3",
+			email: "JuanCarlos.Porras@myfloridahouse.gov",
+			chamber: "House",
+			party: "Republican",
+			parent: "Florida Legislature",
+			district: "119",
+			fullDistrict: "Florida State House district 119",
+			fullDistrictTrunk: "Florida State House district 119",
+			address: "1102 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
+			classification: "lower",
+		},
+		two: {
+			name: "Ana Maria Rodriguez",
+			firstName: "",
+			lastName: "",
+			image: "https://flsenate.gov/PublishedContent/Senators/2022-2024/Photos/s40_5379.jpg",
+			id: "ocd-person/afd55a58-b8f6-4dd7-9d93-a2207b65e425",
+			email: "rodriguez.anamaria.web@flsenate.gov",
+			chamber: "Senate",
+			party: "Republican",
+			parent: "Florida Legislature",
+			district: "40",
+			fullDistrict: "Florida State Senate district 40",
+			fullDistrictTrunk: "Florida State Senate district 40",
+			address: "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
+			classification: "upper",
+		},
+		hash: "b9480b5225ee9bc8cdfe1c6b2f2ea1ebc100687e",
+	})
 
 	///////////////////////////////////////////////////////////////
 
