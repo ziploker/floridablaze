@@ -24,6 +24,8 @@ import searchIconOrange2 from "../../assets/images/searchPink2.png"
 import ResultCardOne from "./resultCardOne.jsx"
 import Button_Loading from "./myComponents/button_loading"
 import axios from "axios"
+
+import usps from "../../assets/images/united-states-postal-service.svg"
 //var Spinner = require("react-spinkit");
 //import Autocomplete from "react-google-autocomplete";
 //import { usePlacesWidget } from "react-google-autocomplete";
@@ -1896,6 +1898,10 @@ const ButtonTabOne = styled.div`
 	//background-color: #ccc;
 `
 
+const USPS = styled.img`
+	width: 100px;
+`
+
 const ButtonTwoTabWrapper = styled.div`
 	display: grid;
 	border-top-right-radius: 13px;
@@ -2132,24 +2138,13 @@ const BodyBox = styled.div`
 	}
 
 	div {
-		font-size: 0.9em;
-		font-weight: 300;
+		/* font-size: 0.9em;
+		font-weight: 300; */
 		//min-height: 100px;
+		margin-bottom: 25px;
 	}
 
 	.closing {
-		/* @media only screen and (max-width: 1000px){
-
-      padding: 0px;
-      margin-top: 16px;
-
-
-    } */
-		padding: 30px 15px;
-		justify-self: start;
-		//grid-area: 6/2/7/5;
-		/* grid-area: 1/1/2/2 */
-		grid-area: 4/1/5/2;
 	}
 `
 
@@ -2210,11 +2205,12 @@ const LetterDemo = styled.div`
 
 	h3 {
 		justify-self: start;
-		font-size: 1.4em;
+		font-size: 1.6em;
 		font-weight: bold;
-		margin-top: 30px;
+
 		grid-area: 2/1/3/2;
-		margin-left: 50px;
+
+		margin: 30px 0 25px 50px;
 	}
 
 	p {
@@ -2225,35 +2221,28 @@ const LetterDemo = styled.div`
 
     } */
 		//text-indent: 2rem;
-		font-size: 1em;
+		font-size: 1.5em;
 		font-weight: 300;
 		margin-top: 20px;
 		/* grid-area: 5/2/6/5; */
 		//grid-area: 3/1/4/2;
 		padding: 0px 50px;
-		line-height: 1.5em;
+		line-height: 45px;
 	}
 
 	div {
-		font-size: 0.9em;
-		font-weight: 300;
+		//font-size: 0.9em;
+		//font-weight: 300;
 		//min-height: 100px;
+		margin-bottom: 25px;
 	}
 
 	.closing {
-		/* @media only screen and (max-width: 1000px){
-
-      padding: 0px;
-      margin-top: 16px;
-
-
-    } */
-		font-size: 1.5em;
+		/* font-size: 1.5em;
 		padding: 30px 50px;
 		justify-self: start;
 		//grid-area: 6/2/7/5;
 		/* grid-area: 1/1/2/2 */
-		grid-area: 4/1/5/2;
 	}
 `
 
@@ -3543,9 +3532,9 @@ function Act(props, ref) {
 									onClick={HandleLetterButton}
 								>
 									<ButtonGuts>
-										<MailIcon whichTabIsActive={whichTabIsActive} src={mailIcon} />
+										{/* <MailIcon whichTabIsActive={whichTabIsActive} src={mailIcon} /> */}
 										<ButtonTabOne whichTabIsActive={whichTabIsActive}>
-											Letters <span style={{ fontSize: ".6em" }}>(via USPS)</span>
+											<USPS src={usps} />
 										</ButtonTabOne>
 									</ButtonGuts>
 								</ButtonOneTabWrapper>
@@ -3616,7 +3605,7 @@ function Act(props, ref) {
 											</p>
 
 											<div className="closing">
-												Sincerely, <br />
+												<p>Sincerely,</p>
 												<sub>
 													{props.userState.loggedInStatus == "LOGGED_IN"
 														? props.userState.user.full_name
@@ -3879,7 +3868,7 @@ function Act(props, ref) {
 										</p>
 
 										<div className="closing">
-											Sincerely, <br />
+											<p>Sincerely,</p>
 											<sub>
 												{props.userState.loggedInStatus == "LOGGED_IN"
 													? props.userState.user.full_name

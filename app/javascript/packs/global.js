@@ -172,14 +172,16 @@ small {
 
 sub,
 sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
+  font-size: 1.5em;
+  //line-height: 0;
+  //position: relative;
+  //vertical-align: baseline;
+  padding: 0 50px;
+  font-weight: bold;
 }
 
 sub {
-  bottom: -0.25em;
+  //bottom: -0.25em;
 }
 
 sup {
