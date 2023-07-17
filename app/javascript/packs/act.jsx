@@ -668,10 +668,10 @@ const NextSteps = styled.div`
 		//margin: -5px 0 0 0;
 		padding: 0;
 		color: white;
-		letter-spacing: 0.06em;
+		//letter-spacing: 0.06em;
 		font-weight: 800;
 		font-size: 4em;
-		margin: 0 0 20px 0;
+		//margin: 0 0 20px 0;
 
 		@media only screen and (max-width: 873px) {
 			//font-size: 2em;
@@ -679,10 +679,17 @@ const NextSteps = styled.div`
 	}
 
 	h2 {
-		color: #ffffffa8;
-		font-size: 1.1em;
-		letter-spacing: 0.15em;
+		font-size: 2em;
+		color: white;
+		//letter-spacing: 0.15em;
 		//margin: 0 0 0 18px;
+		color: orange;
+	}
+
+	p {
+		padding: 0;
+		color: white;
+		font-size: 2em;
 	}
 
 	div {
@@ -1794,7 +1801,7 @@ const ButtonTabsWrapper = styled.div`
 	grid-area: 1/1/2/2;
 
 	display: grid;
-	grid-template-columns: 50% 50%;
+	grid-template-columns: 60% 40%;
 	//height: 60px;
 `
 
@@ -1891,9 +1898,10 @@ const ButtonTabOne = styled.div`
 	//float: left;
 	outline: none;
 	align-self: center;
-	padding: 6px 16px;
+	//padding: 6px 16px;
 	//transition: 0.3s;
 	font-size: 1.3em;
+	display: grid;
 	opacity: ${(props) => (props.whichTabIsActive == 1 ? "1" : ".3")};
 	font-weight: ${(props) => (props.whichTabIsActive == 1 ? "600" : "initial")};
 	//border-top-left-radius: 13px;
@@ -1903,6 +1911,10 @@ const ButtonTabOne = styled.div`
 
 const USPS = styled.img`
 	width: 100%;
+	max-width: 350px;
+	justify-self: center;
+	align-self: center;
+	padding: 12px 24px;
 `
 
 const ButtonTwoTabWrapper = styled.div`
@@ -1921,25 +1933,32 @@ const ButtonTwoTabWrapper = styled.div`
 const ButtonTabTwo = styled.div`
 	overflow: hidden;
 	//border: 1px solid #ccc;
-
-	float: left;
+	width: 100%;
+	display: grid;
+	//float: left;
 	border: none;
 	outline: none;
 	cursor: pointer;
-	padding: 6px 16px;
+	//padding: 6px 16px;
 	//transition: 0.3s;
 	align-self: center;
 	justify-self: center;
 	opacity: ${(props) => (props.whichTabIsActive == 2 ? "1" : ".3")};
 	font-weight: ${(props) => (props.whichTabIsActive == 2 ? "600" : "initial")};
 
-	font-size: 1.3em;
+	//font-size: 1.3em;
 	//border-bottom-right-radius: 13px;
 
 	//background-color: #ccc;
 `
 
-const GmailIcon = styled.img``
+const GmailIcon = styled.img`
+	justify-self: center;
+	align-self: center;
+	max-width: 115px;
+	width: 100%;
+	padding: 12px 24px;
+`
 
 const DemoWrapper = styled.div`
 	padding: 45px 120px;
@@ -3514,14 +3533,20 @@ function Act(props, ref) {
 
 						<NextSteps>
 							<h1>NEXT STEP:</h1>
+							{/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
+							<p>
+								Contacting your Reps can be a pain. Emails get ignored & who has time to write
+								letters, buy stamps and find a mail box.
+							</p>
+							<h3></h3>
 							{/* <h2>checkout the letters</h2> */}
-							<div>
+							{/* <div>
 								<p>
 									Checkout the personalized letter we generated below. <br />
 									We'll take care of preparing the letters and mail them to each of your
 									Representatives via United States Postal Service.
 								</p>
-							</div>
+							</div> */}
 						</NextSteps>
 						{/* <LinerVertical />
 						<LinerHorizontal /> */}
@@ -3550,7 +3575,7 @@ function Act(props, ref) {
 									onClick={HandleEmailButton}
 								>
 									<ButtonTabTwo whichTabIsActive={whichTabIsActive}>
-										<GmailIcon src={gmail_icon} /> Email
+										<GmailIcon src={gmail_icon} />
 									</ButtonTabTwo>
 								</ButtonTwoTabWrapper>
 							</ButtonTabsWrapper>
