@@ -658,7 +658,7 @@ const ResultSection = styled.div`
 const NextSteps = styled.div`
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: min-content 1fr;
+	grid-template-rows: min-content min-content 1fr;
 	min-width: 243px;
 	margin: 0 0 0 20px;
 	grid-area: nextSteps;
@@ -684,18 +684,20 @@ const NextSteps = styled.div`
 		//letter-spacing: 0.15em;
 		//margin: 0 0 0 18px;
 		color: orange;
+		margin-bottom: 16px;
 	}
 
 	p {
 		padding: 0;
 		color: white;
 		font-size: 2em;
+		margin: 0;
 	}
 
 	div {
-		grid-area: 2/1/3/-1;
+		//grid-area: 2/1/3/-1;
 		//margin: 15px 0 0 0;
-		width: 80%;
+		//width: 80%;
 
 		//border-radius: 22px;
 		//background: #e3b55a;
@@ -704,16 +706,16 @@ const NextSteps = styled.div`
 
 		display: grid;
 
-		@media only screen and (max-width: 985px) {
-			//width: 95%;
-		}
+		//@media only screen and (max-width: 985px) {
+		//width: 95%;
+		//}
 		p {
 			color: white;
 			line-height: 1.6em;
 			font-size: 1.6em;
-			align-self: center;
-			justify-self: center;
-			padding: 0 8px;
+			align-self: start;
+			justify-self: start;
+			//padding: 0 8px;
 		}
 	}
 
@@ -3534,11 +3536,15 @@ function Act(props, ref) {
 						<NextSteps>
 							<h1>NEXT STEP:</h1>
 							{/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
-							<p>
-								Contacting your Reps can be a pain. Emails get ignored & who has time to write
-								letters, buy stamps and find a mail box.
-							</p>
-							<h3></h3>
+							<h2>Contact your Reps in just a few clicks.</h2>
+							<div>
+								<p>Our goal is to legalize cannabis for recreational use. </p>
+								<br />
+								<p>
+									In just a few clicks you can have the letter below mailed to your Florida
+									Representatives.
+								</p>
+							</div>
 							{/* <h2>checkout the letters</h2> */}
 							{/* <div>
 								<p>
