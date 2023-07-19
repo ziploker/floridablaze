@@ -717,6 +717,13 @@ const NextSteps = styled.div`
 			justify-self: start;
 			//padding: 0 8px;
 		}
+
+		h2 {
+			/* font-size: 2em;
+			color: white;
+
+			margin-bottom: 16px; */
+		}
 	}
 
 	@media only screen and (max-width: 985px) {
@@ -3536,20 +3543,19 @@ function Act(props, ref) {
 						<NextSteps>
 							<h1>NEXT STEP:</h1>
 							{/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
-							<h2>Contact your Reps in just a few clicks.</h2>
+							<h2>Join our campaign to legalize cannabis.</h2>
 							<div>
-								<p>Our goal is to legalize cannabis for recreational use. </p>
-								<br />
-								<p>
-									In just a few clicks you can have the letter below mailed to your Florida
-									Representatives.
-								</p>
+								<p>How it works?</p>
+								<p>you send us 3 bucks, and we'll do the following things:</p>
+								<p>Print your personalized letter on top-notch quality paper.</p>
+								<p>Send the letter to each of your reps via first class USPS mail.</p>
+								<p>Share this tool </p>
 							</div>
 							{/* <h2>checkout the letters</h2> */}
 							{/* <div>
 								<p>
 									Checkout the personalized letter we generated below. <br />
-									We'll take care of preparing the letters and mail them to each of your
+									We'll take care of preparing the letters and mail them to each of yh2our
 									Representatives via United States Postal Service.
 								</p>
 							</div> */}
