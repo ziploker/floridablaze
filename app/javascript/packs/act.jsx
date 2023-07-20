@@ -673,8 +673,8 @@ const NextSteps = styled.div`
 		font-size: 4em;
 		//margin: 0 0 20px 0;
 
-		@media only screen and (max-width: 873px) {
-			//font-size: 2em;
+		@media only screen and (max-width: 985px) {
+			justify-self: center;
 		}
 	}
 
@@ -685,6 +685,15 @@ const NextSteps = styled.div`
 		//margin: 0 0 0 18px;
 		color: orange;
 		margin-bottom: 16px;
+
+		@media only screen and (min-width: 986px) and (max-width: 1075px) {
+			font-size: 1.7em;
+		}
+
+		@media only screen and (max-width: 985px) {
+			justify-self: center;
+			text-align: center;
+		}
 	}
 
 	p {
@@ -705,10 +714,11 @@ const NextSteps = styled.div`
 		border-bottom: 1px #e3b55a solid;
 
 		display: grid;
-
-		//@media only screen and (max-width: 985px) {
-		//width: 95%;
-		//}
+		max-width: 578px;
+		@media only screen and (max-width: 985px) {
+			justify-self: center;
+			margin-top: 12px;
+		}
 		p {
 			color: white;
 			line-height: 1.6em;
@@ -716,6 +726,14 @@ const NextSteps = styled.div`
 			align-self: start;
 			justify-self: start;
 			//padding: 0 8px;
+			margin-top: 10px;
+			&:nth-child(2) {
+				font-size: 1.4em;
+
+				/* @media only screen and (max-width: 985px) {
+					margin-top: 10px;
+				} */
+			}
 		}
 
 		h2 {
@@ -2011,13 +2029,21 @@ const EmailDemoWrapper = styled.div`
 	//padding: 45px 120px;
 	display: ${(props) => (props.whichTabIsActive == 1 ? "none" : "grid")};
 
-	//grid-gap: 20px;
-	//grid-template-columns: 1fr 3fr 20px min-content 1fr;
-	grid-template-columns: 10% 2.5fr 20px 1fr 10%;
+	/* grid-template-columns: 10% 2.5fr 20px 1fr 10%;
 	grid-template-rows: 22px auto;
 	grid-template-areas:
 		".  dots   dots dots  ."
 		". center  . offer .";
+	margin: 15px auto; */
+
+	grid-template-columns: 1fr;
+
+	grid-template-rows: 22px auto;
+	grid-template-areas:
+		"dots"
+		"center"
+		"offer";
+
 	margin: 15px auto;
 
 	@media only screen and (max-width: 685px) {
@@ -3546,10 +3572,11 @@ function Act(props, ref) {
 							<h2>Join our campaign to legalize cannabis.</h2>
 							<div>
 								<p>How it works?</p>
-								<p>you send us 3 bucks, and we'll do the following things:</p>
-								<p>Print your personalized letter on top-notch quality paper.</p>
-								<p>Send the letter to each of your reps via first class USPS mail.</p>
-								<p>Share this tool </p>
+								<p>
+									We print your personalized letter on top-notch quality paper and mail it to each
+									of your reps via first class USPS mail.
+								</p>
+								<p></p>
 							</div>
 							{/* <h2>checkout the letters</h2> */}
 							{/* <div>
