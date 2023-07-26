@@ -2369,11 +2369,12 @@ const EmailDemo = styled.div`
 
   h2 {
     position: absolute;
-    font-size: 0.6em;
+    font-size: 1.3em;
     background-color: white;
     left: 10px;
     top: -10px;
     padding: 3px 6px;
+    font-weight: 500;
   }
 
   h1 {
@@ -4503,33 +4504,7 @@ function Act(props, ref) {
                     Senator {results.two.name ? results.two.name : ""}
                   </Description2>
                 </Row2>
-                <CheckmarkMainWrapper>
-                  <CheckmarkRow>
-                    <GreenCheckmarkWrapper>
-                      <GreenCheckmark></GreenCheckmark>
-                    </GreenCheckmarkWrapper>
-                    <CheckmarkDescription>It's easy</CheckmarkDescription>
-                  </CheckmarkRow>
-                  <CheckMarkParagraph>
-                    Checkout the personalized letter we generated below. <br />
-                    We'll take care of preparing the letters and mail them to
-                    each of your Representatives via United States Postal
-                    Service.
-                  </CheckMarkParagraph>
-                </CheckmarkMainWrapper>
 
-                <CheckmarkMainWrapper>
-                  <CheckmarkRow>
-                    <GreenCheckmarkWrapper>
-                      <GreenCheckmark></GreenCheckmark>
-                    </GreenCheckmarkWrapper>
-                    <CheckmarkDescription>100% effective</CheckmarkDescription>
-                  </CheckmarkRow>
-                  <CheckMarkParagraph>
-                    Sending a letter via USPS is most effective way to get your
-                    point across.
-                  </CheckMarkParagraph>
-                </CheckmarkMainWrapper>
                 {/* <ShowOfferSectionWrapper> */}
                 <ShowOfferSection showCards={showCards}>
                   <PayPalButtons
