@@ -1782,8 +1782,9 @@ const SendButtonWrapper = styled.div`
 	//margin-right: 15px;
 	position: relative;
 	width: 80%;
-	height: 35px;
+	height: 55px;
 	margin: 0 0 10px 0;
+	border-radius: 28px;
 `
 
 const SendButtonV2 = styled.button`
@@ -2118,10 +2119,10 @@ const SubjectBox = styled.div`
 	justify-self: center;
 	border: 1px solid orange;
 	position: relative;
-	height: 60px;
+	//height: 60px;
 	//margin: 45px 0px 0px 0px;
 	display: grid;
-	grid-template-columns: 1fr min-content;
+	grid-template-columns: 1fr 13fr;
 	grid-template-areas: " . subject";
 	h2 {
 		position: absolute;
@@ -2212,13 +2213,6 @@ const BodyBox = styled.div`
 	}
 
 	p {
-		/* @media only screen and (max-width: 1000px){
-
-      padding: 0px;
-
-
-    } */
-		//text-indent: 2rem;
 		font-size: 1.5em;
 		font-weight: 300;
 		margin-top: 15px;
@@ -2226,16 +2220,6 @@ const BodyBox = styled.div`
 		//grid-area: 3/1/4/2;
 		padding: 0px 15px;
 		line-height: 1.8em;
-	}
-
-	div {
-		/* font-size: 0.9em;
-		font-weight: 300; */
-		//min-height: 100px;
-		//margin-bottom: 25px;
-	}
-
-	.closing {
 	}
 `
 
@@ -2320,20 +2304,14 @@ const LetterDemo = styled.div`
 		padding: 0px 50px;
 		line-height: 45px;
 	}
+`
 
-	div {
-		//font-size: 0.9em;
-		//font-weight: 300;
-		//min-height: 100px;
-		//margin-bottom: 25px;
-	}
-
-	.closing {
-		/* font-size: 1.5em;
-		padding: 30px 50px;
-		justify-self: start;
-		//grid-area: 6/2/7/5;
-		/* grid-area: 1/1/2/2 */
+const LetterClosing = styled.div`
+	display: grid;
+	grid-gap: 4px;
+	margin-bottom: 42px;
+	p {
+		margin-bottom: 5px;
 	}
 `
 
@@ -2348,12 +2326,12 @@ const EmailDemo = styled.div`
 
 	h2 {
 		position: absolute;
-		font-size: 1.3em;
+		font-size: 1em;
 		background-color: white;
 		left: 40px;
-		top: -17px;
+		top: -15px;
 		padding: 3px 6px;
-		font-weight: 500;
+		font-weight: 800;
 	}
 
 	h1 {
@@ -3376,15 +3354,15 @@ function Act(props, ref) {
 		if (whichEmailIsActive === 1) {
 			if (results.one.chamber !== undefined && results.one.chamber == "Senate") {
 				if (results.one.lastName != "") {
-					return <h3>Dear Senator {results.one.lastName}, </h3>
+					return <p>Dear Senator {results.one.lastName}, </p>
 				} else {
-					return <h3>Dear Senator {results.one.name}, </h3>
+					return <p>Dear Senator {results.one.name}, </p>
 				}
 			} else if (results.one.chamber !== undefined && results.one.chamber == "House") {
 				if (results.one.lastName != "") {
-					return <h3>Dear Representative {results.one.lastName}, </h3>
+					return <p>Dear Representative {results.one.lastName}, </p>
 				} else {
-					return <h3>Dear Representative {results.one.name}, </h3>
+					return <p>Dear Representative {results.one.name}, </p>
 				}
 			} else {
 				return "default header 1"
@@ -3392,15 +3370,15 @@ function Act(props, ref) {
 		} else if (whichEmailIsActive === 2) {
 			if (results.two.chamber !== undefined && results.two.chamber == "Senate") {
 				if (results.two.lastName != "") {
-					return <h3>Dear Senator {results.two.lastName}, </h3>
+					return <p>Dear Senator {results.two.lastName}, </p>
 				} else {
-					return <h3>Dear Senator {results.two.name}, </h3>
+					return <p>Dear Senator {results.two.name}, </p>
 				}
 			} else if (results.two.chamber !== undefined && results.two.chamber == "House") {
 				if (results.two.lastName != "") {
-					return <h3>Dear Representative {results.two.lastName}, </h3>
+					return <p>Dear Representative {results.two.lastName}, </p>
 				} else {
-					return <h3>Dear Representative {results.two.name}, </h3>
+					return <p>Dear Representative {results.two.name}, </p>
 				}
 			} else {
 				return "default header 2"
@@ -3796,7 +3774,7 @@ function Act(props, ref) {
 												i count on you to end marijuana prohibition?
 											</p>
 
-											<div className="closing">
+											<LetterClosing>
 												<p>Sincerely,</p>
 												<sub>
 													{props.userState.loggedInStatus == "LOGGED_IN"
@@ -3810,7 +3788,7 @@ function Act(props, ref) {
 													{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}
 												</sub>{" "}
 												<br />
-											</div>
+											</LetterClosing>
 
 											{/* <FlashError userState={props.userState}>
                   ** Please{" "}
@@ -3935,7 +3913,7 @@ function Act(props, ref) {
 											count on you to end marijuana prohibition?
 										</p>
 
-										<div className="closing">
+										<LetterClosing>
 											<p>Sincerely,</p>
 											<sub>
 												{props.userState.loggedInStatus == "LOGGED_IN"
@@ -3948,7 +3926,7 @@ function Act(props, ref) {
 												{addressLineTwo !== "" ? addressLineTwo : "[city, state, zipcode]"}
 											</sub>{" "}
 											<br />
-										</div>
+										</LetterClosing>
 
 										{/* <FlashError userState={props.userState}>
                   ** Please{" "}
@@ -4386,8 +4364,14 @@ function Act(props, ref) {
 											whichEmailIsActive={whichEmailIsActive}
 										></Pic1>
 									</PicWrapper>
-									<Description1 whichEmailIsActive={whichEmailIsActive}>
-										Representative {results.one.name ? results.one.name : ""}
+
+									<Description1>
+										<DWrapper>
+											<D1 whichEmailIsActive={whichEmailIsActive}>
+												Representative {results.one.name ? results.one.name : ""}
+											</D1>
+										</DWrapper>
+										<D2>1 personalized email.</D2>
 									</Description1>
 								</Row1>
 								<Row2
@@ -4398,13 +4382,65 @@ function Act(props, ref) {
 										src={results.two.image ? results.two.image : ""}
 										whichEmailIsActive={whichEmailIsActive}
 									></Pic2>
-									<Description2 whichEmailIsActive={whichEmailIsActive}>
-										Senator {results.two.name ? results.two.name : ""}
+
+									<Description2>
+										<DWrapper>
+											<D1 whichEmailIsActive={whichEmailIsActive}>
+												Senator {results.two.name ? results.two.name : ""}
+											</D1>
+										</DWrapper>
+										<D2>1 personalized email.</D2>
 									</Description2>
 								</Row2>
 
+								<h4>{sendEmailsToRepFlashMsg}</h4>
+
+								<SendButtonWrapper>
+									<Button_Loading
+										onClick={() => {
+											if (recaptchaResponse == "" || recaptchaResponse == null) {
+												setSendEmailsToRepFlashMsg("Please check robot checkbox")
+											} else {
+												setIsButtonLoading(true)
+
+												//ajax call to rails (lookup#sendEmailsToReps)
+												sendEmailsToReps(
+													setIsButtonLoading,
+													results,
+													setSendEmailsToRepFlashMsg,
+													recaptchaResponse,
+													addressLineOne,
+													addressLineTwo
+												)
+											}
+										}}
+										isLoading={isButtonLoading}
+										showLoader={showLoader}
+										setShowLoader={setShowLoader}
+									>
+										<div
+											style={{
+												//position: "relative",
+												//display: "grid",
+												//gridTemplateColumns: "1fr 3fr",
+												height: "100%",
+												width: "100%",
+											}}
+										>
+											<span style={{}}> Send Emails</span>
+										</div>
+									</Button_Loading>
+								</SendButtonWrapper>
+
+								<ReCAPTCHA
+									sitekey="6LdE3NgdAAAAADcnYdc8T-d61yIGGVCwNl3sdfc6"
+									onChange={onChange}
+									className="testClass"
+									size="compact"
+								/>
+
 								{/* <ShowOfferSectionWrapper> */}
-								<ShowOfferSection showCards={showCards}>
+								{/* <ShowOfferSection showCards={showCards}>
 									<PayPalButtons
 										// style={{
 										//   layout: "horizontal",
@@ -4474,7 +4510,7 @@ function Act(props, ref) {
 											})
 										}}
 									/>
-								</ShowOfferSection>
+								</ShowOfferSection> */}
 								{/* </ShowOfferSectionWrapper> */}
 							</Strip>
 						</EmailOffer>

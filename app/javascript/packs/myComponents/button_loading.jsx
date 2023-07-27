@@ -40,15 +40,15 @@ const StyledLoadingButton = styled.button`
 	display: inline-block;
 	//min-width: $button-width;
 	width: 100%;
-	height: 35px;
-	line-height: 35px;
+	height: 100%;
+	line-height: 55px;
 	color: black;
 	margin: 0 5px 0px 0px;
 	background: #ffc439;
 	//color: $text-light;
 	font-size: 0.9em;
 	//padding: 1em;
-	border-radius: 4px;
+	border-radius: 28px;
 	text-align: center;
 	position: relative;
 	cursor: pointer;
