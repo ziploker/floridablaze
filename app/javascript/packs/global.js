@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { createGlobalStyle } from "styled-components"
+import React, { useEffect, useState } from "react";
+import { createGlobalStyle } from "styled-components";
 //light blue   #56c5cc 	(86,197,204)
 //pink         #f14f7b 	(241,79,123)
 //orange       #f7aa1c 	(247,170,28)
@@ -172,7 +172,7 @@ small {
 
 sub,
 sup {
-  font-size: 1.5em;
+  font-size: 1em;
   //line-height: 0;
   //position: relative;
   //vertical-align: baseline;
@@ -414,6 +414,6 @@ p{
   
   
   
-`
+`;
 
-export default (props) => <GlobalStyles {...props} />
+export default (props) => <GlobalStyles {...props} />;
