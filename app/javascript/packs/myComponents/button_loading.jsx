@@ -65,6 +65,10 @@ const StyledLoadingButton = styled.button`
 	&:hover {
 		background-color: #f2ba36;
 	}
+
+	span {
+		font-size: 20px;
+	}
 `
 
 const SendButtonV2Loading = styled.div`
