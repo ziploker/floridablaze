@@ -274,9 +274,12 @@ const Div2OverlayWrapper = styled(Div1OverlayWrapper)`
 
 const StoryOneTitle = styled.h1`
   //grid-area: 1 /1 /2/2;
-  white-space: normal;
-  //font-size: 4vw;
-  word-break: break-all;
+  //white-space: normal;
+
+  //word-break: break-all;
+
+  white-space: pre-wrap;
+  word-break: break-word;
   //align-self: end;
   //justify-self: start;
   //text-align: left;
@@ -284,7 +287,7 @@ const StoryOneTitle = styled.h1`
   //line-height: 1em;
   //letter-spacing: 2px;
   //z-index: 1;
-  padding: 0px 8px 8px 40px;
+  padding: 0px 13px 8px 13px;
   width: 100%;
   //min-height: 100%;
   align-self: end;

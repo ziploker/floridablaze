@@ -7,7 +7,7 @@ import { createGlobalStyle } from "styled-components";
 //black        #000000 	(0,0,0)
 
 const GlobalStyles = createGlobalStyle`
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&family=PT+Serif&display=swap");
+@import url("fonts.googleapis.com/css2?family=Fira+Sans:wght@800&family=PT+Serif&display=swap");
 
   /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -88,7 +88,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Fira Sans';
+  font-family: 'Fira Sans' !important;;
   font-weight: 800;
 }
 
@@ -409,7 +409,7 @@ template {
 
 p{
 
-  font-family: 'PT Serif';
+  font-family: 'PT Serif' !important;;
 }
   
   
