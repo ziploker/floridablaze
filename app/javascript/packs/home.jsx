@@ -358,7 +358,7 @@ const BackgroundGray = styled.div`
   //background: #c4c4c4;
   grid-area: 3/1/-1/-1;
   z-index: -1;
-  padding: 25px 0px;
+  //padding: 25px 0px;
 
   /* @media only screen and (max-width: 1111px) {
 		grid-area: 5/1/-1/-1;
@@ -1486,7 +1486,7 @@ function Home(props) {
       </Carousel>
 
       <div style={getBackgroundBarStyles()}>
-        <div style={getAllDotsWrapperStyle()} className="allDotsWrapper">
+        <div style={getAllDotsWrapperStyle()} className="allDotsWrapperClass">
           {whatModeAuto == "desktop"
             ? desktopIndicatorDots
             : cellphoneIndicatorDots}
