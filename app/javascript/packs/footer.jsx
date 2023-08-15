@@ -104,7 +104,7 @@ const SubscribeSection = styled.div`
     font-size: 2em;
     color: #e4e4e4;
     width: 100%;
-    height: 80px;
+    height: 60px;
     center ::placeholder {
       /* Chrome, Firefox, Opera, Safari 10.1+ */
       color: #e3e3e3;

@@ -297,7 +297,7 @@ const LoginCardWrapper = styled.div`
 	background: white;
 	grid-area: 1/3/2/4;
 	height: 100%;
-	padding-top: 20px;
+	padding-top: 60px;
 `
 
 const LoginCard = styled.div`
@@ -318,7 +318,7 @@ const LoginCard = styled.div`
 	//margin-left: 20px;
 	//margin-top: 100px;
 	//padding: 50px 0px 0px 0px;
-	padding: 100px 20px 0px 20px;
+	padding: 35px 20px 0px 20px;
 
 	background-color: #fff;
 	//border: 1px solid transparent;
@@ -549,7 +549,7 @@ const RightSection = styled.div`
 	padding: 0px 50px 50px 14px;
 
 	grid-template-columns: 28px 30px minmax(430px, 620px);
-	grid-template-rows: 260px repeat(4, 120px) 1fr;
+	grid-template-rows: 260px repeat(4, 95px) 1fr;
 
 	align-self: start;
 	//min-width: 525px;
