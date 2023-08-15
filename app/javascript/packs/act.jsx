@@ -97,11 +97,11 @@ const Mega = styled.img`
   //height: 85%;
   display: ${(props) => (props.showCards ? "none" : "inherit")};
   grid-area: 1/2/3/3;
-  align-self: center;
+  align-self: end;
   justify-self: end;
   //margin-top: -50px;
   margin-right: 40px;
-  margin-top: -39px;
+  //margin-top: -39px;
   //margin-bottom: 13px;
   //opacity: ${(props) => (props.showLetter ? "0" : "1")}; ;
   opacity: 1;
@@ -203,6 +203,7 @@ const ActHeaderWrapper = styled.div`
   display: grid;
   grid-area: 1/3/2/4;
   width: 100%;
+  padding: 0 8%;
   //margin-top: 20px;
 
   /* @media only screen and (min-width: 1026px) {
@@ -288,11 +289,14 @@ const ActSubheader = styled.h2`
 
 const ActBulletPointsWrapper = styled.div`
   grid-area: 2/3/3/4;
-  margin-top: 20px;
-  margin-bottom: 16px;
-
+  //margin-top: 20px;
+  //margin-bottom: 16px;
+  padding: 0 8%;
   width: 100%;
-  margin: 15px 0 15px 0px;
+  //margin: 15px 0 15px 0px;
+  margin-bottom: 8px;
+  display: grid;
+  grid-gap: 10px;
   @media only screen and (min-width: 1026px) {
   }
 
@@ -305,7 +309,7 @@ const ActBulletPointsWrapper = styled.div`
 const ActBulletWrapper = styled.div`
   display: grid;
   grid-template-columns: minmax(75px, min-content) 1fr;
-  margin-bottom: 20px;
+  //margin-bottom: 20px;
 
   @media only screen and (max-width: 1300px) {
     grid-template-columns: minmax(50px, min-content) 1fr;
@@ -314,12 +318,13 @@ const ActBulletWrapper = styled.div`
 
 const BulletImage = styled.img`
   width: 30px;
+  align-self: end;
 `;
 
 const BulletOne = styled.p`
   color: white;
   //padding-left: 30px;
-  align-self: center;
+  align-self: end;
   font-size: 2.3em;
   @media only screen and (max-width: 350px) {
     font-size: 13px;
@@ -351,7 +356,7 @@ const Form = styled.div`
     justify-self: center;
   }
 
-  padding: 0 20px 0 0;
+  padding: 0 10% 0 0;
   //height: 38px;
   display: grid;
   position: relative;
@@ -365,6 +370,7 @@ const Form = styled.div`
   align-self: center;
 
   width: 100%;
+  margin-top: 25px;
   transition: opacity 0.4s;
 
   //max-width: 481px;
