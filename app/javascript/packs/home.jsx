@@ -244,17 +244,17 @@ const Div1OverlayWrapper = styled.div`
   background: -moz-linear-gradient(
     0deg,
     rgba(0, 0, 0, 1) 10%,
-    rgba(255, 145, 145, 0) 34%
+    rgba(255, 145, 145, 0) 60%
   );
   background: -webkit-linear-gradient(
     0deg,
     rgba(0, 0, 0, 1) 10%,
-    rgba(255, 145, 145, 0) 34%
+    rgba(255, 145, 145, 0) 60%
   );
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 1) 10%,
-    rgba(255, 145, 145, 0) 34%
+    rgba(255, 145, 145, 0) 60%
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff9191",GradientType=1);
 
