@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState, useRef } from "react"
 import { Link, useLocation } from "react-router-dom"
 import actBackground from "../../assets/images/actBackground.png"
+import actBackgroundTest from "../../assets/images/actBackgroundTest.png"
 import mega from "../../assets/images/megav3.png"
 import cardTemplate from "../../assets/images/cardTemplate.png"
 import sampleShot from "../../assets/images/sampleShot.png"
@@ -75,7 +76,35 @@ const BGimage = styled.img`
 	bottom: 0;
 	height: 100%;
 `
+const BGimageFix = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	background: rgb(255,255,255);
+background: linear-gradient(180deg, rgba(255,255,255,1) 9%, rgba(218,218,218,1) 20%, rgba(148,148,148,1) 28%, rgba(46,46,46,0.9177870977492559) 42%, rgba(0,0,0,0.6320728120349702) 50%, rgba(0,0,0,0.44439774200695903) 60%, rgba(0,0,0,0.013025192987351164) 82%); 
+	);
+`
 
+const BGimageFixBottom = styled.div`
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	background: rgb(255, 255, 255);
+	background: linear-gradient(
+		0deg,
+		rgba(255, 255, 255, 1) 9%,
+		rgba(218, 218, 218, 1) 20%,
+		rgba(148, 148, 148, 1) 28%,
+		rgba(46, 46, 46, 0.9177870977492559) 42%,
+		rgba(0, 0, 0, 0.6320728120349702) 50%,
+		rgba(0, 0, 0, 0.44439774200695903) 60%,
+		rgba(0, 0, 0, 0.013025192987351164) 82%
+	);
+`
 const Mega = styled.img`
 	/* @media only screen and (max-width: 1400px) {
    width: 85%;
@@ -160,7 +189,7 @@ const ActSection = styled.section`
 	transition: opacity 0.4s;
 	//padding-bottom: 40px;
 	//margin-top: 30px;
-	padding-top: 30px;
+	padding-top: 60px;
 	//z-index: ${(props) => (props.showCards || props.showLetter ? "0" : "10")};
 	z-index: ${(props) => (props.showCards ? "0" : "10")};
 `
@@ -3559,7 +3588,8 @@ function Act(props, ref) {
 	return (
 		<ActWrapper ref={LookupScrollToRef}>
 			<BGimage src={actBackground} ref={myRef}></BGimage>
-
+			<BGimageFix />
+			<BGimageFixBottom />
 			<ActGrid>
 				<ActSection showCards={showCards}>
 					{/* <ProgressBarz>
