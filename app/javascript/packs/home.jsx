@@ -390,6 +390,7 @@ const ItemWrapper = styled.div`
 //
 
 const gsapSwipeAnimation = () => {
+  console.log("gsapSwipeAnimationgsapSwipeAnimationgsapSwipeAnimation");
   gsap.to(
     ".s1",
 
@@ -432,6 +433,9 @@ const gsapSwipeAnimation = () => {
 };
 
 const gsapSwipeAnimationReverse = () => {
+  console.log(
+    "gsapSwipeAnimationReversegsapSwipeAnimationReversegsapSwipeAnimationReverse"
+  );
   gsap.to(".s1", {
     x: "500%",
     duration: 0.2,
@@ -727,6 +731,7 @@ function Home(props) {
   }
 
   function forwardDesktopDotLogic() {
+    console.log("=> forwardDesktopDotLogic");
     if (activeDot + 3 == visibleDots[2] || activeDot + 3 == visibleDots[1]) {
       setVisibleDots((pre) => {
         let newArray = [];
@@ -997,6 +1002,7 @@ function Home(props) {
   }
 
   function forwardStoryLogic(mode, direction) {
+    console.log("forwardStoryLogic <==");
     if (mode == "desktop") {
       if (activeStories[0] == 1) {
         let nv0 = activeStories[0] - 1;
@@ -1008,7 +1014,7 @@ function Home(props) {
         setActiveStories([nv0, nv1]);
       }
 
-      gsapSwipeAnimationReverse();
+      gsapSwipeAnimation();
     } else if (mode == "cellphone") {
       console.log("storiesLeft >= 2 and mode cellphone");
       if (activeStories[0] > 0) {
@@ -1018,7 +1024,7 @@ function Home(props) {
 
         setActiveStories([nv0, nv1]);
 
-        gsapSwipeAnimationReverse();
+        gsapSwipeAnimation();
       } else {
         console.log("no more stories going forward");
       }
@@ -1033,7 +1039,7 @@ function Home(props) {
     whatMode.current = mode;
 
     console.log(
-      "Entering HandleReverse, MODE is " +
+      "Entering HandleForward, MODE is " +
         mode +
         " and direction is " +
         whatDirection.current
