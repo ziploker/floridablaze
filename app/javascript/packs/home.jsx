@@ -1347,10 +1347,15 @@ function Home(props) {
     }
   );
 
+  const onMouseEnter = (e) => {
+    console.log("inSide on<MouseEnter");
+    console.log(e);
+  };
+
   return (
     <HomeWrapper showOffer={props.showOffer}>
       {/* <h1>{innerWidth}</h1> */}
-      <News className="box">
+      <News onMouseEnter={onMouseEnter} className="box">
         {/* <LeftFiller /> */}
         <LeftArrowButton onClick={() => handleForwardPage("desktop")}>
           <LeftArrow src={scrollArrow}></LeftArrow>
