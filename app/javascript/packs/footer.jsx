@@ -11,9 +11,15 @@ const FooterWrapper = styled.div`
 		minmax(20px, 100px) minmax(133px, 1fr) minmax(133px, 1fr)
 		minmax(20px, 100px); */
 
-	grid-template-columns: 1fr 1.5fr 1fr 1.5fr 1fr;
+	//grid-template-columns: 1fr 1.5fr 1fr 1.5fr 1fr;
+	grid-template-columns: minmax(2%, 8%) 1fr 1fr 5fr minmax(2%, 8%);
+	grid-template-rows: 125px min-content min-content;
+	grid-template-areas:
+		".    .     .       .      ."
+		". colOne colTwo colThree ."
+		" . . . legal legal";
 	//grid-template-rows: minmax(160px, 40%) 1fr;
-	grid-template-rows: initial;
+	//grid-template-rows: initial;
 	//grid-template-rows: 0px 1fr;
 	height: auto;
 
@@ -60,103 +66,105 @@ const FooterImage = styled.img`
 `
 
 const SubscribeSection = styled.div`
-  //@media only screen and (max-width: 985px) {
-  grid-area: 2/2/3/-1;
-  justify-self: start;
-  align-self: start;
-  //}
+	//@media only screen and (max-width: 985px) {
+	//grid-area: 2/2/3/-1;
+	grid-area: colThree;
+	justify-self: start;
+	align-self: start;
+	//}
 
-  //margin: 25px 0px 40px 0px;
-  z-index: 3;
-  background: black;
-  //grid-area: 2/4/3/5;
-  //justify-self: end;
-  //align-self: start;
-  margin: 40px 0 20px 0;
+	//margin: 25px 0px 40px 0px;
+	z-index: 3;
+	background: black;
+	//grid-area: 2/4/3/5;
+	//justify-self: end;
+	//align-self: start;
+	//margin: 40px 0 20px 0;
 
-  h2 {
-    margin: 0px 0px 40px 0px;
+	h2 {
+		margin: 0px 0px 40px 0px;
 
-    span {
-      color: white;
-      font-size: 12px;
+		span {
+			color: white;
+			font-size: 12px;
 
-      letter-spacing: normal;
-      line-height: 19px;
-      line-height: 22px;
-      font-style: normal;
-      font-weight: 400;
+			letter-spacing: normal;
+			line-height: 19px;
+			line-height: 22px;
+			font-style: normal;
+			font-weight: 400;
 
-      svg {
-        margin: 0px 8px 0px 0px;
-      }
-    }
-  }
+			svg {
+				margin: 0px 8px 0px 0px;
+			}
+		}
+	}
 
-  input {
-    display: ${(props) => (props.signupComplete ? "none" : "initial")};
-    background: 0 0;
-    border: none;
-    border: 1px solid #deb15c
+	input {
+		display: ${(props) => (props.signupComplete ? "none" : "initial")};
+		background: 0 0;
 
-    margin-bottom: 15px;
-    padding: 10px;
-    font-size: 2em;
-    color: #e4e4e4;
-    width: 100%;
-    height: 60px;
-    center ::placeholder {
-      /* Chrome, Firefox, Opera, Safari 10.1+ */
-      color: #e3e3e3;
-      opacity: 1; /* Firefox */
-    }
+		border: 1px solid #deb15c;
 
-    :-ms-input-placeholder {
-      /* Internet Explorer 10-11 */
-      color: #7f7f7f;
-    }
+		margin-bottom: 15px;
+		padding: 10px;
+		font-size: 1.2em;
+		color: #e4e4e4;
+		width: 100%;
+		height: 60px;
+		center ::placeholder {
+			/* Chrome, Firefox, Opera, Safari 10.1+ */
+			color: #e3e3e3;
+			opacity: 1; /* Firefox */
+		}
 
-    ::-ms-input-placeholder {
-      /* Microsoft Edge */
-      color: #7f7f7f;
-    }
-  }
+		:-ms-input-placeholder {
+			/* Internet Explorer 10-11 */
+			color: #7f7f7f;
+		}
 
-  button {
-    font-style: normal;
-    font-weight: 400;
-    min-width: 200px;
-    background-color: #deb15c;
-    color: #000000;
-    letter-spacing: 0;
-    line-height: 26px;
-    text-decoration: none;
-    -webkit-transition: all 0.2s;
-    transition: all 0.2s;
-    overflow: visible;
-    text-align: center;
-    text-transform: capitalize;
-    white-space: nowrap;
-    padding: 12px 45px;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    border-radius: 0;
-    border: 0;
-  }
+		::-ms-input-placeholder {
+			/* Microsoft Edge */
+			color: #7f7f7f;
+		}
+	}
+
+	button {
+		font-style: normal;
+		font-weight: 400;
+		min-width: 200px;
+		background-color: #deb15c;
+		color: #000000;
+		letter-spacing: 0;
+		line-height: 26px;
+		text-decoration: none;
+		-webkit-transition: all 0.2s;
+		transition: all 0.2s;
+		overflow: visible;
+		text-align: center;
+		text-transform: capitalize;
+		white-space: nowrap;
+		padding: 12px 45px;
+		display: -webkit-inline-box;
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		border-radius: 0;
+		border: 0;
+	}
 `
 
 const Follow = styled.div`
 	//@media only screen and (max-width: 985px) {
-	grid-area: 1/4/2/5;
+	//grid-area: 1/4/2/5;
+	grid-area: colTwo;
 
-	padding-top: 170px;
+	//padding-top: 170px;
 	//}
 
 	//grid-area: 2/3/3/4;
@@ -167,17 +175,17 @@ const Follow = styled.div`
 	z-index: 3;
 
 	h1 {
-		font-size: 4em;
-		margin-bottom: 30px;
+		font-size: 2em;
+		margin-bottom: 15px;
 	}
 
 	ul {
 		list-style-type: none;
 		li {
-			margin-bottom: 30px;
+			margin-bottom: 5px;
 		}
 		a {
-			font-size: 1.8em;
+			font-size: 1em;
 
 			letter-spacing: normal;
 			line-height: 19px;
@@ -191,9 +199,9 @@ const Follow = styled.div`
 
 const Explore = styled.div`
 	//@media only screen and (max-width: 985px) {
-	grid-area: 1/2/2/3;
-
-	padding-top: 170px;
+	//grid-area: 1/2/2/3;
+	grid-area: colOne;
+	//padding-top: 170px;
 	//}
 	//grid-area: 2/2/3/3;
 	color: white;
@@ -204,19 +212,19 @@ const Explore = styled.div`
 	//min-width: 360px;
 
 	h1 {
-		font-size: 4em;
-		margin-bottom: 30px;
+		font-size: 2em;
+		margin-bottom: 15px;
 	}
 
 	ul {
 		list-style-type: none;
 
 		li {
-			margin-bottom: 30px;
+			margin-bottom: 5px;
 		}
 
 		a {
-			font-size: 1.8em;
+			font-size: 1em;
 
 			letter-spacing: normal;
 			line-height: 19px;
@@ -230,17 +238,17 @@ const Explore = styled.div`
 
 const Legal = styled.div`
 	//@media only screen and (max-width: 985px) {
-	grid-area: 4/2/5/-1;
-
+	/* grid-area: 4/2/5/-1; */
+	grid-area: legal;
 	align-self: end;
-
+	justify-self: start;
 	padding: 20px 0px;
 	background-color: black;
 	z-index: 3;
 	font-size: 0.8em;
 	//grid-area: 3/3/4/5;
 	//align-self: end;
-	justify-self: start;
+
 	color: white;
 	//width: 100%;
 	text-align: center;
@@ -264,9 +272,9 @@ const TopSectionWrapper = styled.div`
 	}
 
 	h2 {
-		font-size: 1.8em;
+		font-size: 2em;
 		color: white;
-		margin-top: 4px;
+		//margin-top: 4px;
 	}
 
 	form {

@@ -122,16 +122,6 @@ const News = styled.div`
   }
 `;
 
-const LeftArrow = styled.img`
-  max-width: 30px;
-
-  position: relative;
-  justify-self: end;
-  align-self: center;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-`;
-
 const LinkWrapper1 = styled(Link)`
   //grid-area: 1/1/3/2;
   //grid-area: one;
@@ -309,7 +299,7 @@ const LeftFiller = styled.div`
 
 const LeftArrowButton = styled.div`
   cursor: pointer;
-  //width: 100%;
+  width: 6%;
   height: 100%;
   background: rgba(247, 247, 247, 0.27);
   border: 0;
@@ -321,6 +311,16 @@ const LeftArrowButton = styled.div`
   &:hover {
     background: rgba(247, 247, 247, 0.6);
   }
+`;
+
+const LeftArrow = styled.img`
+  width: 100%;
+
+  position: relative;
+  justify-self: center;
+  align-self: center;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 `;
 
 const RightArrowButton = styled.button`
@@ -338,7 +338,7 @@ const RightArrowButton = styled.button`
     background: rgba(54, 54, 54, 0.075);
   } */
   cursor: pointer;
-  //width: 100%;
+  width: 6%;
   height: 100%;
   background: rgba(247, 247, 247, 0.27);
   border: 0;
@@ -355,7 +355,7 @@ const RightArrowButton = styled.button`
 `;
 
 const RightArrow = styled.img`
-  max-width: 30px;
+  width: 100%;
 
   position: relative;
   justify-self: start;
