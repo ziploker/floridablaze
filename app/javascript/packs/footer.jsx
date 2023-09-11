@@ -12,7 +12,7 @@ const FooterWrapper = styled.div`
 		minmax(20px, 100px); */
 
 	//grid-template-columns: 1fr 1.5fr 1fr 1.5fr 1fr;
-	grid-template-columns: minmax(2%, 8%) 1fr 1fr 5fr minmax(2%, 8%);
+	grid-template-columns: 8% 1fr 1fr 5fr 8%;
 	grid-template-rows: 125px min-content min-content;
 	grid-template-areas:
 		".    .     .       .      ."
