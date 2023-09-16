@@ -104,7 +104,7 @@ const SignupWrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	grid-template-columns: minmax(2%, 8%) 1fr 1fr minmax(2%, 8%);
+	grid-template-columns: 8% 1fr 1fr 8%;
 	//grid-template-rows: 1fr minmax(min-content, max-content) 1fr;
 	//padding-top: 60px;
 	//padding-bottom: 20px;
@@ -318,7 +318,7 @@ const LoginCard = styled.div`
 	//margin-left: 20px;
 	//margin-top: 100px;
 	//padding: 50px 0px 0px 0px;
-	padding: 35px 20px 0px 20px;
+	padding: 35px 20px 0px 0px;
 
 	background-color: #fff;
 	//border: 1px solid transparent;
@@ -486,7 +486,7 @@ const LeftSection = styled.div`
 
   h1 {
     color: rgb(6, 7, 1, 0.9);
-    padding: 0 0 0 20px;
+    padding: 0 0 0 0px;
     margin 0;
     font-size: 5em;
     word-break: keep-all;
