@@ -26,6 +26,7 @@ const Card = styled.div`
 
 	justify-self: start;
 	align-self: center;
+	background-color: RGB(244,244,244);
 `
 
 const H2 = styled.h2`
@@ -114,8 +115,8 @@ const Input = styled.input`
 	box-sizing: border-box;
 	margin: 0px;
 	width: 100%;
-	height: 60px;
-	padding-left: 20px;
+	height: 44px;
+	padding-left: 50px;
 	box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.4);
 
 	padding-right: 8px;
@@ -144,7 +145,7 @@ const Button = styled.button`
 	width: 100%;
 	margin-bottom: 1rem;
 	font-size: 2em;
-	height: 100px;
+	height: 60px;
 	cursor: pointer;
 
 	background: linear-gradient(to bottom, #5fcc61, #318e33);
@@ -200,9 +201,9 @@ const LoginWrapper = styled.div`
 	//grid-template-columns: minmax(170px,350px) minmax(340px,600px);
 	//grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
 
-	grid-template-columns:
-		minmax(20px, 40px) minmax(250px, 450px) minmax(150px, 600px)
-		minmax(40px, 1fr);
+	// grid-template-columns:
+	// 	minmax(20px, 40px) minmax(250px, 450px) minmax(150px, 600px)
+	// 	minmax(40px, 1fr);
 
 	grid-area: 1/1/-1/-1;
 	grid-column-gap: 0.5em;
@@ -210,6 +211,8 @@ const LoginWrapper = styled.div`
 	padding-bottom: 20px;
 	text-align: center;
 	//width: 100vw;
+
+	
 `
 
 const LogoWrapper = styled.div`

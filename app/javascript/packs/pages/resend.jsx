@@ -144,9 +144,9 @@ function Resend(props) {
         
         <LogoWrapper>
           <Link to="/">
-            <Logo src={logoImg} />
+            {/* <Logo src={logoImg} /> */}
           </Link>   
-          <H2>Reset your password</H2>
+          <H2>Resend Confirmation Email</H2>
         </LogoWrapper>
         
         
@@ -166,7 +166,7 @@ function Resend(props) {
               required/>
           </FormItem>
 
-          <Button type="submit">Reset</Button>
+          <Button type="submit">Resend</Button>
         
         </Form>
         
@@ -177,7 +177,7 @@ function Resend(props) {
         
       </Card>
       
-      <Link style={{fontSize: ".5em", textDecoration: "underline"}} to="/login">Already have an account?</Link>
+      {/* <Link style={{fontSize: ".5em", textDecoration: "underline"}} to="/login">Already have an account?</Link> */}
 
     </LoginWrapper>
   );

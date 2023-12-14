@@ -341,11 +341,11 @@ function Login(props) {
 					) : null}
 				</ErrorWrapper>
 			</CardNew>
-			{/* 
-      <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/signup">Dont have an account? </a>
-      <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/forgot">Forgot password?? </a>
-      <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/resend">Resend Email </a>
-      */}
+			
+      <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/signup">Dont have an account? </a><br/>
+      <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/forgot">Forgot password?? </a><br/>
+      <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/resend">Resend Email </a><br/>
+     
 		</LoginWrapperNew>
 	);
 }

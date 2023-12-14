@@ -66,13 +66,13 @@ class SparksController < ApplicationController
             
             if @seeIfStoryExists.blank?
                 puts "@seeIfStoryExists.blank? was true, so no story was found, either bad params or no story found, redirect to root path with no params, aka homepage, and exit controller "
-                redirect_to root_path
+                #redirect_to root_path
                 return false
             end
             
             if @seeIfStoryExists.nil?
                 puts "@seeIfStoryExists.blank? was true, so no story was found, either bad params or no story found, redirect to root path with no params, aka homepage, and exit controller "
-                redirect_to root_path
+                #redirect_to root_path
                 return false
             end
         

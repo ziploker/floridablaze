@@ -144,7 +144,7 @@ function Login(props) {
         
         <LogoWrapper>
           <Link to="/">
-            <Logo src={logoImg} />
+            {/* <Logo src={logoImg} /> */}
           </Link>   
           <H2>Reset your password</H2>
         </LogoWrapper>

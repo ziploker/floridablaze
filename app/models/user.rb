@@ -60,6 +60,8 @@ class User < ApplicationRecord
     end
     
     def generate_password_token!
+        puts "in GPTTT"
+        puts "generate_token " + generate_token
         self.reset_password_token = generate_token
         self.reset_password_sent_at = Time.now.utc
     

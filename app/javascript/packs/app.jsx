@@ -291,6 +291,7 @@ function App({ d }) {
   const initialOptions = {
     "client-id":
       //"ASxYc6NaKEnx3gEKnVzv60MvRjC2tM4F-CFZgepkJwnAL1Cr9c3MfgRtr9OCMqOa-egcSu3dEpee205c",
+      //"ARoxFsYDjhh3TqvSuq-WCN4jIEIFuyTm_HUPob8uDtr0H8c-A4ko4Tb2X1A9Sl2pwTRERBClsNWrleR6",
       "ARoxFsYDjhh3TqvSuq-WCN4jIEIFuyTm_HUPob8uDtr0H8c-A4ko4Tb2X1A9Sl2pwTRERBClsNWrleR6",
   };
 
@@ -315,6 +316,7 @@ function App({ d }) {
         />
 
         <Routes>
+        
           <Route
             exact
             path="/"
@@ -345,6 +347,7 @@ function App({ d }) {
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/resend" element={<Resend />} />
           <Route exact path="/change_pw/:token" element={<Change />} />
+          
           <Route
             exact
             path="/edit"

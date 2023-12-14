@@ -4,6 +4,8 @@ class RegistrationsController < ApplicationController
 
    
     require 'mailgun-ruby'
+
+   
        
     ####################  SIGN_UP  ###############################
     def create
@@ -111,8 +113,24 @@ class RegistrationsController < ApplicationController
     def resend
 
         puts "in the registration controllers resend function =============="
-        
-        ###sendgrid_api = Rails.application.credentials.dig(:SENDGRID_API)
+
+        @user = User.find_by(email: params[:user][:email].downcase)
+
+        if @user != nil
+   
+            if @user.email_confirmed == "true"
+                
+                render json: {
+
+                    status: "green",
+                    user: @user,
+                    error: {auth: ["Your account is already active"]},
+                    #mgResult: result
+                }
+
+            else
+
+                ###sendgrid_api = Rails.application.credentials.dig(:SENDGRID_API)
         mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
         
         mg_client = Mailgun::Client.new mailgun_api
@@ -196,6 +214,22 @@ class RegistrationsController < ApplicationController
                 }
             end
         end
+
+
+            end
+        else
+            render json: {
+
+                    status: "pink",
+                    user: @user,
+                    error: {auth: ["Can't find account, check email."]},
+                    #mgResult: result
+                }
+        end
+
+
+        
+        
 
         puts "leaving the registration controllers resend function =============="
 
@@ -439,6 +473,8 @@ class RegistrationsController < ApplicationController
     def forgot
     
         # check if email is present
+
+        puts params[:user][:email] + "------------------"
         if params[:user][:email].blank? 
             
             return render json: {
@@ -451,8 +487,11 @@ class RegistrationsController < ApplicationController
         email = params[:user][:email].downcase
         puts email
         @user = User.find_by(email: email) 
+        puts @user
+        
 
         if @user.present?
+            puts "11111111111"
             @user.generate_password_token!
             
             host = ""
@@ -461,56 +500,111 @@ class RegistrationsController < ApplicationController
             if Rails.env.production?
                 host = "https://www.floridablaze.io"
             else
-                host = "127.0.0.1:3000"
+                host = "http://localhost:3000"
             end
             
             theLink = host + "/change_pw/" + @user.reset_password_token
-            
-            sendgrid_api = Rails.application.credentials.dig(:SENDGRID_API)
-            
-            email = SendGrid::Mail.new
-            email.from = Email.new(email: 'admin@Floridablaze.io', name: "Floridablaze Team")
-            
-            email.subject = "** floridablaze password reset **"
 
-            per = Personalization.new
+            mailgun_api = Rails.application.credentials.dig(:MAILGUN_API)
+            mg_client = Mailgun::Client.new mailgun_api
 
-            per.add_to(Email.new(email: @user.email, name: @user.first))
+            message_params =  { 
+                
+                from: 'admin@mg.floiridablaze.io',
+                to:   @user.email,
+                "h:List-Unsubscribe": "<mailto:admin@floridablaze.io?subject=unsubscribe>",
+                "h:Reply-To": "FlordaBlaze Staff <admin@floridablaze.io>",
+                subject: '** floridablaze password reset **',
+                html:    "
+                
+                    <html>
+                        <body>
+                            <h1> Hi #{@user.full_name},</h1>
+                            
+                            <p> To reset your Floridablaze password please click on the link below.<br><br>
+                            
+
+                            #{confirm_email_registration_url(@user.reset_password_token)}<br></p>
+
+                            #{theLink}
+                            <p>Thank you,<br>
+
+                            
+                            <em>-Floridablaze Team</em></p><br><br><br>
+
+                            If You wish to unsubscribe click <a href=%unsubscribe_url%>HERE</a>
+
+                            
+
+
+
+
+
+
+                           
+                        </body>
+                    </html>"
+
+            }
+
+            
+            
+            
+            
+
+            # Send your message through the client
+            
+            mg_client.send_message 'mg.floridablaze.io', message_params
+
+            result = mg_client.get("mg.floridablaze.io/events", {:event => 'delivered'})
+
+
+            
+            ##sendgrid_api = Rails.application.credentials.dig(:SENDGRID_API)
+            
+            ##email = SendGrid::Mail.new
+            ##email.from = Email.new(email: 'admin@Floridablaze.io', name: "Floridablaze Team")
+            
+            ##email.subject = "** floridablaze password reset **"
+
+            ##per = Personalization.new
+
+            ##per.add_to(Email.new(email: @user.email, name: @user.first))
             #per.add_cc(Email.new(email: @user.email, name: 'cc'))
             #per.add_bcc(Email.new(email: @user.email, name: 'bcc'))
-            per.add_substitution(Substitution.new(key: "user_name", value: @user.first))
+            ##per.add_substitution(Substitution.new(key: "user_name", value: @user.first))
 
-            per.add_substitution(Substitution.new(key: "reset_link", value: theLink))
+            ##per.add_substitution(Substitution.new(key: "reset_link", value: theLink))
 
-            email.add_personalization(per)
+            ##email.add_personalization(per)
 
             #email.add_content(Content.new(type: 'text/plain', value: 'some text here user_name'))
-            email.add_content(Content.new(type: 'text/html', value: '
+            # # email.add_content(Content.new(type: 'text/html', value: '
                 
-                <html>
-                    <body>
-                        <h1> Hi user_name,</h1>
-                        <p> To change your Floridablaze password please click on the link below.<br><br>
+            # #     <html>
+            # #         <body>
+            # #             <h1> Hi user_name,</h1>
+            # #             <p> To change your Floridablaze password please click on the link below.<br><br>
 
-                        reset_link<br></p>
+            # #             reset_link<br></p>
 
-                        <p>Thank you,<br>
-                        <em>-Floridablaze Team</em></p>
+            # #             <p>Thank you,<br>
+            # #             <em>-Floridablaze Team</em></p>
 
-                    </body>
-                </html>'))
+            # #         </body>
+            # #     </html>'))
                     
                     
                 
 
             #email.template_id = "6ede18bb-2eba-4958-8a57-43a58a559a0a"
-            sg = SendGrid::API.new(api_key: sendgrid_api)
+            # # sg = SendGrid::API.new(api_key: sendgrid_api)
 
-            response = sg.client.mail._('send').post(request_body: email.to_json)
+            # # response = sg.client.mail._('send').post(request_body: email.to_json)
 
-            puts response.status_code.to_s
-            puts response.body.to_s
-            puts response.headers.to_s
+            # # puts response.status_code.to_s
+            # # puts response.body.to_s
+            # # puts response.headers.to_s
             
             render json: {
                 
@@ -545,10 +639,13 @@ class RegistrationsController < ApplicationController
 
         user = User.find_by(reset_password_token: token)
 
+        puts "user is  + " + user.to_s
+
         if user.present? && user.password_token_valid?
-        
-            
-            if user.reset_password!(params[:user][:password])
+        puts "user.present? and user pw token valid"
+
+        if params[:user][:change_password] == params[:user][:change_password_confirmation]
+            if user.reset_password!(params[:user][:change_password])
                 render json: {
                     status: "green",
                     error: {auth: ["Password change successful!!"]}
@@ -560,6 +657,17 @@ class RegistrationsController < ApplicationController
                 }
             end
         else
+            render json: {
+                    status: "pink",
+                    error: {auth: ["Passwords don't match"]}
+                }
+        end
+            
+            
+        else
+            puts "user.present? false and/or user pw token NOT valid"
+
+            
             render json: {
                 status: "pink",
                 error: {auth:  ["Link not valid or expired. Try generating a new link."]}

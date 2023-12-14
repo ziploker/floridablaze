@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import axios from "axios";
 //import logoImg from "../../../assets/images/logoPlaceholder.jpg";
 import redX from "../../../assets/images/redX.png";
@@ -28,7 +28,8 @@ import {
 function Login(props) {
 	console.log("==============Change_pw===============");
 	console.log("==============Change_pw Props===============", props);
-
+	const { token } = useParams();
+	console.log("token", token)
 	const [state, setState] = useState({
 		change_password: "",
 		change_passwordFieldActive: false,
@@ -61,13 +62,23 @@ function Login(props) {
 		////send info into backend heyyohhhh/////
 		event.preventDefault();
 		//const mode = process.env.NODE_ENV =="development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
+		console.log("state.passwordstate.password, ", state.password)
+		console.log("schange_password_confirmation, ", state.change_password_confirmation)
+		setState({
+			...state,
+			status: "",
+			errors: {}
+		});
+
+		
 		axios
 			.post(
-				"/registrations/" + props.match.params.token + "/reset",
+				"/registrations/" + token + "/reset",
 				{
 					user: {
-						password: state.password,
-						password_confirmation: state.password_confirmation,
+						change_password: state.change_password,
+						change_password_confirmation: state.change_password_confirmation,
+						test: "1234"
 					},
 				},
 				{ withCredentials: true }
@@ -78,7 +89,7 @@ function Login(props) {
 				if (response.data.status == "green") {
 					setState({
 						...state,
-						state: response.data.status,
+						status: response.data.status,
 						errors: response.data.error,
 					});
 
@@ -162,7 +173,7 @@ function Login(props) {
 			<Card>
 				<LogoWrapper>
 					<Link to="/">
-						<Logo src={logoImg} />
+						{/* <Logo src={logoImg} /> */}
 					</Link>
 
 					<H2>Reset your password</H2>
@@ -215,20 +226,16 @@ function Login(props) {
 					<XorCheckIcon
 						status={state.status}
 						src={
-							state.status == ""
-								? ""
-								: state.status == "pink"
-								? redX
-								: greenCheck
+							state.status == "pink" ? redX : greenCheck
 						}
 					/>
 					{errorMessages}
 				</ErrorWrapper>
 			</Card>
-			<Link style={{ fontSize: ".5em" }} to="/forgot">
+			{/* <Link style={{ fontSize: ".5em" }} to="/forgot">
 				Forgot password??{" "}
 				<span style={{ textDecoration: "underline" }}>click here</span>
-			</Link>
+			</Link> */}
 		</LoginWrapper>
 	);
 }

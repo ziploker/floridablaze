@@ -245,6 +245,8 @@ const LoadingActivitySpinner = styled.div`
 	justify-self: center;
 	align-self: center;
 `;
+
+console.log("type of window is ", typeof window)
 if (typeof window !== "undefined") {
 	const formData = new FormData();
 }
@@ -342,7 +344,7 @@ function Edit(props) {
 		});
 
 		e.preventDefault();
-
+		const formData = new FormData();
 		formData.append("user[full_name]", state.full_name);
 
 		formData.append("user[email]", state.email);

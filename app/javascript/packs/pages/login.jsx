@@ -25,8 +25,8 @@ import {
 } from "./AuthForm";
 
 const LoginWrapperNew = styled.div`
-	z-index: 10;
-
+	z-index: 11;
+	width: 35vw;
 	position: absolute;
 	top: ${(props) => (props.loginClicked ? "85px" : "-500px")};
 	right: 0;
@@ -93,7 +93,7 @@ const LogoWrapperNew = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	position: relative;
 `;
 ///////////////////////////////////  LOG_IN_PAGE //////////////////////////////
@@ -254,10 +254,10 @@ function Login(props) {
 			<CardNew>
 				<LogoWrapperNew>
 					<CloseWindow onClick={closeLoginWindow}>&#10060;</CloseWindow>
-					<a href="/">
+					{/* <a href="/">
 						<Logo src={userIcon} />
 					</a>
-					<H2>Log in </H2>
+					<H2>Log in </H2> */}
 				</LogoWrapperNew>
 
 				<Form onSubmit={handleSubmit}>
@@ -308,7 +308,7 @@ function Login(props) {
 						<label
 							style={{
 								marginLeft: "10px",
-								fontSize: ".6em",
+								fontSize: ".8em",
 							}}
 						>
 							remember me:
@@ -330,11 +330,12 @@ function Login(props) {
 					{errorMessages}
 				</ErrorWrapper>
 			</CardNew>
-			{/* 
-      <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/signup">Dont have an account? </a>
-      <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/forgot">Forgot password?? </a>
-      <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/resend">Resend Email </a>
-      */}
+			
+      {/* <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/signup">Dont have an account? </a><br/>
+      <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/forgot">Forgot password?? </a><br/>*/}
+      {/* <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/resend">Resend Confirmation Email </a><br/>  */}
+     <Link style={{fontSize: "12px"}} to="/forgot">Reset Password</Link><br/><br/>
+	 <Link style={{fontSize: "12px"}} to="//resend">Resend Confirmation Email</Link>
 		</LoginWrapperNew>
 	);
 }
