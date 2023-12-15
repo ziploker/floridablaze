@@ -45,7 +45,7 @@ development:
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  #port: 5432
+  port: 5432
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -86,7 +86,7 @@ test:
 production:
   <<: *default
   database: blogv3_production
-  username: blogv3
+  username: blogv3_production_user
   password: <%= ENV['BLOGV3_DATABASE_PASSWORD'] %>
   url: <%= ENV['DATABASE_URL'] %>
 
