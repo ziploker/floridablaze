@@ -75,6 +75,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_13_172441) do
     t.json "postgrid_full_object", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "formatted_date"
+    t.string "mailgun_id"
+    t.string "mailgun_recipient_email"
     t.index ["user_id"], name: "index_communications_on_user_id"
   end
 

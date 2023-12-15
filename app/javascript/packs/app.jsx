@@ -316,7 +316,6 @@ function App({ d }) {
         />
 
         <Routes>
-        
           <Route
             exact
             path="/"
@@ -344,10 +343,35 @@ function App({ d }) {
               />
             }
           />
-          <Route path="/forgot" element={<Forgot />} />
-          <Route path="/resend" element={<Resend />} />
-          <Route exact path="/change_pw/:token" element={<Change />} />
-          
+          <Route
+            path="/forgot"
+            element={
+              <Forgot
+                loginClicked={loginClicked}
+                setLoginClicked={setLoginClicked}
+              />
+            }
+          />
+          <Route
+            path="/resend"
+            element={
+              <Resend
+                loginClicked={loginClicked}
+                setLoginClicked={setLoginClicked}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/change_pw/:token"
+            element={
+              <Change
+                loginClicked={loginClicked}
+                setLoginClicked={setLoginClicked}
+              />
+            }
+          />
+
           <Route
             exact
             path="/edit"

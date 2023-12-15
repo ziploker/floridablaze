@@ -161,7 +161,7 @@ class RegistrationsController < ApplicationController
                 
                 <html>
                         <body>
-                            <h1> Hi #{@user.first},</h1>
+                            <h1> Hi #{@user.full_name},</h1>
                             
                             <p> Thank you for registering at Floridablaze<br>
                             Please navigate to the link below to activate your account<br><br>
