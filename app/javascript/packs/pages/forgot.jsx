@@ -38,6 +38,21 @@ function Login(props) {
     errors: {},
   });
 
+  const [onHover, setOnHover] = React.useState(false);
+ 
+
+  var linkStyle;
+
+
+  function toggleHoverEnter(){
+
+    setOnHover(true)
+  }
+  function toggleHoverLeave(){
+
+    setOnHover(false)
+  }
+
   // to activate the input field while typing
   function activateField(e) {
     setState({
@@ -54,6 +69,35 @@ function Login(props) {
         [e.target.name + "FieldActive"]: false,
       });
     }
+  }
+
+  if (onHover) {
+    linkStyle = {
+      border: "1px solid #fcacac",
+      //borderRadius: "20px", 
+      transition: "all .4s ease-out", 
+      fontSize: ".9em", 
+      cursor: "pointer", 
+      position: "absolute", 
+      top: "0", 
+      right: "0", 
+      textDecoration: "none",
+      padding: "6px"}
+
+  } else {
+    linkStyle = {
+      border: "1px solid #f4f4f4",
+      transition: "all .4s ease-out", 
+      fontSize: ".9em", 
+      cursor: "pointer", 
+      position: "absolute", 
+      top: "0", 
+      right: "0", 
+      textDecoration: "none",
+      padding: "6px"
+    }
+
+
   }
 
   ///////////////////////////////////  HANDLE_SUBMIT ///////////////////////////
@@ -152,7 +196,7 @@ function Login(props) {
     <LoginWrapper>
       <Card>
         <LogoWrapper>
-          <Link to="/">{/* <Logo src={logoImg} /> */}</Link>
+        <Link style={linkStyle} onMouseEnter={toggleHoverEnter} onMouseLeave={toggleHoverLeave} to="/">&#10060;</Link>
           <H2>Reset your password</H2>
         </LogoWrapper>
 

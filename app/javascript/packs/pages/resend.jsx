@@ -6,6 +6,7 @@ import redX from "../../../assets/images/redXmark.jpg";
 import greenCheck from "../../../assets/images/greenCheck.png";
 import tinyMan from "../../../assets/images/tinyManLogo.png";
 import lock from "../../../assets/images/lockIcon.png";
+import styled from "styled-components";
 
 import {
   Card,
@@ -24,6 +25,8 @@ import {
   ErrorWrapper,
 } from "./AuthForm";
 
+
+
 ///////////////////////////////////  LOG_IN_PAGE //////////////////////////////
 function Resend(props) {
   console.log("==============Resend===============");
@@ -38,6 +41,20 @@ function Resend(props) {
     errors: {},
   });
 
+  const [onHover, setOnHover] = React.useState(false);
+ 
+
+  var linkStyle;
+
+
+  function toggleHoverEnter(){
+
+    setOnHover(true)
+  }
+  function toggleHoverLeave(){
+
+    setOnHover(false)
+  }
   // to activate the input field while typing
   function activateField(e) {
     setState({
@@ -144,6 +161,37 @@ function Resend(props) {
     }
   }
 
+  
+  
+  if (onHover) {
+    linkStyle = {
+      border: "1px solid #fcacac",
+      //borderRadius: "20px", 
+      transition: "all .4s ease-out", 
+      fontSize: ".9em", 
+      cursor: "pointer", 
+      position: "absolute", 
+      top: "0", 
+      right: "0", 
+      textDecoration: "none",
+      padding: "6px"}
+
+  } else {
+    linkStyle = {
+      border: "1px solid #f4f4f4",
+      transition: "all .4s ease-out", 
+      fontSize: ".9em", 
+      cursor: "pointer", 
+      position: "absolute", 
+      top: "0", 
+      right: "0", 
+      textDecoration: "none",
+      padding: "6px"
+    }
+
+
+  }
+
   useEffect(() => {
     props.setLoginClicked(false);
   }, [location]);
@@ -152,7 +200,8 @@ function Resend(props) {
     <LoginWrapper>
       <Card>
         <LogoWrapper>
-          <Link to="/">{/* <Logo src={logoImg} /> */}</Link>
+        {/* <CloseWindow href="/">&#10060;</CloseWindow> */}
+        <Link style={linkStyle} onMouseEnter={toggleHoverEnter} onMouseLeave={toggleHoverLeave} to="/">&#10060;</Link>
           <H2>Resend Confirmation Email</H2>
         </LogoWrapper>
 

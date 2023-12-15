@@ -494,7 +494,6 @@ function Header(props) {
 	}
 
 	function doSomething() {
-		scrollToTop()
 		props.setLoginClicked(true)
 		props.setOpenSideMenu(false)
 	}

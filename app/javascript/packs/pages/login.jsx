@@ -111,6 +111,29 @@ function Login(props) {
     errors: {},
   });
 
+  const [onHover, setOnHover] = React.useState(false);
+ 
+
+  var linkStyle;
+
+
+  function toggleHoverEnter(){
+
+    setOnHover(true)
+  }
+  function toggleHoverLeave(){
+
+    setOnHover(false)
+  }
+
+  // to activate the input field while typing
+  function activateField(e) {
+    setState({
+      ...state,
+      [e.target.name + "FieldActive"]: true,
+    });
+  }
+
   // to activate the input field while typing
   function activateField(e) {
     setState({
@@ -247,13 +270,44 @@ function Login(props) {
     }
   }
 
+  if (onHover) {
+    linkStyle = {
+      border: "1px solid #fcacac",
+      //borderRadius: "20px", 
+      transition: "all .4s ease-out", 
+      fontSize: ".9em", 
+      cursor: "pointer", 
+      position: "absolute", 
+      top: "0", 
+      right: "0", 
+      textDecoration: "none",
+      padding: "6px"}
+
+  } else {
+    linkStyle = {
+      border: "1px solid white",
+      transition: "all .4s ease-out", 
+      fontSize: ".9em", 
+      cursor: "pointer", 
+      position: "absolute", 
+      top: "0", 
+      right: "0", 
+      textDecoration: "none",
+      padding: "6px"
+    }
+
+
+  }
+
   /////////////////////////////////// JSX /////////////////////////////////////////
 
   return (
     <LoginWrapperNew loginClicked={props.loginClicked}>
       <CardNew>
         <LogoWrapperNew>
-          <CloseWindow onClick={closeLoginWindow}>&#10060;</CloseWindow>
+        <div onClick={closeLoginWindow} style={linkStyle} onMouseEnter={toggleHoverEnter} onMouseLeave={toggleHoverLeave} to="#">&#10060;</div>
+
+          {/* <CloseWindow onClick={closeLoginWindow}>&#10060;</CloseWindow> */}
           {/* <a href="/">
 						<Logo src={userIcon} />
 					</a>
