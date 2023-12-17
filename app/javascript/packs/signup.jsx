@@ -488,7 +488,7 @@ const LeftSection = styled.div`
 
   h1 {
     color: rgb(6, 7, 1, 0.9);
-    padding: 0 0 0 0px;
+    padding: 0 0 0 10px;
     margin 0;
     font-size: 5em;
     word-break: keep-all;
