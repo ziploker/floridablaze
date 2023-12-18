@@ -2,33 +2,33 @@
 ///////////////////   IMPORTS  /////////////////////////
 ///////////////////////////////////////////////////////
 
-import React, { useEffect, useState, useRef } from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import React, { useEffect, useState, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
-import styled from "styled-components"
-import headerLeaf from "../../assets/images/headerLeafv2.png"
+import styled from "styled-components";
+import headerLeaf from "../../assets/images/headerLeafv2.png";
 //import headerLogo from '../../assets/images/logo.png'
-import Burger from "./burger"
-import SideMenu from "./sidemenu"
-import company_logo from "../../assets/images/company_logo.svg"
+import Burger from "./burger";
+import SideMenu from "./sidemenu";
+import company_logo from "../../assets/images/company_logo.svg";
 
 ////////////////////////////////////////////////////////
 //////////////   STYLED COMPONENTS  ///////////////////
 ///////////////////////////////////////////////////////
 
 const HeaderWrapper = styled.div`
-	position: relative;
-	display: grid;
-	grid-template-columns: minmax(180px, 280px) 1fr;
-	/* grid-template-rows: 85px; */
-	grid-template-rows: 65px;
-	grid-template-areas: "headerLogo headerLeaf ";
-	//min-width: 100vw;
-	max-width: 2000px;
-	overflow: hidden;
-	grid-gap: 8px;
-	z-index: 51;
-`
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(180px, 280px) 1fr;
+  /* grid-template-rows: 85px; */
+  grid-template-rows: 65px;
+  grid-template-areas: "headerLogo headerLeaf ";
+  //min-width: 100vw;
+  max-width: 2000px;
+  overflow: hidden;
+  grid-gap: 8px;
+  z-index: 51;
+`;
 
 const LogoText = styled.img`
 	//position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
@@ -92,10 +92,10 @@ position: initial;
 	@media only screen and (max-width: 385px) {
 		width: 160px;
 	} */ */
-`
+`;
 
 const HeaderLeafImage = styled.img`
-	/* @media only screen and (max-width: 1100px) {
+  /* @media only screen and (max-width: 1100px) {
     margin-right: -110px;
     max-width: 100%;
   }
@@ -104,33 +104,34 @@ const HeaderLeafImage = styled.img`
     margin-right: -200px;
   }
 */
-	@media only screen and (max-width: 330px) {
-		display: none;
-	}
+  @media only screen and (max-width: 330px) {
+    display: none;
+  }
 
-	width: 100%;
-	max-width: 520px;
-	min-width: 250px;
-	//margin-bottom: -4px;
-	//min-width: 400px;
-	height: 100%;
-	//max-width: 84%;
-	grid-area: headerLeaf;
-	justify-self: end;
-	align-self: center;
+  width: 100%;
+  max-width: 520px;
+  min-width: 250px;
+  //margin-bottom: -4px;
+  //min-width: 400px;
+  height: 100%;
+  //max-width: 84%;
+  grid-area: headerLeaf;
+  justify-self: end;
+  align-self: center;
 
-	/* opacity: ${(props) => (props.hamburgerScrolled || props.longNavScrolled ? "0" : "1")}; */
+  /* opacity: ${(props) =>
+    props.hamburgerScrolled || props.longNavScrolled ? "0" : "1"}; */
 
-	//transition: all 0.2s linear;
+  //transition: all 0.2s linear;
 
-	@media only screen and (max-width: 1000px) {
-		max-width: 420px;
-	}
-`
+  @media only screen and (max-width: 1000px) {
+    max-width: 420px;
+  }
+`;
 
 const UlWrapper = styled.div`
-	display: grid;
-`
+  display: grid;
+`;
 const LongNav = styled.nav`
 	@media only screen and (max-width: 1000px) {
 		display: none;
@@ -147,16 +148,18 @@ const LongNav = styled.nav`
 
 	//top: ${(props) => (props.longNavScrolled ? "0px" : "initial")};
 	/* color: ${(props) =>
-		props.logoScrolledChangeColor && props.scrollDir == "scrolling down" ? "black" : "white"}; */
+    props.logoScrolledChangeColor && props.scrollDir == "scrolling down"
+      ? "black"
+      : "white"}; */
 
 	color: ${(props) =>
-		props.scrollDir == "scrolling down"
-			? props.leafScrolledSoChangeColorDown
-				? "black"
-				: "white"
-			: props.leafScrolledSoChangeColorUp
-			? "white"
-			: "black"};
+    props.scrollDir == "scrolling down"
+      ? props.leafScrolledSoChangeColorDown
+        ? "black"
+        : "white"
+      : props.leafScrolledSoChangeColorUp
+      ? "white"
+      : "black"};
 	//height: 100%;
 
 	ul {
@@ -222,77 +225,77 @@ const LongNav = styled.nav`
 			}
 		}
 	}
-`
+`;
 
 const Outter = styled.div`
-	width: 100%;
-	//height: 100vh;
-	//position: relative;
-	overflow: hidden;
-	//z-index: 505;
-`
+  width: 100%;
+  //height: 100vh;
+  //position: relative;
+  overflow: hidden;
+  //z-index: 505;
+`;
 
 const HamburgerMenu = styled.div`
-	//position: relative;
-	/* grid-area: 1/2/2/3;
+  //position: relative;
+  /* grid-area: 1/2/2/3;
 	justify-self: end;
 	align-self: center;
 	padding-right: 3em; */
 
-	position: fixed;
-	//top: 25px;
-	right: 22px;
-	transition: all 0.2s linear;
-	//position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
-	top: ${(props) => (props.hamburgerScrolled ? "17px" : "25px")};
+  position: fixed;
+  //top: 25px;
+  right: 22px;
+  transition: all 0.2s linear;
+  //position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
+  top: ${(props) => (props.hamburgerScrolled ? "17px" : "25px")};
 
-	@media only screen and (max-width: 330px) {
-		//grid-area: 1/2/2/3;
-		//justify-self: end;
-		//align-self: center;
-		//padding: 0 10px;
-		//position: initial;
-		//top: initial;
-		//right: initial;
-		top: 14px;
-	}
+  @media only screen and (max-width: 330px) {
+    //grid-area: 1/2/2/3;
+    //justify-self: end;
+    //align-self: center;
+    //padding: 0 10px;
+    //position: initial;
+    //top: initial;
+    //right: initial;
+    top: 14px;
+  }
 
-	/* @media only screen and (max-width: 1000px) {
+  /* @media only screen and (max-width: 1000px) {
 		position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
 		top: ${(props) => (props.hamburgerScrolled ? "18px" : "initial")};
 	} */
 
-	button {
-		/* div {
+  button {
+    /* div {
 			background: white;
 			color: white; */
 
-		/* @media only screen and (max-width: 266px) {
+    /* @media only screen and (max-width: 266px) {
 				background: black;
 				color: black;
 			} */
-	}
+  }
 
-	/* @media only screen and (max-width: 420px) {
+  /* @media only screen and (max-width: 420px) {
 		padding-right: 1.1em;
 	} */
-`
+`;
 
 const TopBackgroundBar = styled.div`
-	position: fixed;
-	opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
-	top: 0;
-	width: 100%;
-	max-width: 2000px;
-	min-width: 269px;
-	height: 55px;
-	background-color: black;
-	//transition: all 0.1s linear;
-	z-index: 51;
-	-webkit-backface-visibility: hidden;
+  position: fixed;
+  opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
+  top: 0;
+  width: 100%;
+  max-width: 2000px;
+  min-width: 269px;
+  height: 55px;
+  background-color: black;
+  //transition: all 0.1s linear;
+  z-index: 51;
+  -webkit-backface-visibility: hidden;
 
-	background-color: #f4f4f4;
-	/* background: rgb(255, 255, 255);
+  background-color: #f4f4f4;
+  /* background: rgb(255, 255, 255);
 	background: -moz-linear-gradient(
 		90deg,
 		rgba(255, 255, 255, 0.8897758932674632) 38%,
@@ -309,291 +312,314 @@ const TopBackgroundBar = styled.div`
 		rgba(0, 0, 0, 0.9009803750601804) 59%
 	);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#000000",GradientType=1); */
-`
+`;
 
 ////////////////////////////////////////////////////////
 ///////////////   HEADER FUNCTION   ///////////////////
 ///////////////////////////////////////////////////////
 function Header(props) {
-	console.log("==============Header===============")
-	console.log("==============Header Props===============", props)
+  console.log("==============Header===============");
+  console.log("==============Header Props===============", props);
 
-	// if true, element reached the top of viewport, ready to be "sticky"
-	const [scrollDir, setScrollDir] = useState("scrolling down")
+  // if true, element reached the top of viewport, ready to be "sticky"
+  const [scrollDir, setScrollDir] = useState("scrolling down");
 
-	const [logoScrolled, setLogoScrolled] = React.useState(false)
-	const [leafScrolledSoChangeColorDown, setLeafScrolledSoChangeColorDown] = React.useState(false)
+  const [logoScrolled, setLogoScrolled] = React.useState(false);
+  const [leafScrolledSoChangeColorDown, setLeafScrolledSoChangeColorDown] =
+    React.useState(false);
 
-	const [leafScrolledSoChangeColorUp, setLeafScrolledSoChangeColorUp] = React.useState(false)
+  const [leafScrolledSoChangeColorUp, setLeafScrolledSoChangeColorUp] =
+    React.useState(false);
 
-	const [hamburgerScrolled, setHamburgerScrolled] = React.useState(false)
-	const [longNavScrolled, setLongNavScrolled] = React.useState(false)
+  const [hamburgerScrolled, setHamburgerScrolled] = React.useState(false);
+  const [longNavScrolled, setLongNavScrolled] = React.useState(false);
 
-	// initial distance from element to top of viewport
-	const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(26.75)
-	const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] = useState(30.5)
-	const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(19.366668701171875)
+  // initial distance from element to top of viewport
+  const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(26.75);
+  const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] =
+    useState(30.5);
+  const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] =
+    useState(19.366668701171875);
 
-	// refs for elements that need stickyness or effects
-	const logoTextRef = useRef()
-	const hamburgerRef = React.useRef()
-	const longNavRef = React.useRef()
+  // refs for elements that need stickyness or effects
+  const logoTextRef = useRef();
+  const hamburgerRef = React.useRef();
+  const longNavRef = React.useRef();
 
-	const locationFromHook = useLocation()
-	const navigate = useNavigate()
-	// scroll listener
+  const locationFromHook = useLocation();
+  const navigate = useNavigate();
+  // scroll listener
 
-	useEffect(() => {
-		const threshold = 0
-		let lastScrollY = window.pageYOffset
-		let ticking = false
+  useEffect(() => {
+    const threshold = 0;
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
 
-		const updateScrollDir = () => {
-			const scrollY = window.pageYOffset
+    const updateScrollDir = () => {
+      const scrollY = window.pageYOffset;
 
-			if (Math.abs(scrollY - lastScrollY) < threshold) {
-				ticking = false
-				return
-			}
-			setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up")
-			lastScrollY = scrollY > 0 ? scrollY : 0
-			ticking = false
-		}
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false;
+        return;
+      }
+      setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+      ticking = false;
+    };
 
-		const onScroll = () => {
-			if (!ticking) {
-				window.requestAnimationFrame(updateScrollDir)
-				ticking = true
-			}
-		}
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
 
-		window.addEventListener("scroll", onScroll)
-		console.log(scrollDir)
+    window.addEventListener("scroll", onScroll);
+    console.log(scrollDir);
 
-		return () => window.removeEventListener("scroll", onScroll)
-	}, [scrollDir])
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollDir]);
 
-	useEffect(() => {
-		window.addEventListener("scroll", handleScroll)
-	})
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
 
-	// set initial values for "sticky" feature
-	useEffect(() => {
-		//
-		setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top)
-		//
-		window.innerWidth <= 500
-			? setPixlesFromHamburgerToTop(hamburgerRef.current.getBoundingClientRect().top)
-			: null
-		//
-		window.innerWidth > 500
-			? setPixlesFromLongNavToTop(longNavRef.current.getBoundingClientRect().top)
-			: null
-		// console.log("END_OF_USE_EFFECT _window.innerWidth = ", window.innerWidth);
-		// console.log(
-		//   "END_OF_USE_EFFECT _LogoTextToTop = ",
-		//   logoTextRef.current.getBoundingClientRect().top
-		// );
-		// console.log(
-		//   "END_OF_USE_EFFECT _HamburgerToTop = ",
-		//   hamburgerRef.current.getBoundingClientRect().top
-		// );
+  // set initial values for "sticky" feature
+  useEffect(() => {
+    //
+    setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top);
+    //
+    window.innerWidth <= 500
+      ? setPixlesFromHamburgerToTop(
+          hamburgerRef.current.getBoundingClientRect().top
+        )
+      : null;
+    //
+    window.innerWidth > 500
+      ? setPixlesFromLongNavToTop(
+          longNavRef.current.getBoundingClientRect().top
+        )
+      : null;
+    // console.log("END_OF_USE_EFFECT _window.innerWidth = ", window.innerWidth);
+    // console.log(
+    //   "END_OF_USE_EFFECT _LogoTextToTop = ",
+    //   logoTextRef.current.getBoundingClientRect().top
+    // );
+    // console.log(
+    //   "END_OF_USE_EFFECT _HamburgerToTop = ",
+    //   hamburgerRef.current.getBoundingClientRect().top
+    // );
 
-		// console.log(
-		//   "END_OF_USE_EFFECT _LongNavToTop = ",
-		//   longNavRef.current.getBoundingClientRect().top
-		// );
-	}, [])
+    // console.log(
+    //   "END_OF_USE_EFFECT _LongNavToTop = ",
+    //   longNavRef.current.getBoundingClientRect().top
+    // );
+  }, []);
 
-	////sticky nav end
-	useEffect(() => {
-		// make it so this header doesnt load on certin pages
-		if (
-			locationFromHook.pathname === "/login" ||
-			locationFromHook.pathname === "/signup" ||
-			locationFromHook.pathname === "/forgot" ||
-			locationFromHook.pathname === "/edit" ||
-			locationFromHook.pathname === "/change"
-		) {
-			return
-		} else {
-			//function to pass to mousedown listener, to close side menu if need be.
-			listener = (event) => {
-				//if you click in the menu,  dont close it
-				if (hamburgerRef.current.contains(event.target)) {
-					return
-				}
+  ////sticky nav end
+  useEffect(() => {
+    // make it so this header doesnt load on certin pages
+    if (
+      locationFromHook.pathname === "/login" ||
+      locationFromHook.pathname === "/signup" ||
+      locationFromHook.pathname === "/forgot" ||
+      locationFromHook.pathname === "/edit" ||
+      locationFromHook.pathname === "/change"
+    ) {
+      return;
+    } else {
+      //function to pass to mousedown listener, to close side menu if need be.
+      listener = (event) => {
+        //if you click in the menu,  dont close it
+        if (hamburgerRef.current.contains(event.target)) {
+          return;
+        }
 
-				//if you click anywhere outside the side menu, close it.
-				//mouseDownHandler();
-				props.setOpenSideMenu(false)
-			}
-		}
+        //if you click anywhere outside the side menu, close it.
+        //mouseDownHandler();
+        props.setOpenSideMenu(false);
+      };
+    }
 
-		//resize and/or orientationchange listener
-		const handleResize = () => {
-			//closed sideMenu on orientation change, if it gets bigger than 850px
-			if (window.innerWidth > 500) {
-				props.setOpenSideMenu(false)
-			}
-		}
+    //resize and/or orientationchange listener
+    const handleResize = () => {
+      //closed sideMenu on orientation change, if it gets bigger than 850px
+      if (window.innerWidth > 500) {
+        props.setOpenSideMenu(false);
+      }
+    };
 
-		//set up event listeners
-		window.addEventListener("resize", handleResize)
-		window.addEventListener("orientationchange", handleResize)
-		document.addEventListener("mousedown", listener)
+    //set up event listeners
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleResize);
+    document.addEventListener("mousedown", listener);
 
-		return () => {
-			document.removeEventListener("mousedown", listener)
-			console.log("cleanup")
-			console.log("cleanup done, openSideMenu = " + props.openSideMenu)
-		}
-	}, [hamburgerRef])
-	//}, [hamburgerRef, mouseDownHandler]);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      console.log("cleanup");
+      console.log("cleanup done, openSideMenu = " + props.openSideMenu);
+    };
+  }, [hamburgerRef]);
+  //}, [hamburgerRef, mouseDownHandler]);
 
-	// sets the state so the element can stick
-	const handleScroll = () => {
-		//console.log("===================window.scrollY===", window.scrollY);
-		// console.log(
-		//   "===================pixlesFromLongNavToTop===",
-		//   pixlesFromLongNavToTop
-		// );
-		console.log("===================inner width===", window.scrollY)
-		window.scrollY >= pixlesFromLogoToTop - 4 ? setLogoScrolled(true) : setLogoScrolled(false)
-		window.scrollY >= 28
-			? setLeafScrolledSoChangeColorDown(true)
-			: setLeafScrolledSoChangeColorDown(false)
+  // sets the state so the element can stick
+  const handleScroll = () => {
+    //console.log("===================window.scrollY===", window.scrollY);
+    // console.log(
+    //   "===================pixlesFromLongNavToTop===",
+    //   pixlesFromLongNavToTop
+    // );
+    console.log("===================inner width===", window.scrollY);
+    window.scrollY >= pixlesFromLogoToTop - 4
+      ? setLogoScrolled(true)
+      : setLogoScrolled(false);
+    window.scrollY >= 28
+      ? setLeafScrolledSoChangeColorDown(true)
+      : setLeafScrolledSoChangeColorDown(false);
 
-		window.scrollY <= 38
-			? setLeafScrolledSoChangeColorUp(true)
-			: setLeafScrolledSoChangeColorUp(false)
+    window.scrollY <= 38
+      ? setLeafScrolledSoChangeColorUp(true)
+      : setLeafScrolledSoChangeColorUp(false);
 
-		//window.scrollY > 0 ? setLogoScrolled(true) : setLogoScrolled(false)
-		//console.log("scrolllllY", window.scrollY)
-		window.scrollY >= pixlesFromHamburgerToTop - 7
-			? setHamburgerScrolled(true)
-			: setHamburgerScrolled(false)
+    //window.scrollY > 0 ? setLogoScrolled(true) : setLogoScrolled(false)
+    //console.log("scrolllllY", window.scrollY)
+    window.scrollY >= pixlesFromHamburgerToTop - 7
+      ? setHamburgerScrolled(true)
+      : setHamburgerScrolled(false);
 
-		window.scrollY >= pixlesFromLongNavToTop && window.innerWidth > 500
-			? setLongNavScrolled(true)
-			: setLongNavScrolled(false)
-	}
+    window.scrollY >= pixlesFromLongNavToTop && window.innerWidth > 500
+      ? setLongNavScrolled(true)
+      : setLongNavScrolled(false);
+  };
 
-	// scroll to top
-	function scrollToTop() {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth",
-		})
-	}
+  // scroll to top
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
 
-	//put directly in function, delete this if it works
-	function mouseDownHandler() {
-		props.setOpenSideMenu(false)
-		console.log("mouseDownEventTriggered & openSideMenu = " + props.openSideMenu)
-	}
+  //put directly in function, delete this if it works
+  function mouseDownHandler() {
+    props.setOpenSideMenu(false);
+    console.log(
+      "mouseDownEventTriggered & openSideMenu = " + props.openSideMenu
+    );
+  }
 
-	function doSomething() {
-		props.setLoginClicked(true)
-		props.setOpenSideMenu(false)
-	}
+  function doSomething() {
+    scrollToTop();
+    props.setLoginClicked(true);
+    props.setOpenSideMenu(false);
+  }
 
-	let listener
+  let listener;
 
-	// if (locationFromHook.pathname === "/edit") {
-	// 	return null;
-	// } else {
-	return (
-		<>
-			<TopBackgroundBar hamburgerScrolled={hamburgerScrolled} logoScrolled={logoScrolled} />
+  // if (locationFromHook.pathname === "/edit") {
+  // 	return null;
+  // } else {
+  return (
+    <>
+      <TopBackgroundBar
+        hamburgerScrolled={hamburgerScrolled}
+        logoScrolled={logoScrolled}
+      />
 
-			<HeaderWrapper openSideMenu={props.openSideMenu} logoScrolled={logoScrolled}>
-				<LogoText
-					onClick={() => {
-						navigate("/")
-					}}
-					src={company_logo}
-					ref={logoTextRef}
-					logoScrolled={logoScrolled}
-				></LogoText>
+      <HeaderWrapper
+        openSideMenu={props.openSideMenu}
+        logoScrolled={logoScrolled}
+      >
+        <LogoText
+          onClick={() => {
+            navigate("/");
+          }}
+          src={company_logo}
+          ref={logoTextRef}
+          logoScrolled={logoScrolled}
+        ></LogoText>
 
-				<h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1>
+        <h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1>
 
-				<HeaderLeafImage
-					src={headerLeaf}
-					longNavScrolled={longNavScrolled}
-					logoScrolled={logoScrolled}
-				></HeaderLeafImage>
-				<LongNav
-					ref={longNavRef}
-					longNavScrolled={logoScrolled}
-					hamburgerScrolled={hamburgerScrolled}
-					leafScrolledSoChangeColorDown={leafScrolledSoChangeColorDown}
-					leafScrolledSoChangeColorUp={leafScrolledSoChangeColorUp}
-					scrollDir={scrollDir}
-				>
-					{/* <UlWrapper> */}
-					<ul>
-						<li key={0}>news</li>
-						<li key={1}>
-							<span onClick={props.executeScrollForLookupSection}>act</span>
-						</li>
-						<li key={2}>shop</li>
+        <HeaderLeafImage
+          src={headerLeaf}
+          longNavScrolled={longNavScrolled}
+          logoScrolled={logoScrolled}
+        ></HeaderLeafImage>
+        <LongNav
+          ref={longNavRef}
+          longNavScrolled={logoScrolled}
+          hamburgerScrolled={hamburgerScrolled}
+          leafScrolledSoChangeColorDown={leafScrolledSoChangeColorDown}
+          leafScrolledSoChangeColorUp={leafScrolledSoChangeColorUp}
+          scrollDir={scrollDir}
+        >
+          {/* <UlWrapper> */}
+          <ul>
+            <li key={0}>news</li>
+            <li key={1}>
+              <span onClick={props.executeScrollForLookupSection}>act</span>
+            </li>
+            <li key={2}>shop</li>
 
-						{props.userState.loggedInStatus == "LOGGED_IN"
-							? [
-									<li style={{ padding: "0 0 0 4px" }} key={3}>
-										<a key={"a"} onClick={props.handleLogOutClick}>
-											Logout
-										</a>
-									</li>,
-									<span style={{ fontSize: ".8em", padding: "0 2px" }}>|</span>,
-									<li style={{ padding: "0" }} key={4}>
-										<Link style={{ textDecoration: "none" }} key={"b"} to="/edit">
-											edit
-										</Link>
-									</li>,
-							  ]
-							: [
-									<li style={{ padding: "0 0 0 4px" }} key={3}>
-										<a key={"c"} onClick={doSomething}>
-											Login
-										</a>
-									</li>,
-									<span style={{ fontSize: ".8em", padding: "0 2px" }}>|</span>,
-									<li style={{ padding: "0" }} key={4}>
-										<a key={"d"} onClick={props.executeScrollForSection2}>
-											Signup
-										</a>
-									</li>,
-							  ]}
-					</ul>
-					{/* </UlWrapper> */}
-				</LongNav>
+            {props.userState.loggedInStatus == "LOGGED_IN"
+              ? [
+                  <li style={{ padding: "0 0 0 4px" }} key={3}>
+                    <a key={"a"} onClick={props.handleLogOutClick}>
+                      Logout
+                    </a>
+                  </li>,
+                  <span style={{ fontSize: ".8em", padding: "0 2px" }}>|</span>,
+                  <li style={{ padding: "0" }} key={4}>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      key={"b"}
+                      to="/edit"
+                    >
+                      edit
+                    </Link>
+                  </li>,
+                ]
+              : [
+                  <li style={{ padding: "0 0 0 4px" }} key={3}>
+                    <a key={"c"} onClick={doSomething}>
+                      Login
+                    </a>
+                  </li>,
+                  <span style={{ fontSize: ".8em", padding: "0 2px" }}>|</span>,
+                  <li style={{ padding: "0" }} key={4}>
+                    <a key={"d"} onClick={props.executeScrollForSection2}>
+                      Signup
+                    </a>
+                  </li>,
+                ]}
+          </ul>
+          {/* </UlWrapper> */}
+        </LongNav>
 
-				<HamburgerMenu hamburgerScrolled={hamburgerScrolled} ref={hamburgerRef}>
-					<Burger
-						openSideMenu={props.openSideMenu}
-						setOpenSideMenu={props.setOpenSideMenu}
-						hamburgerScrolled={hamburgerScrolled}
-					/>
-				</HamburgerMenu>
-			</HeaderWrapper>
+        <HamburgerMenu hamburgerScrolled={hamburgerScrolled} ref={hamburgerRef}>
+          <Burger
+            openSideMenu={props.openSideMenu}
+            setOpenSideMenu={props.setOpenSideMenu}
+            hamburgerScrolled={hamburgerScrolled}
+          />
+        </HamburgerMenu>
+      </HeaderWrapper>
 
-			<Outter>
-				<SideMenu
-					//doSomething={doSomething}
-					hamburgerScrolled={hamburgerScrolled}
-					openSideMenu={props.openSideMenu}
-					setOpenSideMenu={props.setOpenSideMenu}
-					//executeScroll={executeScroll}
-					userState={props.userState}
-					executeScrollForLookupSection={props.executeScrollForLookupSection}
-					executeScrollForSection2={props.executeScrollForSection2}
-				/>
-			</Outter>
-		</>
-	)
+      <Outter>
+        <SideMenu
+          //doSomething={doSomething}
+          hamburgerScrolled={hamburgerScrolled}
+          openSideMenu={props.openSideMenu}
+          setOpenSideMenu={props.setOpenSideMenu}
+          //executeScroll={executeScroll}
+          userState={props.userState}
+          executeScrollForLookupSection={props.executeScrollForLookupSection}
+          executeScrollForSection2={props.executeScrollForSection2}
+        />
+      </Outter>
+    </>
+  );
 }
 
-export default Header
+export default Header;
