@@ -12,7 +12,7 @@ const FooterWrapper = styled.div`
 		minmax(20px, 100px); */
 
   //grid-template-columns: 1fr 1.5fr 1fr 1.5fr 1fr;
-  grid-template-columns: 8% 1fr 1fr 5fr 8%;
+  grid-template-columns: 8% 1fr 1fr 2fr 8%;
   grid-template-rows: 125px min-content min-content;
   grid-template-areas:
     ".    .     .       .      ."
@@ -205,7 +205,7 @@ const Explore = styled.div`
   //}
   //grid-area: 2/2/3/3;
   color: white;
-  justify-self: start;
+  justify-self: center;
   align-self: start;
   margin-bottom: 20px;
   z-index: 3;
