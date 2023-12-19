@@ -101,7 +101,8 @@ const SubscribeSection = styled.div`
   }
 
   input {
-    display: ${(props) => (props.signupComplete ? "none" : "initial")};
+    display: ${(props) =>
+      props.signupcomplete == "true" ? "none" : "initial"};
     background: 0 0;
 
     border: 1px solid #deb15c;
@@ -289,7 +290,7 @@ function Footer(props) {
   console.log("--==============Footer Props===============", props);
 
   const [newsletterEmail, setNewsletterEmail] = useState("");
-  const [signupComplete, setSignupComplete] = useState(false);
+  const [signupComplete, setSignupComplete] = useState("false");
 
   useEffect(() => {
     console.log("---------------------------Footer useEffect===============");
@@ -319,7 +320,7 @@ function Footer(props) {
       )
       .then((response) => {
         console.log("response from newsletter", response);
-        setSignupComplete(true);
+        setSignupComplete("true");
       })
       .catch((error) => {
         console.log("handlenewsletter errors if any are ", error);
@@ -366,13 +367,17 @@ function Footer(props) {
             <h2>stay up to date</h2>
 
             <form>
-              <strong style={{ display: signupComplete ? "initial" : "none" }}>
+              <strong
+                style={{
+                  display: signupComplete == "true" ? "initial" : "none",
+                }}
+              >
                 Thank you for signing up!
               </strong>
 
               {/* <div style={{ display: signupComplete ? "none" : "initial" }}> */}
               <input
-                signupComplete={signupComplete}
+                signupcomplete={signupComplete}
                 onChange={handleNewsletterChange}
                 value={newsletterEmail}
                 type="email"
@@ -386,7 +391,7 @@ function Footer(props) {
 
               <button
                 style={{
-                  display: signupComplete ? "none" : "initial",
+                  display: signupComplete == "true" ? "none" : "initial",
                   color: "black",
                 }}
                 type="submit"

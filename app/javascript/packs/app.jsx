@@ -307,13 +307,15 @@ function App({ d }) {
           setOpenSideMenu={setOpenSideMenu}
           executeScrollForSection2={executeScrollForSection2}
           executeScrollForLookupSection={executeScrollForLookupSection}
+          handleSuccessfulAuth={handleSuccessfulAuth}
+          loginClicked={loginClicked}
         />
 
-        <Login
+        {/* <Login
           handleSuccessfulAuth={handleSuccessfulAuth}
           setLoginClicked={setLoginClicked}
           loginClicked={loginClicked}
-        />
+        /> */}
 
         <Routes>
           <Route
@@ -321,7 +323,7 @@ function App({ d }) {
             path="/"
             element={
               <Home
-                handleSuccessfulAuth={handleSuccessfulAuth}
+                //handleSuccessfulAuth={handleSuccessfulAuth}
                 loginClicked={loginClicked}
                 setLoginClicked={setLoginClicked}
                 allStoriesFromController={allStoriesFromController}

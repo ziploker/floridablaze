@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 //import { Link, Redirect, withRouter } from "react-router-dom";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 //import logoImg from "../../../assets/images/logoPlaceholder.jpg";
 import redX from "../../../assets/images/redXmark.jpg";
@@ -27,15 +27,17 @@ import {
 const LoginWrapperNew = styled.div`
   z-index: 11;
   width: 35vw;
-  position: absolute;
-  top: ${(props) => (props.loginClicked ? "85px" : "-500px")};
+  position: fixed;
+  top: ${(props) => (props.loginClicked ? "55px" : "-500px")};
   right: 0;
   background-color: white;
   padding: 20px;
-  transition: all 1s ease 0s;
+  transition: all 0.3s ease 0s;
 `;
 
-const CardNew = styled.div``;
+const CardNew = styled.div`
+  margin-bottom: 15px;
+`;
 
 const FormItem = styled.div`
   position: relative;
@@ -96,6 +98,7 @@ const LogoWrapperNew = styled.div`
   margin-bottom: 40px;
   position: relative;
 `;
+
 ///////////////////////////////////  LOG_IN_PAGE //////////////////////////////
 function Login(props) {
   console.log("==============Login===============");
@@ -112,18 +115,16 @@ function Login(props) {
   });
 
   const [onHover, setOnHover] = React.useState(false);
- 
 
   var linkStyle;
 
+  const navigate = useNavigate();
 
-  function toggleHoverEnter(){
-
-    setOnHover(true)
+  function toggleHoverEnter() {
+    setOnHover(true);
   }
-  function toggleHoverLeave(){
-
-    setOnHover(false)
+  function toggleHoverLeave() {
+    setOnHover(false);
   }
 
   // to activate the input field while typing
@@ -215,6 +216,10 @@ function Login(props) {
       });
   }
 
+  function goToResend() {
+    navigate("/resend");
+  }
+
   ///////////////////////////////////  HANDLE_CHANGE /////////////////////////////
   function handleChange(event) {
     const value = event.target.value;
@@ -247,7 +252,23 @@ function Login(props) {
     }
 
     if (state.errors.auth) {
-      errorMessages.push(<ErrorMsg> {state.errors.auth[0]} </ErrorMsg>);
+      // errorMessages.push(<ErrorMsg> {state.errors.auth[0]} </ErrorMsg>);
+      errorMessages.push(
+        <>
+          <ErrorMsg> {state.errors.auth[0]} </ErrorMsg>
+          <span
+            style={{
+              color: "blue",
+              cursor: "pointer",
+              textDecoration: "underline",
+              fontSize: "12px",
+            }}
+            onClick={goToResend}
+          >
+            resend link
+          </span>
+        </>
+      );
     }
 
     if (state.errors.password) {
@@ -273,30 +294,28 @@ function Login(props) {
   if (onHover) {
     linkStyle = {
       border: "1px solid #fcacac",
-      //borderRadius: "20px", 
-      transition: "all .4s ease-out", 
-      fontSize: ".9em", 
-      cursor: "pointer", 
-      position: "absolute", 
-      top: "0", 
-      right: "0", 
+      //borderRadius: "20px",
+      transition: "all .4s ease-out",
+      fontSize: ".9em",
+      cursor: "pointer",
+      position: "absolute",
+      top: "0",
+      right: "0",
       textDecoration: "none",
-      padding: "6px"}
-
+      padding: "6px",
+    };
   } else {
     linkStyle = {
       border: "1px solid white",
-      transition: "all .4s ease-out", 
-      fontSize: ".9em", 
-      cursor: "pointer", 
-      position: "absolute", 
-      top: "0", 
-      right: "0", 
+      transition: "all .4s ease-out",
+      fontSize: ".9em",
+      cursor: "pointer",
+      position: "absolute",
+      top: "0",
+      right: "0",
       textDecoration: "none",
-      padding: "6px"
-    }
-
-
+      padding: "6px",
+    };
   }
 
   /////////////////////////////////// JSX /////////////////////////////////////////
@@ -305,7 +324,15 @@ function Login(props) {
     <LoginWrapperNew loginClicked={props.loginClicked}>
       <CardNew>
         <LogoWrapperNew>
-        <div onClick={closeLoginWindow} style={linkStyle} onMouseEnter={toggleHoverEnter} onMouseLeave={toggleHoverLeave} to="#">&#10060;</div>
+          <div
+            onClick={closeLoginWindow}
+            style={linkStyle}
+            onMouseEnter={toggleHoverEnter}
+            onMouseLeave={toggleHoverLeave}
+            to="#"
+          >
+            &#10060;
+          </div>
 
           {/* <CloseWindow onClick={closeLoginWindow}>&#10060;</CloseWindow> */}
           {/* <a href="/">
@@ -388,13 +415,8 @@ function Login(props) {
       {/* <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/signup">Dont have an account? </a><br/>
       <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/forgot">Forgot password?? </a><br/>*/}
       {/* <a style={{fontSize: ".5em", textDecoration: "underline"}} href="/resend">Resend Confirmation Email </a><br/>  */}
-      <Link style={{ fontSize: "12px" }} to="/forgot">
-        Reset Password
-      </Link>
-      <br />
-      <br />
-      <Link style={{ fontSize: "12px" }} to="/resend">
-        Resend Confirmation Email
+      <Link style={{ textDecoration: "none", fontSize: "12px" }} to="/forgot">
+        Forgot Password
       </Link>
     </LoginWrapperNew>
   );

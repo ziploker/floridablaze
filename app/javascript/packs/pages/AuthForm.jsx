@@ -138,9 +138,6 @@ const Input = styled.input`
 `;
 
 const InputForSignup = styled.input`
-
-
-  
   //padding: 3rem;
   box-sizing: border-box;
   margin: 0px;
@@ -151,7 +148,6 @@ const InputForSignup = styled.input`
 
   padding-right: 8px;
 
-  
   font-size: 3em;
   line-height: 1.42857;
   color: #3f3f44;
@@ -163,13 +159,9 @@ const InputForSignup = styled.input`
   filter: none;
 
   @media only screen and (min-width: 986px) {
-
     height: 44px;
     font-size: 1.1em;
-    
-
   }
-
 `;
 
 const Button = styled.button`
@@ -179,7 +171,7 @@ const Button = styled.button`
   color: white;
   font-weight: 700;
   width: 100%;
-  margin-bottom: 1rem;
+  //margin-bottom: 1rem;
   font-size: 2em;
   height: 60px;
   cursor: pointer;

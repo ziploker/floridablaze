@@ -81,7 +81,7 @@ class SessionsController < ApplicationController
             else
                 render json: {
                     status: "pink", 
-                    error: {auth: ["Account not active yet, check email and click link"]}
+                    error: {auth: ["Account not active yet, check email or "]}
                 }
             end
 

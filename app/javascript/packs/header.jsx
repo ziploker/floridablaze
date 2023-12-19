@@ -11,6 +11,7 @@ import headerLeaf from "../../assets/images/headerLeafv2.png";
 import Burger from "./burger";
 import SideMenu from "./sidemenu";
 import company_logo from "../../assets/images/company_logo.svg";
+import Login from "./pages/login";
 
 ////////////////////////////////////////////////////////
 //////////////   STYLED COMPONENTS  ///////////////////
@@ -509,7 +510,7 @@ function Header(props) {
   }
 
   function doSomething() {
-    scrollToTop();
+    //scrollToTop();
     props.setLoginClicked(true);
     props.setOpenSideMenu(false);
   }
@@ -521,6 +522,12 @@ function Header(props) {
   // } else {
   return (
     <>
+      <Login
+        handleSuccessfulAuth={props.handleSuccessfulAuth}
+        setLoginClicked={props.setLoginClicked}
+        loginClicked={props.loginClicked}
+        userState={props.userState}
+      />
       <TopBackgroundBar
         hamburgerScrolled={hamburgerScrolled}
         logoScrolled={logoScrolled}
@@ -539,7 +546,7 @@ function Header(props) {
           logoScrolled={logoScrolled}
         ></LogoText>
 
-        <h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1>
+        {/* <h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1> */}
 
         <HeaderLeafImage
           src={headerLeaf}
@@ -569,8 +576,10 @@ function Header(props) {
                       Logout
                     </a>
                   </li>,
-                  <span style={{ fontSize: ".8em", padding: "0 2px" }}>|</span>,
-                  <li style={{ padding: "0" }} key={4}>
+                  <span key={4} style={{ fontSize: ".8em", padding: "0 2px" }}>
+                    |
+                  </span>,
+                  <li style={{ padding: "0" }} key={5}>
                     <Link
                       style={{ textDecoration: "none" }}
                       key={"b"}
@@ -581,13 +590,15 @@ function Header(props) {
                   </li>,
                 ]
               : [
-                  <li style={{ padding: "0 0 0 4px" }} key={3}>
+                  <li style={{ padding: "0 0 0 4px" }} key={6}>
                     <a key={"c"} onClick={doSomething}>
                       Login
                     </a>
                   </li>,
-                  <span style={{ fontSize: ".8em", padding: "0 2px" }}>|</span>,
-                  <li style={{ padding: "0" }} key={4}>
+                  <span key={7} style={{ fontSize: ".8em", padding: "0 2px" }}>
+                    |
+                  </span>,
+                  <li style={{ padding: "0" }} key={8}>
                     <a key={"d"} onClick={props.executeScrollForSection2}>
                       Signup
                     </a>
