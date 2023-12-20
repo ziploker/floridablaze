@@ -253,22 +253,40 @@ function Login(props) {
 
     if (state.errors.auth) {
       // errorMessages.push(<ErrorMsg> {state.errors.auth[0]} </ErrorMsg>);
-      errorMessages.push(
-        <>
-          <ErrorMsg> {state.errors.auth[0]} </ErrorMsg>
-          <span
-            style={{
-              color: "blue",
-              cursor: "pointer",
-              textDecoration: "underline",
-              fontSize: "12px",
-            }}
-            onClick={goToResend}
-          >
-            resend link
-          </span>
-        </>
-      );
+
+      if (state.status == "orange"){
+        errorMessages.push(
+          <>
+            <ErrorMsg> {state.errors.auth[0]} </ErrorMsg>
+            <span
+              style={{
+                color: "blue",
+                cursor: "pointer",
+                textDecoration: "underline",
+                fontSize: "12px",
+                padding: "5px 0px 9px 3px",
+              }}
+              onClick={goToResend}
+            >
+              resend link
+            </span>
+          </>
+        );
+
+
+      }else{
+
+        errorMessages.push(
+        
+            <ErrorMsg> {state.errors.auth[0]} </ErrorMsg>
+          
+          
+        );
+
+
+        
+      }
+      
     }
 
     if (state.errors.password) {
@@ -406,7 +424,7 @@ function Login(props) {
           {/* <XorCheckIcon status={state.status} src={redX}/> */}
           <XorCheckIcon
             status={state.status}
-            src={state.status === "pink" ? redX : greenCheck}
+            src={state.status === "pink" || "orange" ? redX : greenCheck}
           />
           {errorMessages}
         </ErrorWrapper>

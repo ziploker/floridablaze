@@ -228,7 +228,7 @@ const ErrorWrapper = styled.div`
 `;
 const ErrorMsg = styled.h4`
   font-size: 0.5em;
-  padding: 5px 12px;
+  padding: 5px 0px 5px 12px;
 `;
 
 const XorCheckIcon = styled.img`

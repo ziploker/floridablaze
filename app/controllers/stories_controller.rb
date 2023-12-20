@@ -263,7 +263,7 @@ class StoriesController < ApplicationController
     else
         render json: {
             status: "pink", 
-            error: {auth: ["Email or password is bad."]}
+            error: {auth: ["Email or password is bad is incorrect."]}
         }
     end
 end
