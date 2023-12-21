@@ -22,7 +22,8 @@ const HeaderWrapper = styled.div`
   display: grid;
   grid-template-columns: minmax(180px, 280px) 1fr;
   /* grid-template-rows: 85px; */
-  grid-template-rows: 65px;
+  grid-template-rows: 100px;
+  margin-top: 15px;
   grid-template-areas: "headerLogo headerLeaf ";
   //min-width: 100vw;
   max-width: 2000px;
@@ -53,7 +54,7 @@ const LogoText = styled.img`
 	/* font-size: ${(props) => (props.logoScrolled ? "1em" : "2em")}; */
 		/* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
 	/* width: ${(props) => (props.logoScrolled ? "175px" : "250px")}; */
-	width: 250px;
+	width: 300px;
   //height: 45px;
 	//width: 100%;
 	//max-width: 420px;
@@ -69,6 +70,7 @@ const LogoText = styled.img`
 		//width: 200px;
 		//margin: 0 0 10px 10px;
     //left: 50px;
+    width: 280px;
     top: 11px;
 	}
 
@@ -82,7 +84,7 @@ const LogoText = styled.img`
 
 	/* @media only screen and (min-width: 1999px) {
 
-position: initial;
+      position: initial;
 	} */
 
 	/*
@@ -144,10 +146,10 @@ const LongNav = styled.nav`
 	justify-self: end;
 	margin: 0 -25px;
 	display: flex;
-	//position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
-	position: fixed;
+	position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
+	//position: fixed;
 
-	//top: ${(props) => (props.longNavScrolled ? "0px" : "initial")};
+	top: ${(props) => (props.longNavScrolled ? "3px" : "initial")};
 	/* color: ${(props) =>
     props.logoScrolledChangeColor && props.scrollDir == "scrolling down"
       ? "black"
@@ -248,7 +250,7 @@ const HamburgerMenu = styled.div`
   right: 22px;
   transition: all 0.2s linear;
   //position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
-  top: ${(props) => (props.hamburgerScrolled ? "17px" : "25px")};
+  top: ${(props) => (props.hamburgerScrolled ? "17px" : "56px")};
 
   @media only screen and (max-width: 330px) {
     //grid-area: 1/2/2/3;
