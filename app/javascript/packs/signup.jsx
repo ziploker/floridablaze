@@ -534,7 +534,7 @@ const SocialMedia = styled.div`
 const RightSection = styled.div`
   @media only screen and (max-width: 985px) {
     grid-area: 1/2/2/3;
-    grid-template-columns: 1px 30px 1fr;
+    /* grid-template-columns: 1px 30px 1fr; */
   }
 
   @media only screen and (max-width: 400px) {
@@ -550,7 +550,8 @@ const RightSection = styled.div`
   display: grid;
   padding: 0px 50px 50px 14px;
 
-  grid-template-columns: 28px 30px minmax(430px, 620px);
+  /* grid-template-columns: 28px 30px minmax(430px, 620px); */
+  grid-template-columns: 1px 30px 1fr;
   grid-template-rows: 260px repeat(4, 95px) 1fr;
 
   align-self: start;

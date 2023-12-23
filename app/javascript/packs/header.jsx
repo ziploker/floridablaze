@@ -35,7 +35,7 @@ const HeaderWrapper = styled.div`
 const LogoText = styled.img`
 	//position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
 	position: fixed;
-  //opacity: .4;
+  opacity: .1;
 	//top: ${(props) => (props.logoScrolled ? "10px" : "initial")};
 	//font-style: normal;
 	//font-weight: normal;
@@ -43,9 +43,9 @@ const LogoText = styled.img`
 	//letter-spacing: -1px;
 	//color: #010101;
 	margin-left: 50px;
-	transition: all 0.5s linear;
+	transition: all .17s linear;
 	grid-area: headerLogo;
-	top:10px;
+	top:${(props) => (props.longNavScrolled ? "15px" : "30px")};
   	//left: 50px;
 	justify-self: start;
 	align-self: center;
@@ -54,7 +54,8 @@ const LogoText = styled.img`
 	/* font-size: ${(props) => (props.logoScrolled ? "1em" : "2em")}; */
 		/* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
 	/* width: ${(props) => (props.logoScrolled ? "175px" : "250px")}; */
-	width: 300px;
+  
+	width: ${(props) => (props.longNavScrolled ? "200px" : "280px")};
   //height: 45px;
 	//width: 100%;
 	//max-width: 420px;
@@ -70,8 +71,8 @@ const LogoText = styled.img`
 		//width: 200px;
 		//margin: 0 0 10px 10px;
     //left: 50px;
-    width: 280px;
-    top: 11px;
+    //width: 280px;
+    //top: 11px;
 	}
 
 	@media only screen and (max-width: 985px) {
@@ -149,7 +150,7 @@ const LongNav = styled.nav`
 	position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
 	//position: fixed;
 
-	top: ${(props) => (props.longNavScrolled ? "3px" : "initial")};
+	top: ${(props) => (props.longNavScrolled ? "2px" : "initial")};
 	/* color: ${(props) =>
     props.logoScrolledChangeColor && props.scrollDir == "scrolling down"
       ? "black"
@@ -286,7 +287,7 @@ const HamburgerMenu = styled.div`
 
 const TopBackgroundBar = styled.div`
   position: fixed;
-  opacity: ${(props) => (props.logoScrolled ? "1" : "0")};
+  opacity: ${(props) => (props.leafScrolledSoChangeColorDown ? "1" : "0")};
   top: 0;
   width: 100%;
   max-width: 2000px;
@@ -325,6 +326,7 @@ function Header(props) {
   console.log("==============Header Props===============", props);
 
   // if true, element reached the top of viewport, ready to be "sticky"
+  const [longNavScrolled, setLongNavScrolled] = React.useState(false);
   const [scrollDir, setScrollDir] = useState("scrolling down");
 
   const [logoScrolled, setLogoScrolled] = React.useState(false);
@@ -335,14 +337,14 @@ function Header(props) {
     React.useState(false);
 
   const [hamburgerScrolled, setHamburgerScrolled] = React.useState(false);
-  const [longNavScrolled, setLongNavScrolled] = React.useState(false);
 
   // initial distance from element to top of viewport
   const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(26.75);
   const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] =
     useState(30.5);
-  const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] =
-    useState(19.366668701171875);
+  // const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] =
+  //   useState(19.366668701171875);
+  const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(0);
 
   // refs for elements that need stickyness or effects
   const logoTextRef = useRef();
@@ -352,6 +354,15 @@ function Header(props) {
   const locationFromHook = useLocation();
   const navigate = useNavigate();
   // scroll listener
+
+  useEffect(() => {
+    console.log("===================window.scrollY===", window.scrollY);
+    console.log("==== pixlesFromLongNavToTop ====", pixlesFromLongNavToTop);
+    console.log(
+      "==== longNavRef.current.getBoundingClientRect().top====",
+      longNavRef.current.getBoundingClientRect().top
+    );
+  });
 
   useEffect(() => {
     const threshold = 0;
@@ -472,15 +483,16 @@ function Header(props) {
     //   "===================pixlesFromLongNavToTop===",
     //   pixlesFromLongNavToTop
     // );
-    console.log("===================inner width===", window.scrollY);
-    window.scrollY >= pixlesFromLogoToTop - 4
+
+    // window.scrollY >= pixlesFromLogoToTop - 4
+    window.scrollY >= pixlesFromLogoToTop
       ? setLogoScrolled(true)
       : setLogoScrolled(false);
-    window.scrollY >= 28
+    window.scrollY >= 75
       ? setLeafScrolledSoChangeColorDown(true)
       : setLeafScrolledSoChangeColorDown(false);
 
-    window.scrollY <= 38
+    window.scrollY <= 90
       ? setLeafScrolledSoChangeColorUp(true)
       : setLeafScrolledSoChangeColorUp(false);
 
@@ -533,6 +545,7 @@ function Header(props) {
       <TopBackgroundBar
         hamburgerScrolled={hamburgerScrolled}
         logoScrolled={logoScrolled}
+        leafScrolledSoChangeColorDown={leafScrolledSoChangeColorDown}
       />
 
       <HeaderWrapper
@@ -546,6 +559,7 @@ function Header(props) {
           src={company_logo}
           ref={logoTextRef}
           logoScrolled={logoScrolled}
+          longNavScrolled={longNavScrolled}
         ></LogoText>
 
         {/* <h1 style={{ display: "none" }}> {logoScrolled ? "TRUE" : "FALSE"} </h1> */}
@@ -557,7 +571,7 @@ function Header(props) {
         ></HeaderLeafImage>
         <LongNav
           ref={longNavRef}
-          longNavScrolled={logoScrolled}
+          longNavScrolled={longNavScrolled}
           hamburgerScrolled={hamburgerScrolled}
           leafScrolledSoChangeColorDown={leafScrolledSoChangeColorDown}
           leafScrolledSoChangeColorUp={leafScrolledSoChangeColorUp}
