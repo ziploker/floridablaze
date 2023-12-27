@@ -54,14 +54,14 @@ function Menu(props) {
                   {" "}
                   Login |
                 </a>,
-                <a
+                <div
                   style={{ fontSize: "4vw" }}
                   key={"d"}
                   onClick={props.executeScrollForSection2}
                 >
                   {" "}
                   Signup
-                </a>,
+                </div>,
               ]}{" "}
         </li>
 

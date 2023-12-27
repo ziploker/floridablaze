@@ -523,10 +523,13 @@ function Header(props) {
     );
   }
 
-  function doSomething() {
+  function doSomething(e) {
     //scrollToTop();
-    props.setLoginClicked(true);
+
+    e.preventDefault();
+
     props.setOpenSideMenu(false);
+    props.setLoginClicked(true);
   }
 
   let listener;
@@ -629,13 +632,15 @@ function Header(props) {
             openSideMenu={props.openSideMenu}
             setOpenSideMenu={props.setOpenSideMenu}
             hamburgerScrolled={hamburgerScrolled}
+            loginClicked={props.loginClicked}
+            setLoginClicked={props.setLoginClicked}
           />
         </HamburgerMenu>
       </HeaderWrapper>
 
       <Outter>
         <SideMenu
-          //doSomething={doSomething}
+          doSomething={doSomething}
           hamburgerScrolled={hamburgerScrolled}
           openSideMenu={props.openSideMenu}
           setOpenSideMenu={props.setOpenSideMenu}

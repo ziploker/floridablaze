@@ -7,18 +7,18 @@ import ReactDOM from "react-dom";
 import App from "./app";
 
 document.addEventListener("DOMContentLoaded", () => {
-	const node = document.getElementById("alien_data_dump");
-	const data = JSON.parse(node.getAttribute("data"));
+  const node = document.getElementById("alien_data_dump");
+  const data = JSON.parse(node.getAttribute("data"));
 
-	ReactDOM.render(
-		<React.StrictMode>
-			<App d={data} />
-		</React.StrictMode>,
-		document.body.appendChild(document.createElement("div"))
-	);
+  ReactDOM.render(
+    <React.StrictMode>
+      <App d={data} />
+    </React.StrictMode>,
+    document.body.appendChild(document.createElement("div"))
+  );
 
-	// ReactDOM.unstable_createRoot(document.getElementById("root")).render(
-	//   <App d={data}/>,
-	//   document.body.appendChild(document.createElement('div')),
-	// );
+  // ReactDOM.unstable_createRoot(document.getElementById("root")).render(
+  //   <App d={data}/>,
+  //   document.body.appendChild(document.createElement('div')),
+  // );
 });

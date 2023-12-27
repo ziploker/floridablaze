@@ -28,11 +28,16 @@ const LoginWrapperNew = styled.div`
   z-index: 11;
   width: 35vw;
   position: fixed;
-  top: ${(props) => (props.loginClicked ? "55px" : "-500px")};
+  top: ${(props) => (props.loginClicked ? "0px" : "100vh")};
   right: 0;
   background-color: white;
-  padding: 20px;
+  padding: 140px 20px 20px 20px;
   transition: all 0.3s ease 0s;
+
+  @media only screen and (max-width: 1000px) {
+    width: 100vw;
+    height: 100vh;
+  }
 `;
 
 const CardNew = styled.div`
@@ -254,7 +259,7 @@ function Login(props) {
     if (state.errors.auth) {
       // errorMessages.push(<ErrorMsg> {state.errors.auth[0]} </ErrorMsg>);
 
-      if (state.status == "orange"){
+      if (state.status == "orange") {
         errorMessages.push(
           <>
             <ErrorMsg> {state.errors.auth[0]} </ErrorMsg>
@@ -272,21 +277,9 @@ function Login(props) {
             </span>
           </>
         );
-
-
-      }else{
-
-        errorMessages.push(
-        
-            <ErrorMsg> {state.errors.auth[0]} </ErrorMsg>
-          
-          
-        );
-
-
-        
+      } else {
+        errorMessages.push(<ErrorMsg> {state.errors.auth[0]} </ErrorMsg>);
       }
-      
     }
 
     if (state.errors.password) {

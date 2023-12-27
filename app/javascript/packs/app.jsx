@@ -188,9 +188,11 @@ function App({ d }) {
     setOpenSideMenu(false);
   });
 
-  const executeScrollForSection2 = useCallback(() => {
+  const executeScrollForSection2 = useCallback((e) => {
+    e.preventDefalut();
     scrollToRef2(section2ScrollToRef);
     setOpenSideMenu(false);
+    setLoginClicked(false);
   });
 
   const executeScrollForLookupSectionTwo = () => {
