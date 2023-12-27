@@ -27,14 +27,7 @@ import "../packs/app.css";
 import { useInView } from "react-intersection-observer";
 ///////////////////////////////// MAIN APP STARTING POINT ///////////////
 function App({ d }) {
-  // const lastStory = d.lastStory;
-  // const secondToLastStory = d.secondToLastStory;
-  // const thirdToLastStory = d.thirdToLastStory;
-  // const fourthToLastStory = d.fourthToLastStory;
-  // const lastStory = d.stories[0];
-  // const secondToLastStory = d.stories[1];
-  // const thirdToLastStory = d.stories[2];
-  // const fourthToLastStory = d.stories[3];
+  
   const current_user = d.current_user;
   const artData = d.artData;
 
@@ -44,7 +37,7 @@ function App({ d }) {
     user: {},
   });
 
-  const [openSideMenu, setOpenSideMenu] = useState(false);
+  const [openSideMenu, setOpenSideMenu] = useState(true);
   const [showOffer, setShowOffer] = useState(false);
   const [loginClicked, setLoginClicked] = useState(false);
   const [allStoriesPlaceholder, setAllStoriesPlaceholder] = useState(
@@ -55,10 +48,7 @@ function App({ d }) {
     d.totalNumOfStoriesOnServer
   );
   const [allStories, setAllStories] = useState(d.stories);
-  // const [lastStory, setLastStory] = useState(d.stories[0]);
-  // const [secondToLastStory, setSecondToLastStory] = useState(d.stories[1]);
-  // const [thirdToLastStory, setThirdToLastStory] = useState(d.stories[2]);
-  // const [fourthToLastStory, setFourthToLastStory] = useState(d.stories[3]);
+  
   const allStoriesFromController = d.stories;
   const page = d.page;
 
@@ -73,70 +63,11 @@ function App({ d }) {
     black: "#181818", //(0,0,0)
   };
 
-  // const {
-  //   ref: intersectionObserverRef,
-  //   inView,
-  //   entry,
-  // } = useInView({
-  //   /* Optional options */
-  //   threshold: 0,
-  //   triggerOnce: true,
-  // });
 
   console.log("==============APP===============" + JSON.stringify(d));
-  //console.log("==============APP props===============", controllerProps)
+ 
 
-  //global APP state
-  // const [appState, setAppState] = useState({
-
-  //     lastStory: lastStory,
-  //     secondToLastStory: secondToLastStory,
-  //     thirdToLastStory: thirdToLastStory,
-  //     fourthToLastStory: fourthToLastStory
-
-  // })
-
-  const handleSuccessfulAuth = (data) => {
-    // setAppState({
-    //     ...appState,
-    //     loggedInStatus: "LOGGED_IN",
-    //     user: data.user
-    // })
-
-    setUserState({
-      ...userState,
-      loggedInStatus: "LOGGED_IN",
-      user: data.user,
-    });
-  };
-
-  const handleLogOutClick = () => {
-    axios
-      .delete(
-        "/logout",
-        {
-          data: {
-            user: "user",
-          },
-        },
-        { withCredentials: true }
-      )
-      .then((response) => {
-        console.log(response);
-
-        //Server says logged_in but appState says not logged in
-        //Server says logged_in but appState says not logged in
-
-        setUserState({
-          ...userState,
-          loggedInStatus: "NOT_LOGGED_IN",
-          user: {},
-        });
-      })
-      .catch((error) => {
-        console.log("Logout? error", error);
-      });
-  };
+  
 
   // reference for lookupSection to scroll to, when click on nav link
   const LookupScrollToRef = useRef();
@@ -181,19 +112,71 @@ function App({ d }) {
     //window.scrollTo(0, ref.current.offsetTop)
   };
 
-  const executeScrollForLookupSection = useCallback(() => {
-    console.log("in executeScrollForLookupSection ");
+  const handleSuccessfulAuth = (data) => {
+   
+    setUserState({
+      ...userState,
+      loggedInStatus: "LOGGED_IN",
+      user: data.user,
+    });
+  };
 
+  const handleLogOutClick = () => {
+    axios
+      .delete(
+        "/logout",
+        {
+          data: {
+            user: "user",
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log(response);
+
+        //Server says logged_in but appState says not logged in
+        //Server says logged_in but appState says not logged in
+
+        setUserState({
+          ...userState,
+          loggedInStatus: "NOT_LOGGED_IN",
+          user: {},
+        });
+      })
+      .catch((error) => {
+        console.log("Logout? error", error);
+      });
+  };
+
+  // const executeScrollForLookupSection = useCallback(() => {
+  //   console.log("in executeScrollForLookupSection ");
+
+  //   scrollToRef(LookupScrollToRef);
+  //   setOpenSideMenu(false);
+  // });
+
+  const executeScrollForLookupSection = (e) => {
+    console.log("in executeScrollForLookupSection ");
+    e.preventDefault();
     scrollToRef(LookupScrollToRef);
     setOpenSideMenu(false);
-  });
+  };
 
-  const executeScrollForSection2 = useCallback((e) => {
-    e.preventDefalut();
-    scrollToRef2(section2ScrollToRef);
+  // const executeScrollForSection2 = useCallback(() => {
+    
+  //   scrollToRef2(section2ScrollToRef);
+  //   setOpenSideMenu(false);
+  //   setLoginClicked(false);
+  // });
+
+  const executeScrollForSection2 = (e) => {
+    e.preventDefault();
+    
     setOpenSideMenu(false);
     setLoginClicked(false);
-  });
+    scrollToRef2(section2ScrollToRef);
+  };
 
   const executeScrollForLookupSectionTwo = () => {
     scrollToRef2(section2ScrollToRef);
@@ -206,16 +189,7 @@ function App({ d }) {
     console.log("==============APP useEffects===============");
     if (current_user != null) {
       console.log("currentUser exists, so bypass session logged_in call");
-      //   setAppState({
-      //     ...appState,
-      //     loggedInStatus: "LOGGED_IN",
-      //     user: current_user,
-      //     emailStatus:
-      //       current_user.email_confirmed == "true"
-      //         ? "EMAIL_VERIFIED"
-      //         : "EMAIL_NOT_VERIFIED",
-      //   });
-
+     
       setUserState({
         ...userState,
         loggedInStatus: "LOGGED_IN",
@@ -267,17 +241,7 @@ function App({ d }) {
     }
   }, []);
 
-  //   useEffect(() => {
-  //     document.addEventListener(
-  //       "touchmove",
-  //       function (event) {
-  //         if (event.scale !== 1) {
-  //           event.preventDefault();
-  //         }
-  //       },
-  //       false
-  //     );
-  //   }, []);
+ 
 
   useEffect(() => {
     //console.log("1111111111111111111111111111111111111111111111111===");
@@ -292,8 +256,7 @@ function App({ d }) {
 
   const initialOptions = {
     "client-id":
-      //"ASxYc6NaKEnx3gEKnVzv60MvRjC2tM4F-CFZgepkJwnAL1Cr9c3MfgRtr9OCMqOa-egcSu3dEpee205c",
-      //"ARoxFsYDjhh3TqvSuq-WCN4jIEIFuyTm_HUPob8uDtr0H8c-A4ko4Tb2X1A9Sl2pwTRERBClsNWrleR6",
+      
       "ARoxFsYDjhh3TqvSuq-WCN4jIEIFuyTm_HUPob8uDtr0H8c-A4ko4Tb2X1A9Sl2pwTRERBClsNWrleR6",
   };
 

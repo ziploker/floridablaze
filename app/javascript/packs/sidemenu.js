@@ -4,11 +4,7 @@ import StyledSideMenu from "./sidemenu.styled";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const UL = styled.ul`
-  li {
-    cursor: pointer;
-  }
-`;
+
 
 function Menu(props) {
   return (
@@ -16,18 +12,24 @@ function Menu(props) {
       openSideMenu={props.openSideMenu}
       hamburgerScrolled={props.hamburgerScrolled}
     >
-      <UL>
-        <li key={1} style={{ borderBottom: "2px orange solid" }}>
-          <a href="/">Home</a>
-        </li>
-        <li key={2} style={{ borderBottom: "2px orange solid" }}>
-          <a onClick={props.executeScrollForLookupSection}>Act</a>
-        </li>
-        <li key={3} style={{ borderBottom: "2px orange solid" }}>
-          <a href="#">Shop</a>
-        </li>
-
-        <li key={4}>
+      <div style={{gridArea: "1/2/-1/-1"}}>
+        <a key={1} style={{ borderBottom: "2px orange solid" }} href="/">
+          <h1>
+            Home
+          </h1>
+        </a>
+        <a style={{ borderBottom: "2px orange solid" }} key={2} onClick={props.executeScrollForLookupSection}>
+          <h1>
+            Act
+          </h1>
+        </a>
+        <a key={3} style={{ borderBottom: "2px orange solid" }} href="#">
+          <h1>
+            Shop
+          </h1>
+        </a>
+<div style={{height: "2px", background: "linear-gradient(90deg, rgba(223,157,17,1) 56%, rgba(0,212,255,0) 100%)"}}/>
+        <div style={{paddingTop: "40px"}} key={4}>
           {props.userState.loggedInStatus == "LOGGED_IN"
             ? [
                 <a
@@ -54,16 +56,17 @@ function Menu(props) {
                   {" "}
                   Login |
                 </a>,
-                <div
+                <a
                   style={{ fontSize: "4vw" }}
+                  
                   key={"d"}
                   onClick={props.executeScrollForSection2}
                 >
                   {" "}
                   Signup
-                </div>,
+                </a>,
               ]}{" "}
-        </li>
+        </div>
 
         {/* 
         <li key={5}>
@@ -72,7 +75,7 @@ function Menu(props) {
 
         </li>
         */}
-      </UL>
+      </div>
     </StyledSideMenu>
   );
 }

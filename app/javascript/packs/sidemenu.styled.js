@@ -3,36 +3,30 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledMenu = styled.nav`
-	//display: ${({ openSideMenu }) => (openSideMenu ? "flex" : "none")};
-	//display: ${(props) => (props.openSideMenu ? "flex" : "none")};
-	display: flex;
-	//grid-area: 1/1/-1/-1;
-	flex-direction: column;
-	justify-content: flex-start;
-	//background: ${({ theme }) => theme.primaryLight};
+	
+	display: grid;
+	grid-template-columns: minmax(10px, 1fr) 20fr;
 	background: #f4f4f4;
-	//opacity: 1;
+	
 	height: 100vh;
-	//max-height: 500px;
+	
 	text-align: left;
-	//padding: ${({ openSideMenu }) => (openSideMenu ? "2rem" : "0")};
 	position: fixed;
-	//top: 85px;
 	width: 100%;
-	//right: 0;
 	top: 0;
 	left: 0;
 	padding-top: ${({ hamburgerScrolled }) =>
 		hamburgerScrolled ? "70px" : "150px"};
 
-	//height: ${({ openSideMenu }) => (openSideMenu ? "auto" : "0px")};
 	transition: 0.2s ease-in-out;
 	z-index: 50;
 
 	transform: ${(props) =>
 		props.openSideMenu ? "translateX(0%)" : "translateX(100%)"};
-
-	//transform: ${(props) => (props.openSideMenu ? "scale(1,1)" : "scale(0,1)")};
+		
+	h1 {
+		margin-bottom: 20px;
+	}
 
 	ul {
 		list-style-type: none;
@@ -42,9 +36,7 @@ const StyledMenu = styled.nav`
 		grid-template-rows: 1fr 1fr 1fr 1fr;
 	}
 
-	/* @media (max-width: ${({ theme }) => theme.mobile}) {
-		//width: 100%;
-	} */
+	
 
 	li {
 		text-align: center;

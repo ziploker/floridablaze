@@ -28,7 +28,7 @@ const LoginWrapperNew = styled.div`
   z-index: 11;
   width: 35vw;
   position: fixed;
-  top: ${(props) => (props.loginClicked ? "0px" : "100vh")};
+  top: ${(props) => (props.loginClicked ? "0px" : "-100vh")};
   right: 0;
   background-color: white;
   padding: 140px 20px 20px 20px;

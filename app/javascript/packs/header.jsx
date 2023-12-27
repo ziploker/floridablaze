@@ -95,7 +95,7 @@ const LogoText = styled.img`
 	
 	@media only screen and (max-width: 385px) {
 		width: 160px;
-	} */ */
+	} */ 
 `;
 
 const HeaderLeafImage = styled.img`
@@ -222,13 +222,13 @@ const LongNav = styled.nav`
 			}
 
 				
-			}
+    }
 
-			span {
-				font-size: 1em;
-			}
-		}
-	}
+    span {
+      font-size: 1em;
+    }
+  }
+	
 `;
 
 const Outter = styled.div`
