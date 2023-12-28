@@ -478,11 +478,11 @@ function Header(props) {
 
   // sets the state so the element can stick
   const handleScroll = () => {
-    //console.log("===================window.scrollY===", window.scrollY);
-    // console.log(
-    //   "===================pixlesFromLongNavToTop===",
-    //   pixlesFromLongNavToTop
-    // );
+    console.log("===================window.scrollY===", window.scrollY);
+    console.log(
+      "===================pixlesFromLongNavToTop===",
+      pixlesFromLongNavToTop
+    );
 
     // window.scrollY >= pixlesFromLogoToTop - 4
     window.scrollY >= pixlesFromLogoToTop
@@ -650,6 +650,7 @@ function Header(props) {
           executeScrollForSection2={props.executeScrollForSection2}
         />
       </Outter>
+      {longNavScrolled ? "TRUE" : "False"}
     </>
   );
 }
