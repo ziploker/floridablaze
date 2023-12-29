@@ -240,12 +240,17 @@ const HamburgerMenu = styled.div`
 	padding-right: 3em; */
 
   //position: fixed;
-  position: ${(props) => (props.hamburgerScrolled ? "fixed" : "absolute")};
+  grid-area: 1/2/2/3;
+  justify-self: end;
+  align-self: center;
+  position: ${(props) => (props.hamburgerScrolled ? "fixed" : "grid")};
+  padding-right: ${(props) => (props.hamburgerScrolled ? "0px" : "22px")};
   //top: 25px;
   right: 22px;
-  transition: all 0.2s linear;
+  //transition: all 0.2s linear;
+  
   //position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
-  top: ${(props) => (props.hamburgerScrolled ? "17px" : "45px")};
+  top: ${(props) => (props.hamburgerScrolled ? "17px" : "initial")};
 
   @media only screen and (max-width: 330px) {
     //grid-area: 1/2/2/3;
@@ -335,9 +340,11 @@ function Header(props) {
   // initial distance from element to top of viewport
   const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(26.75);
   const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] =
-    useState(30.5);
+    useState(23);
   const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] =
-    useState(19.366668701171875);
+    useState();
+
+    //33
   //const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(0);
 
   // refs for elements that need stickyness or effects
@@ -394,14 +401,17 @@ function Header(props) {
 
   // set initial values for "sticky" feature
   useEffect(() => {
+
+    console.log("Sticky feature, initial longNavRef.current.getBoundingClientRect().top is ", longNavRef.current.getBoundingClientRect().top)
     //
-    setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top);
-    //
-    // // // window.innerWidth <= 500
-    // // //   ? setPixlesFromHamburgerToTop(
-    // // //       hamburgerRef.current.getBoundingClientRect().top
-    // // //     )
-    // // //   : null;
+    //setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top);setPixlesFromHamburgerToTop(
+      setPixlesFromLongNavToTop(longNavRef.current.getBoundingClientRect().top)
+    
+      // // // window.innerWidth <= 1000
+      // // //   ? setPixlesFromHamburgerToTop(
+      // // //       hamburgerRef.current.getBoundingClientRect().top - 30
+      // // //     )
+      // // //   : null;
     //
     // // // window.innerWidth > 500
     // // //   ? setPixlesFromLongNavToTop(
@@ -492,7 +502,7 @@ function Header(props) {
 
     //window.scrollY > 0 ? setLogoScrolled(true) : setLogoScrolled(false)
     //console.log("scrolllllY", window.scrollY)
-    window.scrollY >= pixlesFromHamburgerToTop - 7
+    window.scrollY >= pixlesFromHamburgerToTop
       ? setHamburgerScrolled(true)
       : setHamburgerScrolled(false);
 
