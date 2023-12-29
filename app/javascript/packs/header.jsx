@@ -33,69 +33,69 @@ const HeaderWrapper = styled.div`
 `;
 
 const LogoText = styled.img`
-	//position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
-	position: fixed;
-  opacity: .1;
-	//top: ${(props) => (props.logoScrolled ? "10px" : "initial")};
-	//font-style: normal;
-	//font-weight: normal;
-	//font-size: 22px;
-	//letter-spacing: -1px;
-	//color: #010101;
-	margin-left: 50px;
-	transition: all .17s linear;
-	grid-area: headerLogo;
-	top:${(props) => (props.longNavScrolled ? "15px" : "30px")};
-  	//left: 50px;
-	justify-self: start;
-	align-self: center;
-	//display: inline-block;
-	
-	/* font-size: ${(props) => (props.logoScrolled ? "1em" : "2em")}; */
-		/* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
-	/* width: ${(props) => (props.logoScrolled ? "175px" : "250px")}; */
-  
-	width: ${(props) => (props.longNavScrolled ? "200px" : "280px")};
+  //position: ${(props) => (props.logoScrolled ? "fixed" : "initial")};
+  position: fixed;
+  opacity: 0.1;
+  //top: ${(props) => (props.logoScrolled ? "10px" : "initial")};
+  //font-style: normal;
+  //font-weight: normal;
+  //font-size: 22px;
+  //letter-spacing: -1px;
+  //color: #010101;
+  margin-left: 50px;
+  transition: all 0.17s linear;
+  grid-area: headerLogo;
+  top: ${(props) => (props.longNavScrolled ? "15px" : "30px")};
+  //left: 50px;
+  justify-self: start;
+  align-self: center;
+  //display: inline-block;
+
+  /* font-size: ${(props) => (props.logoScrolled ? "1em" : "2em")}; */
+  /* width: ${(props) => (props.logoScrolled ? "155px" : "225px")}; */
+  /* width: ${(props) => (props.logoScrolled ? "175px" : "250px")}; */
+
+  width: ${(props) => (props.longNavScrolled ? "200px" : "280px")};
   //height: 45px;
-	//width: 100%;
-	//max-width: 420px;
-	//min-width: 100px;
-	cursor: pointer;
+  //width: 100%;
+  //max-width: 420px;
+  //min-width: 100px;
+  cursor: pointer;
 
-	z-index: 51;
+  z-index: 51;
 
-	span {
-		color: rgb(241, 203, 203);
-	}
-	@media only screen and (max-width: 700px) {
-		//width: 200px;
-		//margin: 0 0 10px 10px;
+  span {
+    color: rgb(241, 203, 203);
+  }
+  @media only screen and (max-width: 700px) {
+    //width: 200px;
+    //margin: 0 0 10px 10px;
     //left: 50px;
     //width: 280px;
     //top: 11px;
-	}
+  }
 
-	@media only screen and (max-width: 985px) {
-		margin-left: 20px;
-	}
+  @media only screen and (max-width: 985px) {
+    margin-left: 20px;
+  }
 
-	@media only screen and (max-width: 520px) {
-		width: 164px;
-	}
+  @media only screen and (max-width: 520px) {
+    width: 164px;
+  }
 
-	/* @media only screen and (min-width: 1999px) {
+  /* @media only screen and (min-width: 1999px) {
 
       position: initial;
 	} */
 
-	/*
+  /*
 	@media only screen and (max-width: 500px) {
 		width: 200px;
 	}
 	
 	@media only screen and (max-width: 385px) {
 		width: 160px;
-	} */ 
+	} */
 `;
 
 const HeaderLeafImage = styled.img`
@@ -137,26 +137,26 @@ const UlWrapper = styled.div`
   display: grid;
 `;
 const LongNav = styled.nav`
-	@media only screen and (max-width: 1000px) {
-		display: none;
-	}
-	transition: all 0.2s linear;
-	grid-area: headerLeaf;
-	color: white;
-	align-self: center;
-	justify-self: end;
-	margin: 0 -25px;
-	display: flex;
-	position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
-	//position: fixed;
+  @media only screen and (max-width: 1000px) {
+    display: none;
+  }
+  transition: all 0.2s linear;
+  grid-area: headerLeaf;
+  color: white;
+  align-self: center;
+  justify-self: end;
+  margin: 0 -25px;
+  display: flex;
+  position: ${(props) => (props.longNavScrolled ? "fixed" : "initial")};
+  //position: fixed;
 
-	top: ${(props) => (props.longNavScrolled ? "2px" : "initial")};
-	/* color: ${(props) =>
+  top: ${(props) => (props.longNavScrolled ? "2px" : "initial")};
+  /* color: ${(props) =>
     props.logoScrolledChangeColor && props.scrollDir == "scrolling down"
       ? "black"
       : "white"}; */
 
-	color: ${(props) =>
+  color: ${(props) =>
     props.scrollDir == "scrolling down"
       ? props.leafScrolledSoChangeColorDown
         ? "black"
@@ -164,71 +164,64 @@ const LongNav = styled.nav`
       : props.leafScrolledSoChangeColorUp
       ? "white"
       : "black"};
-	//height: 100%;
+  //height: 100%;
 
-	ul {
-		list-style: none;
-		margin-right: 40px;
-		display: grid;
-		align-items: baseline;
-		color: inherit;
-		align-self: center;
-		grid-template-columns: repeat(6, min-content);
-		font-family: "Fira Sans";
+  ul {
+    list-style: none;
+    margin-right: 40px;
+    display: grid;
+    align-items: baseline;
+    color: inherit;
+    align-self: center;
+    grid-template-columns: repeat(6, min-content);
+    font-family: "Fira Sans";
 
-		li {
-			/* @media only screen and (max-width: 666px) {
+    li {
+      /* @media only screen and (max-width: 666px) {
         padding: 0px 12px;
       } */
 
-			/* @media only screen and (min-width: 1396px) {
+      /* @media only screen and (min-width: 1396px) {
         font-size: 39px;
       } */
-			align-self: baseline;
-			//display: inline-block;
-			padding: 0px 5px;
-			//transition: font-size 0.1s linear;
-			font-weight: 400;
-			/* font-size: ${(props) => (props.longNavScrolled ? "1.8vw" : "2vw")}; */
-			font-size: 2vw;
-			line-height: 45px;
-			color: inherit;
-			text-decoration: none;
-			display: grid;
+      align-self: baseline;
+      //display: inline-block;
+      padding: 0px 5px;
+      //transition: font-size 0.1s linear;
+      font-weight: 400;
+      /* font-size: ${(props) => (props.longNavScrolled ? "1.8vw" : "2vw")}; */
+      font-size: 2vw;
+      line-height: 45px;
+      color: inherit;
+      text-decoration: none;
+      display: grid;
 
-			cursor: pointer;
-			&:hover {
-				color: rgb(241, 203, 203);
-			}
+      cursor: pointer;
+      &:hover {
+        color: rgb(241, 203, 203);
+      }
 
-			@media only screen and (min-width: 1500px) {
-				font-size: 30px;
-				
-			}
+      @media only screen and (min-width: 1500px) {
+        font-size: 30px;
+      }
 
-			a {
-
-				//transition: all 0.3s ease 0s;
-				font-weight: 500;
-				/* font-size: ${(props) => (props.longNavScrolled ? ".8vw" : "1vw")}; */
-				font-size: 1vw;
-				line-height: 45px;
-				color: inherit;
-				@media only screen and (min-width: 1500px) {
-				
-					font-size: 15px;
-				}
-				
-			}
-
-				
+      a {
+        //transition: all 0.3s ease 0s;
+        font-weight: 500;
+        /* font-size: ${(props) => (props.longNavScrolled ? ".8vw" : "1vw")}; */
+        font-size: 1vw;
+        line-height: 45px;
+        color: inherit;
+        @media only screen and (min-width: 1500px) {
+          font-size: 15px;
+        }
+      }
     }
 
     span {
       font-size: 1em;
     }
   }
-	
 `;
 
 const Outter = styled.div`
@@ -246,12 +239,13 @@ const HamburgerMenu = styled.div`
 	align-self: center;
 	padding-right: 3em; */
 
-  position: fixed;
+  //position: fixed;
+  position: ${(props) => (props.hamburgerScrolled ? "fixed" : "absolute")};
   //top: 25px;
   right: 22px;
   transition: all 0.2s linear;
   //position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
-  top: ${(props) => (props.hamburgerScrolled ? "17px" : "56px")};
+  top: ${(props) => (props.hamburgerScrolled ? "17px" : "45px")};
 
   @media only screen and (max-width: 330px) {
     //grid-area: 1/2/2/3;
@@ -342,9 +336,9 @@ function Header(props) {
   const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(26.75);
   const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] =
     useState(30.5);
-  // const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] =
-  //   useState(19.366668701171875);
-  const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(0);
+  const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] =
+    useState(19.366668701171875);
+  //const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(0);
 
   // refs for elements that need stickyness or effects
   const logoTextRef = useRef();
@@ -403,17 +397,17 @@ function Header(props) {
     //
     setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top);
     //
-    window.innerWidth <= 500
-      ? setPixlesFromHamburgerToTop(
-          hamburgerRef.current.getBoundingClientRect().top
-        )
-      : null;
+    // // // window.innerWidth <= 500
+    // // //   ? setPixlesFromHamburgerToTop(
+    // // //       hamburgerRef.current.getBoundingClientRect().top
+    // // //     )
+    // // //   : null;
     //
-    window.innerWidth > 500
-      ? setPixlesFromLongNavToTop(
-          longNavRef.current.getBoundingClientRect().top
-        )
-      : null;
+    // // // window.innerWidth > 500
+    // // //   ? setPixlesFromLongNavToTop(
+    // // //       longNavRef.current.getBoundingClientRect().top
+    // // //     )
+    // // //   : null;
     // console.log("END_OF_USE_EFFECT _window.innerWidth = ", window.innerWidth);
     // console.log(
     //   "END_OF_USE_EFFECT _LogoTextToTop = ",
@@ -650,7 +644,6 @@ function Header(props) {
           executeScrollForSection2={props.executeScrollForSection2}
         />
       </Outter>
-      {longNavScrolled ? "TRUE" : "False"}
     </>
   );
 }
