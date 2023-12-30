@@ -9,6 +9,8 @@ const Burger = (props) => {
       openSideMenu={props.openSideMenu}
       hamburgerScrolled={props.hamburgerScrolled}
       leafScrolledSoChangeColorDown={props.leafScrolledSoChangeColorDown}
+      leafScrolledSoChangeColorUp={props.leafScrolledSoChangeColorUp}
+            scrollDir={props.scrollDir}
       onClick={() => {
         props.setOpenSideMenu(!props.openSideMenu);
       }}
