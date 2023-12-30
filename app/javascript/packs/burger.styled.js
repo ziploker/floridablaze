@@ -34,9 +34,9 @@ const StyledBurger = styled.button`
     width: 50px;
     //width: ${({ openSideMenu }) => (openSideMenu ? "25px" : "50px")};
     height: 3px;
-    background: ${({ hamburgerScrolled }) =>
-      hamburgerScrolled ? "black" : "white"};
-    @media only screen and (max-width: 330px) {
+    background: ${({ leafScrolledSoChangeColorDown }) =>
+      leafScrolledSoChangeColorDown ? "black" : "white"};
+    @media only screen and (max-width: 440px) {
       background: black;
     }
     border-radius: 10px;
@@ -53,20 +53,20 @@ const StyledBurger = styled.button`
       opacity: ${({ openSideMenu }) => (openSideMenu ? "0" : "1")};
       transform: ${({ openSideMenu }) =>
         openSideMenu ? "translateX(5px)" : "translateX(0)"};
-      background: ${({ hamburgerScrolled }) =>
-        hamburgerScrolled ? "black" : "white"};
-      @media only screen and (max-width: 330px) {
+      background: ${({ leafScrolledSoChangeColorDown }) =>
+        leafScrolledSoChangeColorDown ? "black" : "white"};
+      @media only screen and (max-width: 440px) {
         background: black;
       }
       width: ${({ openSideMenu }) => (openSideMenu ? "50px" : "initial")};
-      @media only screen and (max-width: 330px) {
+      @media only screen and (max-width: 440px) {
         color: black;
       }
 
       font-size: 0.7em;
 
-      color: ${({ hamburgerScrolled }) =>
-        hamburgerScrolled ? "black" : "white"};
+      color: ${({ leafScrolledSoChangeColorDown }) =>
+        leafScrolledSoChangeColorDown ? "black" : "white"};
 
       /* @media only screen and (max-width: 420px) {
 				font-size: 0.7em;
@@ -80,9 +80,9 @@ const StyledBurger = styled.button`
     :nth-child(3) {
       transform: ${({ openSideMenu }) =>
         openSideMenu ? "rotate(-45deg)" : "rotate(0)"};
-      background: ${({ hamburgerScrolled }) =>
-        hamburgerScrolled ? "black" : "white"};
-      @media only screen and (max-width: 330px) {
+      background: ${({ leafScrolledSoChangeColorDown }) =>
+        leafScrolledSoChangeColorDown ? "black" : "white"};
+      @media only screen and (max-width: 440px) {
         background: black;
       }
       //width: ${({ openSideMenu }) => (openSideMenu ? "25px" : "50px")};

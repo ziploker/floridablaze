@@ -8,6 +8,7 @@ const Burger = (props) => {
     <StyledBurger
       openSideMenu={props.openSideMenu}
       hamburgerScrolled={props.hamburgerScrolled}
+      leafScrolledSoChangeColorDown={props.leafScrolledSoChangeColorDown}
       onClick={() => {
         props.setOpenSideMenu(!props.openSideMenu);
       }}
