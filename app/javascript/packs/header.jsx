@@ -30,21 +30,25 @@ const HeaderWrapper = styled.div`
   overflow: hidden;
   grid-gap: 8px;
   z-index: 51;
+
+  @media only screen and (max-width: 440px) {
+    height: 43px;
+  }
 `;
 
 const LogoText = styled.img`
   position: ${(props) => (props.logoScrolled ? "fixed" : "absolute")};
-  
+
   //opacity: 0.1;
-  
+
   margin-left: 50px;
   transition: all 0.3s linear;
   grid-area: headerLogo;
-  top: ${(props) => (props.logoScrolled ? "12px" : "21px")};
-  
+  top: ${(props) => (props.logoScrolled ? "15px" : "21px")};
+
   justify-self: start;
   align-self: center;
-  
+
   margin-bottom: 8px;
 
   /* font-size: ${(props) => (props.logoScrolled ? "1em" : "2em")}; */
@@ -58,11 +62,9 @@ const LogoText = styled.img`
   span {
     color: rgb(241, 203, 203);
   }
-  
 
   @media only screen and (max-width: 985px) {
     margin-left: 20px;
-    
   }
 
   @media only screen and (max-width: 860px) {
@@ -75,7 +77,9 @@ const LogoText = styled.img`
     top: 39px;
   }
 
-  
+  @media only screen and (max-width: 440px) {
+    top: 3px;
+  }
 `;
 
 const HeaderLeafImage = styled.img`
@@ -213,7 +217,6 @@ const Outter = styled.div`
 `;
 
 const HamburgerMenu = styled.div`
- 
   margin-top: ${(props) => (props.hamburgerScrolled ? "initial" : "8px")};
   grid-area: 1/2/2/3;
   justify-self: end;
@@ -226,6 +229,10 @@ const HamburgerMenu = styled.div`
 
   //position: ${(props) => (props.hamburgerScrolled ? "fixed" : "initial")};
   top: ${(props) => (props.hamburgerScrolled ? "17px" : "initial")};
+
+  @media only screen and (max-width: 440px) {
+    align-self: start;
+  }
 
   @media only screen and (max-width: 330px) {
     //grid-area: 1/2/2/3;
@@ -379,8 +386,10 @@ function Header(props) {
       hamburgerRef.current.getBoundingClientRect().top
     );
     //
-    setPixlesFromLogoToTop(logoTextRef.current.getBoundingClientRect().top - 30);
-    
+    setPixlesFromLogoToTop(
+      logoTextRef.current.getBoundingClientRect().top - 30
+    );
+
     longNavRef.current.getBoundingClientRect().top == 0
       ? null
       : setPixlesFromLongNavToTop(
@@ -392,7 +401,7 @@ function Header(props) {
       : setPixlesFromHamburgerToTop(
           hamburgerRef.current.getBoundingClientRect().top - 20
         );
-    
+
     //
     // // // window.innerWidth > 500
     // // //   ? setPixlesFromLongNavToTop(
@@ -473,8 +482,8 @@ function Header(props) {
     window.scrollY >= pixlesFromLogoToTop
       ? setLogoScrolled(true)
       : setLogoScrolled(false);
-    
-      window.scrollY >= 75
+
+    window.scrollY >= 75
       ? setLeafScrolledSoChangeColorDown(true)
       : setLeafScrolledSoChangeColorDown(false);
 
