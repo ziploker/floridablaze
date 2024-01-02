@@ -189,8 +189,13 @@ const PWrapper = styled.div`
   margin-top: 16px;
   //padding: 0px 20px;
 
+  h1{
+
+    margin: 20px 0;
+  }
+
   p {
-    margin-bottom: 20px;
+    margin: 20px 0 40px 0;
   }
 `;
 
