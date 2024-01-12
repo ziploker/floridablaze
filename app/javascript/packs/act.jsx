@@ -186,7 +186,7 @@ const ActSection = styled.section`
     minmax(80px, 1fr)
     minmax(250px, 350px) minmax(150px, 900px) minmax(80px, 1fr); */
   //grid-template-rows: minmax(40px, 50px) minmax(min-content, max-content) min-content min-content 1fr;
-  grid-template-columns: 10% 2fr 4fr 2%;
+  grid-template-columns: 2% 2fr 4fr 2%;
   grid-column-gap: 0.5em;
   grid-area: 1/1/-1/-1;
   transition: opacity 0.4s;
