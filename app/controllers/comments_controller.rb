@@ -53,6 +53,8 @@ class CommentsController < ApplicationController
 
             puts "current user found, build and save comment"
 
+            puts "CHECKER => " + comment_params.inspect
+
             
             @comment = @commentable.comments.build(comment_params)
 
