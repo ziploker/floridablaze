@@ -13,7 +13,7 @@ import { _parseRelative } from "gsap/gsap-core";
 import "../../assets/stylesheets/home_story_spinner.scss";
 import Carousel, { CarouselItem } from "./carousel";
 //import Dots from "react-carousel-dots";
-import "../../assets/stylesheets/dots.css";
+import "../../assets/stylesheets/dots.scss";
 
 //
 //
