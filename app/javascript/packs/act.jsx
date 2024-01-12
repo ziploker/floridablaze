@@ -3896,11 +3896,10 @@ function Act(props, ref) {
                         that many other states have embraced this common-sense approach while our state 
                         continues to lag behind.</p>
 
-                        <p>Prohibition has proven ineffective, leading to an increase in unregulated sales. 
-                        As a Legislator, you have the power to make a difference. I implore you to 
+                        <p>As a Legislator, you have the power to make a difference. I implore you to 
                         consider the undeniable benefits of legalizing and regulating marijuana for 
                         adults like myself. I firmly believe that it is time for our state to take 
-                        this progressive step forward.</p>
+                        this important step forward.</p>
 
                         <p>Thank you for your attention to this matter, and I hope I can count on your 
                         support to bring an end to marijuana prohibition in our state.</p>
@@ -4048,11 +4047,10 @@ function Act(props, ref) {
                         that many other states have embraced this common-sense approach while our state 
                         continues to lag behind.</p>
 
-                        <p>Prohibition has proven ineffective, leading to an increase in unregulated sales. 
-                        As a Legislator, you have the power to make a difference. I implore you to 
+                        <p>As a Legislator, you have the power to make a difference. I implore you to 
                         consider the undeniable benefits of legalizing and regulating marijuana for 
                         adults like myself. I firmly believe that it is time for our state to take 
-                        this progressive step forward.</p>
+                        this important step forward.</p>
 
                         <p>Thank you for your attention to this matter, and I hope I can count on your 
                         support to bring an end to marijuana prohibition in our state.</p>
