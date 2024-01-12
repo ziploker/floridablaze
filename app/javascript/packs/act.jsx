@@ -83,8 +83,8 @@ const BGimageFix = styled.div`
 	right: 0;
 	height: 15px;
 	background: rgb(255,255,255);
-background: linear-gradient(180deg, rgba(255,255,255,1) 9%, rgba(218,218,218,1) 20%, rgba(148,148,148,1) 28%, rgba(46,46,46,0.9177870977492559) 42%, rgba(0,0,0,0.6320728120349702) 50%, rgba(0,0,0,0.44439774200695903) 60%, rgba(0,0,0,0.013025192987351164) 82%); 
-	);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 9%, rgba(218,218,218,1) 20%, rgba(148,148,148,1) 28%, rgba(46,46,46,0.9177870977492559) 42%, rgba(0,0,0,0.6320728120349702) 50%, rgba(0,0,0,0.44439774200695903) 60%, rgba(0,0,0,0.013025192987351164) 82%); 
+	
 `;
 
 const BGimageFixBottom = styled.div`
@@ -1084,8 +1084,9 @@ const CardOne = styled.div`
     /* justify-self: start;
     padding-top: calc(310/220*100%);
     height: 0px;
-    width: 100%; */
-  } */
+    width: 100%; 
+  }
+   */
 `;
 
 const CardOneWrapper = styled.div`
@@ -1669,7 +1670,7 @@ const D1 = styled.h2`
   display: inline-block;
   font-size: 1.5em;
   //padding: 28px 30px 25px 0;
-  margin 0;
+  margin: 0;
   color: #424242;
   border-top-right-radius: 91px;
   //border-top-left-radius: 55px;
@@ -1740,7 +1741,7 @@ const GreenCheckmark = styled.div`
 const CheckmarkDescription = styled.h1`
 	font-size: 0.8em;
 	margin-left: 5px;
-	color; gray;
+	color: gray;
 	
 `;
 
@@ -3875,35 +3876,35 @@ function Act(props, ref) {
 
                       <GetHeader />
 
+                      <div>
                       <p>
-                        I am a constituent of (
-                        <i>
+                        I am a constituent of
+                        
                           {whichEmailIsActive === 1
-                            ? results.one.fullDistrict +
-                              " district " +
-                              results.one.district
-                            : results.two.fullDistrict +
-                              " district " +
-                              results.two.district}
-                        </i>
-                        ). I am writing to urge you to support legalizing and
-                        regulating marijuana for adults. Many other states are
-                        currently benefiting from this common sense approach.
-                        Why is our state lagging behind?
-                      </p>
-                      <p>
-                        Prohibition has never worked and causes an increase in
-                        unregulated sales. Legalizing marijuana for recreational
-                        use would virtually eliminate the black market, create
-                        thousands of jobs in a growing industry and bring in
-                        millions of dolars of tax revenue.
-                      </p>
-                      <p>
-                        As a Legislator, you are in a position where you can
-                        make a difference. Can i count on you to end marijuana
-                        prohibition?
-                      </p>
+                            ? " (" + results.one.fullDistrict + ")."
+                              //" district "
+                              // + results.one.district
+                            : " (" + results.two.fullDistrict + ")."
+                              //" district "
+                              // + results.two.district
+                            }
+                        </p>
+                        
 
+                        <p>I am writing to express my strong support for the legalization and regulation 
+                        of marijuana for recreational use in our state. It is disheartening to see 
+                        that many other states have embraced this common-sense approach while our state 
+                        continues to lag behind.</p>
+
+                        <p>Prohibition has proven ineffective, leading to an increase in unregulated sales. 
+                        As a Legislator, you have the power to make a difference. I implore you to 
+                        consider the undeniable benefits of legalizing and regulating marijuana for 
+                        adults like myself. I firmly believe that it is time for our state to take 
+                        this progressive step forward.</p>
+
+                        <p>Thank you for your attention to this matter, and I hope I can count on your 
+                        support to bring an end to marijuana prohibition in our state.</p>
+                      </div>
                       <LetterClosing>
                         <p>Sincerely,</p>
                         <sub>
@@ -4027,35 +4028,35 @@ function Act(props, ref) {
 
                     <GetHeader />
 
+                    <div>
                     <p>
-                      I am a constituent of (
-                      <i>
+                      I am a constituent of 
+                      
                         {whichEmailIsActive === 1
-                          ? results.one.fullDistrict +
-                            " district " +
-                            results.one.district
-                          : results.two.fullDistrict +
-                            " district " +
-                            results.two.district}
-                      </i>
-                      ). I am writing to urge you to support legalizing and
-                      regulating marijuana for adults. Many other states are
-                      currently benefiting from this common sense approach. Why
-                      is our state lagging behind?
-                    </p>
-                    <p>
-                      Prohibition has never worked and causes an increase in
-                      unregulated sales. Legalizing marijuana for recreational
-                      use would virtually eliminate the black market, create
-                      thousands of jobs in a growing industry and bring in
-                      millions of dolars of tax revenue.
-                    </p>
-                    <p>
-                      As a Legislator, you are in a position where you can make
-                      a difference. Can i count on you to end marijuana
-                      prohibition?
-                    </p>
+                          ? " (" + results.one.fullDistrict + ")."
+                            //+ " district "
+                            // + results.one.district
+                          : " (" + results.two.fullDistrict + ")."
+                            //+ " district "
+                            // + results.two.district
+                          }
+                      </p>
+                      
 
+                      <p>I am writing to express my strong support for the legalization and regulation 
+                        of marijuana for recreational use in our state. It is disheartening to see 
+                        that many other states have embraced this common-sense approach while our state 
+                        continues to lag behind.</p>
+
+                        <p>Prohibition has proven ineffective, leading to an increase in unregulated sales. 
+                        As a Legislator, you have the power to make a difference. I implore you to 
+                        consider the undeniable benefits of legalizing and regulating marijuana for 
+                        adults like myself. I firmly believe that it is time for our state to take 
+                        this progressive step forward.</p>
+
+                        <p>Thank you for your attention to this matter, and I hope I can count on your 
+                        support to bring an end to marijuana prohibition in our state.</p>
+                      </div>
                     <LetterClosing>
                       <p>Sincerely,</p>
                       <sub>
