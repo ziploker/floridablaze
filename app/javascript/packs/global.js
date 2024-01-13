@@ -8,7 +8,6 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 //@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&family=PT+Serif&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;800&family=PT+Serif&family=Permanent+Marker&display=swap");
 
   /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -89,7 +88,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Fira Sans' !important;;
+  font-family: 'Fira Sans' !important;
   font-weight: 800;
 }
 

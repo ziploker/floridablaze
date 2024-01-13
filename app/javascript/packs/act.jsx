@@ -43,6 +43,7 @@ import mailIcon from "../../assets/images/Letterbox.png";
 import rightArrow from "../../assets/images/scroll-arrow.png";
 import gmail_icon from "../../assets/images/gmail_Icon.png";
 
+
 /////////////////////////////////////////////////////////////
 
 const formData = new FormData();
