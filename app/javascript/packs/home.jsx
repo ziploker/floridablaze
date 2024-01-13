@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 //import { Parallax, Background } from 'react-parallax';
-import "../../assets/stylesheets/styleDots.scss";
-import "../../assets/stylesheets/application.css";
+import "../../assets/stylesheets/dotStyles.scss";
 import Login from "./pages/login";
 import defaultImage from "../../assets/images/defaultImage.jpg";
 import slugify from "react-slugify";
@@ -1547,7 +1546,7 @@ function Home(props) {
       </Carousel>
 
       <div style={getBackgroundBarStyles()}>
-        <div style={getAllDotsWrapperStyle()} className="allDotsWrapperClass">
+        <div className={"allDotsWrapper"} style={getAllDotsWrapperStyle()}>
           {whatModeAuto == "desktop"
             ? desktopIndicatorDots
             : cellphoneIndicatorDots}
