@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 //import { Parallax, Background } from 'react-parallax';
 import "../../assets/stylesheets/styleDots.scss";
+import "../../assets/stylesheets/application.css";
 import Login from "./pages/login";
 import defaultImage from "../../assets/images/defaultImage.jpg";
 import slugify from "react-slugify";
