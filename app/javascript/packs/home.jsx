@@ -15,7 +15,6 @@ import "../../assets/stylesheets/home_story_spinner.scss";
 import Carousel, { CarouselItem } from "./carousel";
 //import Dots from "react-carousel-dots";
 
-
 //
 //
 //
@@ -287,7 +286,6 @@ const StoryOneTitle = styled.h1`
 
   @media only screen and (min-width: 986px) {
     font-size: 1.6em;
-
   }
 
   h2 {
@@ -1345,6 +1343,18 @@ function Home(props) {
       );
     }
   );
+
+  const AllDotsWrapper = styled.div`
+    grid-area: 1/2/2/3;
+    display: grid;
+
+    overflow: hidden;
+    width: 220px;
+    height: 15px;
+    justify-self: center;
+
+    transition: transform 0.5s ease;
+  `;
 
   const cellphoneIndicatorDots = Array.from(
     { length: props.allStories.length },
