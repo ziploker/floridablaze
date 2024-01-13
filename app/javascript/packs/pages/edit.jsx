@@ -246,10 +246,13 @@ const LoadingActivitySpinner = styled.div`
   align-self: center;
 `;
 
-console.log("type of window is ", typeof window);
-if (typeof window !== "undefined") {
-  const formData = new FormData();
-}
+// console.log("type of window is ", typeof window);
+// if (typeof window !== "undefined") {
+//   const formData = new FormData();
+//   console.log("CREATED FORMDATA ++++++++", formData)
+// }
+
+const formData = new FormData();
 function Edit(props) {
   console.log("==============Edit===============");
   console.log("==============Edit Props===============", props);

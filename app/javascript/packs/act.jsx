@@ -3646,8 +3646,11 @@ function Act(props, ref) {
       }
     });
   };
-
+  if (locationFromHook.pathname === "/edit") {
+  	return null;
+  } else {
   return (
+    
     <ActWrapper ref={LookupScrollToRef}>
       <BGimage src={actBackground} ref={myRef}></BGimage>
       <BGimageFix />
@@ -4692,7 +4695,10 @@ function Act(props, ref) {
         </ResultSection>
       </ActGrid>
     </ActWrapper>
+       
   );
+} 
+              
 }
 
 const Wtf = React.forwardRef(Act);
