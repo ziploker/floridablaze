@@ -592,12 +592,15 @@ function Edit(props) {
         <LogoWrapper>
           <ProfilePicWrapper>
             <ProfilePic
+              // src={
+              //   state.avatar.length != 0
+              //     ? state.avatar
+              //     : state.avatar_url
+              //     ? state.avatar_url
+              //     : dummy_avatar
+              // }
               src={
-                state.avatar.length != 0
-                  ? state.avatar
-                  : state.avatar_url
-                  ? state.avatar_url
-                  : dummy_avatar
+                state.avatar_url != "" ? state.avatar_url : state.avatar.length != 0 ? state.avatar : dummy_avatar
               }
             />
             <LabelForFile htmlFor="avatar">&#128393;</LabelForFile>

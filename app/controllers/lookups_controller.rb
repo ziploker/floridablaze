@@ -1949,6 +1949,8 @@ class LookupsController < ApplicationController
 
     setUser
 
+    #if @current_user 
+
       @current_user.communications.map { |com, i|
 
         puts "com_type of number is " + com.com_type
@@ -1991,21 +1993,6 @@ class LookupsController < ApplicationController
 
       }
 
-      
-      
-
-      
-      
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
       render json: {
 
 
@@ -2014,9 +2001,32 @@ class LookupsController < ApplicationController
         populateCommunications: @current_user.communications
 
       }
-    
-  
-   
+
+    # else
+    #   render json: {
+
+
+    #   #article: @article_info,
+    #   status: "green",
+    #   #populateCommunications: @current_user.communications
+
+    # }
+    # end
+
+      
+      
+
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+      
 
   
   
