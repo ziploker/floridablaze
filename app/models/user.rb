@@ -114,27 +114,27 @@ class User < ApplicationRecord
  
        puts "------------after_validation callback begin for user -------------------"
  
-       if self.avatar.attached?
+    # #    if self.avatar.attached?
 
         
         
-        puts "-------------self.avatar.url----" + self.avatar.url.to_s
+    # #     puts "-------------self.avatar.url----" + self.avatar.url.to_s
         
-       # processedLink = URI.parse(URI.encode(self.avatar.url.strip))
+    # #    # processedLink = URI.parse(URI.encode(self.avatar.url.strip))
           
       
         
-        url = self.avatar.url.split("?").first
+    # #     url = self.avatar.url.split("?").first
 
           
 
        
-          puts "url = " + url
+    # #       puts "url = " + url
           
           
           
        
-          self.avatar_url = url
+    # #       self.avatar_url = url
  
        end
  

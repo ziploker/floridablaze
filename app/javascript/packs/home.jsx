@@ -1344,23 +1344,11 @@ function Home(props) {
     }
   );
 
-  const AllDotsWrapper = styled.div`
-    grid-area: 1/2/2/3;
-    display: grid;
-
-    overflow: hidden;
-    width: 220px;
-    height: 15px;
-    justify-self: center;
-
-    transition: transform 0.5s ease;
-  `;
-
   const cellphoneIndicatorDots = Array.from(
     { length: props.allStories.length },
     (_, i) => {
       return (
-        <div style={getDotStyle()} className="dot-holder" key={i}>
+        <div style={getDotStyle()} className={"dot-holder"} key={i}>
           <div
             key={`${i}-inner`}
             className={`eachDot
@@ -1386,7 +1374,7 @@ function Home(props) {
       <News
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        className="box"
+        className={"box"}
       >
         {/* <LeftFiller /> */}
         <LeftArrowButton

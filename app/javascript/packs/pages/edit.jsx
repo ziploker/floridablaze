@@ -444,8 +444,8 @@ function Edit(props) {
 
   ///////////////////////////////////  HANDLE_IMAGE_CHANGE /////////////////////////////
   function handleImageChange(e) {
-    console.log("Th_Url", e.target.files[0]);
-    console.log("Th_New_Url", URL.createObjectURL(e.target.files[0]));
+    //console.log("Th_Url", e.target.files[0]);
+    //console.log("Th_New_Url", URL.createObjectURL(e.target.files[0]));
 
     formData.append("user[avatar]", e.target.files[0]);
 
