@@ -23,7 +23,7 @@ class User < ApplicationRecord
     validates :avatar, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
         dimension: { width: { max: 200 }, height: { max: 200 } }
                
-    after_validation :getKeyFromBlobAndAddItToStoryRecord
+    #after_validation :getKeyFromBlobAndAddItToStoryRecord
     #before_save :downcase_fields
     
     #def downcase_fields

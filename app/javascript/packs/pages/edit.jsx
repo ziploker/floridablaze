@@ -444,6 +444,9 @@ function Edit(props) {
 
   ///////////////////////////////////  HANDLE_IMAGE_CHANGE /////////////////////////////
   function handleImageChange(e) {
+    console.log("Th_Url", e.target.files[0]);
+    console.log("Th_New_Url", URL.createObjectURL(e.target.files[0]));
+
     formData.append("user[avatar]", e.target.files[0]);
 
     setState({
@@ -600,7 +603,8 @@ function Edit(props) {
               //     : dummy_avatar
               // }
               src={
-                state.avatar_url != "" ? state.avatar_url : state.avatar.length != 0 ? state.avatar : dummy_avatar
+                //state.avatar_url != "" ? state.avatar_url : state.avatar.length != 0 ? state.avatar : dummy_avatar
+                dummy_avatar
               }
             />
             <LabelForFile htmlFor="avatar">&#128393;</LabelForFile>
