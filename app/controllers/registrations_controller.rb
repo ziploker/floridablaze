@@ -419,7 +419,8 @@ class RegistrationsController < ApplicationController
 
                     puts "---------------------bingo"
 
-                    #if @user.update(user_params.except(:oldPassword))
+                    #if @user.update(user_params.except(:oldPassword))\
+                    puts "user_PARAMS_" + user_params.inspect
                     if @user.update(user_params)
 
                         puts "bingooo"

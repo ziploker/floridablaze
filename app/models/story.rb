@@ -196,41 +196,41 @@ class Story < ApplicationRecord
 
     def getKeyFromBlobAndAddItToStoryRecord
 
-        # # puts "------------after_validation callback begin, in getKeyFromBlobAndAddItToStoryRecord -------------------"
+        puts "------------after_validation callback begin, in getKeyFromBlobAndAddItToStoryRecord -------------------"
         
-        # # puts "is self image attached?"
+        puts "is self image attached?"
       
 
-        # # if self.images.attached?
+        if self.images.attached?
 
             
-        # #     puts "yes it is, start to split url"
+            puts "yes it is, start to split url"
 
-        # #     tempArray = []
-        # #     self.images.each do |i|
+            tempArray = []
+            self.images.each do |i|
                 
                 
-        # #         tempArray.push(i.url.split("?").first)
+                tempArray.push(i.url.split("?").first)
                 
             
             
             
             
-        # #     end
+            end
 
             
 
-        # #     puts "final selfurl is " + tempArray.inspect
-        # #     puts "final selfurl type is " + tempArray.class.to_s
+            puts "final selfurl is " + tempArray.inspect
+            puts "final selfurl type is " + tempArray.class.to_s
 
             
             
         
         
        
-        # #     self.urls = tempArray
+            self.urls = tempArray
 
-        # # end
+        end
 
 
        

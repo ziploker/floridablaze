@@ -347,7 +347,7 @@ function Edit(props) {
     });
 
     e.preventDefault();
-    const formData = new FormData();
+
     formData.append("user[full_name]", state.full_name);
 
     formData.append("user[email]", state.email);
@@ -496,6 +496,7 @@ function Edit(props) {
     axios
       .get("/logged_in", { withCredentials: true })
       .then((response) => {
+        console.log("LOGGED_IN_RESPONSE ----", response);
         if (
           response.data.logged_in &&
           state.loggedInStatus == "NOT_LOGGED_IN"
@@ -603,8 +604,12 @@ function Edit(props) {
               //     : dummy_avatar
               // }
               src={
-                //state.avatar_url != "" ? state.avatar_url : state.avatar.length != 0 ? state.avatar : dummy_avatar
-                dummy_avatar
+                state.avatar.length != 0
+                  ? state.avatar
+                  : state.avatar_url != "" && state.avatar_url != null
+                  ? state.avatar_url
+                  : dummy_avatar
+                //dummy_avatar
               }
             />
             <LabelForFile htmlFor="avatar">&#128393;</LabelForFile>
@@ -613,7 +618,7 @@ function Edit(props) {
           <H2>Edit account</H2>
         </LogoWrapper>
 
-        <Form onSubmit={handleAdd}>
+        <Form onSubmit={handleAdd} enctype="multipart/form-data">
           <FormItem>
             <Label className={state.full_nameFieldActive ? "field-active" : ""}>
               full name
