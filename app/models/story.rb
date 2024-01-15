@@ -30,7 +30,7 @@ class Story < ApplicationRecord
 
     #before_validation :beforeValidation
     
-    after_validation :getKeyFromBlobAndAddItToStoryRecord
+    ###after_validation :getKeyFromBlobAndAddItToStoryRecord
     
     #before_save :beforeSave
     
