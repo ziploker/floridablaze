@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
     before_create :ifNickIsBlankMakeItFirstName
 
-    before_create :addDefaultAvatarToActiveStorage
+    #before_create :addDefaultAvatarToActiveStorage
 
     
 
@@ -114,29 +114,23 @@ class User < ApplicationRecord
  
        puts "------------after_validation callback begin for user -------------------"
  
-       if self.avatar.attached?
+        if self.avatar.attached?
+        
+            puts "-------------self.avatar.url----" + self.avatar.url.to_s
+            
+            # processedLink = URI.parse(URI.encode(self.avatar.url.strip))
+            
+            url = self.avatar.url.split("?").first
 
-        
-        
-        puts "-------------self.avatar.url----" + self.avatar.url.to_s
-        
-       # processedLink = URI.parse(URI.encode(self.avatar.url.strip))
-          
-      
-        
-        url = self.avatar.url.split("?").first
-
-          
-
-       
-          puts "url = " + url
-          
-          
-          
-       
-          self.avatar_url = url
+            puts "url = " + url
+            
+            self.avatar_url = url
  
-       end
+        else
+            puts "self.avatar.attached? " + "NOPE, carry on"
+
+        end
+
  
  
       

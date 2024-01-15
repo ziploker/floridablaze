@@ -199,25 +199,7 @@ class Story < ApplicationRecord
         puts "------------after_validation callback begin, in getKeyFromBlobAndAddItToStoryRecord -------------------"
         
         puts "is self image attached?"
-        # if self.images.attached?
-
-            
-        #     puts "yes it is, start to split url"
-
-        #     puts self.images.class.to_s
-
-        #     puts "url to split is " + self.images[0].url
-        #     url = self.images[0].url.split("?").first
-        #     puts "final selfurl is " + url.to_s
-
-            
-            
-        
-        
-       
-        #     self.url = url
-
-        # end
+      
 
         if self.images.attached?
 

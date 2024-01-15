@@ -85,12 +85,16 @@ class StoriesController < ApplicationController
     
     
     imga = params["images"]
+    puts "imga --- ", imga.to_yaml
 
    
 
     extractImages = params.extract!("images")
+    puts "extractImages --- ", extractImages.to_yaml
     
     params["event"]["images"] = imga
+
+    puts "new Combined??? ", params.to_yaml
     
 
     params.extract!("controller")
