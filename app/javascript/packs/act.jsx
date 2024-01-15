@@ -2389,6 +2389,7 @@ const LetterDemo = styled.div`
 const LetterClosing = styled.div`
   display: grid;
   grid-gap: 4px;
+  margin-top: 20px;
   margin-bottom: 42px;
   p {
     margin-bottom: 5px;
