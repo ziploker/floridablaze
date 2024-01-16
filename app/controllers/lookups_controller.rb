@@ -1364,7 +1364,7 @@ class LookupsController < ApplicationController
         "country": "US",
         "provinceOrState": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_1],
         "postalOrZip": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:postal_code],
-        "city": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_2]
+        "city": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_2],
         "description": "testing123"
       }
     }).to_dot
