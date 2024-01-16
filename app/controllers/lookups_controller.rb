@@ -1427,36 +1427,6 @@ class LookupsController < ApplicationController
         # metadata 	object or null 	See Metadata
         
         "html": 
-        #   '<div style="margin: 80px 100px 0px 50px">
-
-        #     <h2 style="margin-bottom: 20px" >Dear {{to.firstName}},</h2>
-            
-        #     <p style="margin-bottom: 20px" >
-        #       I am a constituent of ( <i> {{to.description}} </i>). I am writing to urge you to support legalizing and regulating marijuana for adults.
-        #       Many other states are currently benefiting from this common sense approach. 
-        #       Why is our state lagging behind?
-        #     </p>
-        #     <p style="margin-bottom: 20px" >
-            
-        #       Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
-        #       marijuana for recreational use would virtually eliminate the black market, create
-        #       thousands of jobs in a growing industry and bring in millions of dolars of tax
-        #       revenue.
-        #     </p>
-        #     <p style="margin-bottom: 20px" >
-
-        #       As a Legislator, you are in a position where you can make a difference. 
-        #       Can i count on you to end marijuana prohibition?
-        #     </p>
-
-        #     <div className="closing">
-        #       Sincerely, <br />
-        #       <sub>{{from.firstName}}</sub> <br />
-        #       <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
-        #       <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
-        #     </div>
-        #   </div>
-        # '
           'div style="margin: 80px 100px 0px 50px">
 
             <h2 style="margin-bottom: 20px">Dear {{to.firstName}},</h2>
@@ -1493,6 +1463,7 @@ class LookupsController < ApplicationController
               <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
               <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
             </div>
+          
           </div>
         '
       }
@@ -1540,7 +1511,8 @@ class LookupsController < ApplicationController
         # mergeVariables 	object or null 	See Merge Variables
         # metadata 	object or null 	See Metadata
 
-      'html": "<div style="margin: 80px 100px 0px 50px">
+      "html": 
+        '<div style="margin: 80px 100px 0px 50px">
 
       <h2 style="margin-bottom: 20px">Dear {{to.firstName}},</h2>
       
