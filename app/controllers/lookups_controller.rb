@@ -1365,6 +1365,7 @@ class LookupsController < ApplicationController
         "provinceOrState": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_1],
         "postalOrZip": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:postal_code],
         "city": params[:data][:buyerDetails][:purchase_units][0][:shipping][:address][:admin_area_2]
+        "description": "testing123"
       }
     }).to_dot
 
@@ -1426,23 +1427,23 @@ class LookupsController < ApplicationController
         # metadata 	object or null 	See Metadata
         
         "html": 
-        #   '<div style="margin: 50px">
+        #   '<div style="margin: 80px 100px 0px 50px">
 
-        #     <h2>Dear {{to.firstName}},</h2>
+        #     <h2 style="margin-bottom: 20px" >Dear {{to.firstName}},</h2>
             
-        #     <p>
+        #     <p style="margin-bottom: 20px" >
         #       I am a constituent of ( <i> {{to.description}} </i>). I am writing to urge you to support legalizing and regulating marijuana for adults.
         #       Many other states are currently benefiting from this common sense approach. 
         #       Why is our state lagging behind?
         #     </p>
-        #     <p>
+        #     <p style="margin-bottom: 20px" >
             
         #       Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
         #       marijuana for recreational use would virtually eliminate the black market, create
         #       thousands of jobs in a growing industry and bring in millions of dolars of tax
         #       revenue.
         #     </p>
-        #     <p>
+        #     <p style="margin-bottom: 20px" >
 
         #       As a Legislator, you are in a position where you can make a difference. 
         #       Can i count on you to end marijuana prohibition?
@@ -1456,11 +1457,11 @@ class LookupsController < ApplicationController
         #     </div>
         #   </div>
         # '
-          '<div style="margin: 50px">
+          "<div style="margin: 80px 100px 0px 50px">
 
-            <h2>Dear {{to.firstName}},</h2>
+            <h2 style="margin-bottom: 20px">Dear {{to.firstName}},</h2>
             
-            <p>
+            <p style="margin-bottom: 20px">
               
               I am a constituent of ( <i> {{to.description}} </i>). I am writing to 
               express my strong support for the legalization and regulation of marijuana 
@@ -1470,7 +1471,7 @@ class LookupsController < ApplicationController
             
             </p>
             
-            <p>
+            <p style="margin-bottom: 20px">
               
             As a Legislator, you have the power to make a difference. I implore you 
               to consider the undeniable benefits of legalizing and regulating marijuana 
@@ -1479,7 +1480,7 @@ class LookupsController < ApplicationController
 
 
             </p>
-            <p>
+            <p style="margin-bottom: 20px">
 
              Thank you for your attention to this matter, and I hope I can count on your 
              support to bring an end to marijuana prohibition in our state.
@@ -1493,7 +1494,7 @@ class LookupsController < ApplicationController
               <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
             </div>
           </div>
-        '
+        "
       }
       
 
@@ -1539,46 +1540,44 @@ class LookupsController < ApplicationController
         # mergeVariables 	object or null 	See Merge Variables
         # metadata 	object or null 	See Metadata
 
-      "html": '<div style="margin: 50px">
+      "html": "<div style="margin: 80px 100px 0px 50px">
 
-        <h2>Dear {{to.firstName}},</h2>
-        <p>
-              
-              I am a constituent of ( <i> {{to.description}} </i>). I am writing to 
-              express my strong support for the legalization and regulation of marijuana 
-              for recreational use in our state. It is disheartening to see that many 
-                other states have embraced this common-sense approach while our state 
-                continues to lag behind.
-            
-            </p>
-            
-            <p>
-              
-            As a Legislator, you have the power to make a difference. I implore you 
-              to consider the undeniable benefits of legalizing and regulating marijuana 
-              for adults like myself. I firmly believe that it is time for our state to 
-                take this important step forward.
-
-
-            </p>
-            <p>
-
-             Thank you for your attention to this matter, and I hope I can count on your 
-             support to bring an end to marijuana prohibition in our state.
-
-            </p>
-
-        <div className="closing">
-          Sincerely, <br />
-          <sub>{{from.firstName}}</sub> <br />
-          <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
-          <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
+      <h2 style="margin-bottom: 20px">Dear {{to.firstName}},</h2>
+      
+      <p style="margin-bottom: 20px">
         
+        I am a constituent of ( <i> {{to.description}} </i>). I am writing to 
+        express my strong support for the legalization and regulation of marijuana 
+        for recreational use in our state. It is disheartening to see that many 
+          other states have embraced this common-sense approach while our state 
+          continues to lag behind.
+      
+      </p>
+      
+      <p style="margin-bottom: 20px">
         
-          
-        
-        </div>
-        </div>'
+      As a Legislator, you have the power to make a difference. I implore you 
+        to consider the undeniable benefits of legalizing and regulating marijuana 
+        for adults like myself. I firmly believe that it is time for our state to 
+          take this important step forward.
+
+
+      </p>
+      <p style="margin-bottom: 20px">
+
+       Thank you for your attention to this matter, and I hope I can count on your 
+       support to bring an end to marijuana prohibition in our state.
+
+      </p>
+
+      <div className="closing">
+        Sincerely, <br />
+        <sub>{{from.firstName}}</sub> <br />
+        <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
+        <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
+      </div>
+    </div>
+  "
       }
     
     }).to_dot
