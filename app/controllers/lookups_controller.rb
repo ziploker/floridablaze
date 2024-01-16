@@ -1406,7 +1406,8 @@ class LookupsController < ApplicationController
         # description 	string or null 	Optional line describing this letter
         # sendDate 	Date 	Date when the letter will be sent
         # to 	Contact 	The recipient of this letter
-        "to": contactRepOne,
+        # # # "to": contactRepOne,
+        "to": contactBuyer,
         # from 	Contact 	The sender of this letter
         "from": contactBuyer,
 
@@ -1423,28 +1424,66 @@ class LookupsController < ApplicationController
         # pageCount 	number or null 	Number of pages produced for this letter
         # mergeVariables 	object or null 	See Merge Variables
         # metadata 	object or null 	See Metadata
-
+        
         "html": 
+        #   '<div style="margin: 50px">
+
+        #     <h2>Dear {{to.firstName}},</h2>
+            
+        #     <p>
+        #       I am a constituent of ( <i> {{to.description}} </i>). I am writing to urge you to support legalizing and regulating marijuana for adults.
+        #       Many other states are currently benefiting from this common sense approach. 
+        #       Why is our state lagging behind?
+        #     </p>
+        #     <p>
+            
+        #       Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
+        #       marijuana for recreational use would virtually eliminate the black market, create
+        #       thousands of jobs in a growing industry and bring in millions of dolars of tax
+        #       revenue.
+        #     </p>
+        #     <p>
+
+        #       As a Legislator, you are in a position where you can make a difference. 
+        #       Can i count on you to end marijuana prohibition?
+        #     </p>
+
+        #     <div className="closing">
+        #       Sincerely, <br />
+        #       <sub>{{from.firstName}}</sub> <br />
+        #       <sub>{{from.addressLine1}} {{from.addressLine2}}</sub> <br />
+        #       <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
+        #     </div>
+        #   </div>
+        # '
           '<div style="margin: 50px">
 
             <h2>Dear {{to.firstName}},</h2>
             
             <p>
-              I am a constituent of ( <i> {{to.description}} </i>). I am writing to urge you to support legalizing and regulating marijuana for adults.
-              Many other states are currently benefiting from this common sense approach. 
-              Why is our state lagging behind?
-            </p>
-            <p>
+              
+              I am a constituent of ( <i> {{to.description}} </i>). I am writing to 
+              express my strong support for the legalization and regulation of marijuana 
+              for recreational use in our state. It is disheartening to see that many 
+                other states have embraced this common-sense approach while our state 
+                continues to lag behind.
             
-              Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
-              marijuana for recreational use would virtually eliminate the black market, create
-              thousands of jobs in a growing industry and bring in millions of dolars of tax
-              revenue.
+            </p>
+            
+            <p>
+              
+            As a Legislator, you have the power to make a difference. I implore you 
+              to consider the undeniable benefits of legalizing and regulating marijuana 
+              for adults like myself. I firmly believe that it is time for our state to 
+                take this important step forward.
+
+
             </p>
             <p>
 
-              As a Legislator, you are in a position where you can make a difference. 
-              Can i count on you to end marijuana prohibition?
+             Thank you for your attention to this matter, and I hope I can count on your 
+             support to bring an end to marijuana prohibition in our state.
+
             </p>
 
             <div className="closing">
@@ -1457,6 +1496,10 @@ class LookupsController < ApplicationController
         '
       }
       
+
+
+
+
     }).to_dot
 
     theResponseLetterTwo = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
@@ -1477,7 +1520,8 @@ class LookupsController < ApplicationController
         # description 	string or null 	Optional line describing this letter
         # sendDate 	Date 	Date when the letter will be sent
         # to 	Contact 	The recipient of this letter
-        "to": contactRepTwo,
+        # # # "to": contactRepTwo,
+        "to": contactBuyer,
         # from 	Contact 	The sender of this letter
         "from": contactBuyer,
 
@@ -1499,33 +1543,30 @@ class LookupsController < ApplicationController
 
         <h2>Dear {{to.firstName}},</h2>
         <p>
-          I am a constituent of (
-          <i>
-          
-            {{to.description}}
-          
-          </i>
-          ). I am writing to urge you to support legalizing and regulating marijuana for adults.
-          Many other states are currently benefiting from this common sense approach. 
-          Why is our state lagging behind?
-
-          </p>
-          <p>
-          
-          Prohibition has never worked and causes an increase in unregulated sales. Legalizing 
-          marijuana for recreational use would virtually eliminate the black market, create
-          thousands of jobs in a growing industry and bring in millions of dolars of tax
-          revenue.
-          </p>
-          <p>
-
-          As a Legislator, you are in a position where you can make a difference. 
-          Can i count on you to end marijuana prohibition?
+              
+              I am a constituent of ( <i> {{to.description}} </i>). I am writing to 
+              express my strong support for the legalization and regulation of marijuana 
+              for recreational use in our state. It is disheartening to see that many 
+                other states have embraced this common-sense approach while our state 
+                continues to lag behind.
+            
+            </p>
+            
+            <p>
+              
+            As a Legislator, you have the power to make a difference. I implore you 
+              to consider the undeniable benefits of legalizing and regulating marijuana 
+              for adults like myself. I firmly believe that it is time for our state to 
+                take this important step forward.
 
 
-          
-          
-        </p>
+            </p>
+            <p>
+
+             Thank you for your attention to this matter, and I hope I can count on your 
+             support to bring an end to marijuana prohibition in our state.
+
+            </p>
 
         <div className="closing">
           Sincerely, <br />
