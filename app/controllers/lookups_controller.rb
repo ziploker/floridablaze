@@ -1318,8 +1318,8 @@ class LookupsController < ApplicationController
     #make contacts at postgrid for sender and two recipients.
     theResponse = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
       
-      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+      #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
       body: {
         "firstName": params[:data][:infoOnReps][:one][:name],
@@ -1335,8 +1335,8 @@ class LookupsController < ApplicationController
 
 
     theResponseTwo = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
-      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-        #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+      #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+        headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
       body: {
         "firstName": params[:data][:infoOnReps][:two][:name],
@@ -1353,8 +1353,8 @@ class LookupsController < ApplicationController
 
     theResponseThree = HTTParty.post('https://api.postgrid.com/print-mail/v1/contacts', {
   
-      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+      #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
       body: {
         "firstName": params[:data][:buyerDetails][:payer][:name][:given_name] + " " + params[:data][:buyerDetails][:payer][:name][:surname],
@@ -1393,8 +1393,8 @@ class LookupsController < ApplicationController
     #make two letters at postgrid.
     theResponseLetterOne = HTTParty.post('https://api.postgrid.com/print-mail/v1/letters', {
       
-      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+      #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
       body: {
         # id 	string 	A unique ID prefixed with letter_
@@ -1506,8 +1506,8 @@ class LookupsController < ApplicationController
     
           
             
-      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+      #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
 
       body: {
     
@@ -1869,8 +1869,8 @@ class LookupsController < ApplicationController
   
       method: 'POST',
       
-      headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-      #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+      #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+      headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
           
           
     }).to_dot
@@ -1920,8 +1920,8 @@ class LookupsController < ApplicationController
 
         letterDetails = HTTParty.get("https://api.postgrid.com/print-mail/v1/letters/#{com.postgrid_id}?expand[]=template", {
       
-          headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-          #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+          #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+          headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
     
           # body: {
           #   "firstName": params[:data][:infoOnReps][:one][:name],
@@ -2004,8 +2004,8 @@ class LookupsController < ApplicationController
 
           letterDetails = HTTParty.get("https://api.postgrid.com/print-mail/v1/letters/#{com.postgrid_id}?expand[]=template", {
         
-            headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
-            #headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
+            #headers: { "X-API-KEY" => "test_sk_bdtSYVYM6FcpKoZFnMqBvu"},
+            headers: { "X-API-KEY" => "live_sk_aH2amUCijs56V3eW3hExvN"},
       
             # body: {
             #   "firstName": params[:data][:infoOnReps][:one][:name],
