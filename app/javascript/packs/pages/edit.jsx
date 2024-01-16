@@ -804,7 +804,7 @@ function Edit(props) {
                   </td>
                 </tr>
               );
-            })}
+            })};
             
           </tbody>
         </ActivityTable>

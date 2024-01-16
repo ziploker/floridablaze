@@ -1457,7 +1457,7 @@ class LookupsController < ApplicationController
         #     </div>
         #   </div>
         # '
-          "<div style="margin: 80px 100px 0px 50px">
+          'div style="margin: 80px 100px 0px 50px">
 
             <h2 style="margin-bottom: 20px">Dear {{to.firstName}},</h2>
             
@@ -1494,7 +1494,7 @@ class LookupsController < ApplicationController
               <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
             </div>
           </div>
-        "
+        '
       }
       
 
@@ -1540,7 +1540,7 @@ class LookupsController < ApplicationController
         # mergeVariables 	object or null 	See Merge Variables
         # metadata 	object or null 	See Metadata
 
-      "html": "<div style="margin: 80px 100px 0px 50px">
+      'html": "<div style="margin: 80px 100px 0px 50px">
 
       <h2 style="margin-bottom: 20px">Dear {{to.firstName}},</h2>
       
@@ -1577,7 +1577,7 @@ class LookupsController < ApplicationController
         <sub>{{from.city}}, {{from.provinceOrState}}  {{from.postalOrZip}}</sub> <br />
       </div>
     </div>
-  "
+  '
       }
     
     }).to_dot
