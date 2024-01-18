@@ -390,7 +390,7 @@ const BackgroundGray = styled.div`
 
 const ItemWrapper = styled.div`
   display: grid;
-  width: 97%;
+  width: 100%;
   margin: 0 auto;
 `;
 
