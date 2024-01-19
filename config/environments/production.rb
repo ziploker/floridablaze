@@ -1,7 +1,6 @@
 Rails.application.configure do
 
-  RAILS_ENV=production
-RAILS_SERVE_STATIC_FILES=enabled
+  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
