@@ -203,7 +203,7 @@ const LongNav = styled.nav`
     }
 
     span {
-      font-size: 1em;
+      font-size: 1rem;
     }
   }
 `;

@@ -200,7 +200,7 @@ const StoryShareButtons = styled.div`
 
 const StoryTags = styled.div`
 
-    font-size: .7em;
+    font-size: .7rem;
     width: 80px;
     height: 23px;
     border-radius: 4px;
@@ -229,7 +229,7 @@ const Tag = styled.h3`
     margin: 0px;
     text-align: center;
     line-height: 23px;
-    font-size: .9em;
+    font-size: .9rem;
     //padding: 5px 10px;
 
     @media screen and (min-width: 750px) and (max-width: 1111px){
@@ -266,7 +266,7 @@ const StoryBody = styled.div`
 
         //margin: 0;
         //padding: 5px 10px 0px 10px;
-        //font-size: 1em;
+        //font-size: 1rem;
         //text-align: left;
         //justify-self: start;
         
@@ -289,7 +289,7 @@ const StoryInfo = styled.h3`
     
     margin: 0px;
     padding: 0px;
-    font-size: .9em;
+    font-size: .9rem;
     
     
     color: #818080;
@@ -301,7 +301,7 @@ const StoryInfo = styled.h3`
 
         justify-self: end;
         align-self: flex-end;
-        //font-size: .9em;
+        //font-size: .9rem;
         padding: 0px 10px 0px 0px;
     }
 

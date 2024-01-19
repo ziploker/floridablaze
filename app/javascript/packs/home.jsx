@@ -267,7 +267,7 @@ const StoryOneTitle = styled.h1`
   //white-space: normal;
 
   //word-break: break-all;
-  font-size: 3.6em;
+  font-size: 3.6rem;
   white-space: pre-wrap;
   word-break: break-word;
   //align-self: end;
@@ -285,7 +285,7 @@ const StoryOneTitle = styled.h1`
   text-align: center;
 
   @media only screen and (min-width: 986px) {
-    font-size: 1.6em;
+    font-size: 1.6rem;
   }
 
   h2 {

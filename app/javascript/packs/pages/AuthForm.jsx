@@ -90,20 +90,19 @@ const Label = styled.label`
   //color: #9FA5C4;
   pointer-events: none;
 
-  //transform: ${(props) =>
-    props.className == "field-active" ? "translateY(-22px)" : 0};
+  //transform: ${(props) => props.className == "field-active" ? "translateY(-22px)" : 0};
   transform: translateY(-11px);
   padding: 2px 2px;
   //background-color: white;
   border-radius: 5px;
 
-  font-size: 1em;
+  font-size: 1rem;
 
   text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 2px 0 0 #fff, -2px 0 0 #fff,
     0 1px 0 #fff, 0 -1px 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff;
 
   @media only screen and (max-width: 985px) {
-    font-size: 2em;
+    font-size: 2rem;
     top: -36px;
   }
 `;
@@ -122,7 +121,7 @@ const Input = styled.input`
 
   padding-right: 8px;
 
-  font-size: 1.1em;
+  font-size: 1.1rem;
   line-height: 1.42857;
   color: #3f3f44;
   background-color: #fff;
@@ -133,7 +132,7 @@ const Input = styled.input`
   filter: none;
 
   @media only screen and (max-width: 985px) {
-    font-size: 3em;
+    font-size: 3rem;
   }
 `;
 
@@ -148,7 +147,7 @@ const InputForSignup = styled.input`
 
   padding-right: 8px;
 
-  font-size: 3em;
+  font-size: 3rem;
   line-height: 1.42857;
   color: #3f3f44;
   background-color: #fff;
@@ -160,7 +159,7 @@ const InputForSignup = styled.input`
 
   @media only screen and (min-width: 986px) {
     height: 44px;
-    font-size: 1.1em;
+    font-size: 1.1rem;
   }
 `;
 
@@ -172,7 +171,7 @@ const Button = styled.button`
   font-weight: 700;
   width: 100%;
   //margin-bottom: 1rem;
-  font-size: 2em;
+  font-size: 2rem;
   height: 60px;
   cursor: pointer;
 
@@ -183,7 +182,7 @@ const Button = styled.button`
   border-color: #5fcc61;
 
   @media only screen and (max-width: 985px) {
-    font-size: 4em;
+    font-size: 4rem;
   }
 `;
 
@@ -195,7 +194,7 @@ const ButtonForSignup = styled.button`
   font-weight: 700;
   width: 100%;
   margin-bottom: 1rem;
-  font-size: 2em;
+  font-size: 2rem;
   height: 100px;
   cursor: pointer;
 
@@ -206,7 +205,7 @@ const ButtonForSignup = styled.button`
   border-color: #5fcc61;
 
   @media only screen and (max-width: 985px) {
-    font-size: 4em;
+    font-size: 4rem;
   }
 `;
 
@@ -227,7 +226,7 @@ const ErrorWrapper = styled.div`
   height: 20px;
 `;
 const ErrorMsg = styled.h4`
-  font-size: 0.5em;
+  font-size: 0.5rem;
   padding: 5px 0px 5px 12px;
 `;
 

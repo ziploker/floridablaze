@@ -46,7 +46,7 @@ const StyledLoadingButton = styled.button`
 	margin: 0 5px 0px 0px;
 	background: #ffc439;
 	//color: $text-light;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	//padding: 1em;
 	border-radius: 28px;
 	text-align: center;
@@ -81,7 +81,7 @@ const SendButtonV2Loading = styled.div`
 	//border-radius: 5px;
 	//border: 1px solid black;
 	color: white !important;
-	font-size: 1.2em;
+	font-size: 1.2rem;
 	cursor: pointer;
 	/* Important part */
 	position: relative;

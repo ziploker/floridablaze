@@ -112,7 +112,7 @@ const ProfilePic = styled.img`
 `;
 
 const StyledLink = styled(Link)`
-  font-size: 0.7em;
+  font-size: 0.7rem;
 `;
 
 const LabelForFile = styled.label`
@@ -169,7 +169,7 @@ const NoActivity = styled.div`
         : "none"
       : "none"};
   h1 {
-    font-size: 3em;
+    font-size: 3rem;
     margin-bottom: 10px;
   }
 

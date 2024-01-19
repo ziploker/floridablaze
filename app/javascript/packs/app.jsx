@@ -27,6 +27,7 @@ import "../packs/app.css";
 import { useInView } from "react-intersection-observer";
 import ReactFontLoader from 'react-font-loader'
 
+
 ///////////////////////////////// MAIN APP STARTING POINT ///////////////
 function App({ d }) {
   
@@ -265,7 +266,7 @@ function App({ d }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <ReactFontLoader url='https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;800&family=PT+Serif&family=Permanent+Marker&display=swap' />
+      {/* <ReactFontLoader url='https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;800&family=PT+Serif&family=Permanent+Marker&display=swap' /> */}
 
       <Router>
         <Header

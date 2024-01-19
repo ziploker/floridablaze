@@ -93,7 +93,7 @@ const LabelForFile = styled.label`
 const Span = styled.span`
 	height: 100%;
 	margin-right: 5px;
-	font-size: 0.75em;
+	font-size: 0.75rem;
 	transition: opacity 2s ease-in;
 	opacity: ${(props) =>
 		props.waitMessage.toString() == "...one moment" ? "1" : "0"};

@@ -109,7 +109,7 @@ const SubscribeSection = styled.div`
 
     margin-bottom: 15px;
     padding: 10px;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     color: #e4e4e4;
     width: 100%;
     height: 60px;
@@ -176,7 +176,7 @@ const Follow = styled.div`
   z-index: 3;
 
   h1 {
-    font-size: 2em;
+    font-size: 2rem;
     margin-bottom: 15px;
   }
 
@@ -186,7 +186,7 @@ const Follow = styled.div`
       margin-bottom: 5px;
     }
     a {
-      font-size: 1em;
+      font-size: 1rem;
 
       letter-spacing: normal;
       line-height: 19px;
@@ -213,7 +213,7 @@ const Explore = styled.div`
   //min-width: 360px;
 
   h1 {
-    font-size: 2em;
+    font-size: 2rem;
     margin-bottom: 15px;
   }
 
@@ -225,7 +225,7 @@ const Explore = styled.div`
     }
 
     a {
-      font-size: 1em;
+      font-size: 1rem;
 
       letter-spacing: normal;
       line-height: 19px;
@@ -246,7 +246,7 @@ const Legal = styled.div`
   padding: 20px 0px;
   background-color: black;
   z-index: 3;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   //grid-area: 3/3/4/5;
   //align-self: end;
 
@@ -273,7 +273,7 @@ const TopSectionWrapper = styled.div`
   }
 
   h2 {
-    font-size: 2em;
+    font-size: 2rem;
     color: white;
     //margin-top: 4px;
   }

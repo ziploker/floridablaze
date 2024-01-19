@@ -85,7 +85,7 @@ const CloseWindow = styled.a`
 	right: 0px;
 	border: 1px solid red;
 	border-radius: 45px;
-	font-size: 0.5em;
+	font-size: 0.5rem;
 	cursor: pointer;
 	padding: 2px;
 `;

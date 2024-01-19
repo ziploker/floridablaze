@@ -182,7 +182,7 @@ const StoryShareButtons = styled.div`
 `;
 
 const PWrapper = styled.div`
-  //font-size: .9em;
+  //font-size: .9rem;
   line-height: 1.9em;
   grid-area: 5/1/6/2;
   //text-indent: 45px;

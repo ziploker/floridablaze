@@ -112,7 +112,7 @@ hr {
  */
 
 pre {
-  font-size: 1em; /* 2 */
+  font-size: 1rem; /* 2 */
 }
 
 /* Text-level semantics
@@ -154,7 +154,7 @@ strong {
 code,
 kbd,
 samp {
-  font-size: 1em; /* 2 */
+  font-size: 1rem; /* 2 */
 }
 
 /**
@@ -172,7 +172,7 @@ small {
 
 sub,
 sup {
-  font-size: 1em;
+  font-size: 1rem;
   //line-height: 0;
   //position: relative;
   //vertical-align: baseline;
@@ -931,7 +931,7 @@ $text-light: #fefefe;
   margin: 0 5px 0px 0px;
   background: $btn-bg;
   //color: $text-light;
-  font-size: 1.1em;
+  font-size: 1.1rem;
   padding: 1em;
   border-radius: 4px;
   text-align: center;

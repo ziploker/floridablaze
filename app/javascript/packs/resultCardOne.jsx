@@ -111,7 +111,7 @@ const Title = styled.h6`
   align-self: center;
   margin: 0;
   color: white;
-  font-size: .8em;
+  font-size: .8rem;
   grid-area: title;
   z-index: 1;
   

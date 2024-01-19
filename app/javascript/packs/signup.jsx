@@ -411,7 +411,7 @@ const LabelForFile = styled.label`
 `;
 
 const Span = styled.h4`
-  font-size: 0.5em;
+  font-size: 0.5rem;
   padding: 5px 12px;
   margin-right: 5px;
 
@@ -489,8 +489,8 @@ const LeftSection = styled.div`
   h1 {
     color: rgb(6, 7, 1, 0.9);
     padding: 0 0 0 10px;
-    margin 0;
-    font-size: 5em;
+    margin: 0px;
+    font-size: 5rem;
     word-break: keep-all;
     background: white;
     //text-align: center;
@@ -507,7 +507,7 @@ const LeftSection = styled.div`
     max-width: initial;
     
     h1{
-      font-size: 7em;
+      font-size: 7rem;
     }
     
   }
@@ -521,7 +521,7 @@ const SocialMedia = styled.div`
   h3 {
     grid-area: 1/1/2/3;
     justify-self: center;
-    font-size: 0.8em;
+    font-size: 0.8rem;
     margin-bottom: 10px;
   }
 
@@ -600,11 +600,11 @@ const WeedBulletText1 = styled.h2`
   align-self: center;
 
   padding-left: 10px;
-  font-size: 1.5emem;
+  font-size: 1.5rem;
   align-self: center;
 
   @media only screen and (max-width: 985px) {
-    font-size: 2.4em;
+    font-size: 2.4rem;
   }
 `;
 
@@ -612,11 +612,11 @@ const WeedBulletText2 = styled.h2`
   grid-area: 3/3/4/4;
   justify-self: start;
   align-self: center;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   padding-left: 10px;
   align-self: center;
   @media only screen and (max-width: 985px) {
-    font-size: 2.4em;
+    font-size: 2.4rem;
   }
 `;
 
@@ -624,11 +624,11 @@ const WeedBulletText3 = styled.h2`
   grid-area: 4/3/5/4;
   justify-self: start;
   align-self: center;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   padding-left: 10px;
   align-self: center;
   @media only screen and (max-width: 985px) {
-    font-size: 2.4em;
+    font-size: 2.4rem;
   }
 `;
 
@@ -637,10 +637,10 @@ const WeedBulletText4 = styled.h2`
   justify-self: start;
   align-self: center;
   padding-left: 10px;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   align-self: center;
   @media only screen and (max-width: 985px) {
-    font-size: 2.4em;
+    font-size: 2.4rem;
   }
 `;
 const Spacer = styled.h2`
