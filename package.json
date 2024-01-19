@@ -25,7 +25,6 @@
     "javascript-time-ago": "^2.5.9",
     "jquery": "^3.6.3",
     "mini-css-extract-plugin": "^2.7.2",
-    "node-sass": "^8.0.0",
     "pnp-webpack-plugin": "1",
     "prop-types": "^15.8.1",
     "prosemirror-commands": "^1.5.0",
@@ -48,14 +47,11 @@
     "react-slugify": "^2.1.0",
     "react-swipeable": "^7.0.0",
     "react-time-ago": "^7.2.1",
-    "sass": "^1.57.1",
-    "sass-loader": "^13.2.0",
     "shakapacker": "6.5.2",
     "style-loader": "^3.3.1",
     "styled-components": "^5.3.6",
     "terser-webpack-plugin": "5",
     "tiptap": "^1.32.2",
-    "webpack": "5",
     "webpack-assets-manifest": "5",
     "webpack-cli": "4",
     "webpack-dev-server": "^4.15.1",
@@ -70,5 +66,10 @@
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "devDependencies": {
+    "sass": "^1.70.0",
+    "sass-loader": "^14.0.0",
+    "webpack": "^5.89.0"
+  }
 }

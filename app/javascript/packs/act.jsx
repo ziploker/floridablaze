@@ -25,7 +25,7 @@ import searchIconOrange2 from "../../assets/images/searchPink2.png";
 import ResultCardOne from "./resultCardOne.jsx";
 import Button_Loading from "./myComponents/button_loading";
 import axios from "axios";
-import "./ziploker123.css"
+import "../../assets/stylesheets/application.css";
 
 import usps from "../../assets/images/usps-logo.svg";
 //var Spinner = require("react-spinkit");
@@ -43,7 +43,6 @@ import mailIcon from "../../assets/images/Letterbox.png";
 
 import rightArrow from "../../assets/images/scroll-arrow.png";
 import gmail_icon from "../../assets/images/gmail_Icon.png";
-
 
 /////////////////////////////////////////////////////////////
 
@@ -79,14 +78,22 @@ const BGimage = styled.img`
   height: 100%;
 `;
 const BGimageFix = styled.div`
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 15px;
-	background: rgb(255,255,255);
-  background: linear-gradient(180deg, rgba(255,255,255,1) 9%, rgba(218,218,218,1) 20%, rgba(148,148,148,1) 28%, rgba(46,46,46,0.9177870977492559) 42%, rgba(0,0,0,0.6320728120349702) 50%, rgba(0,0,0,0.44439774200695903) 60%, rgba(0,0,0,0.013025192987351164) 82%); 
-	
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 9%,
+    rgba(218, 218, 218, 1) 20%,
+    rgba(148, 148, 148, 1) 28%,
+    rgba(46, 46, 46, 0.9177870977492559) 42%,
+    rgba(0, 0, 0, 0.6320728120349702) 50%,
+    rgba(0, 0, 0, 0.44439774200695903) 60%,
+    rgba(0, 0, 0, 0.013025192987351164) 82%
+  );
 `;
 
 const BGimageFixBottom = styled.div`
@@ -1681,7 +1688,6 @@ const D1 = styled.h2`
   @media only screen and (max-width: 1000px) {
     font-size: 1.9rem;
   }
-  
 `;
 
 const D2 = styled.h3`
@@ -1741,10 +1747,9 @@ const GreenCheckmark = styled.div`
 `;
 
 const CheckmarkDescription = styled.h1`
-	font-size: 0.8rem;
-	margin-left: 5px;
-	color: gray;
-	
+  font-size: 0.8rem;
+  margin-left: 5px;
+  color: gray;
 `;
 
 const Price1 = styled.div``;
@@ -3649,56 +3654,59 @@ function Act(props, ref) {
     });
   };
   if (locationFromHook.pathname === "/edit") {
-  	return null;
+    return null;
   } else {
-  return (
-    
-    <ActWrapper ref={LookupScrollToRef}>
-      <BGimage src={actBackground} ref={myRef}></BGimage>
-      <BGimageFix />
-      <BGimageFixBottom />
-      <ActGrid>
-        <ActSection showCards={showCards}>
-          {/* <ProgressBarz>
+    return (
+      <ActWrapper ref={LookupScrollToRef}>
+        <BGimage src={actBackground} ref={myRef}></BGimage>
+        <BGimageFix />
+        <BGimageFixBottom />
+        <ActGrid>
+          <ActSection showCards={showCards}>
+            {/* <ProgressBarz>
 						<StepOne />
 						<StepTwo showCards={showCards} />
 						<StepThree showCards={showCards} />
 					</ProgressBarz> */}
 
-          <ActHeaderWrapper>
-            <ActHeader className="testLocker" showCards={showCards}>ACT NOW</ActHeader>
+            <ActHeaderWrapper>
+              <ActHeader className="testLocker" showCards={showCards}>
+                ACT NOW
+              </ActHeader>
 
-            <ActSubheader showCards={showCards}>...3 quick steps</ActSubheader>
-          </ActHeaderWrapper>
+              <ActSubheader showCards={showCards}>
+                ...3 quick steps
+              </ActSubheader>
+            </ActHeaderWrapper>
 
-          <ActBulletPointsWrapper>
-            <ActBulletWrapper>
-              <BulletImage src={orangeSearch} />
+            <ActBulletPointsWrapper>
+              <ActBulletWrapper>
+                <BulletImage src={orangeSearch} />
 
-              <BulletOne>
-                <span>Lookup</span> your State Representatives
-              </BulletOne>
-            </ActBulletWrapper>
+                <BulletOne>
+                  <span>Lookup</span> your State Representatives
+                </BulletOne>
+              </ActBulletWrapper>
 
-            <ActBulletWrapper>
-              <BulletImage src={orangeMailbox} />
+              <ActBulletWrapper>
+                <BulletImage src={orangeMailbox} />
 
-              <BulletOne>
-                <span>Contact</span> them in just a few clicks
-              </BulletOne>
-            </ActBulletWrapper>
+                <BulletOne>
+                  <span>Contact</span> them in just a few clicks
+                </BulletOne>
+              </ActBulletWrapper>
 
-            <ActBulletWrapper>
-              <BulletImage src={orangeShare} />
+              <ActBulletWrapper>
+                <BulletImage src={orangeShare} />
 
-              <BulletOne>
-                <span>Share </span>this tool
-              </BulletOne>
-            </ActBulletWrapper>
-          </ActBulletPointsWrapper>
+                <BulletOne>
+                  <span>Share </span>this tool
+                </BulletOne>
+              </ActBulletWrapper>
+            </ActBulletPointsWrapper>
 
-          <Form className="form-inline" showCards={showCards}>
-            {/* <button
+            <Form className="form-inline" showCards={showCards}>
+              {/* <button
               style={{width: "100px", height: "50px"}}
               //searchButtonActive={searchButtonActive}
               //disabled={false}
@@ -3708,31 +3716,31 @@ function Act(props, ref) {
             >
               send
             </button> */}
-            <SearchLocationInput
-              passRef={autoCompleteRef}
-              addressObject={addressObject}
-              setAddressObject={setAddressObject}
-              query={query}
-              setQuery={setQuery}
-              passRef2={LookupInputRef}
-            />
+              <SearchLocationInput
+                passRef={autoCompleteRef}
+                addressObject={addressObject}
+                setAddressObject={setAddressObject}
+                query={query}
+                setQuery={setQuery}
+                passRef2={LookupInputRef}
+              />
 
-            <StatusHolder>
-              <StatusSpinner showStatusSpinner={showStatusSpinner}>
-                {/* <Spinner name="wave" color="#87d388" /> */}
-              </StatusSpinner>
+              <StatusHolder>
+                <StatusSpinner showStatusSpinner={showStatusSpinner}>
+                  {/* <Spinner name="wave" color="#87d388" /> */}
+                </StatusSpinner>
 
-              <StatusBar>
-                <Span status={status}> {status}</Span>
-              </StatusBar>
-            </StatusHolder>
-          </Form>
+                <StatusBar>
+                  <Span status={status}> {status}</Span>
+                </StatusBar>
+              </StatusHolder>
+            </Form>
 
-          <Mega showCards={showCards} src={mega}></Mega>
-        </ActSection>
+            <Mega showCards={showCards} src={mega}></Mega>
+          </ActSection>
 
-        <ResultSection showCards={showCards}>
-          {/* <ResultSectionInfoBox>
+          <ResultSection showCards={showCards}>
+            {/* <ResultSectionInfoBox>
             <ProgressBarzResultSection>
               <StepOne />
               <StepTwo showCards={showCards} />
@@ -3742,119 +3750,122 @@ function Act(props, ref) {
            
           </ResultSectionInfoBox> */}
 
-          <MiddleBarResultSection>
-            <TopBar>
-              <h1>Results</h1>
-              {/* <h2>We located your State Representatives !!</h2> */}
+            <MiddleBarResultSection>
+              <TopBar>
+                <h1>Results</h1>
+                {/* <h2>We located your State Representatives !!</h2> */}
 
-              <div>
-                <h3>
-                  {addressObject && addressObject.formatted_address
-                    ? addressObject.formatted_address
-                    : addressObject && addressObject.address
-                    ? addressObject.address
-                    : "123 Main St Miami, FL 33155"}
-                </h3>
-                <h5 onClick={resetSearch}>new search</h5>
-              </div>
-            </TopBar>
-            <CardOne>
-              <CardOneWrapper whichEmailIsActive={whichEmailIsActive}>
-                <CardPicture
-                  src={results.one.image ? results.one.image : ""}
-                ></CardPicture>
+                <div>
+                  <h3>
+                    {addressObject && addressObject.formatted_address
+                      ? addressObject.formatted_address
+                      : addressObject && addressObject.address
+                      ? addressObject.address
+                      : "123 Main St Miami, FL 33155"}
+                  </h3>
+                  <h5 onClick={resetSearch}>new search</h5>
+                </div>
+              </TopBar>
+              <CardOne>
+                <CardOneWrapper whichEmailIsActive={whichEmailIsActive}>
+                  <CardPicture
+                    src={results.one.image ? results.one.image : ""}
+                  ></CardPicture>
 
-                <CardTemplate src={cardTemplate}></CardTemplate>
+                  <CardTemplate src={cardTemplate}></CardTemplate>
 
-                <CardNameOfRep>
-                  {results.one.name ? results.one.name : ""}
-                </CardNameOfRep>
+                  <CardNameOfRep>
+                    {results.one.name ? results.one.name : ""}
+                  </CardNameOfRep>
 
-                <CardOneSub>{results.one.fullDistrictTrunk}</CardOneSub>
-              </CardOneWrapper>
-            </CardOne>
+                  <CardOneSub>{results.one.fullDistrictTrunk}</CardOneSub>
+                </CardOneWrapper>
+              </CardOne>
 
-            <CardTwo>
-              <CardTwoWrapper whichEmailIsActive={whichEmailIsActive}>
-                <CardPicture
-                  src={results.two.image ? results.two.image : ""}
-                ></CardPicture>
+              <CardTwo>
+                <CardTwoWrapper whichEmailIsActive={whichEmailIsActive}>
+                  <CardPicture
+                    src={results.two.image ? results.two.image : ""}
+                  ></CardPicture>
 
-                <CardTemplate src={cardTemplate}></CardTemplate>
+                  <CardTemplate src={cardTemplate}></CardTemplate>
 
-                <CardNameOfRep>
-                  {results.two.name ? results.two.name : ""}
-                </CardNameOfRep>
+                  <CardNameOfRep>
+                    {results.two.name ? results.two.name : ""}
+                  </CardNameOfRep>
 
-                <CardTwoSub>{results.two.fullDistrictTrunk}</CardTwoSub>
-              </CardTwoWrapper>
-            </CardTwo>
+                  <CardTwoSub>{results.two.fullDistrictTrunk}</CardTwoSub>
+                </CardTwoWrapper>
+              </CardTwo>
 
-            <NextSteps>
-              <h1>NEXT STEP:</h1>
-              {/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
-              <h2>Join our campaign to legalize cannabis.</h2>
-              <div>
-                <p>How it works?</p>
-                <p>
-                  We print your personalized letter on top-notch quality paper
-                  and mail it to each of your reps via first class USPS mail.
-                </p>
-                <p></p>
-              </div>
-              {/* <h2>checkout the letters</h2> */}
-              {/* <div>
+              <NextSteps>
+                <h1>NEXT STEP:</h1>
+                {/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
+                <h2>Join our campaign to legalize cannabis.</h2>
+                <div>
+                  <p>How it works?</p>
+                  <p>
+                    We print your personalized letter on top-notch quality paper
+                    and mail it to each of your reps via first class USPS mail.
+                  </p>
+                  <p></p>
+                </div>
+                {/* <h2>checkout the letters</h2> */}
+                {/* <div>
 								<p>
 									Checkout the personalized letter we generated below. <br />
 									We'll take care of preparing the letters and mail them to each of yh2our
 									Representatives via United States Postal Service.
 								</p>
 							</div> */}
-            </NextSteps>
-            {/* <LinerVertical />
+              </NextSteps>
+              {/* <LinerVertical />
 						<LinerHorizontal /> */}
-          </MiddleBarResultSection>
+            </MiddleBarResultSection>
 
-          <TriplePlayWrapper
-            resultFromFlorida={resultFromFlorida}
-            showCards={showCards}
-          >
-            <Letter resultFromFlorida={resultFromFlorida} showCards={showCards}>
-              <ButtonTabsWrapper>
-                <ButtonOneTabWrapper
-                  //value={1}
-                  whichTabIsActive={whichTabIsActive}
-                  //onClick={HandleButtonTabOne}
-                  onClick={HandleLetterButton}
-                >
-                  <ButtonGuts>
-                    {/* <MailIcon whichTabIsActive={whichTabIsActive} src={mailIcon} /> */}
-                    <ButtonTabOne whichTabIsActive={whichTabIsActive}>
-                      <USPS src={usps} />
-                    </ButtonTabOne>
-                  </ButtonGuts>
-                </ButtonOneTabWrapper>
-                <ButtonTwoTabWrapper
-                  //value={2}
-                  whichTabIsActive={whichTabIsActive}
-                  //onClick={HandleButtonTabTwo}
-                  onClick={HandleEmailButton}
-                >
-                  <ButtonTabTwo whichTabIsActive={whichTabIsActive}>
-                    <GmailIcon src={gmail_icon} />
-                  </ButtonTabTwo>
-                </ButtonTwoTabWrapper>
-              </ButtonTabsWrapper>
+            <TriplePlayWrapper
+              resultFromFlorida={resultFromFlorida}
+              showCards={showCards}
+            >
+              <Letter
+                resultFromFlorida={resultFromFlorida}
+                showCards={showCards}
+              >
+                <ButtonTabsWrapper>
+                  <ButtonOneTabWrapper
+                    //value={1}
+                    whichTabIsActive={whichTabIsActive}
+                    //onClick={HandleButtonTabOne}
+                    onClick={HandleLetterButton}
+                  >
+                    <ButtonGuts>
+                      {/* <MailIcon whichTabIsActive={whichTabIsActive} src={mailIcon} /> */}
+                      <ButtonTabOne whichTabIsActive={whichTabIsActive}>
+                        <USPS src={usps} />
+                      </ButtonTabOne>
+                    </ButtonGuts>
+                  </ButtonOneTabWrapper>
+                  <ButtonTwoTabWrapper
+                    //value={2}
+                    whichTabIsActive={whichTabIsActive}
+                    //onClick={HandleButtonTabTwo}
+                    onClick={HandleEmailButton}
+                  >
+                    <ButtonTabTwo whichTabIsActive={whichTabIsActive}>
+                      <GmailIcon src={gmail_icon} />
+                    </ButtonTabTwo>
+                  </ButtonTwoTabWrapper>
+                </ButtonTabsWrapper>
 
-              {/* <DemoIndicatorDotsWrapper>
+                {/* <DemoIndicatorDotsWrapper>
 								
 							</DemoIndicatorDotsWrapper> */}
 
-              <EmailDemoWrapper whichTabIsActive={whichTabIsActive}>
-                {/* <EmailDemoLeft onClick={handleEmailDemoRight}> */}
-                {/* <LeftArrow src={rightArrow} /> */}
-                {/* </EmailDemoLeft> */}
-                {/* <DemoIndicatorDots>
+                <EmailDemoWrapper whichTabIsActive={whichTabIsActive}>
+                  {/* <EmailDemoLeft onClick={handleEmailDemoRight}> */}
+                  {/* <LeftArrow src={rightArrow} /> */}
+                  {/* </EmailDemoLeft> */}
+                  {/* <DemoIndicatorDots>
                   <EmailDemoLeft onClick={handleEmailDemoRight}>
                     <LeftArrow src={rightArrow} />
                   </EmailDemoLeft>
@@ -3868,71 +3879,80 @@ function Act(props, ref) {
                     <RightArrow src={rightArrow} />
                   </EmailDemoRight>
                 </DemoIndicatorDots> */}
-                <EmailDemoCenter>
-                  <EmailDemo>
-                    <SubjectBox>
-                      <h2>subject</h2>
-                      <h3>
-                        We need a more sensible approach to marijuana laws.
-                      </h3>
-                    </SubjectBox>
+                  <EmailDemoCenter>
+                    <EmailDemo>
+                      <SubjectBox>
+                        <h2>subject</h2>
+                        <h3>
+                          We need a more sensible approach to marijuana laws.
+                        </h3>
+                      </SubjectBox>
 
-                    <BodyBox>
-                      <h2>body</h2>
+                      <BodyBox>
+                        <h2>body</h2>
 
-                      <GetHeader />
+                        <GetHeader />
 
-                      <div>
-                      <p>
-                        I am a constituent of
-                        
-                          {whichEmailIsActive === 1
-                            ? " (" + results.one.fullDistrict + ")."
-                              //" district "
-                              // + results.one.district
-                            : " (" + results.two.fullDistrict + ")."
+                        <div>
+                          <p>
+                            I am a constituent of
+                            {
+                              whichEmailIsActive === 1
+                                ? " (" + results.one.fullDistrict + ")."
+                                : //" district "
+                                  // + results.one.district
+                                  " (" + results.two.fullDistrict + ")."
                               //" district "
                               // + results.two.district
                             }
-                        </p>
-                        
+                          </p>
 
-                        <p>I am writing to express my strong support for the legalization and regulation 
-                        of marijuana for recreational use in our state. It is disheartening to see 
-                        that many other states have embraced this common-sense approach while our state 
-                        continues to lag behind.</p>
+                          <p>
+                            I am writing to express my strong support for the
+                            legalization and regulation of marijuana for
+                            recreational use in our state. It is disheartening
+                            to see that many other states have embraced this
+                            common-sense approach while our state continues to
+                            lag behind.
+                          </p>
 
-                        <p>As a Legislator, you have the power to make a difference. I implore you to 
-                        consider the undeniable benefits of legalizing and regulating marijuana for 
-                        adults like myself. I firmly believe that it is time for our state to take 
-                        this important step forward.</p>
+                          <p>
+                            As a Legislator, you have the power to make a
+                            difference. I implore you to consider the undeniable
+                            benefits of legalizing and regulating marijuana for
+                            adults like myself. I firmly believe that it is time
+                            for our state to take this important step forward.
+                          </p>
 
-                        <p>Thank you for your attention to this matter, and I hope I can count on your 
-                        support to bring an end to marijuana prohibition in our state.</p>
-                      </div>
-                      <LetterClosing>
-                        <p>Sincerely,</p>
-                        <sub>
-                          {props.userState.loggedInStatus == "LOGGED_IN"
-                            ? props.userState.user.full_name
-                            : "[Your Name Here]"}
-                        </sub>{" "}
-                        <br />
-                        <sub>
-                          {addressLineOne !== ""
-                            ? addressLineOne
-                            : "[Your address]"}
-                        </sub>{" "}
-                        <br />
-                        <sub>
-                          {addressLineTwo !== ""
-                            ? addressLineTwo
-                            : "[city, state, zipcode]"}
-                        </sub>{" "}
-                        <br />
-                      </LetterClosing>
+                          <p>
+                            Thank you for your attention to this matter, and I
+                            hope I can count on your support to bring an end to
+                            marijuana prohibition in our state.
+                          </p>
+                        </div>
+                        <LetterClosing>
+                          <p>Sincerely,</p>
+                          <sub>
+                            {props.userState.loggedInStatus == "LOGGED_IN"
+                              ? props.userState.user.full_name
+                              : "[Your Name Here]"}
+                          </sub>{" "}
+                          <br />
+                          <sub>
+                            {addressLineOne !== ""
+                              ? addressLineOne
+                              : "[Your address]"}
+                          </sub>{" "}
+                          <br />
+                          <sub>
+                            {addressLineTwo !== ""
+                              ? addressLineTwo
+                              : "[city, state, zipcode]"}
+                          </sub>{" "}
+                          <br />
+                        </LetterClosing>
 
-                      {/* <FlashError userState={props.userState}>
+                        {/* <FlashError userState={props.userState}>
                   ** Please{" "}
                   <a href="#" onClick={loginFromDeadEnd}>
                     Login
@@ -3943,11 +3963,11 @@ function Act(props, ref) {
                   </a>{" "}
                   to continue.
                 </FlashError> */}
-                    </BodyBox>
-                  </EmailDemo>
-                </EmailDemoCenter>
+                      </BodyBox>
+                    </EmailDemo>
+                  </EmailDemoCenter>
 
-                {/* <OfferOne>letter
+                  {/* <OfferOne>letter
 									<BulletPointText>
 										Personalized email will be sent to each of your representatives.
 									</BulletPointText>
@@ -4004,16 +4024,16 @@ function Act(props, ref) {
 										size="compact"
 									/>
 								</OfferOne> */}
-                {/* <EmailDemoRight onClick={handleEmailDemoRight}> */}
-                {/* <RightArrow src={rightArrow} /> */}
-                {/* </EmailDemoRight> */}
-              </EmailDemoWrapper>
+                  {/* <EmailDemoRight onClick={handleEmailDemoRight}> */}
+                  {/* <RightArrow src={rightArrow} /> */}
+                  {/* </EmailDemoRight> */}
+                </EmailDemoWrapper>
 
-              <LetterDemoWrapper whichTabIsActive={whichTabIsActive}>
-                {/* <EmailDemoLeft onClick={handleEmailDemoRight}> */}
-                {/* <LeftArrow src={rightArrow} /> */}
-                {/* </EmailDemoLeft> */}
-                {/* <DemoIndicatorDots>
+                <LetterDemoWrapper whichTabIsActive={whichTabIsActive}>
+                  {/* <EmailDemoLeft onClick={handleEmailDemoRight}> */}
+                  {/* <LeftArrow src={rightArrow} /> */}
+                  {/* </EmailDemoLeft> */}
+                  {/* <DemoIndicatorDots>
                   <EmailDemoLeft onClick={handleEmailDemoRight}>
                     <LeftArrow src={rightArrow} />
                   </EmailDemoLeft>
@@ -4027,63 +4047,72 @@ function Act(props, ref) {
                     <RightArrow src={rightArrow} />
                   </EmailDemoRight>
                 </DemoIndicatorDots> */}
-                <LetterDemoCenter>
-                  <LetterDemo>
-                    {/* <h2>body</h2> */}
+                  <LetterDemoCenter>
+                    <LetterDemo>
+                      {/* <h2>body</h2> */}
 
-                    <GetHeader />
+                      <GetHeader />
 
-                    <div>
-                    <p>
-                      I am a constituent of 
-                      
-                        {whichEmailIsActive === 1
-                          ? " (" + results.one.fullDistrict + ")."
-                            //+ " district "
-                            // + results.one.district
-                          : " (" + results.two.fullDistrict + ")."
+                      <div>
+                        <p>
+                          I am a constituent of
+                          {
+                            whichEmailIsActive === 1
+                              ? " (" + results.one.fullDistrict + ")."
+                              : //+ " district "
+                                // + results.one.district
+                                " (" + results.two.fullDistrict + ")."
                             //+ " district "
                             // + results.two.district
                           }
-                      </p>
-                      
+                        </p>
 
-                      <p>I am writing to express my strong support for the legalization and regulation 
-                        of marijuana for recreational use in our state. It is disheartening to see 
-                        that many other states have embraced this common-sense approach while our state 
-                        continues to lag behind.</p>
+                        <p>
+                          I am writing to express my strong support for the
+                          legalization and regulation of marijuana for
+                          recreational use in our state. It is disheartening to
+                          see that many other states have embraced this
+                          common-sense approach while our state continues to lag
+                          behind.
+                        </p>
 
-                        <p>As a Legislator, you have the power to make a difference. I implore you to 
-                        consider the undeniable benefits of legalizing and regulating marijuana for 
-                        adults like myself. I firmly believe that it is time for our state to take 
-                        this important step forward.</p>
+                        <p>
+                          As a Legislator, you have the power to make a
+                          difference. I implore you to consider the undeniable
+                          benefits of legalizing and regulating marijuana for
+                          adults like myself. I firmly believe that it is time
+                          for our state to take this important step forward.
+                        </p>
 
-                        <p>Thank you for your attention to this matter, and I hope I can count on your 
-                        support to bring an end to marijuana prohibition in our state.</p>
+                        <p>
+                          Thank you for your attention to this matter, and I
+                          hope I can count on your support to bring an end to
+                          marijuana prohibition in our state.
+                        </p>
                       </div>
-                    <LetterClosing>
-                      <p>Sincerely,</p>
-                      <sub>
-                        {props.userState.loggedInStatus == "LOGGED_IN"
-                          ? props.userState.user.full_name
-                          : "[Your Name Here]"}
-                      </sub>{" "}
-                      <br />
-                      <sub>
-                        {addressLineOne !== ""
-                          ? addressLineOne
-                          : "[Your address]"}
-                      </sub>{" "}
-                      <br />
-                      <sub>
-                        {addressLineTwo !== ""
-                          ? addressLineTwo
-                          : "[city, state, zipcode]"}
-                      </sub>{" "}
-                      <br />
-                    </LetterClosing>
+                      <LetterClosing>
+                        <p>Sincerely,</p>
+                        <sub>
+                          {props.userState.loggedInStatus == "LOGGED_IN"
+                            ? props.userState.user.full_name
+                            : "[Your Name Here]"}
+                        </sub>{" "}
+                        <br />
+                        <sub>
+                          {addressLineOne !== ""
+                            ? addressLineOne
+                            : "[Your address]"}
+                        </sub>{" "}
+                        <br />
+                        <sub>
+                          {addressLineTwo !== ""
+                            ? addressLineTwo
+                            : "[city, state, zipcode]"}
+                        </sub>{" "}
+                        <br />
+                      </LetterClosing>
 
-                    {/* <FlashError userState={props.userState}>
+                      {/* <FlashError userState={props.userState}>
                   ** Please{" "}
                   <a href="#" onClick={loginFromDeadEnd}>
                     Login
@@ -4094,8 +4123,8 @@ function Act(props, ref) {
                   </a>{" "}
                   to continue.
                 </FlashError> */}
-                  </LetterDemo>
-                  {/* <OfferTwo>
+                    </LetterDemo>
+                    {/* <OfferTwo>
                     <BulletPointText>
                       a printed letter will be mailed to each of your
                       representatives via United States Postal Service.
@@ -4173,18 +4202,18 @@ function Act(props, ref) {
                       </ShowOfferSection>
                     </ShowOfferSectionWrapper>
                   </OfferTwo> */}
-                </LetterDemoCenter>
+                  </LetterDemoCenter>
 
-                {/* <EmailDemoRight onClick={handleEmailDemoRight}> */}
-                {/* <RightArrow src={rightArrow} /> */}
-                {/* </EmailDemoRight> */}
-              </LetterDemoWrapper>
-            </Letter>
+                  {/* <EmailDemoRight onClick={handleEmailDemoRight}> */}
+                  {/* <RightArrow src={rightArrow} /> */}
+                  {/* </EmailDemoRight> */}
+                </LetterDemoWrapper>
+              </Letter>
 
-            {/* <OfferOne>
+              {/* <OfferOne>
               <h1>Email</h1> */}
 
-            {/* <RiMailSendLine
+              {/* <RiMailSendLine
 								style={{
 									gridArea: "2/1/3/3",
 									justifySelf: "center",
@@ -4195,7 +4224,7 @@ function Act(props, ref) {
 								}}
 							/> */}
 
-            {/* <BulletPointText>
+              {/* <BulletPointText>
                 Personalized email will be sent to each of your representatives.
               </BulletPointText>
 
@@ -4239,7 +4268,7 @@ function Act(props, ref) {
                       width: "100%",
                     }}
                   > */}
-            {/* <RiMailSendLine
+              {/* <RiMailSendLine
 											style={{
 												//gridArea: "2/1/3/3",
 												////justifySelf: "end",
@@ -4254,7 +4283,7 @@ function Act(props, ref) {
 											}}
 										/> */}
 
-            {/* <span style={{}}> Send Emails</span>
+              {/* <span style={{}}> Send Emails</span>
                   </div>
                 </Button_Loading>
               </SendButtonWrapper>
@@ -4267,9 +4296,9 @@ function Act(props, ref) {
               />
             </OfferOne> */}
 
-            {/* <OfferTwo>
+              {/* <OfferTwo>
               <h1>Letter</h1> */}
-            {/* <BsMailbox
+              {/* <BsMailbox
 								style={{
 									gridArea: "2/1/3/3",
 									justifySelf: "center",
@@ -4280,7 +4309,7 @@ function Act(props, ref) {
 								}}
 							/> */}
 
-            {/* <BulletPointText>
+              {/* <BulletPointText>
                 a printed letter will be mailed to each of your representatives
                 via United States Postal Service.
               </BulletPointText>
@@ -4357,54 +4386,54 @@ function Act(props, ref) {
                 </ShowOfferSection>
               </ShowOfferSectionWrapper>
             </OfferTwo> */}
-          </TriplePlayWrapper>
+            </TriplePlayWrapper>
 
-          <LetterOfferWrapper whichTabIsActive={whichTabIsActive}>
-            <LetterOffer>
-              <Strip>
-                <Total>Total</Total>
-                <Price>$2.99</Price>
+            <LetterOfferWrapper whichTabIsActive={whichTabIsActive}>
+              <LetterOffer>
+                <Strip>
+                  <Total>Total</Total>
+                  <Price>$2.99</Price>
 
-                <Row1
-                  onClick={() => handleWhichDemoToSelect("1")}
-                  whichEmailIsActive={whichEmailIsActive}
-                >
-                  <PicWrapper>
-                    <Pic1
-                      src={results.one.image ? results.one.image : ""}
-                      whichEmailIsActive={whichEmailIsActive}
-                    ></Pic1>
-                  </PicWrapper>
-                  <Description1>
-                    <DWrapper>
-                      <D1 whichEmailIsActive={whichEmailIsActive}>
-                        Representative{" "}
-                        {results.one.name ? results.one.name : ""}
-                      </D1>
-                    </DWrapper>
-                    <D2>1 letter delivered via USPS</D2>
-                  </Description1>
-                </Row1>
-                <Row2
-                  onClick={() => handleWhichDemoToSelect("2")}
-                  whichEmailIsActive={whichEmailIsActive}
-                >
-                  <PicWrapper>
-                    <Pic2
-                      src={results.two.image ? results.two.image : ""}
-                      whichEmailIsActive={whichEmailIsActive}
-                    ></Pic2>
-                  </PicWrapper>
-                  <Description2>
-                    <DWrapper>
-                      <D1 whichEmailIsActive={whichEmailIsActive}>
-                        Senator {results.two.name ? results.two.name : ""}
-                      </D1>
-                    </DWrapper>
-                    <D2>1 letter delivered via USPS</D2>
-                  </Description2>
-                </Row2>
-                {/* <CheckmarkMainWrapper>
+                  <Row1
+                    onClick={() => handleWhichDemoToSelect("1")}
+                    whichEmailIsActive={whichEmailIsActive}
+                  >
+                    <PicWrapper>
+                      <Pic1
+                        src={results.one.image ? results.one.image : ""}
+                        whichEmailIsActive={whichEmailIsActive}
+                      ></Pic1>
+                    </PicWrapper>
+                    <Description1>
+                      <DWrapper>
+                        <D1 whichEmailIsActive={whichEmailIsActive}>
+                          Representative{" "}
+                          {results.one.name ? results.one.name : ""}
+                        </D1>
+                      </DWrapper>
+                      <D2>1 letter delivered via USPS</D2>
+                    </Description1>
+                  </Row1>
+                  <Row2
+                    onClick={() => handleWhichDemoToSelect("2")}
+                    whichEmailIsActive={whichEmailIsActive}
+                  >
+                    <PicWrapper>
+                      <Pic2
+                        src={results.two.image ? results.two.image : ""}
+                        whichEmailIsActive={whichEmailIsActive}
+                      ></Pic2>
+                    </PicWrapper>
+                    <Description2>
+                      <DWrapper>
+                        <D1 whichEmailIsActive={whichEmailIsActive}>
+                          Senator {results.two.name ? results.two.name : ""}
+                        </D1>
+                      </DWrapper>
+                      <D2>1 letter delivered via USPS</D2>
+                    </Description2>
+                  </Row2>
+                  {/* <CheckmarkMainWrapper>
                   <CheckmarkRow>
                     <GreenCheckmarkWrapper>
                       <GreenCheckmark></GreenCheckmark>
@@ -4429,186 +4458,186 @@ function Act(props, ref) {
                     point across.
                   </CheckMarkParagraph>
                 </CheckmarkMainWrapper> */}
-                {/* <ShowOfferSectionWrapper> */}
-                <ShowOfferSection showCards={showCards}>
-                  <PayPalButtons
-                    style={{
-                      layout: "vertical",
-                      shape: "pill",
-                      disableMaxWidth: true,
-                      height: 55,
-                    }}
-                    createOrder={(data, actions) => {
-                      return actions.order.create({
-                        purchase_units: [
-                          {
-                            amount: {
-                              value: "2.99",
-                            },
-                          },
-                        ],
-                      });
-                    }}
-                    forceReRender={[results]}
-                    onApprove={(data, actions) => {
-                      return actions.order.capture().then((details) => {
-                        //const name = details.payer.name.given_name;
-                        //alert(`Transaction completed by ${name}`);
-                        // console.log("STATUS = " + details.status)
-
-                        // console.log(details)
-
-                        // console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
-                        // console.log("email: " + details.payer.email_address);
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
-                        //console.log("DATA", data)
-
-                        //console.log("insiiiiiide1 " + results.inspect);
-
-                        axios
-                          .post(
-                            "/send/letters",
+                  {/* <ShowOfferSectionWrapper> */}
+                  <ShowOfferSection showCards={showCards}>
+                    <PayPalButtons
+                      style={{
+                        layout: "vertical",
+                        shape: "pill",
+                        disableMaxWidth: true,
+                        height: 55,
+                      }}
+                      createOrder={(data, actions) => {
+                        return actions.order.create({
+                          purchase_units: [
                             {
-                              data: {
-                                ppResults: data,
-                                infoOnReps: results,
-                                buyerDetails: details,
+                              amount: {
+                                value: "2.99",
                               },
                             },
-                            { withCredentials: true }
-                          )
-                          .then((response) => {
-                            //console.log("resoooooooooooooooonse = " + response.inspect)
-                            //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
-                            //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
-                            //setArtData(response.data.article)
-                            //setArtDataComments(response.data.comments)
-                            //setIsCommentsLoading(false)
-                            //setIsCommentsLoading(false)
-                            //setCurrentUser(@current_user)
-                          })
-                          .catch((error) => {
-                            //console.log("articleErrors", error)
-                          });
-                      });
-                    }}
-                  />
-                </ShowOfferSection>
-                {/* </ShowOfferSectionWrapper> */}
-              </Strip>
-            </LetterOffer>
-          </LetterOfferWrapper>
-
-          <EmailOfferWrapper whichTabIsActive={whichTabIsActive}>
-            <EmailOffer>
-              <Strip>
-                <Total>Total</Total>
-                <Price>Free</Price>
-
-                <Row1
-                  onClick={() => handleWhichDemoToSelect("1")}
-                  whichEmailIsActive={whichEmailIsActive}
-                >
-                  <PicWrapper>
-                    <Pic1
-                      src={results.one.image ? results.one.image : ""}
-                      whichEmailIsActive={whichEmailIsActive}
-                    ></Pic1>
-                  </PicWrapper>
-
-                  <Description1>
-                    <DWrapper>
-                      <D1 whichEmailIsActive={whichEmailIsActive}>
-                        Representative{" "}
-                        {results.one.name ? results.one.name : ""}
-                      </D1>
-                    </DWrapper>
-                    <D2>1 personalized email.</D2>
-                  </Description1>
-                </Row1>
-                <Row2
-                  onClick={() => handleWhichDemoToSelect("2")}
-                  whichEmailIsActive={whichEmailIsActive}
-                >
-                  <Pic2
-                    src={results.two.image ? results.two.image : ""}
-                    whichEmailIsActive={whichEmailIsActive}
-                  ></Pic2>
-
-                  <Description2>
-                    <DWrapper>
-                      <D1 whichEmailIsActive={whichEmailIsActive}>
-                        Senator {results.two.name ? results.two.name : ""}
-                      </D1>
-                    </DWrapper>
-                    <D2>1 personalized email.</D2>
-                  </Description2>
-                </Row2>
-
-                <SendButtonWrapper>
-                  <Button_Loading
-                    onClick={() => {
-                      if (
-                        recaptchaResponse == "" ||
-                        recaptchaResponse == null
-                      ) {
-                        setSendEmailsToRepFlashMsg(
-                          "Please check robot checkbox"
-                        );
-                      } else {
-                        setIsButtonLoading(true);
-
-                        //ajax call to rails (lookup#sendEmailsToReps)
-                        sendEmailsToReps(
-                          setIsButtonLoading,
-                          results,
-                          setSendEmailsToRepFlashMsg,
-                          recaptchaResponse,
-                          addressLineOne,
-                          addressLineTwo
-                        );
-                      }
-                    }}
-                    isLoading={isButtonLoading}
-                    showLoader={showLoader}
-                    setShowLoader={setShowLoader}
-                  >
-                    <div
-                      style={{
-                        //position: "relative",
-                        //display: "grid",
-                        //gridTemplateColumns: "1fr 3fr",
-                        height: "100%",
-                        width: "100%",
+                          ],
+                        });
                       }}
+                      forceReRender={[results]}
+                      onApprove={(data, actions) => {
+                        return actions.order.capture().then((details) => {
+                          //const name = details.payer.name.given_name;
+                          //alert(`Transaction completed by ${name}`);
+                          // console.log("STATUS = " + details.status)
+
+                          // console.log(details)
+
+                          // console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
+                          // console.log("email: " + details.payer.email_address);
+                          // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
+                          // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
+                          // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
+                          // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
+                          // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
+                          // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
+                          //console.log("DATA", data)
+
+                          //console.log("insiiiiiide1 " + results.inspect);
+
+                          axios
+                            .post(
+                              "/send/letters",
+                              {
+                                data: {
+                                  ppResults: data,
+                                  infoOnReps: results,
+                                  buyerDetails: details,
+                                },
+                              },
+                              { withCredentials: true }
+                            )
+                            .then((response) => {
+                              //console.log("resoooooooooooooooonse = " + response.inspect)
+                              //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
+                              //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
+                              //setArtData(response.data.article)
+                              //setArtDataComments(response.data.comments)
+                              //setIsCommentsLoading(false)
+                              //setIsCommentsLoading(false)
+                              //setCurrentUser(@current_user)
+                            })
+                            .catch((error) => {
+                              //console.log("articleErrors", error)
+                            });
+                        });
+                      }}
+                    />
+                  </ShowOfferSection>
+                  {/* </ShowOfferSectionWrapper> */}
+                </Strip>
+              </LetterOffer>
+            </LetterOfferWrapper>
+
+            <EmailOfferWrapper whichTabIsActive={whichTabIsActive}>
+              <EmailOffer>
+                <Strip>
+                  <Total>Total</Total>
+                  <Price>Free</Price>
+
+                  <Row1
+                    onClick={() => handleWhichDemoToSelect("1")}
+                    whichEmailIsActive={whichEmailIsActive}
+                  >
+                    <PicWrapper>
+                      <Pic1
+                        src={results.one.image ? results.one.image : ""}
+                        whichEmailIsActive={whichEmailIsActive}
+                      ></Pic1>
+                    </PicWrapper>
+
+                    <Description1>
+                      <DWrapper>
+                        <D1 whichEmailIsActive={whichEmailIsActive}>
+                          Representative{" "}
+                          {results.one.name ? results.one.name : ""}
+                        </D1>
+                      </DWrapper>
+                      <D2>1 personalized email.</D2>
+                    </Description1>
+                  </Row1>
+                  <Row2
+                    onClick={() => handleWhichDemoToSelect("2")}
+                    whichEmailIsActive={whichEmailIsActive}
+                  >
+                    <Pic2
+                      src={results.two.image ? results.two.image : ""}
+                      whichEmailIsActive={whichEmailIsActive}
+                    ></Pic2>
+
+                    <Description2>
+                      <DWrapper>
+                        <D1 whichEmailIsActive={whichEmailIsActive}>
+                          Senator {results.two.name ? results.two.name : ""}
+                        </D1>
+                      </DWrapper>
+                      <D2>1 personalized email.</D2>
+                    </Description2>
+                  </Row2>
+
+                  <SendButtonWrapper>
+                    <Button_Loading
+                      onClick={() => {
+                        if (
+                          recaptchaResponse == "" ||
+                          recaptchaResponse == null
+                        ) {
+                          setSendEmailsToRepFlashMsg(
+                            "Please check robot checkbox"
+                          );
+                        } else {
+                          setIsButtonLoading(true);
+
+                          //ajax call to rails (lookup#sendEmailsToReps)
+                          sendEmailsToReps(
+                            setIsButtonLoading,
+                            results,
+                            setSendEmailsToRepFlashMsg,
+                            recaptchaResponse,
+                            addressLineOne,
+                            addressLineTwo
+                          );
+                        }
+                      }}
+                      isLoading={isButtonLoading}
+                      showLoader={showLoader}
+                      setShowLoader={setShowLoader}
                     >
-                      <span style={{}}> Send Emails</span>
-                    </div>
-                  </Button_Loading>
-                </SendButtonWrapper>
-                <h4>{sendEmailsToRepFlashMsg}</h4>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr 1fr",
-                  }}
-                >
-                  <div />
-                  <ReCAPTCHA
-                    sitekey="6LdE3NgdAAAAADcnYdc8T-d61yIGGVCwNl3sdfc6"
-                    onChange={onChange}
-                    className="testClass"
-                    size="normal"
-                  />
-                  <div />
-                </div>
-                {/* <ShowOfferSectionWrapper> */}
-                {/* <ShowOfferSection showCards={showCards}>
+                      <div
+                        style={{
+                          //position: "relative",
+                          //display: "grid",
+                          //gridTemplateColumns: "1fr 3fr",
+                          height: "100%",
+                          width: "100%",
+                        }}
+                      >
+                        <span style={{}}> Send Emails</span>
+                      </div>
+                    </Button_Loading>
+                  </SendButtonWrapper>
+                  <h4>{sendEmailsToRepFlashMsg}</h4>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr 1fr",
+                    }}
+                  >
+                    <div />
+                    <ReCAPTCHA
+                      sitekey="6LdE3NgdAAAAADcnYdc8T-d61yIGGVCwNl3sdfc6"
+                      onChange={onChange}
+                      className="testClass"
+                      size="normal"
+                    />
+                    <div />
+                  </div>
+                  {/* <ShowOfferSectionWrapper> */}
+                  {/* <ShowOfferSection showCards={showCards}>
 									<PayPalButtons
 										// style={{
 										//   layout: "horizontal",
@@ -4679,28 +4708,26 @@ function Act(props, ref) {
 										}}
 									/>
 								</ShowOfferSection> */}
-                {/* </ShowOfferSectionWrapper> */}
-              </Strip>
-            </EmailOffer>
-          </EmailOfferWrapper>
+                  {/* </ShowOfferSectionWrapper> */}
+                </Strip>
+              </EmailOffer>
+            </EmailOfferWrapper>
 
-          <ShowLetterDeadEnd
-            resultFromFlorida={resultFromFlorida}
-            showCards={showCards}
-          >
-            Unfortunately, emailing officials through FloridaBlaze is only
-            available in Florida.
-            <a href="#" onClick={resetSearch}>
-              Try another search.
-            </a>
-          </ShowLetterDeadEnd>
-        </ResultSection>
-      </ActGrid>
-    </ActWrapper>
-       
-  );
-} 
-              
+            <ShowLetterDeadEnd
+              resultFromFlorida={resultFromFlorida}
+              showCards={showCards}
+            >
+              Unfortunately, emailing officials through FloridaBlaze is only
+              available in Florida.
+              <a href="#" onClick={resetSearch}>
+                Try another search.
+              </a>
+            </ShowLetterDeadEnd>
+          </ResultSection>
+        </ActGrid>
+      </ActWrapper>
+    );
+  }
 }
 
 const Wtf = React.forwardRef(Act);
