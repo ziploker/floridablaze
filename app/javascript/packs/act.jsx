@@ -25,6 +25,7 @@ import searchIconOrange2 from "../../assets/images/searchPink2.png";
 import ResultCardOne from "./resultCardOne.jsx";
 import Button_Loading from "./myComponents/button_loading";
 import axios from "axios";
+import "./ziploker123.css"
 
 import usps from "../../assets/images/usps-logo.svg";
 //var Spinner = require("react-spinkit");
@@ -265,7 +266,7 @@ const ActHeader = styled.h1`
 
   letter-spacing: 2px;
   justify-self: start;
-  color: #ffffff;
+  //color: #ffffff;
 
   //line-height: 100%;
   //margin: 0px 0px 0px 20px;
@@ -278,12 +279,12 @@ const ActHeader = styled.h1`
   /* ACT NOW */
 
   font-style: normal;
-  width: 100%;
+  //width: 100%;
   letter-spacing: -0.05em;
   word-break: break-word;
   white-space: normal;
   overflow: visible;
-  color: #ffffff;
+  //color: #ffffff;
   //margin: 24px 0 21px 60px;
 
   /* @media only screen and (max-width: 1300px) {
@@ -3665,7 +3666,7 @@ function Act(props, ref) {
 					</ProgressBarz> */}
 
           <ActHeaderWrapper>
-            <ActHeader showCards={showCards}>ACT NOW</ActHeader>
+            <ActHeader className="testLocker" showCards={showCards}>ACT NOW</ActHeader>
 
             <ActSubheader showCards={showCards}>...3 quick steps</ActSubheader>
           </ActHeaderWrapper>
