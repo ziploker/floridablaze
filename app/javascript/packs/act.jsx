@@ -25,7 +25,7 @@ import searchIconOrange2 from "../../assets/images/searchPink2.png";
 import ResultCardOne from "./resultCardOne.jsx";
 import Button_Loading from "./myComponents/button_loading";
 import axios from "axios";
-import "../../assets/stylesheets/application.css";
+import "../../assets/stylesheets/testStyle.scss";
 
 import usps from "../../assets/images/usps-logo.svg";
 //var Spinner = require("react-spinkit");
