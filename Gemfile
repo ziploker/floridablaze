@@ -21,7 +21,8 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 #gem 'webpacker', '~> 5.0'
-gem 'shakapacker', '6.5.2' 
+#gem 'shakapacker', '6.5.2' 
+gem "shakapacker", "= 7.0"
 gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'mailgun-ruby', '~>1.2.3'
@@ -90,3 +91,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "react_on_rails", "= 13.0.2"
 gem "mini_racer", platforms: :ruby
+
+
