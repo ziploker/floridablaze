@@ -3,4 +3,6 @@ const { generateWebpackConfig } = require("shakapacker");
 
 const webpackConfig = generateWebpackConfig();
 
+console.log("weeeeeeeeb", webpackConfig)
+
 module.exports = webpackConfig;
