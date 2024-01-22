@@ -31,7 +31,7 @@ default: &default
 
   # Additional paths webpack should look up modules
   # ['app/assets', 'engine/foo/app/assets']
-  additional_paths: [app/assets]
+  additional_paths: []
 
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false
@@ -40,7 +40,7 @@ default: &default
   webpack_loader: 'babel'
 
   # Set to true to enable check for matching versions of shakapacker gem and NPM package - will raise an error if there is a mismatch or wildcard versioning is used
-  ensure_consistent_versioning: true
+  ensure_consistent_versioning: false
 
   # Select whether the compiler will use SHA digest ('digest' option) or most most recent modified timestamp ('mtime') to determine freshness
   compiler_strategy: digest
@@ -49,6 +49,11 @@ default: &default
   # Don't use contentHash except for production for performance
   # https://webpack.js.org/guides/build-performance/#avoid-production-specific-tooling
   useContentHash: false
+
+  # Setting the asset host here will override Rails.application.config.asset_host.
+  # Here, you can set different asset_host per environment. Note that
+  # SHAKAPACKER_ASSET_HOST will override both configurations.
+  # asset_host: custom-path
 
 development:
   <<: *default
@@ -59,8 +64,6 @@ development:
   # Keys not described there are documented inline and in https://github.com/shakacode/shakapacker/
   dev_server:
     # For running dev server with https, set `server: https`.
-    # You may use `https: true` instead but notice that it is deprecated in favor of `server: https`
-    # Ensure only one of these entries is set.
     # server: https
 
     host: localhost
@@ -75,7 +78,7 @@ development:
     # In that case, style-loader is not needed as a dependency.
     #
     # mini-css-extract-plugin is a required dependency in both cases.
-    inline_css: false
+    inline_css: true
     # Defaults to the inverse of hmr. Uncomment to manually set this.
     # live_reload: true
     client:
@@ -109,10 +112,10 @@ production:
   <<: *default
 
   # Production depends on precompilation of packs prior to booting for performance.
-  compile: true
+  compile: false
 
   # Use content hash for naming assets. Cannot be overridden by for production.
-  useContentHash: false
+  useContentHash: true
 
   # Cache manifest.json for performance
-  cache_manifest: false
+  cache_manifest: true

@@ -15,6 +15,8 @@
     "@tiptap/pm": "^2.1.16",
     "@tiptap/react": "^2.1.16",
     "@tiptap/starter-kit": "^2.1.16",
+    "@types/babel__core": "7",
+    "@types/webpack": "5",
     "axios": "^1.6.5",
     "babel-loader": "8",
     "babel-plugin-styled-components": "^2.1.4",
@@ -27,6 +29,7 @@
     "jquery": "^3.7.1",
     "js-yaml": "^4.1.0",
     "mini-css-extract-plugin": "^2.7.7",
+    "n": "^9.2.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -55,7 +58,8 @@
   "version": "0.1.0",
   "babel": {
     "presets": [
-      "./node_modules/shakapacker/package/babel/preset.js"
+      "./node_modules/shakapacker/package/babel/preset.js",
+      "@babel/preset-react"
     ]
   },
   "browserslist": [
