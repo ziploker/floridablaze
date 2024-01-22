@@ -57,7 +57,7 @@ default: &default
 
 development:
   <<: *default
-  compile: false
+  compile: true
   compiler_strategy: mtime
 
   # Reference: https://webpack.js.org/configuration/dev-server/
@@ -112,10 +112,10 @@ production:
   <<: *default
 
   # Production depends on precompilation of packs prior to booting for performance.
-  compile: true
+  compile: false
 
   # Use content hash for naming assets. Cannot be overridden by for production.
   useContentHash: true
 
   # Cache manifest.json for performance
-  cache_manifest: false
+  cache_manifest: true
