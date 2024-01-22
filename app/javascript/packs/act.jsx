@@ -26,6 +26,7 @@ import ResultCardOne from "./resultCardOne.jsx";
 import Button_Loading from "./myComponents/button_loading";
 import axios from "axios";
 import "../../assets/stylesheets/testStyle.css";
+//import "./ziploker123.css"
 
 import usps from "../../assets/images/usps-logo.svg";
 //var Spinner = require("react-spinkit");
