@@ -2,7 +2,7 @@
 // https://github.com/shakacode/react_on_rails_demo_ssr_hmr/blob/master/config/webpack/serverWebpackConfig.js
 
 const { merge, config } = require("shakapacker");
-const commonWebpackConfig = require("./commonWebpackConfig");
+const commonWebpackConfig = require("./commonWebpackConfig").default;
 
 const webpack = require("webpack");
 

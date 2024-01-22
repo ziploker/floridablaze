@@ -1,8 +1,8 @@
 // The source code including full typescript support is available at:
 // https://github.com/shakacode/react_on_rails_demo_ssr_hmr/blob/master/config/webpack/webpackConfig.js
 
-const clientWebpackConfig = require("./clientWebpackConfig");
-const serverWebpackConfig = require("./serverWebpackConfig");
+import clientWebpackConfig from "./clientWebpackConfig";
+import serverWebpackConfig from "./serverWebpackConfig";
 
 const webpackConfig = (envSpecific) => {
   const clientConfig = clientWebpackConfig();
@@ -34,4 +34,4 @@ const webpackConfig = (envSpecific) => {
   return result;
 };
 
-module.exports = webpackConfig;
+export default webpackConfig;

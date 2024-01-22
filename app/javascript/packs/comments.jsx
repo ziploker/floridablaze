@@ -192,38 +192,38 @@ function CommentSection(props) {
     console.log("==============Article useEffect===============");
 
     const mode =
-      process.env.NODE_ENV == "development"
-        ? "http://127.0.0.1:3000"
-        : "https://www.floiridablaze.io";
+      // process.env.NODE_ENV == "development"
+      //   ? "http://127.0.0.1:3000"
+      //   : "https://www.floiridablaze.io";
 
-    axios
-      .post(
-        "/blog/get_comment_info",
-        {
-          data: {
-            slug: slug,
+      axios
+        .post(
+          "/blog/get_comment_info",
+          {
+            data: {
+              slug: slug,
+            },
           },
-        },
-        { withCredentials: true }
-      )
-      .then((response) => {
-        //console.log("resoooooooooooooooonse = " + response.inspect)
+          { withCredentials: true }
+        )
+        .then((response) => {
+          //console.log("resoooooooooooooooonse = " + response.inspect)
 
-        //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
-        //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
+          //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
+          //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
 
-        //setArtData(response.data.article)
-        setArtDataComments(response.data.comments);
+          //setArtData(response.data.article)
+          setArtDataComments(response.data.comments);
 
-        //setIsCommentsLoading(false)
+          //setIsCommentsLoading(false)
 
-        //setIsCommentsLoading(false)
+          //setIsCommentsLoading(false)
 
-        //setCurrentUser(@current_user)
-      })
-      .catch((error) => {
-        //console.log("articleErrors", error)
-      });
+          //setCurrentUser(@current_user)
+        })
+        .catch((error) => {
+          //console.log("articleErrors", error)
+        });
   }, []);
 
   const getReplyArray = (childrenCommentArray) => {
