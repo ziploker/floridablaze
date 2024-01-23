@@ -78,7 +78,7 @@ function Resend(props) {
     ////send info into backend heyyohhhh/////
     event.preventDefault();
     //const mode = process.env.NODE_ENV =="development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
-    props.setLoginClicked(false);
+    props.set_login_clicked("false");
     axios
       .post(
         "/registrations/resend",
@@ -193,7 +193,7 @@ function Resend(props) {
   }
 
   useEffect(() => {
-    props.setLoginClicked(false);
+    props.set_login_clicked("false");
   }, [location]);
   /////////////////////////////////// JSX /////////////////////////////////////////
   return (

@@ -330,7 +330,7 @@ function Story(props){
                 //    keywords: props.info.keywords,
                 //    title: props.info.title,
                 //    topic: props.info.topic,
-                //    imageUrl: props.info.url,
+                //    image_url: props.info.url,
                 //    appState: props.appState
                 //    //handleLogOutClick: props.handleLogOutClick
 

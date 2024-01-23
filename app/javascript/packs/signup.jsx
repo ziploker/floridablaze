@@ -99,7 +99,7 @@ const SignupWrapper = styled.div`
   position: relative;
 
   background-color: #ffffff;
-  display: ${(props) => (props.showOffer ? "none" : "grid")};
+  display: ${(props) => (props.show_offer == "true" ? "none" : "grid")};
 
   align-items: center;
   justify-content: center;
@@ -420,9 +420,9 @@ const Span = styled.h4`
 
 const StatusSpinner = styled.div`
   max-height: ${(props) =>
-    props.showStatusSpinner.toString() == "true" ? "100%" : "0px"};
+    props.show_status_spinner == "true" ? "100%" : "0px"};
   opacity: ${(props) =>
-    props.showStatusSpinner.toString() == "true" ? "1" : "0"};
+    props.show_status_spinner == "true" ? "1" : "0"};
   transition: opacity 0.4s;
   transition-timing-function: ease-out;
 `;
@@ -659,33 +659,6 @@ const Spacer = styled.h2`
   }
 `;
 
-// const ActHeader = styled.h1`
-//   @media only screen and (max-width: 720px) {
-//     grid-area: 1/1/2/-1;
-//     //justify-self: center;
-//     font-size: 15vw;
-//   }
-
-//   font-style: normal;
-//   font-weight: 800;
-//   font-size: 10vw;
-//   //line-height: 100px;
-//   /* identical to box height */
-
-//   letter-spacing: -0.08em;
-
-//   color: #ffffff;
-//   grid-area: 1/3/2/-1;
-//   align-self: end;
-
-//   //line-height: 100%;
-//   margin: -10px 0px 0px 20px;
-//   padding-top: 20px;
-//   //z-index: 1;
-
-//   opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
-// `;
-
 const formData = new FormData();
 ///////////////////////////////////  SIGN_UP_PAGE //////////////////////////////
 
@@ -730,12 +703,12 @@ function Signup(props, ref) {
 
     status: "",
 
-    showErrorBackground: false,
+    ///showErrorBackground: "false",
 
     errors: {},
     color: "#45B5644",
     isBtnDisabled: false,
-    showStatusSpinner: false,
+    showStatusSpinner: "false",
     waitMessage: "",
   });
 
@@ -914,9 +887,9 @@ function Signup(props, ref) {
       ...state,
       status: "",
       errors: {},
-      showErrorBackground: true,
+      ////showErrorBackground: "true",
       waitMessage: "...one moment",
-      showStatusSpinner: true,
+      showStatusSpinner: "true",
       isBtnDisabled: true,
     });
 
@@ -961,7 +934,7 @@ function Signup(props, ref) {
               passwordFieldActive: false,
 
               opt_in: false,
-              showErrorBackground: true,
+              ////showErrorBackground: "true",
               status: response.status,
 
               errors: response.error,
@@ -973,7 +946,7 @@ function Signup(props, ref) {
             //update error state
             setState({
               ...state,
-              showErrorBackground: true,
+              ////showErrorBackground: "true",
               status: response.status,
               errors: response.error,
             });
@@ -1051,7 +1024,7 @@ function Signup(props, ref) {
       <SignupWrapper
         className="homeWrapper"
         ref={section2ScrollToRef}
-        showOffer={props.showOffer}
+        show_offer={props.show_offer}
       >
         <SignupMaskWrapper>
           {/* <SignupMask src={width > 850 ? floridaMaskBig : width > 400 ? floridaMaskCell : floridaMaskThinLongist}/> */}
@@ -1126,7 +1099,7 @@ function Signup(props, ref) {
                   <InputForSignup
                     name="password"
                     type="password"
-                    autocomplete="off"
+                    autoComplete="off"
                     value={state.password}
                     onChange={handleChange}
                     onFocus={activateField}
@@ -1201,8 +1174,9 @@ function Signup(props, ref) {
                 </SocialMedia>
               </Form>
 
-              <ErrorWrapper showErrorBackground={state.showErrorBackground}>
-                <Span waitMessage={state.waitMessage}>
+              {/* <ErrorWrapper show_error_background={state.showErrorBackground}> */}
+              <ErrorWrapper >
+                <Span wait_message={state.waitMessage}>
                   {" "}
                   {state.waitMessage}
                 </Span>
@@ -1214,7 +1188,7 @@ function Signup(props, ref) {
 
                 {errorMessages}
 
-                <StatusSpinner showStatusSpinner={state.showStatusSpinner}>
+                <StatusSpinner show_status_spinner={state.showStatusSpinner}>
                   {/* <Spinner name="wave" color="#56c5cc" /> */}
                 </StatusSpinner>
               </ErrorWrapper>

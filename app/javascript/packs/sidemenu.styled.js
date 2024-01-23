@@ -15,14 +15,14 @@ const StyledMenu = styled.nav`
 	width: 100%;
 	top: 0;
 	left: 0;
-	padding-top: ${({ hamburgerScrolled }) =>
-		hamburgerScrolled ? "70px" : "150px"};
+	padding-top: ${({ hamburger_scrolled }) =>
+		hamburger_scrolled == "true" ? "70px" : "150px"};
 
 	transition: 0.2s ease-in-out;
 	z-index: 50;
 
 	transform: ${(props) =>
-		props.openSideMenu ? "translateX(0%)" : "translateX(100%)"};
+		props.open_side_menu == "true" ? "translateX(0%)" : "translateX(100%)"};
 		
 	h1 {
 		margin-bottom: 20px;

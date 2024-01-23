@@ -913,38 +913,6 @@ class LookupsController < ApplicationController
     end
     
     
-    # }else if (whichTabIsActive === 2){
-
-    #   if (results.two.chamber !== undefined && results.two.chamber == "Senate"){
-
-    #     if(results.two.lastName != ""){
-
-    #       return <h3>Dear Senator {results.two.lastName}, </h3>
-        
-    #     }else{
-          
-    #       return <h3>Dear Senator {results.two.name}, </h3>
-  
-    #     }
-
-    #   }else if (results.two.chamber !== undefined && results.two.chamber == "House"){
-
-    #     if(results.two.lastName != ""){
-
-    #       return <h3>Dear Representative {results.two.lastName}, </h3>
-        
-    #     }else{
-          
-    #       return <h3>Dear Representative {results.two.name}, </h3>
-
-    #     }  
-    #   }else{
-
-    #     return null
-    #   }
-    # }else{
-    #   return null
-    # }
     
 
 

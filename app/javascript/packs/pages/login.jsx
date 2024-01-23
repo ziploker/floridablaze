@@ -28,7 +28,7 @@ const LoginWrapperNew = styled.div`
   z-index: 11;
   width: 35vw;
   position: fixed;
-  top: ${(props) => (props.loginClicked ? "0px" : "-555px")};
+  top: ${(props) => (props.login_clicked == "true" ? "0px" : "-555px")};
   right: 0;
   background-color: white;
   padding: 140px 20px 20px 20px;
@@ -158,7 +158,7 @@ function Login(props) {
   }
 
   function closeLoginWindow() {
-    props.setLoginClicked(false);
+    props.set_login_clicked("false");
     setState({
       ...state,
       status: "",
@@ -194,9 +194,9 @@ function Login(props) {
           });
 
           setTimeout(function () {
-            props.setLoginClicked(false);
+            props.set_login_clicked("false");
           }, 3000);
-          //props.setLoginClicked(false)
+          
 
           props.handleSuccessfulAuth(response.data);
 
@@ -331,7 +331,7 @@ function Login(props) {
   /////////////////////////////////// JSX /////////////////////////////////////////
 
   return (
-    <LoginWrapperNew loginClicked={props.loginClicked}>
+    <LoginWrapperNew login_clicked={props.login_clicked}>
       <CardNew>
         <LogoWrapperNew>
           <div

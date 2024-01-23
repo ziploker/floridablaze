@@ -6,13 +6,13 @@ import StyledBurger from "./burger.styled";
 const Burger = (props) => {
   return (
     <StyledBurger
-      openSideMenu={props.openSideMenu}
-      hamburgerScrolled={props.hamburgerScrolled}
-      leafScrolledSoChangeColorDown={props.leafScrolledSoChangeColorDown}
-      leafScrolledSoChangeColorUp={props.leafScrolledSoChangeColorUp}
-            scrollDir={props.scrollDir}
+    open_side_menu={props.open_side_menu}
+      hamburger_scrolled={props.hamburger_scrolled}
+      leaf_scrolled_so_change_color_down={props.leaf_scrolled_so_change_color_down}
+      leaf_scrolled_so_change_color_up={props.leaf_scrolled_so_change_color_up}
+            scroll_dir={props.scroll_dir}
       onClick={() => {
-        props.setOpenSideMenu(!props.openSideMenu);
+        props.set_open_side_menu(props.open_side_menu == "true" ? "false" : "true");
       }}
     >
       <div />

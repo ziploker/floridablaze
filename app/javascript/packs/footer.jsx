@@ -35,7 +35,7 @@ const FooterWrapper = styled.div`
 
   overflow: hidden;
 
-  display: ${(props) => (props.showOffer ? "none" : "grid")};
+  display: ${(props) => (props.show_offer == "true" ? "none" : "grid")};
   //grid-template-columns: 1fr;
   position: relative;
 
@@ -343,7 +343,7 @@ function Footer(props) {
   // }
 
   return (
-    <FooterWrapper showOffer={props.showOffer}>
+    <FooterWrapper show_offer={props.show_offer}>
       <FooterImage src={footerImage} />
 
       <SubscribeSection>
