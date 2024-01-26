@@ -58,13 +58,27 @@ const CommentInput = styled.input`
 	word-break: break-word;
 `;
 
+const ErrorMsg = styled.div`
+
+  height: 41px;
+  display: inline-block;
+  opacity: ${props => props.state.comment.length > 3 && props.props.userState.loggedInStatus == "NOT_LOGGED_IN" ? "1" : "0"};
+  transition: all .3s ease;
+
+  h4{
+	//color: blue;
+	margin-left: 58px;
+  }
+
+`;
+
 const formData = new FormData();
 
 function CommentForm(props) {
 	const [state, setState] = React.useState({
 		comment: "",
 		error: "",
-
+		//showErrorMsg: "false"
 		//emailIsFocused: false,
 		//company: '',
 		//companyIsFocused: false,
@@ -76,63 +90,76 @@ function CommentForm(props) {
 		//activeIndex: null
 	});
 
+	
+
 	const handleAdd = (e) => {
 		e.preventDefault();
 
 		if (validForm()) {
-			formData.append("event[body]", state.comment);
-			formData.append("event[story_id]", props.storyID);
-			formData.append("event[comment_id]", props.commentID);
-			formData.append("event[author_nick]", props.userState.user.nick);
-			formData.append("event[author_avatar]", props.userState.user.avatar_url);
-			formData.append("event[type]", "story");
 
-			console.log("formdata from handle add in comment form");
-			console.log(formData);
 
-			//get token for form submission
-			const csrf = document
-				.querySelector("meta[name='csrf-token']")
-				.getAttribute("content");
+			if (props.userState.loggedInStatus == "NOT_LOGGED_IN"){
+				
+				return
+				
+			}else{
 
-			$.ajax({
-				url: "/comments",
-				headers: {
-					"X-CSRF-Token": csrf,
-				},
-				method: "POST",
-				data: formData,
-				contentType: false,
-				processData: false,
+				
+				formData.append("event[body]", state.comment);
+				formData.append("event[story_id]", props.storyID);
+				formData.append("event[comment_id]", props.commentID);
+				formData.append("event[author_nick]", props.userState.user.nick);
+				formData.append("event[author_avatar]", props.userState.user.avatar_url);
+				formData.append("event[type]", "story");
 
-				success: function (data) {
-					//props.handleAdd(data);
-					//setState({setState
+				console.log("formdata from handle add in comment form");
+				console.log(formData);
 
-					//focussed: (props.focussed) || false,
-					//comment: ''
+				//get token for form submission
+				const csrf = document
+					.querySelector("meta[name='csrf-token']")
+					.getAttribute("content");
 
-					//});
+				$.ajax({
+					url: "/comments",
+					headers: {
+						"X-CSRF-Token": csrf,
+					},
+					method: "POST",
+					data: formData,
+					contentType: false,
+					processData: false,
 
-					//props.setState("done")
+					success: function (data) {
+						//props.handleAdd(data);
+						//setState({setState
 
-					console.log(
-						"rails reply in comment form ajax success= " +
+						//focussed: (props.focussed) || false,
+						//comment: ''
+
+						//});
+
+						//props.setState("done")
+
+						console.log(
+							"rails reply in comment form ajax success= " +
 							JSON.stringify(data, null, 4)
-					);
-					console.log("commentform...........................");
-					props.setArtDataComments(data.comments);
+						);
+						console.log("commentform...........................");
+						props.setArtDataComments(data.comments);
 
-					setState({ ...state, comment: "" });
+						setState({ ...state, comment: "" });
 
-					//props.setIsCommentsLoading(false)
+						//props.setIsCommentsLoading(false)
 
-					////props.addAllCommentsToStateForReplyButtonToWork(data.comments)
-				},
-				error: function (xhr, status, error) {
-					alert("Comment did not reach server: ", error);
-				},
-			});
+						////props.addAllCommentsToStateForReplyButtonToWork(data.comments)
+					},
+					error: function (xhr, status, error) {
+						alert("Comment did not reach server: ", error);
+					},
+				
+				});
+			}
 		} else {
 			alert("Please type a comment.");
 		}
@@ -155,25 +182,27 @@ function CommentForm(props) {
 
 		const { id } = props;
 		const value = event.target.value;
-		//console.log("nameeeeee = " + event.target.name)
-		//console.log("valluuee = " + event.target.value)
-		//console.log("focus = " + event.target.tagger)
+		console.log("nameeeeee = " + event.target.name)
+		console.log("valluuee = " + event.target.value)
+		console.log("focus = " + event.target.tagger)
 
-		if (event.target.name == "title") {
-			setState({
+		// if (event.target.name == "title") {
+		// 	setState({
+		// 		...state,
+		// 		slug: slugify(v),
+		// 		[event.target.name]: v,
+		// 		error: "",
+		// 	});
+		// } else {
+		
+		setState({
 				...state,
-				slug: slugify(v),
 				[event.target.name]: v,
 				error: "",
 			});
-		} else {
-			setState({
-				...state,
-				[event.target.name]: v,
-				error: "",
-			});
+		
 			//return onChange(id, value);
-		}
+		// }
 	};
 
 	const getClass = () => {
@@ -193,52 +222,55 @@ function CommentForm(props) {
 	//const fcn = state.nameIsFocused ? "xxxfocused" : "xxxNotfocused"
 
 	return (
-		<FormWrapper>
-			<img
-				style={{
-					border: "1px solid gray",
-					borderRadius: "50%",
-					width: "50px",
-					height: "50px",
-					gridArea: "main_comment_img",
-				}}
-				src={
-					props.userState
-						? props.userState.avatar_url == null
-							? defaultManIcon
-							: props.userState.avatar_url
-						: defaultManIcon
-				}
-			></img>
+		<>
+			<FormWrapper>
+				<img
+					style={{
+						border: "1px solid gray",
+						borderRadius: "50%",
+						width: "50px",
+						height: "50px",
+						gridArea: "main_comment_img",
+					}}
+					src={
+						props.userState
+							? props.userState.avatar_url == null
+								? defaultManIcon
+								: props.userState.avatar_url
+							: defaultManIcon
+					}
+				></img>
 
-			<Form
-				style={{ gridArea: "main_comment_body" }}
-				id="cform"
-				className="form-inline"
-				onSubmit={handleAdd}
-				enctype="multipart/form-data"
-			>
-				<div className="field">
-					<CommentInput
-						type="text"
-						index={1}
-						className="form-control"
-						name="comment"
-						placeholder="add a public comment.."
-						value={state.comment}
-						onChange={handleChange}
-					/>
-				</div>
-			</Form>
-			<button
-				form="cform"
-				style={{ marginTop: "3px", gridArea: "main_comment_buttons" }}
-				type="submit"
-				className="btn btn-primary"
-			>
-				COMMENT
-			</button>
-		</FormWrapper>
+				<Form
+					style={{ gridArea: "main_comment_body" }}
+					id="cform"
+					className="form-inline"
+					onSubmit={handleAdd}
+					enctype="multipart/form-data"
+				>
+					<div className="field">
+						<CommentInput
+							type="text"
+							index={1}
+							className="form-control"
+							name="comment"
+							placeholder="add a public comment.."
+							value={state.comment}
+							onChange={handleChange}
+						/>
+					</div>
+				</Form>
+				<button
+					form="cform"
+					style={{ marginTop: "3px", gridArea: "main_comment_buttons" }}
+					type="submit"
+					className="btn btn-primary"
+				>
+					COMMENT
+				</button>
+			</FormWrapper>
+			<ErrorMsg state={state} props={props}><h4>** Please login to comment **</h4></ErrorMsg>
+		</>
 	);
 }
 

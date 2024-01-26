@@ -328,7 +328,7 @@ function App({ d }) {
           />
           <Route path="/story_editor/:storyId" element={<EditStory />} />
           <Route
-            exact
+            //exact
             path="/blog/:id"
             element={
               <Article

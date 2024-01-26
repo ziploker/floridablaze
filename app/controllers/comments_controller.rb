@@ -123,6 +123,13 @@ class CommentsController < ApplicationController
 
 
             puts "current user not found, send login message"
+            render json: {
+
+
+                #article: @article_info,
+                comments: {},
+                newCommentId: "420"
+            }
 
         end
 

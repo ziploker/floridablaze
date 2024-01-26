@@ -259,7 +259,7 @@ const HamburgerMenu = styled.div`
 
 const TopBackgroundBar = styled.div`
   position: fixed;
-  opacity: ${(props) => (props.leaf_scrolled_so_change_color_down ? "1" : "0")};
+  opacity: ${(props) => (props.leaf_scrolled_so_change_color_down == "true" ? "1" : "0")};
   top: 0;
   width: 100%;
   max-width: 2000px;

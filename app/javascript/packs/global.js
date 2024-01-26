@@ -28,7 +28,7 @@ const GlobalStyles = createGlobalStyle`
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+  //font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
   //position: relative;
@@ -53,9 +53,9 @@ body {
   max-width: 2000px;
   min-width: 269px;
   body:not(.user-is-tabbing) button:focus,
-body:not(.user-is-tabbing) input:focus,
-body:not(.user-is-tabbing) select:focus,
-body:not(.user-is-tabbing) textarea:focus {
+  body:not(.user-is-tabbing) input:focus,
+  body:not(.user-is-tabbing) select:focus,
+  body:not(.user-is-tabbing) textarea:focus {
   outline: none;
 }
 }
@@ -419,140 +419,8 @@ p{
 
 
 
-.eachDot {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: white;
-  border: 1px solid black;
-  box-sizing: border-box;
-  transition: transform 0.5s ease;
-}
-
-.eachDot.active {
-  background-color: black;
-}
-
-.dot-holder {
-  height: 10px;
-  width: 10px;
-  align-items: center;
-  align-self: center;
-  transition: all 0.5s ease;
-  transform: translateX(60px);
-  justify-self: center;
-}
-.eachDot.medium {
-  transform: scale(0.6);
-}
-
-.eachDot.small {
-  transform: scale(0.32);
-}
-
-.eachDot.invisible {
-  transform: scale(0.18);
-}
-
-.allDotsWrapper {
-  grid-area: 1/2/2/3;
-  display: grid;
-
-  overflow: hidden;
-  width: 220px;
-  height: 15px;
-  justify-self: center;
-
-  transition: transform 0.5s ease;
-}
-/* ###### */
 
 
-.pac-item span:not(:first-child) {
-  font-size: 36px;
-  color: rgb(61, 61, 61);
-}
-
-.pac-item {
-  padding: 8px 0;
-}
-
-// .pac-container {
-//   font-size: 20px;
-//   color: orange;
-// }
-// .pac-item-query {
-//   font-size: 20px;
-//   color: green;
-// }
-
-// .pac-matched {
-//   font-size: 20px;
-//   color: brown;
-// }
-
-// .pac-matched {
-//   font-size: 20px;
-//   color: blue;
-// }
-
-.testClass {
-  //width: 81%;
-  //grid-area: 8/1/9/3;
-  //background: white;
-  //justify-self: center;
-  //padding-left: 5px;
-
-  div {
-    div {
-      //width: 216px !important;
-
-      iframe {
-        //width: 216px;
-      }
-    }
-  }
-}
-
-
-
-/* ##### comment styles ####### */
-  
-
-.replies{
-
-//transform: scale(1);
-max-height: 300px;
-transition: all 197ms ease;
-opacity: 1;
-//transform: translateX(0%);
-//transition-delay: 50ms;
-
-//position: relative;
-margin: 10px 0px 0px 25px;
-
-img {
-    width: 25px;
-    height: 25px;
-    //grid-area: avatar;
-    margin: 1px 10px 0px 0px;
-    border-radius: 50%;
-    border: 1px solid gray;
-    
-}
-
-}
-
-
-
-.replies.shrink{
-
-max-height: 0;
-//transform: scale(0);
-opacity: 0;
-//transform: translateX(100%);
-
-}
 
 
 
