@@ -23,14 +23,12 @@ import Change from "./pages/change_pw";
 import Resend from "./pages/resend";
 import EditStory from "./EditStory";
 import StoryFlipperOriginal from "./StoryFlipperOriginal";
-import "../packs/app.css";
+//import "../packs/app.css";
 import { useInView } from "react-intersection-observer";
-import ReactFontLoader from 'react-font-loader'
-
+//import ReactFontLoader from 'react-font-loader'
 
 ///////////////////////////////// MAIN APP STARTING POINT ///////////////
 function App({ d }) {
-  
   const current_user = d.current_user;
   const artData = d.artData;
 
@@ -40,9 +38,9 @@ function App({ d }) {
     user: {},
   });
 
-  const [openSideMenu, setOpenSideMenu] = useState(false);
-  const [showOffer, setShowOffer] = useState(false);
-  const [loginClicked, setLoginClicked] = useState(false);
+  const [openSideMenu, setOpenSideMenu] = useState("false");
+  const [showOffer, setShowOffer] = useState("false");
+  const [loginClicked, setLoginClicked] = useState("false");
   const [allStoriesPlaceholder, setAllStoriesPlaceholder] = useState(
     d.allStoriesPlaceholder
   );
@@ -51,7 +49,7 @@ function App({ d }) {
     d.totalNumOfStoriesOnServer
   );
   const [allStories, setAllStories] = useState(d.stories);
-  
+
   const allStoriesFromController = d.stories;
   const page = d.page;
 
@@ -66,11 +64,7 @@ function App({ d }) {
     black: "#181818", //(0,0,0)
   };
 
-
   console.log("==============APP===============" + JSON.stringify(d));
- 
-
-  
 
   // reference for lookupSection to scroll to, when click on nav link
   const LookupScrollToRef = useRef();
@@ -93,7 +87,7 @@ function App({ d }) {
     window.scrollTo(scrollOptions);
     //window.scrollTo(0, ref.current.offsetTop)
 
-    setOpenSideMenu(false);
+    setOpenSideMenu("false");
 
     setTimeout(function () {
       LookupInputRef.current.focus();
@@ -116,7 +110,6 @@ function App({ d }) {
   };
 
   const handleSuccessfulAuth = (data) => {
-   
     setUserState({
       ...userState,
       loggedInStatus: "LOGGED_IN",
@@ -152,38 +145,24 @@ function App({ d }) {
       });
   };
 
-  // const executeScrollForLookupSection = useCallback(() => {
-  //   console.log("in executeScrollForLookupSection ");
-
-  //   scrollToRef(LookupScrollToRef);
-  //   setOpenSideMenu(false);
-  // });
-
   const executeScrollForLookupSection = (e) => {
     console.log("in executeScrollForLookupSection ");
     e.preventDefault();
     scrollToRef(LookupScrollToRef);
-    setOpenSideMenu(false);
+    setOpenSideMenu("false");
   };
-
-  // const executeScrollForSection2 = useCallback(() => {
-    
-  //   scrollToRef2(section2ScrollToRef);
-  //   setOpenSideMenu(false);
-  //   setLoginClicked(false);
-  // });
 
   const executeScrollForSection2 = (e) => {
     e.preventDefault();
-    
-    setOpenSideMenu(false);
-    setLoginClicked(false);
+
+    setOpenSideMenu("false");
+    setLoginClicked("false");
     scrollToRef2(section2ScrollToRef);
   };
 
   const executeScrollForLookupSectionTwo = () => {
     scrollToRef2(section2ScrollToRef);
-    setOpenSideMenu(false);
+    setOpenSideMenu("false");
   };
 
   useEffect(() => {
@@ -192,7 +171,7 @@ function App({ d }) {
     console.log("==============APP useEffects===============");
     if (current_user != null) {
       console.log("currentUser exists, so bypass session logged_in call");
-     
+
       setUserState({
         ...userState,
         loggedInStatus: "LOGGED_IN",
@@ -244,12 +223,10 @@ function App({ d }) {
     }
   }, []);
 
- 
-
   useEffect(() => {
     //console.log("1111111111111111111111111111111111111111111111111===");
     if (typeof window != "undefined" && window.document) {
-      if (openSideMenu) {
+      if (openSideMenu == "true") {
         document.body.style.overflow = "hidden";
       } else {
         document.body.style.overflow = "unset";
@@ -259,7 +236,6 @@ function App({ d }) {
 
   const initialOptions = {
     "client-id":
-      
       "ARoxFsYDjhh3TqvSuq-WCN4jIEIFuyTm_HUPob8uDtr0H8c-A4ko4Tb2X1A9Sl2pwTRERBClsNWrleR6",
   };
 
@@ -272,20 +248,15 @@ function App({ d }) {
         <Header
           userState={userState}
           handleLogOutClick={handleLogOutClick}
-          setLoginClicked={setLoginClicked}
-          openSideMenu={openSideMenu}
-          setOpenSideMenu={setOpenSideMenu}
+          set_login_clicked={setLoginClicked}
+          open_side_menu={openSideMenu}
+          set_open_side_menu={setOpenSideMenu}
           executeScrollForSection2={executeScrollForSection2}
           executeScrollForLookupSection={executeScrollForLookupSection}
           handleSuccessfulAuth={handleSuccessfulAuth}
-          loginClicked={loginClicked}
+          login_clicked={loginClicked}
         />
 
-        {/* <Login
-          handleSuccessfulAuth={handleSuccessfulAuth}
-          setLoginClicked={setLoginClicked}
-          loginClicked={loginClicked}
-        /> */}
 
         <Routes>
           <Route
@@ -294,14 +265,14 @@ function App({ d }) {
             element={
               <Home
                 //handleSuccessfulAuth={handleSuccessfulAuth}
-                loginClicked={loginClicked}
-                setLoginClicked={setLoginClicked}
+                login_clicked={loginClicked}
+                set_login_clicked={setLoginClicked}
                 allStoriesFromController={allStoriesFromController}
                 allStories={allStories}
                 setAllStories={setAllStories}
                 allStoriesPlaceholder={allStoriesPlaceholder}
                 totalNumOfStoriesOnServer={totalNumOfStoriesOnServer}
-                showOffer={showOffer}
+                show_offer={showOffer}
                 //stories={d.stories}
                 // lastStory={lastStory}
                 // secondToLastStory={secondToLastStory}
@@ -319,8 +290,8 @@ function App({ d }) {
             path="/forgot"
             element={
               <Forgot
-                loginClicked={loginClicked}
-                setLoginClicked={setLoginClicked}
+                login_clicked={loginClicked}
+                set_login_clicked={setLoginClicked}
               />
             }
           />
@@ -328,8 +299,8 @@ function App({ d }) {
             path="/resend"
             element={
               <Resend
-                loginClicked={loginClicked}
-                setLoginClicked={setLoginClicked}
+                login_clicked={loginClicked}
+                set_login_clicked={setLoginClicked}
               />
             }
           />
@@ -338,8 +309,8 @@ function App({ d }) {
             path="/change_pw/:token"
             element={
               <Change
-                loginClicked={loginClicked}
-                setLoginClicked={setLoginClicked}
+                login_clicked={loginClicked}
+                set_login_clicked={setLoginClicked}
               />
             }
           />
@@ -357,7 +328,7 @@ function App({ d }) {
           />
           <Route path="/story_editor/:storyId" element={<EditStory />} />
           <Route
-            exact
+            //exact
             path="/blog/:id"
             element={
               <Article
@@ -376,28 +347,28 @@ function App({ d }) {
             }}
             executeScrollForSection2={executeScrollForSection2}
             userState={userState}
-            setLoginClicked={setLoginClicked}
-            setOpenSideMenu={setOpenSideMenu}
+            set_login_clicked={setLoginClicked}
+            set_open_side_menu={setOpenSideMenu}
             executeScrollForLookupSection={executeScrollForLookupSection}
             executeScrollForLookupSectionTwo={executeScrollForLookupSectionTwo}
-            showOffer={showOffer}
-            setShowOffer={setShowOffer}
+            show_offer={showOffer}
+            set_show_offer={setShowOffer}
           />
         </PayPalScriptProvider>
         <SignupSection
           ref={{ section2ScrollToRef: section2ScrollToRef }}
           handleSuccessfulAuth={handleSuccessfulAuth}
-          showOffer={showOffer}
+          show_offer={showOffer}
         />
 
         {/* <Footer intersectionObserverRef={intersectionObserverRef} /> */}
-        <Footer showOffer={showOffer} />
+        <Footer show_offer={showOffer} />
 
         {/* <StoryFlipper
           //inView={inView}
           allStories={allStories}
           setAllStories={setAllStories}
-          showOffer={showOffer}
+          show_offer={showOffer}
         /> */}
 
         {/* <LookupSection appState={appState} ref={{LookupScrollToRef: LookupScrollToRef, LookupInputRef: LookupInputRef}}/>

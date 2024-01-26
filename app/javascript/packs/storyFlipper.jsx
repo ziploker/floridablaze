@@ -3,7 +3,7 @@ import { element } from "prop-types";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import StoryCard from "./storyCard";
 import styled from "styled-components";
-function storyFlipper({ allStories, setAllStories, showOffer }) {
+function storyFlipper({ allStories, setAllStories, show_offer }) {
   const [stories, setStories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasNextPage, setHasNextPage] = useState(true);
@@ -17,7 +17,7 @@ function storyFlipper({ allStories, setAllStories, showOffer }) {
     @media only screen and (min-width: 985px) {
       display: none;
     }
-    display: ${(props) => (props.showOffer ? "none" : "initial")};
+    display: ${(props) => (props.show_offer ? "none" : "initial")};
   `;
 
   // useEffect(() => {
@@ -247,7 +247,7 @@ function storyFlipper({ allStories, setAllStories, showOffer }) {
   });
 
   return (
-    <StoryFlipperWrapper showOffer={showOffer}>
+    <StoryFlipperWrapper show_offer={show_offer}>
       {displayStories}
       {isLoading || hasNextPage ? (
         <div ref={elementRef}>Loading more items.....</div>

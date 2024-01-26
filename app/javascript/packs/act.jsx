@@ -26,6 +26,7 @@ import ResultCardOne from "./resultCardOne.jsx";
 import Button_Loading from "./myComponents/button_loading";
 import axios from "axios";
 import "../../assets/stylesheets/testStyle.css";
+//import "./ziploker123.css"
 
 import usps from "../../assets/images/usps-logo.svg";
 //var Spinner = require("react-spinkit");
@@ -133,7 +134,7 @@ const Mega = styled.img`
   //left: 12vw;
   width: 70%;
   //height: 85%;
-  display: ${(props) => (props.showCards ? "none" : "inherit")};
+  display: ${(props) => (props.show_cards == "true" ? "none" : "inherit")};
   grid-area: 1/2/3/3;
   align-self: end;
   justify-self: end;
@@ -185,7 +186,7 @@ const ActSection = styled.section`
     //justify-self: center;
   }
 
-  display: ${(props) => (props.showCards ? "none" : "grid")};
+  display: ${(props) => (props.show_cards == "true" ? "none" : "grid")};
   max-width: 1300px;
   margin: 0 auto;
   position: relative;
@@ -202,8 +203,7 @@ const ActSection = styled.section`
   //padding-bottom: 40px;
   //margin-top: 30px;
   padding-top: 20px;
-  //z-index: ${(props) => (props.showCards || props.showLetter ? "0" : "10")};
-  z-index: ${(props) => (props.showCards ? "0" : "10")};
+  z-index: ${(props) => (props.show_cards == "true" ? "0" : "10")};
 `;
 
 // const ProgressBarz = styled.div`
@@ -226,7 +226,7 @@ const StepOne = styled.div`
 const StepTwo = styled.div`
   width: 80px;
   height: 4px;
-  background: ${(props) => (props.showCards ? "#E3B55A" : "#605C55")};
+  background: ${(props) => (props.show_cards == "true" ? "#E3B55A" : "#605C55")};
   margin-left: 36px;
 `;
 
@@ -280,8 +280,7 @@ const ActHeader = styled.h1`
   //padding-top: 20px;
   //z-index: 1;
 
-  //opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
-  opacity: ${(props) => (props.showCards ? "0" : "1")};
+  opacity: ${(props) => (props.show_cards == "true" ? "0" : "1")};
 
   /* ACT NOW */
 
@@ -318,8 +317,7 @@ const ActSubheader = styled.h2`
   //margin: 8px 0px 8px 20px;
   margin: -14px 14px 8px 5px;
   display: none;
-  //opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
-  opacity: ${(props) => (props.showCards ? "0" : "1")};
+  opacity: ${(props) => (props.show_cards == "true" ? "0" : "1")};
 
   @media only screen and (max-width: 350px) {
     font-size: 20px;
@@ -420,8 +418,7 @@ const Form = styled.div`
   //padding: 0px 20px;
   border-radius: 5px;
 
-  //opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
-  opacity: ${(props) => (props.showCards ? "0" : "1")};
+  opacity: ${(props) => (props.show_cards == "true" ? "0" : "1")};
   //pointer-events: none;
 `;
 
@@ -521,8 +518,7 @@ const FindMyRep = styled.button`
   cursor: pointer;
   //z-index: 1;
 
-  //opacity: ${(props) => (props.showCards || props.showLetter ? "0" : "1")};
-  opacity: ${(props) => (props.showCards ? "0" : "1")};
+  opacity: ${(props) => (props.show_cards == "true" ? "0" : "1")};
 `;
 
 const ShowLetterButton = styled.div`
@@ -559,9 +555,9 @@ const ShowLetterButton = styled.div`
   margin-top: 25px;
 
   opacity: ${(props) =>
-    props.showCards && props.resultFromFlorida == "true" ? "1" : "0"};
+    props.show_cards == "true" && props.result_from_florida == "true" ? "1" : "0"};
   z-index: ${(props) =>
-    props.showCards && props.resultFromFlorida == "true" ? "10" : "-5"};
+    props.show_cards == "true" && props.result_from_florida == "true" ? "10" : "-5"};
   //background: linear-gradient(to bottom, #5FCC61, #318e33);
   //z-index: 1;
   cursor: pointer;
@@ -569,11 +565,11 @@ const ShowLetterButton = styled.div`
 
 const ShowLetterDeadEnd = styled.div`
   display: ${(props) =>
-    props.showCards && props.resultFromFlorida == "true" ? "none" : "initial"};
+    props.show_cards == "true" && props.result_from_florida == "true" ? "none" : "initial"};
   opacity: ${(props) =>
-    props.showCards && props.resultFromFlorida == "true" ? "0" : "1"};
+    props.show_cards == "true" && props.result_from_florida == "true" ? "0" : "1"};
   z-index: ${(props) =>
-    props.showCards && props.resultFromFlorida == "true" ? "-5" : "10"};
+    props.show_cards == "true" && props.result_from_florida == "true" ? "-5" : "10"};
   grid-area: 5/2/6/5;
   color: white;
   padding: 16px 0px 0px 0px;
@@ -619,9 +615,9 @@ const StatusBar = styled.div`
 
 const StatusSpinner = styled.div`
   max-height: ${(props) =>
-    props.showStatusSpinner.toString() == "true" ? "100%" : "0px"};
+    props.show_status_spinner == "true" ? "100%" : "0px"};
   opacity: ${(props) =>
-    props.showStatusSpinner.toString() == "true" ? "1" : "0"};
+    props.show_status_spinner == "true" ? "1" : "0"};
   transition: opacity 0.4s;
   transition-timing-function: ease-out;
 `;
@@ -687,31 +683,14 @@ const ResultSection = styled.div`
   transition: opacity 0.4s;
   //transition: opacity 2s linear;
   transform: ${(props) =>
-    props.showCards ? "translate(0)" : "transform:translate(9999px)"};
-  opacity: ${(props) => (props.showCards ? "1" : "0")};
-  z-index: ${(props) => (props.showCards ? "10" : "-5")};
-  /* grid-template-columns:
-    minmax(10px, 1fr) minmax(150px, 200px) minmax(4px, 8px) minmax(150px, 200px)
-    minmax(4px, 8px) minmax(150px, 670px) minmax(10px, 1fr);
-  grid-template-rows: */
-  /* minmax(min-content, max-content) minmax(min-content, max-content) */
-  /* minmax(min-content, max-content) minmax(min-content, max-content); */
-  //visibility: hidden;
-  /* grid-template-rows: ${(props) =>
-    props.showCards
-      ? "minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) minmax(min-content, max-content) 1fr"
-      : "0px 0px 0px 0px 0px"}; */
+    props.show_cards == "true" ? "translate(0)" : "transform:translate(9999px)"};
+  opacity: ${(props) => (props.show_cards == "true" ? "1" : "0")};
+  z-index: ${(props) => (props.show_cards == "true" ? "10" : "-5")};
 
-  //grid-row-gap: .7em;
-  //grid-column-gap: 0.5em;
   padding: 0px 0px 20px 0px;
 
-  /* padding: ${(props) =>
-    props.showCards ? "75px 0px 50px 0px" : "0px 0px 50px 0px"}; */
-
-  //grid-area: 1/1/6/5;
-  //margin: 20px 0px 20px 50px;
-  height: ${(props) => (props.showCards ? "inherit" : "0px")};
+  
+  height: ${(props) => (props.show_cards == "true" ? "inherit" : "0px")};
 
   //margin: 0px 10px;
 `;
@@ -1013,7 +992,7 @@ const ResultSectionHeadersAlt = styled.div`
   } */
 
   display: ${(props) =>
-    props.showCards && props.resultFromFlorida == "true" ? "flex" : "none"};
+    props.show_cards == "true" && props.result_from_florida == "true" ? "flex" : "none"};
 
   /* justify-content: center;
   align-items: center;
@@ -1284,7 +1263,7 @@ const ShowOfferSection = styled.div`
   right: 0; */
   //padding: 0px 10% 0px 10%;
   //background-color: white;
-  display: ${(props) => (props.showCards ? "WTF" : "none")};
+  display: ${(props) => (props.show_cards == "true" ? "WTF" : "none")};
   margin: 0px auto 0 auto;
   width: 95%;
   max-width: 1000px;
@@ -1311,7 +1290,7 @@ const ResultsBlurb = styled.div`
 
 const TriplePlayWrapper = styled.div`
   display: ${(props) =>
-    props.showCards == true && props.resultFromFlorida == "true"
+    props.show_cards == "true" && props.result_from_florida == "true"
       ? "grid"
       : "none"};
 
@@ -1486,7 +1465,7 @@ const LetterOfferWrapper = styled.div`
   top: 69%; */
   max-width: 800px;
   justify-self: center;
-  display: ${(props) => (props.whichTabIsActive === 2 ? "none" : "grid")};
+  display: ${(props) => (props.which_tab_is_active === 2 ? "none" : "grid")};
   //display: grid;
   margin-top: 30px;
 `;
@@ -1497,7 +1476,7 @@ const EmailOfferWrapper = styled.div`
 
   max-width: 800px;
   justify-self: center;
-  display: ${(props) => (props.whichTabIsActive === 1 ? "none" : "grid")};
+  display: ${(props) => (props.which_tab_is_active === 1 ? "none" : "grid")};
   margin-top: 30px;
 `;
 const LetterOffer = styled.div`
@@ -1573,12 +1552,7 @@ const Row1 = styled.div`
   @media only screen and (max-width: 1000px) {
     margin: 30px 20px 0px 48px;
   }
-  /* &:hover {
-		border-top: ${(props) =>
-    props.whichEmailIsActive == 1 ? "1px orange solid" : "1px #f5c896 solid"};
-		border-right: ${(props) =>
-    props.whichEmailIsActive == 1 ? "1px orange solid" : "1px #f5c896 solid"};
-	} */
+ 
 `;
 
 const Row2 = styled.div`
@@ -1593,12 +1567,7 @@ const Row2 = styled.div`
     margin: 30px 20px 10px 48px;
   }
 
-  /* &:hover {
-		border-top: ${(props) =>
-    props.whichEmailIsActive == 2 ? "1px orange solid" : "1px #f5c896 solid"};
-		border-right: ${(props) =>
-    props.whichEmailIsActive == 2 ? "1px orange solid" : "1px #f5c896 solid"};
-	} */
+ 
 `;
 
 const CheckmarkMainWrapper = styled.div`
@@ -1627,9 +1596,9 @@ const Pic1 = styled.img`
 
   //border: 2px solid white;
   /* border: ${(props) =>
-    props.whichEmailIsActive == 1 ? "7px orange solid" : "7px white solid"}; */
+    props.which_email_is_active == 1 ? "7px orange solid" : "7px white solid"}; */
   border: ${(props) =>
-    props.whichEmailIsActive == 1 ? "7px orange solid" : "7px white solid"};
+    props.which_email_is_active == 1 ? "7px orange solid" : "7px white solid"};
   width: 100px;
   height: 120px;
 
@@ -1644,9 +1613,9 @@ const Pic2 = styled.img`
 
   //border: 2px solid white;
   /* border: ${(props) =>
-    props.whichEmailIsActive == 2 ? "7px orange solid" : "7px white solid"}; */
+    props.which_email_is_active == 2 ? "7px orange solid" : "7px white solid"}; */
   border: ${(props) =>
-    props.whichEmailIsActive == 2 ? "7px orange solid" : "7px white solid"};
+    props.which_email_is_active == 2 ? "7px orange solid" : "7px white solid"};
 
   width: 100px;
   height: 120px;
@@ -1964,7 +1933,7 @@ const Dot1 = styled.div`
   border-radius: 50%;
   grid-area: dot1;
   background-color: ${(props) =>
-    props.whichEmailIsActive == 1 ? "black" : "white"};
+    props.which_email_is_active == 1 ? "black" : "white"};
   //background-color: white;
 
   border: 1px solid black;
@@ -1979,7 +1948,7 @@ const Dot2 = styled.div`
   border-radius: 50%;
   grid-area: dot2;
   background-color: ${(props) =>
-    props.whichEmailIsActive == 2 ? "black" : "white"};
+    props.which_email_is_active == 2 ? "black" : "white"};
   //background-color: white;
   border: 1px solid black;
   box-sizing: border-box;
@@ -1993,15 +1962,15 @@ const ButtonOneTabWrapper = styled.div`
   border-top-left-radius: 13px;
   border-right: 1px solid #77767657;
   border-bottom: ${(props) =>
-    props.whichTabIsActive === 1 ? "none" : "1px solid #77767657"};
+    props.which_tab_is_active === 1 ? "none" : "1px solid #77767657"};
 
   //grid-template-columns: 1fr 1fr;
   cursor: pointer;
   background-color: ${(props) =>
-    props.whichTabIsActive === 1 ? "#fcfcfc" : "#ddd"};
+    props.which_tab_is_active === 1 ? "#fcfcfc" : "#ddd"};
   &:hover {
     background-color: ${(props) =>
-      props.whichTabIsActive === 1 ? "#fcfcfc" : "#e9e9e9"};
+      props.which_tab_is_active === 1 ? "#fcfcfc" : "#e9e9e9"};
   }
 `;
 
@@ -2016,7 +1985,7 @@ const MailIcon = styled.img`
   padding: 10px 0;
   align-self: center;
   width: 24px;
-  opacity: ${(props) => (props.whichTabIsActive == 1 ? "1" : ".3")};
+  opacity: ${(props) => (props.which_tab_is_active == 1 ? "1" : ".3")};
   height: 100%;
   vertical-align: middle;
   display: inline-block;
@@ -2036,8 +2005,8 @@ const ButtonTabOne = styled.div`
   //transition: 0.3s;
   font-size: 1.3rem;
   display: grid;
-  opacity: ${(props) => (props.whichTabIsActive == 1 ? "1" : ".3")};
-  font-weight: ${(props) => (props.whichTabIsActive == 1 ? "600" : "initial")};
+  opacity: ${(props) => (props.which_tab_is_active == 1 ? "1" : ".3")};
+  font-weight: ${(props) => (props.which_tab_is_active == 1 ? "600" : "initial")};
   //border-top-left-radius: 13px;
 
   //background-color: #ccc;
@@ -2057,13 +2026,13 @@ const ButtonTwoTabWrapper = styled.div`
   cursor: pointer;
   border-left: 1px solid #77767657;
   border-bottom: ${(props) =>
-    props.whichTabIsActive === 2 ? "none" : "1px solid #77767657"};
+    props.which_tab_is_active === 2 ? "none" : "1px solid #77767657"};
 
   background-color: ${(props) =>
-    props.whichTabIsActive === 2 ? "#fcfcfc" : "#ddd"};
+    props.which_tab_is_active === 2 ? "#fcfcfc" : "#ddd"};
   &:hover {
     background-color: ${(props) =>
-      props.whichTabIsActive === 2 ? "#fcfcfc" : "#e9e9e9"};
+      props.which_tab_is_active === 2 ? "#fcfcfc" : "#e9e9e9"};
   }
 `;
 
@@ -2080,8 +2049,8 @@ const ButtonTabTwo = styled.div`
   //transition: 0.3s;
   align-self: center;
   justify-self: center;
-  opacity: ${(props) => (props.whichTabIsActive == 2 ? "1" : ".3")};
-  font-weight: ${(props) => (props.whichTabIsActive == 2 ? "600" : "initial")};
+  opacity: ${(props) => (props.which_tab_is_active == 2 ? "1" : ".3")};
+  font-weight: ${(props) => (props.which_tab_is_active == 2 ? "600" : "initial")};
 
   //font-size: 1.3rem;
   //border-bottom-right-radius: 13px;
@@ -2107,7 +2076,7 @@ const DemoWrapper = styled.div`
 
 const LetterDemoWrapper = styled.div`
   //padding: 45px 120px;
-  display: ${(props) => (props.whichTabIsActive == 1 ? "grid" : "none")};
+  display: ${(props) => (props.which_tab_is_active == 1 ? "grid" : "none")};
   //grid-gap: 20px;
   //grid-template-columns: 1fr 3fr 20px min-content 1fr;
   grid-template-columns: 1fr;
@@ -2137,7 +2106,7 @@ const LetterDemoCenter = styled.div`
 
 const EmailDemoWrapper = styled.div`
   //padding: 45px 120px;
-  display: ${(props) => (props.whichTabIsActive == 1 ? "none" : "grid")};
+  display: ${(props) => (props.which_tab_is_active == 1 ? "none" : "grid")};
 
   /* grid-template-columns: 10% 2.5fr 20px 1fr 10%;
 	grid-template-rows: 22px auto;
@@ -2629,18 +2598,17 @@ function Act(props, ref) {
   const { LookupInputRef } = ref;
   const [tester, setTester] = useState("testing");
   const [addressObject, setAddressObject] = useState(null);
-  const [showCards, setShowCards] = React.useState(false);
+  const [showCards, setShowCards] = React.useState("false");
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
 
   const [searchButtonActive, setSearchButtonActive] = React.useState(false);
   const [status, setStatus] = React.useState("");
-  const [showStatusSpinner, setShowStatusSpinner] = React.useState(false);
+  const [showStatusSpinner, setShowStatusSpinner] = React.useState("false");
   const [lastTermSearched, setLastTermSearched] = React.useState("");
   const [firstSuggestedAddress, setFirstSuggestedAddress] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
 
-  //const [showLetter, setShowLetter] = React.useState(false);
-  //const [showOffer, setShowOffer] = React.useState(true);
+  
   const [addressLineOne, setAddressLineOne] = React.useState("");
   const [addressLineTwo, setAddressLineTwo] = React.useState("");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
@@ -2810,8 +2778,8 @@ function Act(props, ref) {
       behavior: "smooth",
     });
 
-    props.setLoginClicked(true);
-    props.setOpenSideMenu(false);
+    props.set_login_clicked("true");
+    props.set_open_side_menu("false");
   }
 
   function signupFromDeadEnd(e) {
@@ -2839,7 +2807,7 @@ function Act(props, ref) {
     //let user know somethings happening
     setStatus("....may take up to 60 seconds");
 
-    setShowStatusSpinner(true);
+    setShowStatusSpinner("true");
 
     //set setCoordinates with LAT/LNG
 
@@ -2847,83 +2815,7 @@ function Act(props, ref) {
       "about to check the latlang with address ",
       addressObject.formated_address
     );
-    // geocodeByAddress(addressObject.formated_address)
-    //   .then((results) => getLatLng(results[0]))
-    //   .then((latLng) => {
-    //     console.log("handleAddressSelected and got coordinates", latLng);
-
-    //     setCoordinates({
-    //       lat: latLng.lat,
-    //       lng: latLng.lng,
-    //     });
-
-    //     const csrf = document
-    //       .querySelector("meta[name='csrf-token']")
-    //       .getAttribute("content");
-
-    //     fetch("/lookup", {
-    //       method: "post",
-    //       dataType: "text",
-    //       body: JSON.stringify({
-    //         lookup: {
-    //           address: addressObject.formated_address,
-    //           lat: latLng.lat,
-    //           lng: latLng.lng,
-    //         },
-    //       }),
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         "X-CSRF-Token": csrf,
-    //       },
-    //     })
-    //       .then((response) => response.json())
-    //       .then((data) => {
-    //         //props.setStatus("Search Complete!!")
-
-    //         //info message under the address search input box
-    //         setStatus("");
-
-    //         //message on bullet 1
-
-    //         //props.setBullet1msg("Search Complete!")
-    //         setShowStatusSpinner(false);
-    //         //props.setShowStatusCheck(true)
-    //         setShowCards(true);
-
-    //         //props.setBullet1("COMPLETED")
-
-    //         setResults(data);
-
-    //         setResultFromFlorida(data.one.resultFromFlorida.toString());
-    //         console.log("emailll", data.one.email);
-
-    //         let flag = data.one.resultFromFlorida.toString();
-
-    //         console.log("FLAG IS " + flag);
-
-    //         if (flag == "false") {
-    //           1;
-
-    //           //props.setBullet2msg("Non-Florida result");
-    //           //props.setBullet2("COMPLETED")
-    //           //props.setShowStatusCheck2(true)
-    //         } else {
-    //           //props.setBullet2msg("Send Message");
-    //           //props.setShowSteps(true)
-    //         }
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     setStatus("No results found. Check address");
-    //     setShowStatusSpinner(false);
-    //     console.error("Error", error);
-    //   });
-
-    // setCoordinates({
-    //   lat: addressObject.geometry.location.lat(),
-    //   lng: addressObject.geometry.location.lng(),
-    // });
-
+   
     const csrf = document
       .querySelector("meta[name='csrf-token']")
       .getAttribute("content");
@@ -2953,10 +2845,10 @@ function Act(props, ref) {
         //message on bullet 1
 
         //props.setBullet1msg("Search Complete!")
-        setShowStatusSpinner(false);
+        setShowStatusSpinner("false");
         //props.setShowStatusCheck(true)
-        setShowCards(true);
-        props.setShowOffer(true);
+        setShowCards("true");
+        props.set_show_offer("true");
 
         //props.setBullet1("COMPLETED")
 
@@ -2981,14 +2873,7 @@ function Act(props, ref) {
         }
       });
 
-    //props.setStatus("Search Complete!!");
-
-    //info message under the address search input box
-    //setStatus("");
-
-    //setShowStatusSpinner(false);
-
-    //setShowCards(true);
+   
 
     console.log("==== handle_address_selected_END ====");
   };
@@ -3001,90 +2886,9 @@ function Act(props, ref) {
     //let user know somethings happening
     setStatus("....may take up to 60 seconds");
 
-    setShowStatusSpinner(true);
+    setShowStatusSpinner("true");
 
-    //set setCoordinates with LAT/LNG
-
-    // console.log(
-    //   "about to check the latlang with address ",
-    //   addressObject.formated_address
-    // );
-    // geocodeByAddress(addressObject.formated_address)
-    //   .then((results) => getLatLng(results[0]))
-    //   .then((latLng) => {
-    //     console.log("handleAddressSelected and got coordinates", latLng);
-
-    //     setCoordinates({
-    //       lat: latLng.lat,
-    //       lng: latLng.lng,
-    //     });
-
-    //     const csrf = document
-    //       .querySelector("meta[name='csrf-token']")
-    //       .getAttribute("content");
-
-    //     fetch("/lookup", {
-    //       method: "post",
-    //       dataType: "text",
-    //       body: JSON.stringify({
-    //         lookup: {
-    //           address: addressObject.formated_address,
-    //           lat: latLng.lat,
-    //           lng: latLng.lng,
-    //         },
-    //       }),
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         "X-CSRF-Token": csrf,
-    //       },
-    //     })
-    //       .then((response) => response.json())
-    //       .then((data) => {
-    //         //props.setStatus("Search Complete!!")
-
-    //         //info message under the address search input box
-    //         setStatus("");
-
-    //         //message on bullet 1
-
-    //         //props.setBullet1msg("Search Complete!")
-    //         setShowStatusSpinner(false);
-    //         //props.setShowStatusCheck(true)
-    //         setShowCards(true);
-
-    //         //props.setBullet1("COMPLETED")
-
-    //         setResults(data);
-
-    //         setResultFromFlorida(data.one.resultFromFlorida.toString());
-    //         console.log("emailll", data.one.email);
-
-    //         let flag = data.one.resultFromFlorida.toString();
-
-    //         console.log("FLAG IS " + flag);
-
-    //         if (flag == "false") {
-    //           1;
-
-    //           //props.setBullet2msg("Non-Florida result");
-    //           //props.setBullet2("COMPLETED")
-    //           //props.setShowStatusCheck2(true)
-    //         } else {
-    //           //props.setBullet2msg("Send Message");
-    //           //props.setShowSteps(true)
-    //         }
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     setStatus("No results found. Check address");
-    //     setShowStatusSpinner(false);
-    //     console.error("Error", error);
-    //   });
-
-    // setCoordinates({
-    //   lat: addressObject.geometry.location.lat(),
-    //   lng: addressObject.geometry.location.lng(),
-    // });
+  
 
     const csrf = document
       .querySelector("meta[name='csrf-token']")
@@ -3115,10 +2919,10 @@ function Act(props, ref) {
         //message on bullet 1
 
         //props.setBullet1msg("Search Complete!")
-        setShowStatusSpinner(false);
+        setShowStatusSpinner("false");
         //props.setShowStatusCheck(true)
-        setShowCards(true);
-        props.setShowOffer(true);
+        setShowCards("true");
+        props.set_show_offer("true");
 
         //props.setBullet1("COMPLETED")
 
@@ -3143,14 +2947,7 @@ function Act(props, ref) {
         }
       });
 
-    //props.setStatus("Search Complete!!");
-
-    //info message under the address search input box
-    //setStatus("");
-
-    //setShowStatusSpinner(false);
-
-    //setShowCards(true);
+  
 
     console.log("==== handle_address_selected_END ====");
   };
@@ -3174,7 +2971,7 @@ function Act(props, ref) {
       })
       .catch((error) => {
         setStatus("No results found. Check address");
-        setShowStatusSpinner(false);
+        setShowStatusSpinner("false");
         console.error("Error", error);
       });
 
@@ -3213,7 +3010,7 @@ function Act(props, ref) {
       //let user know somethings happening
       setStatus("....may take up to 60 seconds");
 
-      setShowStatusSpinner(true);
+      setShowStatusSpinner("true");
 
       //get formdata ready to send to server
       //formData.append("event[address]", formInfo.address);
@@ -3258,10 +3055,10 @@ function Act(props, ref) {
                 //message on bullet 1
 
                 //props.setBullet1msg("Search Complete!")
-                setShowStatusSpinner(false);
+                setShowStatusSpinner("false");
                 //props.setShowStatusCheck(true)
-                setShowCards(true);
-                props.setShowOffer(true);
+                setShowCards("true");
+                props.set_show_offer("true");
 
                 //props.setBullet1("COMPLETED")
 
@@ -3288,7 +3085,7 @@ function Act(props, ref) {
           })
           .catch((error) => {
             setStatus("No results found. Check address");
-            setShowStatusSpinner(false);
+            setShowStatusSpinner("false");
             console.log("Error", error);
           });
       } else {
@@ -3316,10 +3113,10 @@ function Act(props, ref) {
             //props.setStatus("Search Complete!!")
             setStatus("");
             //props.setBullet1msg("Search Complete!")
-            setShowStatusSpinner(false);
+            setShowStatusSpinner("false");
             //props.setShowStatusCheck(true)
-            setShowCards(true);
-            props.setShowOffer(true);
+            setShowCards("true");
+            props.set_show_offer("true");
 
             //props.setBullet1("COMPLETED")
 
@@ -3397,7 +3194,7 @@ function Act(props, ref) {
 
   function resetSearch(e) {
     e.preventDefault();
-    setShowCards(false);
+    setShowCards("false");
     setAddressObject(null);
 
     //LookupInputRef.current.focus();
@@ -3442,7 +3239,7 @@ function Act(props, ref) {
 
       setTimeout(function () {
         setSuccessFlag(true);
-        //setShowOffer(true);
+        
         console.log("b44444 scroLL");
         myRef.current.scrollIntoView();
         console.log("bAFTER scroLL");
@@ -3452,10 +3249,10 @@ function Act(props, ref) {
 
   const GetHeader = () => {
     console.log("getHeader start &&&&&&&&&&&&&&&&&&&&&&");
-    console.log("which email is active is " + whichEmailIsActive);
+    
     console.log(results);
 
-    if (whichEmailIsActive === 1) {
+    if (whichEmailIsActive=== 1) {
       if (
         results.one.chamber !== undefined &&
         results.one.chamber == "Senate"
@@ -3477,7 +3274,7 @@ function Act(props, ref) {
       } else {
         return "default header 1";
       }
-    } else if (whichEmailIsActive === 2) {
+    } else if (which_email_is_active === 2) {
       if (
         results.two.chamber !== undefined &&
         results.two.chamber == "Senate"
@@ -3662,19 +3459,15 @@ function Act(props, ref) {
         <BGimageFix />
         <BGimageFixBottom />
         <ActGrid>
-          <ActSection showCards={showCards}>
-            {/* <ProgressBarz>
-						<StepOne />
-						<StepTwo showCards={showCards} />
-						<StepThree showCards={showCards} />
-					</ProgressBarz> */}
+          <ActSection show_cards={showCards}>
+           
 
             <ActHeaderWrapper>
-              <ActHeader className="testLocker" showCards={showCards}>
+              <ActHeader className="testLocker" show_cards={showCards}>
                 ACT NOW
               </ActHeader>
 
-              <ActSubheader showCards={showCards}>
+              <ActSubheader show_cards={showCards}>
                 ...3 quick steps
               </ActSubheader>
             </ActHeaderWrapper>
@@ -3705,7 +3498,7 @@ function Act(props, ref) {
               </ActBulletWrapper>
             </ActBulletPointsWrapper>
 
-            <Form className="form-inline" showCards={showCards}>
+            <Form className="form-inline" show_cards={showCards}>
               {/* <button
               style={{width: "100px", height: "50px"}}
               //searchButtonActive={searchButtonActive}
@@ -3726,7 +3519,7 @@ function Act(props, ref) {
               />
 
               <StatusHolder>
-                <StatusSpinner showStatusSpinner={showStatusSpinner}>
+                <StatusSpinner show_status_spinner={showStatusSpinner}>
                   {/* <Spinner name="wave" color="#87d388" /> */}
                 </StatusSpinner>
 
@@ -3736,19 +3529,11 @@ function Act(props, ref) {
               </StatusHolder>
             </Form>
 
-            <Mega showCards={showCards} src={mega}></Mega>
+            <Mega show_cards={showCards} src={mega}></Mega>
           </ActSection>
 
-          <ResultSection showCards={showCards}>
-            {/* <ResultSectionInfoBox>
-            <ProgressBarzResultSection>
-              <StepOne />
-              <StepTwo showCards={showCards} />
-              <StepThree showCards={showCards} />
-            </ProgressBarzResultSection>
-
+          <ResultSection show_cards={showCards}>
            
-          </ResultSectionInfoBox> */}
 
             <MiddleBarResultSection>
               <TopBar>
@@ -3767,7 +3552,7 @@ function Act(props, ref) {
                 </div>
               </TopBar>
               <CardOne>
-                <CardOneWrapper whichEmailIsActive={whichEmailIsActive}>
+                <CardOneWrapper which_email_is_active={whichEmailIsActive}>
                   <CardPicture
                     src={results.one.image ? results.one.image : ""}
                   ></CardPicture>
@@ -3783,7 +3568,7 @@ function Act(props, ref) {
               </CardOne>
 
               <CardTwo>
-                <CardTwoWrapper whichEmailIsActive={whichEmailIsActive}>
+                <CardTwoWrapper which_email_is_active={whichEmailIsActive}>
                   <CardPicture
                     src={results.two.image ? results.two.image : ""}
                   ></CardPicture>
@@ -3824,34 +3609,33 @@ function Act(props, ref) {
             </MiddleBarResultSection>
 
             <TriplePlayWrapper
-              resultFromFlorida={resultFromFlorida}
-              showCards={showCards}
+              result_from_florida={resultFromFlorida}
+              show_cards={showCards}
             >
               <Letter
-                resultFromFlorida={resultFromFlorida}
-                showCards={showCards}
+                result_from_florida={resultFromFlorida}
+                show_cards={showCards}
               >
                 <ButtonTabsWrapper>
                   <ButtonOneTabWrapper
                     //value={1}
-                    whichTabIsActive={whichTabIsActive}
+                    which_tab_is_active={whichTabIsActive}
                     //onClick={HandleButtonTabOne}
                     onClick={HandleLetterButton}
                   >
                     <ButtonGuts>
-                      {/* <MailIcon whichTabIsActive={whichTabIsActive} src={mailIcon} /> */}
-                      <ButtonTabOne whichTabIsActive={whichTabIsActive}>
+                      <ButtonTabOne which_tab_is_active={whichTabIsActive}>
                         <USPS src={usps} />
                       </ButtonTabOne>
                     </ButtonGuts>
                   </ButtonOneTabWrapper>
                   <ButtonTwoTabWrapper
                     //value={2}
-                    whichTabIsActive={whichTabIsActive}
+                    which_tab_is_active={whichTabIsActive}
                     //onClick={HandleButtonTabTwo}
                     onClick={HandleEmailButton}
                   >
-                    <ButtonTabTwo whichTabIsActive={whichTabIsActive}>
+                    <ButtonTabTwo which_tab_is_active={whichTabIsActive}>
                       <GmailIcon src={gmail_icon} />
                     </ButtonTabTwo>
                   </ButtonTwoTabWrapper>
@@ -3861,24 +3645,8 @@ function Act(props, ref) {
 								
 							</DemoIndicatorDotsWrapper> */}
 
-                <EmailDemoWrapper whichTabIsActive={whichTabIsActive}>
-                  {/* <EmailDemoLeft onClick={handleEmailDemoRight}> */}
-                  {/* <LeftArrow src={rightArrow} /> */}
-                  {/* </EmailDemoLeft> */}
-                  {/* <DemoIndicatorDots>
-                  <EmailDemoLeft onClick={handleEmailDemoRight}>
-                    <LeftArrow src={rightArrow} />
-                  </EmailDemoLeft>
-                  <Dot1 whichEmailIsActive={whichEmailIsActive} />
-                  <Dot2 whichEmailIsActive={whichEmailIsActive} />
-                  <DotSpan>
-                    ({whichTabIsActive == 1 ? "Letter " : "Email "}
-                    {whichEmailIsActive == 1 ? "1 of 2" : "2 of 2"})
-                  </DotSpan>
-                  <EmailDemoRight onClick={handleEmailDemoRight}>
-                    <RightArrow src={rightArrow} />
-                  </EmailDemoRight>
-                </DemoIndicatorDots> */}
+                <EmailDemoWrapper which_tab_is_active={whichTabIsActive}>
+                 
                   <EmailDemoCenter>
                     <EmailDemo>
                       <SubjectBox>
@@ -4029,24 +3797,8 @@ function Act(props, ref) {
                   {/* </EmailDemoRight> */}
                 </EmailDemoWrapper>
 
-                <LetterDemoWrapper whichTabIsActive={whichTabIsActive}>
-                  {/* <EmailDemoLeft onClick={handleEmailDemoRight}> */}
-                  {/* <LeftArrow src={rightArrow} /> */}
-                  {/* </EmailDemoLeft> */}
-                  {/* <DemoIndicatorDots>
-                  <EmailDemoLeft onClick={handleEmailDemoRight}>
-                    <LeftArrow src={rightArrow} />
-                  </EmailDemoLeft>
-                  <Dot1 whichEmailIsActive={whichEmailIsActive} />
-                  <Dot2 whichEmailIsActive={whichEmailIsActive} />
-                  <DotSpan>
-                    ({whichTabIsActive == 1 ? "Letter " : "Email "}
-                    {whichEmailIsActive == 1 ? "1 of 2" : "2 of 2"})
-                  </DotSpan>
-                  <EmailDemoRight onClick={handleEmailDemoRight}>
-                    <RightArrow src={rightArrow} />
-                  </EmailDemoRight>
-                </DemoIndicatorDots> */}
+                <LetterDemoWrapper which_tab_is_active={whichTabIsActive}>
+                  
                   <LetterDemoCenter>
                     <LetterDemo>
                       {/* <h2>body</h2> */}
@@ -4388,7 +4140,7 @@ function Act(props, ref) {
             </OfferTwo> */}
             </TriplePlayWrapper>
 
-            <LetterOfferWrapper whichTabIsActive={whichTabIsActive}>
+            <LetterOfferWrapper which_tab_is_active={whichTabIsActive}>
               <LetterOffer>
                 <Strip>
                   <Total>Total</Total>
@@ -4396,17 +4148,17 @@ function Act(props, ref) {
 
                   <Row1
                     onClick={() => handleWhichDemoToSelect("1")}
-                    whichEmailIsActive={whichEmailIsActive}
+                    which_email_is_active={whichEmailIsActive}
                   >
                     <PicWrapper>
                       <Pic1
                         src={results.one.image ? results.one.image : ""}
-                        whichEmailIsActive={whichEmailIsActive}
+                        which_email_is_active={whichEmailIsActive}
                       ></Pic1>
                     </PicWrapper>
                     <Description1>
                       <DWrapper>
-                        <D1 whichEmailIsActive={whichEmailIsActive}>
+                        <D1 which_email_is_active={whichEmailIsActive}>
                           Representative{" "}
                           {results.one.name ? results.one.name : ""}
                         </D1>
@@ -4416,17 +4168,17 @@ function Act(props, ref) {
                   </Row1>
                   <Row2
                     onClick={() => handleWhichDemoToSelect("2")}
-                    whichEmailIsActive={whichEmailIsActive}
+                    which_email_is_active={whichEmailIsActive}
                   >
                     <PicWrapper>
                       <Pic2
                         src={results.two.image ? results.two.image : ""}
-                        whichEmailIsActive={whichEmailIsActive}
+                        which_email_is_active={whichEmailIsActive}
                       ></Pic2>
                     </PicWrapper>
                     <Description2>
                       <DWrapper>
-                        <D1 whichEmailIsActive={whichEmailIsActive}>
+                        <D1 which_email_is_active={whichEmailIsActive}>
                           Senator {results.two.name ? results.two.name : ""}
                         </D1>
                       </DWrapper>
@@ -4459,7 +4211,7 @@ function Act(props, ref) {
                   </CheckMarkParagraph>
                 </CheckmarkMainWrapper> */}
                   {/* <ShowOfferSectionWrapper> */}
-                  <ShowOfferSection showCards={showCards}>
+                  <ShowOfferSection show_cards={showCards}>
                     <PayPalButtons
                       style={{
                         layout: "vertical",
@@ -4533,7 +4285,7 @@ function Act(props, ref) {
               </LetterOffer>
             </LetterOfferWrapper>
 
-            <EmailOfferWrapper whichTabIsActive={whichTabIsActive}>
+            <EmailOfferWrapper which_tab_is_active={whichTabIsActive}>
               <EmailOffer>
                 <Strip>
                   <Total>Total</Total>
@@ -4541,18 +4293,18 @@ function Act(props, ref) {
 
                   <Row1
                     onClick={() => handleWhichDemoToSelect("1")}
-                    whichEmailIsActive={whichEmailIsActive}
+                    which_email_is_active={whichEmailIsActive}
                   >
                     <PicWrapper>
                       <Pic1
                         src={results.one.image ? results.one.image : ""}
-                        whichEmailIsActive={whichEmailIsActive}
+                        which_email_is_active={whichEmailIsActive}
                       ></Pic1>
                     </PicWrapper>
 
                     <Description1>
                       <DWrapper>
-                        <D1 whichEmailIsActive={whichEmailIsActive}>
+                        <D1 which_email_is_active={whichEmailIsActive}>
                           Representative{" "}
                           {results.one.name ? results.one.name : ""}
                         </D1>
@@ -4562,16 +4314,16 @@ function Act(props, ref) {
                   </Row1>
                   <Row2
                     onClick={() => handleWhichDemoToSelect("2")}
-                    whichEmailIsActive={whichEmailIsActive}
+                    which_email_is_active={whichEmailIsActive}
                   >
                     <Pic2
                       src={results.two.image ? results.two.image : ""}
-                      whichEmailIsActive={whichEmailIsActive}
+                      which_email_is_active={whichEmailIsActive}
                     ></Pic2>
 
                     <Description2>
                       <DWrapper>
-                        <D1 whichEmailIsActive={whichEmailIsActive}>
+                        <D1 which_email_is_active={whichEmailIsActive}>
                           Senator {results.two.name ? results.two.name : ""}
                         </D1>
                       </DWrapper>
@@ -4636,86 +4388,14 @@ function Act(props, ref) {
                     />
                     <div />
                   </div>
-                  {/* <ShowOfferSectionWrapper> */}
-                  {/* <ShowOfferSection showCards={showCards}>
-									<PayPalButtons
-										// style={{
-										//   layout: "horizontal",
-										//   height: 25,
-										//   disableMaxWidth: true,
-										//   shape: "pill",
-										// }}
-
-										style={{ layout: "horizontal" }}
-										createOrder={(data, actions) => {
-											return actions.order.create({
-												purchase_units: [
-													{
-														amount: {
-															value: "2.99",
-														},
-													},
-												],
-											})
-										}}
-										forceReRender={[results]}
-										onApprove={(data, actions) => {
-											return actions.order.capture().then((details) => {
-												//const name = details.payer.name.given_name;
-												//alert(`Transaction completed by ${name}`);
-												// console.log("STATUS = " + details.status)
-
-												// console.log(details)
-
-												// console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
-												// console.log("email: " + details.payer.email_address);
-												// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
-												// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
-												// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
-												// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
-												// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
-												// console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
-												//console.log("DATA", data)
-
-												//console.log("insiiiiiide1 " + results.inspect);
-
-												axios
-													.post(
-														"/send/letters",
-														{
-															data: {
-																ppResults: data,
-																infoOnReps: results,
-																buyerDetails: details,
-															},
-														},
-														{ withCredentials: true }
-													)
-													.then((response) => {
-														//console.log("resoooooooooooooooonse = " + response.inspect)
-														//addAllCommentsToStateForReplyButtonToWork(response.data.comments)
-														//addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
-														//setArtData(response.data.article)
-														//setArtDataComments(response.data.comments)
-														//setIsCommentsLoading(false)
-														//setIsCommentsLoading(false)
-														//setCurrentUser(@current_user)
-													})
-													.catch((error) => {
-														//console.log("articleErrors", error)
-													})
-											})
-										}}
-									/>
-								</ShowOfferSection> */}
-                  {/* </ShowOfferSectionWrapper> */}
+                 
                 </Strip>
               </EmailOffer>
             </EmailOfferWrapper>
 
             <ShowLetterDeadEnd
-              resultFromFlorida={resultFromFlorida}
-              showCards={showCards}
+              result_from_florida={resultFromFlorida}
+              show_cards={showCards}
             >
               Unfortunately, emailing officials through FloridaBlaze is only
               available in Florida.

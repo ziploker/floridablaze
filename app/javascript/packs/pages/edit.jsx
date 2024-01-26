@@ -138,9 +138,9 @@ const LabelForFile = styled.label`
 
 const StatusSpinner = styled.div`
   max-height: ${(props) =>
-    props.showStatusSpinner.toString() == "true" ? "100%" : "0px"};
+    props.show_status_spinner == "true" ? "100%" : "0px"};
   opacity: ${(props) =>
-    props.showStatusSpinner.toString() == "true" ? "1" : "0"};
+    props.show_status_spinner == "true" ? "1" : "0"};
   transition: opacity 0.4s;
   transition-timing-function: ease-out;
 `;
@@ -288,7 +288,7 @@ function Edit(props) {
     nick: "",
     id: "",
     isBtnDisabled: false,
-    showStatusSpinner: false,
+    showStatusSpinner: "false",
   });
 
   // to activate the input field while typing
@@ -342,7 +342,7 @@ function Edit(props) {
     setState({
       ...state,
       waitMessage: "...one moment",
-      showStatusSpinner: true,
+      showStatusSpinner: "true",
       isBtnDisabled: true,
     });
 
@@ -404,7 +404,7 @@ function Edit(props) {
             setState({
               ...state,
               waitMessage: "",
-              showStatusSpinner: false,
+              showStatusSpinner: "false",
               isBtnDisabled: false,
             });
           }, 3000);
@@ -748,7 +748,7 @@ function Edit(props) {
           />
           {errorMessages}
 
-          <StatusSpinner showStatusSpinner={state.showStatusSpinner}>
+          <StatusSpinner show_status_spinner={state.showStatusSpinner}>
             {/* <Spinner name="wave" color="#56c5cc" /> */}
           </StatusSpinner>
         </ErrorWrapper>

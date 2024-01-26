@@ -28,7 +28,7 @@ const LoginWrapperNew = styled.div`
 	//z-index: 10;
 
 	//position: absolute;
-	//top: ${(props) => (props.loginClicked ? "85px" : "-500px")};
+	
 	//right: 0;
 	background-color: white;
 	padding: 20px;
@@ -141,7 +141,7 @@ function Login(props) {
 	}
 
 	function closeLoginWindow() {
-		props.setLoginClicked(false);
+		props.set_login_clicked("false");
 		setState({
 			...state,
 			status: "",
@@ -256,7 +256,7 @@ function Login(props) {
 	/////////////////////////////////// JSX /////////////////////////////////////////
 
 	return (
-		<LoginWrapperNew loginClicked={props.loginClicked}>
+		<LoginWrapperNew login_clicked={props.login_clicked}>
 			<CardNew>
 				<LogoWrapperNew>
 					<CloseWindow onClick={closeLoginWindow}>&#10060;</CloseWindow>

@@ -9,8 +9,8 @@ import styled from "styled-components";
 function Menu(props) {
   return (
     <StyledSideMenu
-      openSideMenu={props.openSideMenu}
-      hamburgerScrolled={props.hamburgerScrolled}
+    open_side_menu={props.open_side_menu}
+      hamburger_scrolled={props.hamburger_scrolled}
     >
       <div style={{gridArea: "1/2/-1/-1"}}>
         <a key={1} style={{ borderBottom: "2px orange solid" }} href="/">

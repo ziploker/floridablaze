@@ -1,15 +1,19 @@
-const { env } = require('shakapacker')
-const { existsSync } = require('fs')
-const { resolve } = require('path')
+// See the shakacode/shakapacker README and docs directory for advice on customizing your webpackConfig.
+const { generateWebpackConfig, merge } = require('shakapacker')
 
-const envSpecificConfig = () => {
-  const path = resolve(__dirname, `${env.nodeEnv}.js`)
-  if (existsSync(path)) {
-    console.log(`Loading ENV specific webpack configuration file ${path}`)
-    return require(path)
-  } else {
-    throw new Error(`Could not find file to load ${path}, based on NODE_ENV`)
-  }
-}
+const webpackConfig = generateWebpackConfig()
 
-module.exports = envSpecificConfig()
+
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
+const myoptions = {
+  mode: isDevelopment ? 'development' : 'production',
+
+};
+
+console.log("MERGED)))))))))))))))))))))))))))))))))", merge(myoptions, webpackConfig) )
+module.exports = merge(myoptions, webpackConfig)
+
+
+

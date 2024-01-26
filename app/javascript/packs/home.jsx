@@ -29,7 +29,7 @@ const HomeWrapper = styled.div`
   //max-height: 500px;
   overflow: hidden;
   //min-width: 500px;
-  display: ${(props) => (props.showOffer ? "none" : "initial")};
+  display: ${(props) => (props.show_offer == "true" ? "none" : "initial")};
 `;
 
 const News = styled.div`
@@ -164,7 +164,7 @@ const Div1 = styled.div`
   //max-width: 600px;
   width: 100%;
 
-  background-image: url(${(props) => props.imageURL});
+  background-image: url(${(props) => props.image_url});
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -195,7 +195,7 @@ const Div2 = styled.div`
   //max-width: 600px;
   width: 100%;
 
-  background-image: url(${(props) => props.imageURL});
+  background-image: url(${(props) => props.image_url});
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -306,7 +306,7 @@ const LeftArrowButton = styled.div`
   width: 6%;
   height: 33.33%;
   background: ${(props) =>
-    props.isHovering
+    props.is_hovering
       ? "rgba(247, 247, 247, 0.6)"
       : "rgba(247, 247, 247, 0.27)"};
   border: 0;
@@ -349,7 +349,7 @@ const RightArrowButton = styled.button`
   width: 6%;
   height: 33.33%;
   background: ${(props) =>
-    props.isHovering
+    props.isHovering == "true"
       ? "rgba(247, 247, 247, 0.6)"
       : "rgba(247, 247, 247, 0.27)"};
   border: 0;
@@ -527,7 +527,7 @@ function Home(props) {
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
   ]);
   const [transitionX, setTransitionX] = useState(60);
-  const [isHovering, setIsHovering] = useState(false);
+  const [isHovering, setIsHovering] = useState("false");
 
   //
   //
@@ -1361,15 +1361,15 @@ function Home(props) {
   );
 
   const onMouseEnter = (e) => {
-    setIsHovering(true);
+    setIsHovering("true");
   };
 
   const onMouseLeave = (e) => {
-    setIsHovering(false);
+    setIsHovering("false");
   };
 
   return (
-    <HomeWrapper showOffer={props.showOffer}>
+    <HomeWrapper show_offer={props.show_offer}>
       {/* <h1>{innerWidth}</h1> */}
       <News
         onMouseEnter={onMouseEnter}
@@ -1378,7 +1378,7 @@ function Home(props) {
       >
         {/* <LeftFiller /> */}
         <LeftArrowButton
-          isHovering={isHovering}
+          is_hovering={isHovering}
           onClick={() => handleForwardPage("desktop")}
         >
           <LeftArrow src={scrollArrow}></LeftArrow>
@@ -1396,7 +1396,7 @@ function Home(props) {
         >
           <Div1
             className="s1"
-            imageURL={
+            image_url={
               props.allStories[activeStories[0]]
                 ? props.allStories[activeStories[0]].urls[0]
                 : defaultImage
@@ -1424,7 +1424,7 @@ function Home(props) {
           </div>
         ) : null}
         <RightArrowButton
-          isHovering={isHovering}
+          is_hovering={isHovering}
           onClick={() => handleReversePage("desktop")}
         >
           <RightArrow src={scrollArrow}></RightArrow>
@@ -1442,7 +1442,7 @@ function Home(props) {
         >
           <Div2
             className="s1"
-            imageURL={
+            image_url={
               props.allStories[activeStories[1]]
                 ? props.allStories[activeStories[1]].urls[0]
                 : defaultImage
@@ -1462,7 +1462,7 @@ function Home(props) {
       {/* ////////// */}
 
       <Carousel
-        showOffer={props.showOffer}
+        show_offer={props.show_offer}
         handleReversePage={handleReversePage}
         handleForwardPage={handleForwardPage}
       >
@@ -1482,7 +1482,7 @@ function Home(props) {
             >
               <Div1
                 className="s1"
-                imageURL={
+                image_url={
                   props.allStories[activeStories[0]]
                     ? props.allStories[activeStories[0]].urls[0]
                     : defaultImage
@@ -1514,7 +1514,7 @@ function Home(props) {
             >
               <Div2
                 className="s1"
-                imageURL={
+                image_url={
                   props.allStories[activeStories[1]]
                     ? props.allStories[activeStories[1]].urls[0]
                     : defaultImage

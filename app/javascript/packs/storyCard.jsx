@@ -22,7 +22,7 @@ const Div1 = styled.div`
 	max-width: 600px;
 	width: 100%;
 
-	background-image: url(${(props) => props.imageURL});
+	background-image: url(${(props) => props.image_url});
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: bottom center;
@@ -100,7 +100,7 @@ const storyCard = React.forwardRef(({ s, i, lastID }, ref) => {
 			>
 				<Div1
 					//className="s1"
-					imageURL={s.urls[0]}
+					image_url={s.urls[0]}
 				></Div1>
 			</LinkWrapper1>
 

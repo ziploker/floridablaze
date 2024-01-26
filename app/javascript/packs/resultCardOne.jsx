@@ -18,8 +18,8 @@ const ResultCardWrapper = styled.div`
   height: 100%;
   min-width: 140px;
   
-  max-height: ${ props => props.showCards.toString() == "false" ? "0px" : "100%"};
-  opacity: ${ props => props.showCards.toString() == "false" ? "0" : "1"};
+  max-height: ${ props => props.show_cards == "false" ? "0px" : "100%"};
+  opacity: ${ props => props.show_cards == "false" ? "0" : "1"};
   transition: opacity .4s;
   transition-timing-function: ease-out;
   
@@ -132,7 +132,7 @@ function ResultCardOne(props){
 
   return (
     
-    <ResultCardWrapper showCards={props.showCards} results={props.results}>
+    <ResultCardWrapper show_cards={props.show_cards} results={props.results}>
       
       <Card>
         

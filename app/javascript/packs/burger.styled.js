@@ -30,11 +30,11 @@ const StyledBurger = styled.button`
     
     height: 3px;
     
-    background: ${(props) => props.scrollDir == "scrolling down"
-      ? props.leafScrolledSoChangeColorDown
+    background: ${(props) => props.scroll_dir == "scrolling down"
+      ? props.leaf_scrolled_so_change_color_down == "true"
         ? "black"
         : "white"
-      : props.leafScrolledSoChangeColorUp
+      : props.leaf_scrolled_so_change_color_up == "true"
       ? "white"
       : "black"};
     
@@ -49,20 +49,19 @@ const StyledBurger = styled.button`
     }
 
     :first-child {
-      transform: ${({ openSideMenu }) =>
-        openSideMenu ? "rotate(45deg)" : "rotate(0)"};
+      transform: ${({ open_side_menu }) =>
+        open_side_menu == "true" ? "rotate(45deg)" : "rotate(0)"};
     }
 
     :nth-child(2) {
-      opacity: ${({ openSideMenu }) => (openSideMenu ? "0" : "1")};
-      transform: ${({ openSideMenu }) =>
-        openSideMenu ? "translateX(5px)" : "translateX(0)"};
-      /* background: ${({ leafScrolledSoChangeColorDown }) =>
-        leafScrolledSoChangeColorDown ? "black" : "white"}; */
+      opacity: ${({ open_side_menu }) => (open_side_menu == "true" ? "0" : "1")};
+      transform: ${({ open_side_menu }) =>
+        open_side_menu == "true" ? "translateX(5px)" : "translateX(0)"};
+    
 
       background: ${(props) =>
-        props.scrollDir == "scrolling down"
-          ? props.leafScrolledSoChangeColorDown
+        props.scroll_dir == "scrolling down"
+          ? props.leaf_scrolled_so_change_color_down
             ? "black"
             : "white"
           : props.leafScrolledSoChangeColorUp
@@ -73,7 +72,6 @@ const StyledBurger = styled.button`
       @media only screen and (max-width: 440px) {
         background: black;
       }
-      //width: ${({ openSideMenu }) => (openSideMenu ? "50px" : "initial")};
       
       @media only screen and (max-width: 440px) {
         color: black;
@@ -89,15 +87,15 @@ const StyledBurger = styled.button`
     }
 
     :nth-child(3) {
-      transform: ${({ openSideMenu }) =>
-        openSideMenu ? "rotate(-45deg)" : "rotate(0)"};
+      transform: ${({ open_side_menu }) =>
+        open_side_menu == "true" ? "rotate(-45deg)" : "rotate(0)"};
       
       background: ${(props) =>
-        props.scrollDir == "scrolling down"
-        ? props.leafScrolledSoChangeColorDown
+        props.scroll_dir == "scrolling down"
+        ? props.leaf_scrolled_so_change_color_down == " true"
           ? "black"
           : "white"
-        : props.leafScrolledSoChangeColorUp
+        : props.leaf_scrolled_so_change_color_up == "true"
         ? "white"
         : "black"};
       

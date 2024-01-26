@@ -96,14 +96,14 @@ const Span = styled.span`
 	font-size: 0.75rem;
 	transition: opacity 2s ease-in;
 	opacity: ${(props) =>
-		props.waitMessage.toString() == "...one moment" ? "1" : "0"};
+		props.wait_message.toString() == "...one moment" ? "1" : "0"};
 `;
 
 const StatusSpinner = styled.div`
 	max-height: ${(props) =>
-		props.showStatusSpinner.toString() == "true" ? "100%" : "0px"};
+		props.show_status_spinner == "true" ? "100%" : "0px"};
 	opacity: ${(props) =>
-		props.showStatusSpinner.toString() == "true" ? "1" : "0"};
+		props.show_status_spinner == "true" ? "1" : "0"};
 	transition: opacity 0.4s;
 	transition-timing-function: ease-out;
 `;
@@ -131,7 +131,7 @@ function Signup(props) {
 		errors: {},
 		color: "#45B5644",
 		isBtnDisabled: false,
-		showStatusSpinner: false,
+		showStatusSpinner: "false",
 		waitMessage: "",
 	});
 
@@ -212,7 +212,7 @@ function Signup(props) {
 		setState({
 			...state,
 			waitMessage: "...one moment",
-			showStatusSpinner: true,
+			showStatusSpinner: "true",
 			isBtnDisabled: true,
 		});
 
@@ -480,14 +480,14 @@ function Signup(props) {
 				</Form>
 
 				<ErrorWrapper>
-					<Span waitMessage={state.waitMessage}> {state.waitMessage}</Span>
+					<Span wait_message={state.waitMessage}> {state.waitMessage}</Span>
 					<XorCheckIcon
 						status={state.status}
 						src={state.status === "pink" ? redX : greenCheck}
 					/>
 					{errorMessages}
 
-					<StatusSpinner showStatusSpinner={state.showStatusSpinner}>
+					<StatusSpinner show_status_spinner={state.showStatusSpinner}>
 						{/* <Spinner name='wave' color='#56c5cc' /> */}
 					</StatusSpinner>
 				</ErrorWrapper>

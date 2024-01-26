@@ -7,13 +7,7 @@ import React, {
 } from "react";
 
 import styled from "styled-components";
-//import {CSSTransition} from 'react-transition-group';
-//import { useSpring, useTransition, animated } from 'react-spring'
-//import TimeAgo from "javascript-time-ago";
-//TimeAgo.addDefaultLocale(en);
-//
-// wtf
-// import ReactTimeAgo from "react-time-ago";
+
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import CommentReplyForm from "./commentReplyForm";
@@ -27,6 +21,8 @@ import ThumbsDownSvg from "./thumbsDownSvg";
 import CommentForm from "./commentForm";
 
 import ReactTimeAgo from "react-time-ago";
+
+import "../../assets/stylesheets/comments.scss"
 
 import {
   FacebookShareButton,
@@ -49,16 +45,8 @@ const Comments = styled.div`
 `;
 
 const CommentDisplay = styled.div`
-  /* max-height: ${(props) =>
-    props.showmore[props.id] == "true" ? "0" : "100%"} ;
-    transform: ${(props) =>
-    props.showmore[props.id] == "true" ? "scale(0)" : "scale(1)"};
-d
-    transition: all 2s ease-out; */
-
+ 
   max-height: 100%;
-
-  //transition: all 2s ease-out;
 
   margin: 0px 0px 0px 25px;
   position: relative;
@@ -165,6 +153,8 @@ const CommentFormWrapper = styled.div`
   grid-area: 7/1/8/2;
 `;
 
+
+
 ////////////// CommentSection //////////////////////////////////
 
 function CommentSection(props) {
@@ -192,38 +182,38 @@ function CommentSection(props) {
     console.log("==============Article useEffect===============");
 
     const mode =
-      process.env.NODE_ENV == "development"
-        ? "http://127.0.0.1:3000"
-        : "https://www.floiridablaze.io";
+      // process.env.NODE_ENV == "development"
+      //   ? "http://127.0.0.1:3000"
+      //   : "https://www.floiridablaze.io";
 
-    axios
-      .post(
-        "/blog/get_comment_info",
-        {
-          data: {
-            slug: slug,
+      axios
+        .post(
+          "/blog/get_comment_info",
+          {
+            data: {
+              slug: slug,
+            },
           },
-        },
-        { withCredentials: true }
-      )
-      .then((response) => {
-        //console.log("resoooooooooooooooonse = " + response.inspect)
+          { withCredentials: true }
+        )
+        .then((response) => {
+          //console.log("resoooooooooooooooonse = " + response.inspect)
 
-        //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
-        //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
+          //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
+          //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
 
-        //setArtData(response.data.article)
-        setArtDataComments(response.data.comments);
+          //setArtData(response.data.article)
+          setArtDataComments(response.data.comments);
 
-        //setIsCommentsLoading(false)
+          //setIsCommentsLoading(false)
 
-        //setIsCommentsLoading(false)
+          //setIsCommentsLoading(false)
 
-        //setCurrentUser(@current_user)
-      })
-      .catch((error) => {
-        //console.log("articleErrors", error)
-      });
+          //setCurrentUser(@current_user)
+        })
+        .catch((error) => {
+          //console.log("articleErrors", error)
+        });
   }, []);
 
   const getReplyArray = (childrenCommentArray) => {
@@ -646,15 +636,7 @@ function CommentSection(props) {
     );
   };
 
-  // if (artDataComments && artDataComments.length == 0) {
-
-  //     return null
-  // }
-
-  // if (isCommentsLoading) {
-
-  //         return null
-  //     }
+  
 
   return (
     <Comments>
@@ -665,6 +647,7 @@ function CommentSection(props) {
           setArtDataComments={setArtDataComments}
         />
       </CommentFormWrapper>
+      
 
       <div>
         <div style={{ position: "relative" }}>
