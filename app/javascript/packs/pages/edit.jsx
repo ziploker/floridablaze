@@ -24,7 +24,7 @@ import {
 } from "./AuthForm";
 
 import axios from "axios";
-import "../../../assets/stylesheets/edit_styles_21.scss";
+import "../../../assets/stylesheets/edit_styles.scss";
 import $ from "jquery";
 //var Spinner = require("react-spinkit");
 
@@ -139,8 +139,7 @@ const LabelForFile = styled.label`
 const StatusSpinner = styled.div`
   max-height: ${(props) =>
     props.show_status_spinner == "true" ? "100%" : "0px"};
-  opacity: ${(props) =>
-    props.show_status_spinner == "true" ? "1" : "0"};
+  opacity: ${(props) => (props.show_status_spinner == "true" ? "1" : "0")};
   transition: opacity 0.4s;
   transition-timing-function: ease-out;
 `;
@@ -775,7 +774,6 @@ function Edit(props) {
               <th>status</th>
               <th className={"totalprice"}>total</th>
             </tr>
-
             {allCommunications.map((x, i) => {
               return (
                 <tr
@@ -804,8 +802,8 @@ function Edit(props) {
                   </td>
                 </tr>
               );
-            })};
-            
+            })}
+            ;
           </tbody>
         </ActivityTable>
 

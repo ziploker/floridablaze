@@ -25,6 +25,7 @@ import redX from "../../assets/images/redXmark.jpg";
 import userIcon from "../../assets/images/signup2.svg";
 import greenCheck from "../../assets/images/greenCheck.png";
 import dummy_avatar from "../../assets/images/dummy_avatar.png";
+import "../../assets/stylesheets/signup.scss";
 
 import {
   Card,
@@ -421,8 +422,7 @@ const Span = styled.h4`
 const StatusSpinner = styled.div`
   max-height: ${(props) =>
     props.show_status_spinner == "true" ? "100%" : "0px"};
-  opacity: ${(props) =>
-    props.show_status_spinner == "true" ? "1" : "0"};
+  opacity: ${(props) => (props.show_status_spinner == "true" ? "1" : "0")};
   transition: opacity 0.4s;
   transition-timing-function: ease-out;
 `;
@@ -451,8 +451,6 @@ const BackgroundFists = styled.img`
 `;
 
 const LeftSection = styled.div`
-  
-
   @media only screen and (max-width: 400px) {
     //margin: 700px 0px 0px 0px;
   }
@@ -505,11 +503,10 @@ const LeftSection = styled.div`
     grid-area: 2/2/3/3;
     border-right: initial;
     max-width: initial;
-    
-    h1{
+
+    h1 {
       font-size: 7rem;
     }
-    
   }
 `;
 
@@ -1175,7 +1172,7 @@ function Signup(props, ref) {
               </Form>
 
               {/* <ErrorWrapper show_error_background={state.showErrorBackground}> */}
-              <ErrorWrapper >
+              <ErrorWrapper>
                 <Span wait_message={state.waitMessage}>
                   {" "}
                   {state.waitMessage}

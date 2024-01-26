@@ -51,8 +51,10 @@ const LogoText = styled.img`
 
   margin-bottom: 8px;
 
-  /* font-size: ${(props) => (props.logo_scrolled == "true" ? "1em" : "2em")}; */
-  /* width: ${(props) => (props.logo_scrolled == "true"? "155px" : "225px")}; */
+  /* font-size: ${(props) =>
+    props.logo_scrolled == "true" ? "1em" : "2em"}; */
+  /* width: ${(props) =>
+    props.logo_scrolled == "true" ? "155px" : "225px"}; */
   width: ${(props) => (props.logo_scrolled == "true" ? "175px" : "420px")};
 
   cursor: pointer;
@@ -108,7 +110,9 @@ const HeaderLeafImage = styled.img`
   align-self: center;
 
   /* opacity: ${(props) =>
-    props.hamburger_scrolled == "true"|| props.long_nav_scrolled == "true" ? "0" : "1"}; */
+    props.hamburger_scrolled == "true" || props.long_nav_scrolled == "true"
+      ? "0"
+      : "1"}; */
 
   //transition: all 0.2s linear;
 
@@ -131,11 +135,11 @@ const LongNav = styled.nav`
   justify-self: end;
   margin: 0 -25px;
   display: flex;
-  position: ${(props) => (props.long_nav_scrolled == "true" ? "fixed" : "initial")};
+  position: ${(props) =>
+    props.long_nav_scrolled == "true" ? "fixed" : "initial"};
   //position: fixed;
 
   top: ${(props) => (props.long_nav_scrolled == "true" ? "2px" : "initial")};
- 
 
   color: ${(props) =>
     props.scroll_dir == "scrolling down"
@@ -170,7 +174,8 @@ const LongNav = styled.nav`
       padding: 0px 5px;
       //transition: font-size 0.1s linear;
       font-weight: 400;
-      /* font-size: ${(props) => (props.long_nav_scrolled == "true" ? "1.8vw" : "2vw")}; */
+      /* font-size: ${(props) =>
+        props.long_nav_scrolled == "true" ? "1.8vw" : "2vw"}; */
       font-size: 2vw;
       line-height: 45px;
       color: inherit;
@@ -213,17 +218,21 @@ const Outter = styled.div`
 `;
 
 const HamburgerMenu = styled.div`
-  margin-top: ${(props) => (props.hamburger_scrolled == "true" ? "initial" : "8px")};
+  margin-top: ${(props) =>
+    props.hamburger_scrolled == "true" ? "initial" : "8px"};
   grid-area: 1/2/2/3;
   justify-self: end;
   align-self: center;
-  position: ${(props) => (props.hamburger_scrolled == "true" ? "fixed" : "grid")};
-  padding-right: ${(props) => (props.hamburger_scrolled == "true"? "0px" : "22px")};
+  position: ${(props) =>
+    props.hamburger_scrolled == "true" ? "fixed" : "grid"};
+  padding-right: ${(props) =>
+    props.hamburger_scrolled == "true" ? "0px" : "22px"};
   //top: 25px;
   right: 22px;
   //transition: all 0.2s linear;
 
-  //position: ${(props) => (props.hamburger_scrolled == "true" ? "fixed" : "initial")};
+  //position: ${(props) =>
+    props.hamburger_scrolled == "true" ? "fixed" : "initial"};
   top: ${(props) => (props.hamburger_scrolled == "true" ? "17px" : "initial")};
 
   @media only screen and (max-width: 440px) {
@@ -259,7 +268,8 @@ const HamburgerMenu = styled.div`
 
 const TopBackgroundBar = styled.div`
   position: fixed;
-  opacity: ${(props) => (props.leaf_scrolled_so_change_color_down == "true" ? "1" : "0")};
+  opacity: ${(props) =>
+    props.leaf_scrolled_so_change_color_down == "true" ? "1" : "0"};
   top: 0;
   width: 100%;
   max-width: 2000px;
@@ -481,7 +491,6 @@ function Header(props) {
       ? setLeafScrolledSoChangeColorUp("true")
       : setLeafScrolledSoChangeColorUp("false");
 
-   
     window.scrollY >= pixlesFromHamburgerToTop
       ? setHamburgerScrolled("true")
       : setHamburgerScrolled("false");
@@ -502,7 +511,6 @@ function Header(props) {
   //put directly in function, delete this if it works
   function mouseDownHandler() {
     props.set_open_side_menu("false");
-    
   }
 
   function doSomething(e) {
@@ -547,7 +555,6 @@ function Header(props) {
           long_nav_scrolled={longNavScrolled}
         ></LogoText>
 
-
         <HeaderLeafImage
           src={headerLeaf}
           long_nav_scrolled={longNavScrolled}
@@ -564,8 +571,8 @@ function Header(props) {
           {/* <UlWrapper> */}
           <ul>
             <li key={0}>news</li>
-            <li key={1}>
-              <span onClick={props.executeScrollForLookupSection}>act</span>
+            <li key={1} onClick={props.executeScrollForLookupSection}>
+              act
             </li>
             <li key={2}>shop</li>
 
@@ -608,7 +615,10 @@ function Header(props) {
           {/* </UlWrapper> */}
         </LongNav>
 
-        <HamburgerMenu hamburger_scrolled={hamburgerScrolled} ref={hamburgerRef}>
+        <HamburgerMenu
+          hamburger_scrolled={hamburgerScrolled}
+          ref={hamburgerRef}
+        >
           <Burger
             open_side_menu={props.open_side_menu}
             set_open_side_menu={props.set_open_side_menu}

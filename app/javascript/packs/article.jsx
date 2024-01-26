@@ -189,8 +189,7 @@ const PWrapper = styled.div`
   margin-top: 16px;
   //padding: 0px 20px;
 
-  h1{
-
+  h1 {
     margin: 20px 0;
   }
 
@@ -357,13 +356,19 @@ function Article({ artData, userState }) {
       "artData set via props.artData - direct link to article - sparks#index"
     );
   } else {
-    // if (art && art != null) {
+    // artData was null {
     console.log("==============Article=============== artdata = null", artData);
-    console.log("==============Article=============== location", location);
 
-    const { art, pathname } = location.state;
-    artData = art;
-    console.log("artData set via props.location.art - link via home page");
+    if (location && location.state != null) {
+      console.log(
+        "==============Article=============== location.state",
+        location.state
+      );
+      const { art, pathname } = location.state;
+      artData = art;
+      console.log("artData set via props.location.art - link via home page");
+    }
+    console.log("artData not set, bad params");
   }
 
   // if (props.location){

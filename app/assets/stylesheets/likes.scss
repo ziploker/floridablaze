@@ -2,4 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+/* ###########  LIKES  ######################### */
 
+.ziploker {
+  fill: white;
+}
+
+.selected {
+  svg {
+    #layer1 path:nth-child(2) {
+      fill: #2ef00a2b;
+    }
+
+    #layer1 path:nth-child(3) {
+      fill: rgb(46, 240, 10);
+    }
+  }
+}
+
+//#f0200a2b;
+
+//#f00a0a;
+
+.down_vote_selected {
+  svg {
+    #layer11 path:nth-child(2) {
+      fill: #f0200a2b;
+    }
+
+    #layer11 path:nth-child(3) {
+      fill: #f00a0a;
+    }
+  }
+}
