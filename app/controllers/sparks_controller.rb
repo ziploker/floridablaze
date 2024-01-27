@@ -1,7 +1,7 @@
 class SparksController < ApplicationController
 
     puts "welcome to sparks controller"
-    layout 'floridablaze'
+   
     
     STORIES_PER_PAGE = 4
 

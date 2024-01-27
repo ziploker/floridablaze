@@ -37,14 +37,14 @@ const HeaderWrapper = styled.div`
 `;
 
 const LogoText = styled.img`
-  position: ${(props) => (props.logo_scrolled ? "fixed" : "absolute")};
+  position: ${(props) => (props.logo_scrolled == "true" ? "fixed" : "absolute")};
 
   //opacity: 0.1;
 
   margin-left: 50px;
   transition: all 0.3s linear;
   grid-area: headerLogo;
-  top: ${(props) => (props.logoScrolled == "true" ? "15px" : "21px")};
+  top: ${(props) => (props.logo_scrolled == "true" ? "15px" : "21px")};
 
   justify-self: start;
   align-self: center;
@@ -231,8 +231,7 @@ const HamburgerMenu = styled.div`
   right: 22px;
   //transition: all 0.2s linear;
 
-  //position: ${(props) =>
-    props.hamburger_scrolled == "true" ? "fixed" : "initial"};
+  
   top: ${(props) => (props.hamburger_scrolled == "true" ? "17px" : "initial")};
 
   @media only screen and (max-width: 440px) {

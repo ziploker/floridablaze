@@ -5,7 +5,7 @@ class StoriesController < ApplicationController
 
   skip_before_action :verify_authenticity_token, raise: false
 
-  layout 'admin'
+  
   def index
       
   end

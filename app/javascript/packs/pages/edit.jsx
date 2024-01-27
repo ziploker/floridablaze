@@ -783,27 +783,21 @@ function Edit(props) {
                       ? () => RedirectURL(x.postgrid_id)
                       : null
                   }
-                >
-                  <td>{x.com_type}</td>
+                ><td>{x.com_type}</td>
                   <td>{x.formatted_date}</td>
                   <td className={"recipients"}>{x.recipient}</td>
-                  <td>
-                    {x.com_type == "letter"
+                  <td>{x.com_type == "letter"
                       ? x.status
                       : x.status == "Queued. Thank you."
                       ? "queued"
-                      : x.status}
-                  </td>
+                      : x.status}</td>
 
-                  <td className={"totalprice"}>
-                    {x.com_type == "letter"
+                  <td className={"totalprice"}>{x.com_type == "letter"
                       ? x.paypal_full_object.purchase_units[0].amount.value
-                      : "free"}
-                  </td>
-                </tr>
+                      : "free"}</td>
+                      </tr>
               );
             })}
-            ;
           </tbody>
         </ActivityTable>
 
