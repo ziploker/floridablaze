@@ -59,16 +59,16 @@ const StyledBurger = styled.button`
         open_side_menu == "true" ? "translateX(5px)" : "translateX(0)"};
     
 
-      background: ${(props) =>
+      /* background: ${(props) =>
         props.scroll_dir == "scrolling down"
-          ? props.leaf_scrolled_so_change_color_down
+          ? props.leaf_scrolled_so_change_color_down == "true"
             ? "black"
             : "white"
-          : props.leafScrolledSoChangeColorUp
+          : props.leafScrolledSoChangeColorUp == "true"
             ? "white"
             : "black"
       };
-      
+       */
       @media only screen and (max-width: 440px) {
         background: black;
       }
@@ -90,14 +90,14 @@ const StyledBurger = styled.button`
       transform: ${({ open_side_menu }) =>
         open_side_menu == "true" ? "rotate(-45deg)" : "rotate(0)"};
       
-      background: ${(props) =>
+      /* background: ${(props) =>
         props.scroll_dir == "scrolling down"
         ? props.leaf_scrolled_so_change_color_down == " true"
           ? "black"
           : "white"
         : props.leaf_scrolled_so_change_color_up == "true"
         ? "white"
-        : "black"};
+        : "black"}; */
       
       @media only screen and (max-width: 440px) {
         background: black;

@@ -70,7 +70,7 @@ const LogoText = styled.img`
   }
 
   @media only screen and (max-width: 860px) {
-    width: 295px;
+    //width: 295px;
     top: 31px;
   }
 
