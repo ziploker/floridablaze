@@ -11,6 +11,7 @@ import headerLeaf from "../../assets/images/headerLeafv2.png";
 import Burger from "./burger";
 import SideMenu from "./sidemenu";
 import company_logo from "../../assets/images/company_logo.svg";
+import company_logo_with_tagline from "../../assets/images/company_logo_with_tagline.svg";
 import Login from "./pages/login";
 
 ////////////////////////////////////////////////////////
@@ -44,7 +45,7 @@ const LogoText = styled.img`
   margin-left: 50px;
   transition: all 0.3s linear;
   grid-area: headerLogo;
-  top: ${(props) => (props.logo_scrolled == "true" ? "15px" : "21px")};
+  top: ${(props) => (props.logo_scrolled == "true" ? "15px" : "11px")};
 
   justify-self: start;
   align-self: center;
@@ -55,7 +56,7 @@ const LogoText = styled.img`
     props.logo_scrolled == "true" ? "1em" : "2em"}; */
   /* width: ${(props) =>
     props.logo_scrolled == "true" ? "155px" : "225px"}; */
-  width: ${(props) => (props.logo_scrolled == "true" ? "175px" : "420px")};
+  width: ${(props) => (props.logo_scrolled == "true" ? "175px" : "300px")};
 
   cursor: pointer;
 
@@ -548,7 +549,7 @@ function Header(props) {
           onClick={() => {
             navigate("/");
           }}
-          src={company_logo}
+          src={logoScrolled == "true" ? company_logo : company_logo_with_tagline}
           ref={logoTextRef}
           logo_scrolled={logoScrolled}
           long_nav_scrolled={longNavScrolled}
