@@ -12,6 +12,7 @@ import Burger from "./burger";
 import SideMenu from "./sidemenu";
 import company_logo from "../../assets/images/company_logo.svg";
 import company_logo_with_tagline from "../../assets/images/company_logo_with_tagline.svg";
+import tagline from "../../assets/images/tagline.svg"
 import Login from "./pages/login";
 
 ////////////////////////////////////////////////////////
@@ -37,11 +38,9 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const LogoText = styled.img`
+const LogoText = styled.div`
+
   position: ${(props) => (props.logo_scrolled == "true" ? "fixed" : "absolute")};
-
-  //opacity: 0.1;
-
   margin-left: 50px;
   transition: all 0.3s linear;
   grid-area: headerLogo;
@@ -52,11 +51,11 @@ const LogoText = styled.img`
 
   margin-bottom: 8px;
 
-  /* font-size: ${(props) =>
-    props.logo_scrolled == "true" ? "1em" : "2em"}; */
-  /* width: ${(props) =>
-    props.logo_scrolled == "true" ? "155px" : "225px"}; */
-  width: ${(props) => (props.logo_scrolled == "true" ? "175px" : "300px")};
+  display: grid;
+  grid-template-columns: 1fr;
+
+  
+  
 
   cursor: pointer;
 
@@ -82,9 +81,27 @@ const LogoText = styled.img`
 
   @media only screen and (max-width: 440px) {
     top: 3px;
+
   }
+  
 `;
 
+const LogoTextTop = styled.img`
+  width: ${(props) => (props.logo_scrolled == "true" ? "175px" : "300px")};
+
+  justify-self: center;
+  transition: all 0.3s linear;
+  
+`;
+//
+const LogoTextBottom = styled.img`
+  justify-self: center;
+  
+  //opacity: ${(props) => (props.logo_scrolled == "true" ? "0" : "1")};
+  transition: all .2s ease-in;
+  max-height: ${(props) => (props.logo_scrolled == "true" ? "0" : "20px")};
+  //transform: ${(props) => (props.logo_scrolled == "true" ? "scale(.1)" : "scale(1)")};
+`;
 const HeaderLeafImage = styled.img`
   /* @media only screen and (max-width: 1100px) {
     margin-right: -110px;
@@ -388,7 +405,7 @@ function Header(props) {
     );
     //
     setPixlesFromLogoToTop(
-      logoTextRef.current.getBoundingClientRect().top - 30
+      logoTextRef.current.getBoundingClientRect().top //-30
     );
 
     longNavRef.current.getBoundingClientRect().top == 0
@@ -549,11 +566,15 @@ function Header(props) {
           onClick={() => {
             navigate("/");
           }}
-          src={logoScrolled == "true" ? company_logo : company_logo_with_tagline}
           ref={logoTextRef}
           logo_scrolled={logoScrolled}
-          long_nav_scrolled={longNavScrolled}
-        ></LogoText>
+          //long_nav_scrolled={longNavScrolled}
+        >
+          <LogoTextTop logo_scrolled={logoScrolled} src={company_logo}
+/>    
+          <LogoTextBottom logo_scrolled={logoScrolled} src={tagline}/>
+
+        </LogoText>
 
         <HeaderLeafImage
           src={headerLeaf}
