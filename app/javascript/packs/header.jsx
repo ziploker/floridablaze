@@ -42,10 +42,10 @@ const LogoText = styled.div`
 
   position: ${(props) => (props.logo_scrolled == "true" ? "fixed" : "absolute")};
   margin-left: 50px;
-  transition: all 0.3s linear;
+  //transition: all 0.3s linear;
   grid-area: headerLogo;
   top: ${(props) => (props.logo_scrolled == "true" ? "15px" : "11px")};
-
+  grid-gap: 5px;
   justify-self: start;
   align-self: center;
 
@@ -89,7 +89,7 @@ const LogoText = styled.div`
 const LogoTextTop = styled.img`
   width: ${(props) => (props.logo_scrolled == "true" ? "175px" : "300px")};
 
-  justify-self: center;
+  justify-self: start;
   transition: all 0.3s linear;
   
 `;
@@ -97,10 +97,11 @@ const LogoTextTop = styled.img`
 const LogoTextBottom = styled.img`
   justify-self: center;
   
-  //opacity: ${(props) => (props.logo_scrolled == "true" ? "0" : "1")};
-  transition: all .2s ease-in;
-  max-height: ${(props) => (props.logo_scrolled == "true" ? "0" : "20px")};
-  //transform: ${(props) => (props.logo_scrolled == "true" ? "scale(.1)" : "scale(1)")};
+  opacity: ${(props) => (props.logo_scrolled == "true" ? "0" : "1")};
+  transition: all .3s linear;
+  max-height: ${(props) => (props.logo_scrolled == "true" ? "0" : "50px")};
+  max-width: ${(props) => (props.logo_scrolled == "true" ? "0" : "500px")};
+  transform: ${(props) => (props.logo_scrolled == "true" ? "scale(.1)" : "scale(1)")};
 `;
 const HeaderLeafImage = styled.img`
   /* @media only screen and (max-width: 1100px) {
