@@ -1,17 +1,21 @@
-<%#= puts "inside layooooooooooooooooooooooout" 
 <!DOCTYPE html>
 <html>
   <head>
     <title>floridablazer</title>
-    <%= csrf_meta_tags 
-   
-     javascript_pack_tag "application", "floridablaze-bundle" 
-    stylesheet_link_tag 'application', media: 'all' 
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&family=PT+Serif&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    
+     <%= javascript_pack_tag "floridablaze-bundle"%> 
+    <%= stylesheet_pack_tag    'application' %>
     
   </head>
 
   <body>
-    <%= yield 
+    <%= yield %>
   </body>
 </html>
-%>

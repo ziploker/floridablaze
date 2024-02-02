@@ -12,7 +12,7 @@ import Burger from "./burger";
 import SideMenu from "./sidemenu";
 import company_logo from "../../assets/images/company_logo.svg";
 import company_logo_with_tagline from "../../assets/images/company_logo_with_tagline.svg";
-import tagline from "../../assets/images/tagline.svg"
+import tagline from "../../assets/images/tagline.svg";
 import Login from "./pages/login";
 
 ////////////////////////////////////////////////////////
@@ -39,8 +39,11 @@ const HeaderWrapper = styled.div`
 `;
 
 const LogoText = styled.div`
+  width: ${(props) => (props.logo_scrolled == "true" ? "260px" : "300px")};
+  transition: all 0.3s linear;
 
-  position: ${(props) => (props.logo_scrolled == "true" ? "fixed" : "absolute")};
+  position: ${(props) =>
+    props.logo_scrolled == "true" ? "fixed" : "absolute"};
   margin-left: 50px;
   //transition: all 0.3s linear;
   grid-area: headerLogo;
@@ -54,9 +57,6 @@ const LogoText = styled.div`
   display: grid;
   grid-template-columns: 1fr;
 
-  
-  
-
   cursor: pointer;
 
   z-index: 51;
@@ -69,39 +69,38 @@ const LogoText = styled.div`
     margin-left: 20px;
   }
 
-  @media only screen and (max-width: 860px) {
-    //width: 295px;
-    top: 31px;
+  @media only screen and (max-width: 750px) {
+    width: 260px;
+    //top: 31px;
   }
 
   @media only screen and (max-width: 520px) {
-    width: 202px;
-    top: 39px;
+    ////width: 202px;
+    //top: 39px;
   }
 
   @media only screen and (max-width: 440px) {
-    top: 3px;
-
+    //top: 3px;
   }
-  
 `;
 
 const LogoTextTop = styled.img`
-  width: ${(props) => (props.logo_scrolled == "true" ? "175px" : "300px")};
-
+  /* width: ${(props) =>
+    props.logo_scrolled == "true" ? "175px" : "300px"}; */
+  width: 100%;
   justify-self: start;
-  transition: all 0.3s linear;
-  
+  /* transition: all 0.3s linear; */
 `;
 //
 const LogoTextBottom = styled.img`
   justify-self: center;
-  
+  //width: 100%;
   opacity: ${(props) => (props.logo_scrolled == "true" ? "0" : "1")};
-  transition: all .3s linear;
+  transition: all 0.3s linear;
   max-height: ${(props) => (props.logo_scrolled == "true" ? "0" : "50px")};
   max-width: ${(props) => (props.logo_scrolled == "true" ? "0" : "500px")};
-  transform: ${(props) => (props.logo_scrolled == "true" ? "scale(.1)" : "scale(1)")};
+  transform: ${(props) =>
+    props.logo_scrolled == "true" ? "scale(.1)" : "scale(1)"};
 `;
 const HeaderLeafImage = styled.img`
   /* @media only screen and (max-width: 1100px) {
@@ -193,9 +192,8 @@ const LongNav = styled.nav`
       padding: 0px 5px;
       //transition: font-size 0.1s linear;
       font-weight: 400;
-      /* font-size: ${(props) =>
-        props.long_nav_scrolled == "true" ? "1.8vw" : "2vw"}; */
-      font-size: 2vw;
+      font-size: 30px;
+      //font-size: 2vw;
       line-height: 45px;
       color: inherit;
       text-decoration: none;
@@ -207,7 +205,7 @@ const LongNav = styled.nav`
       }
 
       @media only screen and (min-width: 1500px) {
-        font-size: 30px;
+        //font-size: 30px;
       }
 
       a {
@@ -250,7 +248,6 @@ const HamburgerMenu = styled.div`
   right: 22px;
   //transition: all 0.2s linear;
 
-  
   top: ${(props) => (props.hamburger_scrolled == "true" ? "17px" : "initial")};
 
   @media only screen and (max-width: 440px) {
@@ -571,10 +568,8 @@ function Header(props) {
           logo_scrolled={logoScrolled}
           //long_nav_scrolled={longNavScrolled}
         >
-          <LogoTextTop logo_scrolled={logoScrolled} src={company_logo}
-/>    
-          <LogoTextBottom logo_scrolled={logoScrolled} src={tagline}/>
-
+          <LogoTextTop logo_scrolled={logoScrolled} src={company_logo} />
+          <LogoTextBottom logo_scrolled={logoScrolled} src={tagline} />
         </LogoText>
 
         <HeaderLeafImage
