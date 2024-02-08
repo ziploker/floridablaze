@@ -39,8 +39,8 @@ const HeaderWrapper = styled.div`
 `;
 
 const LogoText = styled.div`
-  //width: ${(props) => (props.logo_scrolled == "true" ? "300px" : "300px")};
-  width: 420px;
+  width: ${(props) => (props.logo_scrolled == "true" ? "320px" : "420px")};
+  //width: 420px;
   transition: all 0.3s linear;
 
   position: ${(props) =>
@@ -48,7 +48,7 @@ const LogoText = styled.div`
   margin-left: 50px;
   //transition: all 0.3s linear;
   grid-area: headerLogo;
-  top: ${(props) => (props.logo_scrolled == "true" ? "15px" : "11px")};
+  top: ${(props) => (props.logo_scrolled == "true" ? "8px" : "11px")};
   grid-gap: 5px;
   justify-self: start;
   align-self: center;
