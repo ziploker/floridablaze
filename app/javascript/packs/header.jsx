@@ -39,7 +39,8 @@ const HeaderWrapper = styled.div`
 `;
 
 const LogoText = styled.div`
-  width: ${(props) => (props.logo_scrolled == "true" ? "260px" : "300px")};
+  //width: ${(props) => (props.logo_scrolled == "true" ? "300px" : "300px")};
+  width: 310px;
   transition: all 0.3s linear;
 
   position: ${(props) =>
@@ -87,7 +88,7 @@ const LogoText = styled.div`
 const LogoTextTop = styled.img`
   /* width: ${(props) =>
     props.logo_scrolled == "true" ? "175px" : "300px"}; */
-  width: 100%;
+  width: 95%;
   justify-self: start;
   /* transition: all 0.3s linear; */
 `;
