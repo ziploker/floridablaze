@@ -40,7 +40,7 @@ const HeaderWrapper = styled.div`
 
 const LogoText = styled.div`
   //width: ${(props) => (props.logo_scrolled == "true" ? "300px" : "300px")};
-  width: 310px;
+  width: 420px;
   transition: all 0.3s linear;
 
   position: ${(props) =>
