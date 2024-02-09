@@ -3,7 +3,6 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledBurger = styled.button`
-  
   display: grid;
   flex-direction: column;
   justify-content: space-around;
@@ -27,24 +26,24 @@ const StyledBurger = styled.button`
 
   div {
     width: 50px;
-    
+
     height: 3px;
-    
-    background: ${(props) => props.scroll_dir == "scrolling down"
-      ? props.leaf_scrolled_so_change_color_down == "true"
-        ? "black"
-        : "white"
-      : props.leaf_scrolled_so_change_color_up == "true"
-      ? "white"
-      : "black"};
-    
-    
+
+    background: ${(props) =>
+      props.scroll_dir == "scrolling down"
+        ? props.leaf_scrolled_so_change_color_down == "true"
+          ? "black"
+          : "white"
+        : props.leaf_scrolled_so_change_color_up == "true"
+        ? "white"
+        : "black"};
+
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 14px 0;
 
-    @media only screen and (max-width: 440px) {
+    @media only screen and (max-width: 800px) {
       background: black;
     }
 
@@ -54,10 +53,10 @@ const StyledBurger = styled.button`
     }
 
     :nth-child(2) {
-      opacity: ${({ open_side_menu }) => (open_side_menu == "true" ? "0" : "1")};
+      opacity: ${({ open_side_menu }) =>
+        open_side_menu == "true" ? "0" : "1"};
       transform: ${({ open_side_menu }) =>
         open_side_menu == "true" ? "translateX(5px)" : "translateX(0)"};
-    
 
       /* background: ${(props) =>
         props.scroll_dir == "scrolling down"
@@ -65,21 +64,16 @@ const StyledBurger = styled.button`
             ? "black"
             : "white"
           : props.leafScrolledSoChangeColorUp == "true"
-            ? "white"
-            : "black"
-      };
+          ? "white"
+          : "black"};
        */
-      @media only screen and (max-width: 440px) {
-        background: black;
-      }
-      
-      @media only screen and (max-width: 440px) {
+
+      @media only screen and (max-width: 800px) {
         color: black;
       }
 
       font-size: 0.7rem;
 
-     
       border-radius: 10px;
       transition: all 0.3s linear;
       position: relative;
@@ -89,20 +83,19 @@ const StyledBurger = styled.button`
     :nth-child(3) {
       transform: ${({ open_side_menu }) =>
         open_side_menu == "true" ? "rotate(-45deg)" : "rotate(0)"};
-      
+
       /* background: ${(props) =>
         props.scroll_dir == "scrolling down"
-        ? props.leaf_scrolled_so_change_color_down == " true"
-          ? "black"
-          : "white"
-        : props.leaf_scrolled_so_change_color_up == "true"
-        ? "white"
-        : "black"}; */
-      
-      @media only screen and (max-width: 440px) {
+          ? props.leaf_scrolled_so_change_color_down == " true"
+            ? "black"
+            : "white"
+          : props.leaf_scrolled_so_change_color_up == "true"
+          ? "white"
+          : "black"}; */
+
+      @media only screen and (max-width: 800px) {
         background: black;
       }
-      
     }
   }
 `;

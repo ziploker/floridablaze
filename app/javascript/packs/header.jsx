@@ -13,6 +13,7 @@ import SideMenu from "./sidemenu";
 import company_logo from "../../assets/images/company_logo.svg";
 import company_logo_with_tagline from "../../assets/images/company_logo_with_tagline.svg";
 import tagline from "../../assets/images/tagline.svg";
+
 import Login from "./pages/login";
 
 ////////////////////////////////////////////////////////
@@ -25,6 +26,7 @@ const HeaderWrapper = styled.div`
   grid-template-columns: minmax(180px, 280px) 1fr;
   /* grid-template-rows: 85px; */
   grid-template-rows: 100px;
+  min-width: 500px;
   margin-top: 15px;
   grid-template-areas: "headerLogo headerLeaf ";
   //min-width: 100vw;
@@ -49,7 +51,7 @@ const LogoText = styled.div`
   //transition: all 0.3s linear;
   grid-area: headerLogo;
   top: ${(props) => (props.logo_scrolled == "true" ? "8px" : "11px")};
-  grid-gap: 5px;
+  grid-gap: 10px;
   justify-self: start;
   align-self: center;
 
@@ -71,7 +73,7 @@ const LogoText = styled.div`
   }
 
   @media only screen and (max-width: 750px) {
-    width: 260px;
+    //width: 260px;
     //top: 31px;
   }
 
@@ -95,7 +97,8 @@ const LogoTextTop = styled.img`
 //
 const LogoTextBottom = styled.img`
   justify-self: start;
-  width: 110%;
+  width: 98%;
+  margin-left: -4px;
   opacity: ${(props) => (props.logo_scrolled == "true" ? "0" : "1")};
   transition: all 0.3s linear;
   max-height: ${(props) => (props.logo_scrolled == "true" ? "0" : "50px")};
@@ -113,7 +116,7 @@ const HeaderLeafImage = styled.img`
     margin-right: -200px;
   }
 */
-  @media only screen and (max-width: 440px) {
+  @media only screen and (max-width: 800px) {
     display: none;
   }
 
