@@ -97,7 +97,7 @@ const LogoTextTop = styled.img`
 //
 const LogoTextBottom = styled.img`
   justify-self: start;
-  width: 98%;
+  width: 117%;
   margin-left: -4px;
   opacity: ${(props) => (props.logo_scrolled == "true" ? "0" : "1")};
   transition: all 0.3s linear;
