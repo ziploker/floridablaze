@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import actBackground from "../../assets/images/actBackground.png";
 import actBackgroundTest from "../../assets/images/actBackgroundTest.png";
-import mega from "../../assets/images/megav3.png";
+import mega from "../../assets/images/megav420.png";
 import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
@@ -54,7 +54,7 @@ const ActWrapper = styled.div`
     //overflow: hidden;
   }
 
-  background-color: black;
+  ////background-color: black;
   //background-image: url(${actBackground});
   //background-position: 0 50%;
   //background-repeat: no-repeat;
@@ -70,6 +70,7 @@ const BGimage = styled.img`
   //height: 100vh;
   //object-fit: cover;
   //grid-area: 1/1/-1/-1;
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -98,6 +99,7 @@ const BGimageFix = styled.div`
 `;
 
 const BGimageFixBottom = styled.div`
+
   position: absolute;
   bottom: 0;
   left: 0;

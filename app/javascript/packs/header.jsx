@@ -377,8 +377,8 @@ function Header(props) {
   };
 
   useEffect(() => {
-    // console.log("===================window.scrollY===", window.scrollY);
-    // console.log("==== pixlesFromLongNavToTop ====", pixlesFromLongNavToTop);
+    console.log("===================window.scrollY===", window.scrollY);
+    console.log("==== pixlesFromLongNavToTop ====", pixlesFromLogoToTop);
     // console.log(
     //   "==== longNavRef.current.getBoundingClientRect().top====",
     //   longNavRef.current.getBoundingClientRect().top
@@ -386,7 +386,7 @@ function Header(props) {
     resizeWindow();
     window.addEventListener("resize", resizeWindow);
     return () => window.removeEventListener("resize", resizeWindow);
-  }, []);
+  });
 
   useEffect(() => {
     console.log("UseEffect 22222222222");
@@ -528,7 +528,7 @@ function Header(props) {
     );
 
     // window.scrollY >= pixlesFromLogoToTop - 4
-    window.scrollY >= pixlesFromLogoToTop
+    window.scrollY > pixlesFromLogoToTop
       ? setLogoScrolled("true")
       : setLogoScrolled("false");
 
