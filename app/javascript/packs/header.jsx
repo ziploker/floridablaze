@@ -2,7 +2,7 @@
 ///////////////////   IMPORTS  /////////////////////////
 ///////////////////////////////////////////////////////
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 //import useDocumentScrollThrottled from './useDocumentScrollThrottled.jsx'
 import styled from "styled-components";
@@ -41,7 +41,23 @@ const HeaderWrapper = styled.div`
 `;
 
 const LogoText = styled.div`
-  width: ${(props) => (props.logo_scrolled == "true" ? "320px" : "420px")};
+  //width: ${(props) => (props.logo_scrolled == "true" ? "320px" : "420px")};
+  /* width: ${(props) => {
+    if (props.windowWidth > 985) {
+      props.logo_scrolled == "true" ? "320px" : "420px";
+    } else {
+      props.logo_scrolled == "true" ? "100px" : "100px";
+    }
+  }}; */
+  width: ${(props) =>
+    props.windowWidth <= 985
+      ? props.logo_scrolled == "true"
+        ? "320px"
+        : "420px"
+      : props.logo_scrolled == "true"
+      ? "300px"
+      : "300px"};
+
   //width: 420px;
   transition: all 0.3s linear;
 
@@ -343,7 +359,7 @@ function Header(props) {
   const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(0);
   const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] = useState(37);
   const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(38.5);
-
+  const [windowWidth, setWindowWidth] = useState(0);
   //33
   //const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(0);
 
@@ -356,16 +372,24 @@ function Header(props) {
   const navigate = useNavigate();
   // scroll listener
 
+  let resizeWindow = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
   useEffect(() => {
-    console.log("===================window.scrollY===", window.scrollY);
-    console.log("==== pixlesFromLongNavToTop ====", pixlesFromLongNavToTop);
-    console.log(
-      "==== longNavRef.current.getBoundingClientRect().top====",
-      longNavRef.current.getBoundingClientRect().top
-    );
+    // console.log("===================window.scrollY===", window.scrollY);
+    // console.log("==== pixlesFromLongNavToTop ====", pixlesFromLongNavToTop);
+    // console.log(
+    //   "==== longNavRef.current.getBoundingClientRect().top====",
+    //   longNavRef.current.getBoundingClientRect().top
+    // );
+    resizeWindow();
+    window.addEventListener("resize", resizeWindow);
+    return () => window.removeEventListener("resize", resizeWindow);
   }, []);
 
   useEffect(() => {
+    console.log("UseEffect 22222222222");
     const threshold = 0;
     let lastScrollY = window.pageYOffset;
     let ticking = false;
@@ -396,11 +420,14 @@ function Header(props) {
   }, [scrollDir]);
 
   useEffect(() => {
+    console.log("UseEffect 3333333333");
     window.addEventListener("scroll", handleScroll);
-  });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // set initial values for "sticky" feature
   useEffect(() => {
+    console.log("UseEffect 444444444444");
     console.log(
       "Sticky feature, initial hamburgerRef.current.getBoundingClientRect().top is ",
       hamburgerRef.current.getBoundingClientRect().top
@@ -446,6 +473,7 @@ function Header(props) {
 
   ////sticky nav end
   useEffect(() => {
+    console.log("UseEffect 5555555555555");
     // make it so this header doesnt load on certin pages
     if (
       locationFromHook.pathname === "/login" ||
@@ -483,6 +511,8 @@ function Header(props) {
     document.addEventListener("mousedown", listener);
 
     return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", handleResize);
       document.removeEventListener("mousedown", listener);
       console.log("cleanup");
     };
@@ -570,6 +600,7 @@ function Header(props) {
           }}
           ref={logoTextRef}
           logo_scrolled={logoScrolled}
+          windowWidth={windowWidth}
           //long_nav_scrolled={longNavScrolled}
         >
           <LogoTextTop logo_scrolled={logoScrolled} src={company_logo} />
@@ -665,6 +696,7 @@ function Header(props) {
           executeScrollForSection2={props.executeScrollForSection2}
         />
       </Outter>
+      {/* <h1>{windowWidth}</h1> */}
     </>
   );
 }
