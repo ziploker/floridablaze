@@ -187,7 +187,7 @@ function SearchLocationInput({
           passRef2.current = node;
         }}
         onChange={(event) => setQuery(event.target.value)}
-        placeholder="Enter an address"
+        placeholder="Start here, enter address"
         value={query}
       />
     </div>

@@ -337,6 +337,7 @@ function App({ d }) {
               />
             }
           />
+
         </Routes>
         <PayPalScriptProvider options={initialOptions}>
           <Act

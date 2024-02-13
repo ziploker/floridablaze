@@ -25,8 +25,7 @@ import searchIconOrange2 from "../../assets/images/searchPink2.png";
 import ResultCardOne from "./resultCardOne.jsx";
 import Button_Loading from "./myComponents/button_loading";
 import axios from "axios";
-import "../../assets/stylesheets/testStyle.css";
-//import "./ziploker123.css"
+
 
 import usps from "../../assets/images/usps-logo.svg";
 //var Spinner = require("react-spinkit");
@@ -134,15 +133,15 @@ const Mega = styled.img`
   //position: absolute;
   //top: -5vh;
   //left: 12vw;
-  width: 70%;
+  width: 65%;
   //height: 85%;
   display: ${(props) => (props.show_cards == "true" ? "none" : "inherit")};
-  grid-area: 1/2/3/3;
-  align-self: end;
+  grid-area: 1/2/4/3;
+  align-self: center;
   justify-self: end;
   //margin-top: -50px;
   margin-right: 40px;
-  //margin-top: -39px;
+  margin-top: -49px;
   //margin-bottom: 13px;
   //opacity: ${(props) => (props.showLetter ? "0" : "1")}; ;
   opacity: 1;
@@ -204,7 +203,7 @@ const ActSection = styled.section`
   transition: opacity 0.4s;
   //padding-bottom: 40px;
   //margin-top: 30px;
-  padding-top: 20px;
+  padding-top: 45px;
   z-index: ${(props) => (props.show_cards == "true" ? "0" : "10")};
 `;
 
@@ -265,10 +264,11 @@ const ActHeader = styled.h1`
     font-size: 5rem;
   }
   //font-display: block;
+  
   font-style: normal;
   font-weight: 800;
   font-size: 8rem;
-  align-self: center;
+  align-self: end;
   line-height: 100%;
   //line-height: 100px;
   /* identical to box height */
@@ -323,6 +323,20 @@ const ActSubheader = styled.h2`
 
   @media only screen and (max-width: 350px) {
     font-size: 20px;
+  }
+`;
+
+const ActSubHeaders = styled.div`
+  grid-area: 2/3/3/4;
+  
+  display: grid;
+  grid-gap: 10px;
+  h2{
+
+    font-family:'Permanent Marker';
+    color: red;
+    padding-left: 6%;
+    font-size: 3rem;
   }
 `;
 
@@ -395,7 +409,7 @@ const Form = styled.div`
     justify-self: center;
   }
 
-  padding: 0 10% 0 0;
+  padding: 0 10% 0 6%;
   //height: 38px;
   display: grid;
   position: relative;
@@ -416,7 +430,7 @@ const Form = styled.div`
   //box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   //margin-top: 72px;
 
-  grid-area: 3/2/4/-1;
+  grid-area: 3/3/4/-1;
   //padding: 0px 20px;
   border-radius: 5px;
 
@@ -3458,23 +3472,31 @@ function Act(props, ref) {
     return (
       <ActWrapper ref={LookupScrollToRef}>
         <BGimage src={actBackground} ref={myRef}></BGimage>
-        <BGimageFix />
-        <BGimageFixBottom />
+       {/*<BGimageFix />*/}
+       {/* <BGimageFixBottom />*/}
         <ActGrid>
           <ActSection show_cards={showCards}>
            
 
             <ActHeaderWrapper>
-              <ActHeader className="testLocker" show_cards={showCards}>
+              <ActHeader show_cards={showCards}>
                 ACT NOW
               </ActHeader>
 
-              <ActSubheader show_cards={showCards}>
+              {/*<ActSubheader show_cards={showCards}>
                 ...3 quick steps
-              </ActSubheader>
+              </ActSubheader>*/}
             </ActHeaderWrapper>
 
-            <ActBulletPointsWrapper>
+            <ActSubHeaders>
+              <h2>Lookup & Contact</h2>
+              <h2 style={{color: "black", marginTop: "-20px"}}>your State Reps</h2>
+
+
+
+            </ActSubHeaders>
+
+            {/*<ActBulletPointsWrapper>
               <ActBulletWrapper>
                 <BulletImage src={orangeSearch} />
 
@@ -3498,7 +3520,7 @@ function Act(props, ref) {
                   <span>Share </span>this tool
                 </BulletOne>
               </ActBulletWrapper>
-            </ActBulletPointsWrapper>
+            </ActBulletPointsWrapper>*/}
 
             <Form className="form-inline" show_cards={showCards}>
               {/* <button

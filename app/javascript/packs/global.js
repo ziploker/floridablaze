@@ -88,7 +88,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Fira Sans' !important;
+  font-family: 'Fira Sans';
   font-weight: 800;
 }
 
