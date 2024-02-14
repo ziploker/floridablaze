@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import actBackground from "../../assets/images/actBackground.png";
 import actBackgroundTest from "../../assets/images/actBackgroundTest.png";
-import mega from "../../assets/images/megav420.png";
+import mega from "../../assets/images/megaFinal.png";
 import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
