@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import actBackground from "../../assets/images/actBackground.png";
 import actBackgroundTest from "../../assets/images/actBackgroundTest.png";
 import mega from "../../assets/images/megaFinal.png";
-import cardTemplate from "../../assets/images/cardTemplate.png";
+import cardTemplate from "../../assets/images/cardTemplateBlack.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
 import samplepic2 from "../../assets/images/dummy_avatar.png";
@@ -148,6 +148,8 @@ const Mega = styled.img`
 `;
 
 const ActGrid = styled.div`
+
+  background: ${props => props.show_cards == "true" ? "white" : "#ff000047"};
   /* @media only screen and (max-width: 1000px){
 
     grid-template-columns: 1fr;
@@ -301,11 +303,11 @@ const ActHeader = styled.h1`
 `;
 
 const ActSubheader = styled.h2`
-  /* @media only screen and (max-width: 985px) {
-		//grid-area: 2/1/3/-1;
+  @media only screen and (max-width: 985px) {
+		grid-area: 2/1/3/-1;
 		//justify-self: center;
-		font-size: 4vw;
-	} */
+		//font-size: 4vw;
+	}
 
   font-style: normal;
   font-weight: 800;
@@ -327,6 +329,12 @@ const ActSubheader = styled.h2`
 `;
 
 const ActSubHeaders = styled.div`
+
+@media only screen and (max-width: 985px) {
+		grid-area: 2/1/3/-1;
+		//justify-self: center;
+		//font-size: 4vw;
+	}
   grid-area: 2/3/3/4;
   
   display: grid;
@@ -408,7 +416,7 @@ const Form = styled.div`
     padding: 0 6%;
     justify-self: center;
   }
-
+  //background: #ff000047;
   padding: 0 10% 0 6%;
   //height: 38px;
   display: grid;
@@ -442,8 +450,9 @@ const MainAddressInput = styled.input`
   grid-area: input;
   height: 60px;
   width: 100%;
-  padding: 0.2em 0.5em;
-  text-shadow: 0 1px 1px hsl(0 0% 0% / 20%);
+  padding: 0.2em 0;
+  //text-shadow: 0 1px 1px hsl(0 0% 0% / 20%);
+  background: #ff000047;
 `;
 
 const Button = styled.button`
@@ -665,7 +674,7 @@ const Span = styled.span`
   transition: opacity 2s ease-in;
   opacity: ${(props) =>
     props.status.toString() == "Enter an address." ? "0" : "1"};
-  color: white;
+  color: black;
 `;
 const ResultSection = styled.div`
   grid-template-columns: 10px 2fr 1fr 10px;
@@ -2485,7 +2494,7 @@ const TopBar = styled.div`
   margin: 48px 0;
 
   h1 {
-    color: white;
+    color: black;
     margin: 0 0 15px 0;
     font-weight: 600;
     letter-spacing: 0.03em;
@@ -2614,7 +2623,7 @@ function Act(props, ref) {
   const { LookupInputRef } = ref;
   const [tester, setTester] = useState("testing");
   const [addressObject, setAddressObject] = useState(null);
-  const [showCards, setShowCards] = React.useState("false");
+  const [showCards, setShowCards] = React.useState("true");
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
 
   const [searchButtonActive, setSearchButtonActive] = React.useState(false);
@@ -2682,43 +2691,43 @@ function Act(props, ref) {
   //   },
   // });
 
-  // const [results, setResults] = React.useState({
-  // 	one: {
-  // 		resultFromFlorida: "true",
-  // 		name: "Kaylee Tuck",
-  // 		firstName: "Kaylee",
-  // 		lastName: "Tuck",
-  // 		image: "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg",
-  // 		id: "ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880",
-  // 		email: "Kaylee.Tuck@myfloridahouse.gov",
-  // 		chamber: "House",
-  // 		party: "Republican",
-  // 		parent: "Florida Legislature",
-  // 		district: "55",
-  // 		fullDistrict: "Florida State House  ",
-  // 		fullDistrictTrunk: "Florida State House",
-  // 		address: "1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
-  // 		classification: "lower",
-  // 	},
-  // 	two: {
-  // 		name: "Ben Albritton",
-  // 		firstName: "Ben",
-  // 		lastName: "Albritton",
-  // 		image: "https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg",
-  // 		id: "ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8",
-  // 		email: "albritton.ben.web@flsenate.gov",
-  // 		chamber: "Senate",
-  // 		party: "Republican",
-  // 		parent: "Florida Legislature",
-  // 		district: "26",
-  // 		fullDistrict: "Florida State Senate  ",
-  // 		fullDistrictTrunk: "Florida State Senate",
-  // 		address: "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
-  // 		classification: "upper",
-  // 	},
-  // 	hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
-  // })
-  const [results, setResults] = React.useState({ one: {}, two: {} });
+  const [results, setResults] = React.useState({
+  	one: {
+  		resultFromFlorida: "true",
+  		name: "Kaylee Tuck",
+  		firstName: "Kaylee",
+  		lastName: "Tuck",
+  		image: "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg",
+  		id: "ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880",
+  		email: "Kaylee.Tuck@myfloridahouse.gov",
+  		chamber: "House",
+  		party: "Republican",
+  		parent: "Florida Legislature",
+  		district: "55",
+  		fullDistrict: "Florida State House  ",
+  		fullDistrictTrunk: "Florida State House",
+  		address: "1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
+  		classification: "lower",
+  	},
+  	two: {
+  		name: "Ben Albritton",
+  		firstName: "Ben",
+  		lastName: "Albritton",
+  		image: "https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg",
+  		id: "ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8",
+  		email: "albritton.ben.web@flsenate.gov",
+  		chamber: "Senate",
+  		party: "Republican",
+  		parent: "Florida Legislature",
+  		district: "26",
+  		fullDistrict: "Florida State Senate  ",
+  		fullDistrictTrunk: "Florida State Senate",
+  		address: "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
+  		classification: "upper",
+  	},
+  	hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
+  })
+  //const [results, setResults] = React.useState({ one: {}, two: {} });
 
   // // const [results, setResults] = React.useState({
   // // 	one: {
@@ -3474,7 +3483,7 @@ function Act(props, ref) {
         <BGimage src={actBackground} ref={myRef}></BGimage>
        {/*<BGimageFix />*/}
        {/* <BGimageFixBottom />*/}
-        <ActGrid>
+        <ActGrid show_cards={showCards}>
           <ActSection show_cards={showCards}>
            
 

@@ -7,9 +7,10 @@ const MainInput = styled.input`
   grid-area: input;
   //height: 80px;
   width: 100%;
-  padding: 0.2em 0.5em;
-  text-shadow: 0 1px 1px hsl(0 0% 0% / 20%);
-  font: normal 2em system-ui, sans-serif;
+  padding: 0.5rem 0.3rem;
+  //text-shadow: 0 1px 1px hsl(0 0% 0% / 20%);
+  font: normal 1.4rem Fira Sans, system-ui, sans-serif;
+  //background: #ff000047;
 `;
 
 function SearchLocationInput({
