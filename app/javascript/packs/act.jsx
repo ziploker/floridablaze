@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import actBackground from "../../assets/images/actBackground.png";
 import actBackgroundTest from "../../assets/images/actBackgroundTest.png";
 import mega from "../../assets/images/megaFinal.png";
-import cardTemplate from "../../assets/images/cardTemplateBlack.png";
+import cardTemplate from "../../assets/images/cardTemplate.png";
 import sampleShot from "../../assets/images/sampleShot.png";
 import samplepic from "../../assets/images/man6.png";
 import samplepic2 from "../../assets/images/dummy_avatar.png";
@@ -25,7 +25,6 @@ import searchIconOrange2 from "../../assets/images/searchPink2.png";
 import ResultCardOne from "./resultCardOne.jsx";
 import Button_Loading from "./myComponents/button_loading";
 import axios from "axios";
-
 
 import usps from "../../assets/images/usps-logo.svg";
 //var Spinner = require("react-spinkit");
@@ -69,7 +68,7 @@ const BGimage = styled.img`
   //height: 100vh;
   //object-fit: cover;
   //grid-area: 1/1/-1/-1;
-  display: none;
+  //display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -83,8 +82,9 @@ const BGimageFix = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  height: 15px;
-  background: rgb(255, 255, 255);
+  height: 35px;
+  grid-area: bgfix;
+  /* background: rgb(255, 255, 255);
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 1) 9%,
@@ -94,11 +94,38 @@ const BGimageFix = styled.div`
     rgba(0, 0, 0, 0.6320728120349702) 50%,
     rgba(0, 0, 0, 0.44439774200695903) 60%,
     rgba(0, 0, 0, 0.013025192987351164) 82%
+  ); */
+
+  background: hsla(0, 0%, 0%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(0, 0%, 0%, 1) 15%,
+    hsla(0, 0%, 80%, 1) 67%,
+    hsla(0, 0%, 89%, 1) 76%,
+    hsla(0, 0%, 100%, 1) 92%
   );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(0, 0%, 0%, 1) 15%,
+    hsla(0, 0%, 80%, 1) 67%,
+    hsla(0, 0%, 89%, 1) 76%,
+    hsla(0, 0%, 100%, 1) 92%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(0, 0%, 0%, 1) 15%,
+    hsla(0, 0%, 80%, 1) 67%,
+    hsla(0, 0%, 89%, 1) 76%,
+    hsla(0, 0%, 100%, 1) 92%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#000000", endColorstr="#CDCDCD", GradientType=1 );
 `;
 
 const BGimageFixBottom = styled.div`
-
   position: absolute;
   bottom: 0;
   left: 0;
@@ -148,8 +175,8 @@ const Mega = styled.img`
 `;
 
 const ActGrid = styled.div`
-
-  background: ${props => props.show_cards == "true" ? "white" : "#ff000047"};
+  /* background: ${(props) =>
+    props.show_cards == "true" ? "white" : "#ff000047"}; */
   /* @media only screen and (max-width: 1000px){
 
     grid-template-columns: 1fr;
@@ -229,7 +256,8 @@ const StepOne = styled.div`
 const StepTwo = styled.div`
   width: 80px;
   height: 4px;
-  background: ${(props) => (props.show_cards == "true" ? "#E3B55A" : "#605C55")};
+  background: ${(props) =>
+    props.show_cards == "true" ? "#E3B55A" : "#605C55"};
   margin-left: 36px;
 `;
 
@@ -266,7 +294,7 @@ const ActHeader = styled.h1`
     font-size: 5rem;
   }
   //font-display: block;
-  
+
   font-style: normal;
   font-weight: 800;
   font-size: 8rem;
@@ -304,10 +332,10 @@ const ActHeader = styled.h1`
 
 const ActSubheader = styled.h2`
   @media only screen and (max-width: 985px) {
-		grid-area: 2/1/3/-1;
-		//justify-self: center;
-		//font-size: 4vw;
-	}
+    grid-area: 2/1/3/-1;
+    //justify-self: center;
+    //font-size: 4vw;
+  }
 
   font-style: normal;
   font-weight: 800;
@@ -329,19 +357,17 @@ const ActSubheader = styled.h2`
 `;
 
 const ActSubHeaders = styled.div`
-
-@media only screen and (max-width: 985px) {
-		grid-area: 2/1/3/-1;
-		//justify-self: center;
-		//font-size: 4vw;
-	}
+  @media only screen and (max-width: 985px) {
+    grid-area: 2/1/3/-1;
+    //justify-self: center;
+    //font-size: 4vw;
+  }
   grid-area: 2/3/3/4;
-  
+
   display: grid;
   grid-gap: 10px;
-  h2{
-
-    font-family:'Permanent Marker';
+  h2 {
+    font-family: "Permanent Marker";
     color: red;
     padding-left: 6%;
     font-size: 3rem;
@@ -580,9 +606,13 @@ const ShowLetterButton = styled.div`
   margin-top: 25px;
 
   opacity: ${(props) =>
-    props.show_cards == "true" && props.result_from_florida == "true" ? "1" : "0"};
+    props.show_cards == "true" && props.result_from_florida == "true"
+      ? "1"
+      : "0"};
   z-index: ${(props) =>
-    props.show_cards == "true" && props.result_from_florida == "true" ? "10" : "-5"};
+    props.show_cards == "true" && props.result_from_florida == "true"
+      ? "10"
+      : "-5"};
   //background: linear-gradient(to bottom, #5FCC61, #318e33);
   //z-index: 1;
   cursor: pointer;
@@ -590,11 +620,17 @@ const ShowLetterButton = styled.div`
 
 const ShowLetterDeadEnd = styled.div`
   display: ${(props) =>
-    props.show_cards == "true" && props.result_from_florida == "true" ? "none" : "initial"};
+    props.show_cards == "true" && props.result_from_florida == "true"
+      ? "none"
+      : "initial"};
   opacity: ${(props) =>
-    props.show_cards == "true" && props.result_from_florida == "true" ? "0" : "1"};
+    props.show_cards == "true" && props.result_from_florida == "true"
+      ? "0"
+      : "1"};
   z-index: ${(props) =>
-    props.show_cards == "true" && props.result_from_florida == "true" ? "-5" : "10"};
+    props.show_cards == "true" && props.result_from_florida == "true"
+      ? "-5"
+      : "10"};
   grid-area: 5/2/6/5;
   color: white;
   padding: 16px 0px 0px 0px;
@@ -641,8 +677,7 @@ const StatusBar = styled.div`
 const StatusSpinner = styled.div`
   max-height: ${(props) =>
     props.show_status_spinner == "true" ? "100%" : "0px"};
-  opacity: ${(props) =>
-    props.show_status_spinner == "true" ? "1" : "0"};
+  opacity: ${(props) => (props.show_status_spinner == "true" ? "1" : "0")};
   transition: opacity 0.4s;
   transition-timing-function: ease-out;
 `;
@@ -677,7 +712,7 @@ const Span = styled.span`
   color: black;
 `;
 const ResultSection = styled.div`
-  grid-template-columns: 10px 2fr 1fr 10px;
+  grid-template-columns: 0px 2fr 1fr 0px;
   grid-template-areas:
     "  .     top top      .   "
     "  .    bottom offering   .  ";
@@ -708,13 +743,14 @@ const ResultSection = styled.div`
   transition: opacity 0.4s;
   //transition: opacity 2s linear;
   transform: ${(props) =>
-    props.show_cards == "true" ? "translate(0)" : "transform:translate(9999px)"};
+    props.show_cards == "true"
+      ? "translate(0)"
+      : "transform:translate(9999px)"};
   opacity: ${(props) => (props.show_cards == "true" ? "1" : "0")};
   z-index: ${(props) => (props.show_cards == "true" ? "10" : "-5")};
 
   padding: 0px 0px 20px 0px;
 
-  
   height: ${(props) => (props.show_cards == "true" ? "inherit" : "0px")};
 
   //margin: 0px 10px;
@@ -744,7 +780,7 @@ const NextSteps = styled.div`
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: white;
     //letter-spacing: 0.15em;
     //margin: 0 0 0 18px;
@@ -787,13 +823,13 @@ const NextSteps = styled.div`
     p {
       color: white;
       line-height: 1.6rem;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       align-self: start;
       justify-self: start;
       //padding: 0 8px;
       margin-top: 10px;
       &:nth-child(2) {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
 
         /* @media only screen and (max-width: 985px) {
 					margin-top: 10px;
@@ -1017,7 +1053,9 @@ const ResultSectionHeadersAlt = styled.div`
   } */
 
   display: ${(props) =>
-    props.show_cards == "true" && props.result_from_florida == "true" ? "flex" : "none"};
+    props.show_cards == "true" && props.result_from_florida == "true"
+      ? "flex"
+      : "none"};
 
   /* justify-content: center;
   align-items: center;
@@ -1577,7 +1615,6 @@ const Row1 = styled.div`
   @media only screen and (max-width: 1000px) {
     margin: 30px 20px 0px 48px;
   }
- 
 `;
 
 const Row2 = styled.div`
@@ -1591,8 +1628,6 @@ const Row2 = styled.div`
   @media only screen and (max-width: 1000px) {
     margin: 30px 20px 10px 48px;
   }
-
- 
 `;
 
 const CheckmarkMainWrapper = styled.div`
@@ -1621,7 +1656,9 @@ const Pic1 = styled.img`
 
   //border: 2px solid white;
   /* border: ${(props) =>
-    props.which_email_is_active == 1 ? "7px orange solid" : "7px white solid"}; */
+    props.which_email_is_active == 1
+      ? "7px orange solid"
+      : "7px white solid"}; */
   border: ${(props) =>
     props.which_email_is_active == 1 ? "7px orange solid" : "7px white solid"};
   width: 100px;
@@ -1638,7 +1675,9 @@ const Pic2 = styled.img`
 
   //border: 2px solid white;
   /* border: ${(props) =>
-    props.which_email_is_active == 2 ? "7px orange solid" : "7px white solid"}; */
+    props.which_email_is_active == 2
+      ? "7px orange solid"
+      : "7px white solid"}; */
   border: ${(props) =>
     props.which_email_is_active == 2 ? "7px orange solid" : "7px white solid"};
 
@@ -2031,7 +2070,8 @@ const ButtonTabOne = styled.div`
   font-size: 1.3rem;
   display: grid;
   opacity: ${(props) => (props.which_tab_is_active == 1 ? "1" : ".3")};
-  font-weight: ${(props) => (props.which_tab_is_active == 1 ? "600" : "initial")};
+  font-weight: ${(props) =>
+    props.which_tab_is_active == 1 ? "600" : "initial"};
   //border-top-left-radius: 13px;
 
   //background-color: #ccc;
@@ -2075,7 +2115,8 @@ const ButtonTabTwo = styled.div`
   align-self: center;
   justify-self: center;
   opacity: ${(props) => (props.which_tab_is_active == 2 ? "1" : ".3")};
-  font-weight: ${(props) => (props.which_tab_is_active == 2 ? "600" : "initial")};
+  font-weight: ${(props) =>
+    props.which_tab_is_active == 2 ? "600" : "initial"};
 
   //font-size: 1.3rem;
   //border-bottom-right-radius: 13px;
@@ -2494,7 +2535,7 @@ const TopBar = styled.div`
   margin: 48px 0;
 
   h1 {
-    color: black;
+    color: white;
     margin: 0 0 15px 0;
     font-weight: 600;
     letter-spacing: 0.03em;
@@ -2539,6 +2580,18 @@ const TopBar = styled.div`
 		margin: 0 auto;
 	} */
 `;
+
+const BottomBar = styled.div`
+  background: black;
+  grid-area: bottombar;
+  padding: 50px 0px 20px 30px;
+  display: grid;
+  grid-template-columns:
+    1fr minmax(120px, 180px) minmax(10px, 12px)
+    minmax(120px, 180px) minmax(min-content, max-content) 1fr;
+
+  grid-template-areas: " . cardOne . cardTwo nextSteps .";
+`;
 const MiddleBarResultSection = styled.div`
   display: grid;
   position: relative;
@@ -2552,7 +2605,8 @@ const MiddleBarResultSection = styled.div`
 
   grid-template-areas:
     "topbar topbar topbar topbar"
-    " cardOne . cardTwo nextSteps";
+    "bgfix bgfix bgfix bgfix"
+    "bottombar bottombar bottombar bottombar";
 
   @media only screen and (max-width: 985px) {
     margin: 0 auto;
@@ -2633,7 +2687,6 @@ function Act(props, ref) {
   const [firstSuggestedAddress, setFirstSuggestedAddress] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({ lat: "", lng: "" });
 
-  
   const [addressLineOne, setAddressLineOne] = React.useState("");
   const [addressLineTwo, setAddressLineTwo] = React.useState("");
   const [sendButtonClass, setSendButtonClass] = React.useState("button error");
@@ -2692,41 +2745,45 @@ function Act(props, ref) {
   // });
 
   const [results, setResults] = React.useState({
-  	one: {
-  		resultFromFlorida: "true",
-  		name: "Kaylee Tuck",
-  		firstName: "Kaylee",
-  		lastName: "Tuck",
-  		image: "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg",
-  		id: "ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880",
-  		email: "Kaylee.Tuck@myfloridahouse.gov",
-  		chamber: "House",
-  		party: "Republican",
-  		parent: "Florida Legislature",
-  		district: "55",
-  		fullDistrict: "Florida State House  ",
-  		fullDistrictTrunk: "Florida State House",
-  		address: "1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
-  		classification: "lower",
-  	},
-  	two: {
-  		name: "Ben Albritton",
-  		firstName: "Ben",
-  		lastName: "Albritton",
-  		image: "https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg",
-  		id: "ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8",
-  		email: "albritton.ben.web@flsenate.gov",
-  		chamber: "Senate",
-  		party: "Republican",
-  		parent: "Florida Legislature",
-  		district: "26",
-  		fullDistrict: "Florida State Senate  ",
-  		fullDistrictTrunk: "Florida State Senate",
-  		address: "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
-  		classification: "upper",
-  	},
-  	hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
-  })
+    one: {
+      resultFromFlorida: "true",
+      name: "Kaylee Tuck",
+      firstName: "Kaylee",
+      lastName: "Tuck",
+      image:
+        "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg",
+      id: "ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880",
+      email: "Kaylee.Tuck@myfloridahouse.gov",
+      chamber: "House",
+      party: "Republican",
+      parent: "Florida Legislature",
+      district: "55",
+      fullDistrict: "Florida State House  ",
+      fullDistrictTrunk: "Florida State House",
+      address:
+        "1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
+      classification: "lower",
+    },
+    two: {
+      name: "Ben Albritton",
+      firstName: "Ben",
+      lastName: "Albritton",
+      image:
+        "https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg",
+      id: "ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8",
+      email: "albritton.ben.web@flsenate.gov",
+      chamber: "Senate",
+      party: "Republican",
+      parent: "Florida Legislature",
+      district: "26",
+      fullDistrict: "Florida State Senate  ",
+      fullDistrictTrunk: "Florida State Senate",
+      address:
+        "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
+      classification: "upper",
+    },
+    hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
+  });
   //const [results, setResults] = React.useState({ one: {}, two: {} });
 
   // // const [results, setResults] = React.useState({
@@ -2840,7 +2897,7 @@ function Act(props, ref) {
       "about to check the latlang with address ",
       addressObject.formated_address
     );
-   
+
     const csrf = document
       .querySelector("meta[name='csrf-token']")
       .getAttribute("content");
@@ -2898,8 +2955,6 @@ function Act(props, ref) {
         }
       });
 
-   
-
     console.log("==== handle_address_selected_END ====");
   };
 
@@ -2912,8 +2967,6 @@ function Act(props, ref) {
     setStatus("....may take up to 60 seconds");
 
     setShowStatusSpinner("true");
-
-  
 
     const csrf = document
       .querySelector("meta[name='csrf-token']")
@@ -2971,8 +3024,6 @@ function Act(props, ref) {
           //props.setShowSteps(true)
         }
       });
-
-  
 
     console.log("==== handle_address_selected_END ====");
   };
@@ -3264,7 +3315,7 @@ function Act(props, ref) {
 
       setTimeout(function () {
         setSuccessFlag(true);
-        
+
         console.log("b44444 scroLL");
         myRef.current.scrollIntoView();
         console.log("bAFTER scroLL");
@@ -3274,10 +3325,10 @@ function Act(props, ref) {
 
   const GetHeader = () => {
     console.log("getHeader start &&&&&&&&&&&&&&&&&&&&&&");
-    
+
     console.log(results);
 
-    if (whichEmailIsActive=== 1) {
+    if (whichEmailIsActive === 1) {
       if (
         results.one.chamber !== undefined &&
         results.one.chamber == "Senate"
@@ -3480,17 +3531,13 @@ function Act(props, ref) {
   } else {
     return (
       <ActWrapper ref={LookupScrollToRef}>
-        <BGimage src={actBackground} ref={myRef}></BGimage>
-       {/*<BGimageFix />*/}
-       {/* <BGimageFixBottom />*/}
+        {/*<BGimage src={actBackground} ref={myRef}></BGimage>*/}
+
+        {/*<BGimageFixBottom />*/}
         <ActGrid show_cards={showCards}>
           <ActSection show_cards={showCards}>
-           
-
             <ActHeaderWrapper>
-              <ActHeader show_cards={showCards}>
-                ACT NOW
-              </ActHeader>
+              <ActHeader show_cards={showCards}>ACT NOW</ActHeader>
 
               {/*<ActSubheader show_cards={showCards}>
                 ...3 quick steps
@@ -3499,10 +3546,9 @@ function Act(props, ref) {
 
             <ActSubHeaders>
               <h2>Lookup & Contact</h2>
-              <h2 style={{color: "black", marginTop: "-20px"}}>your State Reps</h2>
-
-
-
+              <h2 style={{ color: "black", marginTop: "-20px" }}>
+                your State Reps
+              </h2>
             </ActSubHeaders>
 
             {/*<ActBulletPointsWrapper>
@@ -3566,8 +3612,6 @@ function Act(props, ref) {
           </ActSection>
 
           <ResultSection show_cards={showCards}>
-           
-
             <MiddleBarResultSection>
               <TopBar>
                 <h1>Results</h1>
@@ -3584,59 +3628,63 @@ function Act(props, ref) {
                   <h5 onClick={resetSearch}>new search</h5>
                 </div>
               </TopBar>
-              <CardOne>
-                <CardOneWrapper which_email_is_active={whichEmailIsActive}>
-                  <CardPicture
-                    src={results.one.image ? results.one.image : ""}
-                  ></CardPicture>
+              <BGimageFix />
+              <BottomBar>
+                <CardOne>
+                  <CardOneWrapper which_email_is_active={whichEmailIsActive}>
+                    <CardPicture
+                      src={results.one.image ? results.one.image : ""}
+                    ></CardPicture>
 
-                  <CardTemplate src={cardTemplate}></CardTemplate>
+                    <CardTemplate src={cardTemplate}></CardTemplate>
 
-                  <CardNameOfRep>
-                    {results.one.name ? results.one.name : ""}
-                  </CardNameOfRep>
+                    <CardNameOfRep>
+                      {results.one.name ? results.one.name : ""}
+                    </CardNameOfRep>
 
-                  <CardOneSub>{results.one.fullDistrictTrunk}</CardOneSub>
-                </CardOneWrapper>
-              </CardOne>
+                    <CardOneSub>{results.one.fullDistrictTrunk}</CardOneSub>
+                  </CardOneWrapper>
+                </CardOne>
 
-              <CardTwo>
-                <CardTwoWrapper which_email_is_active={whichEmailIsActive}>
-                  <CardPicture
-                    src={results.two.image ? results.two.image : ""}
-                  ></CardPicture>
+                <CardTwo>
+                  <CardTwoWrapper which_email_is_active={whichEmailIsActive}>
+                    <CardPicture
+                      src={results.two.image ? results.two.image : ""}
+                    ></CardPicture>
 
-                  <CardTemplate src={cardTemplate}></CardTemplate>
+                    <CardTemplate src={cardTemplate}></CardTemplate>
 
-                  <CardNameOfRep>
-                    {results.two.name ? results.two.name : ""}
-                  </CardNameOfRep>
+                    <CardNameOfRep>
+                      {results.two.name ? results.two.name : ""}
+                    </CardNameOfRep>
 
-                  <CardTwoSub>{results.two.fullDistrictTrunk}</CardTwoSub>
-                </CardTwoWrapper>
-              </CardTwo>
+                    <CardTwoSub>{results.two.fullDistrictTrunk}</CardTwoSub>
+                  </CardTwoWrapper>
+                </CardTwo>
 
-              <NextSteps>
-                <h1>NEXT STEP:</h1>
-                {/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
-                <h2>Join our campaign to legalize cannabis.</h2>
-                <div>
-                  <p>How it works?</p>
-                  <p>
-                    We print your personalized letter on top-notch quality paper
-                    and mail it to each of your reps via first class USPS mail.
-                  </p>
-                  <p></p>
-                </div>
-                {/* <h2>checkout the letters</h2> */}
-                {/* <div>
+                <NextSteps>
+                  <h1>NEXT STEP:</h1>
+                  {/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
+                  <h2>Join our campaign to legalize cannabis.</h2>
+                  <div>
+                    <p>How it works?</p>
+                    <p>
+                      We print your personalized letter on top-notch quality
+                      paper and mail it to each of your reps via first class
+                      USPS mail.
+                    </p>
+                    <p></p>
+                  </div>
+                  {/* <h2>checkout the letters</h2> */}
+                  {/* <div>
 								<p>
 									Checkout the personalized letter we generated below. <br />
 									We'll take care of preparing the letters and mail them to each of yh2our
 									Representatives via United States Postal Service.
 								</p>
 							</div> */}
-              </NextSteps>
+                </NextSteps>
+              </BottomBar>
               {/* <LinerVertical />
 						<LinerHorizontal /> */}
             </MiddleBarResultSection>
@@ -3679,7 +3727,6 @@ function Act(props, ref) {
 							</DemoIndicatorDotsWrapper> */}
 
                 <EmailDemoWrapper which_tab_is_active={whichTabIsActive}>
-                 
                   <EmailDemoCenter>
                     <EmailDemo>
                       <SubjectBox>
@@ -3831,7 +3878,6 @@ function Act(props, ref) {
                 </EmailDemoWrapper>
 
                 <LetterDemoWrapper which_tab_is_active={whichTabIsActive}>
-                  
                   <LetterDemoCenter>
                     <LetterDemo>
                       {/* <h2>body</h2> */}
@@ -4421,7 +4467,6 @@ function Act(props, ref) {
                     />
                     <div />
                   </div>
-                 
                 </Strip>
               </EmailOffer>
             </EmailOfferWrapper>
