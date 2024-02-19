@@ -83,6 +83,7 @@ const BGimageFix = styled.div`
   left: 0;
   right: 0;
   height: 35px;
+  border-top: 1px solid white;
   grid-area: bgfix;
   /* background: rgb(255, 255, 255);
   background: linear-gradient(
@@ -1963,8 +1964,23 @@ const ButtonTabsWrapper = styled.div`
   grid-area: 1/1/2/2;
 
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: max-content max-content min-content max-content;
+  grid-template-areas: 
+  
+  "question usps or email"
+      
   //height: 60px;
+`;
+
+const ButtonsHeader = styled.h1`
+
+  grid-area: question;
+  font-family: Fira Sans;
+  font-size: 2rem;
+  justify-self: start;
+  align-self: center;
+
+
 `;
 
 const DemoIndicatorDotsWrapper = styled.div`
@@ -2020,22 +2036,24 @@ const Dot2 = styled.div`
   align-self: center;
   justify-self: center;
 `;
+const Or = styled.h3`
+    grid-area: or;
+    font-family: Permanent Marker, Fira Sans;
+    align-self: center;
+    justify-self: center;
+    font-size: 2rem;
 
+`;
 const ButtonOneTabWrapper = styled.div`
   display: grid;
-  border-top-left-radius: 13px;
-  border-right: 1px solid #77767657;
-  border-bottom: ${(props) =>
-    props.which_tab_is_active === 1 ? "none" : "1px solid #77767657"};
+  grid-area: usps;
+  //border-top-left-radius: 13px;
+  //border-right: 1px solid #77767657;
+  /* border-bottom: ${(props) =>
+    props.which_tab_is_active === 1 ? "none" : "1px solid #77767657"}; */
 
   //grid-template-columns: 1fr 1fr;
-  cursor: pointer;
-  background-color: ${(props) =>
-    props.which_tab_is_active === 1 ? "#fcfcfc" : "#ddd"};
-  &:hover {
-    background-color: ${(props) =>
-      props.which_tab_is_active === 1 ? "#fcfcfc" : "#e9e9e9"};
-  }
+  justify-self: end;
 `;
 
 const ButtonGuts = styled.div`
@@ -2083,22 +2101,26 @@ const USPS = styled.img`
   justify-self: center;
   align-self: center;
   padding: 12px 24px;
+  //border: 1px solid black;
+
+  cursor: pointer;
+  background-color: ${(props) =>
+    props.which_tab_is_active === 1 ? "#fcfcfc" : "#ddd"};
+  &:hover {
+    background-color: ${(props) =>
+      props.which_tab_is_active === 1 ? "#fcfcfc" : "#e9e9e9"};
+  }
 `;
 
 const ButtonTwoTabWrapper = styled.div`
   display: grid;
-  border-top-right-radius: 13px;
-  cursor: pointer;
-  border-left: 1px solid #77767657;
-  border-bottom: ${(props) =>
-    props.which_tab_is_active === 2 ? "none" : "1px solid #77767657"};
-
-  background-color: ${(props) =>
-    props.which_tab_is_active === 2 ? "#fcfcfc" : "#ddd"};
-  &:hover {
-    background-color: ${(props) =>
-      props.which_tab_is_active === 2 ? "#fcfcfc" : "#e9e9e9"};
-  }
+  //border-top-right-radius: 13px;
+  justify-self: start;
+  grid-area: email;
+  //border-left: 1px solid #77767657;
+  /* border-bottom: ${(props) =>
+    props.which_tab_is_active === 2 ? "none" : "1px solid #77767657"}; */
+    
 `;
 
 const ButtonTabTwo = styled.div`
@@ -2130,6 +2152,14 @@ const GmailIcon = styled.img`
   max-width: 115px;
   width: 100%;
   padding: 12px 24px;
+  //border: 1px solid black;
+  cursor: pointer;
+  background-color: ${(props) =>
+    props.which_tab_is_active === 2 ? "#fcfcfc" : "#ddd"};
+  &:hover {
+    background-color: ${(props) =>
+      props.which_tab_is_active === 2 ? "#fcfcfc" : "#e9e9e9"};
+  }
 `;
 
 const DemoWrapper = styled.div`
@@ -2532,10 +2562,10 @@ const TopBar = styled.div`
   //border: 1px solid orange;
   grid-area: topbar;
   justify-self: start;
-  margin: 48px 0;
+  margin: 48px 0px 48px 120px;
 
   h1 {
-    color: white;
+    color: black;
     margin: 0 0 15px 0;
     font-weight: 600;
     letter-spacing: 0.03em;
@@ -3665,7 +3695,7 @@ function Act(props, ref) {
                 <NextSteps>
                   <h1>NEXT STEP:</h1>
                   {/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
-                  <h2>Join our campaign to legalize cannabis.</h2>
+                  <h2>Contact your State Representatives.</h2>
                   <div>
                     <p>How it works?</p>
                     <p>
@@ -3698,26 +3728,28 @@ function Act(props, ref) {
                 show_cards={showCards}
               >
                 <ButtonTabsWrapper>
+                <ButtonsHeader>Pick one: </ButtonsHeader>
                   <ButtonOneTabWrapper
                     //value={1}
-                    which_tab_is_active={whichTabIsActive}
+                    //which_tab_is_active={whichTabIsActive}
                     //onClick={HandleButtonTabOne}
-                    onClick={HandleLetterButton}
+                    //onClick={HandleLetterButton}
                   >
                     <ButtonGuts>
                       <ButtonTabOne which_tab_is_active={whichTabIsActive}>
-                        <USPS src={usps} />
+                        <USPS src={usps} which_tab_is_active={whichTabIsActive} onClick={HandleLetterButton} />
                       </ButtonTabOne>
                     </ButtonGuts>
                   </ButtonOneTabWrapper>
+                  <Or>OR</Or>
                   <ButtonTwoTabWrapper
                     //value={2}
-                    which_tab_is_active={whichTabIsActive}
+                    //which_tab_is_active={whichTabIsActive}
                     //onClick={HandleButtonTabTwo}
-                    onClick={HandleEmailButton}
+                    //onClick={HandleEmailButton}
                   >
                     <ButtonTabTwo which_tab_is_active={whichTabIsActive}>
-                      <GmailIcon src={gmail_icon} />
+                      <GmailIcon src={gmail_icon} which_tab_is_active={whichTabIsActive} onClick={HandleEmailButton}/>
                     </ButtonTabTwo>
                   </ButtonTwoTabWrapper>
                 </ButtonTabsWrapper>
