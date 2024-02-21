@@ -713,7 +713,7 @@ const Span = styled.span`
   color: black;
 `;
 const ResultSection = styled.div`
-  grid-template-columns: 0px 2fr 1fr 0px;
+  grid-template-columns: 0px 2fr 1.75fr 0px;
   grid-template-areas:
     "  .     top top      .   "
     "  .    bottom offering   .  ";
@@ -1329,8 +1329,9 @@ const ShowOfferSection = styled.div`
   //background-color: white;
   display: ${(props) => (props.show_cards == "true" ? "WTF" : "none")};
   margin: 0px auto 0 auto;
-  width: 95%;
+  width: 55%;
   max-width: 1000px;
+  float: left;
 `;
 
 const ResultsBlurb = styled.div`
@@ -1528,7 +1529,7 @@ const LetterOfferWrapper = styled.div`
   left: 42%;
   top: 69%; */
   max-width: 800px;
-  justify-self: center;
+  justify-self: start;
   display: ${(props) => (props.which_tab_is_active === 2 ? "none" : "grid")};
   //display: grid;
   margin-top: 30px;
@@ -1594,7 +1595,7 @@ const Total = styled.h2`
 
 const Price = styled.h1`
   font-weight: 400;
-  font-size: 4rem;
+  font-size: 2.5rem;
   //justify-self: center;
 
   margin: 0 0 20px 20px;
@@ -1653,7 +1654,7 @@ const PicWrapper = styled.div`
 `;
 
 const Pic1 = styled.img`
-  border-radius: 50px;
+  border-radius: 34px;
 
   //border: 2px solid white;
   /* border: ${(props) =>
@@ -1672,7 +1673,7 @@ const Pic1 = styled.img`
 `;
 
 const Pic2 = styled.img`
-  border-radius: 50px;
+  border-radius: 34px;
 
   //border: 2px solid white;
   /* border: ${(props) =>
@@ -1965,22 +1966,17 @@ const ButtonTabsWrapper = styled.div`
 
   display: grid;
   grid-template-columns: max-content max-content min-content max-content;
-  grid-template-areas: 
-  
-  "question usps or email"
-      
+  grid-template-areas: "question usps or email";
+
   //height: 60px;
 `;
 
 const ButtonsHeader = styled.h1`
-
   grid-area: question;
   font-family: Fira Sans;
   font-size: 2rem;
   justify-self: start;
   align-self: center;
-
-
 `;
 
 const DemoIndicatorDotsWrapper = styled.div`
@@ -2037,12 +2033,11 @@ const Dot2 = styled.div`
   justify-self: center;
 `;
 const Or = styled.h3`
-    grid-area: or;
-    font-family: Permanent Marker, Fira Sans;
-    align-self: center;
-    justify-self: center;
-    font-size: 2rem;
-
+  grid-area: or;
+  font-family: Permanent Marker, Fira Sans;
+  align-self: center;
+  justify-self: center;
+  font-size: 2rem;
 `;
 const ButtonOneTabWrapper = styled.div`
   display: grid;
@@ -2120,7 +2115,6 @@ const ButtonTwoTabWrapper = styled.div`
   //border-left: 1px solid #77767657;
   /* border-bottom: ${(props) =>
     props.which_tab_is_active === 2 ? "none" : "1px solid #77767657"}; */
-    
 `;
 
 const ButtonTabTwo = styled.div`
@@ -3727,37 +3721,45 @@ function Act(props, ref) {
                 result_from_florida={resultFromFlorida}
                 show_cards={showCards}
               >
+                {/*{" "}
                 <ButtonTabsWrapper>
-                <ButtonsHeader>Pick one: </ButtonsHeader>
+                  <ButtonsHeader>Pick one: </ButtonsHeader>
                   <ButtonOneTabWrapper
-                    //value={1}
-                    //which_tab_is_active={whichTabIsActive}
-                    //onClick={HandleButtonTabOne}
-                    //onClick={HandleLetterButton}
+                  //value={1}
+                  //which_tab_is_active={whichTabIsActive}
+                  //onClick={HandleButtonTabOne}
+                  //onClick={HandleLetterButton}
                   >
                     <ButtonGuts>
                       <ButtonTabOne which_tab_is_active={whichTabIsActive}>
-                        <USPS src={usps} which_tab_is_active={whichTabIsActive} onClick={HandleLetterButton} />
+                        <USPS
+                          src={usps}
+                          which_tab_is_active={whichTabIsActive}
+                          onClick={HandleLetterButton}
+                        />
                       </ButtonTabOne>
                     </ButtonGuts>
                   </ButtonOneTabWrapper>
                   <Or>OR</Or>
                   <ButtonTwoTabWrapper
-                    //value={2}
-                    //which_tab_is_active={whichTabIsActive}
-                    //onClick={HandleButtonTabTwo}
-                    //onClick={HandleEmailButton}
+                  //value={2}
+                  //which_tab_is_active={whichTabIsActive}
+                  //onClick={HandleButtonTabTwo}
+                  //onClick={HandleEmailButton}
                   >
                     <ButtonTabTwo which_tab_is_active={whichTabIsActive}>
-                      <GmailIcon src={gmail_icon} which_tab_is_active={whichTabIsActive} onClick={HandleEmailButton}/>
+                      <GmailIcon
+                        src={gmail_icon}
+                        which_tab_is_active={whichTabIsActive}
+                        onClick={HandleEmailButton}
+                      />
                     </ButtonTabTwo>
                   </ButtonTwoTabWrapper>
-                </ButtonTabsWrapper>
-
+                </ButtonTabsWrapper>{" "}
+          */}
                 {/* <DemoIndicatorDotsWrapper>
 								
 							</DemoIndicatorDotsWrapper> */}
-
                 <EmailDemoWrapper which_tab_is_active={whichTabIsActive}>
                   <EmailDemoCenter>
                     <EmailDemo>
@@ -3908,7 +3910,6 @@ function Act(props, ref) {
                   {/* <RightArrow src={rightArrow} /> */}
                   {/* </EmailDemoRight> */}
                 </EmailDemoWrapper>
-
                 <LetterDemoWrapper which_tab_is_active={whichTabIsActive}>
                   <LetterDemoCenter>
                     <LetterDemo>
