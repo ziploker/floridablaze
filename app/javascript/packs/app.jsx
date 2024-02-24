@@ -262,27 +262,28 @@ function App({ d }) {
             exact
             path="/"
             element={
-              <Home
-                //handleSuccessfulAuth={handleSuccessfulAuth}
-                login_clicked={loginClicked}
-                set_login_clicked={setLoginClicked}
-                allStoriesFromController={allStoriesFromController}
-                allStories={allStories}
-                setAllStories={setAllStories}
-                allStoriesPlaceholder={allStoriesPlaceholder}
-                totalNumOfStoriesOnServer={totalNumOfStoriesOnServer}
-                show_offer={showOffer}
-                //stories={d.stories}
-                // lastStory={lastStory}
-                // secondToLastStory={secondToLastStory}
-                // thirdToLastStory={thirdToLastStory}
-                // fourthToLastStory={fourthToLastStory}
-                // setLastStory={setLastStory}
-                // setSecondToLastStory={setSecondToLastStory}
-                // setThirdToLastStory={setThirdToLastStory}
-                // setFourthToLastStory={setFourthToLastStory}
-                page={page}
-              />
+              // <Home
+              //   //handleSuccessfulAuth={handleSuccessfulAuth}
+              //   login_clicked={loginClicked}
+              //   set_login_clicked={setLoginClicked}
+              //   allStoriesFromController={allStoriesFromController}
+              //   allStories={allStories}
+              //   setAllStories={setAllStories}
+              //   allStoriesPlaceholder={allStoriesPlaceholder}
+              //   totalNumOfStoriesOnServer={totalNumOfStoriesOnServer}
+              //   show_offer={showOffer}
+              //   //stories={d.stories}
+              //   // lastStory={lastStory}
+              //   // secondToLastStory={secondToLastStory}
+              //   // thirdToLastStory={thirdToLastStory}
+              //   // fourthToLastStory={fourthToLastStory}
+              //   // setLastStory={setLastStory}
+              //   // setSecondToLastStory={setSecondToLastStory}
+              //   // setThirdToLastStory={setThirdToLastStory}
+              //   // setFourthToLastStory={setFourthToLastStory}
+              //   page={page}
+              // />
+              <h1>............</h1>
             }
           />
           <Route
@@ -337,7 +338,6 @@ function App({ d }) {
               />
             }
           />
-
         </Routes>
         <PayPalScriptProvider options={initialOptions}>
           <Act

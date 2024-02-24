@@ -22,6 +22,7 @@ gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 
 gem "shakapacker", "= 7.2.2"
+#gem 'shakapacker', '7.3.0.beta.1'
 gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'mailgun-ruby', '~>1.2.3'

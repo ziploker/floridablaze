@@ -6,13 +6,19 @@ import { webpackConfig as baseClientWebpackConfig, merge } from "shakapacker";
 
 const commonOptions = {
   resolve: {
-    extensions: [".css", ".ts", ".tsx"],
+    // extensions: [".css", ".ts", ".tsx"],
+    extensions: [".css"],
   },
-  mode: "development",
+  //mode: "development",
 };
 
 // Copy the object using merge b/c the baseClientWebpackConfig and commonOptions are mutable globals
 const commonWebpackConfig = () =>
   merge({}, baseClientWebpackConfig, commonOptions);
+
+console.log(
+  "{{{{{{{{{{{{{{commonWebpackConfig}}}}}}}}}}}}}}}}}",
+  commonWebpackConfig
+);
 
 export default commonWebpackConfig;

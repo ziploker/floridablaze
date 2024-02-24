@@ -17,7 +17,7 @@ import floridaMaskSmaller5 from "../../assets/images/floridaMaskSmaller5.png";
 import flFists from "../../assets/images/flFists.png";
 import thebullet from "../../assets/images/thebullet.png";
 
-import wleaf from "../../assets/images/wleaf.jpg";
+import wleaf from "../../assets/images/wleafRed.jpg";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -319,7 +319,7 @@ const LoginCard = styled.div`
   //margin-left: 20px;
   //margin-top: 100px;
   //padding: 50px 0px 0px 0px;
-  padding: 100px 10px 0px 10px;
+  padding: 75px 10px 0px 10px;
 
   background-color: #fff;
   //border: 1px solid transparent;
@@ -488,7 +488,7 @@ const LeftSection = styled.div`
     color: rgb(6, 7, 1, 0.9);
     padding: 0 0 0 10px;
     margin: 0px;
-    font-size: 5rem;
+    font-size: 3rem;
     word-break: keep-all;
     background: white;
     //text-align: center;

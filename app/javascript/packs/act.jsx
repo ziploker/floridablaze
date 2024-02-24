@@ -51,7 +51,42 @@ const ActWrapper = styled.div`
   @media only screen and (max-width: 985px) {
     //overflow: hidden;
   }
+  background-image: linear-gradient(
+    0deg,
+    hsl(0deg 0% 0%) 0%,
+    hsl(0deg 1% 16%) 4%,
+    hsl(0deg 2% 33%) 10%,
+    hsl(0deg 3% 48%) 19%,
+    hsl(0deg 8% 64%) 32%,
+    hsl(0deg 22% 79%) 53%,
+    hsl(0deg 100% 93%) 100%
+  );
 
+  background-image: linear-gradient(
+    0deg,
+    hsl(0deg 0% 0%) 0%,
+    hsl(0deg 0% 5%) 0%,
+    hsl(0deg 1% 9%) 0%,
+    hsl(0deg 1% 14%) 0%,
+    hsl(0deg 1% 19%) 0%,
+    hsl(0deg 2% 23%) 1%,
+    hsl(0deg 2% 28%) 2%,
+    hsl(0deg 2% 33%) 3%,
+    hsl(0deg 3% 37%) 4%,
+    hsl(0deg 3% 42%) 6%,
+    hsl(0deg 3% 46%) 8%,
+    hsl(0deg 4% 51%) 10%,
+    hsl(0deg 5% 55%) 13%,
+    hsl(0deg 6% 59%) 16%,
+    hsl(0deg 8% 64%) 20%,
+    hsl(0deg 11% 68%) 25%,
+    hsl(0deg 14% 72%) 31%,
+    hsl(0deg 19% 77%) 38%,
+    hsl(0deg 26% 81%) 47%,
+    hsl(0deg 36% 85%) 59%,
+    hsl(0deg 56% 89%) 79%,
+    hsl(0deg 100% 93%) 100%
+  );
   ////background-color: black;
   //background-image: url(${actBackground});
   //background-position: 0 50%;
@@ -1584,7 +1619,7 @@ const Total = styled.h2`
   font-size: 2rem;
   //justify-self: center;
 
-  margin: 25px 0 24px 20px;
+  margin: 25px 0 24px 0;
 
   @media only screen and (max-width: 1000px) {
     margin: 62px 0 24px 50px;
@@ -1598,7 +1633,7 @@ const Price = styled.h1`
   font-size: 2.5rem;
   //justify-self: center;
 
-  margin: 0 0 20px 20px;
+  margin: 0 0 20px 0;
 
   @media only screen and (max-width: 1000px) {
     margin: 0 0 46px 48px;
@@ -1612,7 +1647,7 @@ const Row1 = styled.div`
 
   cursor: pointer;
 
-  margin: 30px 20px 0px 20px;
+  //margin: 30px 0px 30px 0px;
 
   @media only screen and (max-width: 1000px) {
     margin: 30px 20px 0px 48px;
@@ -1625,7 +1660,7 @@ const Row2 = styled.div`
 
   cursor: pointer;
 
-  margin: 30px 20px 30px 20px;
+  margin: 20px 0px 30px 0px;
 
   @media only screen and (max-width: 1000px) {
     margin: 30px 20px 10px 48px;
@@ -1644,8 +1679,8 @@ const PicWrapper = styled.div`
   background-repeat: no-repeat;
   background-image: url(${samplepic2});
   border-radius: 50px;
-  width: 100px;
-  height: 120px;
+  width: 80px;
+  height: 90px;
 
   @media only screen and (max-width: 1000px) {
     width: 175px;
@@ -1663,8 +1698,8 @@ const Pic1 = styled.img`
       : "7px white solid"}; */
   border: ${(props) =>
     props.which_email_is_active == 1 ? "7px orange solid" : "7px white solid"};
-  width: 100px;
-  height: 120px;
+  width: 80px;
+  height: 90px;
 
   @media only screen and (max-width: 1000px) {
     width: 175px;
@@ -1683,8 +1718,8 @@ const Pic2 = styled.img`
   border: ${(props) =>
     props.which_email_is_active == 2 ? "7px orange solid" : "7px white solid"};
 
-  width: 100px;
-  height: 120px;
+  width: 80px;
+  height: 90px;
 
   @media only screen and (max-width: 1000px) {
     width: 175px;
@@ -2701,7 +2736,7 @@ function Act(props, ref) {
   const { LookupInputRef } = ref;
   const [tester, setTester] = useState("testing");
   const [addressObject, setAddressObject] = useState(null);
-  const [showCards, setShowCards] = React.useState("true");
+  const [showCards, setShowCards] = React.useState("false");
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
 
   const [searchButtonActive, setSearchButtonActive] = React.useState(false);
@@ -2768,47 +2803,48 @@ function Act(props, ref) {
   //   },
   // });
 
-  const [results, setResults] = React.useState({
-    one: {
-      resultFromFlorida: "true",
-      name: "Kaylee Tuck",
-      firstName: "Kaylee",
-      lastName: "Tuck",
-      image:
-        "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg",
-      id: "ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880",
-      email: "Kaylee.Tuck@myfloridahouse.gov",
-      chamber: "House",
-      party: "Republican",
-      parent: "Florida Legislature",
-      district: "55",
-      fullDistrict: "Florida State House  ",
-      fullDistrictTrunk: "Florida State House",
-      address:
-        "1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
-      classification: "lower",
-    },
-    two: {
-      name: "Ben Albritton",
-      firstName: "Ben",
-      lastName: "Albritton",
-      image:
-        "https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg",
-      id: "ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8",
-      email: "albritton.ben.web@flsenate.gov",
-      chamber: "Senate",
-      party: "Republican",
-      parent: "Florida Legislature",
-      district: "26",
-      fullDistrict: "Florida State Senate  ",
-      fullDistrictTrunk: "Florida State Senate",
-      address:
-        "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
-      classification: "upper",
-    },
-    hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
-  });
-  //const [results, setResults] = React.useState({ one: {}, two: {} });
+  // // // const [results, setResults] = React.useState({
+  // // //   one: {
+  // // //     resultFromFlorida: "true",
+  // // //     name: "Kaylee Tuck",
+  // // //     firstName: "Kaylee",
+  // // //     lastName: "Tuck",
+  // // //     image:
+  // // //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg",
+  // // //     id: "ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880",
+  // // //     email: "Kaylee.Tuck@myfloridahouse.gov",
+  // // //     chamber: "House",
+  // // //     party: "Republican",
+  // // //     parent: "Florida Legislature",
+  // // //     district: "55",
+  // // //     fullDistrict: "Florida State House  ",
+  // // //     fullDistrictTrunk: "Florida State House",
+  // // //     address:
+  // // //       "1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
+  // // //     classification: "lower",
+  // // //   },
+  // // //   two: {
+  // // //     name: "Ben Albritton",
+  // // //     firstName: "Ben",
+  // // //     lastName: "Albritton",
+  // // //     image:
+  // // //       "https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg",
+  // // //     id: "ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8",
+  // // //     email: "albritton.ben.web@flsenate.gov",
+  // // //     chamber: "Senate",
+  // // //     party: "Republican",
+  // // //     parent: "Florida Legislature",
+  // // //     district: "26",
+  // // //     fullDistrict: "Florida State Senate  ",
+  // // //     fullDistrictTrunk: "Florida State Senate",
+  // // //     address:
+  // // //       "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
+  // // //     classification: "upper",
+  // // //   },
+  // // //   hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
+  // // // });
+
+  const [results, setResults] = React.useState({ one: {}, two: {} });
 
   // // const [results, setResults] = React.useState({
   // // 	one: {
