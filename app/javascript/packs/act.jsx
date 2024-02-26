@@ -51,7 +51,7 @@ const ActWrapper = styled.div`
   @media only screen and (max-width: 985px) {
     //overflow: hidden;
   }
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     0deg,
     hsl(0deg 0% 0%) 0%,
     hsl(0deg 1% 16%) 4%,
@@ -60,9 +60,9 @@ const ActWrapper = styled.div`
     hsl(0deg 8% 64%) 32%,
     hsl(0deg 22% 79%) 53%,
     hsl(0deg 100% 93%) 100%
-  );
+  ); */
 
-  background-image: linear-gradient(
+  /* background: linear-gradient(
     0deg,
     hsl(0deg 0% 0%) 0%,
     hsl(0deg 0% 5%) 0%,
@@ -86,7 +86,7 @@ const ActWrapper = styled.div`
     hsl(0deg 36% 85%) 59%,
     hsl(0deg 56% 89%) 79%,
     hsl(0deg 100% 93%) 100%
-  );
+  ); */
   ////background-color: black;
   //background-image: url(${actBackground});
   //background-position: 0 50%;
@@ -406,7 +406,7 @@ const ActSubHeaders = styled.div`
     font-family: "Permanent Marker";
     color: red;
     padding-left: 6%;
-    font-size: 3rem;
+    font-size: 2.6rem;
   }
 `;
 
@@ -2769,6 +2769,37 @@ function Act(props, ref) {
   const [showLoader, setShowLoader] = React.useState(false);
   const [query, setQuery] = useState("");
   const [isAddressMenuOpen, setIsAddressMenuOpen] = React.useState(false);
+
+  const gradient = {
+    someColor: `
+      linear-gradient(
+        0deg,
+        hsl(0deg 0% 0%) 0%,
+        hsl(0deg 0% 5%) 0%,
+        hsl(0deg 1% 9%) 0%,
+        hsl(0deg 1% 14%) 0%,
+        hsl(0deg 1% 19%) 0%,
+        hsl(0deg 2% 23%) 1%,
+        hsl(0deg 2% 28%) 2%,
+        hsl(0deg 2% 33%) 3%,
+        hsl(0deg 3% 37%) 4%,
+        hsl(0deg 3% 42%) 6%,
+        hsl(0deg 3% 46%) 8%,
+        hsl(0deg 4% 51%) 10%,
+        hsl(0deg 5% 55%) 13%,
+        hsl(0deg 6% 59%) 16%,
+        hsl(0deg 8% 64%) 20%,
+        hsl(0deg 11% 68%) 25%,
+        hsl(0deg 14% 72%) 31%,
+        hsl(0deg 19% 77%) 38%,
+        hsl(0deg 26% 81%) 47%,
+        hsl(0deg 36% 85%) 59%,
+        hsl(0deg 56% 89%) 79%,
+        hsl(0deg 100% 93%) 100%
+      )
+  `,
+  };
+
   // const [results, setResults] = React.useState({
   //   one: {
   //     resultFromFlorida: "true",
@@ -3590,7 +3621,13 @@ function Act(props, ref) {
     return null;
   } else {
     return (
-      <ActWrapper ref={LookupScrollToRef}>
+      <ActWrapper
+        style={{
+          background: showCards == "true" ? "white" : gradient.someColor,
+        }}
+        show_cards={showCards}
+        ref={LookupScrollToRef}
+      >
         {/*<BGimage src={actBackground} ref={myRef}></BGimage>*/}
 
         {/*<BGimageFixBottom />*/}
