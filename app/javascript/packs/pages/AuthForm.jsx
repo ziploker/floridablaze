@@ -187,22 +187,41 @@ const Button = styled.button`
 `;
 
 const ButtonForSignup = styled.button`
-  border-color: ${(props) => (props.isBtnDisabled ? "#cccccc" : "#3f4eae")};
-  border-radius: 3px;
+  //border-color: ${(props) => (props.isBtnDisabled ? "#cccccc" : "#3f4eae")};
+  /* border-radius: 3px;
   //padding: 1rem;
   color: white;
   font-weight: 700;
   width: 100%;
   margin-bottom: 1rem;
   font-size: 2rem;
-  height: 100px;
+  height: 58px;
   cursor: pointer;
 
   background: linear-gradient(to bottom, #5fcc61, #318e33);
-  /* border-color: ${(props) =>
-    props.isBtnDisabled ? "#cccccc" : "#3f4eae"} ;*/
+  
 
-  border-color: #5fcc61;
+  border-color: #5fcc61; */
+
+  background: linear-gradient(to right, #e52d27 0%, #b31217  51%, #e52d27  100%);
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+          
+  &:hover{
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+
+  }
+         
 
   @media only screen and (max-width: 985px) {
     font-size: 4rem;

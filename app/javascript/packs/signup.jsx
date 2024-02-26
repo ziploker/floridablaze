@@ -66,7 +66,7 @@ const SignupWrapper = styled.div`
     grid-template-columns: 2% 1fr 2%;
     min-width: 100%;
 
-    border-top: 25px white solid;
+    //border-top: 25px white solid;
 
     //padding-left: 20px;
     //justify-self: center;
@@ -105,7 +105,7 @@ const SignupWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  grid-template-columns: 8% 1fr 1fr 8%;
+  grid-template-columns: minmax(8%, 1fr) 1fr minmax(500px, 700px) minmax(8%, 1fr);
   //grid-template-rows: 1fr minmax(min-content, max-content) 1fr;
   //padding-top: 60px;
   //padding-bottom: 20px;
@@ -114,7 +114,7 @@ const SignupWrapper = styled.div`
   //max-height: 620px;
   //background-color: RGB(244, 244, 244);
 
-  border-top: 47px white solid;
+  //border-top: 47px white solid;
   border-bottom: 37px white solid;
 
   //justify-self: start;
@@ -486,7 +486,7 @@ const LeftSection = styled.div`
 
   h1 {
     color: rgb(6, 7, 1, 0.9);
-    padding: 0 0 0 10px;
+    padding: 47px 0 0 10px;
     margin: 0px;
     font-size: 3rem;
     word-break: keep-all;
@@ -548,14 +548,14 @@ const RightSection = styled.div`
   padding: 0px 50px 50px 14px;
 
   /* grid-template-columns: 28px 30px minmax(430px, 620px); */
-  grid-template-columns: 1px 30px 1fr;
-  grid-template-rows: 260px repeat(4, 95px) 1fr;
+  grid-template-columns: 54px 30px 1fr;
+  grid-template-rows: 186px repeat(4, 58px) 1fr;
 
   align-self: start;
   //min-width: 525px;
   //max-width: 600px;
 
-  //max-width: 700px;
+  max-width: 800px;
 `;
 
 const WeedBullet1 = styled.img`
@@ -595,9 +595,9 @@ const WeedBulletText1 = styled.h2`
   grid-area: 2/3/3/4;
   justify-self: start;
   align-self: center;
-
+  margin-top: 13px;
   padding-left: 10px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   align-self: center;
 
   @media only screen and (max-width: 985px) {
@@ -609,9 +609,10 @@ const WeedBulletText2 = styled.h2`
   grid-area: 3/3/4/4;
   justify-self: start;
   align-self: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding-left: 10px;
   align-self: center;
+  margin-top: 13px;
   @media only screen and (max-width: 985px) {
     font-size: 2.4rem;
   }
@@ -621,9 +622,10 @@ const WeedBulletText3 = styled.h2`
   grid-area: 4/3/5/4;
   justify-self: start;
   align-self: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding-left: 10px;
   align-self: center;
+  margin-top: 13px;
   @media only screen and (max-width: 985px) {
     font-size: 2.4rem;
   }
@@ -634,8 +636,9 @@ const WeedBulletText4 = styled.h2`
   justify-self: start;
   align-self: center;
   padding-left: 10px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   align-self: center;
+  margin-top: 13px;
   @media only screen and (max-width: 985px) {
     font-size: 2.4rem;
   }
@@ -1124,7 +1127,7 @@ function Signup(props, ref) {
             </div> */}
 
                 <ButtonForSignup
-                  className="formItemSqueeze"
+                  //className="formItemSqueeze"
                   type="submit"
                   disabled={state.isBtnDisabled}
                 >
