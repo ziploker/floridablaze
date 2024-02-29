@@ -532,6 +532,8 @@ const RightSection = styled.div`
   @media only screen and (max-width: 985px) {
     grid-area: 1/2/2/3;
     /* grid-template-columns: 1px 30px 1fr; */
+    grid-template-columns: 36px 30px 1fr;
+    grid-template-rows: 284px repeat(4, 102px) 1fr;
   }
 
   @media only screen and (max-width: 400px) {

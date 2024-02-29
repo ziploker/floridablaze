@@ -4,6 +4,11 @@ import styled from "styled-components";
 let autoComplete;
 
 const MainInput = styled.input`
+
+@media only screen and (max-width: 985px) {
+    
+  font: normal 3.4rem Fira Sans, system-ui, sans-serif;
+  }
   grid-area: input;
   //height: 80px;
   width: 100%;
