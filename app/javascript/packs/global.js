@@ -400,7 +400,7 @@ template {
 
 .pac-item span:not(:first-child) {
 	//font-size: 36px;
-	color: rgb(61, 61, 61);
+	//color: rgb(61, 61, 61);
 }
 
 .pac-item {
@@ -410,6 +410,16 @@ template {
 p{
 
   font-family: 'PT Serif';
+}
+
+.pac-item span:not(:first-child) {
+  font-size: 1.5rem !important;
+  // color: rgb(61, 61, 61);
+  //color: red;
+
+  @media only screen and (max-width: 985px) {
+    font-size: 3rem !important;
+  }
 }
 
 
