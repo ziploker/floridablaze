@@ -820,6 +820,7 @@ const NextSteps = styled.div`
 
     @media only screen and (max-width: 985px) {
       justify-self: center;
+      font-size: 7rem;
     }
   }
 
@@ -838,6 +839,7 @@ const NextSteps = styled.div`
     @media only screen and (max-width: 985px) {
       justify-self: center;
       text-align: center;
+      font-size: 3rem;
     }
   }
 
@@ -863,34 +865,52 @@ const NextSteps = styled.div`
     @media only screen and (max-width: 985px) {
       justify-self: center;
       margin-top: 12px;
+      max-width: 95%;
+      border-top: initial;
+      border-bottom: initial;
+      
     }
     p {
       color: white;
       line-height: 1.6rem;
       font-size: 1.4rem;
+      font-family: Fira Sans;
       align-self: start;
       justify-self: start;
       //padding: 0 8px;
       margin-top: 10px;
+
+      @media only screen and (max-width: 985px) {
+        font-size: 2.5rem;
+        line-height: initial;
+        justify-self: center;
+      }
+    
       &:nth-child(2) {
         font-size: 1.2rem;
 
-        /* @media only screen and (max-width: 985px) {
-					margin-top: 10px;
-				} */
+        @media only screen and (max-width: 985px) {
+					font-size: 1.8;
+          margin-top: 25px;
+          justify-self: center;
+          padding: 20px 50px;
+
+          //border: 1px solid white;
+				}
       }
     }
 
-    h2 {
+    //h2 {
       /* font-size: 2rem;
 			color: white;
 
 			margin-bottom: 16px; */
-    }
+    //}
   }
 
   @media only screen and (max-width: 985px) {
     margin: 50px 0 0 0;
+    width: 100%;
   }
 `;
 
@@ -1210,7 +1230,7 @@ const CardOneSub = styled.div`
   border-top-left-radius: 70px;
   border-top-right-radius: 70px;
   background: white;
-  font-size: 13px;
+  font-size: .8rem;
   text-align: center;
   padding: 3px 0px;
 
@@ -1232,6 +1252,11 @@ const CardOneSub = styled.div`
   @media only screen and (min-width: 986px) {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+  }
+
+  @media only screen and (max-width: 985px) {
+    font-size: 1.7rem;
+
   }
 `;
 
@@ -2600,6 +2625,9 @@ const TopBar = styled.div`
   grid-area: topbar;
   justify-self: start;
   margin: 48px 0px 48px 120px;
+  @media only screen and (max-width: 985px) {
+    margin: 48px 0px 48px 20px;
+  }
 
   h1 {
     color: black;
@@ -2607,6 +2635,11 @@ const TopBar = styled.div`
     font-weight: 600;
     letter-spacing: 0.03em;
     font-size: 2em;
+
+    @media only screen and (max-width: 985px) {
+      font-size: 3.5em;
+      margin: 0 0 -5px 0;
+    }
   }
 
   h2 {
@@ -2616,6 +2649,9 @@ const TopBar = styled.div`
     font-weight: 400;
     //letter-spacing: 0.1em;
     font-size: 1.8rem;
+    @media only screen and (max-width: 985px) {
+      font-size: 2.2em;
+    }
   }
 
   div {
@@ -2627,6 +2663,9 @@ const TopBar = styled.div`
       letter-spacing: 0.03em;
       align-self: end;
       font-size: 1.5em;
+      @media only screen and (max-width: 985px) {
+      font-size: 2.2em;
+    }
     }
     h5 {
       //margin: 0 0 4px 20px;
@@ -2640,6 +2679,10 @@ const TopBar = styled.div`
       &:hover {
         color: #f1ba52;
       }
+
+      @media only screen and (max-width: 985px) {
+      font-size: 1.3;
+    }
     }
   }
 
@@ -2659,12 +2702,14 @@ const BottomBar = styled.div`
 
   grid-template-areas: " . cardOne . cardTwo nextSteps .";
 
-  /* @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 985px) {
+    padding: 50px 10px 20px 10px;
     grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
     grid-template-areas:
       " cardOne cardTwo"
       "nextSteps nextSteps";
-  } */
+  }
 `;
 const MiddleBarResultSection = styled.div`
   display: grid;
@@ -2688,10 +2733,11 @@ const MiddleBarResultSection = styled.div`
       1fr minmax(10px, 12px)
       1fr;
 
-    grid-template-areas:
-      "topbar topbar topbar"
-      " cardOne       .      cardTwo "
-      " nextSteps nextSteps nextSteps";
+      grid-template-areas:
+    "topbar topbar topbar"
+    "bgfix bgfix bgfix"
+    "bottombar bottombar bottombar";
+
   }
 `;
 
