@@ -1716,7 +1716,7 @@ const HowItWorksWrapper = styled.div`
     margin-top: 10px;
 
     @media only screen and (max-width: 985px) {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       line-height: initial;
       justify-self: center;
     }
@@ -2439,6 +2439,13 @@ const HowItWorksList = styled.div`
     font-size: 1rem;
     line-height: 1rem;
     margin-top: -7px;
+
+    @media only screen and (max-width: 985px) {
+      margin-top: initial;
+      font-size: 1.8rem;
+      line-height: initial;
+      text-align: center;
+    }
   }
 
   p:nth-child(3) {
