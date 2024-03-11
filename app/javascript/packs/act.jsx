@@ -807,7 +807,7 @@ const NextSteps = styled.div`
   min-width: 243px;
   margin: 0 0 0 20px;
   grid-area: nextSteps;
-  width: 95%;
+  //width: 95%;
 
   h1 {
     //margin: -5px 0 0 0;
@@ -817,6 +817,7 @@ const NextSteps = styled.div`
     font-weight: 800;
     font-size: 4rem;
     //margin: 0 0 20px 0;
+    margin-top: -10px;
 
     @media only screen and (max-width: 985px) {
       justify-self: center;
@@ -830,7 +831,7 @@ const NextSteps = styled.div`
     //letter-spacing: 0.15em;
     //margin: 0 0 0 18px;
     color: orange;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 
     @media only screen and (min-width: 986px) and (max-width: 1075px) {
       font-size: 1.7rem;
@@ -843,65 +844,17 @@ const NextSteps = styled.div`
     }
   }
 
-  p {
+  /* p {
     padding: 0;
     color: white;
     font-size: 2rem;
     margin: 0;
-  }
+  } */
 
-  div {
-    //grid-area: 2/1/3/-1;
-    //margin: 15px 0 0 0;
-    //width: 80%;
-
-    //border-radius: 22px;
-    //background: #e3b55a;
-    border-top: 1px #e3b55a solid;
-    border-bottom: 1px #e3b55a solid;
-
-    display: grid;
-    max-width: 578px;
-    @media only screen and (max-width: 985px) {
-      justify-self: center;
-      margin-top: 12px;
-      max-width: 95%;
-      border-top: initial;
-      border-bottom: initial;
-      
-    }
-    p {
-      color: white;
-      line-height: 1.6rem;
-      font-size: 1.4rem;
-      font-family: Fira Sans;
-      align-self: start;
-      justify-self: start;
-      //padding: 0 8px;
-      margin-top: 10px;
-
-      @media only screen and (max-width: 985px) {
-        font-size: 2.5rem;
-        line-height: initial;
-        justify-self: center;
-      }
-    
-      &:nth-child(2) {
-        font-size: 1.2rem;
-
-        @media only screen and (max-width: 985px) {
-					font-size: 1.8;
-          margin-top: 25px;
-          justify-self: center;
-          padding: 20px 50px;
-
-          //border: 1px solid white;
-				}
-      }
-    }
+  
 
     //h2 {
-      /* font-size: 2rem;
+    /* font-size: 2rem;
 			color: white;
 
 			margin-bottom: 16px; */
@@ -1230,7 +1183,7 @@ const CardOneSub = styled.div`
   border-top-left-radius: 70px;
   border-top-right-radius: 70px;
   background: white;
-  font-size: .8rem;
+  font-size: 0.8rem;
   text-align: center;
   padding: 3px 0px;
 
@@ -1256,7 +1209,6 @@ const CardOneSub = styled.div`
 
   @media only screen and (max-width: 985px) {
     font-size: 1.7rem;
-
   }
 `;
 
@@ -1737,6 +1689,37 @@ const Pic1 = styled.img`
   @media only screen and (max-width: 1000px) {
     width: 175px;
     height: 175px;
+  }
+`;
+
+const HowItWorksWrapper = styled.div`
+  border-top: 1px #e3b55a solid;
+  //border-bottom: 1px #e3b55a solid;
+
+  display: grid;
+  //max-width: 578px;
+  @media only screen and (max-width: 985px) {
+    justify-self: center;
+    margin-top: 12px;
+    max-width: 95%;
+    border-top: initial;
+    border-bottom: initial;
+  }
+  p {
+    color: white;
+    line-height: 1.6rem;
+    font-size: 2rem;
+    font-family: Fira Sans;
+    align-self: start;
+    justify-self: start;
+    //padding: 0 8px;
+    margin-top: 10px;
+
+    @media only screen and (max-width: 985px) {
+      font-size: 2.5rem;
+      line-height: initial;
+      justify-self: center;
+    }
   }
 `;
 
@@ -2436,6 +2419,34 @@ const BodyBox = styled.div`
   }
 `;
 
+const HowItWorksList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+
+  font-size: 1.2rem;
+  margin-top: -15px;
+
+  @media only screen and (max-width: 985px) {
+    font-size: 1.8;
+    margin-top: 25px;
+    justify-self: start;
+    //padding: 20px 50px;
+
+    //border: 1px solid white;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1rem;
+    margin-top: -7px;
+  }
+
+  p:nth-child(3) {
+    font-size: 1.5rem;
+    margin-top: 5px;
+  }
+`;
+
 const LetterDemo = styled.div`
   //width: 96%;
   justify-self: center;
@@ -2664,8 +2675,8 @@ const TopBar = styled.div`
       align-self: end;
       font-size: 1.5em;
       @media only screen and (max-width: 985px) {
-      font-size: 2.2em;
-    }
+        font-size: 2.2em;
+      }
     }
     h5 {
       //margin: 0 0 4px 20px;
@@ -2681,8 +2692,8 @@ const TopBar = styled.div`
       }
 
       @media only screen and (max-width: 985px) {
-      font-size: 1.3;
-    }
+        font-size: 1.3;
+      }
     }
   }
 
@@ -2733,11 +2744,10 @@ const MiddleBarResultSection = styled.div`
       1fr minmax(10px, 12px)
       1fr;
 
-      grid-template-areas:
-    "topbar topbar topbar"
-    "bgfix bgfix bgfix"
-    "bottombar bottombar bottombar";
-
+    grid-template-areas:
+      "topbar topbar topbar"
+      "bgfix bgfix bgfix"
+      "bottombar bottombar bottombar";
   }
 `;
 
@@ -3824,15 +3834,20 @@ function Act(props, ref) {
                   <h1>NEXT STEP:</h1>
                   {/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
                   <h2>Contact your State Representatives.</h2>
-                  <div>
+                  <HowItWorksWrapper>
                     <p>How it works?</p>
-                    <p>
-                      We print your personalized letter on top-notch quality
-                      paper and mail it to each of your reps via first class
-                      USPS mail.
-                    </p>
-                    <p></p>
-                  </div>
+                    <HowItWorksList>
+                      <p>
+                        Your personalized letters will be printed on top-notch
+                        quality paper.
+                      </p>
+                      <p>
+                        Mailed to both Representatives via First Class USPS
+                        mail.
+                      </p>
+                      <p>That's it!</p>
+                    </HowItWorksList>
+                  </HowItWorksWrapper>
                   {/* <h2>checkout the letters</h2> */}
                   {/* <div>
 								<p>
