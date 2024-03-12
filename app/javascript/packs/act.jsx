@@ -764,7 +764,7 @@ const ResultSection = styled.div`
   grid-template-rows:
     minmax(min-content, max-content)
     minmax(min-content, max-content);
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     grid-template-columns: 10px 1fr 10px;
 
     grid-template-rows:
@@ -1358,6 +1358,22 @@ const ShowOfferSection = styled.div`
     margin: 30px auto 0 auto;
 
   }
+
+  .paypal-button{
+ @media only screen and (max-width: 985px) {
+    height: 100px;
+  }
+
+
+}
+
+.paypal-button-row{
+ @media only screen and (max-width: 985px) {
+  margin-bottom: 79px;
+  }
+
+
+}
 `;
 
 const ResultsBlurb = styled.div`
@@ -1368,10 +1384,10 @@ const ResultsBlurb = styled.div`
   padding: 30px;
   margin-top: 24px;
 
-  @media only screen and (max-width: 1000px) {
+  /* @media only screen and (max-width: 1000px) {
     grid-area: resultBlurb;
     margin: 10px 0px 0px 16px;
-  }
+  } */
 
   @media only screen and (max-width: 985px) {
     grid-area: resultBlurb;
@@ -1478,7 +1494,7 @@ const Letter = styled.div`
 `;
 
 const OfferOne = styled.div`
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     grid-area: 2/1/3/2;
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
@@ -1559,6 +1575,10 @@ const LetterOfferWrapper = styled.div`
   display: ${(props) => (props.which_tab_is_active === 2 ? "none" : "grid")};
   //display: grid;
   margin-top: 30px;
+
+  @media only screen and (max-width: 985px) {
+    max-width: initial;
+  }
 `;
 
 const EmailOfferWrapper = styled.div`
@@ -1627,7 +1647,7 @@ const Price = styled.h1`
 
   margin: 0 0 20px 0;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     margin: 0 0 46px 48px;
     font-size: 7rem;
   }
@@ -1641,7 +1661,7 @@ const Row1 = styled.div`
 
   //margin: 30px 0px 30px 0px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     margin: 30px 20px 0px 48px;
   }
 `;
@@ -1654,7 +1674,7 @@ const Row2 = styled.div`
 
   margin: 20px 0px 30px 0px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     margin: 30px 20px 10px 48px;
   }
 `;
@@ -1674,7 +1694,7 @@ const PicWrapper = styled.div`
   width: 80px;
   height: 90px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     width: 175px;
     height: 175px;
   }
@@ -1693,7 +1713,7 @@ const Pic1 = styled.img`
   width: 80px;
   height: 90px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     width: 175px;
     height: 175px;
   }
@@ -1745,7 +1765,7 @@ const Pic2 = styled.img`
   width: 80px;
   height: 90px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     width: 175px;
     height: 175px;
   }
@@ -1764,7 +1784,7 @@ const DWrapper = styled.div`
   align-self: end;
   padding: 0 0 0 10px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     padding: 0 0 0 37px;
   }
 `;
@@ -1779,7 +1799,7 @@ const D1 = styled.h2`
   //border-top-left-radius: 55px;
   border-bottom-right-radius: 91px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     font-size: 4rem;
   }
 `;
@@ -1794,7 +1814,7 @@ const D2 = styled.h3`
   align-self: top;
   margin-top: 10px;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     font-size: 2rem;
     padding: 0 0 0 37px;
   }
@@ -1849,7 +1869,7 @@ const CheckmarkDescription = styled.h1`
 const Price1 = styled.div``;
 
 const OfferTwo = styled.div`
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     grid-area: 2/2/3/3;
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;

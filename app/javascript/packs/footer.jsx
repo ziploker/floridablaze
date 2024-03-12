@@ -48,6 +48,16 @@ const FooterWrapper = styled.div`
 
   //z-index: 4;
   z-index: 1;
+
+  @media only screen and (max-width: 985px) {
+    grid-template-columns: 8% 1fr 1fr 8%;
+    grid-template-rows: 125px min-content min-content;
+    grid-template-areas:
+    ".    .     .       . "
+    ". colOne colTwo  ."
+    " . colThree colThree ."
+    " . legal legal . ";
+  }
 `;
 
 const FooterImage = styled.img`
@@ -211,6 +221,11 @@ const Explore = styled.div`
   margin-bottom: 20px;
   z-index: 3;
   //min-width: 360px;
+
+  @media only screen and (max-width: 985px) {
+  
+    justify-self: start;
+  }
 
   h1 {
     font-size: 2rem;
