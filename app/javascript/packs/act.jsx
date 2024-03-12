@@ -859,7 +859,7 @@ const NextSteps = styled.div`
 
 			margin-bottom: 16px; */
     //}
-  }
+  
 
   @media only screen and (max-width: 985px) {
     margin: 50px 0 0 0;
@@ -1352,6 +1352,12 @@ const ShowOfferSection = styled.div`
   width: 55%;
   max-width: 1000px;
   float: left;
+
+  @media only screen and (max-width: 985px){
+    width: 100%;
+    margin: 30px auto 0 auto;
+
+  }
 `;
 
 const ResultsBlurb = styled.div`
@@ -1606,8 +1612,9 @@ const Total = styled.h2`
 
   margin: 25px 0 24px 0;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 985px) {
     margin: 62px 0 24px 50px;
+    font-size: 5rem;
   }
 
   //margin-left: 6%;
@@ -1716,9 +1723,10 @@ const HowItWorksWrapper = styled.div`
     margin-top: 10px;
 
     @media only screen and (max-width: 985px) {
-      font-size: 3.5rem;
+      font-size: 4rem;
       line-height: initial;
       justify-self: center;
+      margin-top: 40px;
     }
   }
 `;
@@ -1772,7 +1780,7 @@ const D1 = styled.h2`
   border-bottom-right-radius: 91px;
 
   @media only screen and (max-width: 1000px) {
-    font-size: 1.9rem;
+    font-size: 4rem;
   }
 `;
 
@@ -1787,7 +1795,7 @@ const D2 = styled.h3`
   margin-top: 10px;
 
   @media only screen and (max-width: 1000px) {
-    font-size: 1.5rem;
+    font-size: 2rem;
     padding: 0 0 0 37px;
   }
 `;
@@ -2442,15 +2450,20 @@ const HowItWorksList = styled.div`
 
     @media only screen and (max-width: 985px) {
       margin-top: initial;
-      font-size: 1.8rem;
+      margin-bottom: 45px;
+      font-size: 3rem;
       line-height: initial;
-      text-align: center;
+      //text-align: center;
     }
   }
 
   p:nth-child(3) {
     font-size: 1.5rem;
     margin-top: 5px;
+
+    @media only screen and (max-width: 985px) {
+      font-size: 4rem;
+    }
   }
 `;
 
@@ -2534,6 +2547,12 @@ const LetterDemo = styled.div`
     //grid-area: 3/1/4/2;
     padding: 0px 50px;
     line-height: 25px;
+
+    @media only screen and (max-width: 985px){
+
+      font-size: 2.5rem;
+      line-height: initial;
+    }
   }
 `;
 
@@ -2544,6 +2563,15 @@ const LetterClosing = styled.div`
   margin-bottom: 42px;
   p {
     margin-bottom: 5px;
+  }
+
+  sub{
+
+    @media only screen and (max-width: 985px){
+
+      font-size: 1.5rem;
+      
+    }
   }
 `;
 
