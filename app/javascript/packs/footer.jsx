@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import axios from "axios";
 
-import footerImage from "../../assets/images/footerImageCrop.png";
+import footerImage from "../../assets/images/footerImageFinal.png";
 
 const FooterWrapper = styled.div`
   /* grid-template-columns:
