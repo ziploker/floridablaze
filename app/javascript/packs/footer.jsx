@@ -50,13 +50,13 @@ const FooterWrapper = styled.div`
   z-index: 1;
 
   @media only screen and (max-width: 985px) {
-    grid-template-columns: 8% 1fr 1fr 8%;
+    grid-template-columns: 15% 1fr 1fr 8%;
     grid-template-rows: 125px min-content min-content;
     grid-template-areas:
-    ".    .     .       . "
-    ". colOne colTwo  ."
-    " . colThree colThree ."
-    " . legal legal . ";
+      ".    .     .       . "
+      ". colOne colTwo  ."
+      " . colThree colThree ."
+      " . legal legal . ";
   }
 `;
 
@@ -90,6 +90,10 @@ const SubscribeSection = styled.div`
   //justify-self: end;
   //align-self: start;
   //margin: 40px 0 20px 0;
+
+  @media only screen and (max-width: 985px) {
+    margin-top: 60px;
+  }
 
   h2 {
     margin: 0px 0px 40px 0px;
@@ -138,6 +142,12 @@ const SubscribeSection = styled.div`
       /* Microsoft Edge */
       color: #7f7f7f;
     }
+
+    @media only screen and (max-width: 985px) {
+      width: 80vw;
+      height: 85px;
+      font-size: 2.2rem;
+    }
   }
 
   button {
@@ -167,6 +177,11 @@ const SubscribeSection = styled.div`
     align-items: center;
     border-radius: 0;
     border: 0;
+
+    @media only screen and (max-width: 985px) {
+      font-size: 3rem;
+      padding: 30px 100px;
+    }
   }
 `;
 
@@ -188,6 +203,10 @@ const Follow = styled.div`
   h1 {
     font-size: 2rem;
     margin-bottom: 15px;
+
+    @media only screen and (max-width: 985px) {
+      font-size: 3.5rem;
+    }
   }
 
   ul {
@@ -204,6 +223,11 @@ const Follow = styled.div`
       font-style: normal;
       font-weight: 400;
       color: white;
+
+      @media only screen and (max-width: 985px) {
+        font-size: 2rem;
+        line-height: initial;
+      }
     }
   }
 `;
@@ -223,13 +247,16 @@ const Explore = styled.div`
   //min-width: 360px;
 
   @media only screen and (max-width: 985px) {
-  
     justify-self: start;
   }
 
   h1 {
     font-size: 2rem;
     margin-bottom: 15px;
+
+    @media only screen and (max-width: 985px) {
+      font-size: 3.5rem;
+    }
   }
 
   ul {
@@ -248,6 +275,11 @@ const Explore = styled.div`
       font-style: normal;
       font-weight: 400;
       color: white;
+
+      @media only screen and (max-width: 985px) {
+        font-size: 2rem;
+        line-height: initial;
+      }
     }
   }
 `;
@@ -269,6 +301,10 @@ const Legal = styled.div`
   //width: 100%;
   text-align: center;
   //padding-bottom: 20px;
+
+  @media only screen and (max-width: 985px) {
+    padding: 50px 0 0 0;
+  }
 `;
 
 const BlackBG = styled.div`
@@ -290,11 +326,19 @@ const TopSectionWrapper = styled.div`
   h2 {
     font-size: 2rem;
     color: white;
-    //margin-top: 4px;
+    @media only screen and (max-width: 985px) {
+      font-size: 3.5rem;
+    }
   }
 
   form {
     grid-area: 2/1/3/3;
+  }
+
+  span {
+    @media only screen and (max-width: 985px) {
+      margin: 15px 8px 0 0;
+    }
   }
 `;
 

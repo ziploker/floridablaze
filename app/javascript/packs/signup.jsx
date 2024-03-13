@@ -105,7 +105,10 @@ const SignupWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  grid-template-columns: minmax(8%, 1fr) 1fr minmax(500px, 700px) minmax(8%, 1fr);
+  grid-template-columns: minmax(8%, 1fr) 1fr minmax(500px, 700px) minmax(
+      8%,
+      1fr
+    );
   //grid-template-rows: 1fr minmax(min-content, max-content) 1fr;
   //padding-top: 60px;
   //padding-bottom: 20px;
@@ -1145,7 +1148,7 @@ function Signup(props, ref) {
                     }}
                     htmlFor="opt_in"
                   >
-                    --- or ---{" "}
+                    {/* --- or ---{" "} */}
                   </h3>
 
                   {/* <GoogleLogin
