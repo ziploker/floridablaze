@@ -73,6 +73,10 @@ const FooterImage = styled.img`
   align-self: end;
 
   z-index: 3;
+
+  @media only screen and (max-width: 985px) {
+    z-index: 1;
+  }
 `;
 
 const SubscribeSection = styled.div`
