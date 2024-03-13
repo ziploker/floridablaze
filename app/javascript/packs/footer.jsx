@@ -303,7 +303,7 @@ const Legal = styled.div`
   //padding-bottom: 20px;
 
   @media only screen and (max-width: 985px) {
-    padding: 50px 0 0 0;
+    padding: 50px 0 20px 0;
   }
 `;
 
@@ -311,6 +311,10 @@ const BlackBG = styled.div`
   //@media only screen and (max-width: 985px) {
   grid-area: 3/1/5/-1;
   background-color: black;
+
+  @media only screen and (max-width: 985px) {
+    grid-area: 2/1/-1/-1;
+  }
   //}
 `;
 
