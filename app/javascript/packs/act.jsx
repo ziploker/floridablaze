@@ -851,15 +851,12 @@ const NextSteps = styled.div`
     margin: 0;
   } */
 
-  
-
-    //h2 {
-    /* font-size: 2rem;
+  //h2 {
+  /* font-size: 2rem;
 			color: white;
 
 			margin-bottom: 16px; */
-    //}
-  
+  //}
 
   @media only screen and (max-width: 985px) {
     margin: 50px 0 0 0;
@@ -1353,27 +1350,35 @@ const ShowOfferSection = styled.div`
   max-width: 1000px;
   float: left;
 
-  @media only screen and (max-width: 985px){
+  @media only screen and (max-width: 985px) {
     width: 100%;
     margin: 30px auto 0 auto;
-
   }
 
-  .paypal-button{
- @media only screen and (max-width: 985px) {
-    height: 100px;
+  div {
+    div {
+      iframe {
+        html {
+          body {
+            div {
+              div {
+                div {
+                  @media only screen and (max-width: 985px) {
+                    margin-bottom: 79px;
+                  }
+                  .paypal-button {
+                    @media only screen and (max-width: 985px) {
+                      height: 100px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
-
-
-}
-
-.paypal-button-row{
- @media only screen and (max-width: 985px) {
-  margin-bottom: 79px;
-  }
-
-
-}
 `;
 
 const ResultsBlurb = styled.div`
@@ -2568,8 +2573,7 @@ const LetterDemo = styled.div`
     padding: 0px 50px;
     line-height: 25px;
 
-    @media only screen and (max-width: 985px){
-
+    @media only screen and (max-width: 985px) {
       font-size: 2.5rem;
       line-height: initial;
     }
@@ -2585,12 +2589,9 @@ const LetterClosing = styled.div`
     margin-bottom: 5px;
   }
 
-  sub{
-
-    @media only screen and (max-width: 985px){
-
+  sub {
+    @media only screen and (max-width: 985px) {
       font-size: 1.5rem;
-      
     }
   }
 `;
@@ -4531,7 +4532,7 @@ function Act(props, ref) {
                     <PayPalButtons
                       style={{
                         layout: "vertical",
-                        shape: "pill",
+                        shape: "rect",
                         disableMaxWidth: true,
                         height: 55,
                       }}
@@ -4540,7 +4541,7 @@ function Act(props, ref) {
                           purchase_units: [
                             {
                               amount: {
-                                value: "2.99",
+                                value: "4.99",
                               },
                             },
                           ],
