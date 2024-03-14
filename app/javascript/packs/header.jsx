@@ -26,6 +26,7 @@ const HeaderWrapper = styled.div`
   grid-template-columns: minmax(180px, 280px) 1fr;
   /* grid-template-rows: 85px; */
   grid-template-rows: 100px;
+  width: 100vw;
   min-width: 500px;
   margin-top: 15px;
   grid-template-areas: "headerLogo headerLeaf ";
