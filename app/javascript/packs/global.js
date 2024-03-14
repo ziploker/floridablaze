@@ -436,7 +436,9 @@ p{
 }
 
 
-
+@-ms-viewport{
+  width: device-width;
+}
 
 
 
