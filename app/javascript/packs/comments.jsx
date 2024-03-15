@@ -89,7 +89,7 @@ const Reply = styled.div`
   color: rgba(7, 7, 7, 0.65);
   cursor: pointer;
   padding: 8px 8px 8px 0px;
-  font-size: 14px;
+  // font-size: 14px;
 
   &:hover {
     color: black;
@@ -125,7 +125,7 @@ const VoteUp = styled.div`
   }
 
   span {
-    font-size: 13px;
+    // font-size: 13px;
   }
 `;
 
@@ -144,7 +144,7 @@ const VoteDown = styled.div`
   }
 
   span {
-    font-size: 13px;
+    // font-size: 13px;
   }
 `;
 

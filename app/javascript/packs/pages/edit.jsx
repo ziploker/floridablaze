@@ -112,13 +112,13 @@ const ProfilePic = styled.img`
 `;
 
 const StyledLink = styled(Link)`
-  font-size: 0.7rem;
+  // font-size: 0.7rem;
 `;
 
 const LabelForFile = styled.label`
   text-align: center;
   display: inline-block;
-  font-size: 12px;
+  // font-size: 12px;
   position: absolute;
   right: -15px;
   bottom: -13px;
@@ -168,7 +168,7 @@ const NoActivity = styled.div`
         : "none"
       : "none"};
   h1 {
-    font-size: 3rem;
+    // font-size: 3rem;
     margin-bottom: 10px;
   }
 
@@ -184,7 +184,7 @@ const ActivityTableHeader = styled.h2`
   justify-self: center;
   margin: 0 20px;
   line-height: 130px;
-  font-size: 24px;
+  // font-size: 24px;
   height: 130px;
 `;
 

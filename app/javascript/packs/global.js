@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
+
+import '../../../node_modules/modern-normalize/modern-normalize.css';
+
 //light blue   #56c5cc 	(86,197,204)
 //pink         #f14f7b 	(241,79,123)
 //orange       #f7aa1c 	(247,170,28)
@@ -7,66 +10,91 @@ import { createGlobalStyle } from "styled-components";
 //black        #000000 	(0,0,0)
 
 const GlobalStyles = createGlobalStyle`
-//@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&family=PT+Serif&display=swap");
 
-  /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
-/* Document
-   ========================================================================== */
 
-/**
- * 1. Correct the line height in all browsers.
- * 2. Prevent adjustments of font size after orientation changes in iOS.
- */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -o-font-smoothing: antialiased;
-  //font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 
-  //position: relative;
-  //overflow-x: hidden;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth; /* Smoothly animate to different sections within a page, only if the user doesn't mind animations */
+  }
 }
 
-html {
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+  
+  padding: 0;
+  
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+}
+/*
+  2. Remove default margin
+*/
+* {
   margin: 0;
+}
+html{
+  
+  font-size: 100%;
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
-
-/* Sections
-   ========================================================================== */
-
-/**
- * Remove the margin in all browsers.
- */
-
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
 body {
-  margin: 0 auto;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+
   max-width: 2000px;
-  min-width: 269px;
+  //min-width: 269px;
   body:not(.user-is-tabbing) button:focus,
   body:not(.user-is-tabbing) input:focus,
   body:not(.user-is-tabbing) select:focus,
   body:not(.user-is-tabbing) textarea:focus {
-  outline: none;
+    outline: none;
+  }
 }
+/*
+  5. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+*/
+input, button, textarea, select {
+  font: inherit;
+}
+
+/*
+  8. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
 }
 
 /*
  Render the main element consistently in IE.
  */
 
-main {
+ main {
   display: block;
 }
+
 
 a,
 a:active,
@@ -89,11 +117,9 @@ h4,
 h5,
 h6 {
   font-family: 'Fira Sans';
-  font-weight: 800;
+  font-weight: 400;
+  overflow-wrap: break-word;
 }
-
-/* Grouping content
-   ========================================================================== */
 
 /**
  * 1. Add the correct box sizing in Firefox.
@@ -104,26 +130,6 @@ hr {
   box-sizing: content-box; /* 1 */
   height: 0; /* 1 */
   overflow: visible; /* 2 */
-}
-
-/**
- * 1. Correct the inheritance and scaling of font size in all browsers.
- * 2. Correct the odd em font sizing in all browsers.
- */
-
-//pre {
-//  font-size: 1rem; /* 2 */
-//}
-
-/* Text-level semantics
-   ========================================================================== */
-
-/**
- * Remove the gray background on active links in IE 10.
- */
-
-a {
-  background-color: transparent;
 }
 
 /**
@@ -145,30 +151,6 @@ b,
 strong {
   font-weight: bolder;
 }
-
-/**
- * 1. Correct the inheritance and scaling of font size in all browsers.
- * 2. Correct the odd em font sizing in all browsers.
- */
-
-//code,
-//kbd,
-//samp {
-//  font-size: 1rem; /* 2 */
-//}
-
-/**
- * Add the correct font size in all browsers.
- */
-
-//small {
-//  font-size: 80%;
-//}
-
-/**
- * Prevent sub and sup elements from affecting the line height in
- * all browsers.
- */
 
 sub,
 sup {
@@ -199,13 +181,7 @@ img {
   border-style: none;
 }
 
-/* Forms
-   ========================================================================== */
 
-/**
- * 1. Change the font styles in all browsers.
- * 2. Remove the margin in Firefox and Safari.
- */
 
 button,
 input,
@@ -439,6 +415,19 @@ p{
 /* @-ms-viewport{
   width: device-width;
 } */
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

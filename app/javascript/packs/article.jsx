@@ -78,7 +78,7 @@ const StoryTitleWrapper = styled.div`
 const StoryTitle = styled.h1`
   color: #303030;
 
-  font-size: 50px;
+  // font-size: 50px;
   font-weight: 700;
   line-height: 1.1em;
   letter-spacing: -2px;
@@ -87,13 +87,13 @@ const StoryTitle = styled.h1`
 
   /* @media only screen and (max-width: 800px){
 
-        font-size: 50px;
+        // font-size: 50px;
 
 
     }
     @media only screen and (max-width: 600px){
 
-        font-size: 30px;
+        // font-size: 30px;
 
 
     } */
@@ -155,7 +155,7 @@ const StoryImage = styled.img`
 `;
 
 const Caption = styled.div`
-  font-size: 13px;
+  // font-size: 13px;
   line-height: 1.7;
   font-style: italic;
   color: #999999;
@@ -182,7 +182,7 @@ const StoryShareButtons = styled.div`
 `;
 
 const PWrapper = styled.div`
-  //font-size: .9rem;
+  //// font-size: .9rem;
   line-height: 1.9em;
   grid-area: 5/1/6/2;
   //text-indent: 45px;
@@ -262,7 +262,7 @@ const Reply = styled.div`
   color: rgba(7, 7, 7, 0.65);
   cursor: pointer;
   padding: 8px 8px 8px 0px;
-  font-size: 14px;
+  // font-size: 14px;
 
   &:hover {
     color: black;
@@ -297,7 +297,7 @@ const VoteUp = styled.div`
   }
 
   span {
-    font-size: 13px;
+    // font-size: 13px;
   }
 `;
 
@@ -316,7 +316,7 @@ const VoteDown = styled.div`
   }
 
   span {
-    font-size: 13px;
+    // font-size: 13px;
   }
 `;
 

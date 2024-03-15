@@ -206,15 +206,15 @@ const LongNav = styled.nav`
       } */
 
       /* @media only screen and (min-width: 1396px) {
-        font-size: 39px;
+        // font-size: 39px;
       } */
       align-self: baseline;
       //display: inline-block;
       padding: 0px 5px;
-      //transition: font-size 0.1s linear;
+      //transition: // font-size 0.1s linear;
       font-weight: 400;
-      font-size: 30px;
-      //font-size: 2vw;
+      // font-size: 30px;
+      //// font-size: 2vw;
       line-height: 45px;
       color: inherit;
       text-decoration: none;
@@ -226,23 +226,23 @@ const LongNav = styled.nav`
       }
 
       @media only screen and (min-width: 1500px) {
-        //font-size: 30px;
+        //// font-size: 30px;
       }
 
       a {
         //transition: all 0.3s ease 0s;
         font-weight: 500;
-        font-size: 1vw;
+        // font-size: 1vw;
         line-height: 45px;
         color: inherit;
         @media only screen and (min-width: 1500px) {
-          font-size: 15px;
+          // font-size: 15px;
         }
       }
     }
 
     span {
-      font-size: 1rem;
+      // font-size: 1rem;
     }
   }
 `;

@@ -33,7 +33,7 @@ const LabelForFile = styled.label`
     
     text-align: center;
     display: inline-block;
-    font-size: 12px;
+    // font-size: 12px;
     position: absolute;
     right: -15px;
     bottom: -13px;

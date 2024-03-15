@@ -396,7 +396,7 @@ const ProfilePic = styled.img`
 const LabelForFile = styled.label`
   text-align: center;
   display: inline-block;
-  font-size: 12px;
+  // font-size: 12px;
   position: absolute;
   right: -15px;
   bottom: -13px;
@@ -415,7 +415,7 @@ const LabelForFile = styled.label`
 `;
 
 const Span = styled.h4`
-  font-size: 0.5rem;
+  // font-size: 0.5rem;
   padding: 5px 12px;
   margin-right: 5px;
 
@@ -491,7 +491,7 @@ const LeftSection = styled.div`
     color: rgb(6, 7, 1, 0.9);
     padding: 47px 0 0 10px;
     margin: 0px;
-    font-size: 3rem;
+    // font-size: 3rem;
     word-break: keep-all;
     background: white;
     //text-align: center;
@@ -508,7 +508,7 @@ const LeftSection = styled.div`
     max-width: initial;
 
     h1 {
-      font-size: 3rem;
+      // font-size: 3rem;
     }
   }
 `;
@@ -521,7 +521,7 @@ const SocialMedia = styled.div`
   h3 {
     grid-area: 1/1/2/3;
     justify-self: center;
-    font-size: 0.8rem;
+    // font-size: 0.8rem;
     margin-bottom: 10px;
   }
 
@@ -602,11 +602,11 @@ const WeedBulletText1 = styled.h2`
   align-self: center;
   margin-top: 13px;
   padding-left: 10px;
-  font-size: 3vw;
+  // font-size: 3vw;
   align-self: center;
 
   @media only screen and (max-width: 985px) {
-    //font-size: 2.4rem;
+    //// font-size: 2.4rem;
   }
 `;
 
@@ -614,12 +614,12 @@ const WeedBulletText2 = styled.h2`
   grid-area: 3/3/4/4;
   justify-self: start;
   align-self: center;
-  font-size: 3vw;
+  // font-size: 3vw;
   padding-left: 10px;
   align-self: center;
   margin-top: 13px;
   @media only screen and (max-width: 985px) {
-    //font-size: 2.4rem;
+    //// font-size: 2.4rem;
   }
 `;
 
@@ -627,12 +627,12 @@ const WeedBulletText3 = styled.h2`
   grid-area: 4/3/5/4;
   justify-self: start;
   align-self: center;
-  font-size: 3vw;
+  // font-size: 3vw;
   padding-left: 10px;
   align-self: center;
   margin-top: 13px;
   @media only screen and (max-width: 985px) {
-    //font-size: 2.4rem;
+    //// font-size: 2.4rem;
   }
 `;
 
@@ -641,17 +641,17 @@ const WeedBulletText4 = styled.h2`
   justify-self: start;
   align-self: center;
   padding-left: 10px;
-  font-size: 3vw;
+  // font-size: 3vw;
   align-self: center;
   margin-top: 13px;
   @media only screen and (max-width: 985px) {
-    //font-size: 2.4rem;
+    //// font-size: 2.4rem;
   }
 `;
 const Spacer = styled.h2`
   font-style: normal;
   font-weight: normal;
-  font-size: 2.5vw;
+  // font-size: 2.5vw;
   //line-height: 100%;
 
   z-index: -10;

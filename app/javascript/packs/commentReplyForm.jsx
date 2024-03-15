@@ -65,7 +65,7 @@ const CommentInput = styled.input`
 	border: 0;
 
 	outline: 0;
-	font-size: 1.3rem;
+	// font-size: 1.3rem;
 
 	background: white;
 	transition: border-color 0.2s;
@@ -84,7 +84,7 @@ const CommentInput = styled.input`
 	cursor: text;
 	resize: none;
 
-	font-size: 14px;
+	// font-size: 14px;
 	overflow-y: scroll;
 
 	overflow-x: hidden;

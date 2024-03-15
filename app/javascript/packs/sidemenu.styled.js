@@ -44,7 +44,7 @@ const StyledMenu = styled.nav`
 	}
 
 	a {
-		font-size: 10vw;
+		// font-size: 10vw;
 		//text-transform: uppercase;
 		//padding: 2.5rem 0;
 		font-weight: bold;
@@ -55,7 +55,7 @@ const StyledMenu = styled.nav`
 		transition: color 0.3s linear;
 
 		@media (max-width: ${({ theme }) => theme.mobile}) {
-			//font-size: 1.5rem;
+			//// font-size: 1.5rem;
 			//text-align: center;
 		}
 

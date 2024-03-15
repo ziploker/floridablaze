@@ -72,7 +72,7 @@ const StyledBurger = styled.button`
         color: black;
       }
 
-      font-size: 0.7rem;
+      // font-size: 0.7rem;
 
       border-radius: 10px;
       transition: all 0.3s linear;

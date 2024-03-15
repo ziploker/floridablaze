@@ -72,7 +72,7 @@ const Input = styled.input`
 
   padding-right: 8px;
 
-  font-size: 14px;
+  // font-size: 14px;
   line-height: 1.42857;
   color: #3f3f44;
   background-color: #fff;
@@ -90,7 +90,7 @@ const CloseWindow = styled.a`
   right: 0px;
   border: 1px solid red;
   border-radius: 45px;
-  font-size: 0.5rem;
+  // font-size: 0.5rem;
   cursor: pointer;
   padding: 2px;
 `;

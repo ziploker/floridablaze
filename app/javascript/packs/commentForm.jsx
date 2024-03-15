@@ -43,7 +43,7 @@ const CommentInput = styled.input`
 	border: 0;
 	border-bottom: 2px solid gray;
 	outline: 0;
-	font-size: 1.3rem;
+	// font-size: 1.3rem;
 
 	//padding: 7px 0;
 	background: transparent;
