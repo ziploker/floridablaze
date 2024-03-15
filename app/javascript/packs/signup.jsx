@@ -483,7 +483,7 @@ const LeftSection = styled.div`
   //padding-left: 60px;
   font-style: normal;
   font-weight: 800;
-  min-width: 420px;
+  //min-width: 420px;
   //max-width: 1000px;
   //border-right: 1px rgba(114, 111, 111, 0.3) solid;
 
@@ -508,7 +508,7 @@ const LeftSection = styled.div`
     max-width: initial;
 
     h1 {
-      font-size: 7rem;
+      font-size: 3rem;
     }
   }
 `;
@@ -602,11 +602,11 @@ const WeedBulletText1 = styled.h2`
   align-self: center;
   margin-top: 13px;
   padding-left: 10px;
-  font-size: 1rem;
+  font-size: 3vw;
   align-self: center;
 
   @media only screen and (max-width: 985px) {
-    font-size: 2.4rem;
+    //font-size: 2.4rem;
   }
 `;
 
@@ -614,12 +614,12 @@ const WeedBulletText2 = styled.h2`
   grid-area: 3/3/4/4;
   justify-self: start;
   align-self: center;
-  font-size: 1rem;
+  font-size: 3vw;
   padding-left: 10px;
   align-self: center;
   margin-top: 13px;
   @media only screen and (max-width: 985px) {
-    font-size: 2.4rem;
+    //font-size: 2.4rem;
   }
 `;
 
@@ -627,12 +627,12 @@ const WeedBulletText3 = styled.h2`
   grid-area: 4/3/5/4;
   justify-self: start;
   align-self: center;
-  font-size: 1rem;
+  font-size: 3vw;
   padding-left: 10px;
   align-self: center;
   margin-top: 13px;
   @media only screen and (max-width: 985px) {
-    font-size: 2.4rem;
+    //font-size: 2.4rem;
   }
 `;
 
@@ -641,11 +641,11 @@ const WeedBulletText4 = styled.h2`
   justify-self: start;
   align-self: center;
   padding-left: 10px;
-  font-size: 1rem;
+  font-size: 3vw;
   align-self: center;
   margin-top: 13px;
   @media only screen and (max-width: 985px) {
-    font-size: 2.4rem;
+    //font-size: 2.4rem;
   }
 `;
 const Spacer = styled.h2`

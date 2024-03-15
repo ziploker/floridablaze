@@ -90,7 +90,8 @@ const Label = styled.label`
   //color: #9FA5C4;
   pointer-events: none;
 
-  //transform: ${(props) => props.className == "field-active" ? "translateY(-22px)" : 0};
+  //transform: ${(props) =>
+    props.className == "field-active" ? "translateY(-22px)" : 0};
   transform: translateY(-11px);
   padding: 2px 2px;
   //background-color: white;
@@ -141,13 +142,13 @@ const InputForSignup = styled.input`
   box-sizing: border-box;
   margin: 0px;
   width: 100%;
-  height: 98px;
+  //height: 98px;
   padding-left: 25px;
   box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.4);
 
   padding-right: 8px;
 
-  font-size: 3rem;
+  font-size: 2.5rem;
   line-height: 1.42857;
   color: #3f3f44;
   background-color: #fff;
@@ -158,7 +159,7 @@ const InputForSignup = styled.input`
   filter: none;
 
   @media only screen and (min-width: 986px) {
-    height: 44px;
+    //height: 44px;
     font-size: 1.1rem;
   }
 `;
@@ -203,28 +204,26 @@ const ButtonForSignup = styled.button`
 
   border-color: #5fcc61; */
 
-  background: linear-gradient(to right, #e52d27 0%, #b31217  51%, #e52d27  100%);
+  background: linear-gradient(to right, #e52d27 0%, #b31217 51%, #e52d27 100%);
   margin: 10px;
   padding: 15px 45px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;            
+  color: white;
   box-shadow: 0 0 20px #eee;
   border-radius: 10px;
   display: block;
-          
-  &:hover{
+
+  &:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
-
   }
-         
 
   @media only screen and (max-width: 985px) {
-    font-size: 4rem;
+    //font-size: 4rem;
   }
 `;
 

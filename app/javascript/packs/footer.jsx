@@ -22,7 +22,7 @@ const FooterWrapper = styled.div`
   //grid-template-rows: initial;
   //grid-template-rows: 0px 1fr;
   height: auto;
-
+  width: 100%;
   /* background: pink;
     background-image: url(${footerImage});
     
@@ -69,7 +69,7 @@ const FooterImage = styled.img`
   //grid-area: 1/1/-1/-1;
   height: 100%;
   width: 100%;
-  min-width: 500px;
+  //min-width: 500px;
   align-self: end;
 
   z-index: 3;
@@ -148,9 +148,9 @@ const SubscribeSection = styled.div`
     }
 
     @media only screen and (max-width: 985px) {
-      width: 80vw;
-      height: 85px;
-      font-size: 2.2rem;
+      //width: 80vw;
+      //height: 85px;
+      //font-size: 2.2rem;
     }
   }
 
@@ -183,8 +183,8 @@ const SubscribeSection = styled.div`
     border: 0;
 
     @media only screen and (max-width: 985px) {
-      font-size: 3rem;
-      padding: 30px 100px;
+      //font-size: 3rem;
+      //padding: 30px 100px;
     }
   }
 `;
@@ -209,7 +209,7 @@ const Follow = styled.div`
     margin-bottom: 15px;
 
     @media only screen and (max-width: 985px) {
-      font-size: 3.5rem;
+      //font-size: 3.5rem;
     }
   }
 
@@ -229,7 +229,7 @@ const Follow = styled.div`
       color: white;
 
       @media only screen and (max-width: 985px) {
-        font-size: 2rem;
+        //font-size: 2rem;
         line-height: initial;
       }
     }
@@ -259,7 +259,7 @@ const Explore = styled.div`
     margin-bottom: 15px;
 
     @media only screen and (max-width: 985px) {
-      font-size: 3.5rem;
+      //font-size: 3.5rem;
     }
   }
 
@@ -281,7 +281,7 @@ const Explore = styled.div`
       color: white;
 
       @media only screen and (max-width: 985px) {
-        font-size: 2rem;
+        //font-size: 2rem;
         line-height: initial;
       }
     }
@@ -297,7 +297,7 @@ const Legal = styled.div`
   padding: 20px 0px;
   background-color: black;
   z-index: 3;
-  font-size: 0.8rem;
+  font-size: 0.4rem;
   //grid-area: 3/3/4/5;
   //align-self: end;
 
@@ -332,10 +332,10 @@ const TopSectionWrapper = styled.div`
   }
 
   h2 {
-    font-size: 2rem;
+    //font-size: 2rem;
     color: white;
     @media only screen and (max-width: 985px) {
-      font-size: 3.5rem;
+      //font-size: 3.5rem;
     }
   }
 
@@ -345,7 +345,7 @@ const TopSectionWrapper = styled.div`
 
   span {
     @media only screen and (max-width: 985px) {
-      margin: 15px 8px 0 0;
+      margin: -5px 8px 0 0;
     }
   }
 `;

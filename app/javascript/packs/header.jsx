@@ -37,7 +37,7 @@ const HeaderWrapper = styled.div`
   z-index: 51;
 
   @media only screen and (max-width: 440px) {
-    height: 43px;
+    //height: 43px;
   }
 `;
 
@@ -53,8 +53,8 @@ const LogoText = styled.div`
   width: ${(props) =>
     props.windowWidth <= 985
       ? props.logo_scrolled == "true"
-        ? "320px"
-        : "420px"
+        ? "300px"
+        : "300px"
       : props.logo_scrolled == "true"
       ? "300px"
       : "300px"};
@@ -94,13 +94,13 @@ const LogoText = styled.div`
     //top: 31px;
   }
 
-  @media only screen and (max-width: 520px) {
-    ////width: 202px;
+  @media only screen and (max-width: 500px) {
+    width: 265px;
     //top: 39px;
   }
 
-  @media only screen and (max-width: 440px) {
-    //top: 3px;
+  @media only screen and (max-width: 357px) {
+    width: 200px;
   }
 `;
 
@@ -272,18 +272,11 @@ const HamburgerMenu = styled.div`
   top: ${(props) => (props.hamburger_scrolled == "true" ? "17px" : "initial")};
 
   @media only screen and (max-width: 440px) {
-    align-self: start;
+    //align-self: start;
   }
 
-  @media only screen and (max-width: 330px) {
-    //grid-area: 1/2/2/3;
-    //justify-self: end;
-    //align-self: center;
-    //padding: 0 10px;
-    //position: initial;
-    //top: initial;
-    //right: initial;
-    top: 14px;
+  @media only screen and (max-width: 357px) {
+    margin-top: -15px;
   }
 
   button {

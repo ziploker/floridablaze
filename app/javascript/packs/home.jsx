@@ -267,7 +267,7 @@ const StoryOneTitle = styled.h1`
   //white-space: normal;
 
   //word-break: break-all;
-  font-size: 3.6rem;
+  font-size: 5vw;
   white-space: pre-wrap;
   word-break: break-word;
   //align-self: end;

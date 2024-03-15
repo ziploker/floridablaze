@@ -48,8 +48,10 @@ import gmail_icon from "../../assets/images/gmail_Icon.png";
 const formData = new FormData();
 
 const ActWrapper = styled.div`
+  width: 100%;
   @media only screen and (max-width: 985px) {
     //overflow: hidden;
+    width: 100%;
   }
   /* background-image: linear-gradient(
     0deg,
@@ -211,6 +213,7 @@ const Mega = styled.img`
 `;
 
 const ActGrid = styled.div`
+  width: 100%;
   /* background: ${(props) =>
     props.show_cards == "true" ? "white" : "#ff000047"}; */
   /* @media only screen and (max-width: 1000px){
@@ -331,7 +334,7 @@ const ActHeader = styled.h1`
   }
 
   @media only screen and (max-width: 985px) {
-    font-size: 9rem;
+    //font-size: 9rem;
   }
   //font-display: block;
 
@@ -379,7 +382,7 @@ const ActSubheader = styled.h2`
 
   font-style: normal;
   font-weight: 800;
-  font-size: min(4vw, 36px);
+  //font-size: min(4vw, 36px);
   line-height: 59px;
   //max-width: 80%;
   //line-height: 100%;
@@ -410,10 +413,10 @@ const ActSubHeaders = styled.div`
     font-family: "Permanent Marker";
     color: red;
     padding-left: 6%;
-    font-size: 2.6rem;
+    //font-size: 2.6rem;
 
     @media only screen and (max-width: 985px) {
-      font-size: 3.6rem;
+      //font-size: 3.6rem;
     }
   }
 `;
@@ -756,26 +759,27 @@ const Span = styled.span`
   color: black;
 `;
 const ResultSection = styled.div`
-  grid-template-columns: 0px 2fr 1.75fr 0px;
+  width: 100%;
+  grid-template-columns: 2fr 1.75fr;
   grid-template-areas:
-    "  .     top top      .   "
-    "  .    bottom offering   .  ";
+    "  top top"
+    " bottom offering ";
 
   grid-template-rows:
     minmax(min-content, max-content)
     minmax(min-content, max-content);
   @media only screen and (max-width: 985px) {
-    grid-template-columns: 10px 1fr 10px;
+    grid-template-columns: 1fr;
 
-    grid-template-rows:
+    /* grid-template-rows:
       minmax(min-content, max-content)
       minmax(min-content, max-content)
-      minmax(min-content, max-content);
+      minmax(min-content, max-content); */
 
     grid-template-areas:
-      "  .     top      .   "
-      "  .    bottom    .  "
-      "  .    offering    .  ";
+      " top  "
+      " bottom "
+      " offering ";
 
     //grid-area: x cardOne x cardTwo infoBox x;
 
@@ -815,18 +819,18 @@ const NextSteps = styled.div`
     color: white;
     //letter-spacing: 0.06em;
     font-weight: 800;
-    font-size: 4rem;
+    font-size: 12vw;
     //margin: 0 0 20px 0;
     margin-top: -10px;
 
     @media only screen and (max-width: 985px) {
       justify-self: center;
-      font-size: 7rem;
+      //font-size: 7rem;
     }
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 5vw;
     color: white;
     //letter-spacing: 0.15em;
     //margin: 0 0 0 18px;
@@ -834,13 +838,13 @@ const NextSteps = styled.div`
     margin-bottom: 8px;
 
     @media only screen and (min-width: 986px) and (max-width: 1075px) {
-      font-size: 1.7rem;
+      //font-size: 1.7rem;
     }
 
     @media only screen and (max-width: 985px) {
       justify-self: center;
       text-align: center;
-      font-size: 3rem;
+      //font-size: 3rem;
     }
   }
 
@@ -1205,7 +1209,7 @@ const CardOneSub = styled.div`
   }
 
   @media only screen and (max-width: 985px) {
-    font-size: 1.7rem;
+    //font-size: 1.7rem;
   }
 `;
 
@@ -1298,7 +1302,7 @@ const CardNameOfRep = styled.h1`
   @media only screen and (max-width: 985px) {
     //border-top-left-radius: 13px;
     //border-top-right-radius: 13px;
-    font-size: 3vw;
+    //font-size: 3vw;
   }
 
   @media only screen and (max-width: 450px) {
@@ -1353,31 +1357,6 @@ const ShowOfferSection = styled.div`
   @media only screen and (max-width: 985px) {
     width: 100%;
     margin: 30px auto 0 auto;
-  }
-
-  div {
-    div {
-      iframe {
-        html {
-          body {
-            div {
-              div {
-                div {
-                  @media only screen and (max-width: 985px) {
-                    margin-bottom: 79px;
-                  }
-                  .paypal-button {
-                    @media only screen and (max-width: 985px) {
-                      height: 100px;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   }
 `;
 
@@ -1599,9 +1578,9 @@ const LetterOffer = styled.div`
   justify-self: center;
   display: grid;
   width: 100%;
-  grid-template-columns: 1px 1fr 1px;
+  grid-template-columns: 1fr;
   //border: 1px solid orange;
-  grid-template-areas: " . strip .";
+  grid-template-areas: " strip";
   //background-color: white;
 `;
 
@@ -1620,6 +1599,9 @@ const Strip = styled.div`
   background-color: white;
   //margin: 30px 0;
   border-radius: 18px;
+  width: 100%;
+  max-width: 600px;
+  justify-self: center;
 
   h4 {
     margin: 0 auto;
@@ -1639,7 +1621,7 @@ const Total = styled.h2`
 
   @media only screen and (max-width: 985px) {
     margin: 62px 0 24px 50px;
-    font-size: 5rem;
+    //font-size: 5rem;
   }
 
   //margin-left: 6%;
@@ -1654,33 +1636,33 @@ const Price = styled.h1`
 
   @media only screen and (max-width: 985px) {
     margin: 0 0 46px 48px;
-    font-size: 7rem;
+    //font-size: 7rem;
   }
 `;
 
 const Row1 = styled.div`
   display: grid;
-  grid-template-columns: min-content 1fr;
-
+  grid-template-columns: 1fr 3fr;
+  width: 100%;
   cursor: pointer;
 
-  //margin: 30px 0px 30px 0px;
+  //margin: 0 10px 20px 10px;
 
   @media only screen and (max-width: 985px) {
-    margin: 30px 20px 0px 48px;
+    //margin: 30px 20px 0px 48px;
   }
 `;
 
 const Row2 = styled.div`
   display: grid;
-  grid-template-columns: min-content 1fr;
-
+  grid-template-columns: 1fr 3fr;
+  width: 100%;
   cursor: pointer;
 
-  margin: 20px 0px 30px 0px;
+  //margin: 0 10px 20px 10px;
 
   @media only screen and (max-width: 985px) {
-    margin: 30px 20px 10px 48px;
+    //margin: 30px 20px 10px 48px;
   }
 `;
 
@@ -1696,17 +1678,18 @@ const PicWrapper = styled.div`
   background-repeat: no-repeat;
   background-image: url(${samplepic2});
   border-radius: 50px;
-  width: 80px;
-  height: 90px;
+  width: 100px;
+  height: 120px;
+  display: grid;
 
   @media only screen and (max-width: 985px) {
-    width: 175px;
-    height: 175px;
+    //width: 80px;
+    //height: 90px;
   }
 `;
 
 const Pic1 = styled.img`
-  border-radius: 34px;
+  border-radius: 15px;
 
   //border: 2px solid white;
   /* border: ${(props) =>
@@ -1715,12 +1698,10 @@ const Pic1 = styled.img`
       : "7px white solid"}; */
   border: ${(props) =>
     props.which_email_is_active == 1 ? "7px orange solid" : "7px white solid"};
-  width: 80px;
-  height: 90px;
+  width: 100px;
+  height: 120px;
 
   @media only screen and (max-width: 985px) {
-    width: 175px;
-    height: 175px;
   }
 `;
 
@@ -1736,11 +1717,12 @@ const HowItWorksWrapper = styled.div`
     max-width: 95%;
     border-top: initial;
     border-bottom: initial;
+    padding: 0 47px;
   }
   p {
     color: white;
     line-height: 1.6rem;
-    font-size: 2rem;
+    font-size: 6vw;
     font-family: Fira Sans;
     align-self: start;
     justify-self: start;
@@ -1748,7 +1730,7 @@ const HowItWorksWrapper = styled.div`
     margin-top: 10px;
 
     @media only screen and (max-width: 985px) {
-      font-size: 4rem;
+      //font-size: 4rem;
       line-height: initial;
       justify-self: center;
       margin-top: 40px;
@@ -1757,7 +1739,7 @@ const HowItWorksWrapper = styled.div`
 `;
 
 const Pic2 = styled.img`
-  border-radius: 34px;
+  border-radius: 15px;
 
   //border: 2px solid white;
   /* border: ${(props) =>
@@ -1767,12 +1749,10 @@ const Pic2 = styled.img`
   border: ${(props) =>
     props.which_email_is_active == 2 ? "7px orange solid" : "7px white solid"};
 
-  width: 80px;
-  height: 90px;
+  width: 100px;
+  height: 120px;
 
   @media only screen and (max-width: 985px) {
-    width: 175px;
-    height: 175px;
   }
 `;
 
@@ -1787,10 +1767,10 @@ const Description1 = styled.div`
 
 const DWrapper = styled.div`
   align-self: end;
-  padding: 0 0 0 10px;
+  //padding: 0px 8px 0px 2px;
 
   @media only screen and (max-width: 985px) {
-    padding: 0 0 0 37px;
+    //padding: 0 0 0 37px;
   }
 `;
 
@@ -1805,13 +1785,13 @@ const D1 = styled.h2`
   border-bottom-right-radius: 91px;
 
   @media only screen and (max-width: 985px) {
-    font-size: 4rem;
+    //font-size: 4rem;
   }
 `;
 
 const D2 = styled.h3`
   //display: inline-block;
-  padding: 0 0 0 10px;
+  //padding: 0px 8px 0px 2px;
   //border-top-right-radius: 91px;
   font-size: 1rem;
   //border-top-left-radius: 55px;
@@ -1820,8 +1800,8 @@ const D2 = styled.h3`
   margin-top: 10px;
 
   @media only screen and (max-width: 985px) {
-    font-size: 2rem;
-    padding: 0 0 0 37px;
+    //font-size: 2rem;
+    //padding: 0 0 0 37px;
   }
 `;
 
@@ -2460,7 +2440,7 @@ const HowItWorksList = styled.div`
   margin-top: -15px;
 
   @media only screen and (max-width: 985px) {
-    font-size: 1.8;
+    //font-size: 1.8rem;
     margin-top: 25px;
     justify-self: start;
     //padding: 20px 50px;
@@ -2469,25 +2449,25 @@ const HowItWorksList = styled.div`
   }
 
   p {
-    font-size: 1rem;
+    font-size: 4vw;
     line-height: 1rem;
     margin-top: -7px;
 
     @media only screen and (max-width: 985px) {
       margin-top: initial;
       margin-bottom: 45px;
-      font-size: 3rem;
+      //font-size: 3rem;
       line-height: initial;
       //text-align: center;
     }
   }
 
   p:nth-child(3) {
-    font-size: 1.5rem;
+    font-size: 5vw;
     margin-top: 5px;
 
     @media only screen and (max-width: 985px) {
-      font-size: 4rem;
+      //font-size: 4rem;
     }
   }
 `;
@@ -2565,16 +2545,16 @@ const LetterDemo = styled.div`
 
     } */
     //text-indent: 2rem;
-    font-size: 1.2rem;
+    font-size: 4vw;
     font-weight: 300;
     margin-top: 20px;
     /* grid-area: 5/2/6/5; */
     //grid-area: 3/1/4/2;
-    padding: 0px 50px;
+    padding: 0px 20px;
     line-height: 25px;
 
     @media only screen and (max-width: 985px) {
-      font-size: 2.5rem;
+      //font-size: 2.5rem;
       line-height: initial;
     }
   }
@@ -2591,7 +2571,7 @@ const LetterClosing = styled.div`
 
   sub {
     @media only screen and (max-width: 985px) {
-      font-size: 1.5rem;
+      //font-size: 1.5rem;
     }
   }
 `;
@@ -2704,7 +2684,7 @@ const TopBar = styled.div`
     font-size: 2em;
 
     @media only screen and (max-width: 985px) {
-      font-size: 3.5em;
+      //font-size: 3.5em;
       margin: 0 0 -5px 0;
     }
   }
@@ -2717,7 +2697,7 @@ const TopBar = styled.div`
     //letter-spacing: 0.1em;
     font-size: 1.8rem;
     @media only screen and (max-width: 985px) {
-      font-size: 2.2em;
+      //font-size: 2.2em;
     }
   }
 
@@ -2731,7 +2711,7 @@ const TopBar = styled.div`
       align-self: end;
       font-size: 1.5em;
       @media only screen and (max-width: 985px) {
-        font-size: 2.2em;
+        //font-size: 2.2em;
       }
     }
     h5 {
@@ -2748,7 +2728,7 @@ const TopBar = styled.div`
       }
 
       @media only screen and (max-width: 985px) {
-        font-size: 1.3;
+        //font-size: 1.3rem;
       }
     }
   }
@@ -2863,7 +2843,7 @@ function Act(props, ref) {
   const { LookupInputRef } = ref;
   const [tester, setTester] = useState("testing");
   const [addressObject, setAddressObject] = useState(null);
-  const [showCards, setShowCards] = React.useState("false");
+  const [showCards, setShowCards] = React.useState("true");
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
 
   const [searchButtonActive, setSearchButtonActive] = React.useState(false);
@@ -2927,82 +2907,82 @@ function Act(props, ref) {
   `,
   };
 
+  const [results, setResults] = React.useState({
+    one: {
+      resultFromFlorida: "true",
+      name: "Juan Alfonso Fernandez-Barquin",
+      firstName: "",
+      lastName: "",
+      image:
+        "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
+      id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
+      email: "JuanF.Barquin@myfloridahouse.gov",
+      chamber: "House",
+      party: "Republican",
+      parent: "Florida Legislature",
+      district: "119",
+      fullDistrict: "Florida State House district 119",
+      fullDistrictTrunk: "Florida State House",
+    },
+    two: {
+      name: "Annette Taddeo",
+      firstName: "Annette",
+      lastName: "Taddeo",
+      image:
+        "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
+      id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
+      email: "taddeo.annette.web@flsenate.gov",
+      chamber: "Senate",
+      party: "Democrat",
+      parent: "Florida Legislature",
+      district: "40",
+      fullDistrict: "Florida State Senate  ",
+      fullDistrictTrunk: "Florida State Senate",
+    },
+  });
+
   // const [results, setResults] = React.useState({
   //   one: {
   //     resultFromFlorida: "true",
-  //     name: "Juan Alfonso Fernandez-Barquin",
-  //     firstName: "",
-  //     lastName: "",
+  //     name: "Kaylee Tuck",
+  //     firstName: "Kaylee",
+  //     lastName: "Tuck",
   //     image:
-  //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
-  //     id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
-  //     email: "JuanF.Barquin@myfloridahouse.gov",
+  //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg",
+  //     id: "ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880",
+  //     email: "Kaylee.Tuck@myfloridahouse.gov",
   //     chamber: "House",
   //     party: "Republican",
   //     parent: "Florida Legislature",
-  //     district: "119",
-  //     fullDistrict: "Florida State House district 119",
+  //     district: "55",
+  //     fullDistrict: "Florida State House  ",
   //     fullDistrictTrunk: "Florida State House",
+  //     address:
+  //       "1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
+  //     classification: "lower",
   //   },
   //   two: {
-  //     name: "Annette Taddeo",
-  //     firstName: "Annette",
-  //     lastName: "Taddeo",
+  //     name: "Ben Albritton",
+  //     firstName: "Ben",
+  //     lastName: "Albritton",
   //     image:
-  //       "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
-  //     id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
-  //     email: "taddeo.annette.web@flsenate.gov",
+  //       "https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg",
+  //     id: "ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8",
+  //     email: "albritton.ben.web@flsenate.gov",
   //     chamber: "Senate",
-  //     party: "Democrat",
+  //     party: "Republican",
   //     parent: "Florida Legislature",
-  //     district: "40",
+  //     district: "26",
   //     fullDistrict: "Florida State Senate  ",
   //     fullDistrictTrunk: "Florida State Senate",
+  //     address:
+  //       "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
+  //     classification: "upper",
   //   },
+  //   hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
   // });
 
-  // // const [results, setResults] = React.useState({
-  // //   one: {
-  // //     resultFromFlorida: "true",
-  // //     name: "Kaylee Tuck",
-  // //     firstName: "Kaylee",
-  // //     lastName: "Tuck",
-  // //     image:
-  // //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4776.jpg",
-  // //     id: "ocd-person/7bf7d958-fabd-430b-9326-97586b0c0880",
-  // //     email: "Kaylee.Tuck@myfloridahouse.gov",
-  // //     chamber: "House",
-  // //     party: "Republican",
-  // //     parent: "Florida Legislature",
-  // //     district: "55",
-  // //     fullDistrict: "Florida State House  ",
-  // //     fullDistrictTrunk: "Florida State House",
-  // //     address:
-  // //       "1401 The Capitol; 402 South Monroe Street; Tallahassee, FL 32399-1300",
-  // //     classification: "lower",
-  // //   },
-  // //   two: {
-  // //     name: "Ben Albritton",
-  // //     firstName: "Ben",
-  // //     lastName: "Albritton",
-  // //     image:
-  // //       "https://www.flsenate.gov/PublishedContent/Senators/2020-2022/Photos/s26_5342.jpg",
-  // //     id: "ocd-person/5c81dfe7-1cec-45e8-8044-6d9cd324f2e8",
-  // //     email: "albritton.ben.web@flsenate.gov",
-  // //     chamber: "Senate",
-  // //     party: "Republican",
-  // //     parent: "Florida Legislature",
-  // //     district: "26",
-  // //     fullDistrict: "Florida State Senate  ",
-  // //     fullDistrictTrunk: "Florida State Senate",
-  // //     address:
-  // //       "314 Senate Building; 404 South Monroe Street; Tallahassee, FL 32399-1100",
-  // //     classification: "upper",
-  // //   },
-  // //   hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
-  // // });
-
-  const [results, setResults] = React.useState({ one: {}, two: {} });
+  ////const [results, setResults] = React.useState({ one: {}, two: {} });
 
   // // const [results, setResults] = React.useState({
   // // 	one: {
