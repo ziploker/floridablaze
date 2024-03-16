@@ -24,7 +24,7 @@ import Carousel, { CarouselItem } from "./carousel";
 
 const HomeWrapper = styled.div`
   //background: pink;
-
+line-height: 1.3;
   //height: calc(100vh - 85px);
   //max-height: 500px;
   overflow: hidden;
@@ -87,9 +87,8 @@ const News = styled.div`
 			"leftArrow   one . two . three   rightArrow"
 			"    .        .  .  .  .   .     ."; */
 
-  grid-template-columns:
-    minmax(30px, 120px) 1fr minmax(10px, 30px) 1fr
-    minmax(30px, 120px);
+ 
+  grid-template-columns: 2% 1fr 2% 1fr 2%;
   /* minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr); */
 
   grid-template-areas:
@@ -117,7 +116,7 @@ const News = styled.div`
 				minmax(20px, 1fr) minmax(600px, 700px) minmax(600px, 700px)
 				minmax(600px, 700px) minmax(20px, 1fr);
 		} */
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 480px) {
     display: none;
   }
 `;
@@ -130,7 +129,7 @@ const LinkWrapper1 = styled(Link)`
   width: 100%;
   justify-self: center;
   display: grid;
-  @media only screen and (min-width: 986px) {
+  @media only screen and (min-width: 481px) {
     grid-area: one;
     width: 100%;
     justify-self: center;
@@ -146,7 +145,7 @@ const LinkWrapper2 = styled(Link)`
   width: 100%;
   justify-self: center;
   display: grid;
-  @media only screen and (min-width: 985px) {
+  @media only screen and (min-width: 480px) {
     grid-area: two;
     width: 100%;
     justify-self: center;
@@ -248,7 +247,7 @@ const Div1OverlayWrapper = styled.div`
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff9191",GradientType=1);
 
-  @media only screen and (min-width: 986px) {
+  @media only screen and (min-width: 481px) {
     grid-area: one;
   }
 `;
@@ -257,7 +256,7 @@ const Div2OverlayWrapper = styled(Div1OverlayWrapper)`
   //grid-area: two;
   grid-area: 1/1/-1/-1;
 
-  @media only screen and (min-width: 985px) {
+  @media only screen and (min-width: 480px) {
     grid-area: two;
   }
 `;

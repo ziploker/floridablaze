@@ -49,7 +49,7 @@ const formData = new FormData();
 
 const ActWrapper = styled.div`
   width: 100%;
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     //overflow: hidden;
     width: 100%;
   }
@@ -182,22 +182,12 @@ const BGimageFixBottom = styled.div`
   );
 `;
 const Mega = styled.img`
-  /* @media only screen and (max-width: 1400px) {
-   width: 85%;
-  } */
-  @media only screen and (max-width: 985px) {
+ 
+  @media only screen and (max-width: 786px) {
     grid-area: 1/1/-1/-1;
     display: none;
   }
 
-  /* @media only screen and (max-width: 1000px) {
-    //grid-area: 1/1/2/-1;
-    display: none;
-  } */
-
-  //position: absolute;
-  //top: -5vh;
-  //left: 12vw;
   width: 65%;
   //height: 85%;
   display: ${(props) => (props.show_cards == "true" ? "none" : "inherit")};
@@ -214,37 +204,16 @@ const Mega = styled.img`
 
 const ActGrid = styled.div`
   width: 100%;
-  /* background: ${(props) =>
-    props.show_cards == "true" ? "white" : "#ff000047"}; */
-  /* @media only screen and (max-width: 1000px){
-
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content) minmax(100px, max-content) minmax(min-content, max-content);
-
-  } */
-
-  /* @media only screen and (max-width: 750px){
-
-    justify-items: start;
-
-
-  } */
-
-  //overflow: hidden;
-  //display: grid;
+ 
   position: relative;
-  //max-width: 1383px;
+ 
   margin: 0 auto;
-  //grid-template-columns: 43% 57%;
-  //grid-template-columns: minmax(20px, 1fr) minmax(335px, 350px) minmax(350px,600px) minmax(20px, 1fr);
-  //grid-template-rows: 120px 40px 50px 100px 50px 1fr;
-
-  //grid-column-gap: 0.5em;
+ 
   justify-items: center;
 `;
 
 const ActSection = styled.section`
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     //grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
     grid-template-columns: minmax(8px, 1fr) minmax(197px, 800px) minmax(
         8px,
@@ -312,14 +281,9 @@ const ActHeaderWrapper = styled.div`
   grid-area: 1/3/2/4;
   width: 100%;
   padding-left: 6%;
-  //padding: 0 8%;
-  //margin-top: 20px;
+ 
 
-  /* @media only screen and (min-width: 1026px) {
-    margin: 20px 0 0 30px;
-  } */
-
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     justify-self: start;
     grid-area: 1/1/2/3;
     /* margin-top: 25px;
@@ -329,14 +293,7 @@ const ActHeaderWrapper = styled.div`
 `;
 
 const ActHeader = styled.h1`
-  @media only screen and (max-width: 660px) {
-    // font-size: 5rem;
-  }
-
-  @media only screen and (max-width: 985px) {
-    //// font-size: 9rem;
-  }
-  //font-display: block;
+ 
 
   font-style: normal;
   font-weight: 800;
@@ -365,16 +322,11 @@ const ActHeader = styled.h1`
   word-break: break-word;
   white-space: normal;
   overflow: visible;
-  //color: #ffffff;
-  //margin: 24px 0 21px 60px;
-
-  /* @media only screen and (max-width: 1300px) {
-    // font-size: 7rem;
-  } */
+ 
 `;
 
 const ActSubheader = styled.h2`
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     grid-area: 2/1/3/-1;
     //justify-self: center;
     //// font-size: 4vw;
@@ -394,13 +346,11 @@ const ActSubheader = styled.h2`
   display: none;
   opacity: ${(props) => (props.show_cards == "true" ? "0" : "1")};
 
-  @media only screen and (max-width: 350px) {
-    // font-size: 20px;
-  }
+ 
 `;
 
 const ActSubHeaders = styled.div`
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     grid-area: 2/1/3/-1;
     //justify-self: center;
     //// font-size: 4vw;
@@ -415,7 +365,7 @@ const ActSubHeaders = styled.div`
     padding-left: 6%;
     //// font-size: 2.6rem;
 
-    @media only screen and (max-width: 985px) {
+    @media only screen and (max-width: 786px) {
       //// font-size: 3.6rem;
     }
   }
@@ -431,10 +381,9 @@ const ActBulletPointsWrapper = styled.div`
   margin-bottom: 10px;
   display: grid;
   grid-gap: 10px;
-  @media only screen and (min-width: 1026px) {
-  }
+ 
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     justify-self: center;
     grid-area: 2/1/3/3;
   }
@@ -459,10 +408,7 @@ const BulletOne = styled.p`
   color: white;
   //padding-left: 30px;
   align-self: end;
-  // font-size: 2rem;
-  @media only screen and (max-width: 350px) {
-    // font-size: 13px;
-  }
+  
   /* Lookup your State Representatives. */
 
   font-style: normal;
@@ -481,10 +427,8 @@ const BulletOne = styled.p`
 `;
 
 const Form = styled.div`
-  /* @media only screen and (min-width: 1026px) {
-    margin: 0 0 0 7px;
-  } */
-  @media only screen and (max-width: 985px) {
+  
+  @media only screen and (max-width: 786px) {
     grid-area: 3/1/4/-1;
     padding: 0 6%;
     justify-self: center;
@@ -576,7 +520,7 @@ const Button = styled.button`
 `;
 
 const FindMyRep = styled.button`
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     grid-area: 5/1/6/-1;
     justify-self: start;
     //// font-size: 2vw;
@@ -768,13 +712,9 @@ const ResultSection = styled.div`
   grid-template-rows:
     minmax(min-content, max-content)
     minmax(min-content, max-content);
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     grid-template-columns: 1fr;
 
-    /* grid-template-rows:
-      minmax(min-content, max-content)
-      minmax(min-content, max-content)
-      minmax(min-content, max-content); */
 
     grid-template-areas:
       " top  "
@@ -823,7 +763,7 @@ const NextSteps = styled.div`
     //margin: 0 0 20px 0;
     margin-top: -10px;
 
-    @media only screen and (max-width: 985px) {
+    @media only screen and (max-width: 786px) {
       justify-self: center;
       //// font-size: 7rem;
     }
@@ -837,11 +777,8 @@ const NextSteps = styled.div`
     color: orange;
     margin-bottom: 8px;
 
-    @media only screen and (min-width: 986px) and (max-width: 1075px) {
-      //// font-size: 1.7rem;
-    }
-
-    @media only screen and (max-width: 985px) {
+   
+    @media only screen and (max-width: 786px) {
       justify-self: center;
       text-align: center;
       //// font-size: 3rem;
@@ -862,7 +799,7 @@ const NextSteps = styled.div`
 			margin-bottom: 16px; */
   //}
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     margin: 50px 0 0 0;
     width: 100%;
   }
@@ -876,7 +813,7 @@ const LinerVertical = styled.div`
   right: 0px;
   background: hsl(38.57142857142857, 100%, 13.725490196078432%);
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     display: none;
   }
 `;
@@ -889,20 +826,13 @@ const LinerHorizontal = styled.div`
   right: 0px;
   background: hsl(38.57142857142857, 100%, 13.725490196078432%);
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     display: none;
   }
 `;
 
 const ResultSectionInfoBox = styled.div`
-  /* @media only screen and (max-width: 750px){
-
-    grid-area: 1/1/2/6;
-
-
-
-
-  } */
+ 
 
   display: grid;
 
@@ -926,7 +856,7 @@ const ProgressBarz = styled.div`
     margin: 20px 0px 28px 80px;
   }
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     justify-self: center;
   }
 `;
@@ -949,23 +879,14 @@ const ResultCompleteTitle = styled.h1`
 `;
 
 const ResultSectionBulletPointWrapperSet = styled.div`
-  /* @media only screen and (max-width: 750px){
-
-  margin: 0 auto;
-
-  } */
-
+ 
   grid-area: 3/2/6/3;
   display: grid;
   grid-template-columns: min-content 1fr min-content;
 `;
 
 const ResultSectionBulletPointWrapper = styled.div`
-  /* @media only screen and (max-width: 750px){
-
-    justify-self: center;
-
-  } */
+ 
   grid-area: ${(props) => props.gridArea};
 
   display: grid;
@@ -996,14 +917,7 @@ const ResultSectionBulletPointTitle = styled.h2`
 `;
 
 const ResultSectionSpacerLine = styled.div`
-  /* @media only screen and (max-width: 750px){
-
-  margin: 25px 0 45px 0;
-
-
-
-} */
-
+  
   height: 1px;
   //width: 100vw;
   background: #e3b55a;
@@ -1013,14 +927,7 @@ const ResultSectionSpacerLine = styled.div`
 `;
 
 const ResultSectionHeaders = styled.h1`
-  /* @media only screen and (max-width: 750px){
-
-    grid-area: ${(props) => props.gridAreaTablet};
-    //// font-size: 8vw;
-    margin: 10px 0px 20px 0px;
-
-
-  } */
+  
 
   display: flex;
   justify-content: center;
@@ -1061,14 +968,7 @@ const ResultSectionHeaders = styled.h1`
 `;
 
 const ResultSectionHeadersAlt = styled.div`
-  /* @media only screen and (max-width: 750px){
-
-    grid-area: ${(props) => props.gridAreaTablet};
-    //// font-size: 8vw;
-    //margin: 50px 0px 0px 0px;
-
-
-  } */
+  
 
   display: ${(props) =>
     props.show_cards == "true" && props.result_from_florida == "true"
@@ -1099,12 +999,7 @@ const ResultSectionHeadersAlt = styled.div`
 `;
 
 const ResultSectionSubHeader = styled.h2`
-  /* @media only screen and (max-width: 750px){
-
-    // font-size: 4vw;
-
-
-  } */
+  
   font-style: normal;
   font-weight: 600;
   // font-size: clamp(12px, 1.5vw, 60px);
@@ -1148,14 +1043,7 @@ const CardOne = styled.div`
 
   padding-top: calc(310 / 220 * 100%);
 
-  /* @media only screen and (max-width: 985px) {
-    grid-area: 3/2/4/3;
-    /* justify-self: start;
-    padding-top: calc(310/220*100%);
-    height: 0px;
-    width: 100%; 
-  }
-   */
+  
 `;
 
 const CardOneWrapper = styled.div`
@@ -1194,21 +1082,13 @@ const CardOneSub = styled.div`
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-  /* @media only screen and (max-width: 985px) {
-		//border-top-left-radius: 13px;
-		//border-top-right-radius: 13px;
-		// font-size: 2.2vw;
-	} */
-
-  /* @media only screen and (max-width: 450px) {
-		// font-size: 9.8px;
-	} */
-  @media only screen and (min-width: 986px) {
+  
+  @media only screen and (min-width: 787px) {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
   }
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     //// font-size: 1.7rem;
   }
 `;
@@ -1226,20 +1106,7 @@ const CardTwo = styled.div`
   padding-top: calc(310 / 220 * 100%);
   width: 100%;
 
-  /* @media only screen and (max-width: 750px){
-    grid-area: 4/4/5/5;
-    justify-self: start;
-    padding-top: calc(310/220*100%);
-    height: 0px;
-    width: 100%;
-  } */
-
-  /* @media only screen and (max-width: 985px) {
-    grid-area: 3/4/4/5;
-    /* justify-self: start;
-    padding-top: calc(310/220*100%);
-    height: 0px;
-    width: 100%; */
+  
 `;
 
 const CardTwoWrapper = styled.div`
@@ -1299,13 +1166,13 @@ const CardNameOfRep = styled.h1`
   -o-user-select: none;
   user-select: none;
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     //border-top-left-radius: 13px;
     //border-top-right-radius: 13px;
     //// font-size: 3vw;
   }
 
-  @media only screen and (max-width: 450px) {
+  @media only screen and (max-width: 786px) {
     // font-size: 10px;
   }
 `;
@@ -1326,35 +1193,14 @@ const ShowOfferSectionWrapper = styled.div`
 `;
 
 const ShowOfferSection = styled.div`
-  /* @media only screen and (max-width: 750px){
-
-    grid-area: 6/1/9/6;
-  } */
-
-  /* grid-area: 7/1/8/3;
-  width: 80%;
-  justify-self: center;
-  margin-top: 4px;
-
-  div{
-
-    div{
-      min-width: 100px !important;
-    }
-  } */
-
-  /* position: absolute;
-  left: 0;
-  right: 0; */
-  //padding: 0px 10% 0px 10%;
-  //background-color: white;
+  
   display: ${(props) => (props.show_cards == "true" ? "WTF" : "none")};
   margin: 0px auto 0 auto;
   width: 55%;
   max-width: 1000px;
   float: left;
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     width: 100%;
     margin: 30px auto 0 auto;
   }
@@ -1368,12 +1214,9 @@ const ResultsBlurb = styled.div`
   padding: 30px;
   margin-top: 24px;
 
-  /* @media only screen and (max-width: 1000px) {
-    grid-area: resultBlurb;
-    margin: 10px 0px 0px 16px;
-  } */
+  
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     grid-area: resultBlurb;
     margin: 10px 16px 0px 16px;
   }
@@ -1388,48 +1231,13 @@ const TriplePlayWrapper = styled.div`
   grid-area: bottom;
   width: 100%;
   margin-top: 30px;
-  //display: grid;
-  //grid-template-columns: 50% 1fr 1fr;
-  //grid-gap: 5px;
-
-  /* @media only screen and (max-width: 1000px) {
-		grid-template-columns: 1fr 1fr;
-		grid-area: 3/2/4/6;
-		max-width: 777px;
-	}
-
-	@media only screen and (max-width: 985px) {
-		grid-area: 4/1/5/6;
-	} */
+  
 `;
 
 const Letter = styled.div`
   width: 99%;
 
-  /* @media only screen and (max-width: 1000px) {
-    grid-area: 1/1/2/3;
-    //margin: 0px auto;
-    //padding: 0px 15px 32px 15px;
-    //grid-template-columns: auto;
-    //width: 100%;
-    //min-width: inherit;
-    //margin-top: 20px;
-    justify-self: center;
-  } */
-
-  /* @media only screen and (max-width: 985px){
-
-    grid-area: 4/2/5/6;
-    //margin: 0px auto;
-    //padding: 0px 15px 32px 15px;
-    //grid-template-columns: auto;
-    //width: 100%;
-    //min-width: inherit;
-    //margin-top: 20px;
-    justify-self: center;
-
-  } */
-
+ 
   display: grid;
   //min-width: 400px;
   //max-width: 500px;
@@ -1472,13 +1280,13 @@ const Letter = styled.div`
     grid-area: 1/4/4/5;
     margin: 0;
   } */
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     width: 100%;
   }
 `;
 
 const OfferOne = styled.div`
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     grid-area: 2/1/3/2;
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
@@ -1560,7 +1368,7 @@ const LetterOfferWrapper = styled.div`
   //display: grid;
   margin-top: 30px;
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     max-width: initial;
   }
 `;
@@ -1619,7 +1427,7 @@ const Total = styled.h2`
 
   margin: 25px 0 24px 0;
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     margin: 62px 0 24px 50px;
     //// font-size: 5rem;
   }
@@ -1634,7 +1442,7 @@ const Price = styled.h1`
 
   margin: 0 0 20px 0;
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     margin: 0 0 46px 48px;
     //// font-size: 7rem;
   }
@@ -1648,9 +1456,7 @@ const Row1 = styled.div`
 
   //margin: 0 10px 20px 10px;
 
-  @media only screen and (max-width: 985px) {
-    //margin: 30px 20px 0px 48px;
-  }
+ 
 `;
 
 const Row2 = styled.div`
@@ -1661,9 +1467,7 @@ const Row2 = styled.div`
 
   //margin: 0 10px 20px 10px;
 
-  @media only screen and (max-width: 985px) {
-    //margin: 30px 20px 10px 48px;
-  }
+ 
 `;
 
 const CheckmarkMainWrapper = styled.div`
@@ -1682,10 +1486,7 @@ const PicWrapper = styled.div`
   height: 120px;
   display: grid;
 
-  @media only screen and (max-width: 985px) {
-    //width: 80px;
-    //height: 90px;
-  }
+ 
 `;
 
 const Pic1 = styled.img`
@@ -1701,8 +1502,7 @@ const Pic1 = styled.img`
   width: 100px;
   height: 120px;
 
-  @media only screen and (max-width: 985px) {
-  }
+  
 `;
 
 const HowItWorksWrapper = styled.div`
@@ -1711,7 +1511,7 @@ const HowItWorksWrapper = styled.div`
 
   display: grid;
   //max-width: 578px;
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     justify-self: center;
     margin-top: 12px;
     max-width: 95%;
@@ -1729,7 +1529,7 @@ const HowItWorksWrapper = styled.div`
     //padding: 0 8px;
     margin-top: 10px;
 
-    @media only screen and (max-width: 985px) {
+    @media only screen and (max-width: 786px) {
       //// font-size: 4rem;
       line-height: initial;
       justify-self: center;
@@ -1752,8 +1552,7 @@ const Pic2 = styled.img`
   width: 100px;
   height: 120px;
 
-  @media only screen and (max-width: 985px) {
-  }
+ 
 `;
 
 const Description1 = styled.div`
@@ -1769,9 +1568,7 @@ const DWrapper = styled.div`
   align-self: end;
   //padding: 0px 8px 0px 2px;
 
-  @media only screen and (max-width: 985px) {
-    //padding: 0 0 0 37px;
-  }
+  
 `;
 
 const D1 = styled.h2`
@@ -1784,9 +1581,7 @@ const D1 = styled.h2`
   //border-top-left-radius: 55px;
   border-bottom-right-radius: 91px;
 
-  @media only screen and (max-width: 985px) {
-    //// font-size: 4rem;
-  }
+  
 `;
 
 const D2 = styled.h3`
@@ -1799,10 +1594,7 @@ const D2 = styled.h3`
   align-self: top;
   margin-top: 10px;
 
-  @media only screen and (max-width: 985px) {
-    //// font-size: 2rem;
-    //padding: 0 0 0 37px;
-  }
+  
 `;
 
 const Description2 = styled.div`
@@ -1854,7 +1646,7 @@ const CheckmarkDescription = styled.h1`
 const Price1 = styled.div``;
 
 const OfferTwo = styled.div`
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     grid-area: 2/2/3/3;
     //margin: 0px auto;
     //padding: 0px 15px 32px 15px;
@@ -1943,14 +1735,7 @@ const BulletPointText2 = styled.h3`
 `;
 
 const SendButtonWrapper = styled.div`
-  /* @media only screen and (max-width: 400px){
-    grid-area: 7/2/8/5;
-    align-self: center;
-    justify-self: center;
-    margin: 16px 0px;
-    
-
-  } */
+ 
 
   grid-area: 7/1/8/3;
   align-self: center;
@@ -2243,13 +2028,7 @@ const LetterDemoWrapper = styled.div`
 
   margin: 15px auto;
 
-  /* @media only screen and (max-width: 985px) {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "dots"
-      "center"
-      "offer";
-  } */
+ 
 `;
 
 const LetterDemoCenter = styled.div`
@@ -2279,17 +2058,11 @@ const EmailDemoWrapper = styled.div`
 
   margin: 15px auto;
 
-  @media only screen and (max-width: 685px) {
+  /* @media only screen and (max-width: 685px) {
     grid-template-columns: 1% 2.5fr 20px 1fr 1%;
-  }
+  } */
 `;
 
-// const EmailDemoLeft = styled.div`
-//   justify-self: end;
-//   align-self: center;
-//   display: grid;
-//   margin-right: 8px;
-// `;
 
 const EmailDemoCenter = styled.div`
   position: relative;
@@ -2439,7 +2212,7 @@ const HowItWorksList = styled.div`
   // font-size: 1.2rem;
   margin-top: -15px;
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     //// font-size: 1.8rem;
     margin-top: 25px;
     justify-self: start;
@@ -2453,7 +2226,7 @@ const HowItWorksList = styled.div`
     line-height: 1rem;
     margin-top: -7px;
 
-    @media only screen and (max-width: 985px) {
+    @media only screen and (max-width: 786px) {
       margin-top: initial;
       margin-bottom: 45px;
       //// font-size: 3rem;
@@ -2466,7 +2239,7 @@ const HowItWorksList = styled.div`
     // font-size: 5vw;
     margin-top: 5px;
 
-    @media only screen and (max-width: 985px) {
+    @media only screen and (max-width: 786px) {
       //// font-size: 4rem;
     }
   }
@@ -2538,14 +2311,7 @@ const LetterDemo = styled.div`
   }
 
   p {
-    /* @media only screen and (max-width: 1000px){
-
-      padding: 0px;
-
-
-    } */
-    //text-indent: 2rem;
-    // font-size: 4vw;
+   
     font-weight: 300;
     margin-top: 20px;
     /* grid-area: 5/2/6/5; */
@@ -2553,7 +2319,7 @@ const LetterDemo = styled.div`
     padding: 0px 20px;
     line-height: 25px;
 
-    @media only screen and (max-width: 985px) {
+    @media only screen and (max-width: 786px) {
       //// font-size: 2.5rem;
       line-height: initial;
     }
@@ -2570,7 +2336,7 @@ const LetterClosing = styled.div`
   }
 
   sub {
-    @media only screen and (max-width: 985px) {
+    @media only screen and (max-width: 786px) {
       //// font-size: 1.5rem;
     }
   }
@@ -2633,14 +2399,7 @@ const EmailDemo = styled.div`
   }
 
   p {
-    /* @media only screen and (max-width: 1000px){
-
-      padding: 0px;
-
-
-    } */
-    //text-indent: 2rem;
-    // font-size: 1.2rem;
+   
     font-weight: 300;
     margin-top: 20px;
     /* grid-area: 5/2/6/5; */
@@ -2672,7 +2431,7 @@ const TopBar = styled.div`
   grid-area: topbar;
   justify-self: start;
   margin: 48px 0px 48px 120px;
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     margin: 48px 0px 48px 20px;
   }
 
@@ -2683,7 +2442,7 @@ const TopBar = styled.div`
     letter-spacing: 0.03em;
     // font-size: 2em;
 
-    @media only screen and (max-width: 985px) {
+    @media only screen and (max-width: 786px) {
       //// font-size: 3.5em;
       margin: 0 0 -5px 0;
     }
@@ -2696,7 +2455,7 @@ const TopBar = styled.div`
     font-weight: 400;
     //letter-spacing: 0.1em;
     // font-size: 1.8rem;
-    @media only screen and (max-width: 985px) {
+    @media only screen and (max-width: 786px) {
       //// font-size: 2.2em;
     }
   }
@@ -2710,7 +2469,7 @@ const TopBar = styled.div`
       letter-spacing: 0.03em;
       align-self: end;
       // font-size: 1.5em;
-      @media only screen and (max-width: 985px) {
+      @media only screen and (max-width: 786px) {
         //// font-size: 2.2em;
       }
     }
@@ -2727,15 +2486,13 @@ const TopBar = styled.div`
         color: #f1ba52;
       }
 
-      @media only screen and (max-width: 985px) {
+      @media only screen and (max-width: 786px) {
         //// font-size: 1.3rem;
       }
     }
   }
 
-  /* @media only screen and (max-width: 985px) {
-		margin: 0 auto;
-	} */
+ 
 `;
 
 const BottomBar = styled.div`
@@ -2749,7 +2506,7 @@ const BottomBar = styled.div`
 
   grid-template-areas: " . cardOne . cardTwo nextSteps .";
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     padding: 50px 10px 20px 10px;
     grid-template-columns: 1fr 1fr;
     grid-gap: 8px;
@@ -2774,7 +2531,7 @@ const MiddleBarResultSection = styled.div`
     "bgfix bgfix bgfix bgfix"
     "bottombar bottombar bottombar bottombar";
 
-  @media only screen and (max-width: 985px) {
+  @media only screen and (max-width: 786px) {
     margin: 0 auto;
     grid-template-columns:
       1fr minmax(10px, 12px)
