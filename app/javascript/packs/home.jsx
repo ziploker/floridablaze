@@ -24,12 +24,14 @@ import Carousel, { CarouselItem } from "./carousel";
 
 const HomeWrapper = styled.div`
   //background: pink;
+  min-width: 275px;
 line-height: 1.3;
   //height: calc(100vh - 85px);
   //max-height: 500px;
   overflow: hidden;
   //min-width: 500px;
-  display: ${(props) => (props.show_offer == "true" ? "none" : "initial")};
+  //display: ${(props) => (props.show_offer == "true" ? "none" : "initial")};
+  display: ${(props) => (props.show_offer == "true" ? "none" : "inline-block")};
 `;
 
 const News = styled.div`
@@ -564,14 +566,14 @@ function Home(props) {
 
   useEffect(() => {
     function setModeAutoUseState() {
-      if (window.innerWidth <= 986) {
+      if (window.innerWidth <= 480) {
         setWhatModeAuto("cellphone");
       } else {
         setWhatModeAuto("desktop");
       }
     }
 
-    if (window.innerWidth <= 986) {
+    if (window.innerWidth <= 480) {
       setWhatModeAuto("cellphone");
     } else {
       setWhatModeAuto("desktop");
