@@ -20,8 +20,11 @@ const StyledBurger = styled.button`
     outline: none;
   }
 
-  @media only screen and (min-width: 1001px) {
+  @media only screen and (min-width: 601px) {
     display: none;
+  }
+  @media only screen and (max-width: 520px) {
+    height: 3rem;
   }
 
   div {
@@ -43,7 +46,7 @@ const StyledBurger = styled.button`
     position: relative;
     transform-origin: 14px 0;
 
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 520px) {
       background: black;
     }
 
@@ -68,7 +71,7 @@ const StyledBurger = styled.button`
           : "black"};
        */
 
-      @media only screen and (max-width: 800px) {
+      @media only screen and (max-width: 520px) {
         color: black;
       }
 
@@ -93,7 +96,7 @@ const StyledBurger = styled.button`
           ? "white"
           : "black"}; */
 
-      @media only screen and (max-width: 800px) {
+      @media only screen and (max-width: 520px) {
         background: black;
       }
     }

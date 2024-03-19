@@ -31,7 +31,7 @@ line-height: 1.3;
   overflow: hidden;
   //min-width: 500px;
   //display: ${(props) => (props.show_offer == "true" ? "none" : "initial")};
-  display: ${(props) => (props.show_offer == "true" ? "none" : "inline-block")};
+  display: ${(props) => (props.show_offer == "true" ? "none" : "block")};
 `;
 
 const News = styled.div`

@@ -50,16 +50,16 @@ const LogoText = styled.div`
       props.logo_scrolled == "true" ? "100px" : "100px";
     }
   }}; */
-  width: ${(props) =>
+  /* width: ${(props) =>
     props.windowWidth <= 985
       ? props.logo_scrolled == "true"
         ? "300px"
         : "300px"
       : props.logo_scrolled == "true"
       ? "300px"
-      : "300px"};
+      : "300px"}; */
 
-  //width: 420px;
+  width: 300px;
   transition: all 0.3s linear;
 
   position: ${(props) =>
@@ -89,18 +89,18 @@ const LogoText = styled.div`
     margin-left: 20px;
   }
 
-  @media only screen and (max-width: 750px) {
-    //width: 260px;
+  @media only screen and (max-width: 731px) {
+    width: 265px;
     //top: 31px;
   }
 
   @media only screen and (max-width: 500px) {
-    width: 265px;
+    //width: 265px;
     //top: 39px;
   }
 
   @media only screen and (max-width: 357px) {
-    width: 200px;
+    //width: 200px;
   }
 `;
 
@@ -133,7 +133,7 @@ const HeaderLeafImage = styled.img`
     margin-right: -200px;
   }
 */
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 520px) {
     display: none;
   }
 
@@ -164,7 +164,7 @@ const UlWrapper = styled.div`
   display: grid;
 `;
 const LongNav = styled.nav`
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 600px) {
     display: none;
   }
   transition: all 0.2s linear;
@@ -214,7 +214,7 @@ const LongNav = styled.nav`
       //transition: // font-size 0.1s linear;
       font-weight: 400;
       // font-size: 30px;
-      //// font-size: 2vw;
+      font-size: 1rem;
       line-height: 45px;
       color: inherit;
       text-decoration: none;
@@ -276,7 +276,7 @@ const HamburgerMenu = styled.div`
   }
 
   @media only screen and (max-width: 357px) {
-    margin-top: -15px;
+    //margin-top: -15px;
   }
 
   button {
@@ -624,7 +624,7 @@ function Header(props) {
 
             {props.userState.loggedInStatus == "LOGGED_IN"
               ? [
-                  <li style={{ padding: "0 0 0 4px" }} key={3}>
+                  <li style={{ padding: "0 0 0 4px", fontSize: ".75rem" }} key={3}>
                     <a key={"a"} onClick={props.handleLogOutClick}>
                       Logout
                     </a>
@@ -634,7 +634,7 @@ function Header(props) {
                   </span>,
                   <li style={{ padding: "0" }} key={5}>
                     <Link
-                      style={{ textDecoration: "none" }}
+                      style={{ textDecoration: "none", fontSize: ".75rem" }}
                       key={"b"}
                       to="/edit"
                     >
@@ -643,7 +643,7 @@ function Header(props) {
                   </li>,
                 ]
               : [
-                  <li style={{ padding: "0 0 0 4px" }} key={6}>
+                  <li style={{ padding: "0 0 0 4px", fontSize: ".75rem" }} key={6}>
                     <a key={"c"} onClick={doSomething}>
                       Login
                     </a>
@@ -651,7 +651,7 @@ function Header(props) {
                   <span key={7} style={{ fontSize: ".8em", padding: "0 2px" }}>
                     |
                   </span>,
-                  <li style={{ padding: "0" }} key={8}>
+                  <li style={{ padding: "0", fontSize: ".75rem" }} key={8}>
                     <a key={"d"} onClick={props.executeScrollForSection2}>
                       Signup
                     </a>
