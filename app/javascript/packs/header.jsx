@@ -25,7 +25,7 @@ const HeaderWrapper = styled.div`
   display: grid;
   grid-template-columns: minmax(180px, 280px) 1fr;
   /* grid-template-rows: 85px; */
-  grid-template-rows: 100px;
+  grid-template-rows: 80px;
   width: 100%;
   //min-width: 500px;
   margin-top: 15px;
@@ -38,6 +38,10 @@ const HeaderWrapper = styled.div`
 
   @media only screen and (max-width: 440px) {
     //height: 43px;
+  }
+
+  @media only screen and (max-width: 520px) {
+    grid-template-rows: 69px;
   }
 `;
 
@@ -67,7 +71,7 @@ const LogoText = styled.div`
   margin-left: 50px;
   //transition: all 0.3s linear;
   grid-area: headerLogo;
-  top: ${(props) => (props.logo_scrolled == "true" ? "8px" : "11px")};
+  top: ${(props) => (props.logo_scrolled == "true" ? "8px" : "4px")};
   grid-gap: 10px;
   justify-self: start;
   align-self: center;
@@ -94,13 +98,14 @@ const LogoText = styled.div`
     //top: 31px;
   }
 
-  @media only screen and (max-width: 500px) {
-    //width: 265px;
+  @media only screen and (max-width: 520px) {
+    width: 200px;
     //top: 39px;
   }
 
-  @media only screen and (max-width: 357px) {
-    //width: 200px;
+  @media only screen and (max-width: 295px) {
+    width: 171px;
+    margin-left: 15px;
   }
 `;
 
@@ -110,6 +115,10 @@ const LogoTextTop = styled.img`
   width: 95%;
   justify-self: start;
   /* transition: all 0.3s linear; */
+
+  @media only screen and (max-width: 295px) {
+    margin-left: -2px;
+  }
 `;
 //
 const LogoTextBottom = styled.img`
@@ -257,7 +266,7 @@ const Outter = styled.div`
 
 const HamburgerMenu = styled.div`
   margin-top: ${(props) =>
-    props.hamburger_scrolled == "true" ? "initial" : "8px"};
+    props.hamburger_scrolled == "true" ? "0px" : "8px"};
   grid-area: 1/2/2/3;
   justify-self: end;
   align-self: center;
@@ -271,8 +280,11 @@ const HamburgerMenu = styled.div`
 
   top: ${(props) => (props.hamburger_scrolled == "true" ? "17px" : "initial")};
 
-  @media only screen and (max-width: 440px) {
-    //align-self: start;
+  @media only screen and (max-width: 520px) {
+    align-self: start;
+    
+    margin-top: ${(props) =>
+    props.hamburger_scrolled == "true" ? "0px" : "17px"};
   }
 
   @media only screen and (max-width: 357px) {
@@ -303,7 +315,7 @@ const TopBackgroundBar = styled.div`
   width: 100%;
   max-width: 2000px;
   min-width: 269px;
-  height: 55px;
+  height: 50px;
   background-color: black;
   //transition: all 0.1s linear;
   z-index: 51;
@@ -434,7 +446,7 @@ function Header(props) {
     longNavRef.current.getBoundingClientRect().top == 0
       ? null
       : setPixlesFromLongNavToTop(
-          longNavRef.current.getBoundingClientRect().top - 2
+          longNavRef.current.getBoundingClientRect().top 
         );
 
     hamburgerRef.current.getBoundingClientRect().top > 37

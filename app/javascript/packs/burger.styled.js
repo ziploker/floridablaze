@@ -24,7 +24,7 @@ const StyledBurger = styled.button`
     display: none;
   }
   @media only screen and (max-width: 520px) {
-    height: 3rem;
+    //height: 3rem;
   }
 
   div {

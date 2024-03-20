@@ -108,10 +108,10 @@ const News = styled.div`
 		grid-template-areas:
 			"featured one two  ." */
 
-  /* @media only screen and (min-width: 2000px){
-			grid-template-columns: 10vw 1fr 1fr 1fr 10vw;
+  @media only screen and (max-width: 520px){
+    margin-top: 0px;
 
-		} */
+		}
 
   /* @media only screen and (min-width: 1850px) {
 			grid-template-columns:
