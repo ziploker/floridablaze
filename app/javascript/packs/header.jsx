@@ -47,23 +47,9 @@ const HeaderWrapper = styled.div`
 
 const LogoText = styled.div`
   //width: ${(props) => (props.logo_scrolled == "true" ? "320px" : "420px")};
-  /* width: ${(props) => {
-    if (props.windowWidth > 985) {
-      props.logo_scrolled == "true" ? "320px" : "420px";
-    } else {
-      props.logo_scrolled == "true" ? "100px" : "100px";
-    }
-  }}; */
-  /* width: ${(props) =>
-    props.windowWidth <= 985
-      ? props.logo_scrolled == "true"
-        ? "300px"
-        : "300px"
-      : props.logo_scrolled == "true"
-      ? "300px"
-      : "300px"}; */
-
-  width: 300px;
+  width: ${props => props.logo_scrolled == "true" ? "260px" : "300px"};
+ 
+  //width: 300px;
   transition: all 0.3s linear;
 
   position: ${(props) =>
@@ -72,6 +58,7 @@ const LogoText = styled.div`
   //transition: all 0.3s linear;
   grid-area: headerLogo;
   top: ${(props) => (props.logo_scrolled == "true" ? "8px" : "4px")};
+  //top: 4px;
   grid-gap: 10px;
   justify-self: start;
   align-self: center;
@@ -100,7 +87,7 @@ const LogoText = styled.div`
 
   @media only screen and (max-width: 520px) {
     width: 200px;
-    //top: 39px;
+    
   }
 
   @media only screen and (max-width: 295px) {
@@ -309,8 +296,10 @@ const HamburgerMenu = styled.div`
 
 const TopBackgroundBar = styled.div`
   position: fixed;
+  /* opacity: ${(props) =>
+    props.leaf_scrolled_so_change_color_down == "true" ? "1" : "0"}; */
   opacity: ${(props) =>
-    props.leaf_scrolled_so_change_color_down == "true" ? "1" : "0"};
+    props.logo_scrolled == "true" ? "1" : "0"};
   top: 0;
   width: 100%;
   max-width: 2000px;
@@ -362,9 +351,9 @@ function Header(props) {
   const [hamburgerScrolled, setHamburgerScrolled] = React.useState("false");
 
   // initial distance from element to top of viewport
-  const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(0);
-  const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] = useState(37);
-  const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(38.5);
+  const [pixlesFromLogoToTop, setPixlesFromLogoToTop] = useState(1);
+  const [pixlesFromHamburgerToTop, setPixlesFromHamburgerToTop] = useState(1);
+  const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(1);
   const [windowWidth, setWindowWidth] = useState(0);
   //33
   //const [pixlesFromLongNavToTop, setPixlesFromLongNavToTop] = useState(0);
@@ -534,15 +523,15 @@ function Header(props) {
     );
 
     // window.scrollY >= pixlesFromLogoToTop - 4
-    window.scrollY > pixlesFromLogoToTop
+    window.scrollY >= pixlesFromLogoToTop +1
       ? setLogoScrolled("true")
       : setLogoScrolled("false");
 
-    window.scrollY >= 75
+    window.scrollY >= 60
       ? setLeafScrolledSoChangeColorDown("true")
       : setLeafScrolledSoChangeColorDown("false");
 
-    window.scrollY <= 90
+    window.scrollY <= 110
       ? setLeafScrolledSoChangeColorUp("true")
       : setLeafScrolledSoChangeColorUp("false");
 
@@ -550,7 +539,7 @@ function Header(props) {
       ? setHamburgerScrolled("true")
       : setHamburgerScrolled("false");
 
-    window.scrollY >= pixlesFromLongNavToTop
+    window.scrollY >= (pixlesFromLongNavToTop + 20)
       ? setLongNavScrolled("true")
       : setLongNavScrolled("false");
   };
