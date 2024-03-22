@@ -3822,7 +3822,7 @@ minimatch@^3.0.4, minimatch@^3.1.1:
 
 modern-normalize@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/modern-normalize/-/modern-normalize-2.0.0.tgz#3d04ed01c81a3d4e0a0fd9ceba6abd1b16f5964b"
+  resolved "https://registry.npmjs.org/modern-normalize/-/modern-normalize-2.0.0.tgz#3d04ed01c81a3d4e0a0fd9ceba6abd1b16f5964b"
   integrity sha512-CxBoEVKh5U4DH3XuNbc5ONLF6dQBc8dSc7pdZ1957FGbIO5JBqGqqchhET9dTexri8/pk9xBL6+5ceOtCIp1QA==
 
 ms@2.0.0:

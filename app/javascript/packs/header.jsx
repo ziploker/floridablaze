@@ -47,8 +47,8 @@ const HeaderWrapper = styled.div`
 
 const LogoText = styled.div`
   //width: ${(props) => (props.logo_scrolled == "true" ? "320px" : "420px")};
-  width: ${props => props.logo_scrolled == "true" ? "260px" : "300px"};
- 
+  width: ${(props) => (props.logo_scrolled == "true" ? "260px" : "300px")};
+
   //width: 300px;
   transition: all 0.3s linear;
 
@@ -81,13 +81,14 @@ const LogoText = styled.div`
   }
 
   @media only screen and (max-width: 731px) {
-    width: 265px;
-    //top: 31px;
+    //width: 265px;
+    width: ${(props) => (props.logo_scrolled == "true" ? "225px" : "265px")};
   }
 
   @media only screen and (max-width: 520px) {
-    width: 200px;
-    
+    //width: 200px;
+    width: ${(props) => (props.logo_scrolled == "true" ? "160px" : "200px")};
+    top: ${(props) => (props.logo_scrolled == "true" ? "14px" : "4px")};
   }
 
   @media only screen and (max-width: 295px) {
@@ -210,7 +211,7 @@ const LongNav = styled.nav`
       //transition: // font-size 0.1s linear;
       font-weight: 400;
       // font-size: 30px;
-      font-size: 1rem;
+      font-size: 1.5rem;
       line-height: 45px;
       color: inherit;
       text-decoration: none;
@@ -221,8 +222,8 @@ const LongNav = styled.nav`
         color: rgb(241, 203, 203);
       }
 
-      @media only screen and (min-width: 1500px) {
-        //// font-size: 30px;
+      @media only screen and (max-width: 666px) {
+        font-size: 1rem;
       }
 
       a {
@@ -269,9 +270,9 @@ const HamburgerMenu = styled.div`
 
   @media only screen and (max-width: 520px) {
     align-self: start;
-    
+
     margin-top: ${(props) =>
-    props.hamburger_scrolled == "true" ? "0px" : "17px"};
+      props.hamburger_scrolled == "true" ? "0px" : "17px"};
   }
 
   @media only screen and (max-width: 357px) {
@@ -298,8 +299,7 @@ const TopBackgroundBar = styled.div`
   position: fixed;
   /* opacity: ${(props) =>
     props.leaf_scrolled_so_change_color_down == "true" ? "1" : "0"}; */
-  opacity: ${(props) =>
-    props.logo_scrolled == "true" ? "1" : "0"};
+  opacity: ${(props) => (props.logo_scrolled == "true" ? "1" : "0")};
   top: 0;
   width: 100%;
   max-width: 2000px;
@@ -435,7 +435,7 @@ function Header(props) {
     longNavRef.current.getBoundingClientRect().top == 0
       ? null
       : setPixlesFromLongNavToTop(
-          longNavRef.current.getBoundingClientRect().top 
+          longNavRef.current.getBoundingClientRect().top
         );
 
     hamburgerRef.current.getBoundingClientRect().top > 37
@@ -523,7 +523,7 @@ function Header(props) {
     );
 
     // window.scrollY >= pixlesFromLogoToTop - 4
-    window.scrollY >= pixlesFromLogoToTop +1
+    window.scrollY >= pixlesFromLogoToTop + 1
       ? setLogoScrolled("true")
       : setLogoScrolled("false");
 
@@ -531,7 +531,7 @@ function Header(props) {
       ? setLeafScrolledSoChangeColorDown("true")
       : setLeafScrolledSoChangeColorDown("false");
 
-    window.scrollY <= 110
+    window.scrollY <= 69
       ? setLeafScrolledSoChangeColorUp("true")
       : setLeafScrolledSoChangeColorUp("false");
 
@@ -539,7 +539,7 @@ function Header(props) {
       ? setHamburgerScrolled("true")
       : setHamburgerScrolled("false");
 
-    window.scrollY >= (pixlesFromLongNavToTop + 20)
+    window.scrollY >= pixlesFromLongNavToTop + 20
       ? setLongNavScrolled("true")
       : setLongNavScrolled("false");
   };
@@ -625,7 +625,10 @@ function Header(props) {
 
             {props.userState.loggedInStatus == "LOGGED_IN"
               ? [
-                  <li style={{ padding: "0 0 0 4px", fontSize: ".75rem" }} key={3}>
+                  <li
+                    style={{ padding: "0 0 0 4px", fontSize: ".75rem" }}
+                    key={3}
+                  >
                     <a key={"a"} onClick={props.handleLogOutClick}>
                       Logout
                     </a>
@@ -644,7 +647,10 @@ function Header(props) {
                   </li>,
                 ]
               : [
-                  <li style={{ padding: "0 0 0 4px", fontSize: ".75rem" }} key={6}>
+                  <li
+                    style={{ padding: "0 0 0 4px", fontSize: ".75rem" }}
+                    key={6}
+                  >
                     <a key={"c"} onClick={doSomething}>
                       Login
                     </a>
