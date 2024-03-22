@@ -57,7 +57,7 @@ const LogoText = styled.div`
   margin-left: 50px;
   //transition: all 0.3s linear;
   grid-area: headerLogo;
-  top: ${(props) => (props.logo_scrolled == "true" ? "8px" : "4px")};
+  top: ${(props) => (props.logo_scrolled == "true" ? "10px" : "4px")};
   //top: 4px;
   grid-gap: 10px;
   justify-self: start;
@@ -111,8 +111,8 @@ const LogoTextTop = styled.img`
 //
 const LogoTextBottom = styled.img`
   justify-self: start;
-  width: 117%;
-  margin-left: -4px;
+  width: 112%;
+  margin-left: 1px;
   opacity: ${(props) => (props.logo_scrolled == "true" ? "0" : "1")};
   transition: all 0.3s linear;
   max-height: ${(props) => (props.logo_scrolled == "true" ? "0" : "50px")};
@@ -535,7 +535,7 @@ function Header(props) {
       ? setLeafScrolledSoChangeColorUp("true")
       : setLeafScrolledSoChangeColorUp("false");
 
-    window.scrollY >= pixlesFromHamburgerToTop
+    window.scrollY >= pixlesFromHamburgerToTop + 20
       ? setHamburgerScrolled("true")
       : setHamburgerScrolled("false");
 

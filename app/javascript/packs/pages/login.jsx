@@ -34,7 +34,7 @@ const LoginWrapperNew = styled.div`
   padding: 140px 20px 20px 20px;
   transition: all 0.3s ease 0s;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 480px) {
     width: 100vw;
   }
 `;
@@ -416,8 +416,13 @@ function Login(props) {
           {/* <XorCheckIcon status={state.status} src={redX}/> */}
           <XorCheckIcon
             status={state.status}
-            src={state.status === "pink" || "orange" ? redX : greenCheck}
+            style={{display: state.status == "" ? "none" : "initial"}}
+            //src={state.status === "pink" || "orange" ? redX : greenCheck}
+            
+            
+            src={state.status == "green" ? greenCheck : redX}
           />
+          <h1 style={{display: "none"}}>ss={state.status}</h1>
           {errorMessages}
         </ErrorWrapper>
       </CardNew>

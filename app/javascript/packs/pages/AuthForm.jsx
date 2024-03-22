@@ -90,8 +90,7 @@ const Label = styled.label`
   //color: #9FA5C4;
   pointer-events: none;
 
-  //transform: ${(props) =>
-    props.className == "field-active" ? "translateY(-22px)" : 0};
+  
   transform: translateY(-11px);
   padding: 2px 2px;
   //background-color: white;
@@ -249,7 +248,8 @@ const ErrorMsg = styled.h4`
 `;
 
 const XorCheckIcon = styled.img`
-  display: ${(props) => (props.status == "" ? "none" : "initial")};
+  //display: ${(props) => (props.status == "" ? "none" : "initial")};
+  display: initial;
   height: 15px;
 `;
 const LoginWrapper = styled.div`
