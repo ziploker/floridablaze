@@ -182,7 +182,6 @@ const BGimageFixBottom = styled.div`
   );
 `;
 const Mega = styled.img`
- 
   @media only screen and (max-width: 786px) {
     grid-area: 1/1/-1/-1;
     display: none;
@@ -204,11 +203,11 @@ const Mega = styled.img`
 
 const ActGrid = styled.div`
   width: 100%;
- 
+
   position: relative;
- 
+
   margin: 0 auto;
- 
+
   justify-items: center;
 `;
 
@@ -281,7 +280,6 @@ const ActHeaderWrapper = styled.div`
   grid-area: 1/3/2/4;
   width: 100%;
   padding-left: 6%;
- 
 
   @media only screen and (max-width: 786px) {
     justify-self: start;
@@ -293,8 +291,6 @@ const ActHeaderWrapper = styled.div`
 `;
 
 const ActHeader = styled.h1`
- 
-
   font-style: normal;
   font-weight: 800;
   // font-size: 8rem;
@@ -322,7 +318,6 @@ const ActHeader = styled.h1`
   word-break: break-word;
   white-space: normal;
   overflow: visible;
- 
 `;
 
 const ActSubheader = styled.h2`
@@ -345,8 +340,6 @@ const ActSubheader = styled.h2`
   margin: -14px 14px 8px 5px;
   display: none;
   opacity: ${(props) => (props.show_cards == "true" ? "0" : "1")};
-
- 
 `;
 
 const ActSubHeaders = styled.div`
@@ -381,7 +374,6 @@ const ActBulletPointsWrapper = styled.div`
   margin-bottom: 10px;
   display: grid;
   grid-gap: 10px;
- 
 
   @media only screen and (max-width: 786px) {
     justify-self: center;
@@ -408,7 +400,7 @@ const BulletOne = styled.p`
   color: white;
   //padding-left: 30px;
   align-self: end;
-  
+
   /* Lookup your State Representatives. */
 
   font-style: normal;
@@ -427,7 +419,6 @@ const BulletOne = styled.p`
 `;
 
 const Form = styled.div`
-  
   @media only screen and (max-width: 786px) {
     grid-area: 3/1/4/-1;
     padding: 0 6%;
@@ -715,7 +706,6 @@ const ResultSection = styled.div`
   @media only screen and (max-width: 786px) {
     grid-template-columns: 1fr;
 
-
     grid-template-areas:
       " top  "
       " bottom "
@@ -759,7 +749,7 @@ const NextSteps = styled.div`
     color: white;
     //letter-spacing: 0.06em;
     font-weight: 800;
-    // font-size: 12vw;
+    font-size: 3rem;
     //margin: 0 0 20px 0;
     margin-top: -10px;
 
@@ -777,7 +767,6 @@ const NextSteps = styled.div`
     color: orange;
     margin-bottom: 8px;
 
-   
     @media only screen and (max-width: 786px) {
       justify-self: center;
       text-align: center;
@@ -832,8 +821,6 @@ const LinerHorizontal = styled.div`
 `;
 
 const ResultSectionInfoBox = styled.div`
- 
-
   display: grid;
 
   grid-template-columns: auto min-content auto;
@@ -879,14 +866,12 @@ const ResultCompleteTitle = styled.h1`
 `;
 
 const ResultSectionBulletPointWrapperSet = styled.div`
- 
   grid-area: 3/2/6/3;
   display: grid;
   grid-template-columns: min-content 1fr min-content;
 `;
 
 const ResultSectionBulletPointWrapper = styled.div`
- 
   grid-area: ${(props) => props.gridArea};
 
   display: grid;
@@ -917,7 +902,6 @@ const ResultSectionBulletPointTitle = styled.h2`
 `;
 
 const ResultSectionSpacerLine = styled.div`
-  
   height: 1px;
   //width: 100vw;
   background: #e3b55a;
@@ -927,8 +911,6 @@ const ResultSectionSpacerLine = styled.div`
 `;
 
 const ResultSectionHeaders = styled.h1`
-  
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -968,8 +950,6 @@ const ResultSectionHeaders = styled.h1`
 `;
 
 const ResultSectionHeadersAlt = styled.div`
-  
-
   display: ${(props) =>
     props.show_cards == "true" && props.result_from_florida == "true"
       ? "flex"
@@ -999,7 +979,6 @@ const ResultSectionHeadersAlt = styled.div`
 `;
 
 const ResultSectionSubHeader = styled.h2`
-  
   font-style: normal;
   font-weight: 600;
   // font-size: clamp(12px, 1.5vw, 60px);
@@ -1042,8 +1021,6 @@ const CardOne = styled.div`
   height: 0px;
 
   padding-top: calc(310 / 220 * 100%);
-
-  
 `;
 
 const CardOneWrapper = styled.div`
@@ -1069,8 +1046,8 @@ const CardOneSub = styled.div`
   //width: 100%;
   //opacity: .8;
   color: black;
-  border-top-left-radius: 70px;
-  border-top-right-radius: 70px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
   background: white;
   // font-size: 0.8rem;
   text-align: center;
@@ -1082,7 +1059,7 @@ const CardOneSub = styled.div`
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-  
+
   @media only screen and (min-width: 787px) {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -1105,8 +1082,6 @@ const CardTwo = styled.div`
   height: 0px;
   padding-top: calc(310 / 220 * 100%);
   width: 100%;
-
-  
 `;
 
 const CardTwoWrapper = styled.div`
@@ -1146,8 +1121,8 @@ const CardPicture = styled.img`
 
 const CardNameOfRep = styled.h1`
   color: black;
-  // font-size: 17px;
-  line-height: 1.1em;
+  font-size: 1rem;
+  line-height: 0.9em;
   z-index: 1;
   /* position: absolute;
   bottom: 10%;
@@ -1193,7 +1168,6 @@ const ShowOfferSectionWrapper = styled.div`
 `;
 
 const ShowOfferSection = styled.div`
-  
   display: ${(props) => (props.show_cards == "true" ? "WTF" : "none")};
   margin: 0px auto 0 auto;
   width: 55%;
@@ -1214,8 +1188,6 @@ const ResultsBlurb = styled.div`
   padding: 30px;
   margin-top: 24px;
 
-  
-
   @media only screen and (max-width: 786px) {
     grid-area: resultBlurb;
     margin: 10px 16px 0px 16px;
@@ -1231,13 +1203,11 @@ const TriplePlayWrapper = styled.div`
   grid-area: bottom;
   width: 100%;
   margin-top: 30px;
-  
 `;
 
 const Letter = styled.div`
   width: 99%;
 
- 
   display: grid;
   //min-width: 400px;
   //max-width: 500px;
@@ -1455,8 +1425,6 @@ const Row1 = styled.div`
   cursor: pointer;
 
   //margin: 0 10px 20px 10px;
-
- 
 `;
 
 const Row2 = styled.div`
@@ -1466,8 +1434,6 @@ const Row2 = styled.div`
   cursor: pointer;
 
   //margin: 0 10px 20px 10px;
-
- 
 `;
 
 const CheckmarkMainWrapper = styled.div`
@@ -1485,8 +1451,6 @@ const PicWrapper = styled.div`
   width: 100px;
   height: 120px;
   display: grid;
-
- 
 `;
 
 const Pic1 = styled.img`
@@ -1501,8 +1465,6 @@ const Pic1 = styled.img`
     props.which_email_is_active == 1 ? "7px orange solid" : "7px white solid"};
   width: 100px;
   height: 120px;
-
-  
 `;
 
 const HowItWorksWrapper = styled.div`
@@ -1522,7 +1484,7 @@ const HowItWorksWrapper = styled.div`
   p {
     color: white;
     line-height: 1.6rem;
-    // font-size: 6vw;
+    font-size: 2.5rem;
     font-family: Fira Sans;
     align-self: start;
     justify-self: start;
@@ -1551,8 +1513,6 @@ const Pic2 = styled.img`
 
   width: 100px;
   height: 120px;
-
- 
 `;
 
 const Description1 = styled.div`
@@ -1567,8 +1527,6 @@ const Description1 = styled.div`
 const DWrapper = styled.div`
   align-self: end;
   //padding: 0px 8px 0px 2px;
-
-  
 `;
 
 const D1 = styled.h2`
@@ -1580,8 +1538,6 @@ const D1 = styled.h2`
   border-top-right-radius: 91px;
   //border-top-left-radius: 55px;
   border-bottom-right-radius: 91px;
-
-  
 `;
 
 const D2 = styled.h3`
@@ -1593,8 +1549,6 @@ const D2 = styled.h3`
   //border-bottom-right-radius: 91px;
   align-self: top;
   margin-top: 10px;
-
-  
 `;
 
 const Description2 = styled.div`
@@ -1735,8 +1689,6 @@ const BulletPointText2 = styled.h3`
 `;
 
 const SendButtonWrapper = styled.div`
- 
-
   grid-area: 7/1/8/3;
   align-self: center;
   justify-self: center;
@@ -2027,8 +1979,6 @@ const LetterDemoWrapper = styled.div`
     "offer";
 
   margin: 15px auto;
-
- 
 `;
 
 const LetterDemoCenter = styled.div`
@@ -2062,7 +2012,6 @@ const EmailDemoWrapper = styled.div`
     grid-template-columns: 1% 2.5fr 20px 1fr 1%;
   } */
 `;
-
 
 const EmailDemoCenter = styled.div`
   position: relative;
@@ -2217,7 +2166,7 @@ const HowItWorksList = styled.div`
     margin-top: 25px;
     justify-self: start;
     //padding: 20px 50px;
-
+    text-align: center;
     //border: 1px solid white;
   }
 
@@ -2225,7 +2174,7 @@ const HowItWorksList = styled.div`
     // font-size: 4vw;
     line-height: 1rem;
     margin-top: -7px;
-
+    font-size: 1.6rem;
     @media only screen and (max-width: 786px) {
       margin-top: initial;
       margin-bottom: 45px;
@@ -2236,7 +2185,7 @@ const HowItWorksList = styled.div`
   }
 
   p:nth-child(3) {
-    // font-size: 5vw;
+    font-size: 3rem;
     margin-top: 5px;
 
     @media only screen and (max-width: 786px) {
@@ -2253,7 +2202,13 @@ const LetterDemo = styled.div`
   margin: 0 20px;
   border-bottom-left-radius: 13px;
   border-bottom-right-radius: 13px;
+  font-size: 1.1rem;
 
+  h3 {
+    font-size: 1.1rem;
+    font-weight: regular;
+    padding: 0 20px;
+  }
   h2 {
     position: absolute;
     // font-size: 0.6rem;
@@ -2311,7 +2266,6 @@ const LetterDemo = styled.div`
   }
 
   p {
-   
     font-weight: 300;
     margin-top: 20px;
     /* grid-area: 5/2/6/5; */
@@ -2329,13 +2283,14 @@ const LetterDemo = styled.div`
 const LetterClosing = styled.div`
   display: grid;
   grid-gap: 4px;
-  margin-top: 20px;
-  margin-bottom: 42px;
+  //margin-top: 20px;
+  // margin-bottom: 42px;
+  padding: 25px 0;
   p {
-    margin-bottom: 5px;
+    margin: 0px;
   }
 
-  sub {
+  h3 {
     @media only screen and (max-width: 786px) {
       //// font-size: 1.5rem;
     }
@@ -2399,7 +2354,6 @@ const EmailDemo = styled.div`
   }
 
   p {
-   
     font-weight: 300;
     margin-top: 20px;
     /* grid-area: 5/2/6/5; */
@@ -2440,7 +2394,7 @@ const TopBar = styled.div`
     margin: 0 0 15px 0;
     font-weight: 600;
     letter-spacing: 0.03em;
-    // font-size: 2em;
+    font-size: 3rem;
 
     @media only screen and (max-width: 786px) {
       //// font-size: 3.5em;
@@ -2491,8 +2445,6 @@ const TopBar = styled.div`
       }
     }
   }
-
- 
 `;
 
 const BottomBar = styled.div`
@@ -3756,24 +3708,21 @@ function Act(props, ref) {
                         </div>
                         <LetterClosing>
                           <p>Sincerely,</p>
-                          <sub>
+                          <p>
                             {props.userState.loggedInStatus == "LOGGED_IN"
                               ? props.userState.user.full_name
                               : "[Your Name Here]"}
-                          </sub>{" "}
-                          <br />
-                          <sub>
+                          </p>{" "}
+                          <p>
                             {addressLineOne !== ""
                               ? addressLineOne
                               : "[Your address]"}
-                          </sub>{" "}
-                          <br />
-                          <sub>
+                          </p>{" "}
+                          <p>
                             {addressLineTwo !== ""
                               ? addressLineTwo
                               : "[city, state, zipcode]"}
-                          </sub>{" "}
-                          <br />
+                          </p>{" "}
                         </LetterClosing>
 
                         {/* <FlashError userState={props.userState}>
@@ -3898,24 +3847,21 @@ function Act(props, ref) {
                       </div>
                       <LetterClosing>
                         <p>Sincerely,</p>
-                        <sub>
+                        <p>
                           {props.userState.loggedInStatus == "LOGGED_IN"
                             ? props.userState.user.full_name
                             : "[Your Name Here]"}
-                        </sub>{" "}
-                        <br />
-                        <sub>
+                        </p>{" "}
+                        <p>
                           {addressLineOne !== ""
                             ? addressLineOne
                             : "[Your address]"}
-                        </sub>{" "}
-                        <br />
-                        <sub>
+                        </p>{" "}
+                        <p>
                           {addressLineTwo !== ""
                             ? addressLineTwo
                             : "[city, state, zipcode]"}
-                        </sub>{" "}
-                        <br />
+                        </p>{" "}
                       </LetterClosing>
 
                       {/* <FlashError userState={props.userState}>

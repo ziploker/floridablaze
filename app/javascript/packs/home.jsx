@@ -25,7 +25,7 @@ import Carousel, { CarouselItem } from "./carousel";
 const HomeWrapper = styled.div`
   //background: pink;
   min-width: 275px;
-line-height: 1.3;
+  line-height: 1.3;
   //height: calc(100vh - 85px);
   //max-height: 500px;
   overflow: hidden;
@@ -89,7 +89,6 @@ const News = styled.div`
 			"leftArrow   one . two . three   rightArrow"
 			"    .        .  .  .  .   .     ."; */
 
- 
   grid-template-columns: 2% 1fr 2% 1fr 2%;
   /* minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr); */
 
@@ -108,10 +107,9 @@ const News = styled.div`
 		grid-template-areas:
 			"featured one two  ." */
 
-  @media only screen and (max-width: 520px){
+  @media only screen and (max-width: 520px) {
     margin-top: 0px;
-
-		}
+  }
 
   /* @media only screen and (min-width: 1850px) {
 			grid-template-columns:
@@ -228,6 +226,8 @@ const Div1OverlayWrapper = styled.div`
   width: 100%;
   height: 100%;
   justify-self: center;
+  line-height: 1.2;
+
   display: grid;
   z-index: 1;
   white-space: nowrap;
@@ -284,6 +284,7 @@ const StoryOneTitle = styled.h1`
   align-self: end;
   justify-self: center;
   text-align: center;
+  font-size: 1.5rem;
 
   @media only screen and (min-width: 986px) {
     // font-size: 1.6rem;
