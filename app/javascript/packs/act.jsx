@@ -755,7 +755,7 @@ const NextSteps = styled.div`
 
     @media only screen and (max-width: 786px) {
       justify-self: center;
-      //// font-size: 7rem;
+      font-size: 4rem;
     }
   }
 
@@ -764,13 +764,14 @@ const NextSteps = styled.div`
     color: white;
     //letter-spacing: 0.15em;
     //margin: 0 0 0 18px;
+    font-size: 1.3rem;
     color: orange;
     margin-bottom: 8px;
 
     @media only screen and (max-width: 786px) {
       justify-self: center;
       text-align: center;
-      //// font-size: 3rem;
+      font-size: 2rem;
     }
   }
 
@@ -1484,15 +1485,15 @@ const HowItWorksWrapper = styled.div`
   p {
     color: white;
     line-height: 1.6rem;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-family: Fira Sans;
     align-self: start;
-    justify-self: start;
+    justify-self:3start;
     //padding: 0 8px;
-    margin-top: 10px;
+    margin-top: 18px;
 
     @media only screen and (max-width: 786px) {
-      //// font-size: 4rem;
+      font-size: 2rem;
       line-height: initial;
       justify-self: center;
       margin-top: 40px;
@@ -2027,7 +2028,7 @@ const EmailDemoCenter = styled.div`
 // `;
 
 const RightArrow = styled.img`
-  width: 15px;
+  width: 100%;
   cursor: pointer;
   justify-self: center;
   align-self: center;
@@ -2159,7 +2160,7 @@ const HowItWorksList = styled.div`
   grid-template-columns: 1fr;
 
   // font-size: 1.2rem;
-  margin-top: -15px;
+  //margin-top: -15px;
 
   @media only screen and (max-width: 786px) {
     //// font-size: 1.8rem;
@@ -2172,13 +2173,13 @@ const HowItWorksList = styled.div`
 
   p {
     // font-size: 4vw;
-    line-height: 1rem;
-    margin-top: -7px;
-    font-size: 1.6rem;
+    line-height: 1.4rem;
+    //margin-top: -7px;
+    font-size: 1.1rem;
     @media only screen and (max-width: 786px) {
       margin-top: initial;
       margin-bottom: 45px;
-      //// font-size: 3rem;
+      font-size: 2rem;
       line-height: initial;
       //text-align: center;
     }
@@ -2186,10 +2187,10 @@ const HowItWorksList = styled.div`
 
   p:nth-child(3) {
     font-size: 3rem;
-    margin-top: 5px;
+    margin-top: 39px;
 
     @media only screen and (max-width: 786px) {
-      //// font-size: 4rem;
+      font-size: 4rem;
     }
   }
 `;

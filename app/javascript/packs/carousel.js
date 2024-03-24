@@ -47,10 +47,9 @@ const Indicators = styled.div`
 `;
 
 const LeftArrowButton = styled.button`
-  width: 10%;
-  height: 15%;
+  
   opacity: 0.8;
-  border-radius: 10px;
+  
   grid-area: 1/1/-1/-1;
 
   align-self: center;
@@ -58,6 +57,19 @@ const LeftArrowButton = styled.button`
   //background: rgba(255, 255, 255, 0);
   border: 0;
   display: grid;
+
+
+
+
+  cursor: pointer;
+  width: 6%;
+  height: 33.33%;
+  background: rgba(247, 247, 247, 0.6);
+  
+  
+  
+
+
 
   z-index: 1;
 
@@ -69,7 +81,7 @@ const LeftArrowButton = styled.button`
 `;
 
 const LeftArrow = styled.img`
-  max-width: 30px;
+  width: 100%; 
 
   position: relative;
   justify-self: center;
@@ -79,10 +91,9 @@ const LeftArrow = styled.img`
 `;
 
 const RightArrowButton = styled.button`
-  width: 10%;
-  height: 15%;
+  
   opacity: 0.8;
-  border-radius: 10px;
+  
   grid-area: 1/1/-1/-1;
 
   align-self: center;
@@ -92,13 +103,19 @@ const RightArrowButton = styled.button`
   display: grid;
   cursor: pointer;
 
+
+
+  width: 6%;
+  height: 33.33%;
+  background: rgba(247, 247, 247, 0.6);
+
   /* &:hover {
     background: rgba(54, 54, 54, 0.075);
   } */
 `;
 
 const RightArrow = styled.img`
-  max-width: 30px;
+  width: 100%;
 
   position: relative;
   justify-self: center;
