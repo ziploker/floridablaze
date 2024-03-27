@@ -1044,6 +1044,7 @@ const CardOneSub = styled.div`
   left: 3px;
   top: 3px;
   right: 3px;
+  
   //width: 100%;
   //opacity: .8;
   color: black;
@@ -1122,7 +1123,7 @@ const CardPicture = styled.img`
 
 const CardNameOfRep = styled.h1`
   color: black;
-  font-size: 1rem;
+  font-size: .8rem;
   line-height: 0.9em;
   z-index: 1;
   /* position: absolute;
@@ -1170,7 +1171,7 @@ const ShowOfferSectionWrapper = styled.div`
 
 const ShowOfferSection = styled.div`
   display: ${(props) => (props.show_cards == "true" ? "WTF" : "none")};
-  margin: 0px auto 0 auto;
+  margin: 20px auto 20px auto;
   width: 55%;
   max-width: 1000px;
   float: left;
@@ -1393,10 +1394,10 @@ const Strip = styled.div`
 
 const Total = styled.h2`
   color: gray;
-  // font-size: 2rem;
+  font-size: 2rem;
   //justify-self: center;
 
-  margin: 25px 0 24px 0;
+  margin: 27px 0px 5px 0px;
 
   @media only screen and (max-width: 786px) {
     margin: 62px 0 24px 50px;
@@ -1408,7 +1409,7 @@ const Total = styled.h2`
 
 const Price = styled.h1`
   font-weight: 400;
-  // font-size: 2.5rem;
+  font-size: 2.5rem;
   //justify-self: center;
 
   margin: 0 0 20px 0;
@@ -1425,7 +1426,7 @@ const Row1 = styled.div`
   width: 100%;
   cursor: pointer;
 
-  //margin: 0 10px 20px 10px;
+  margin: 0 0 10px 0;
 `;
 
 const Row2 = styled.div`

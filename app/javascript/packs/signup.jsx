@@ -60,42 +60,11 @@ gsap.core.globals("ScrollTrigger", ScrollTrigger);
 
 const SignupWrapper = styled.div`
   @media only screen and (max-width: 985px) {
-    //grid-template-columns: minmax(20px, 1fr) minmax(min-content, 705px) minmax(20px, 1fr);
-    //grid-template-columns: minmax(20px, 120px) minmax(300px, min-content) minmax(20px, 1fr);
-    //grid-template-rows: min-content 1fr min-content;
     grid-template-columns: 2% 1fr 2%;
     min-width: 100%;
 
-    //border-top: 25px white solid;
-
-    //padding-left: 20px;
-    //justify-self: center;
-    //max-height: initial;
   }
 
-  /* @media only screen and (max-width: 777px) {
-		grid-template-columns: minmax(20px, 1fr) minmax(300px, min-content) minmax(20px, 1fr);
-	} */
-
-  //width: 100vw;
-
-  /* @media only screen and (max-width: 720px){
-
-    grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
-    min-width: 100%;
-    //padding-left: 20px;
-    //justify-self: center;
-
-
-  }
-
-  //padding: 45px 0px;
-  
-  //background-size: cover;
-  display: grid;
-  grid-template-columns: minmax(20px,1fr) minmax(335px,350px) minmax(350px,600px) minmax(20px,1fr);
-  grid-column-gap: 0.5em;
-  justify-items: center; */
 
   position: relative;
 
@@ -105,33 +74,17 @@ const SignupWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  grid-template-columns: minmax(8%, 1fr) 1fr minmax(500px, 700px) minmax(
-      8%,
-      1fr
-    );
-  //grid-template-rows: 1fr minmax(min-content, max-content) 1fr;
-  //padding-top: 60px;
-  //padding-bottom: 20px;
+  grid-template-columns: minmax(3%, 0.5fr) minmax(400px, 586px) minmax(500px, 700px) minmax(3%, 0.5fr);
+ 
   text-align: center;
   height: 100%;
-  //max-height: 620px;
-  //background-color: RGB(244, 244, 244);
-
-  //border-top: 47px white solid;
+ 
   border-bottom: 37px white solid;
-
-  //justify-self: start;
-  //grid-template-columns: minmax(170px,350px) minmax(340px,600px);
-  //grid-template-columns: minmax(20px, 1fr) minmax(300px, 350px) minmax(420px,600px) minmax(20px, 1fr);
-
-  //grid-area: 1/1/-1/-1;
-  //grid-column-gap: 0.5em;
 
   background: url(${wleaf}) fixed;
   background-size: cover;
   background-position: right bottom;
 
-  //z-index: -1;
 `;
 
 const SignupMaskWrapper = styled.div`
@@ -491,7 +444,7 @@ const LeftSection = styled.div`
     color: rgb(6, 7, 1, 0.9);
     padding: 47px 0 0 10px;
     margin: 0px;
-    // font-size: 3rem;
+    font-size: 3rem;
     word-break: keep-all;
     background: white;
     //text-align: center;
@@ -532,12 +485,7 @@ const SocialMedia = styled.div`
 `;
 
 const RightSection = styled.div`
-  @media only screen and (max-width: 985px) {
-    grid-area: 1/2/2/3;
-    /* grid-template-columns: 1px 30px 1fr; */
-    grid-template-columns: 36px 30px 1fr;
-    grid-template-rows: 284px repeat(4, 102px) 1fr;
-  }
+  
 
   @media only screen and (max-width: 400px) {
     //grid-template-rows: 420px repeat(4, 73px) 1fr;
@@ -554,98 +502,113 @@ const RightSection = styled.div`
 
   /* grid-template-columns: 28px 30px minmax(430px, 620px); */
   grid-template-columns: 54px 30px 1fr;
-  grid-template-rows: 186px repeat(4, 58px) 1fr;
+  grid-template-rows: 250px repeat(4, 58px) 1fr;
 
   align-self: start;
   //min-width: 525px;
   //max-width: 600px;
 
   max-width: 800px;
+
+  @media only screen and (max-width: 985px) {
+    grid-area: 1/2/2/3;
+    /* grid-template-columns: 1px 30px 1fr; */
+    grid-template-columns: 36px 30px 1fr;
+    grid-template-rows: 284px repeat(4, min-content) 1fr;
+  }
 `;
 
 const WeedBullet1 = styled.img`
   width: 21px;
   grid-area: 2/2/3/3;
-  align-self: center;
+  align-self: start;
   justify-self: center;
   margin-top: 1.5px;
+  margin-top: 20px;
 `;
 
 const WeedBullet2 = styled.img`
   width: 21px;
   grid-area: 3/2/4/3;
-  align-self: center;
+  align-self: start;
   justify-self: center;
   margin-top: 1.5px;
+  margin-top: 20px;
 `;
 
 const WeedBullet3 = styled.img`
   width: 21px;
   grid-area: 4/2/5/3;
-  align-self: center;
+  align-self: start;
   justify-self: center;
   margin-top: 1.5px;
+  margin-top: 20px;
 `;
 
 const WeedBullet4 = styled.img`
   width: 21px;
   grid-area: 5/2/6/3;
-  align-self: center;
-
+  align-self: start;
+  margin-top: 20px;
   justify-self: center;
-  margin-top: 1.5px;
+  
 `;
 
 const WeedBulletText1 = styled.h2`
   grid-area: 2/3/3/4;
   justify-self: start;
-  align-self: center;
+  align-self: start;
   margin-top: 13px;
   padding-left: 10px;
-  // font-size: 3vw;
-  align-self: center;
+  font-size: 1.3rem;
+ 
+  text-align: start;
 
   @media only screen and (max-width: 985px) {
-    //// font-size: 2.4rem;
+    font-size: 2rem;
   }
 `;
 
 const WeedBulletText2 = styled.h2`
   grid-area: 3/3/4/4;
   justify-self: start;
-  align-self: center;
+  align-self: start;
   // font-size: 3vw;
   padding-left: 10px;
-  align-self: center;
+  
   margin-top: 13px;
+  font-size: 1.3rem;
+  text-align: start;
   @media only screen and (max-width: 985px) {
-    //// font-size: 2.4rem;
+    font-size: 2rem;
   }
 `;
 
 const WeedBulletText3 = styled.h2`
   grid-area: 4/3/5/4;
   justify-self: start;
-  align-self: center;
-  // font-size: 3vw;
+  align-self: start;
+  font-size: 1.3rem;
   padding-left: 10px;
-  align-self: center;
+  
   margin-top: 13px;
+  text-align: start;
   @media only screen and (max-width: 985px) {
-    //// font-size: 2.4rem;
+    font-size: 2rem;
   }
 `;
 
 const WeedBulletText4 = styled.h2`
   grid-area: 5/3/6/4;
   justify-self: start;
-  align-self: center;
+  align-self: start;
   padding-left: 10px;
-  // font-size: 3vw;
-  align-self: center;
+  font-size: 1.3rem;
+  
   margin-top: 13px;
+  text-align: start;
   @media only screen and (max-width: 985px) {
-    //// font-size: 2.4rem;
+    font-size: 2rem;
   }
 `;
 const Spacer = styled.h2`
@@ -1188,7 +1151,7 @@ function Signup(props, ref) {
 
                 <XorCheckIcon
                   status={state.status}
-                  src={state.status === "pink" ? redX : greenCheck}
+                  src={state.status === "green" ? greenCheck : redX}
                 />
 
                 {errorMessages}
@@ -1209,9 +1172,9 @@ function Signup(props, ref) {
           <WeedBullet2 src={thebullet} />
           <WeedBulletText2> Contact your state Reps. </WeedBulletText2>
           <WeedBullet3 src={thebullet} />
-          <WeedBulletText3>Marijuana related local news.</WeedBulletText3>
+          <WeedBulletText3>Marijuana local news.</WeedBulletText3>
           <WeedBullet4 src={thebullet} />
-          <WeedBulletText4>Become a FloridaBlazer now.</WeedBulletText4>
+          <WeedBulletText4>Stay up to date on latest State laws.</WeedBulletText4>
         </RightSection>
 
         {/* <Spacer>

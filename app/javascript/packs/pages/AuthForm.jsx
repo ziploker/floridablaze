@@ -144,7 +144,7 @@ const InputForSignup = styled.input`
   //height: 98px;
   padding-left: 25px;
   box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.4);
-
+  height: 44px;
   padding-right: 8px;
 
   // font-size: 2.5rem;
