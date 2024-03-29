@@ -90,7 +90,6 @@ const Label = styled.label`
   //color: #9FA5C4;
   pointer-events: none;
 
-  
   transform: translateY(-11px);
   padding: 2px 2px;
   //background-color: white;
@@ -238,7 +237,7 @@ const ErrorWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0px 0px 0px;
+  //padding: 10px 0px 0px 0px;
   line-height: 0.7em;
   height: 20px;
 `;

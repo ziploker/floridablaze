@@ -62,9 +62,7 @@ const SignupWrapper = styled.div`
   @media only screen and (max-width: 985px) {
     grid-template-columns: 2% 1fr 2%;
     min-width: 100%;
-
   }
-
 
   position: relative;
 
@@ -74,17 +72,18 @@ const SignupWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  grid-template-columns: minmax(3%, 0.5fr) minmax(400px, 586px) minmax(500px, 700px) minmax(3%, 0.5fr);
- 
+  grid-template-columns:
+    minmax(3%, 0.5fr) minmax(400px, 586px) minmax(500px, 700px)
+    minmax(3%, 0.5fr);
+
   text-align: center;
   height: 100%;
- 
+
   border-bottom: 37px white solid;
 
   background: url(${wleaf}) fixed;
   background-size: cover;
   background-position: right bottom;
-
 `;
 
 const SignupMaskWrapper = styled.div`
@@ -485,8 +484,6 @@ const SocialMedia = styled.div`
 `;
 
 const RightSection = styled.div`
-  
-
   @media only screen and (max-width: 400px) {
     //grid-template-rows: 420px repeat(4, 73px) 1fr;
   }
@@ -551,7 +548,6 @@ const WeedBullet4 = styled.img`
   align-self: start;
   margin-top: 20px;
   justify-self: center;
-  
 `;
 
 const WeedBulletText1 = styled.h2`
@@ -561,7 +557,7 @@ const WeedBulletText1 = styled.h2`
   margin-top: 13px;
   padding-left: 10px;
   font-size: 1.3rem;
- 
+
   text-align: start;
 
   @media only screen and (max-width: 985px) {
@@ -575,7 +571,7 @@ const WeedBulletText2 = styled.h2`
   align-self: start;
   // font-size: 3vw;
   padding-left: 10px;
-  
+
   margin-top: 13px;
   font-size: 1.3rem;
   text-align: start;
@@ -590,7 +586,7 @@ const WeedBulletText3 = styled.h2`
   align-self: start;
   font-size: 1.3rem;
   padding-left: 10px;
-  
+
   margin-top: 13px;
   text-align: start;
   @media only screen and (max-width: 985px) {
@@ -604,7 +600,7 @@ const WeedBulletText4 = styled.h2`
   align-self: start;
   padding-left: 10px;
   font-size: 1.3rem;
-  
+
   margin-top: 13px;
   text-align: start;
   @media only screen and (max-width: 985px) {
@@ -1151,9 +1147,10 @@ function Signup(props, ref) {
 
                 <XorCheckIcon
                   status={state.status}
+                  style={{ display: state.status == "" ? "none" : "initial" }}
                   src={state.status === "green" ? greenCheck : redX}
                 />
-
+                <h1 style={{ display: "none" }}>ss={state.status}</h1>
                 {errorMessages}
 
                 <StatusSpinner show_status_spinner={state.showStatusSpinner}>
@@ -1174,7 +1171,9 @@ function Signup(props, ref) {
           <WeedBullet3 src={thebullet} />
           <WeedBulletText3>Marijuana local news.</WeedBulletText3>
           <WeedBullet4 src={thebullet} />
-          <WeedBulletText4>Stay up to date on latest State laws.</WeedBulletText4>
+          <WeedBulletText4>
+            Stay up to date on latest State laws.
+          </WeedBulletText4>
         </RightSection>
 
         {/* <Spacer>
