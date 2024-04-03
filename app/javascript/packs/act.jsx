@@ -1172,7 +1172,7 @@ const ShowOfferSectionWrapper = styled.div`
 const ShowOfferSection = styled.div`
   display: ${(props) => (props.show_cards == "true" ? "WTF" : "none")};
   margin: 20px auto 20px auto;
-  width: 55%;
+  width: 96%;
   max-width: 1000px;
   float: left;
 
@@ -1422,19 +1422,21 @@ const Price = styled.h1`
 
 const Row1 = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: max-content 3fr;
   width: 100%;
   cursor: pointer;
-
+  gap: 18px;
+  padding: 0 10px;
   margin: 0 0 10px 0;
 `;
 
 const Row2 = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: max-content 3fr;
   width: 100%;
   cursor: pointer;
-
+  gap: 18px;
+  padding: 0 10px;
   //margin: 0 10px 20px 10px;
 `;
 
@@ -2387,6 +2389,12 @@ const TopBar = styled.div`
   grid-area: topbar;
   justify-self: start;
   margin: 48px 0px 48px 120px;
+
+  display: grid;
+  grid-template-columns: 1fr minmax(120px, 250px) minmax(10px, 12px) minmax(120px, 250px) minmax(min-content, max-content) 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+  padding: 50px 0px 20px 30px;
   @media only screen and (max-width: 786px) {
     margin: 48px 0px 48px 20px;
   }
@@ -2397,6 +2405,7 @@ const TopBar = styled.div`
     font-weight: 600;
     letter-spacing: 0.03em;
     font-size: 3rem;
+    grid-area: 1/2/2/6;
 
     @media only screen and (max-width: 786px) {
       //// font-size: 3.5em;
@@ -2411,6 +2420,7 @@ const TopBar = styled.div`
     font-weight: 400;
     //letter-spacing: 0.1em;
     // font-size: 1.8rem;
+    
     @media only screen and (max-width: 786px) {
       //// font-size: 2.2em;
     }
@@ -2420,6 +2430,7 @@ const TopBar = styled.div`
     //display: grid;
     //grid-template-columns: max-content max-content;
     //grid-template-rows: min-content;
+    grid-area: 2/2/3/6;
     h3 {
       color: #b4b2b2;
       letter-spacing: 0.03em;
@@ -2455,8 +2466,8 @@ const BottomBar = styled.div`
   padding: 50px 0px 20px 30px;
   display: grid;
   grid-template-columns:
-    1fr minmax(120px, 180px) minmax(10px, 12px)
-    minmax(120px, 180px) minmax(min-content, max-content) 1fr;
+    1fr minmax(120px, 250px) minmax(10px, 12px)
+    minmax(120px, 250px) minmax(min-content, max-content) 1fr;
 
   grid-template-areas: " . cardOne . cardTwo nextSteps .";
 
