@@ -53,6 +53,7 @@ const ActWrapper = styled.div`
     //overflow: hidden;
     width: 100%;
   }
+  padding-top: 18px;
   /* background-image: linear-gradient(
     0deg,
     hsl(0deg 0% 0%) 0%,
@@ -293,7 +294,7 @@ const ActHeaderWrapper = styled.div`
 const ActHeader = styled.h1`
   font-style: normal;
   font-weight: 800;
-  // font-size: 8rem;
+  font-size: 7rem;
   align-self: end;
   line-height: 100%;
   //line-height: 100px;
@@ -2388,13 +2389,13 @@ const TopBar = styled.div`
   //border: 1px solid orange;
   grid-area: topbar;
   justify-self: start;
-  margin: 48px 0px 48px 120px;
+ 
 
   display: grid;
-  grid-template-columns: 1fr minmax(120px, 250px) minmax(10px, 12px) minmax(120px, 250px) minmax(min-content, max-content) 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   width: 100%;
-  padding: 50px 0px 20px 30px;
+  
   @media only screen and (max-width: 786px) {
     margin: 48px 0px 48px 20px;
   }
@@ -2405,7 +2406,7 @@ const TopBar = styled.div`
     font-weight: 600;
     letter-spacing: 0.03em;
     font-size: 3rem;
-    grid-area: 1/2/2/6;
+    justify-self: center;
 
     @media only screen and (max-width: 786px) {
       //// font-size: 3.5em;
@@ -2430,8 +2431,8 @@ const TopBar = styled.div`
     //display: grid;
     //grid-template-columns: max-content max-content;
     //grid-template-rows: min-content;
-    grid-area: 2/2/3/6;
-    h3 {
+    justify-self: center;
+    h2 {
       color: #b4b2b2;
       letter-spacing: 0.03em;
       align-self: end;
@@ -2565,7 +2566,7 @@ function Act(props, ref) {
   const { LookupInputRef } = ref;
   const [tester, setTester] = useState("testing");
   const [addressObject, setAddressObject] = useState(null);
-  const [showCards, setShowCards] = React.useState("true");
+  const [showCards, setShowCards] = React.useState("false");
   const [resultFromFlorida, setResultFromFlorida] = React.useState("true");
 
   const [searchButtonActive, setSearchButtonActive] = React.useState(false);
@@ -2629,39 +2630,39 @@ function Act(props, ref) {
   `,
   };
 
-  const [results, setResults] = React.useState({
-    one: {
-      resultFromFlorida: "true",
-      name: "Juan Alfonso Fernandez-Barquin",
-      firstName: "",
-      lastName: "",
-      image:
-        "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
-      id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
-      email: "JuanF.Barquin@myfloridahouse.gov",
-      chamber: "House",
-      party: "Republican",
-      parent: "Florida Legislature",
-      district: "119",
-      fullDistrict: "Florida State House district 119",
-      fullDistrictTrunk: "Florida State House",
-    },
-    two: {
-      name: "Annette Taddeo",
-      firstName: "Annette",
-      lastName: "Taddeo",
-      image:
-        "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
-      id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
-      email: "taddeo.annette.web@flsenate.gov",
-      chamber: "Senate",
-      party: "Democrat",
-      parent: "Florida Legislature",
-      district: "40",
-      fullDistrict: "Florida State Senate  ",
-      fullDistrictTrunk: "Florida State Senate",
-    },
-  });
+  // // const [results, setResults] = React.useState({
+  // //   one: {
+  // //     resultFromFlorida: "true",
+  // //     name: "Juan Alfonso Fernandez-Barquin",
+  // //     firstName: "",
+  // //     lastName: "",
+  // //     image:
+  // //       "https://www.myfloridahouse.gov//FileStores/Web/Imaging/Member/4709.jpg",
+  // //     id: "ocd-person/a8c88fee-1915-4907-ae37-5755c4bff446",
+  // //     email: "JuanF.Barquin@myfloridahouse.gov",
+  // //     chamber: "House",
+  // //     party: "Republican",
+  // //     parent: "Florida Legislature",
+  // //     district: "119",
+  // //     fullDistrict: "Florida State House district 119",
+  // //     fullDistrictTrunk: "Florida State House",
+  // //   },
+  // //   two: {
+  // //     name: "Annette Taddeo",
+  // //     firstName: "Annette",
+  // //     lastName: "Taddeo",
+  // //     image:
+  // //       "http://www.flsenate.gov/PublishedContent/Senators/2018-2020/Photos/s40_5331.jpg",
+  // //     id: "ocd-person/ea190b03-d1ca-4d75-89c7-dca745386db7",
+  // //     email: "taddeo.annette.web@flsenate.gov",
+  // //     chamber: "Senate",
+  // //     party: "Democrat",
+  // //     parent: "Florida Legislature",
+  // //     district: "40",
+  // //     fullDistrict: "Florida State Senate  ",
+  // //     fullDistrictTrunk: "Florida State Senate",
+  // //   },
+  // // });
 
   // const [results, setResults] = React.useState({
   //   one: {
@@ -2704,7 +2705,7 @@ function Act(props, ref) {
   //   hash: "15a8737628b7c84a892c199720cecdeafc7cd07e",
   // });
 
-  ////const [results, setResults] = React.useState({ one: {}, two: {} });
+  const [results, setResults] = React.useState({ one: {}, two: {} });
 
   // // const [results, setResults] = React.useState({
   // // 	one: {
@@ -3544,13 +3545,13 @@ function Act(props, ref) {
                 {/* <h2>We located your State Representatives !!</h2> */}
 
                 <div>
-                  <h3>
+                  <h2>
                     {addressObject && addressObject.formatted_address
                       ? addressObject.formatted_address
                       : addressObject && addressObject.address
                       ? addressObject.address
                       : "123 Main St Miami, FL 33155"}
-                  </h3>
+                  </h2>
                   <h5 onClick={resetSearch}>new search</h5>
                 </div>
               </TopBar>
