@@ -234,7 +234,7 @@ const ActSection = styled.section`
     minmax(80px, 1fr)
     minmax(250px, 350px) minmax(150px, 900px) minmax(80px, 1fr); */
   //grid-template-rows: minmax(40px, 50px) minmax(min-content, max-content) min-content min-content 1fr;
-  grid-template-columns: 2% 2fr 4fr 2%;
+  grid-template-columns: 2% minmax(408px, 2fr) 4fr 2%;
   grid-column-gap: 0.5em;
   grid-area: 1/1/-1/-1;
   transition: opacity 0.4s;
@@ -325,9 +325,8 @@ const ActSubheader = styled.h2`
   @media only screen and (max-width: 786px) {
     grid-area: 2/1/3/-1;
     //justify-self: center;
-    //// font-size: 4vw;
   }
-
+  font-size: 2.2vw;
   font-style: normal;
   font-weight: 800;
   //// font-size: min(4vw, 36px);
@@ -357,7 +356,7 @@ const ActSubHeaders = styled.div`
     font-family: "Permanent Marker";
     color: red;
     padding-left: 6%;
-    //// font-size: 2.6rem;
+    font-size: 3vw;
 
     @media only screen and (max-width: 786px) {
       //// font-size: 3.6rem;
@@ -1045,7 +1044,7 @@ const CardOneSub = styled.div`
   left: 3px;
   top: 3px;
   right: 3px;
-  
+
   //width: 100%;
   //opacity: .8;
   color: black;
@@ -1124,7 +1123,7 @@ const CardPicture = styled.img`
 
 const CardNameOfRep = styled.h1`
   color: black;
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 0.9em;
   z-index: 1;
   /* position: absolute;
@@ -1492,7 +1491,7 @@ const HowItWorksWrapper = styled.div`
     font-size: 1.5rem;
     font-family: Fira Sans;
     align-self: start;
-    justify-self:3start;
+    justify-self: 3start;
     //padding: 0 8px;
     margin-top: 18px;
 
@@ -2389,13 +2388,12 @@ const TopBar = styled.div`
   //border: 1px solid orange;
   grid-area: topbar;
   justify-self: start;
- 
 
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   width: 100%;
-  
+
   @media only screen and (max-width: 786px) {
     margin: 48px 0px 48px 20px;
   }
@@ -2421,7 +2419,7 @@ const TopBar = styled.div`
     font-weight: 400;
     //letter-spacing: 0.1em;
     // font-size: 1.8rem;
-    
+
     @media only screen and (max-width: 786px) {
       //// font-size: 2.2em;
     }
