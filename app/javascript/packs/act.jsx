@@ -1474,8 +1474,11 @@ const Pic1 = styled.img`
 const HowItWorksWrapper = styled.div`
   border-top: 1px #e3b55a solid;
   //border-bottom: 1px #e3b55a solid;
-
-  display: grid;
+  display: ${(props) =>
+    props.show_cards == "true" && props.result_from_florida == "false"
+      ? "none"
+      : "grid"};
+  //display: grid;
   //max-width: 578px;
   @media only screen and (max-width: 786px) {
     justify-self: center;
@@ -3190,6 +3193,7 @@ function Act(props, ref) {
   function resetSearch(e) {
     e.preventDefault();
     setShowCards("false");
+    props.set_show_offer("false");
     setAddressObject(null);
 
     //LookupInputRef.current.focus();
@@ -3591,7 +3595,8 @@ function Act(props, ref) {
                   <h1>NEXT STEP:</h1>
                   {/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
                   <h2>Contact your State Representatives.</h2>
-                  <HowItWorksWrapper>
+                  <HowItWorksWrapper result_from_florida={resultFromFlorida}
+              show_cards={showCards}>
                     <p>How it works?</p>
                     <HowItWorksList>
                       <p>
@@ -3605,6 +3610,16 @@ function Act(props, ref) {
                       <p>That's it!</p>
                     </HowItWorksList>
                   </HowItWorksWrapper>
+                  <ShowLetterDeadEnd
+              result_from_florida={resultFromFlorida}
+              show_cards={showCards}
+            >
+              Unfortunately, emailing officials through FloridaBlaze is only
+              available in Florida.
+              <a href="#" onClick={resetSearch}>
+                Try another search.
+              </a>
+            </ShowLetterDeadEnd>
                   {/* <h2>checkout the letters</h2> */}
                   {/* <div>
 								<p>
@@ -4404,16 +4419,7 @@ function Act(props, ref) {
               </EmailOffer>
             </EmailOfferWrapper>
 
-            <ShowLetterDeadEnd
-              result_from_florida={resultFromFlorida}
-              show_cards={showCards}
-            >
-              Unfortunately, emailing officials through FloridaBlaze is only
-              available in Florida.
-              <a href="#" onClick={resetSearch}>
-                Try another search.
-              </a>
-            </ShowLetterDeadEnd>
+            
           </ResultSection>
         </ActGrid>
       </ActWrapper>
