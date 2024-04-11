@@ -613,13 +613,20 @@ const ShowLetterDeadEnd = styled.div`
     props.show_cards == "true" && props.result_from_florida == "true"
       ? "-5"
       : "10"};
-  grid-area: 5/2/6/5;
+  //grid-area: 5/2/6/5;
   color: white;
-  padding: 16px 0px 0px 0px;
+  padding: 4% 20% 0 0;
   margin: 0 auto;
-  justify-self: center;
-  align-self: center;
+  justify-self: start;
+  align-self: start;
   text-align: left;
+
+  @media only screen and (max-width: 787px) {
+    justify-self: center;
+    padding: initial;
+    text-align: center;
+  }
+  
 
   a {
     color: #e7c991;
@@ -717,7 +724,7 @@ const ResultSection = styled.div`
     ///}
   }
 
-  display: grid;
+  display: ${props=>props.show_cards == "true" ? "grid" : "none"};
   transition: opacity 0.4s;
   //transition: opacity 2s linear;
   transform: ${(props) =>
@@ -1048,12 +1055,12 @@ const CardOneSub = styled.div`
   //width: 100%;
   //opacity: .8;
   color: black;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
   background: white;
   // font-size: 0.8rem;
   text-align: center;
-  padding: 3px 0px;
+  padding: 3px 5px;
 
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -1067,8 +1074,8 @@ const CardOneSub = styled.div`
     border-top-right-radius: 15px;
   }
 
-  @media only screen and (max-width: 786px) {
-    //// font-size: 1.7rem;
+  @media only screen and (max-width: 500px) {
+    font-size: .7rem;
   }
 `;
 
