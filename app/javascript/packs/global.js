@@ -393,8 +393,8 @@ p{
   // color: rgb(61, 61, 61);
   //color: red;
 
-  @media only screen and (max-width: 985px) {
-    font-size: 3rem !important;
+  @media only screen and (max-width: 500px) {
+    font-size: 1rem !important;
   }
 }
 

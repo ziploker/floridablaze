@@ -484,9 +484,7 @@ const SocialMedia = styled.div`
 `;
 
 const RightSection = styled.div`
-  @media only screen and (max-width: 400px) {
-    //grid-template-rows: 420px repeat(4, 73px) 1fr;
-  }
+  
 
   //background: #C4C4C4;
   grid-area: 1/3/2/4;
@@ -512,6 +510,12 @@ const RightSection = styled.div`
     /* grid-template-columns: 1px 30px 1fr; */
     grid-template-columns: 36px 30px 1fr;
     grid-template-rows: 284px repeat(4, min-content) 1fr;
+  }
+
+  @media only screen and (max-width: 450px) {
+    grid-template-columns: 4px 30px 1fr;
+    grid-template-rows: 192px repeat(4, min-content) 1fr;
+    padding: 0px 5px 11px 5px;
   }
 `;
 
@@ -554,14 +558,15 @@ const WeedBulletText1 = styled.h2`
   grid-area: 2/3/3/4;
   justify-self: start;
   align-self: start;
-  margin-top: 13px;
+  margin-top: 19px;
   padding-left: 10px;
   font-size: 1.3rem;
 
   text-align: start;
 
-  @media only screen and (max-width: 985px) {
-    font-size: 2rem;
+  @media only screen and (max-width: 500px) {
+    font-size: 1rem;
+    margin-top: 26px;
   }
 `;
 
@@ -572,11 +577,12 @@ const WeedBulletText2 = styled.h2`
   // font-size: 3vw;
   padding-left: 10px;
 
-  margin-top: 13px;
+  margin-top: 19px;
   font-size: 1.3rem;
   text-align: start;
-  @media only screen and (max-width: 985px) {
-    font-size: 2rem;
+  @media only screen and (max-width: 500px) {
+    font-size: 1rem;
+    margin-top: 26px;
   }
 `;
 
@@ -587,10 +593,11 @@ const WeedBulletText3 = styled.h2`
   font-size: 1.3rem;
   padding-left: 10px;
 
-  margin-top: 13px;
+  margin-top: 19px;
   text-align: start;
-  @media only screen and (max-width: 985px) {
-    font-size: 2rem;
+  @media only screen and (max-width: 500px) {
+    font-size: 1rem;
+    margin-top: 26px;
   }
 `;
 
@@ -601,10 +608,11 @@ const WeedBulletText4 = styled.h2`
   padding-left: 10px;
   font-size: 1.3rem;
 
-  margin-top: 13px;
+  margin-top: 19px;
   text-align: start;
-  @media only screen and (max-width: 985px) {
-    font-size: 2rem;
+  @media only screen and (max-width: 500px) {
+    font-size: 1rem;
+    margin-top: 26px;
   }
 `;
 const Spacer = styled.h2`
