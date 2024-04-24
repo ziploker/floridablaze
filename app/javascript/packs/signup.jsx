@@ -9,7 +9,7 @@ import floridaBlankPink from "../../assets/images/floridaBlankPink.png";
 import floridaMaskCell from "../../assets/images/floridaMaskThinBlanco1.png";
 import floridaMask from "../../assets/images/floridaMaskBlanco.png";
 import floridaMaskThinLongist from "../../assets/images/floridaMaskThinLongist.png";
-import floridaMaskBig from "../../assets/images/floridaMaskBig.png";
+import floridaMaskBig from "../../assets/images/floridaMaskBig1.png";
 import floridaMaskSmaller from "../../assets/images/floridaMaskSmaller.png";
 import floridaMaskSmaller3 from "../../assets/images/floridaMaskSmaller3.png";
 import floridaMaskSmaller5 from "../../assets/images/floridaMaskSmaller5.png";
@@ -62,6 +62,7 @@ const SignupWrapper = styled.div`
   @media only screen and (max-width: 985px) {
     grid-template-columns: 2% 1fr 2%;
     min-width: 100%;
+    border-top: 37px solid white;
   }
 
   position: relative;

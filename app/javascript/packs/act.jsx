@@ -227,6 +227,7 @@ const ActSection = styled.section`
     min-width: 100%;
     grid-column-gap: 0;
     //justify-self: center;
+    padding-top: 0px;
   }
 
   display: ${(props) => (props.show_cards == "true" ? "none" : "grid")};
