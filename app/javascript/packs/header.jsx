@@ -535,7 +535,7 @@ function Header(props) {
       ? setLeafScrolledSoChangeColorUp("true")
       : setLeafScrolledSoChangeColorUp("false");
 
-    window.scrollY >= pixlesFromHamburgerToTop + 20
+    window.scrollY >= pixlesFromHamburgerToTop + 10
       ? setHamburgerScrolled("true")
       : setHamburgerScrolled("false");
 
