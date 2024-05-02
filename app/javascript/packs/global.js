@@ -133,6 +133,57 @@ const GlobalStyles = createGlobalStyle`
 
 
 
+    .eachDot {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid black;
+      box-sizing: border-box;
+      transition: transform 0.5s ease;
+    }
+    
+    .eachDot.active {
+      background-color: black;
+    }
+    
+    .dot-holder {
+      height: 10px;
+      width: 10px;
+      align-items: center;
+      align-self: center;
+      transition: all 0.5s ease;
+      transform: translateX(60px);
+      justify-self: center;
+    }
+    .eachDot.medium {
+      transform: scale(0.6);
+    }
+    
+    .eachDot.small {
+      transform: scale(0.32);
+    }
+    
+    .eachDot.invisible {
+      transform: scale(0.18);
+    }
+    
+    .allDotsWrapper {
+      grid-area: 1/2/2/3;
+      display: grid;
+    
+      overflow: hidden;
+      width: 220px;
+      height: 15px;
+      justify-self: center;
+    
+      transition: transform 0.5s ease;
+    }
+    
+    
+
+
+
 
 
 
