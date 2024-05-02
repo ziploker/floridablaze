@@ -12,6 +12,135 @@ import '../../../node_modules/modern-normalize/modern-normalize.css';
 const GlobalStyles = createGlobalStyle`
 
 
+.replies{
+
+  //transform: scale(1);
+  max-height: 300px;
+  transition: all 197ms ease;
+  opacity: 1;
+  //transform: translateX(0%);
+  //transition-delay: 50ms;
+  
+  //position: relative;
+  margin: 10px 0px 0px 25px;
+  
+
+  
+  }
+  
+  
+  
+  .replies.shrink{
+  
+  max-height: 0;
+  //transform: scale(0);
+  opacity: 0;
+  //transform: translateX(100%);
+  
+  }
+
+
+  .ziploker {
+      fill: white;
+    }
+    
+    .selected {
+      svg {
+        #layer1 path:nth-child(2) {
+          fill: #2ef00a2b;
+        }
+    
+        #layer1 path:nth-child(3) {
+          fill: rgb(46, 240, 10);
+        }
+      }
+    }
+    
+    //#f0200a2b;
+    
+    //#f00a0a;
+    
+    .down_vote_selected {
+      svg {
+        #layer11 path:nth-child(2) {
+          fill: #f0200a2b;
+        }
+    
+        #layer11 path:nth-child(3) {
+          fill: #f00a0a;
+        }
+      }
+    }
+
+
+    .replyFormHidden {
+      z-index: -1;
+    
+      opacity: 0;
+      height: 0px;
+      min-height: 0px;
+    
+      transition: all 197ms ease;
+    
+      top: -100px;
+      display: grid;
+      //display: grid;
+    
+      position: relative;
+      grid-template-columns: minmax(min-content, max-content) 1fr;
+      grid-template-rows: minmax(50px, 1fr) minmax(min-content, max-content);
+      grid-template-areas:
+        "main_comment_img      main_comment_body  "
+        "main_comment_img     main_comment_buttons";
+    
+      margin: 0px 50px 0px 25px;
+      //min-height: 100px;
+    
+      //top: -100px;
+      //left: 0;
+      background-color: F4F4F4;
+      //padding: 20px;
+    
+      img {
+        width: 25px;
+        height: 25px;
+        grid-area: avatar;
+        margin: 1px 10px 0px 0px;
+        border-radius: 50%;
+        border: 1px solid gray;
+    
+        grid-area: main_comment_img;
+      }
+    }
+    
+    .replyForm {
+      z-index: initial;
+      opacity: 1;
+      height: initial;
+      min-height: 100px;
+      top: 7px;
+    
+      margin: 0px 50px 15px 25px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
