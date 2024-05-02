@@ -1538,7 +1538,7 @@ function Home(props) {
       </Carousel>
 
       <div style={getBackgroundBarStyles()}>
-        <div className={"allDotsWrapper"} style={getAllDotsWrapperStyle()}>
+        <div className="allDotsWrapper" style={getAllDotsWrapperStyle()}>
           {whatModeAuto == "desktop"
             ? desktopIndicatorDots
             : cellphoneIndicatorDots}
