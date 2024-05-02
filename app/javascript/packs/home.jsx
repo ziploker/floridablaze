@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 //import { Parallax, Background } from 'react-parallax';
-import "../../assets/stylesheets/dotStyles.scss";
+//import "../../assets/stylesheets/dotStyles.scss";
 import Login from "./pages/login";
 import defaultImage from "../../assets/images/defaultImage.jpg";
 import slugify from "react-slugify";
@@ -12,7 +12,9 @@ import { gsap } from "gsap";
 import { Draggable } from "gsap/all";
 import { _parseRelative } from "gsap/gsap-core";
 import "../../assets/stylesheets/home_story_spinner.scss";
+import "../../assets/stylesheets/dotStyles.scss"
 import Carousel, { CarouselItem } from "./carousel";
+
 //import Dots from "react-carousel-dots";
 
 //

@@ -509,7 +509,7 @@ function Footer(props) {
       </Explore>
 
       <Legal>
-        <h1>&#169; 2021 FloridaBlaze, All Rights Reserved</h1>
+        <h1>&#169; 2024 FloridaBlaze, All Rights Reserved</h1>
       </Legal>
 
       <BlackBG></BlackBG>
