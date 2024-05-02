@@ -12,7 +12,7 @@ import { gsap } from "gsap";
 import { Draggable } from "gsap/all";
 import { _parseRelative } from "gsap/gsap-core";
 import "../../assets/stylesheets/home_story_spinner.scss";
-import "../../assets/stylesheets/dotStyles.scss"
+import "../../assets/stylesheets/dotS.css"
 import Carousel, { CarouselItem } from "./carousel";
 
 //import Dots from "react-carousel-dots";
