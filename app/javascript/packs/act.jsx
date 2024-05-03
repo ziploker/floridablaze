@@ -626,7 +626,6 @@ const ShowLetterDeadEnd = styled.div`
     padding: initial;
     text-align: center;
   }
-  
 
   a {
     color: #e7c991;
@@ -724,7 +723,7 @@ const ResultSection = styled.div`
     ///}
   }
 
-  display: ${props=>props.show_cards == "true" ? "grid" : "none"};
+  display: ${(props) => (props.show_cards == "true" ? "grid" : "none")};
   transition: opacity 0.4s;
   //transition: opacity 2s linear;
   transform: ${(props) =>
@@ -1075,7 +1074,7 @@ const CardOneSub = styled.div`
   }
 
   @media only screen and (max-width: 500px) {
-    font-size: .7rem;
+    font-size: 0.7rem;
   }
 `;
 
@@ -2609,32 +2608,47 @@ function Act(props, ref) {
   const [isAddressMenuOpen, setIsAddressMenuOpen] = React.useState(false);
 
   const gradient = {
+    //   someColor: `
+    //     linear-gradient(
+    //       0deg,
+    //       hsl(0deg 0% 0%) 0%,
+    //       hsl(0deg 0% 5%) 0%,
+    //       hsl(0deg 1% 9%) 0%,
+    //       hsl(0deg 1% 14%) 0%,
+    //       hsl(0deg 1% 19%) 0%,
+    //       hsl(0deg 2% 23%) 1%,
+    //       hsl(0deg 2% 28%) 2%,
+    //       hsl(0deg 2% 33%) 3%,
+    //       hsl(0deg 3% 37%) 4%,
+    //       hsl(0deg 3% 42%) 6%,
+    //       hsl(0deg 3% 46%) 8%,
+    //       hsl(0deg 4% 51%) 10%,
+    //       hsl(0deg 5% 55%) 13%,
+    //       hsl(0deg 6% 59%) 16%,
+    //       hsl(0deg 8% 64%) 20%,
+    //       hsl(0deg 11% 68%) 25%,
+    //       hsl(0deg 14% 72%) 31%,
+    //       hsl(0deg 19% 77%) 38%,
+    //       hsl(0deg 26% 81%) 47%,
+    //       hsl(0deg 36% 85%) 59%,
+    //       hsl(0deg 56% 89%) 79%,
+    //       hsl(0deg 100% 93%) 100%
+    //     )
+    // `,
+
     someColor: `
-      linear-gradient(
-        0deg,
-        hsl(0deg 0% 0%) 0%,
-        hsl(0deg 0% 5%) 0%,
-        hsl(0deg 1% 9%) 0%,
-        hsl(0deg 1% 14%) 0%,
-        hsl(0deg 1% 19%) 0%,
-        hsl(0deg 2% 23%) 1%,
-        hsl(0deg 2% 28%) 2%,
-        hsl(0deg 2% 33%) 3%,
-        hsl(0deg 3% 37%) 4%,
-        hsl(0deg 3% 42%) 6%,
-        hsl(0deg 3% 46%) 8%,
-        hsl(0deg 4% 51%) 10%,
-        hsl(0deg 5% 55%) 13%,
-        hsl(0deg 6% 59%) 16%,
-        hsl(0deg 8% 64%) 20%,
-        hsl(0deg 11% 68%) 25%,
-        hsl(0deg 14% 72%) 31%,
-        hsl(0deg 19% 77%) 38%,
-        hsl(0deg 26% 81%) 47%,
-        hsl(0deg 36% 85%) 59%,
-        hsl(0deg 56% 89%) 79%,
-        hsl(0deg 100% 93%) 100%
-      )
+    
+  background: hsla(0, 0%, 100%, 1);
+
+  background: linear-gradient(180deg, hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%);
+  
+  background: -moz-linear-gradient(180deg, hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%);
+  
+  background: -webkit-linear-gradient(180deg, hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%);
+  
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FFFFFF", endColorstr="#EAE6E6", GradientType=1 );
+
+
   `,
   };
 
@@ -3602,8 +3616,10 @@ function Act(props, ref) {
                   <h1>NEXT STEP:</h1>
                   {/* <h2>Join our Recreational Cannabis Initiative campaign!</h2> */}
                   <h2>Contact your State Representatives.</h2>
-                  <HowItWorksWrapper result_from_florida={resultFromFlorida}
-              show_cards={showCards}>
+                  <HowItWorksWrapper
+                    result_from_florida={resultFromFlorida}
+                    show_cards={showCards}
+                  >
                     <p>How it works?</p>
                     <HowItWorksList>
                       <p>
@@ -3618,15 +3634,15 @@ function Act(props, ref) {
                     </HowItWorksList>
                   </HowItWorksWrapper>
                   <ShowLetterDeadEnd
-              result_from_florida={resultFromFlorida}
-              show_cards={showCards}
-            >
-              Unfortunately, emailing officials through FloridaBlaze is only
-              available in Florida.
-              <a href="#" onClick={resetSearch}>
-                Try another search.
-              </a>
-            </ShowLetterDeadEnd>
+                    result_from_florida={resultFromFlorida}
+                    show_cards={showCards}
+                  >
+                    Unfortunately, emailing officials through FloridaBlaze is
+                    only available in Florida.
+                    <a href="#" onClick={resetSearch}>
+                      Try another search.
+                    </a>
+                  </ShowLetterDeadEnd>
                   {/* <h2>checkout the letters</h2> */}
                   {/* <div>
 								<p>
@@ -4425,8 +4441,6 @@ function Act(props, ref) {
                 </Strip>
               </EmailOffer>
             </EmailOfferWrapper>
-
-            
           </ResultSection>
         </ActGrid>
       </ActWrapper>
