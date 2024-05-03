@@ -53,6 +53,35 @@ const ActWrapper = styled.div`
     //overflow: hidden;
     width: 100%;
   }
+  //background: showCards == "true" ? "white" : gradient.someColor,
+  //background: ${(props) => (props.showCards == "true" ? "white" : testG)}
+  background: hsla(0, 0%, 100%, 1);
+
+  background: linear-gradient(
+    270deg,
+    hsla(0, 0%, 100%, 1) 0%,
+    hsla(0, 9%, 91%, 1) 37%,
+    hsla(0, 7%, 67%, 1) 68%,
+    hsla(0, 0%, 26%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    270deg,
+    hsla(0, 0%, 100%, 1) 0%,
+    hsla(0, 9%, 91%, 1) 37%,
+    hsla(0, 7%, 67%, 1) 68%,
+    hsla(0, 0%, 26%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    270deg,
+    hsla(0, 0%, 100%, 1) 0%,
+    hsla(0, 9%, 91%, 1) 37%,
+    hsla(0, 7%, 67%, 1) 68%,
+    hsla(0, 0%, 26%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FFFFFF", endColorstr="#EAE6E6", GradientType=1 );
   padding-top: 18px;
   /* background-image: linear-gradient(
     0deg,
@@ -213,9 +242,8 @@ const ActGrid = styled.div`
 `;
 
 const ActSection = styled.section`
-
-@media only screen and (max-width: 1000px) {
-  grid-template-columns: 2% minmax(308px, 2fr) 4fr 2%;
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: 2% minmax(308px, 2fr) 4fr 2%;
   }
 
   @media only screen and (max-width: 786px) {
@@ -332,8 +360,6 @@ const ActHeader = styled.h1`
 `;
 
 const ActSubheader = styled.h2`
-
-
   @media only screen and (max-width: 786px) {
     grid-area: 2/1/3/-1;
     //justify-self: center;
@@ -2619,6 +2645,8 @@ function Act(props, ref) {
   const [query, setQuery] = useState("");
   const [isAddressMenuOpen, setIsAddressMenuOpen] = React.useState(false);
 
+  const testG = "";
+
   const gradient = {
     //   someColor: `
     //     linear-gradient(
@@ -3487,9 +3515,9 @@ function Act(props, ref) {
   } else {
     return (
       <ActWrapper
-        style={{
-          background: showCards == "true" ? "white" : gradient.someColor,
-        }}
+        // style={{
+        //   background: showCards == "true" ? "white" : gradient.someColor,
+        // }}
         show_cards={showCards}
         ref={LookupScrollToRef}
       >
