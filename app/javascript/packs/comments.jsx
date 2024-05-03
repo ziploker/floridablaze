@@ -565,8 +565,8 @@ function CommentSection(props) {
         </TopBarWrapper>
 
         <CommentBody style={{ gridArea: "body", fontSize: "15px" }}>
-          {item.body} this comment ID is {item.id} and its children array is{" "}
-          {getReplyArray(item.comments)}
+          {item.body} 
+          
         </CommentBody>
 
         <BottomBarWrapper>

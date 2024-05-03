@@ -1376,7 +1376,7 @@ class LookupsController < ApplicationController
         # sendDate 	Date 	Date when the letter will be sent
         # to 	Contact 	The recipient of this letter
         # # # "to": contactRepOne,
-        "to": contactBuyer,
+        "to": contactRepOne,
         # from 	Contact 	The sender of this letter
         "from": contactBuyer,
 
@@ -1461,7 +1461,7 @@ class LookupsController < ApplicationController
         # sendDate 	Date 	Date when the letter will be sent
         # to 	Contact 	The recipient of this letter
         # # # "to": contactRepTwo,
-        "to": contactBuyer,
+        "to": contactRepTwo,
         # from 	Contact 	The sender of this letter
         "from": contactBuyer,
 

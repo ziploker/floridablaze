@@ -186,11 +186,15 @@ const PWrapper = styled.div`
   line-height: 1.9em;
   grid-area: 5/1/6/2;
   //text-indent: 45px;
-  margin-top: 16px;
+  margin-top: 50px;
   //padding: 0px 20px;
 
   h1 {
     margin: 20px 0;
+  }
+
+  h2 {
+    margin-bottom: 25px;
   }
 
   p {

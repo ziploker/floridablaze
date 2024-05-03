@@ -213,6 +213,11 @@ const ActGrid = styled.div`
 `;
 
 const ActSection = styled.section`
+
+@media only screen and (max-width: 1000px) {
+  grid-template-columns: 2% minmax(308px, 2fr) 4fr 2%;
+  }
+
   @media only screen and (max-width: 786px) {
     //grid-template-columns: minmax(20px, 1fr) 1fr minmax(20px, 1fr);
     grid-template-columns: minmax(8px, 1fr) minmax(197px, 800px) minmax(
@@ -222,6 +227,7 @@ const ActSection = styled.section`
     min-width: 100%;
     grid-column-gap: 0;
     //justify-self: center;
+    padding-top: 0px;
   }
 
   display: ${(props) => (props.show_cards == "true" ? "none" : "grid")};
@@ -319,9 +325,15 @@ const ActHeader = styled.h1`
   word-break: break-word;
   white-space: normal;
   overflow: visible;
+
+  @media only screen and (max-width: 1000px) {
+    font-size: 6rem;
+  }
 `;
 
 const ActSubheader = styled.h2`
+
+
   @media only screen and (max-width: 786px) {
     grid-area: 2/1/3/-1;
     //justify-self: center;
@@ -356,10 +368,10 @@ const ActSubHeaders = styled.div`
     font-family: "Permanent Marker";
     color: red;
     padding-left: 6%;
-    font-size: 3vw;
+    font-size: 2.7rem;
 
-    @media only screen and (max-width: 786px) {
-      //// font-size: 3.6rem;
+    @media only screen and (max-width: 1000px) {
+      font-size: 2rem;
     }
   }
 `;
@@ -2404,7 +2416,7 @@ const TopBar = styled.div`
   width: 100%;
 
   @media only screen and (max-width: 786px) {
-    margin: 48px 0px 48px 20px;
+    padding: 0 16px;
   }
 
   h1 {
