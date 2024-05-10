@@ -55,16 +55,24 @@ const ActWrapper = styled.div`
   }
   //background: showCards == "true" ? "white" : gradient.someColor,
   //background: ${(props) => (props.showCards == "true" ? "white" : testG)}
-  background: hsla(0, 0%, 100%, 1);
+  //background: hsla(0, 0%, 100%, 1);
 
-  background: linear-gradient(
-    270deg,
-    hsla(0, 0%, 100%, 1) 0%,
-    hsla(0, 9%, 91%, 1) 37%,
-    hsla(0, 7%, 67%, 1) 68%,
-    hsla(0, 0%, 26%, 1) 100%
-  );
+  background: ${(props) =>
+    props.show_cards == "true"
+      ? "white"
+      : "linear-gradient(180deg,hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%)"};
 
+  background: ${(props) =>
+    props.show_cards == "true"
+      ? "white"
+      : "-moz-linear-gradient(180deg,hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%)"};
+
+  background: ${(props) =>
+    props.show_cards == "true"
+      ? "white"
+      : "-webkit-linear-gradient(180deg,hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%)"};
+
+  /* 
   background: -moz-linear-gradient(
     270deg,
     hsla(0, 0%, 100%, 1) 0%,
@@ -79,7 +87,7 @@ const ActWrapper = styled.div`
     hsla(0, 9%, 91%, 1) 37%,
     hsla(0, 7%, 67%, 1) 68%,
     hsla(0, 0%, 26%, 1) 100%
-  );
+  ); */
 
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FFFFFF", endColorstr="#EAE6E6", GradientType=1 );
   padding-top: 18px;
