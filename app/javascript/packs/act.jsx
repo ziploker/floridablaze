@@ -60,17 +60,17 @@ const ActWrapper = styled.div`
   background: ${(props) =>
     props.show_cards == "true"
       ? "white"
-      : "linear-gradient(180deg,hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%)"};
+      : "linear-gradient(to bottom, hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%)"};
+
+  /* background: ${(props) =>
+    props.show_cards == "true"
+      ? "white"
+      : "-moz-linear-gradient(to bottom, hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%)"};
 
   background: ${(props) =>
     props.show_cards == "true"
       ? "white"
-      : "-moz-linear-gradient(180deg,hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%)"};
-
-  background: ${(props) =>
-    props.show_cards == "true"
-      ? "white"
-      : "-webkit-linear-gradient(180deg,hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%)"};
+      : "-webkit-linear-gradient(to bottom, hsla(0, 0%, 100%, 1) 0%, hsla(0, 9%, 91%, 1) 37%, hsla(0, 7%, 67%, 1) 68%, hsla(0, 0%, 26%, 1) 100%)"}; */
 
   /* 
   background: -moz-linear-gradient(
