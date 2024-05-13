@@ -4,7 +4,7 @@ import styled from "styled-components";
 import scrollArrow from "../../assets/images/scroll-arrow.png";
 
 const CarouselMain = styled.div`
-  overflow: hidden;
+  //overflow: hidden;
   //margin: 30px auto 10px auto;
   max-width: 1700px;
 
@@ -47,9 +47,8 @@ const Indicators = styled.div`
 `;
 
 const LeftArrowButton = styled.button`
-  
   opacity: 0.8;
-  
+
   grid-area: 1/1/-1/-1;
 
   align-self: center;
@@ -58,18 +57,10 @@ const LeftArrowButton = styled.button`
   border: 0;
   display: grid;
 
-
-
-
   cursor: pointer;
   width: 6%;
   height: 33.33%;
   background: rgba(247, 247, 247, 0.6);
-  
-  
-  
-
-
 
   z-index: 1;
 
@@ -81,7 +72,7 @@ const LeftArrowButton = styled.button`
 `;
 
 const LeftArrow = styled.img`
-  width: 100%; 
+  width: 100%;
 
   position: relative;
   justify-self: center;
@@ -91,9 +82,8 @@ const LeftArrow = styled.img`
 `;
 
 const RightArrowButton = styled.button`
-  
   opacity: 0.8;
-  
+
   grid-area: 1/1/-1/-1;
 
   align-self: center;
@@ -102,8 +92,6 @@ const RightArrowButton = styled.button`
   border: 0;
   display: grid;
   cursor: pointer;
-
-
 
   width: 6%;
   height: 33.33%;

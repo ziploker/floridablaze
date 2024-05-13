@@ -12,7 +12,7 @@ import { gsap } from "gsap";
 import { Draggable } from "gsap/all";
 import { _parseRelative } from "gsap/gsap-core";
 import "../../assets/stylesheets/home_story_spinner.scss";
-import "../../assets/stylesheets/dotS.css"
+import "../../assets/stylesheets/dotS.css";
 import Carousel, { CarouselItem } from "./carousel";
 
 //import Dots from "react-carousel-dots";
@@ -226,7 +226,7 @@ const Div1OverlayWrapper = styled.div`
   overflow: hidden;
   //max-width: 600px;
   width: 100%;
-  height: 100%;
+  height: 116%;
   justify-self: center;
   line-height: 1.2;
 
@@ -1327,6 +1327,7 @@ function Home(props) {
       gridTemplateColumns: "1fr 1fr 1fr",
       // backgroundColor: whatModeAuto == "desktop" ? "#c4c4c4" : "white",
       padding: "25px 0",
+      marginTop: "40px",
     };
 
     return style;
