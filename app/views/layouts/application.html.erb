@@ -5,26 +5,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Floridablaze></title>
+    <meta charset="utf-8">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="Bringing you the latest marijuana related news and laws affecting Florida. We also make it easy to find and contact your State Representatives.">
+
+    <meta name="viewport" content="width=device-width">
+    <meta name="google-adsense-account" content="ca-pub-5712483420848978">
+    <meta name="google-signin-client_id" content=<%=Rails.application.credentials.dig(:GOOGLE_OAUTH_CLIENT_ID)%>>
+    <meta name="google-adsense-account" content="ca-pub-5712483420848978">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5712483420848978"
+     crossorigin="anonymous"></script>
+    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&family=PT+Serif&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+     <%= javascript_pack_tag "floridablaze-bundle"%> 
+     <%= stylesheet_pack_tag "application"%>
+    
+    <title>Florida Based Marijuana News | Contact State Representatives | FloridaBlaze.io ></title>
     
     
   
     <%# <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" /> %>
     <%# <meta name="viewport" content="width=device-width, initial-scale=1.0"> %>
    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5712483420848978"
-     crossorigin="anonymous"></script>
-
-
-
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    
     
 
+
+
     
-    <meta name="google-signin-client_id" content=<%=Rails.application.credentials.dig(:GOOGLE_OAUTH_CLIENT_ID)%>>
     
-    <meta name="google-adsense-account" content="ca-pub-5712483420848978">
+    
+
+    
+    
 
     
     
