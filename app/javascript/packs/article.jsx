@@ -30,7 +30,7 @@ import {
   WhatsappShareButton,
   WhatsappIcon,
 } from "react-share";
-
+import { Helmet } from "react-helmet";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const ArticleSection = styled.div`
@@ -610,6 +610,11 @@ function Article({ artData, userState }) {
           edit STORY
         </Link>
       ) : null}
+
+      <Helmet>
+        <title>{artData.title}</title>
+        {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+      </Helmet>
 
       <ArticleSection>
         <StoryTitleWrapper>
