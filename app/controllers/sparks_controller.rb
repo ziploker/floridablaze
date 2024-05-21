@@ -52,7 +52,7 @@ class SparksController < ApplicationController
         
         puts "=============  check to see if params[:path] exists AND corresponds to a story "
         
-        if params[:path]
+        if params[:path] && params[:path] != "actnow"
             puts "params[:path] is ========" + params[:path]
             puts "params exists, try to find story with it"
             

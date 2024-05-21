@@ -147,7 +147,8 @@ function App({ d }) {
 
   const executeScrollForLookupSection = (e) => {
     console.log("in executeScrollForLookupSection ");
-    e.preventDefault();
+    console.log("Inside executeScrollForLookupSection");
+    e ? e.preventDefault() : null;
     scrollToRef(LookupScrollToRef);
     setOpenSideMenu("false");
   };
@@ -272,6 +273,8 @@ function App({ d }) {
                 allStoriesPlaceholder={allStoriesPlaceholder}
                 totalNumOfStoriesOnServer={totalNumOfStoriesOnServer}
                 show_offer={showOffer}
+                goToActNow="false"
+                executeScrollForLookupSection={executeScrollForLookupSection}
                 //stories={d.stories}
                 // lastStory={lastStory}
                 // secondToLastStory={secondToLastStory}
@@ -334,6 +337,35 @@ function App({ d }) {
                 tester="testing123"
                 userState={userState}
                 artData={artData}
+              />
+            }
+          />
+          <Route
+            exact
+            path="actnow"
+            element={
+              <Home
+                //handleSuccessfulAuth={handleSuccessfulAuth}
+                login_clicked={loginClicked}
+                set_login_clicked={setLoginClicked}
+                allStoriesFromController={allStoriesFromController}
+                allStories={allStories}
+                setAllStories={setAllStories}
+                allStoriesPlaceholder={allStoriesPlaceholder}
+                totalNumOfStoriesOnServer={totalNumOfStoriesOnServer}
+                show_offer={showOffer}
+                goToActNow="true"
+                executeScrollForLookupSection={executeScrollForLookupSection}
+                //stories={d.stories}
+                // lastStory={lastStory}
+                // secondToLastStory={secondToLastStory}
+                // thirdToLastStory={thirdToLastStory}
+                // fourthToLastStory={fourthToLastStory}
+                // setLastStory={setLastStory}
+                // setSecondToLastStory={setSecondToLastStory}
+                // setThirdToLastStory={setThirdToLastStory}
+                // setFourthToLastStory={setFourthToLastStory}
+                page={page}
               />
             }
           />

@@ -286,12 +286,17 @@ const StoryOneTitle = styled.h1`
   align-self: end;
   justify-self: center;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
 
-  @media only screen and (min-width: 986px) {
-    // font-size: 1.6rem;
+  @media only screen and (max-width: 1000px) {
+    font-size: 1.5rem;
   }
-
+  @media only screen and (max-width: 700px) {
+    font-size: 1rem;
+  }
+  @media only screen and (max-width: 480px) {
+    font-size: 2rem;
+  }
   h2 {
     word-break: break-all;
   }
@@ -670,6 +675,15 @@ function Home(props) {
       isMountedForactiveDotUseEffect.current = true;
     }
   }, [activeDot]);
+
+  useEffect(() => {
+    if (props.goToActNow == "true") {
+      console.log("goToActnow was true");
+      props.executeScrollForLookupSection();
+    } else {
+      console.log("goToActnow was false");
+    }
+  }, []);
 
   //
   //
