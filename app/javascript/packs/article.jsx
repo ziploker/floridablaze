@@ -614,6 +614,10 @@ function Article({ artData, userState }) {
       <Helmet>
         <title>{artData.title}</title>
         {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+        <link
+          rel="canonical"
+          href={`https://floridablaze.io/blog/${artData.slug}`}
+        ></link>
       </Helmet>
 
       <ArticleSection>
