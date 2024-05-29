@@ -9,6 +9,7 @@ import TipTapNewStory from "./myComponents/TipTapNewStory.jsx";
 
 const StoryPicWrapper = styled.div`
   position: relative;
+  justify-self: center;
 `;
 
 const StoryPic = styled.img`
@@ -56,12 +57,23 @@ const Form = styled.form`
   display: grid;
   //grid-template-columns: 90%;
   grid-gap: 1.5rem;
+  width: 100vw;
 `;
 
 const FormWrapper = styled.div`
   display: grid;
   justify-content: center;
   padding: 20px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+`;
+
+const TextArea = styled.textarea`
+  width: 100%;
+  height: 78vh;
+  overflow: hidden;
 `;
 
 const OptionWrapper = styled.div``;
@@ -73,6 +85,7 @@ function NewForm(props) {
   const [state, setState] = React.useState({
     title: "",
     slug: "",
+    alt: "",
     //nameIsFocused: false,
     keywords: "",
     topic: "",
@@ -100,6 +113,7 @@ function NewForm(props) {
       formData.append("event[slug]", state.slug);
       formData.append("event[keywords]", state.keywords);
       formData.append("event[topic]", state.topic);
+      formData.append("event[alt]", state.alt);
       //   formData.append("event[body]", artBody);
       formData.append("event[body]", state.body);
       formData.append("event[caption]", state.caption);
@@ -127,6 +141,7 @@ function NewForm(props) {
             //focussed: (props.focussed) || false,
             title: "",
             slug: "",
+            alt: "",
             keywords: "",
             topic: "",
             body: "",
@@ -241,7 +256,7 @@ function NewForm(props) {
         enctype="multipart/form-data"
       >
         <div className="field">
-          <input
+          <Input
             type="text"
             index={1}
             className="form-control"
@@ -253,12 +268,12 @@ function NewForm(props) {
         </div>
 
         <div className="field">
-          <input
+          <Input
             type="text"
-            index={9}
+            index={2}
             className="form-control"
             name="title"
-            placeholder="title of the story...."
+            placeholder="slug for story (automatic)"
             value={slugify(state.title)}
             //onChange={handleChange}
             readOnly
@@ -266,9 +281,21 @@ function NewForm(props) {
         </div>
 
         <div className="field">
-          <input
+          <Input
             type="text"
-            index={2}
+            index={3}
+            className="form-control"
+            name="alt"
+            placeholder="alt text for image"
+            value={state.alt}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <Input
+            type="text"
+            index={4}
             className="form-control"
             name="keywords"
             //focus="phoneIsFocused"
@@ -279,8 +306,9 @@ function NewForm(props) {
         </div>
 
         <div className="field">
-          <input
+          <Input
             type="text"
+            index={5}
             className="form-control"
             name="topic"
             //focus="phoneIsFocused"
@@ -296,19 +324,20 @@ function NewForm(props) {
         </StoryPicWrapper>
 
         <div className="field">
-          <input
+          <Input
             type="text"
+            index={6}
             className="form-control"
             name="caption"
             //focus="phoneIsFocused"
-            placeholder="photo caption"
+            placeholder="photo caption HTML"
             value={state.caption}
             onChange={handleChange}
           />
         </div>
 
         <div className="field">
-          <input
+          <Input
             style={{
               width: "111px",
               height: "111px",
@@ -319,7 +348,7 @@ function NewForm(props) {
             }}
             id="images"
             type="file"
-            index={3}
+            index={7}
             accept="image/*"
             className="form-control"
             name="images"
@@ -332,18 +361,12 @@ function NewForm(props) {
         </div>
 
         <div className="field">
-          <textarea
-            style={{
-              width: "100%",
-              height: "100%",
-              overflow: "hidden",
-              //display: "none",
-            }}
+          <TextArea
             type="text"
-            index={4}
+            index={8}
             className="form-control"
             name="body"
-            placeholder="Story here..."
+            placeholder="Story HTML..."
             value={artBody.body}
             //readOnly
             onChange={handleChange}

@@ -91,17 +91,13 @@ const News = styled.div`
 			"leftArrow   one . two . three   rightArrow"
 			"    .        .  .  .  .   .     ."; */
 
-  grid-template-columns: 2% 1fr 2% 1fr 2%;
+  grid-template-columns: 1fr 2% 1fr;
   /* minmax(10px, 1fr) minmax(200px, 600px) minmax(30px, 1fr); */
 
-  grid-template-areas:
-    "leftArrow   one . two rightArrow"
-    "leftArrow   one . two rightArrow"
-    "leftArrow   one . two rightArrow"
-    "    .        .  .  .      .     ";
+  grid-template-areas: "one . two";
   //grid-gap: 20px;
 
-  margin-top: 30px;
+  margin: 30px 1% 0 1%;
 
   /* display: grid;
 		justify-content: center;
@@ -131,6 +127,7 @@ const LinkWrapper1 = styled(Link)`
   width: 100%;
   justify-self: center;
   display: grid;
+  //padding-bottom: calc(9 / 16 * 100%);
   @media only screen and (min-width: 481px) {
     grid-area: one;
     width: 100%;
@@ -155,28 +152,30 @@ const LinkWrapper2 = styled(Link)`
   }
 `;
 
-const Div1 = styled.div`
+const Div1 = styled.img`
   box-shadow: 0 2px 5px 0 rgba(227, 181, 90, 0.2);
   position: relative;
   border-radius: 10px;
-  overflow: hidden;
-  display: grid;
-  justify-self: center;
-  //max-width: 600px;
   width: 100%;
-
+  //overflow: hidden;
+  //display: grid;
+  //justify-self: center;
+  //max-width: 600px;
+  //width: 100%;
+  /* 
   background-image: url(${(props) => props.image_url});
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-position: bottom center;
+  background-position: bottom center; */
+  //padding-bottom: calc(9 / 16 * 100%);
 
-  &:before {
+  /* &:before {
     content: "";
     display: block;
     height: 0;
     width: 0;
-    padding-bottom: calc(9 / 16 * 100%);
-  }
+    
+  } */
 
   /* &:hover {
     box-shadow: 0 0 0 5px #e3b55a;
@@ -226,10 +225,10 @@ const Div1OverlayWrapper = styled.div`
   overflow: hidden;
   //max-width: 600px;
   width: 100%;
-  height: 116%;
+  //height: 116%;
   justify-self: center;
   line-height: 1.2;
-
+  //padding-bottom: calc(9 / 16 * 100%);
   display: grid;
   z-index: 1;
   white-space: nowrap;
@@ -1415,10 +1414,16 @@ function Home(props) {
         >
           <Div1
             className="s1"
-            image_url={
+            //
+            src={
               props.allStories[activeStories[0]]
                 ? props.allStories[activeStories[0]].urls[0]
                 : defaultImage
+            }
+            alt={
+              props.allStories[activeStories[0]]
+                ? props.allStories[activeStories[0]].alt
+                : ""
             }
           ></Div1>
         </LinkWrapper1>

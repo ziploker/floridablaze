@@ -138,20 +138,20 @@ const ActWrapper = styled.div`
   //padding-bottom: 60px;
 `;
 
-const BGimage = styled.img`
-  //width: 100vw;
-  //height: 100vh;
-  //object-fit: cover;
-  //grid-area: 1/1/-1/-1;
-  //display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  bottom: 0;
-  height: 100%;
-`;
+// const BGimage = styled.img`
+//   //width: 100vw;
+//   //height: 100vh;
+//   //object-fit: cover;
+//   //grid-area: 1/1/-1/-1;
+//   //display: none;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   width: 100%;
+//   bottom: 0;
+//   height: 100%;
+// `;
 const BGimageFix = styled.div`
   position: absolute;
   top: 0;
@@ -437,10 +437,10 @@ const ActBulletWrapper = styled.div`
   }
 `;
 
-const BulletImage = styled.img`
-  width: 30px;
-  align-self: end;
-`;
+// const BulletImage = styled.img`
+//   width: 30px;
+//   align-self: end;
+// `;
 
 const BulletOne = styled.p`
   color: white;
@@ -716,16 +716,16 @@ const StatusSpinner = styled.div`
   transition-timing-function: ease-out;
 `;
 
-const CheckMark = styled.img`
-  max-height: ${(props) =>
-    props.showStatusCheck.toString() == "true" ? "100%" : "0px"};
-  opacity: ${(props) =>
-    props.showStatusCheck.toString() == "true" ? "1" : "0"};
-  transition: opacity 0.4s;
-  transition-timing-function: ease-out;
-  padding-left: 6px;
-  height: 11px;
-`;
+// const CheckMark = styled.img`
+//   max-height: ${(props) =>
+//     props.showStatusCheck.toString() == "true" ? "100%" : "0px"};
+//   opacity: ${(props) =>
+//     props.showStatusCheck.toString() == "true" ? "1" : "0"};
+//   transition: opacity 0.4s;
+//   transition-timing-function: ease-out;
+//   padding-left: 6px;
+//   height: 11px;
+// `;
 
 const ResultSpan = styled.div`
   &:hover {
@@ -1917,16 +1917,16 @@ const ButtonGuts = styled.div`
   width: 100%;
   justify-self: center;
 `;
-const MailIcon = styled.img`
-  //justify-self: end;
-  padding: 10px 0;
-  align-self: center;
-  width: 24px;
-  opacity: ${(props) => (props.which_tab_is_active == 1 ? "1" : ".3")};
-  height: 100%;
-  vertical-align: middle;
-  display: inline-block;
-`;
+// const MailIcon = styled.img`
+//   //justify-self: end;
+//   padding: 10px 0;
+//   align-self: center;
+//   width: 24px;
+//   opacity: ${(props) => (props.which_tab_is_active == 1 ? "1" : ".3")};
+//   height: 100%;
+//   vertical-align: middle;
+//   display: inline-block;
+// `;
 
 const ButtonTabOne = styled.div`
   overflow: hidden;
@@ -1950,22 +1950,22 @@ const ButtonTabOne = styled.div`
   //background-color: #ccc;
 `;
 
-const USPS = styled.img`
-  width: 100%;
-  max-width: 350px;
-  justify-self: center;
-  align-self: center;
-  padding: 12px 24px;
-  //border: 1px solid black;
+// const USPS = styled.img`
+//   width: 100%;
+//   max-width: 350px;
+//   justify-self: center;
+//   align-self: center;
+//   padding: 12px 24px;
+//   //border: 1px solid black;
 
-  cursor: pointer;
-  background-color: ${(props) =>
-    props.which_tab_is_active === 1 ? "#fcfcfc" : "#ddd"};
-  &:hover {
-    background-color: ${(props) =>
-      props.which_tab_is_active === 1 ? "#fcfcfc" : "#e9e9e9"};
-  }
-`;
+//   cursor: pointer;
+//   background-color: ${(props) =>
+//     props.which_tab_is_active === 1 ? "#fcfcfc" : "#ddd"};
+//   &:hover {
+//     background-color: ${(props) =>
+//       props.which_tab_is_active === 1 ? "#fcfcfc" : "#e9e9e9"};
+//   }
+// `;
 
 const ButtonTwoTabWrapper = styled.div`
   display: grid;
@@ -2000,21 +2000,21 @@ const ButtonTabTwo = styled.div`
   //background-color: #ccc;
 `;
 
-const GmailIcon = styled.img`
-  justify-self: center;
-  align-self: center;
-  max-width: 115px;
-  width: 100%;
-  padding: 12px 24px;
-  //border: 1px solid black;
-  cursor: pointer;
-  background-color: ${(props) =>
-    props.which_tab_is_active === 2 ? "#fcfcfc" : "#ddd"};
-  &:hover {
-    background-color: ${(props) =>
-      props.which_tab_is_active === 2 ? "#fcfcfc" : "#e9e9e9"};
-  }
-`;
+// const GmailIcon = styled.img`
+//   justify-self: center;
+//   align-self: center;
+//   max-width: 115px;
+//   width: 100%;
+//   padding: 12px 24px;
+//   //border: 1px solid black;
+//   cursor: pointer;
+//   background-color: ${(props) =>
+//     props.which_tab_is_active === 2 ? "#fcfcfc" : "#ddd"};
+//   &:hover {
+//     background-color: ${(props) =>
+//       props.which_tab_is_active === 2 ? "#fcfcfc" : "#e9e9e9"};
+//   }
+// `;
 
 const DemoWrapper = styled.div`
   padding: 45px 120px;
@@ -2085,23 +2085,23 @@ const EmailDemoCenter = styled.div`
 //   margin-left: 8px;
 // `;
 
-const RightArrow = styled.img`
-  width: 100%;
-  cursor: pointer;
-  justify-self: center;
-  align-self: center;
-`;
+// const RightArrow = styled.img`
+//   width: 100%;
+//   cursor: pointer;
+//   justify-self: center;
+//   align-self: center;
+// `;
 
-const LeftArrow = styled.img`
-  //max-width: 60px;
-  //margin-top: 69px;
-  width: 15px;
-  cursor: pointer;
-  justify-self: center;
-  align-self: center;
+// const LeftArrow = styled.img`
+//   //max-width: 60px;
+//   //margin-top: 69px;
+//   width: 15px;
+//   cursor: pointer;
+//   justify-self: center;
+//   align-self: center;
 
-  transform: scaleX(-1);
-`;
+//   transform: scaleX(-1);
+// `;
 
 const SubjectBox = styled.div`
   /* width: 96%; */
@@ -3606,7 +3606,11 @@ function Act(props, ref) {
               </StatusHolder>
             </Form>
 
-            <Mega show_cards={showCards} src={mega}></Mega>
+            <Mega
+              show_cards={showCards}
+              src={mega}
+              alt="A mans arm is shown holding a large white megaphne with red trim."
+            ></Mega>
           </ActSection>
 
           <ResultSection show_cards={showCards}>
@@ -3632,9 +3636,10 @@ function Act(props, ref) {
                   <CardOneWrapper which_email_is_active={whichEmailIsActive}>
                     <CardPicture
                       src={results.one.image ? results.one.image : ""}
+                      alt=""
                     ></CardPicture>
 
-                    <CardTemplate src={cardTemplate}></CardTemplate>
+                    <CardTemplate src={cardTemplate} alt=""></CardTemplate>
 
                     <CardNameOfRep>
                       {results.one.name ? results.one.name : ""}
@@ -3650,7 +3655,7 @@ function Act(props, ref) {
                       src={results.two.image ? results.two.image : ""}
                     ></CardPicture>
 
-                    <CardTemplate src={cardTemplate}></CardTemplate>
+                    <CardTemplate src={cardTemplate} alt=""></CardTemplate>
 
                     <CardNameOfRep>
                       {results.two.name ? results.two.name : ""}
@@ -4251,6 +4256,7 @@ function Act(props, ref) {
                     <PicWrapper>
                       <Pic1
                         src={results.one.image ? results.one.image : ""}
+                        alt=""
                         which_email_is_active={whichEmailIsActive}
                       ></Pic1>
                     </PicWrapper>
@@ -4271,6 +4277,7 @@ function Act(props, ref) {
                     <PicWrapper>
                       <Pic2
                         src={results.two.image ? results.two.image : ""}
+                        alt=""
                         which_email_is_active={whichEmailIsActive}
                       ></Pic2>
                     </PicWrapper>

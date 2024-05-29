@@ -22,7 +22,7 @@ import CommentForm from "./commentForm";
 
 import ReactTimeAgo from "react-time-ago";
 
-import "../../assets/stylesheets/comments.scss"
+import "../../assets/stylesheets/comments.scss";
 
 import {
   FacebookShareButton,
@@ -45,7 +45,6 @@ const Comments = styled.div`
 `;
 
 const CommentDisplay = styled.div`
- 
   max-height: 100%;
 
   margin: 0px 0px 0px 25px;
@@ -152,8 +151,6 @@ const CommentFormWrapper = styled.div`
   margin: 0 0 30px 0;
   grid-area: 7/1/8/2;
 `;
-
-
 
 ////////////// CommentSection //////////////////////////////////
 
@@ -534,7 +531,7 @@ function CommentSection(props) {
         <BorderDiv />
 
         <TopBarWrapper>
-          <img src={item.author_avatar} />
+          <img src={item.author_avatar} alt="" />
           {/* <img src={defaultAvatar}/> */}
           <h3
             style={{
@@ -565,8 +562,7 @@ function CommentSection(props) {
         </TopBarWrapper>
 
         <CommentBody style={{ gridArea: "body", fontSize: "15px" }}>
-          {item.body} 
-          
+          {item.body}
         </CommentBody>
 
         <BottomBarWrapper>
@@ -636,8 +632,6 @@ function CommentSection(props) {
     );
   };
 
-  
-
   return (
     <Comments>
       <CommentFormWrapper>
@@ -647,7 +641,6 @@ function CommentSection(props) {
           setArtDataComments={setArtDataComments}
         />
       </CommentFormWrapper>
-      
 
       <div>
         <div style={{ position: "relative" }}>

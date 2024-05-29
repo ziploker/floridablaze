@@ -279,7 +279,7 @@ end
     def event_params
 
       puts "inside event_params", params.inspect
-      params.require(:event).permit(:title, :slug, :keywords, :body, :images [], :url, :urls [], :topic, :author_avatar, :caption)
+      params.require(:event).permit(:title, :slug, :keywords, :body, :images [], :url, :urls [], :topic, :author_avatar, :caption, :alt)
     end
 
 

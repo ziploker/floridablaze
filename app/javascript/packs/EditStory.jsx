@@ -5,7 +5,7 @@ import $ from "jquery";
 //import lilDownArrow from '../../../../'
 //import '../components/fix.js'
 import slugify from "react-slugify";
-import TipTapEditStory from "./myComponents/TipTapEditStory.jsx";
+//import TipTapEditStory from "./myComponents/TipTapEditStory.jsx";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 const StoryPicWrapper = styled.div`
@@ -57,12 +57,23 @@ const Form = styled.form`
   display: grid;
   //grid-template-columns: 90%;
   grid-gap: 1.5rem;
+  width: 100vw;
 `;
 
 const FormWrapper = styled.div`
   display: grid;
   justify-content: center;
   padding: 20px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+`;
+
+const TextArea = styled.textarea`
+  width: 100%;
+  height: 78vh;
+  overflow: hidden;
 `;
 
 const OptionWrapper = styled.div``;
@@ -72,11 +83,13 @@ const formData = new FormData();
 function EditStory(props) {
   console.log("EDIT STORY START +++++++++++++++");
   console.log("EDIT STORY START +++++++++++++++", props);
-  const [artBody, setArtBody] = React.useState("");
+  //const [artBody, setArtBody] = React.useState("");
 
   const [state, setState] = React.useState({
     title: "",
     slug: "",
+    alt: "",
+    body: "",
     //nameIsFocused: false,
     keywords: "",
     topic: "",
@@ -116,15 +129,16 @@ function EditStory(props) {
 
         setState({
           title: response.data.story.title,
+          body: response.data.story.body,
           slug: response.data.story.slug,
           keywords: response.data.story.keywords,
           topic: response.data.story.topic,
-
+          alt: response.data.story.alt,
           caption: response.data.story.caption,
           urls: response.data.story.urls,
         });
 
-        setArtBody(response.data.story.body);
+        //setArtBody(response.data.story.body);
       })
       .catch((error) => {
         console.log("editStoryErrors", error);
@@ -135,8 +149,8 @@ function EditStory(props) {
     return Object.keys(state.urls).map((item) => {
       console.log("map insert pics", state.urls[item]);
       return (
-        <>
-          <img key={item} style={{ width: "150px" }} src={state.urls[item]} />
+        <div key={item}>
+          <img style={{ width: "150px" }} src={state.urls[item]} alt="" />
           <div
             style={{
               width: "150px",
@@ -150,7 +164,7 @@ function EditStory(props) {
           >
             delete
           </div>
-        </>
+        </div>
       );
     });
   };
@@ -158,21 +172,15 @@ function EditStory(props) {
   const handleAdd = (e) => {
     e.preventDefault();
 
-    console.log("________________ARTBOADY___________________", artBody);
+    //console.log("________________ARTBOADY___________________", artBody);
 
     if (validForm()) {
       formData.append("event[title]", state.title);
       formData.append("event[slug]", state.slug);
       formData.append("event[keywords]", state.keywords);
       formData.append("event[topic]", state.topic);
-
-      console.log("RIght beofre artbody add", artBody);
-      if (artBody != "") {
-        console.log("...appending arttbody");
-        formData.append("event[body]", artBody);
-      } else {
-        console.log("artdata was ", "artData");
-      }
+      formData.append("event[alt]", state.alt);
+      formData.append("event[body]", state.body);
       formData.append("event[caption]", state.caption);
 
       console.log("formdata from handle add in form");
@@ -198,6 +206,7 @@ function EditStory(props) {
             //focussed: (props.focussed) || false,
             title: "",
             slug: "",
+            alt: "",
             keywords: "",
             topic: "",
             body: "",
@@ -216,7 +225,7 @@ function EditStory(props) {
   };
 
   const validForm = () => {
-    if (state.title && state.keywords && state.topic && artBody.body) {
+    if (state.title && state.keywords && state.topic && state.body) {
       return true;
     } else {
       return true;
@@ -376,7 +385,7 @@ function EditStory(props) {
         enctype="multipart/form-data"
       >
         <div className="field">
-          <input
+          <Input
             type="text"
             index={1}
             className="form-control"
@@ -388,12 +397,12 @@ function EditStory(props) {
         </div>
 
         <div className="field">
-          <input
+          <Input
             type="text"
-            index={9}
+            index={2}
             className="form-control"
             name="title"
-            placeholder="title of the story...."
+            placeholder="slug for story (automatic)"
             value={slugify(state.title)}
             //onChange={handleChange}
             readOnly
@@ -401,9 +410,21 @@ function EditStory(props) {
         </div>
 
         <div className="field">
-          <input
+          <Input
             type="text"
-            index={2}
+            index={3}
+            className="form-control"
+            name="alt"
+            placeholder="alt text for image"
+            value={state.alt}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <Input
+            type="text"
+            index={4}
             className="form-control"
             name="keywords"
             //focus="phoneIsFocused"
@@ -414,8 +435,9 @@ function EditStory(props) {
         </div>
 
         <div className="field">
-          <input
+          <Input
             type="text"
+            index={5}
             className="form-control"
             name="topic"
             //focus="phoneIsFocused"
@@ -431,19 +453,20 @@ function EditStory(props) {
         </StoryPicWrapper>
 
         <div className="field">
-          <input
+          <Input
             type="text"
+            index={6}
             className="form-control"
             name="caption"
             //focus="phoneIsFocused"
-            placeholder="photo caption"
+            placeholder="photo caption HTML"
             value={state.caption}
             onChange={handleChange}
           />
         </div>
 
         <div className="field">
-          <input
+          <Input
             style={{
               width: "111px",
               height: "111px",
@@ -454,7 +477,7 @@ function EditStory(props) {
             }}
             id="images"
             type="file"
-            index={3}
+            index={7}
             accept="image/*"
             className="form-control"
             name="images"
@@ -467,21 +490,15 @@ function EditStory(props) {
         </div>
 
         <div className="field">
-          <textarea
-            style={{
-              width: "100%",
-              height: "100vh",
-              overflow: "hidden",
-              display: "none",
-            }}
+          <TextArea
             type="text"
-            index={4}
+            index={8}
             className="form-control"
             name="body"
-            placeholder="Story here..."
-            value={artBody}
-            readOnly
-            //onChange={handleChange}
+            placeholder="Story HTML..."
+            value={state.body}
+            //readOnly
+            onChange={handleChange}
           />
         </div>
 
@@ -490,7 +507,7 @@ function EditStory(props) {
         </button>
       </Form>
 
-      <TipTapEditStory artBody={artBody} setArtBody={setArtBody} />
+      {/* <TipTapEditStory artBody={artBody} setArtBody={setArtBody} /> */}
     </FormWrapper>
   );
 }

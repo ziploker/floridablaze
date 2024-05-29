@@ -676,7 +676,7 @@ function Article({ artData, userState }) {
         </InfoBar>
 
         <StoryImageWrapper>
-          <StoryImage src={artData.urls[0]} />
+          <StoryImage src={artData.urls[0]} alt={artData.alt} />
         </StoryImageWrapper>
 
         <PWrapper dangerouslySetInnerHTML={{ __html: artData.body }}></PWrapper>
