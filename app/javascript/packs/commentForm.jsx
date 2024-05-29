@@ -263,6 +263,7 @@ function CommentForm(props) {
                 : props.userState.avatar_url
               : defaultManIcon
           }
+          alt=""
         ></img>
 
         <Form
