@@ -4,32 +4,34 @@ import StyledSideMenu from "./sidemenu.styled";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-
-
 function Menu(props) {
   return (
     <StyledSideMenu
-    open_side_menu={props.open_side_menu}
+      open_side_menu={props.open_side_menu}
       hamburger_scrolled={props.hamburger_scrolled}
     >
-      <div style={{gridArea: "1/2/-1/-1"}}>
+      <div style={{ gridArea: "1/2/-1/-1" }}>
         <a key={1} style={{ borderBottom: "2px orange solid" }} href="/">
-          <h1>
-            Home
-          </h1>
+          <span>Home</span>
         </a>
-        <a style={{ borderBottom: "2px orange solid" }} key={2} onClick={props.executeScrollForLookupSection}>
-          <h1>
-            Act
-          </h1>
+        <a
+          style={{ borderBottom: "2px orange solid" }}
+          key={2}
+          onClick={props.executeScrollForLookupSection}
+        >
+          <span>Act</span>
         </a>
         <a key={3} style={{ borderBottom: "2px orange solid" }} href="#">
-          <h1>
-            Shop
-          </h1>
+          <span>Shop</span>
         </a>
-<div style={{height: "2px", background: "linear-gradient(90deg, rgba(223,157,17,1) 56%, rgba(0,212,255,0) 100%)"}}/>
-        <div style={{paddingTop: "40px"}} key={4}>
+        <div
+          style={{
+            height: "2px",
+            background:
+              "linear-gradient(90deg, rgba(223,157,17,1) 56%, rgba(0,212,255,0) 100%)",
+          }}
+        />
+        <div style={{ paddingTop: "40px" }} key={4}>
           {props.userState.loggedInStatus == "LOGGED_IN"
             ? [
                 <a
@@ -58,7 +60,6 @@ function Menu(props) {
                 </a>,
                 <a
                   style={{ fontSize: "4vw" }}
-                  
                   key={"d"}
                   onClick={props.executeScrollForSection2}
                 >

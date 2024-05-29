@@ -265,7 +265,7 @@ const Div2OverlayWrapper = styled(Div1OverlayWrapper)`
   }
 `;
 
-const StoryOneTitle = styled.h1`
+const StoryOneTitle = styled.h2`
   //grid-area: 1 /1 /2/2;
   //white-space: normal;
 

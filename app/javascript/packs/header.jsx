@@ -176,7 +176,7 @@ const LongNav = styled.nav`
   //position: fixed;
 
   top: ${(props) => (props.long_nav_scrolled == "true" ? "2px" : "initial")};
-
+  right: ${(props) => (props.long_nav_scrolled == "true" ? "0px" : "initial")};
   color: ${(props) =>
     props.scroll_dir == "scrolling down"
       ? props.leaf_scrolled_so_change_color_down == "true"

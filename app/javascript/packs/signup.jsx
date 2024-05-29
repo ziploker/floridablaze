@@ -440,7 +440,7 @@ const LeftSection = styled.div`
   //max-width: 1000px;
   //border-right: 1px rgba(114, 111, 111, 0.3) solid;
 
-  h1 {
+  h2 {
     color: rgb(6, 7, 1, 0.9);
     padding: 47px 0 0 10px;
     margin: 0px;
@@ -485,8 +485,6 @@ const SocialMedia = styled.div`
 `;
 
 const RightSection = styled.div`
-  
-
   //background: #C4C4C4;
   grid-area: 1/3/2/4;
   //height: 80%;
@@ -1020,7 +1018,7 @@ function Signup(props, ref) {
         <LeftSection>
           {/* <img style={{width: "50px"}} src={userIcon}/> */}
 
-          <h1>Sign Up!</h1>
+          <h2>Sign Up!</h2>
 
           <LoginCardWrapper>
             <LoginCard className="formWrapper">
