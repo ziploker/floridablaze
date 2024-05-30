@@ -152,7 +152,7 @@ const LinkWrapper2 = styled(Link)`
   }
 `;
 
-const Div1 = styled.img`
+const Img1 = styled.img`
   box-shadow: 0 2px 5px 0 rgba(227, 181, 90, 0.2);
   position: relative;
   border-radius: 10px;
@@ -185,17 +185,17 @@ const Div1 = styled.img`
   } */
 `;
 
-const Div2 = styled.div`
+const Img2 = styled.img`
   box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
   position: relative;
   border-radius: 10px;
-  overflow: hidden;
-  display: grid;
-  justify-self: center;
+  //overflow: hidden;
+  //display: grid;
+  //justify-self: center;
   //max-width: 600px;
   width: 100%;
 
-  background-image: url(${(props) => props.image_url});
+  /* background-image: url(${(props) => props.image_url});
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -206,7 +206,7 @@ const Div2 = styled.div`
     height: 0;
     width: 0;
     padding-bottom: calc(9 / 16 * 100%);
-  }
+  } */
 
   /* &:hover {
     box-shadow: 0 0 0 5px #e3b55a;
@@ -314,7 +314,7 @@ const LeftArrowButton = styled.div`
   width: 6%;
   height: 33.33%;
   background: ${(props) =>
-    props.is_hovering
+    props.is_hovering == "true"
       ? "rgba(247, 247, 247, 0.6)"
       : "rgba(247, 247, 247, 0.27)"};
   border: 0;
@@ -325,8 +325,8 @@ const LeftArrowButton = styled.div`
   align-self: center;
 
   /* &:hover {
-		background: rgba(247, 247, 247, 0.6);
-	} */
+    background: rgba(247, 247, 247, 0.6);
+  } */
 `;
 
 const LeftArrow = styled.img`
@@ -357,7 +357,7 @@ const RightArrowButton = styled.button`
   width: 6%;
   height: 33.33%;
   background: ${(props) =>
-    props.isHovering == "true"
+    props.is_hovering == "true"
       ? "rgba(247, 247, 247, 0.6)"
       : "rgba(247, 247, 247, 0.27)"};
   border: 0;
@@ -366,12 +366,6 @@ const RightArrowButton = styled.button`
   grid-area: two;
   justify-self: end;
   align-self: center;
-
-  /* &:hover {
-		background: rgba(247, 247, 247, 0.6);
-	} */
-
-  //display: none;
 `;
 
 const RightArrow = styled.img`
@@ -542,17 +536,16 @@ function Home(props) {
   //
   //sets initial sories to local state for caching
   useEffect(() => {
-    //console.log("start of function UE=================", props.allStories)
-
     if (
+      window.localStorage !== null &&
       window.localStorage.getItem("allStories") !== null &&
       JSON.parse(window.localStorage.getItem("allStories")).length > 0 &&
       props.allStoriesFromController.length > 0
     ) {
-      // console.log(
-      // 	"compare it LOCAL=======",
-      // 	JSON.parse(window.localStorage.getItem("allStories"))[0].id
-      // )
+      console.log(
+        "compare it LOCAL=======",
+        JSON.parse(window.localStorage.getItem("allStories"))[0].id
+      );
 
       if (
         props.allStoriesFromController[0].id ==
@@ -595,7 +588,12 @@ function Home(props) {
   //
   //sets props.allStories to local state for caching every time new stories are scrolled
   useEffect(() => {
-    window.localStorage.setItem("allStories", JSON.stringify(props.allStories));
+    if (window.localStorage !== null) {
+      window.localStorage.setItem(
+        "allStories",
+        JSON.stringify(props.allStories)
+      );
+    }
   }, [props.allStories]);
 
   //
@@ -1412,7 +1410,7 @@ function Home(props) {
           }
           state={{ art: props.allStories[activeStories[0]] }}
         >
-          <Div1
+          <Img1
             className="s1"
             //
             src={
@@ -1425,7 +1423,7 @@ function Home(props) {
                 ? props.allStories[activeStories[0]].alt
                 : ""
             }
-          ></Div1>
+          ></Img1>
         </LinkWrapper1>
         <Div1OverlayWrapper className="s2">
           <StoryOneTitle>
@@ -1464,14 +1462,24 @@ function Home(props) {
           }
           state={{ art: props.allStories[activeStories[1]] }}
         >
-          <Div2
+          <Img2
             className="s1"
-            image_url={
+            // image_url={
+            //   props.allStories[activeStories[1]]
+            //     ? props.allStories[activeStories[1]].urls[0]
+            //     : defaultImage
+            // }
+            src={
               props.allStories[activeStories[1]]
                 ? props.allStories[activeStories[1]].urls[0]
                 : defaultImage
             }
-          ></Div2>
+            alt={
+              props.allStories[activeStories[1]]
+                ? props.allStories[activeStories[1]].alt
+                : ""
+            }
+          ></Img2>
         </LinkWrapper2>
         <Div2OverlayWrapper className="s2">
           <StoryOneTitle>
@@ -1504,14 +1512,24 @@ function Home(props) {
               state={{ art: props.allStories[activeStories[0]] }}
               ref={gsapContainer1}
             >
-              <Div1
+              <Img1
                 className="s1"
-                image_url={
+                // image_url={
+                //   props.allStories[activeStories[0]]
+                //     ? props.allStories[activeStories[0]].urls[0]
+                //     : defaultImage
+                // }
+                src={
                   props.allStories[activeStories[0]]
                     ? props.allStories[activeStories[0]].urls[0]
                     : defaultImage
                 }
-              ></Div1>
+                alt={
+                  props.allStories[activeStories[0]]
+                    ? props.allStories[activeStories[0]].alt
+                    : ""
+                }
+              ></Img1>
             </LinkWrapper1>
 
             <Div1OverlayWrapper ref={gsapContainer2} className="s2">
@@ -1536,14 +1554,24 @@ function Home(props) {
               }
               state={{ art: props.allStories[activeStories[1]] }}
             >
-              <Div2
+              <Img2
                 className="s1"
-                image_url={
+                // image_url={
+                //   props.allStories[activeStories[1]]
+                //     ? props.allStories[activeStories[1]].urls[0]
+                //     : defaultImage
+                // }
+                src={
                   props.allStories[activeStories[1]]
                     ? props.allStories[activeStories[1]].urls[0]
                     : defaultImage
                 }
-              ></Div2>
+                alt={
+                  props.allStories[activeStories[1]]
+                    ? props.allStories[activeStories[1]].alt
+                    : ""
+                }
+              ></Img2>
             </LinkWrapper2>
 
             <Div2OverlayWrapper className="s2">

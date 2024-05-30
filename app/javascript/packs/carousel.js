@@ -66,9 +66,10 @@ const LeftArrowButton = styled.button`
 
   cursor: pointer;
 
-  /* &:hover {
-    background: rgba(54, 54, 54, 0.075);
-  } */
+  &:hover {
+    //background: orange;
+    //background: rgba(54, 54, 54, 0.075);
+  }
 `;
 
 const LeftArrow = styled.img`
