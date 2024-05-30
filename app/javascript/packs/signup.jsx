@@ -212,14 +212,14 @@ const RightFiller = styled.div`
   height: 100%;
 `;
 
-const FloridaImg = styled.img`
-  //justify-self: end;
-  //align-self: start;
-  //grid-area: 1/1/7/3;
-  height: 100%;
-  width: 100%;
-  position: relative;
-`;
+// const FloridaImg = styled.img`
+//   //justify-self: end;
+//   //align-self: start;
+//   //grid-area: 1/1/7/3;
+//   height: 100%;
+//   width: 100%;
+//   position: relative;
+// `;
 
 const SignupWrapperInner = styled.div`
   /* @media only screen and (max-width: 720px) {
@@ -1000,7 +1000,7 @@ function Signup(props, ref) {
         <SignupMaskWrapper>
           {/* <SignupMask src={width > 850 ? floridaMaskBig : width > 400 ? floridaMaskCell : floridaMaskThinLongist}/> */}
           <SignupMaskImageContainer>
-            <SignupMaskImage src={floridaMaskBig} />
+            <SignupMaskImage src={floridaMaskBig} alt="" />
           </SignupMaskImageContainer>
 
           {/* <TopFiLL/> */}

@@ -257,10 +257,6 @@ const AuthorAvartar = styled.img`
   margin-right: 8px;
 `;
 
-const AvatarTest = styled.img`
-  display: none;
-`;
-
 const Reply = styled.div`
   //grid-area: reply;
   color: rgba(7, 7, 7, 0.65);
@@ -598,8 +594,6 @@ function Article({ artData, userState }) {
 
   return (
     <>
-      {/* <AvatarTest src={artData.author_avatar}
-                onLoad={() => setAvatarLoaded(true)}></AvatarTest> */}
       {Object.keys(userState.user).length > 0 &&
       userState.user.isAdmin == true ? (
         <Link
@@ -632,7 +626,7 @@ function Article({ artData, userState }) {
         <InfoBar>
           <FlexBar>
             {/* <AuthorAvartar src={avatarLoaded ? artData.author_avatar : defaultAvatar } /> */}
-            <AuthorAvartar src={artData.author_avatar} />
+            <AuthorAvartar src={artData.author_avatar} alt="" />
 
             <h4 style={{ fontSize: ".7rem", lineHeight: "normal" }}>
               by FloridaBlaze
@@ -656,21 +650,21 @@ function Article({ artData, userState }) {
               children={
                 <FacebookIcon size={20} round={false} borderRadius={90} />
               }
-              url={"www.420.com"}
+              url={`https://floridablaze.io/blog/${artData.slug}`}
               style={{ marginRight: "3px" }}
             />
             <TwitterShareButton
               children={
                 <TwitterIcon size={20} round={false} borderRadius={90} />
               }
-              url={"www.420.com"}
+              url={`https://floridablaze.io/blog/${artData.slug}`}
               style={{ marginRight: "3px" }}
             />
             <WhatsappShareButton
               children={
                 <WhatsappIcon size={20} round={false} borderRadius={90} />
               }
-              url={"www.420.com"}
+              url={`https://floridablaze.io/blog/${artData.slug}`}
             />
           </StoryShareButtons>
         </InfoBar>

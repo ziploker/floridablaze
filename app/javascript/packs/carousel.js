@@ -167,7 +167,7 @@ const Carousel = ({ children, handleReversePage, handleForwardPage }) => {
     >
       <CarouselArrowsWrapper>
         <LeftArrowButton onClick={() => handleForwardPage("cellphone")}>
-          <LeftArrow src={scrollArrow}></LeftArrow>
+          <LeftArrow src={scrollArrow} alt=""></LeftArrow>
         </LeftArrowButton>
         <CarouselMainInner
           className="inner"
@@ -184,7 +184,7 @@ const Carousel = ({ children, handleReversePage, handleForwardPage }) => {
             handleReversePage("cellphone");
           }}
         >
-          <RightArrow src={scrollArrow}></RightArrow>
+          <RightArrow src={scrollArrow} alt=""></RightArrow>
         </RightArrowButton>
       </CarouselArrowsWrapper>
       {/* <Indicators className="indicators">

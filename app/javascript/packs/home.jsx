@@ -157,63 +157,14 @@ const Img1 = styled.img`
   position: relative;
   border-radius: 10px;
   width: 100%;
-  //overflow: hidden;
-  //display: grid;
-  //justify-self: center;
-  //max-width: 600px;
-  //width: 100%;
-  /* 
-  background-image: url(${(props) => props.image_url});
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: bottom center; */
-  //padding-bottom: calc(9 / 16 * 100%);
-
-  /* &:before {
-    content: "";
-    display: block;
-    height: 0;
-    width: 0;
-    
-  } */
-
-  /* &:hover {
-    box-shadow: 0 0 0 5px #e3b55a;
-    transition: box-shadow 80ms;
-    border-radius: 4px;
-    outline: none;
-  } */
 `;
 
 const Img2 = styled.img`
   box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.1);
   position: relative;
   border-radius: 10px;
-  //overflow: hidden;
-  //display: grid;
-  //justify-self: center;
-  //max-width: 600px;
+
   width: 100%;
-
-  /* background-image: url(${(props) => props.image_url});
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-
-  &:before {
-    content: "";
-    display: block;
-    height: 0;
-    width: 0;
-    padding-bottom: calc(9 / 16 * 100%);
-  } */
-
-  /* &:hover {
-    box-shadow: 0 0 0 5px #e3b55a;
-    transition: box-shadow 80ms;
-    border-radius: 4px;
-    outline: none;
-  } */
 `;
 
 const Div1OverlayWrapper = styled.div`
@@ -1386,18 +1337,19 @@ function Home(props) {
 
   return (
     <HomeWrapper show_offer={props.show_offer}>
-      {/* <h1>{innerWidth}</h1> */}
       <News
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         className={"box"}
       >
-        {/* <LeftFiller /> */}
         <LeftArrowButton
           is_hovering={isHovering}
           onClick={() => handleForwardPage("desktop")}
         >
-          <LeftArrow src={scrollArrow}></LeftArrow>
+          <LeftArrow
+            src={scrollArrow}
+            alt="Scroll back to view more articles"
+          ></LeftArrow>
         </LeftArrowButton>
         <LinkWrapper1
           to={
@@ -1429,7 +1381,7 @@ function Home(props) {
           <StoryOneTitle>
             {props.allStories[activeStories[0]]
               ? props.allStories[activeStories[0]].title
-              : "Place golder for title. place golder for title."}
+              : "Ooops! this article is not available at this time."}
           </StoryOneTitle>
         </Div1OverlayWrapper>
 
@@ -1449,7 +1401,10 @@ function Home(props) {
           is_hovering={isHovering}
           onClick={() => handleReversePage("desktop")}
         >
-          <RightArrow src={scrollArrow}></RightArrow>
+          <RightArrow
+            src={scrollArrow}
+            alt="Scroll forward to view more articles"
+          ></RightArrow>
         </RightArrowButton>
         <LinkWrapper2
           to={
@@ -1485,13 +1440,12 @@ function Home(props) {
           <StoryOneTitle>
             {props.allStories[activeStories[1]]
               ? props.allStories[activeStories[1]].title
-              : "Place holder for title, place holder for title"}
+              : "Ooops! this article is not available at this time."}
           </StoryOneTitle>
         </Div2OverlayWrapper>
 
-        <BackgroundGray></BackgroundGray>
+        {/* <BackgroundGray></BackgroundGray> */}
       </News>
-      {/* ////////// */}
 
       <Carousel
         show_offer={props.show_offer}
@@ -1536,7 +1490,7 @@ function Home(props) {
               <StoryOneTitle>
                 {props.allStories[activeStories[0]]
                   ? props.allStories[activeStories[0]].title
-                  : "Place golder for title. place golder for title."}
+                  : "Ooops! this article is not available at this time."}
               </StoryOneTitle>
             </Div1OverlayWrapper>
           </ItemWrapper>
@@ -1578,7 +1532,7 @@ function Home(props) {
               <StoryOneTitle>
                 {props.allStories[activeStories[1]]
                   ? props.allStories[activeStories[1]].title
-                  : "Place holder for title, place holder for title"}
+                  : "Ooops! this article is not available at this time."}
               </StoryOneTitle>
             </Div2OverlayWrapper>
           </ItemWrapper>

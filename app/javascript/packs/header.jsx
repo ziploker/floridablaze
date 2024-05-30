@@ -598,14 +598,19 @@ function Header(props) {
           windowWidth={windowWidth}
           //long_nav_scrolled={longNavScrolled}
         >
-          <LogoTextTop logo_scrolled={logoScrolled} src={company_logo} />
-          <LogoTextBottom logo_scrolled={logoScrolled} src={tagline} />
+          <LogoTextTop
+            logo_scrolled={logoScrolled}
+            src={company_logo}
+            alt="floridablaze home"
+          />
+          <LogoTextBottom logo_scrolled={logoScrolled} src={tagline} alt="" />
         </LogoText>
 
         <HeaderLeafImage
           src={headerLeaf}
           long_nav_scrolled={longNavScrolled}
           logo_scrolled={logoScrolled}
+          alt=""
         ></HeaderLeafImage>
         <LongNav
           ref={longNavRef}

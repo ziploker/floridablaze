@@ -411,7 +411,7 @@ function Footer(props) {
 
   return (
     <FooterWrapper show_offer={props.show_offer}>
-      <FooterImage src={footerImage} />
+      <FooterImage src={footerImage} alt="" />
 
       <SubscribeSection>
         <div>
