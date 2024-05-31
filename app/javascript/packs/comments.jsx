@@ -532,7 +532,6 @@ function CommentSection(props) {
 
         <TopBarWrapper>
           <img src={item.author_avatar} alt="" />
-          {/* <img src={defaultAvatar}/> */}
           <h3
             style={{
               alignSelf: "center",

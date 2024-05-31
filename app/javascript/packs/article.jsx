@@ -625,7 +625,6 @@ function Article({ artData, userState }) {
 
         <InfoBar>
           <FlexBar>
-            {/* <AuthorAvartar src={avatarLoaded ? artData.author_avatar : defaultAvatar } /> */}
             <AuthorAvartar src={artData.author_avatar} alt="" />
 
             <h4 style={{ fontSize: ".7rem", lineHeight: "normal" }}>

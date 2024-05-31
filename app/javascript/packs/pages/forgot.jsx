@@ -39,18 +39,14 @@ function Login(props) {
   });
 
   const [onHover, setOnHover] = React.useState(false);
- 
 
   var linkStyle;
 
-
-  function toggleHoverEnter(){
-
-    setOnHover(true)
+  function toggleHoverEnter() {
+    setOnHover(true);
   }
-  function toggleHoverLeave(){
-
-    setOnHover(false)
+  function toggleHoverLeave() {
+    setOnHover(false);
   }
 
   // to activate the input field while typing
@@ -74,30 +70,28 @@ function Login(props) {
   if (onHover) {
     linkStyle = {
       border: "1px solid #fcacac",
-      //borderRadius: "20px", 
-      transition: "all .4s ease-out", 
-      fontSize: ".9em", 
-      cursor: "pointer", 
-      position: "absolute", 
-      top: "0", 
-      right: "0", 
+      //borderRadius: "20px",
+      transition: "all .4s ease-out",
+      fontSize: ".9em",
+      cursor: "pointer",
+      position: "absolute",
+      top: "0",
+      right: "0",
       textDecoration: "none",
-      padding: "6px"}
-
+      padding: "6px",
+    };
   } else {
     linkStyle = {
       border: "1px solid #f4f4f4",
-      transition: "all .4s ease-out", 
-      fontSize: ".9em", 
-      cursor: "pointer", 
-      position: "absolute", 
-      top: "0", 
-      right: "0", 
+      transition: "all .4s ease-out",
+      fontSize: ".9em",
+      cursor: "pointer",
+      position: "absolute",
+      top: "0",
+      right: "0",
       textDecoration: "none",
-      padding: "6px"
-    }
-
-
+      padding: "6px",
+    };
   }
 
   ///////////////////////////////////  HANDLE_SUBMIT ///////////////////////////
@@ -196,7 +190,14 @@ function Login(props) {
     <LoginWrapper>
       <Card>
         <LogoWrapper>
-        <Link style={linkStyle} onMouseEnter={toggleHoverEnter} onMouseLeave={toggleHoverLeave} to="/">&#10060;</Link>
+          <Link
+            style={linkStyle}
+            onMouseEnter={toggleHoverEnter}
+            onMouseLeave={toggleHoverLeave}
+            to="/"
+          >
+            &#10060;
+          </Link>
           <H2>Reset your password</H2>
         </LogoWrapper>
 
@@ -226,6 +227,7 @@ function Login(props) {
           <XorCheckIcon
             status={state.status}
             src={state.status === "pink" ? redX : greenCheck}
+            alt=""
           />
           {errorMessages}
         </ErrorWrapper>

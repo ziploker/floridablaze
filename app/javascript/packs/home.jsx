@@ -1348,7 +1348,7 @@ function Home(props) {
         >
           <LeftArrow
             src={scrollArrow}
-            alt="Scroll back to view more articles"
+            alt="Scroll page back to view more articles"
           ></LeftArrow>
         </LeftArrowButton>
         <LinkWrapper1
@@ -1403,7 +1403,7 @@ function Home(props) {
         >
           <RightArrow
             src={scrollArrow}
-            alt="Scroll forward to view more articles"
+            alt="Scroll page forward to view more articles"
           ></RightArrow>
         </RightArrowButton>
         <LinkWrapper2

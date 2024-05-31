@@ -331,21 +331,6 @@ function handleImageChange(e) {
   //if (e.target.files[0]) setState({ ...state, avatar: e.target.files[0] });
 }
 
-const ProfilePicWrapper = styled.div`
-  position: relative;
-`;
-
-const ProfilePic = styled.img`
-  border-radius: 50px;
-  border: 1px gray solid;
-  position: relative;
-  width: 70px;
-  height: 70px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
 const LabelForFile = styled.label`
   text-align: center;
   display: inline-block;
@@ -381,29 +366,6 @@ const StatusSpinner = styled.div`
   opacity: ${(props) => (props.show_status_spinner == "true" ? "1" : "0")};
   transition: opacity 0.4s;
   transition-timing-function: ease-out;
-`;
-
-const BackgroundFists = styled.img`
-  /* grid-area: 1/2/2/5;
-  
-  width: 100%;
-  height: 100%; */
-
-  /* justify-self: end;
-  align-self: start;
-  grid-area: 1/2/-1/3; */
-  //height: 500px;
-  width: 54vw;
-  position: fixed;
-  right: 0;
-  //top: 20px;
-  bottom: 0;
-  z-index: 1;
-  /* position: -webkit-sticky;
-  position: sticky; */
-  //width: 100%;
-
-  //grid-area: 1/1/7/3;
 `;
 
 const LeftSection = styled.div`
@@ -998,7 +960,6 @@ function Signup(props, ref) {
         show_offer={props.show_offer}
       >
         <SignupMaskWrapper>
-          {/* <SignupMask src={width > 850 ? floridaMaskBig : width > 400 ? floridaMaskCell : floridaMaskThinLongist}/> */}
           <SignupMaskImageContainer>
             <SignupMaskImage src={floridaMaskBig} alt="" />
           </SignupMaskImageContainer>
@@ -1011,13 +972,10 @@ function Signup(props, ref) {
           {/* <BottomFiller/> */}
         </SignupMaskWrapper>
 
-        {/* <SignupMask src={width > 850 ? floridaMask : width > 550 ? floridaMaskSmaller : width > 400 ? floridaMaskSmaller3 : floridaMaskSmaller5}/> */}
         <LeftFiller />
         <RightFiller />
 
         <LeftSection>
-          {/* <img style={{width: "50px"}} src={userIcon}/> */}
-
           <h2>Sign Up!</h2>
 
           <LoginCardWrapper>
@@ -1156,6 +1114,7 @@ function Signup(props, ref) {
                   status={state.status}
                   style={{ display: state.status == "" ? "none" : "initial" }}
                   src={state.status === "green" ? greenCheck : redX}
+                  alt=""
                 />
                 <h1 style={{ display: "none" }}>ss={state.status}</h1>
                 {errorMessages}
@@ -1171,13 +1130,13 @@ function Signup(props, ref) {
         <LoginCardFillRight />
 
         <RightSection>
-          <WeedBullet1 src={thebullet} />
+          <WeedBullet1 src={thebullet} alt="" />
           <WeedBulletText1>Make Florida green.</WeedBulletText1>
-          <WeedBullet2 src={thebullet} />
+          <WeedBullet2 src={thebullet} alt="" />
           <WeedBulletText2> Contact your state Reps. </WeedBulletText2>
-          <WeedBullet3 src={thebullet} />
+          <WeedBullet3 src={thebullet} alt="" />
           <WeedBulletText3>Marijuana local news.</WeedBulletText3>
-          <WeedBullet4 src={thebullet} />
+          <WeedBullet4 src={thebullet} alt="" />
           <WeedBulletText4>
             Stay up to date on latest State laws.
           </WeedBulletText4>

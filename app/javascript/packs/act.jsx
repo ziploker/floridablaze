@@ -3522,24 +3522,11 @@ function Act(props, ref) {
     return null;
   } else {
     return (
-      <ActWrapper
-        // style={{
-        //   background: showCards == "true" ? "white" : gradient.someColor,
-        // }}
-        show_cards={showCards}
-        ref={LookupScrollToRef}
-      >
-        {/*<BGimage src={actBackground} ref={myRef}></BGimage>*/}
-
-        {/*<BGimageFixBottom />*/}
+      <ActWrapper show_cards={showCards} ref={LookupScrollToRef}>
         <ActGrid show_cards={showCards}>
           <ActSection show_cards={showCards}>
             <ActHeaderWrapper>
               <ActHeader show_cards={showCards}>ACT NOW</ActHeader>
-
-              {/*<ActSubheader show_cards={showCards}>
-                ...3 quick steps
-              </ActSubheader>*/}
             </ActHeaderWrapper>
 
             <ActSubHeaders>
@@ -3549,43 +3536,7 @@ function Act(props, ref) {
               </h2>
             </ActSubHeaders>
 
-            {/*<ActBulletPointsWrapper>
-              <ActBulletWrapper>
-                <BulletImage src={orangeSearch} />
-
-                <BulletOne>
-                  <span>Lookup</span> your State Representatives
-                </BulletOne>
-              </ActBulletWrapper>
-
-              <ActBulletWrapper>
-                <BulletImage src={orangeMailbox} />
-
-                <BulletOne>
-                  <span>Contact</span> them in just a few clicks
-                </BulletOne>
-              </ActBulletWrapper>
-
-              <ActBulletWrapper>
-                <BulletImage src={orangeShare} />
-
-                <BulletOne>
-                  <span>Share </span>this tool
-                </BulletOne>
-              </ActBulletWrapper>
-            </ActBulletPointsWrapper>*/}
-
             <Form className="form-inline" show_cards={showCards}>
-              {/* <button
-              style={{width: "100px", height: "50px"}}
-              //searchButtonActive={searchButtonActive}
-              //disabled={false}
-              type="submit"
-              onClick={sendAdderessToServerAndFinishLookup}
-              className="btn btn-primary"
-            >
-              send
-            </button> */}
               <SearchLocationInput
                 passRef={autoCompleteRef}
                 addressObject={addressObject}
@@ -3653,6 +3604,7 @@ function Act(props, ref) {
                   <CardTwoWrapper which_email_is_active={whichEmailIsActive}>
                     <CardPicture
                       src={results.two.image ? results.two.image : ""}
+                      alt=""
                     ></CardPicture>
 
                     <CardTemplate src={cardTemplate} alt=""></CardTemplate>
@@ -3718,45 +3670,6 @@ function Act(props, ref) {
                 result_from_florida={resultFromFlorida}
                 show_cards={showCards}
               >
-                {/*{" "}
-                <ButtonTabsWrapper>
-                  <ButtonsHeader>Pick one: </ButtonsHeader>
-                  <ButtonOneTabWrapper
-                  //value={1}
-                  //which_tab_is_active={whichTabIsActive}
-                  //onClick={HandleButtonTabOne}
-                  //onClick={HandleLetterButton}
-                  >
-                    <ButtonGuts>
-                      <ButtonTabOne which_tab_is_active={whichTabIsActive}>
-                        <USPS
-                          src={usps}
-                          which_tab_is_active={whichTabIsActive}
-                          onClick={HandleLetterButton}
-                        />
-                      </ButtonTabOne>
-                    </ButtonGuts>
-                  </ButtonOneTabWrapper>
-                  <Or>OR</Or>
-                  <ButtonTwoTabWrapper
-                  //value={2}
-                  //which_tab_is_active={whichTabIsActive}
-                  //onClick={HandleButtonTabTwo}
-                  //onClick={HandleEmailButton}
-                  >
-                    <ButtonTabTwo which_tab_is_active={whichTabIsActive}>
-                      <GmailIcon
-                        src={gmail_icon}
-                        which_tab_is_active={whichTabIsActive}
-                        onClick={HandleEmailButton}
-                      />
-                    </ButtonTabTwo>
-                  </ButtonTwoTabWrapper>
-                </ButtonTabsWrapper>{" "}
-          */}
-                {/* <DemoIndicatorDotsWrapper>
-								
-							</DemoIndicatorDotsWrapper> */}
                 <EmailDemoWrapper which_tab_is_active={whichTabIsActive}>
                   <EmailDemoCenter>
                     <EmailDemo>
@@ -3842,67 +3755,6 @@ function Act(props, ref) {
                       </BodyBox>
                     </EmailDemo>
                   </EmailDemoCenter>
-
-                  {/* <OfferOne>letter
-									<BulletPointText>
-										Personalized email will be sent to each of your representatives.
-									</BulletPointText>
-
-									<BulletPointText2>
-										Email will look exacly like it's being sent from you.
-									</BulletPointText2>
-
-									<h2>Free</h2>
-
-									<h4>{sendEmailsToRepFlashMsg}</h4>
-
-									<SendButtonWrapper>
-										<Button_Loading
-											onClick={() => {
-												if (recaptchaResponse == "" || recaptchaResponse == null) {
-													setSendEmailsToRepFlashMsg("Please check robot checkbox")
-												} else {
-													setIsButtonLoading(true)
-
-													//ajax call to rails (lookup#sendEmailsToReps)
-													sendEmailsToReps(
-														setIsButtonLoading,
-														results,
-														setSendEmailsToRepFlashMsg,
-														recaptchaResponse,
-														addressLineOne,
-														addressLineTwo
-													)
-												}
-											}}
-											isLoading={isButtonLoading}
-											showLoader={showLoader}
-											setShowLoader={setShowLoader}
-										>
-											<div
-												style={{
-													//position: "relative",
-													//display: "grid",
-													//gridTemplateColumns: "1fr 3fr",
-													height: "100%",
-													width: "100%",
-												}}
-											>
-												<span style={{}}> Send Emails</span>
-											</div>
-										</Button_Loading>
-									</SendButtonWrapper>
-
-									<ReCAPTCHA
-										sitekey="6LdE3NgdAAAAADcnYdc8T-d61yIGGVCwNl3sdfc6"
-										onChange={onChange}
-										className="testClass"
-										size="compact"
-									/>
-								</OfferOne> */}
-                  {/* <EmailDemoRight onClick={handleEmailDemoRight}> */}
-                  {/* <RightArrow src={rightArrow} /> */}
-                  {/* </EmailDemoRight> */}
                 </EmailDemoWrapper>
                 <LetterDemoWrapper which_tab_is_active={whichTabIsActive}>
                   <LetterDemoCenter>
@@ -3966,281 +3818,10 @@ function Act(props, ref) {
                             : "[city, state, zipcode]"}
                         </p>{" "}
                       </LetterClosing>
-
-                      {/* <FlashError userState={props.userState}>
-                  ** Please{" "}
-                  <a href="#" onClick={loginFromDeadEnd}>
-                    Login
-                  </a>{" "}
-                  or{" "}
-                  <a href="#" onClick={props.executeScrollForSection2}>
-                    Signup
-                  </a>{" "}
-                  to continue.
-                </FlashError> */}
                     </LetterDemo>
-                    {/* <OfferTwo>
-                    <BulletPointText>
-                      a printed letter will be mailed to each of your
-                      representatives via United States Postal Service.
-                    </BulletPointText>
-
-                    <BulletPointText2>
-                      most effective way to get your point across.
-                    </BulletPointText2>
-                    <h2>$2.99</h2>
-
-                    <ShowOfferSectionWrapper>
-                      <ShowOfferSection>
-                        <PayPalButtons
-                          style={{ layout: "vertical" }}
-                          createOrder={(data, actions) => {
-                            return actions.order.create({
-                              purchase_units: [
-                                {
-                                  amount: {
-                                    value: "2.99",
-                                  },
-                                },
-                              ],
-                            });
-                          }}
-                          forceReRender={[results]}
-                          onApprove={(data, actions) => {
-                            return actions.order.capture().then((details) => {
-                              //const name = details.payer.name.given_name;
-                              //alert(`Transaction completed by ${name}`);
-                              // console.log("STATUS = " + details.status)
-
-                              // console.log(details)
-
-                              // console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
-                              // console.log("email: " + details.payer.email_address);
-                              // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
-                              // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
-                              // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
-                              // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
-                              // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
-                              // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
-                              //console.log("DATA", data)
-
-                              //console.log("insiiiiiide1 " + results.inspect);
-
-                              axios
-                                .post(
-                                  "/send/letters",
-                                  {
-                                    data: {
-                                      ppResults: data,
-                                      infoOnReps: results,
-                                      buyerDetails: details,
-                                    },
-                                  },
-                                  { withCredentials: true }
-                                )
-                                .then((response) => {
-                                  //console.log("resoooooooooooooooonse = " + response.inspect)
-                                  //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
-                                  //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
-                                  //setArtData(response.data.article)
-                                  //setArtDataComments(response.data.comments)
-                                  //setIsCommentsLoading(false)
-                                  //setIsCommentsLoading(false)
-                                  //setCurrentUser(@current_user)
-                                })
-                                .catch((error) => {
-                                  //console.log("articleErrors", error)
-                                });
-                            });
-                          }}
-                        />
-                      </ShowOfferSection>
-                    </ShowOfferSectionWrapper>
-                  </OfferTwo> */}
                   </LetterDemoCenter>
-
-                  {/* <EmailDemoRight onClick={handleEmailDemoRight}> */}
-                  {/* <RightArrow src={rightArrow} /> */}
-                  {/* </EmailDemoRight> */}
                 </LetterDemoWrapper>
               </Letter>
-
-              {/* <OfferOne>
-              <h1>Email</h1> */}
-
-              {/* <RiMailSendLine
-								style={{
-									gridArea: "2/1/3/3",
-									justifySelf: "center",
-									alignSelf: "start",
-
-									width: "40px",
-									height: "40px",
-								}}
-							/> */}
-
-              {/* <BulletPointText>
-                Personalized email will be sent to each of your representatives.
-              </BulletPointText>
-
-              <BulletPointText2>
-                Email will look exacly like it's being sent from you.
-              </BulletPointText2>
-
-              <h2>Free</h2>
-
-              <h4>{sendEmailsToRepFlashMsg}</h4>
-
-              <SendButtonWrapper>
-                <Button_Loading
-                  onClick={() => {
-                    if (recaptchaResponse == "" || recaptchaResponse == null) {
-                      setSendEmailsToRepFlashMsg("Please check robot checkbox");
-                    } else {
-                      setIsButtonLoading(true);
-
-                      //ajax call to rails (lookup#sendEmailsToReps)
-                      sendEmailsToReps(
-                        setIsButtonLoading,
-                        results,
-                        setSendEmailsToRepFlashMsg,
-                        recaptchaResponse,
-                        addressLineOne,
-                        addressLineTwo
-                      );
-                    }
-                  }}
-                  isLoading={isButtonLoading}
-                  showLoader={showLoader}
-                  setShowLoader={setShowLoader}
-                >
-                  <div
-                    style={{
-                      //position: "relative",
-                      //display: "grid",
-                      //gridTemplateColumns: "1fr 3fr",
-                      height: "100%",
-                      width: "100%",
-                    }}
-                  > */}
-              {/* <RiMailSendLine
-											style={{
-												//gridArea: "2/1/3/3",
-												////justifySelf: "end",
-												////alignSelf: "center",
-												//position: "absolute",
-												width: "15px",
-												height: "15px",
-												transform: "translate(-6px, 2px)",
-												//top: "-6.7px",
-												//left: "25px",
-												////gridArea: "1/1/2/2"
-											}}
-										/> */}
-
-              {/* <span style={{}}> Send Emails</span>
-                  </div>
-                </Button_Loading>
-              </SendButtonWrapper>
-
-              <ReCAPTCHA
-                sitekey="6LdE3NgdAAAAADcnYdc8T-d61yIGGVCwNl3sdfc6"
-                onChange={onChange}
-                className="testClass"
-                size="compact"
-              />
-            </OfferOne> */}
-
-              {/* <OfferTwo>
-              <h1>Letter</h1> */}
-              {/* <BsMailbox
-								style={{
-									gridArea: "2/1/3/3",
-									justifySelf: "center",
-									alignSelf: "start",
-
-									width: "45px",
-									height: "45px",
-								}}
-							/> */}
-
-              {/* <BulletPointText>
-                a printed letter will be mailed to each of your representatives
-                via United States Postal Service.
-              </BulletPointText>
-
-              <BulletPointText2>
-                most effective way to get your point across.
-              </BulletPointText2>
-              <h2>$2.99</h2>
-
-              <ShowOfferSectionWrapper>
-                <ShowOfferSection>
-                  <PayPalButtons
-                    style={{ layout: "vertical" }}
-                    createOrder={(data, actions) => {
-                      return actions.order.create({
-                        purchase_units: [
-                          {
-                            amount: {
-                              value: "2.99",
-                            },
-                          },
-                        ],
-                      });
-                    }}
-                    forceReRender={[results]}
-                    onApprove={(data, actions) => {
-                      return actions.order.capture().then((details) => {
-                        //const name = details.payer.name.given_name;
-                        //alert(`Transaction completed by ${name}`);
-                        // console.log("STATUS = " + details.status)
-
-                        // console.log(details)
-
-                        // console.log("name: " + details.payer.name.given_name + " " + details.payer.name.surname );
-                        // console.log("email: " + details.payer.email_address);
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_1));
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.address_line_2));
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_2));
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.admin_area_1));
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.postal_code));
-                        // console.log("address: " + JSON.stringify(details.purchase_units[0].shipping.address.country_code));
-                        //console.log("DATA", data)
-
-                        //console.log("insiiiiiide1 " + results.inspect);
-
-                        axios
-                          .post(
-                            "/send/letters",
-                            {
-                              data: {
-                                ppResults: data,
-                                infoOnReps: results,
-                                buyerDetails: details,
-                              },
-                            },
-                            { withCredentials: true }
-                          )
-                          .then((response) => {
-                            //console.log("resoooooooooooooooonse = " + response.inspect)
-                            //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
-                            //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
-                            //setArtData(response.data.article)
-                            //setArtDataComments(response.data.comments)
-                            //setIsCommentsLoading(false)
-                            //setIsCommentsLoading(false)
-                            //setCurrentUser(@current_user)
-                          })
-                          .catch((error) => {
-                            //console.log("articleErrors", error)
-                          });
-                      });
-                    }}
-                  />
-                </ShowOfferSection>
-              </ShowOfferSectionWrapper>
-            </OfferTwo> */}
             </TriplePlayWrapper>
 
             <LetterOfferWrapper which_tab_is_active={whichTabIsActive}>
@@ -4404,6 +3985,7 @@ function Act(props, ref) {
                       <Pic1
                         src={results.one.image ? results.one.image : ""}
                         which_email_is_active={whichEmailIsActive}
+                        alt=""
                       ></Pic1>
                     </PicWrapper>
 
@@ -4424,6 +4006,7 @@ function Act(props, ref) {
                     <Pic2
                       src={results.two.image ? results.two.image : ""}
                       which_email_is_active={whichEmailIsActive}
+                      alt=""
                     ></Pic2>
 
                     <Description2>

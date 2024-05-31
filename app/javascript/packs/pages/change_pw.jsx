@@ -226,6 +226,7 @@ function Login(props) {
           <XorCheckIcon
             status={state.status}
             src={state.status == "pink" ? redX : greenCheck}
+            alt=""
           />
           {errorMessages}
         </ErrorWrapper>

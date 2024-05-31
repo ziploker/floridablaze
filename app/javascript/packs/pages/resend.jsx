@@ -25,8 +25,6 @@ import {
   ErrorWrapper,
 } from "./AuthForm";
 
-
-
 ///////////////////////////////////  LOG_IN_PAGE //////////////////////////////
 function Resend(props) {
   console.log("==============Resend===============");
@@ -42,18 +40,14 @@ function Resend(props) {
   });
 
   const [onHover, setOnHover] = React.useState(false);
- 
 
   var linkStyle;
 
-
-  function toggleHoverEnter(){
-
-    setOnHover(true)
+  function toggleHoverEnter() {
+    setOnHover(true);
   }
-  function toggleHoverLeave(){
-
-    setOnHover(false)
+  function toggleHoverLeave() {
+    setOnHover(false);
   }
   // to activate the input field while typing
   function activateField(e) {
@@ -161,35 +155,31 @@ function Resend(props) {
     }
   }
 
-  
-  
   if (onHover) {
     linkStyle = {
       border: "1px solid #fcacac",
-      //borderRadius: "20px", 
-      transition: "all .4s ease-out", 
-      fontSize: ".9em", 
-      cursor: "pointer", 
-      position: "absolute", 
-      top: "0", 
-      right: "0", 
+      //borderRadius: "20px",
+      transition: "all .4s ease-out",
+      fontSize: ".9em",
+      cursor: "pointer",
+      position: "absolute",
+      top: "0",
+      right: "0",
       textDecoration: "none",
-      padding: "6px"}
-
+      padding: "6px",
+    };
   } else {
     linkStyle = {
       border: "1px solid #f4f4f4",
-      transition: "all .4s ease-out", 
-      fontSize: ".9em", 
-      cursor: "pointer", 
-      position: "absolute", 
-      top: "0", 
-      right: "0", 
+      transition: "all .4s ease-out",
+      fontSize: ".9em",
+      cursor: "pointer",
+      position: "absolute",
+      top: "0",
+      right: "0",
       textDecoration: "none",
-      padding: "6px"
-    }
-
-
+      padding: "6px",
+    };
   }
 
   useEffect(() => {
@@ -200,8 +190,15 @@ function Resend(props) {
     <LoginWrapper>
       <Card>
         <LogoWrapper>
-        {/* <CloseWindow href="/">&#10060;</CloseWindow> */}
-        <Link style={linkStyle} onMouseEnter={toggleHoverEnter} onMouseLeave={toggleHoverLeave} to="/">&#10060;</Link>
+          {/* <CloseWindow href="/">&#10060;</CloseWindow> */}
+          <Link
+            style={linkStyle}
+            onMouseEnter={toggleHoverEnter}
+            onMouseLeave={toggleHoverLeave}
+            to="/"
+          >
+            &#10060;
+          </Link>
           <H2>Resend Confirmation Email</H2>
         </LogoWrapper>
 
@@ -231,6 +228,7 @@ function Resend(props) {
           <XorCheckIcon
             status={state.status}
             src={state.status === "pink" ? redX : greenCheck}
+            alt=""
           />
           {errorMessages}
         </ErrorWrapper>

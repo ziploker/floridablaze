@@ -196,7 +196,6 @@ function Login(props) {
           setTimeout(function () {
             props.set_login_clicked("false");
           }, 3000);
-          
 
           props.handleSuccessfulAuth(response.data);
 
@@ -343,12 +342,6 @@ function Login(props) {
           >
             &#10060;
           </div>
-
-          {/* <CloseWindow onClick={closeLoginWindow}>&#10060;</CloseWindow> */}
-          {/* <a href="/">
-						<Logo src={userIcon} />
-					</a>
-					<H2>Log in </H2> */}
         </LogoWrapperNew>
 
         <Form onSubmit={handleSubmit}>
@@ -413,16 +406,13 @@ function Login(props) {
         </Form>
 
         <ErrorWrapper>
-          {/* <XorCheckIcon status={state.status} src={redX}/> */}
           <XorCheckIcon
             status={state.status}
-            style={{display: state.status == "" ? "none" : "initial"}}
-            //src={state.status === "pink" || "orange" ? redX : greenCheck}
-            
-            
+            style={{ display: state.status == "" ? "none" : "initial" }}
             src={state.status == "green" ? greenCheck : redX}
+            alt=""
           />
-          <h1 style={{display: "none"}}>ss={state.status}</h1>
+          <h1 style={{ display: "none" }}>ss={state.status}</h1>
           {errorMessages}
         </ErrorWrapper>
       </CardNew>

@@ -5,7 +5,6 @@ import $ from "jquery";
 //import lilDownArrow from '../../../../'
 //import '../components/fix.js'
 import slugify from "react-slugify";
-import TipTapNewStory from "./myComponents/TipTapNewStory.jsx";
 
 const StoryPicWrapper = styled.div`
   position: relative;
@@ -319,7 +318,6 @@ function NewForm(props) {
         </div>
 
         <StoryPicWrapper>
-          {/* <StoryPic src={state.image !=null && state.image.length != 0 ? state.image : "nadaa"}/> */}
           <LabelForFile htmlFor="images">&#128393;</LabelForFile>
         </StoryPicWrapper>
 
@@ -377,8 +375,6 @@ function NewForm(props) {
           Add
         </button>
       </Form>
-
-      {/* <TipTapNewStory artBody={artBody} setArtBody={setArtBody} /> */}
     </FormWrapper>
   );
 }

@@ -5,7 +5,6 @@ import $ from "jquery";
 //import lilDownArrow from '../../../../'
 //import '../components/fix.js'
 import slugify from "react-slugify";
-//import TipTapEditStory from "./myComponents/TipTapEditStory.jsx";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 const StoryPicWrapper = styled.div`
@@ -312,18 +311,15 @@ function EditStory(props) {
     // 	  }));
   };
 
-  const InsertPictures = () => {
-    //urlArray = JSON.parse(state.urls);
-    console.log("bringBackArrayCheck", state.urls);
+  // const InsertPictures = () => {
+  //   //urlArray = JSON.parse(state.urls);
+  //   console.log("bringBackArrayCheck", state.urls);
 
-    // state.urls.map((url) => {
-    // 	<img src={url} />;
-    // });
-    return Object.keys(state.urls).map((item) => {
-      console.log("map insert pics", state.urls[item]);
-      <img src={state.urls[item]} />;
-    });
-  };
+  //   return Object.keys(state.urls).map((item) => {
+  //     console.log("map insert pics", state.urls[item]);
+  //     <img src={state.urls[item]} />;
+  //   });
+  // };
 
   const sendPicToRailsToDelete = (picUrl, storyTitle) => {
     axios
@@ -448,7 +444,6 @@ function EditStory(props) {
         </div>
 
         <StoryPicWrapper>
-          {/* <StoryPic src={state.image !=null && state.image.length != 0 ? state.image : "nadaa"}/> */}
           <LabelForFile htmlFor="images">&#128393;</LabelForFile>
         </StoryPicWrapper>
 
@@ -506,8 +501,6 @@ function EditStory(props) {
           Add
         </button>
       </Form>
-
-      {/* <TipTapEditStory artBody={artBody} setArtBody={setArtBody} /> */}
     </FormWrapper>
   );
 }
