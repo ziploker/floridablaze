@@ -8,6 +8,7 @@ import slugify from "react-slugify";
 
 const StoryPicWrapper = styled.div`
   position: relative;
+  justify-self: center;
 `;
 
 const StoryPic = styled.img`
@@ -55,12 +56,23 @@ const Form = styled.form`
   display: grid;
   //grid-template-columns: 90%;
   grid-gap: 1.5rem;
+  width: 100vw;
 `;
 
 const FormWrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 20px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+`;
+
+const TextArea = styled.textarea`
+  width: 100%;
+  height: 78vh;
+  overflow: hidden;
 `;
 
 const OptionWrapper = styled.div``;
@@ -71,10 +83,12 @@ function EditForm(props) {
   const [state, setState] = React.useState({
     title: props.data ? props.data.title : "",
     slug: props.data ? props.data.slug : "",
-    //nameIsFocused: false,
+    alt: props.data ? props.data.alt : "",
+    description: props.data ? props.data.description : "",
+
     keywords: props.data ? props.data.keywords : "",
     topic: props.data ? props.data.topic : "",
-    //phoneIsFocused: false,
+    caption: props.data ? props.data.caption : "",
     body: props.data ? props.data.body : "",
 
     image: [],
@@ -97,8 +111,11 @@ function EditForm(props) {
       formData.append("event[slug]", state.slug);
       formData.append("event[keywords]", state.keywords);
       formData.append("event[topic]", state.topic);
+      formData.append("event[description]", state.description);
       formData.append("event[body]", state.body);
-
+      formData.append("event[alt]", state.alt);
+      formData.append("event[body]", state.body);
+      formData.append("event[caption]", state.caption);
       console.log("formdata from handle add in form edit");
       console.log(formData);
 
@@ -122,10 +139,13 @@ function EditForm(props) {
             //focussed: (props.focussed) || false,
             title: "",
             slug: "",
+            alt: "",
+            description: "",
+
             keywords: "",
             topic: "",
             body: "",
-
+            caption: "",
             image: null,
           });
           alert("Upload worked");
@@ -152,7 +172,6 @@ function EditForm(props) {
     console.log(event);
 
     const v = event.target.value;
-
     const { id } = props;
     const value = event.target.value;
     console.log("nameeeeee = " + event.target.name);
@@ -161,7 +180,7 @@ function EditForm(props) {
 
     console.log("VVVV", v);
 
-    if (event.target.name == "title") {
+    if (event.target.name == "slugifyMe") {
       setState({
         ...state,
         slug: slugify(v),
@@ -213,7 +232,7 @@ function EditForm(props) {
         enctype="multipart/form-data"
       >
         <div className="field">
-          <input
+          <Input
             type="text"
             index={1}
             className="form-control"
@@ -225,22 +244,46 @@ function EditForm(props) {
         </div>
 
         <div className="field">
-          <input
+          <Input
             type="text"
-            index={9}
+            index={2}
             className="form-control"
-            name="title"
-            placeholder="title of the story...."
-            value={slugify(state.title)}
+            name="slugifyMe"
+            placeholder="slugify me"
+            value={state.slugifyMe}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <Input
+            type="text"
+            index={3}
+            className="form-control"
+            name="slug"
+            placeholder="slug (automatic from slugify me)"
+            value={slugify(state.slugifyMe)}
             //onChange={handleChange}
             readOnly
           />
         </div>
 
         <div className="field">
-          <input
+          <Input
             type="text"
-            index={2}
+            index={4}
+            className="form-control"
+            name="alt"
+            placeholder="alt text for image"
+            value={state.alt}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <Input
+            type="text"
+            index={5}
             className="form-control"
             name="keywords"
             //focus="phoneIsFocused"
@@ -251,8 +294,9 @@ function EditForm(props) {
         </div>
 
         <div className="field">
-          <input
+          <Input
             type="text"
+            index={6}
             className="form-control"
             name="topic"
             //focus="phoneIsFocused"
@@ -267,7 +311,33 @@ function EditForm(props) {
         </StoryPicWrapper>
 
         <div className="field">
-          <input
+          <Input
+            type="text"
+            index={7}
+            className="form-control"
+            name="caption"
+            //focus="phoneIsFocused"
+            placeholder="photo caption HTML"
+            value={state.caption}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <Input
+            type="text"
+            index={8}
+            className="form-control"
+            name="description"
+            //focus="phoneIsFocused"
+            placeholder="description for seo meta tags (JSON-LD)"
+            value={state.description}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <Input
             style={{
               width: ".1px",
               height: ".1px",
@@ -278,7 +348,7 @@ function EditForm(props) {
             }}
             id="image"
             type="file"
-            index={3}
+            index={9}
             accept="image/*"
             className="form-control"
             name="image"
@@ -290,17 +360,12 @@ function EditForm(props) {
         </div>
 
         <div className="field">
-          <textarea
-            style={{
-              width: "100%",
-              height: "100vh",
-              overflow: "hidden",
-            }}
+          <TextArea
             type="text"
-            index={4}
+            index={10}
             className="form-control"
             name="body"
-            placeholder="Story here..."
+            placeholder="Story HTML..."
             value={state.body}
             onChange={handleChange}
           />

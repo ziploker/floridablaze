@@ -336,8 +336,7 @@ const SideAds = styled.div`
 `;
 
 function Article({ artData, userState }) {
-  //let artData;
-
+  //
   const location = useLocation();
   console.log(
     "0000000000000000000000000000000000000000000 useLocation",
@@ -403,65 +402,6 @@ function Article({ artData, userState }) {
   //const [isCommentsLoading, setIsCommentsLoading] = useState(true);
 
   let obj = {};
-
-  //const usersFromController = props.users;
-  //const articleFromController = props.article;
-  //const commentsFromController = props.comments;
-  //const slug = props.match.params.id
-
-  // // const slug = props.match ? props.match.params.id : props.d.slug;
-  //const slug = artData.slug;
-  // artData == "empty" ?
-
-  //     useEffect (() => {
-
-  //         console.log("==============Article useEffect===============")
-
-  //         const mode = process.env.NODE_ENV =="development" ? "http://127.0.0.1:3000" : "https://www.floiridablaze.io"
-  //         console.log(artData == "empty" ? "artData is empty" : "artData is fuLL")
-
-  //         axios.post("/blog/get_article_info", {
-
-  //         data: {
-  //             slug: slug
-
-  //         }
-  //         },
-  //         {withCredentials: true})
-  //         .then(response => {
-
-  //             //console.log("resoooooooooooooooonse = " + response.inspect)
-
-  //                 //addAllCommentsToStateForReplyButtonToWork(response.data.comments)
-  //                 //addAllCommentsToStateForShowMoreButtonToWork(response.data.comments)
-
-  //                 setArtData(response.data.article)
-  //                 //setArtDataComments(response.data.comments)
-
-  //                 setIsArtLoading(false)
-
-  //                 //setIsCommentsLoading(false)
-
-  //                 //setCurrentUser(@current_user)
-
-  //         }).catch(error => {
-
-  //         //console.log("articleErrors", error)
-  //         })
-  //     },[])
-
-  //     :
-
-  //     null
-  // // //const prevRows = usePrevious(rows)
-
-  //let editLink = null;
-
-  //if (userData && userData.isAdmin) {
-  //editLink = <a href={`/edit_story/${artData.id}`}>edit</a>;
-  //}
-
-  //console.log("Article_PROPS", props)
 
   const returnFirstItemOfArray = (id) => {
     //console.log("returnFirstItemOfArrayxxxxreturnFirstItemOfArray is = " + id);
@@ -592,8 +532,43 @@ function Article({ artData, userState }) {
   //     return <Loading> <h1>Loading......</h1> </Loading>;
   // }
 
+  const articleStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${artData.slug}`,
+    },
+    description: `${artData.description}`,
+    image: [`${artData.urls[0]}`],
+    inLanguage: "en-US",
+
+    dateCreated: `${artData.created_at}`,
+    dateModified: `${artData.updated_at}`,
+    author: {
+      "@type": "Person",
+      name: "FloridaBlaze Staff",
+    },
+    publisher: {
+      "@type": "NewsMediaOrganization",
+      name: "FloridaBlaze",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://weedblogimages.s3.amazonaws.com/company_logo.png",
+        height: 35,
+        width: 285,
+      },
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleStructuredData),
+        }}
+      />
       {Object.keys(userState.user).length > 0 &&
       userState.user.isAdmin == true ? (
         <Link

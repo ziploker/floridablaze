@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import $ from "jquery";
 //import lilDownArrow from '../../../../'
 //import '../components/fix.js'
-import slugify from "react-slugify";
 import defaultManIcon from "../../assets/images/man3.png";
 
 // const Section = styled.section`
@@ -209,15 +208,6 @@ function CommentForm(props) {
     console.log("nameeeeee = " + event.target.name);
     console.log("valluuee = " + event.target.value);
     console.log("focus = " + event.target.tagger);
-
-    // if (event.target.name == "title") {
-    // 	setState({
-    // 		...state,
-    // 		slug: slugify(v),
-    // 		[event.target.name]: v,
-    // 		error: "",
-    // 	});
-    // } else {
 
     setState({
       ...state,

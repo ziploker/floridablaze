@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 //import "../../assets/stylesheets/dotStyles.scss";
 import Login from "./pages/login";
 import defaultImage from "../../assets/images/defaultImage.jpg";
-import slugify from "react-slugify";
+//import slugify from "react-slugify";
 import { Link } from "react-router-dom";
 import scrollArrow from "../../assets/images/scroll-arrow.png";
 import axios from "axios";
@@ -1352,14 +1352,11 @@ function Home(props) {
           ></LeftArrow>
         </LeftArrowButton>
         <LinkWrapper1
-          to={
-            "/blog/" +
-            slugify(
-              props.allStories[activeStories[0]]
-                ? props.allStories[activeStories[0]].title
-                : "nada"
-            )
-          }
+          to={`/blog/${
+            props.allStories[activeStories[0]]
+              ? props.allStories[activeStories[0]].slug
+              : "nada"
+          }`}
           state={{ art: props.allStories[activeStories[0]] }}
         >
           <Img1
@@ -1407,14 +1404,11 @@ function Home(props) {
           ></RightArrow>
         </RightArrowButton>
         <LinkWrapper2
-          to={
-            "/blog/" +
-            slugify(
-              props.allStories[activeStories[1]]
-                ? props.allStories[activeStories[1]].title
-                : "nada"
-            )
-          }
+          to={`/blog/${
+            props.allStories[activeStories[1]]
+              ? props.allStories[activeStories[1]].slug
+              : "nada"
+          }`}
           state={{ art: props.allStories[activeStories[1]] }}
         >
           <Img2
@@ -1455,14 +1449,11 @@ function Home(props) {
         <CarouselItem>
           <ItemWrapper>
             <LinkWrapper1
-              to={
-                "/blog/" +
-                slugify(
-                  props.allStories[activeStories[0]]
-                    ? props.allStories[activeStories[0]].title
-                    : "nada"
-                )
-              }
+              to={`/blog/${
+                props.allStories[activeStories[0]]
+                  ? props.allStories[activeStories[0]].slug
+                  : "nada"
+              }`}
               state={{ art: props.allStories[activeStories[0]] }}
               ref={gsapContainer1}
             >
@@ -1498,14 +1489,11 @@ function Home(props) {
         <CarouselItem>
           <ItemWrapper>
             <LinkWrapper2
-              to={
-                "/blog/" +
-                slugify(
-                  props.allStories[activeStories[1]]
-                    ? props.allStories[activeStories[1]].title
-                    : "nada"
-                )
-              }
+              to={`/blog/${
+                props.allStories[activeStories[1]]
+                  ? props.allStories[activeStories[1]].slug
+                  : "nada"
+              }`}
               state={{ art: props.allStories[activeStories[1]] }}
             >
               <Img2

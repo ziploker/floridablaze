@@ -86,15 +86,17 @@ function EditStory(props) {
 
   const [state, setState] = React.useState({
     title: "",
+    slugifyMe: "",
     slug: "",
     alt: "",
-    body: "",
-    //nameIsFocused: false,
+    description: "",
     keywords: "",
     topic: "",
     //phoneIsFocused: false,
 
     caption: "",
+    body: "",
+    //nameIsFocused: false,
 
     urls: "",
     //emailIsFocused: false,
@@ -129,10 +131,12 @@ function EditStory(props) {
         setState({
           title: response.data.story.title,
           body: response.data.story.body,
-          slug: response.data.story.slug,
+          slugifyMe: response.data.story.slug,
           keywords: response.data.story.keywords,
           topic: response.data.story.topic,
           alt: response.data.story.alt,
+          description: response.data.story.description,
+
           caption: response.data.story.caption,
           urls: response.data.story.urls,
         });
@@ -177,6 +181,8 @@ function EditStory(props) {
       formData.append("event[title]", state.title);
       formData.append("event[slug]", state.slug);
       formData.append("event[keywords]", state.keywords);
+      formData.append("event[description]", state.description);
+
       formData.append("event[topic]", state.topic);
       formData.append("event[alt]", state.alt);
       formData.append("event[body]", state.body);
@@ -206,6 +212,8 @@ function EditStory(props) {
             title: "",
             slug: "",
             alt: "",
+            description: "",
+
             keywords: "",
             topic: "",
             body: "",
@@ -243,7 +251,7 @@ function EditStory(props) {
     console.log("valluuee = " + event.target.value);
     console.log("focus = " + event.target.tagger);
 
-    if (event.target.name == "title") {
+    if (event.target.name == "slugifyMe") {
       setState({
         ...state,
         slug: slugify(v),
@@ -397,9 +405,21 @@ function EditStory(props) {
             type="text"
             index={2}
             className="form-control"
+            name="slugifyMe"
+            placeholder="slugify me"
+            value={state.slugifyMe}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <Input
+            type="text"
+            index={3}
+            className="form-control"
             name="title"
             placeholder="slug for story (automatic)"
-            value={slugify(state.title)}
+            value={slugify(state.slugifyMe)}
             //onChange={handleChange}
             readOnly
           />
@@ -408,7 +428,7 @@ function EditStory(props) {
         <div className="field">
           <Input
             type="text"
-            index={3}
+            index={4}
             className="form-control"
             name="alt"
             placeholder="alt text for image"
@@ -420,7 +440,7 @@ function EditStory(props) {
         <div className="field">
           <Input
             type="text"
-            index={4}
+            index={5}
             className="form-control"
             name="keywords"
             //focus="phoneIsFocused"
@@ -433,7 +453,7 @@ function EditStory(props) {
         <div className="field">
           <Input
             type="text"
-            index={5}
+            index={6}
             className="form-control"
             name="topic"
             //focus="phoneIsFocused"
@@ -450,12 +470,25 @@ function EditStory(props) {
         <div className="field">
           <Input
             type="text"
-            index={6}
+            index={7}
             className="form-control"
             name="caption"
             //focus="phoneIsFocused"
             placeholder="photo caption HTML"
             value={state.caption}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <Input
+            type="text"
+            index={8}
+            className="form-control"
+            name="description"
+            //focus="phoneIsFocused"
+            placeholder="Description seo meta tags (JSON-LD)"
+            value={state.description}
             onChange={handleChange}
           />
         </div>
@@ -472,7 +505,7 @@ function EditStory(props) {
             }}
             id="images"
             type="file"
-            index={7}
+            index={9}
             accept="image/*"
             className="form-control"
             name="images"
@@ -487,7 +520,7 @@ function EditStory(props) {
         <div className="field">
           <TextArea
             type="text"
-            index={8}
+            index={10}
             className="form-control"
             name="body"
             placeholder="Story HTML..."

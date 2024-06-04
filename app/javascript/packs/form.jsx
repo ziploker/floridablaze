@@ -80,11 +80,12 @@ const OptionWrapper = styled.div``;
 const formData = new FormData();
 
 function NewForm(props) {
-  const [artBody, setArtBody] = React.useState("");
   const [state, setState] = React.useState({
     title: "",
+    slugifyMe: "",
     slug: "",
     alt: "",
+    description: "",
     //nameIsFocused: false,
     keywords: "",
     topic: "",
@@ -111,12 +112,11 @@ function NewForm(props) {
       formData.append("event[title]", state.title);
       formData.append("event[slug]", state.slug);
       formData.append("event[keywords]", state.keywords);
+      formData.append("event[description]", state.description);
       formData.append("event[topic]", state.topic);
       formData.append("event[alt]", state.alt);
-      //   formData.append("event[body]", artBody);
       formData.append("event[body]", state.body);
       formData.append("event[caption]", state.caption);
-
       console.log("formdata from handle add in form");
       console.log(formData);
 
@@ -141,6 +141,7 @@ function NewForm(props) {
             title: "",
             slug: "",
             alt: "",
+            description: "",
             keywords: "",
             topic: "",
             body: "",
@@ -159,7 +160,7 @@ function NewForm(props) {
   };
 
   const validForm = () => {
-    if (state.title && state.keywords && state.topic && artBody.body) {
+    if (state.title && state.keywords && state.topic && state.body) {
       return true;
     } else {
       return true;
@@ -171,14 +172,13 @@ function NewForm(props) {
     console.log(event);
 
     const v = event.target.value;
-
     const { id } = props;
     const value = event.target.value;
     console.log("nameeeeee = " + event.target.name);
     console.log("valluuee = " + event.target.value);
     console.log("focus = " + event.target.tagger);
 
-    if (event.target.name == "title") {
+    if (event.target.name == "slugifyMe") {
       setState({
         ...state,
         slug: slugify(v),
@@ -271,9 +271,21 @@ function NewForm(props) {
             type="text"
             index={2}
             className="form-control"
-            name="title"
-            placeholder="slug for story (automatic)"
-            value={slugify(state.title)}
+            name="slugifyMe"
+            placeholder="slugify me"
+            value={state.slugifyMe}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <Input
+            type="text"
+            index={3}
+            className="form-control"
+            name="slug"
+            placeholder="slug (automatic from slugify me)"
+            value={slugify(state.slugifyMe)}
             //onChange={handleChange}
             readOnly
           />
@@ -282,7 +294,7 @@ function NewForm(props) {
         <div className="field">
           <Input
             type="text"
-            index={3}
+            index={4}
             className="form-control"
             name="alt"
             placeholder="alt text for image"
@@ -294,7 +306,7 @@ function NewForm(props) {
         <div className="field">
           <Input
             type="text"
-            index={4}
+            index={5}
             className="form-control"
             name="keywords"
             //focus="phoneIsFocused"
@@ -307,7 +319,7 @@ function NewForm(props) {
         <div className="field">
           <Input
             type="text"
-            index={5}
+            index={6}
             className="form-control"
             name="topic"
             //focus="phoneIsFocused"
@@ -324,12 +336,25 @@ function NewForm(props) {
         <div className="field">
           <Input
             type="text"
-            index={6}
+            index={7}
             className="form-control"
             name="caption"
             //focus="phoneIsFocused"
             placeholder="photo caption HTML"
             value={state.caption}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="field">
+          <Input
+            type="text"
+            index={8}
+            className="form-control"
+            name="description"
+            //focus="phoneIsFocused"
+            placeholder="Description seo meta tags (JSON-LD)"
+            value={state.description}
             onChange={handleChange}
           />
         </div>
@@ -346,7 +371,7 @@ function NewForm(props) {
             }}
             id="images"
             type="file"
-            index={7}
+            index={9}
             accept="image/*"
             className="form-control"
             name="images"
@@ -361,11 +386,11 @@ function NewForm(props) {
         <div className="field">
           <TextArea
             type="text"
-            index={8}
+            index={10}
             className="form-control"
             name="body"
             placeholder="Story HTML..."
-            value={artBody.body}
+            value={state.body}
             //readOnly
             onChange={handleChange}
           />
