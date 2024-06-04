@@ -587,6 +587,12 @@ function Article({ artData, userState }) {
           rel="canonical"
           href={`https://floridablaze.io/blog/${artData.slug}`}
         ></link>
+        {/* 
+        <meta property="og:title" content="Cannabis News for Florida | Lookup State Representativese">
+        <meta property="og:description" content="Add description here">
+        <meta property="og:image" content="https://weedblogimages.s3.amazonaws.com/company_logo.png">
+        <meta property="og:url" content="https://floridaBlaze.io" >
+        <meta property="og:site_name" content="FloridaBlaze.io" > */}
       </Helmet>
 
       <ArticleSection>
