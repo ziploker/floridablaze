@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.2'
 
 
-
+gem 'prerender_rails'
 gem 'jwt'
 gem 'google-id-token'
 gem 'active_storage_validations'

@@ -582,17 +582,21 @@ function Article({ artData, userState }) {
 
       <Helmet>
         <title>{artData.title}</title>
-        {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+
         <link
           rel="canonical"
           href={`https://floridablaze.io/blog/${artData.slug}`}
         ></link>
-        {/* 
-        <meta property="og:title" content="Cannabis News for Florida | Lookup State Representativese">
-        <meta property="og:description" content="Add description here">
-        <meta property="og:image" content="https://weedblogimages.s3.amazonaws.com/company_logo.png">
-        <meta property="og:url" content="https://floridaBlaze.io" >
-        <meta property="og:site_name" content="FloridaBlaze.io" > */}
+
+        <meta property="og:title" content={artData.title} />
+        <meta property="og:description" content={artData.description} />
+        <meta property="og:image" content={artData.urls[0]} />
+        <meta
+          property="og:url"
+          content={`https://floridaBlaze.io/blog/${artData.slug}`}
+        />
+        <meta property="og:site_name" content="FloridaBlaze" />
+        <meta property="og:type" content="article" />
       </Helmet>
 
       <ArticleSection>

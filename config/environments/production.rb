@@ -1,5 +1,7 @@
 Rails.application.configure do
 
+  config.middleware.use Rack::Prerender, prerender_token: 'ctfFk1Ec876jNVY6smGh'
+
   config.assets.digest = true
 
   # Settings specified here will take precedence over those in config/application.rb.

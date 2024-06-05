@@ -177,6 +177,9 @@ GEM
       racc (~> 1.4)
     package_json (0.1.0)
     pg (1.5.4)
+    prerender_rails (1.11.0)
+      activesupport
+      rack (~> 2.2.2)
     public_suffix (5.0.4)
     puma (5.6.8)
       nio4r (~> 2.0)
@@ -310,6 +313,7 @@ DEPENDENCIES
   mini_magick (>= 4.9.5)
   mini_racer
   pg (~> 1.1)
+  prerender_rails
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 7.0.3.1)
