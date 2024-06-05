@@ -14,6 +14,7 @@ import { _parseRelative } from "gsap/gsap-core";
 import "../../assets/stylesheets/home_story_spinner.scss";
 import "../../assets/stylesheets/dotS.css";
 import Carousel, { CarouselItem } from "./carousel";
+import debounce from "debounce";
 
 //import Dots from "react-carousel-dots";
 
@@ -1344,7 +1345,7 @@ function Home(props) {
       >
         <LeftArrowButton
           is_hovering={isHovering}
-          onClick={() => handleForwardPage("desktop")}
+          onClick={debounce(() => handleForwardPage("desktop"), 300)}
         >
           <LeftArrow
             src={scrollArrow}
@@ -1396,7 +1397,7 @@ function Home(props) {
         ) : null}
         <RightArrowButton
           is_hovering={isHovering}
-          onClick={() => handleReversePage("desktop")}
+          onClick={debounce(() => handleReversePage("desktop"), 300)}
         >
           <RightArrow
             src={scrollArrow}

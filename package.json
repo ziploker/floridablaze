@@ -19,6 +19,7 @@
     "compression-webpack-plugin": "9",
     "css-loader": "^6.9.1",
     "css-minimizer-webpack-plugin": "^6.0.0",
+    "debounce": "^2.1.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "gsap": "^3.12.5",
     "javascript-time-ago": "^2.5.9",
