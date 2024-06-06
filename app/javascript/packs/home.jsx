@@ -471,6 +471,8 @@ function Home(props) {
   const isMountedForactiveDotUseEffect = useRef(false);
   const whatMode = useRef("");
   const whatDirection = useRef("");
+  const rightArrowRef = useRef(null);
+  const leftArrowRef = useRef(null);
 
   const [whatModeAuto, setWhatModeAuto] = useState("");
 
@@ -1014,63 +1016,216 @@ function Home(props) {
   }
 
   function handleForwardPage(mode) {
-    // mode is either "cellphone" or "desktop"
-    // sets the useRef with mode "desktop" or "cellphone"
-    // so it can be accessed in the useEffect thats run after setActiveDot
-    whatDirection.current = "forward";
-    whatMode.current = mode;
+    if (leftArrowRef.current && !leftArrowRef.current.disabled) {
+      leftArrowRef.current.disabled = true;
+      // Perform the action
+      // After the action is complete, reset buttonRef.current.disabled to false
 
-    console.log(
-      "Entering HandleForward, MODE is " +
-        mode +
-        " and direction is " +
-        whatDirection.current
-    );
+      // mode is either "cellphone" or "desktop"
+      // sets the useRef with mode "desktop" or "cellphone"
+      // so it can be accessed in the useEffect thats run after setActiveDot
+      whatDirection.current = "forward";
+      whatMode.current = mode;
 
-    if (mode == "desktop") {
-      if (activeDot > 1) {
-        setActiveDot((pre) => {
-          return pre - 2;
-        });
-      } else if (activeDot == 1) {
-        setActiveDot((pre) => {
-          return pre - 1;
-        });
-      } else if (activeDot == 0) {
-        console.log("ActiveDot was zero do nada");
+      console.log(
+        "Entering HandleForward, MODE is " +
+          mode +
+          " and direction is " +
+          whatDirection.current
+      );
+
+      if (mode == "desktop") {
+        if (activeDot > 1) {
+          setActiveDot((pre) => {
+            return pre - 2;
+          });
+        } else if (activeDot == 1) {
+          setActiveDot((pre) => {
+            return pre - 1;
+          });
+        } else if (activeDot == 0) {
+          console.log("ActiveDot was zero do nada");
+        }
+      } else if (mode == "cellphone") {
+        if (activeDot > 0) {
+          console.log("Decreasing activeDot by 1");
+          setActiveDot((pre) => {
+            return pre - 1;
+          });
+        } else {
+          console.log(
+            "did nothing because activeDot was already at zero " + activeDot
+          );
+        }
       }
-    } else if (mode == "cellphone") {
-      if (activeDot > 0) {
-        console.log("Decreasing activeDot by 1");
-        setActiveDot((pre) => {
-          return pre - 1;
-        });
-      } else {
-        console.log(
-          "did nothing because activeDot was already at zero " + activeDot
-        );
-      }
+
+      leftArrowRef.current.disabled = false;
     }
   }
 
   function handleReversePage(mode) {
-    // mode is either "cellphone" or "desktop"
-    // sets the useRef with mode "desktop" or "cellphone"
-    // so it can be accessed in the useEffect thats run after setActiveDot
-    whatDirection.current = "reverse";
-    whatMode.current = mode;
+    if (rightArrowRef.current && !rightArrowRef.current.disabled) {
+      rightArrowRef.current.disabled = true;
+      // Perform the action
+      // After the action is complete, reset buttonRef.current.disabled to false
 
-    console.log(
-      "Entering HandleReverse, MODE is " +
-        mode +
-        " and direction is " +
-        whatDirection.current
-    );
-    if (mode == "desktop") {
-      //get stories left, if 1, then shift one only
-      let dotsLeft = props.allStories.length - (activeStories[1] + 1);
-      console.log("DOts left = " + dotsLeft);
-      if (dotsLeft >= 2) {
+      // mode is either "cellphone" or "desktop"
+      // sets the useRef with mode "desktop" or "cellphone"
+      // so it can be accessed in the useEffect thats run after setActiveDot
+      // mode is either "cellphone" or "desktop"
+      // sets the useRef with mode "desktop" or "cellphone"
+      // so it can be accessed in the useEffect thats run after setActiveDot
+      whatDirection.current = "reverse";
+      whatMode.current = mode;
+
+      console.log(
+        "Entering HandleReverse, MODE is " +
+          mode +
+          " and direction is " +
+          whatDirection.current
+      );
+      if (mode == "desktop") {
+        //get stories left, if 1, then shift one only
+        let dotsLeft = props.allStories.length - (activeStories[1] + 1);
+        console.log("DOts left = " + dotsLeft);
+        if (dotsLeft >= 2) {
+          if (activeDot + 1 == props.allStories.length) {
+            console.log(
+              "did nothing because activeDot was same as allstories.length" +
+                activeDot +
+                " == " +
+                props.allStories.length
+            );
+          } else {
+            console.log("Increasing activeDot by 2");
+            setActiveDot((pre) => {
+              return pre + 2;
+            });
+          }
+        } else if (dotsLeft == 1) {
+          console.log("Increasing activeDot by 1");
+          setActiveDot((pre) => {
+            return pre + 1;
+          });
+        } else if (dotsLeft == 0) {
+          console.log(
+            "desktop reverse mode get more stories testing=================="
+          );
+
+          setLoadingStories(true);
+          axios
+            .post(
+              "/reverse/",
+              {
+                data: {
+                  secondToLastStory_ID: props.allStories[activeStories[1]].id,
+                  getNumOfStories: 2,
+                },
+              },
+              { withCredentials: true }
+            )
+            .then((response) => {
+              console.log(
+                "+============ fetch response, asked for 2 and got " +
+                  response.data.stories.length +
+                  " back."
+              );
+
+              if (response.data.stories.length == 1) {
+                props.setAllStories((prevStories) => [
+                  ...prevStories,
+                  ...response.data.stories,
+                ]);
+
+                let nv0 = activeStories[0] + 1;
+                let nv1 = activeStories[1] + 1;
+
+                setActiveStories([nv0, nv1]);
+                gsapSwipeAnimationReverse();
+
+                setLoadingStories(false);
+
+                // setVisibleDots((pre) => {
+                //   let newArray = [];
+
+                //   pre.map((n, i) => {
+                //     newArray[i] = n + 1;
+                //   });
+
+                //   return newArray;
+                // });
+
+                setActiveDot((pre) => {
+                  return pre + 1;
+                });
+              } else if (response.data.stories.length == 0) {
+                // let nv0 = 0
+                // let nv1 = 1
+                // setActiveStories([nv0, nv1])
+                // gsapSwipeAnimationReverse()
+                setLoadingStories(false);
+              } else if (response.data.stories.length == 2) {
+                props.setAllStories((prevStories) => [
+                  ...prevStories,
+                  ...response.data.stories,
+                ]);
+
+                //   setActiveStories((pre) => {
+                //     let newArray = [];
+                //     pre.map((n, i) => {
+                //       newArray[i] = n + 2;
+                //     });
+
+                //     return newArray;
+                //   });
+                gsapSwipeAnimationReverse();
+
+                setLoadingStories(false);
+
+                setVisibleDots((pre) => {
+                  let newArray = [];
+
+                  pre.map((n, i) => {
+                    newArray[i] = n + 2;
+                  });
+
+                  return newArray;
+                });
+
+                setActiveDot((pre) => {
+                  return pre + 2;
+                });
+              } else if (response.data.stories.length == 3) {
+                console.log("RESPNSE was 3===========================");
+                props.setAllStories((prevStories) => [
+                  ...prevStories,
+                  ...response.data.stories,
+                ]);
+
+                gsapSwipeAnimationReverse();
+
+                setLoadingStories(false);
+
+                setVisibleDots((pre) => {
+                  let newArray = [];
+
+                  pre.map((n, i) => {
+                    newArray[i] = n + 2;
+                  });
+
+                  return newArray;
+                });
+
+                setActiveDot((pre) => {
+                  return pre + 2;
+                });
+              }
+            })
+            .catch((error) => {
+              console.log("handleReversePageErrors", error);
+            });
+        }
+      } else if (mode == "cellphone") {
         if (activeDot + 1 == props.allStories.length) {
           console.log(
             "did nothing because activeDot was same as allstories.length" +
@@ -1079,148 +1234,13 @@ function Home(props) {
               props.allStories.length
           );
         } else {
-          console.log("Increasing activeDot by 2");
+          console.log("Increasing activeDot by 1");
           setActiveDot((pre) => {
-            return pre + 2;
+            return pre + 1;
           });
         }
-      } else if (dotsLeft == 1) {
-        console.log("Increasing activeDot by 1");
-        setActiveDot((pre) => {
-          return pre + 1;
-        });
-      } else if (dotsLeft == 0) {
-        console.log(
-          "desktop reverse mode get more stories testing=================="
-        );
-
-        setLoadingStories(true);
-        axios
-          .post(
-            "/reverse/",
-            {
-              data: {
-                secondToLastStory_ID: props.allStories[activeStories[1]].id,
-                getNumOfStories: 2,
-              },
-            },
-            { withCredentials: true }
-          )
-          .then((response) => {
-            console.log(
-              "+============ fetch response, asked for 2 and got " +
-                response.data.stories.length +
-                " back."
-            );
-
-            if (response.data.stories.length == 1) {
-              props.setAllStories((prevStories) => [
-                ...prevStories,
-                ...response.data.stories,
-              ]);
-
-              let nv0 = activeStories[0] + 1;
-              let nv1 = activeStories[1] + 1;
-
-              setActiveStories([nv0, nv1]);
-              gsapSwipeAnimationReverse();
-
-              setLoadingStories(false);
-
-              // setVisibleDots((pre) => {
-              //   let newArray = [];
-
-              //   pre.map((n, i) => {
-              //     newArray[i] = n + 1;
-              //   });
-
-              //   return newArray;
-              // });
-
-              setActiveDot((pre) => {
-                return pre + 1;
-              });
-            } else if (response.data.stories.length == 0) {
-              // let nv0 = 0
-              // let nv1 = 1
-              // setActiveStories([nv0, nv1])
-              // gsapSwipeAnimationReverse()
-              setLoadingStories(false);
-            } else if (response.data.stories.length == 2) {
-              props.setAllStories((prevStories) => [
-                ...prevStories,
-                ...response.data.stories,
-              ]);
-
-              //   setActiveStories((pre) => {
-              //     let newArray = [];
-              //     pre.map((n, i) => {
-              //       newArray[i] = n + 2;
-              //     });
-
-              //     return newArray;
-              //   });
-              gsapSwipeAnimationReverse();
-
-              setLoadingStories(false);
-
-              setVisibleDots((pre) => {
-                let newArray = [];
-
-                pre.map((n, i) => {
-                  newArray[i] = n + 2;
-                });
-
-                return newArray;
-              });
-
-              setActiveDot((pre) => {
-                return pre + 2;
-              });
-            } else if (response.data.stories.length == 3) {
-              console.log("RESPNSE was 3===========================");
-              props.setAllStories((prevStories) => [
-                ...prevStories,
-                ...response.data.stories,
-              ]);
-
-              gsapSwipeAnimationReverse();
-
-              setLoadingStories(false);
-
-              setVisibleDots((pre) => {
-                let newArray = [];
-
-                pre.map((n, i) => {
-                  newArray[i] = n + 2;
-                });
-
-                return newArray;
-              });
-
-              setActiveDot((pre) => {
-                return pre + 2;
-              });
-            }
-          })
-          .catch((error) => {
-            console.log("handleReversePageErrors", error);
-          });
       }
-    } else if (mode == "cellphone") {
-      if (activeDot + 1 == props.allStories.length) {
-        console.log(
-          "did nothing because activeDot was same as allstories.length" +
-            activeDot +
-            " == " +
-            props.allStories.length
-        );
-      } else {
-        console.log("Increasing activeDot by 1");
-        setActiveDot((pre) => {
-          return pre + 1;
-        });
-      }
+      rightArrowRef.current.disabled = false;
     }
   }
 
@@ -1346,6 +1366,7 @@ function Home(props) {
         className={"box"}
       >
         <LeftArrowButton
+          ref={leftArrowRef}
           is_hovering={isHovering}
           onClick={
             isPageLoded && debounce(() => handleForwardPage("desktop"), 300)
@@ -1406,6 +1427,7 @@ function Home(props) {
           }
         >
           <RightArrow
+            ref={rightArrowRef}
             src={scrollArrow}
             alt="Scroll page forward to view more articles"
           ></RightArrow>
