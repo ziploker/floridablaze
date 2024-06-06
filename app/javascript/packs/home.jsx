@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import scrollArrow from "../../assets/images/scroll-arrow.png";
 import axios from "axios";
 import { gsap } from "gsap";
-import { Draggable } from "gsap/all";
+//import { Draggable } from "gsap/all";
 import { _parseRelative } from "gsap/gsap-core";
 import "../../assets/stylesheets/home_story_spinner.scss";
 import "../../assets/stylesheets/dotS.css";
@@ -482,6 +482,7 @@ function Home(props) {
   ]);
   const [transitionX, setTransitionX] = useState(60);
   const [isHovering, setIsHovering] = useState("false");
+  const [isPageLoded, setIsPageLoded] = useState(false);
 
   //
   //
@@ -513,6 +514,7 @@ function Home(props) {
       // 	typeof window.localStorage.getItem("allStories")
       // )
     }
+    setIsPageLoded(true);
     // }
   }, []);
 
@@ -1345,7 +1347,9 @@ function Home(props) {
       >
         <LeftArrowButton
           is_hovering={isHovering}
-          onClick={debounce(() => handleForwardPage("desktop"), 300)}
+          onClick={
+            isPageLoded && debounce(() => handleForwardPage("desktop"), 300)
+          }
         >
           <LeftArrow
             src={scrollArrow}
@@ -1397,7 +1401,9 @@ function Home(props) {
         ) : null}
         <RightArrowButton
           is_hovering={isHovering}
-          onClick={debounce(() => handleReversePage("desktop"), 300)}
+          onClick={
+            isPageLoded && debounce(() => handleReversePage("desktop"), 300)
+          }
         >
           <RightArrow
             src={scrollArrow}
