@@ -347,7 +347,9 @@ sub {
 }
 
 sup {
-  top: 0 !important;
+  top: 0px !important;
+  position: relative;
+  font-size: 0.7rem;
 }
 
 /* Embedded content
