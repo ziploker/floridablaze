@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { createGlobalStyle } from "styled-components";
+import React, { useEffect, useState } from "react"
+import { createGlobalStyle } from "styled-components"
 
-import "../../../node_modules/modern-normalize/modern-normalize.css";
+import "../../../node_modules/modern-normalize/modern-normalize.css"
 
 //light blue   #56c5cc 	(86,197,204)
 //pink         #f14f7b 	(241,79,123)
@@ -338,8 +338,8 @@ sup {
   //line-height: 0;
   //position: relative;
   //vertical-align: baseline;
-  padding: 0 50px;
-  font-weight: bold;
+  //padding: 0;
+  //font-weight: bold;
 }
 
 sub {
@@ -347,7 +347,7 @@ sub {
 }
 
 sup {
-  top: -0.5em;
+  top: 0 !important;
 }
 
 /* Embedded content
@@ -680,6 +680,6 @@ p{
 
 
 
-`;
+`
 
-export default (props) => <GlobalStyles {...props} />;
+export default (props) => <GlobalStyles {...props} />
