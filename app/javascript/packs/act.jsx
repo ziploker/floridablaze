@@ -361,6 +361,14 @@ const ActHeader = styled.h1`
 	@media only screen and (max-width: 1000px) {
 		font-size: 6rem;
 	}
+
+	@media only screen and (max-width: 250px) {
+		font-size: 4rem;
+	}
+
+	@media only screen and (max-width: 200px) {
+		font-size: 2rem;
+	}
 `
 
 const ActSubheader = styled.h2`
@@ -402,6 +410,16 @@ const ActSubHeaders = styled.div`
 
 		@media only screen and (max-width: 1000px) {
 			font-size: 2rem;
+		}
+
+		@media only screen and (max-width: 250px) {
+			font-size: 1.1rem;
+			line-height: 1.7rem;
+		}
+
+		@media only screen and (max-width: 200px) {
+			font-size: 0.8rem;
+			line-height: 1.7rem;
 		}
 	}
 `
