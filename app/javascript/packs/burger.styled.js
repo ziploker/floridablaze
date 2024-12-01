@@ -28,7 +28,7 @@ const StyledBurger = styled.button`
   }
 
   div {
-    width: 50px;
+    width: 25px;
 
     height: 3px;
 

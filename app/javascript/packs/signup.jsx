@@ -275,7 +275,7 @@ const LoginCard = styled.div`
   //margin-left: 20px;
   //margin-top: 100px;
   //padding: 50px 0px 0px 0px;
-  padding: 75px 10px 0px 10px;
+  padding: 75px 0px 0px 0px;
 
   background-color: #fff;
   //border: 1px solid transparent;
