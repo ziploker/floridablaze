@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react"
-import { createGlobalStyle } from "styled-components"
+import React, { useEffect, useState } from "react";
+import { createGlobalStyle } from "styled-components";
 
-import "../../../node_modules/modern-normalize/modern-normalize.css"
+import "../../../node_modules/modern-normalize/modern-normalize.css";
 
 //light blue   #56c5cc 	(86,197,204)
 //pink         #f14f7b 	(241,79,123)
@@ -166,6 +166,13 @@ const GlobalStyles = createGlobalStyle`
     
     .eachDot.invisible {
       transform: scale(0.18);
+    }
+
+    .allDotsWrapperWrapper{
+
+      @media only screen and (max-width: 785px) {
+		    margin-top: 25px !important;
+	    }
     }
     
     .allDotsWrapper {
@@ -682,6 +689,6 @@ p{
 
 
 
-`
+`;
 
-export default (props) => <GlobalStyles {...props} />
+export default (props) => <GlobalStyles {...props} />;
