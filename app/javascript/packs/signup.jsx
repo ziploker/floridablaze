@@ -410,6 +410,10 @@ const LeftSection = styled.div`
     word-break: keep-all;
     background: white;
     //text-align: center;
+
+    @media only screen and (max-width: 200px) {
+      font-size: 2rem;
+    }
   }
 
   sub {
@@ -478,6 +482,10 @@ const RightSection = styled.div`
     grid-template-rows: 192px repeat(4, min-content) 1fr;
     padding: 0px 5px 11px 5px;
   }
+
+  @media only screen and (max-width: 200px) {
+    grid-template-columns: 0px 22px 1fr;
+  }
 `;
 
 const WeedBullet1 = styled.img`
@@ -529,6 +537,9 @@ const WeedBulletText1 = styled.h2`
     font-size: 1rem;
     margin-top: 26px;
   }
+  @media only screen and (max-width: 275px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const WeedBulletText2 = styled.h2`
@@ -545,6 +556,9 @@ const WeedBulletText2 = styled.h2`
     font-size: 1rem;
     margin-top: 26px;
   }
+  @media only screen and (max-width: 275px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const WeedBulletText3 = styled.h2`
@@ -560,6 +574,9 @@ const WeedBulletText3 = styled.h2`
     font-size: 1rem;
     margin-top: 26px;
   }
+  @media only screen and (max-width: 275px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const WeedBulletText4 = styled.h2`
@@ -574,6 +591,9 @@ const WeedBulletText4 = styled.h2`
   @media only screen and (max-width: 500px) {
     font-size: 1rem;
     margin-top: 26px;
+  }
+  @media only screen and (max-width: 275px) {
+    font-size: 0.6rem;
   }
 `;
 const Spacer = styled.h2`
