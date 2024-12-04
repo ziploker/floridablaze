@@ -27,11 +27,11 @@ const Form = styled.form`
 
 const FormWrapper = styled.div`
 	display: grid;
-	grid-template-columns: minmax(min-content, max-content) 1fr;
+	grid-template-columns: 50px 1fr;
 	grid-template-rows: minmax(min-content, max-content) minmax(min-content, max-content);
 	grid-template-areas:
 		"main_comment_img      main_comment_body      main_comment_body"
-		"main_comment_img             .             main_comment_buttons";
+		".             .             main_comment_buttons";
 `
 
 const OptionWrapper = styled.div``
@@ -260,7 +260,7 @@ function CommentForm(props) {
 							index={1}
 							className="form-control"
 							name="comment"
-							placeholder="comment.."
+							placeholder="add comment.."
 							value={state.comment}
 							onChange={handleChange}
 						/>
