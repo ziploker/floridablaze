@@ -234,6 +234,7 @@ function CommentForm(props) {
 						borderRadius: "50%",
 						width: "50px",
 						height: "50px",
+						minWidth: "50px",
 						gridArea: "main_comment_img",
 					}}
 					src={
@@ -259,7 +260,7 @@ function CommentForm(props) {
 							index={1}
 							className="form-control"
 							name="comment"
-							placeholder="add a public comment.."
+							placeholder="comment.."
 							value={state.comment}
 							onChange={handleChange}
 						/>
