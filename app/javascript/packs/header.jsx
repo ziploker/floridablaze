@@ -254,9 +254,9 @@ const HamburgerMenu = styled.div`
 	justify-self: end;
 	align-self: center;
 	position: ${(props) => (props.hamburger_scrolled == "true" ? "fixed" : "grid")};
-	padding-right: ${(props) => (props.hamburger_scrolled == "true" ? "0px" : "16px")};
+	padding-right: ${(props) => (props.hamburger_scrolled == "true" ? "0px" : "13px")};
 	//top: 25px;
-	right: 22px;
+	right: 13px;
 	//transition: all 0.2s linear;
 	padding-left: 10px;
 
@@ -269,8 +269,11 @@ const HamburgerMenu = styled.div`
 	}
 	@media only screen and (max-width: 230px) {
 		margin-top: ${(props) => (props.hamburger_scrolled == "true" ? "0px" : "5px")};
-		right: 13px;
+
 		top: ${(props) => (props.hamburger_scrolled == "true" ? "15px" : "initial")};
+	}
+	@media only screen and (max-width: 155px) {
+		right: 8px;
 	}
 
 	button {
