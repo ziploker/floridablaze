@@ -226,6 +226,15 @@ const PWrapper = styled.div`
   p {
     margin: 20px 0 40px 0;
   }
+
+  @media only screen and (max-width: 250px) {
+    h2 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 0.7rem;
+    }
+  }
 `;
 
 const Loading = styled.div`

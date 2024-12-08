@@ -58,6 +58,10 @@ const FooterWrapper = styled.div`
       " . colThree colThree ."
       " . legal legal . ";
   }
+
+  @media only screen and (max-width: 300px) {
+    grid-template-columns: 0.7fr 2fr 2fr 0.7fr;
+  }
 `;
 
 const FooterImage = styled.img`
@@ -101,6 +105,10 @@ const SubscribeSection = styled.div`
 
   h2 {
     margin: 0px 0px 40px 0px;
+
+    @media only screen and (max-width: 300px) {
+      font-size: 1rem;
+    }
 
     span {
       color: white;
@@ -157,7 +165,7 @@ const SubscribeSection = styled.div`
   button {
     font-style: normal;
     font-weight: 400;
-    min-width: 200px;
+    //min-width: 200px;
     background-color: #deb15c;
     color: #000000;
     letter-spacing: 0;
@@ -182,9 +190,9 @@ const SubscribeSection = styled.div`
     border-radius: 0;
     border: 0;
 
-    @media only screen and (max-width: 985px) {
-      //// font-size: 3rem;
-      //padding: 30px 100px;
+    @media only screen and (max-width: 300px) {
+      padding: 12px 0px;
+      width: 100%;
     }
   }
 `;
@@ -208,8 +216,8 @@ const Follow = styled.div`
     // font-size: 2rem;
     margin-bottom: 15px;
 
-    @media only screen and (max-width: 985px) {
-      //// font-size: 3.5rem;
+    @media only screen and (max-width: 300px) {
+      font-size: 0.9rem;
     }
   }
 
@@ -228,9 +236,8 @@ const Follow = styled.div`
       font-weight: 400;
       color: white;
 
-      @media only screen and (max-width: 985px) {
-        //// font-size: 2rem;
-        line-height: initial;
+      @media only screen and (max-width: 300px) {
+        font-size: 0.7rem;
       }
     }
   }
@@ -258,8 +265,8 @@ const Explore = styled.div`
     // font-size: 2rem;
     margin-bottom: 15px;
 
-    @media only screen and (max-width: 985px) {
-      //// font-size: 3.5rem;
+    @media only screen and (max-width: 300px) {
+      font-size: 0.9rem;
     }
   }
 
@@ -280,9 +287,8 @@ const Explore = styled.div`
       font-weight: 400;
       color: white;
 
-      @media only screen and (max-width: 985px) {
-        //// font-size: 2rem;
-        line-height: initial;
+      @media only screen and (max-width: 300px) {
+        font-size: 0.7rem;
       }
     }
   }
