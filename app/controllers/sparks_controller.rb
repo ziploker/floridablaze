@@ -56,28 +56,28 @@ class SparksController < ApplicationController
             puts "params[:path] is ========" + params[:path]
             puts "params exists, try to find story with it"
             
-            @seeIfStoryExists = Story.find_by(slug: params[:path].split('/')[-1])
+            ###@seeIfStoryExists = Story.find_by(slug: params[:path].split('/')[-1])
         
             
             
-            puts "blank? ===== " + @seeIfStoryExists.blank?.to_s
-            puts "nil? ====== " + @seeIfStoryExists.nil?.to_s
+            ###puts "blank? ===== " + @seeIfStoryExists.blank?.to_s
+            ###puts "nil? ====== " + @seeIfStoryExists.nil?.to_s
             
             
-            if @seeIfStoryExists.blank?
-                puts "@seeIfStoryExists.blank? was true, so no story was found, either bad params or no story found, redirect to root path with no params, aka homepage, and exit controller "
-                #redirect_to root_path
-                return false
-            end
+            # # # if @seeIfStoryExists.blank?
+            # # #     puts "@seeIfStoryExists.blank? was true, so no story was found, either bad params or no story found, redirect to root path with no params, aka homepage, and exit controller "
+            # # #     #redirect_to root_path
+            # # #     return false
+            # # # end
             
-            if @seeIfStoryExists.nil?
-                puts "@seeIfStoryExists.blank? was true, so no story was found, either bad params or no story found, redirect to root path with no params, aka homepage, and exit controller "
-                #redirect_to root_path
-                return false
-            end
+            # # # if @seeIfStoryExists.nil?
+            # # #     puts "@seeIfStoryExists.blank? was true, so no story was found, either bad params or no story found, redirect to root path with no params, aka homepage, and exit controller "
+            # # #     #redirect_to root_path
+            # # #     return false
+            # # # end
         
-            puts "@seeIfStoryExists was true, so exit controller because itll be handled by react router instead"
-            return false
+            # # # puts "@seeIfStoryExists was true, so exit controller because itll be handled by react router instead"
+            # # # return false
         
         else
             puts "params[:path] didnt exist i guess, carry on"

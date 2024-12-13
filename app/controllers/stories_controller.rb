@@ -187,6 +187,8 @@ class StoriesController < ApplicationController
   end
 
   def show
+
+    puts inside STORY#SHOW
       
   end
 
@@ -270,6 +272,93 @@ class StoriesController < ApplicationController
             error: {auth: ["Email or password is bad is incorrect."]}
         }
     end
+end
+
+def get_story_info_v2
+
+  puts "============Stories controller def get_article_info start================"
+
+
+  puts "set user from stories get article info start"
+  setUser
+  puts "set user from stories get article info end"
+  
+  puts params.to_s
+  #puts " SLUG = " + params["data"]["slug"]
+
+  @story_info = Story.find_by(id: params["id"])
+
+  puts "666666666666666666" + @story_info.title
+  
+  
+  
+  
+ 
+  # @fullCommentsHash = {}
+  
+  # if @article_info.comments
+      
+      
+  #     @article_info.comments.reverse.each do |c|
+
+
+  #         #@comments = @article_info.comments.second.subtree.arrange
+
+  #         # @testComments.push(c.subtree.arrange)
+  #         @fullCommentsHash = @fullCommentsHash.merge(c.subtree.arrange)
+      
+      
+  #     end
+      
+
+
+      
+
+  #     #@testComments.push(@comments)
+
+
+      
+
+  # else
+  #     puts "@article_info.comments was false so @comments = {}"
+  #     @comments = {}
+  # end
+  
+  
+  # puts " @fullCommentsHash inspect = " +  @fullCommentsHash.inspect 
+  
+  
+  
+  if @current_user
+
+      #puts "found current user" + @comments.inspect
+      
+      
+
+      render json: {
+          
+          story: @story_info,
+          
+          user: @current_user
+      
+      }
+
+     
+
+  else
+
+      puts "did not find current user"
+      render json: {
+
+
+          article: {},
+          
+
+      }
+  end
+  
+  puts "============Sparks controller def get_article_info end================"
+
 end
 
   

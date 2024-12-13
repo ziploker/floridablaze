@@ -1,40 +1,40 @@
-import React, { useEffect, useState, useRef, usePrevious } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import { useLocation, useMatch, useParams } from "react-router-dom";
-
+import React, { useEffect, useState, useRef, usePrevious } from "react"
+import styled from "styled-components"
+import axios from "axios"
+import { useLocation, useMatch, useParams } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query"
 //import { useLocation } from "react-router-dom";
 
 // import TimeAgo from 'javascript-time-ago'
 // TimeAgo.addDefaultLocale(en)
-import ReactTimeAgo from "react-time-ago";
+import ReactTimeAgo from "react-time-ago"
 //import en from "javascript-time-ago/locale/en";
-import CommentForm from "./commentForm";
-//import CommentReplyForm from './commentReplyForm'
-import CommentReplyForm from "./commentReplyForm";
-import defaultAvatar from "../../assets/images/man3.png";
+import CommentForm from "./commentForm"
+//import CommentReplyForm from './commentReplyForm'  const query = useQuery({ queryKey:
+import CommentReplyForm from "./commentReplyForm"
+import defaultAvatar from "../../assets/images/man3.png"
 
 //import './article.styled.scss'
 
 //import '../../assets/stylesheets/article_styled.scss'
 
-import Comments from "./comments.jsx";
+import Comments from "./comments.jsx"
 
 //import LookupSection from './lookupSection.jsx'
 
 import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterShareButton,
-  TwitterIcon,
-  WhatsappShareButton,
-  WhatsappIcon,
-} from "react-share";
-import { Helmet } from "react-helmet";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+	FacebookShareButton,
+	FacebookIcon,
+	TwitterShareButton,
+	TwitterIcon,
+	WhatsappShareButton,
+	WhatsappIcon,
+} from "react-share"
+import { Helmet } from "react-helmet"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 
 const ArticleSection = styled.div`
-  /* display: grid;
+	/* display: grid;
     
     grid-template-columns: minmax(200px, 700px);
    
@@ -42,22 +42,22 @@ const ArticleSection = styled.div`
     justify-items: center;
     margin: 50px auto 0px auto; */
 
-  display: grid;
-  grid-template-columns: minmax(555px, 730px) 300px;
-  justify-content: center;
-  margin: 20px 14px 0px 14px;
-  grid-column-gap: 28px;
+	display: grid;
+	grid-template-columns: minmax(555px, 730px) 300px;
+	justify-content: center;
+	margin: 20px 14px 0px 14px;
+	grid-column-gap: 28px;
 
-  @media only screen and (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
-`;
+	@media only screen and (max-width: 900px) {
+		grid-template-columns: 1fr;
+	}
+`
 
 const NewsWrapper = styled.div`
   display: grid;
   grid-template-columns: 100%;
   justify-content: center;
-  position: relative;
+  position: relative;  const query = useQuery({ queryKey: 
   grid-area: 2/1/3/2;
   max-width: 770px;
 
@@ -66,26 +66,26 @@ const NewsWrapper = styled.div`
     "image"
     "body"
     "comments";
-`;
+`
 
 const StoryTitleWrapper = styled.div`
-  grid-area: 1/1/2/2;
-  //margin: 16px;
-  padding-bottom: 15px;
-  justify-self: start;
-`;
+	grid-area: 1/1/2/2;
+	//margin: 16px;
+	padding-bottom: 15px;
+	justify-self: start;
+`
 
 const StoryTitle = styled.h1`
-  color: #303030;
+	color: #303030;
 
-  // font-size: 50px;
-  font-weight: 700;
-  line-height: 1.1em;
-  //letter-spacing: -2px;
+	// font-size: 50px;
+	font-weight: 700;
+	line-height: 1.1em;
+	//letter-spacing: -2px;
 
-  color: #111111;
+	color: #111111;
 
-  /* @media only screen and (max-width: 800px){
+	/* @media only screen and (max-width: 800px){
 
         // font-size: 50px;
 
@@ -93,163 +93,163 @@ const StoryTitle = styled.h1`
     }
 
     */
-  @media only screen and (max-width: 300px) {
-    font-size: 1rem;
-  }
-`;
+	@media only screen and (max-width: 300px) {
+		font-size: 1rem;
+	}
+`
 
 const InfoBar = styled.div`
-  display: grid;
-  overflow: hidden;
-  grid-area: 4/1/5/2;
-  /* grid-template-columns: minmax(0px, min-content) 1fr minmax(0px, min-content);
+	display: grid;
+	overflow: hidden;
+	grid-area: 4/1/5/2;
+	/* grid-template-columns: minmax(0px, min-content) 1fr minmax(0px, min-content);
 	grid-auto-rows: 1fr minmax(0px, min-content); */
 
-  grid-template-columns: 1fr min-content;
-  grid-template-areas: "flexbox    social ";
+	grid-template-columns: 1fr min-content;
+	grid-template-areas: "flexbox    social ";
 
-  margin-top: 25px;
-  align-content: center;
-  //padding: 0px 20px;
+	margin-top: 25px;
+	align-content: center;
+	//padding: 0px 20px;
 
-  @media only screen and (max-width: 420px) {
-    grid-template-columns: minmax(100px, min-content);
-    grid-auto-rows: 1fr 1fr;
-    margin-top: 0px;
-    grid-template-areas:
-      "social social "
-      "flexbox flexbox ";
-  }
-`;
+	@media only screen and (max-width: 420px) {
+		grid-template-columns: minmax(100px, min-content);
+		grid-auto-rows: 1fr 1fr;
+		margin-top: 0px;
+		grid-template-areas:
+			"social social "
+			"flexbox flexbox ";
+	}
+`
 
 const FlexBar = styled.div`
-  display: grid;
-  grid-area: flexbox;
-  align-items: center;
+	display: grid;
+	grid-area: flexbox;
+	align-items: center;
 
-  grid-template-columns: 40px max-content min-content 1fr;
+	grid-template-columns: 40px max-content min-content 1fr;
 
-  @media only screen and (max-width: 420px) {
-    justify-content: start;
-    margin-top: 8px;
-  }
-  @media only screen and (max-width: 265px) {
-    grid-template-columns: 40px max-content 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-`;
+	@media only screen and (max-width: 420px) {
+		justify-content: start;
+		margin-top: 8px;
+	}
+	@media only screen and (max-width: 265px) {
+		grid-template-columns: 40px max-content 1fr;
+		grid-template-rows: 1fr 1fr;
+	}
+`
 
 const ArticleDate = styled.h4`
-  font-family: serif;
-  color: #777777;
-  font-size: 0.7rem;
-  line-height: normal;
-  margin-right: 8px;
+	font-family: serif;
+	color: #777777;
+	font-size: 0.7rem;
+	line-height: normal;
+	margin-right: 8px;
 
-  @media only screen and (max-width: 265px) {
-    grid-area: 2/2/3/-1;
-    margin-left: 10px;
-  }
-`;
+	@media only screen and (max-width: 265px) {
+		grid-area: 2/2/3/-1;
+		margin-left: 10px;
+	}
+`
 
 const ArticleSpacer = styled.div`
-  margin: 0px 3px;
+	margin: 0px 3px;
 
-  @media only screen and (max-width: 265px) {
-    display: none;
-  }
-`;
+	@media only screen and (max-width: 265px) {
+		display: none;
+	}
+`
 
 const StoryImageWrapper = styled.div`
-  width: 100%;
-  height: 0px;
-  //min-height: 90px;
-  //max-height: 300px;
+	width: 100%;
+	height: 0px;
+	//min-height: 90px;
+	//max-height: 300px;
 
-  padding-top: 60%;
-  position: relative;
+	padding-top: 60%;
+	position: relative;
 
-  grid-area: 2/1/3/2;
-`;
+	grid-area: 2/1/3/2;
+`
 
 const StoryImage = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+`
 
 const Caption = styled.div`
-  // font-size: 13px;
-  line-height: 1.7;
-  font-style: italic;
-  color: #999999;
-  padding: 5px 0 0 0;
-  //margin: 0 20px;
-  border-bottom: 1px solid #c0c0c0;
-  grid-area: 3/1/4/2;
-`;
+	// font-size: 13px;
+	line-height: 1.7;
+	font-style: italic;
+	color: #999999;
+	padding: 5px 0 0 0;
+	//margin: 0 20px;
+	border-bottom: 1px solid #c0c0c0;
+	grid-area: 3/1/4/2;
+`
 const StoryShareButtons = styled.div`
-  display: flex;
-  justify-content: end;
-  grid-area: social;
-  align-self: center;
+	display: flex;
+	justify-content: end;
+	grid-area: social;
+	align-self: center;
 
-  @media only screen and (max-width: 420px) {
-    //justify-self: center;
-  }
+	@media only screen and (max-width: 420px) {
+		//justify-self: center;
+	}
 
-  button {
-    width: 25px;
-    height: 25px;
-    margin-bottom: 3px;
-  }
-`;
+	button {
+		width: 25px;
+		height: 25px;
+		margin-bottom: 3px;
+	}
+`
 
 const PWrapper = styled.div`
-  //// font-size: .9rem;
-  line-height: 1.9em;
-  grid-area: 5/1/6/2;
-  //text-indent: 45px;
-  margin-top: 50px;
-  //padding: 0px 20px;
+	//// font-size: .9rem;
+	line-height: 1.9em;
+	grid-area: 5/1/6/2;
+	//text-indent: 45px;
+	margin-top: 50px;
+	//padding: 0px 20px;
 
-  h1 {
-    margin: 20px 0;
-  }
+	h1 {
+		margin: 20px 0;
+	}
 
-  h2 {
-    margin-bottom: 25px;
-  }
+	h2 {
+		margin-bottom: 25px;
+	}
 
-  p {
-    margin: 20px 0 40px 0;
-  }
+	p {
+		margin: 20px 0 40px 0;
+	}
 
-  @media only screen and (max-width: 250px) {
-    h2 {
-      font-size: 1rem;
-    }
-    p {
-      font-size: 0.7rem;
-    }
-  }
-`;
+	@media only screen and (max-width: 250px) {
+		h2 {
+			font-size: 1rem;
+		}
+		p {
+			font-size: 0.7rem;
+		}
+	}
+`
 
 const Loading = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-  h1 {
-    margin: 0 auto;
-    line-height: 100vh;
-    vertical-align: middle;
-  }
-`;
+	h1 {
+		margin: 0 auto;
+		line-height: 100vh;
+		vertical-align: middle;
+	}
+`
 
 // const Comments = styled.div`
 
@@ -258,468 +258,458 @@ const Loading = styled.div`
 // `;
 
 const BorderDiv = styled.div`
-  position: absolute;
-  border-left: 1px solid gray;
+	position: absolute;
+	border-left: 1px solid gray;
 
-  height: calc(100% - 34px);
-  width: 100%;
+	height: calc(100% - 34px);
+	width: 100%;
 
-  margin-left: 12px;
+	margin-left: 12px;
 
-  bottom: 0px;
-  pointer-events: none;
-`;
+	bottom: 0px;
+	pointer-events: none;
+`
 
-const CommentReply = styled.div``;
+const CommentReply = styled.div``
 
 const CommentBody = styled.p`
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
 
-  -ms-word-break: break-all;
+	-ms-word-break: break-all;
 
-  word-break: break-word;
-  padding-left: 35px;
-`;
+	word-break: break-word;
+	padding-left: 35px;
+`
 
 const AuthorAvartar = styled.img`
-  width: 40px;
-  height: 40px;
-  align-self: end;
-  //grid-area: image;
-  border: 1px solid gray;
-  border-radius: 50%;
-  margin-right: 8px;
-`;
+	width: 40px;
+	height: 40px;
+	align-self: end;
+	//grid-area: image;
+	border: 1px solid gray;
+	border-radius: 50%;
+	margin-right: 8px;
+`
 
 const Reply = styled.div`
-  //grid-area: reply;
-  color: rgba(7, 7, 7, 0.65);
-  cursor: pointer;
-  padding: 8px 8px 8px 0px;
-  // font-size: 14px;
+	//grid-area: reply;
+	color: rgba(7, 7, 7, 0.65);
+	cursor: pointer;
+	padding: 8px 8px 8px 0px;
+	// font-size: 14px;
 
-  &:hover {
-    color: black;
-  }
-`;
+	&:hover {
+		color: black;
+	}
+`
 
 const TopBarWrapper = styled.div`
-  display: flex;
-  position: relative;
-  z-index: -1;
-`;
+	display: flex;
+	position: relative;
+	z-index: -1;
+`
 
 const BottomBarWrapper = styled.div`
-  grid-area: bottomBar;
-  display: flex;
-  flex-direction: row;
-  padding-left: 35px;
-`;
+	grid-area: bottomBar;
+	display: flex;
+	flex-direction: row;
+	padding-left: 35px;
+`
 
 const VoteUp = styled.div`
-  cursor: pointer;
-  padding: 8px;
+	cursor: pointer;
+	padding: 8px;
 
-  &:hover {
-    background-color: #e5f4fb;
-  }
+	&:hover {
+		background-color: #e5f4fb;
+	}
 
-  svg {
-    width: 16px;
-    height: 15px;
-    margin-right: 4px;
-  }
+	svg {
+		width: 16px;
+		height: 15px;
+		margin-right: 4px;
+	}
 
-  span {
-    // font-size: 13px;
-  }
-`;
+	span {
+		// font-size: 13px;
+	}
+`
 
 const VoteDown = styled.div`
-  cursor: pointer;
-  padding: 8px;
+	cursor: pointer;
+	padding: 8px;
 
-  &:hover {
-    background-color: #e5f4fb;
-  }
+	&:hover {
+		background-color: #e5f4fb;
+	}
 
-  svg {
-    width: 16px;
-    height: 15px;
-    margin-right: 4px;
-  }
+	svg {
+		width: 16px;
+		height: 15px;
+		margin-right: 4px;
+	}
 
-  span {
-    // font-size: 13px;
-  }
-`;
+	span {
+		// font-size: 13px;
+	}
+`
 
 const SideAds = styled.div`
-  border: 10px solid white;
-  background-color: pink;
-  opacity: 0.45;
+	border: 10px solid white;
+	background-color: pink;
+	opacity: 0.45;
 
-  grid-area: 1/2/7/3;
+	grid-area: 1/2/7/3;
 
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 
-  @media only screen and (max-width: 900px) {
-    display: none;
-  }
-`;
+	@media only screen and (max-width: 900px) {
+		display: none;
+	}
+`
 
-function Article({ artData, userState }) {
-  //
-  const location = useLocation();
-  console.log(
-    "0000000000000000000000000000000000000000000 useLocation",
-    location
-  );
+function Article({ NotartData, userState }) {
+	const location = useLocation()
+	//console.log("InSIDE ARTICLE RIGHT BEFORE REACT QUERY, artData is,", artData?.id)
+	//console.log("InSIDE ARTICLE RIGHT BEFORE REACT QUERY, location.state.id,", location.state?.art.id)
+	console.log("INSIDE USE QUERY &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+	const { data: artData, isLoading } = useQuery({
+		queryFn: () =>
+			axios
+				.get("1/get_story_info_v2")
+				.then((res) => console.log("dfdfasdsdzsdzsdzsdzsdzsdzsd", res.data)),
+		queryKey: ["story"],
+	})
+	//
 
-  console.log("==============Article===============start", artData);
-  console.log("==============Article=============== location", location);
+	console.log("0000000000000000000000000000000000000000000 useLocation", location)
 
-  if (artData && artData != null) {
-    console.log("==============Article=============== artdata was full");
-    console.log("==============Article=============== location", location);
+	//console.log("==============Article===============start", artData)
+	console.log("==============Article=============== location", location)
 
-    artData = artData;
-    console.log(
-      "artData set via props.artData - direct link to article - sparks#index"
-    );
-  } else {
-    // artData was null {
-    console.log("==============Article=============== artdata = null", artData);
+	if (artData && artData != null) {
+		//console.log("==============Article=============== artdata was full")
+		console.log("==============Article=============== location", location)
 
-    if (location && location.state != null) {
-      console.log(
-        "==============Article=============== location.state",
-        location.state
-      );
-      const { art, pathname } = location.state;
-      artData = art;
-      console.log("artData set via props.location.art - link via home page");
-    }
-    console.log("artData not set, bad params");
-  }
+		artData = artData
+		console.log("artData set via props.artData - direct link to article - sparks#index")
+	} else {
+		// artData was null {
+		//console.log("==============Article=============== artdata = null", artData)
 
-  // if (props.location){
+		if (location && location.state != null) {
+			console.log("==============Article=============== location.state", location.state)
+			const { art, pathname } = location.state
+			artData = art
+			console.log("artData set via props.location.art - link via home page")
+		}
+		console.log("artData not set, bad params")
+	}
 
-  //     let dater = useLocation()
-  //     console.log("dater", dater); //state would be in data.state//
+	// if (props.location){
 
-  //     artData = dater.art
+	//     let dater = useLocation()
+	//     console.log("dater", dater); //state would be in data.state//
 
-  // }else if (props.artData){
+	//     artData = dater.art
 
-  //     artData = props.artData
+	// }else if (props.artData){
 
-  // }
+	//     artData = props.artData
 
-  //const artData = typeof dater.art == 'undefined' ? "empty" : dater.art
+	// }
 
-  //console.log("is artData good?", JSON.stringify(artData))
+	//const artData = typeof dater.art == 'undefined' ? "empty" : dater.art
 
-  //const [userData, setUserData] = useState({});
-  //const [isArtLoading, setIsArtLoading] = useState(true);
-  //const [artData, setArtData] = useState({})
+	//console.log("is artData good?", JSON.stringify(artData))
 
-  //const [artDataComments, setArtDataComments] = useState([])
-  //const [avatarLoaded, setAvatarLoaded] = useState(false)
-  //const [rows, setRows] = useState({})
-  //const [showMore, setShowMore] = useState({})
+	//const [userData, setUserData] = useState({});
+	//const [isArtLoading, setIsArtLoading] = useState(true);
+	//const [artData, setArtData] = useState({})
 
-  //const showMoreButtonRefs = useRef([])
-  //showMoreButtonRefs.current = []
+	//const [artDataComments, setArtDataComments] = useState([])
+	//const [avatarLoaded, setAvatarLoaded] = useState(false)
+	//const [rows, setRows] = useState({})
+	//const [showMore, setShowMore] = useState({})
 
-  //const [isCommentsLoading, setIsCommentsLoading] = useState(true);
+	//const showMoreButtonRefs = useRef([])
+	//showMoreButtonRefs.current = []
 
-  let obj = {};
+	//const [isCommentsLoading, setIsCommentsLoading] = useState(true);
 
-  const returnFirstItemOfArray = (id) => {
-    //console.log("returnFirstItemOfArrayxxxxreturnFirstItemOfArray is = " + id);
-    //console.log("LengthnnnLengthnnnLengthnnnLength is = " + id.length.toString());
+	let obj = {}
 
-    if (id.length > 0) {
-      //console.log("LengthnnnLengthnnnLengthnnnLength is = " + id[0].toString());
-      return id[0];
-    }
-  };
+	const returnFirstItemOfArray = (id) => {
+		//console.log("returnFirstItemOfArrayxxxxreturnFirstItemOfArray is = " + id);
+		//console.log("LengthnnnLengthnnnLengthnnnLength is = " + id.length.toString());
 
-  const getReplyArray = (childrenCommentArray) => {
-    let tempArray = [];
+		if (id.length > 0) {
+			//console.log("LengthnnnLengthnnnLengthnnnLength is = " + id[0].toString());
+			return id[0]
+		}
+	}
 
-    childrenCommentArray.map((x, i) => {
-      x.id;
+	const getReplyArray = (childrenCommentArray) => {
+		let tempArray = []
 
-      tempArray.push(x.id + ", ");
-    });
+		childrenCommentArray.map((x, i) => {
+			x.id
 
-    return tempArray;
+			tempArray.push(x.id + ", ")
+		})
 
-    //console.log("getReplyArraydfdfdfdfdfdfdfgetReplyArray = " + JSON.stringify(childrenCommentArray, null, 4))
-  };
+		return tempArray
 
-  function addAllCommentsToStateForReplyButtonToWork(c) {
-    //{console.log("the addAllCommentsToStateForReplyButtonToWork Object about to be mapped is " + JSON.stringify(c, null, 4))}
+		//console.log("getReplyArraydfdfdfdfdfdfdfgetReplyArray = " + JSON.stringify(childrenCommentArray, null, 4))
+	}
 
-    let newArray = [];
-    let newState = {};
+	function addAllCommentsToStateForReplyButtonToWork(c) {
+		//{console.log("the addAllCommentsToStateForReplyButtonToWork Object about to be mapped is " + JSON.stringify(c, null, 4))}
 
-    function getAllId(arr, key) {
-      //console.log("================ in getAllId =======================")
-      // console.log("array = " + JSON.stringify(arr, null, 4))
-      // console.log("key = " + JSON.stringify(key, null, 4))
+		let newArray = []
+		let newState = {}
 
-      arr.forEach(function (item) {
-        //console.log("================ in arr.forEach =======================")
-        // console.log("item = " + JSON.stringify(item, null, 4))
-        // console.log("key = " + JSON.stringify(key, null, 4))
-
-        for (let keys in item) {
-          //console.log("================ in for loop =======================")
-          // console.log("keys = " + JSON.stringify(keys, null, 4))
-          // console.log("key = " + JSON.stringify(key, null, 4))
-          // console.log("item = " + JSON.stringify(item, null, 4))
-
-          if (keys === key) {
-            newArray.push(item[key]);
-          } else if (Array.isArray(item[keys])) {
-            getAllId(item[keys], key);
-          }
-        }
-      });
-
-      //console.log("================ OUT getAllId =======================")
-    }
-
-    getAllId(c, "id");
-    //console.log(newArray)
-
-    newArray.forEach(function (item) {
-      //console.log("xxxitemx = " + item)
-
-      newState[item] = "false";
-    });
-
-    //console.log("newState = " + JSON.stringify(newState, null, 4))
-
-    setRows(newState);
-  }
-
-  function addAllCommentsToStateForShowMoreButtonToWork(c) {
-    //{console.log("the addAllCommentsToStateForReplyButtonToWork Object about to be mapped is " + JSON.stringify(c, null, 4))}
-
-    let newArray = [];
-    let newState = {};
-
-    function getAllId(arr, key) {
-      //console.log("================ in getAllId =======================")
-      // console.log("array = " + JSON.stringify(arr, null, 4))
-      // console.log("key = " + JSON.stringify(key, null, 4))
-
-      arr.forEach(function (item) {
-        //console.log("================ in arr.forEach =======================")
-        // console.log("item = " + JSON.stringify(item, null, 4))
-        // console.log("key = " + JSON.stringify(key, null, 4))
-
-        for (let keys in item) {
-          //console.log("================ in for loop =======================")
-          // console.log("keys = " + JSON.stringify(keys, null, 4))
-          // console.log("key = " + JSON.stringify(key, null, 4))
-          // console.log("item = " + JSON.stringify(item, null, 4))
-
-          if (keys === key) {
-            newArray.push(item[key]);
-          } else if (Array.isArray(item[keys])) {
-            getAllId(item[keys], key);
-          }
-        }
-      });
-
-      //console.log("================ OUT getAllId =======================")
-    }
-
-    getAllId(c, "id");
-    //console.log(newArray)
-
-    newArray.forEach(function (item) {
-      //console.log("xxxitemx = " + item)
-
-      newState[item] = "NO_SHRINK";
-    });
-
-    //console.log("newState = " + JSON.stringify(newState, null, 4))
-
-    //setShowMore(newState);
-
-    //console.log("right before saving ref", newState)
-    //console.log(typeof newState)
-    //showMoreButtonRefs.current.push(newState)
-    //console.log("right after saving ref", showMoreButtonRefs)
-  }
-
-  // /////////////////////////  do not load page until info lodes from server /////////////
-  // if (isArtLoading) {
-
-  //     return <Loading> <h1>Loading......</h1> </Loading>;
-  // }
-
-  const articleStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `${artData.slug}`,
-    },
-    description: `${artData.description}`,
-    image: [`${artData.urls[0]}`],
-    inLanguage: "en-US",
-
-    dateCreated: `${artData.created_at}`,
-    dateModified: `${artData.updated_at}`,
-    author: {
-      "@type": "Person",
-      name: "FloridaBlaze Staff",
-    },
-    publisher: {
-      "@type": "NewsMediaOrganization",
-      name: "FloridaBlaze",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://weedblogimages.s3.amazonaws.com/company_logo.png",
-        height: 35,
-        width: 285,
-      },
-    },
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(articleStructuredData),
-        }}
-      />
-      {Object.keys(userState.user).length > 0 &&
-      userState.user.isAdmin == true ? (
-        <Link
-          key={"b"}
-          to={"/story_editor/" + artData.id}
-          state={{ art: artData }}
-        >
-          edit STORY
-        </Link>
-      ) : null}
-
-      <Helmet>
-        <title>{artData.title}</title>
-
-        <link
-          rel="canonical"
-          href={`https://floridablaze.io/blog/${artData.slug}`}
-        ></link>
-
-        <meta property="og:title" content={artData.title} />
-        <meta property="og:description" content={artData.description} />
-        <meta property="og:image" content={artData.urls[0]} />
-        <meta
-          property="og:url"
-          content={`https://floridaBlaze.io/blog/${artData.slug}`}
-        />
-        <meta property="og:site_name" content="FloridaBlaze" />
-        <meta property="og:type" content="article" />
-      </Helmet>
-
-      <ArticleSection>
-        <StoryTitleWrapper>
-          <StoryTitle>{artData.title}</StoryTitle>
-        </StoryTitleWrapper>
-
-        <Caption
-          dangerouslySetInnerHTML={{ __html: artData.caption }}
-        ></Caption>
-
-        <InfoBar>
-          <FlexBar>
-            <AuthorAvartar src={artData.author_avatar} alt="" />
-
-            <h4
-              style={{
-                fontSize: ".7rem",
-                lineHeight: "normal",
-                marginLeft: "10px",
-              }}
-            >
-              by FloridaBlaze
-            </h4>
-            <ArticleSpacer>|</ArticleSpacer>
-            <ArticleDate>{artData.date}</ArticleDate>
-          </FlexBar>
-
-          <StoryShareButtons>
-            <FacebookShareButton
-              children={
-                <FacebookIcon size={20} round={false} borderRadius={90} />
-              }
-              url={`https://floridablaze.io/blog/${artData.slug}`}
-              style={{ marginRight: "3px" }}
-            />
-            <TwitterShareButton
-              children={
-                <TwitterIcon size={20} round={false} borderRadius={90} />
-              }
-              url={`https://floridablaze.io/blog/${artData.slug}`}
-              style={{ marginRight: "3px" }}
-            />
-            <WhatsappShareButton
-              children={
-                <WhatsappIcon size={20} round={false} borderRadius={90} />
-              }
-              url={`https://floridablaze.io/blog/${artData.slug}`}
-            />
-          </StoryShareButtons>
-        </InfoBar>
-
-        <StoryImageWrapper>
-          <StoryImage src={artData.urls[0]} alt={artData.alt} />
-        </StoryImageWrapper>
-
-        <PWrapper dangerouslySetInnerHTML={{ __html: artData.body }}></PWrapper>
-
-        {/* <CommentFormWrapper>
+		function getAllId(arr, key) {
+			//console.log("================ in getAllId =======================")
+			// console.log("array = " + JSON.stringify(arr, null, 4))
+			// console.log("key = " + JSON.stringify(key, null, 4))
+
+			arr.forEach(function (item) {
+				//console.log("================ in arr.forEach =======================")
+				// console.log("item = " + JSON.stringify(item, null, 4))
+				// console.log("key = " + JSON.stringify(key, null, 4))
+
+				for (let keys in item) {
+					//console.log("================ in for loop =======================")
+					// console.log("keys = " + JSON.stringify(keys, null, 4))
+					// console.log("key = " + JSON.stringify(key, null, 4))
+					// console.log("item = " + JSON.stringify(item, null, 4))
+
+					if (keys === key) {
+						newArray.push(item[key])
+					} else if (Array.isArray(item[keys])) {
+						getAllId(item[keys], key)
+					}
+				}
+			})
+
+			//console.log("================ OUT getAllId =======================")
+		}
+
+		getAllId(c, "id")
+		//console.log(newArray)
+
+		newArray.forEach(function (item) {
+			//console.log("xxxitemx = " + item)
+
+			newState[item] = "false"
+		})
+
+		//console.log("newState = " + JSON.stringify(newState, null, 4))
+
+		setRows(newState)
+	}
+
+	function addAllCommentsToStateForShowMoreButtonToWork(c) {
+		//{console.log("the addAllCommentsToStateForReplyButtonToWork Object about to be mapped is " + JSON.stringify(c, null, 4))}
+
+		let newArray = []
+		let newState = {}
+
+		function getAllId(arr, key) {
+			//console.log("================ in getAllId =======================")
+			// console.log("array = " + JSON.stringify(arr, null, 4))
+			// console.log("key = " + JSON.stringify(key, null, 4))
+
+			arr.forEach(function (item) {
+				//console.log("================ in arr.forEach =======================")
+				// console.log("item = " + JSON.stringify(item, null, 4))
+				// console.log("key = " + JSON.stringify(key, null, 4))
+
+				for (let keys in item) {
+					//console.log("================ in for loop =======================")
+					// console.log("keys = " + JSON.stringify(keys, null, 4))
+					// console.log("key = " + JSON.stringify(key, null, 4))
+					// console.log("item = " + JSON.stringify(item, null, 4))
+
+					if (keys === key) {
+						newArray.push(item[key])
+					} else if (Array.isArray(item[keys])) {
+						getAllId(item[keys], key)
+					}
+				}
+			})
+
+			//console.log("================ OUT getAllId =======================")
+		}
+
+		getAllId(c, "id")
+		//console.log(newArray)
+
+		newArray.forEach(function (item) {
+			//console.log("xxxitemx = " + item)
+
+			newState[item] = "NO_SHRINK"
+		})
+
+		//console.log("newState = " + JSON.stringify(newState, null, 4))
+
+		//setShowMore(newState);
+
+		//console.log("right before saving ref", newState)
+		//console.log(typeof newState)
+		//showMoreButtonRefs.current.push(newState)
+		//console.log("right after saving ref", showMoreButtonRefs)
+	}
+
+	// /////////////////////////  do not load page until info lodes from server /////////////
+	// if (isArtLoading) {
+
+	//     return <Loading> <h1>Loading......</h1> </Loading>;
+	// }
+
+	/* const articleStructuredData = {
+		"@context": "https://schema.org",
+		"@type": "NewsArticle",
+		mainEntityOfPage: {
+			"@type": "WebPage",
+			"@id": `${artData.slug}`,
+		},
+		description: `${artData.description}`,
+		image: [`${artData.urls[0]}`],
+		inLanguage: "en-US",
+
+		dateCreated: `${artData.created_at}`,
+		dateModified: `${artData.updated_at}`,
+		author: {
+			"@type": "Person",
+			name: "FloridaBlaze Staff",
+		},
+		publisher: {
+			"@type": "NewsMediaOrganization",
+			name: "FloridaBlaze",
+			logo: {
+				"@type": "ImageObject",
+				url: "https://weedblogimages.s3.amazonaws.com/company_logo.png",
+				height: 35,
+				width: 285,
+			},
+		},
+	} */
+
+	if (isLoading) {
+		return <div>. . . . ...Loading.. . . .</div>
+	}
+
+	console.log("isLoading is finally false, here is info from server", storyInfo)
+
+	return (
+		<>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify(articleStructuredData),
+				}}
+			/>
+			{Object.keys(userState.user).length > 0 && userState.user.isAdmin == true ? (
+				<Link key={"b"} to={"/story_editor/" + artData.id} state={{ art: artData }}>
+					edit STORY
+				</Link>
+			) : null}
+
+			<Helmet>
+				<title>{artData.title}</title>
+
+				<link rel="canonical" href={`https://floridablaze.io/blog/${artData.slug}`}></link>
+
+				<meta property="og:title" content={artData.title} />
+				<meta property="og:description" content={artData.description} />
+				<meta property="og:image" content={artData.urls[0]} />
+				<meta property="og:url" content={`https://floridaBlaze.io/blog/${artData.slug}`} />
+				<meta property="og:site_name" content="FloridaBlaze" />
+				<meta property="og:type" content="article" />
+			</Helmet>
+
+			<ArticleSection>
+				<StoryTitleWrapper>
+					<StoryTitle>{artData.title}</StoryTitle>
+				</StoryTitleWrapper>
+
+				<Caption dangerouslySetInnerHTML={{ __html: artData.caption }}></Caption>
+
+				<InfoBar>
+					<FlexBar>
+						<AuthorAvartar src={artData.author_avatar} alt="" />
+
+						<h4
+							style={{
+								fontSize: ".7rem",
+								lineHeight: "normal",
+								marginLeft: "10px",
+							}}
+						>
+							by FloridaBlaze
+						</h4>
+						<ArticleSpacer>|</ArticleSpacer>
+						<ArticleDate>{artData.date}</ArticleDate>
+					</FlexBar>
+
+					<StoryShareButtons>
+						<FacebookShareButton
+							children={<FacebookIcon size={20} round={false} borderRadius={90} />}
+							url={`https://floridablaze.io/blog/${artData.slug}`}
+							style={{ marginRight: "3px" }}
+						/>
+						<TwitterShareButton
+							children={<TwitterIcon size={20} round={false} borderRadius={90} />}
+							url={`https://floridablaze.io/blog/${artData.slug}`}
+							style={{ marginRight: "3px" }}
+						/>
+						<WhatsappShareButton
+							children={<WhatsappIcon size={20} round={false} borderRadius={90} />}
+							url={`https://floridablaze.io/blog/${artData.slug}`}
+						/>
+					</StoryShareButtons>
+				</InfoBar>
+
+				<StoryImageWrapper>
+					<StoryImage src={artData.urls[0]} alt={artData.alt} />
+				</StoryImageWrapper>
+
+				<PWrapper dangerouslySetInnerHTML={{ __html: artData.body }}></PWrapper>
+
+				{/* <CommentFormWrapper>
 
                     <CommentForm addAllCommentsToStateForReplyButtonToWork={addAllCommentsToStateForReplyButtonToWork} userState={props.userState} storyID={artData.id} setIsCommentsLoading={setIsCommentsLoading}/>
 
                 </CommentFormWrapper> */}
 
-        {/* {isCommentsLoading ? 
+				{/* {isCommentsLoading ? 
                    
                    <h1>comments loading==============================</h1>
                
                
                : */}
 
-        <Comments
-          //showMoreButtonRefs={showMoreButtonRefs}
-          //artDataComments={artDataComments}
-          //showMore={showMore}
-          //setShowMore={setShowMore}
-          userState={userState}
-          artData={artData}
-          //setArtDataComments={setArtDataComments}
-          //rows={rows}
-          //setRows={setRows}
-          slug={artData.slug}
-        />
+				<Comments
+					//showMoreButtonRefs={showMoreButtonRefs}
+					//artDataComments={artDataComments}
+					//showMore={showMore}
+					//setShowMore={setShowMore}
+					userState={userState}
+					artData={artData}
+					//setArtDataComments={setArtDataComments}
+					//rows={rows}
+					//setRows={setRows}
+					slug={artData.slug}
+				/>
 
-        <SideAds />
-      </ArticleSection>
-    </>
-  );
+				<SideAds />
+			</ArticleSection>
+		</>
+	)
 }
 
-export default Article;
+export default Article

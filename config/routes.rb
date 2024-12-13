@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     post '/blog/vote_up', to: 'sparks#vote_up'
     post '/blog/vote_down', to: 'sparks#vote_down'
     post '/blog/delete_pic', to: 'sparks#delete_pic'
+    get  '/blog/:id/get_story_info_v2', to: 'stories#get_story_info_v2'
 
     post '/auth/rgsi', to: 'registrations#google'
     post '/auth/rfsi', to: 'registrations#facebook'
