@@ -53,8 +53,8 @@ class SparksController < ApplicationController
         puts "=============  check to see if params[:path] exists AND corresponds to a story "
         
         if params[:path] && params[:path] != "actnow"
-            puts "params[:path] is ========" + params[:path]
-            puts "params exists, try to find story with it"
+            #puts "params[:path] is ========" + params[:path]
+            #puts "params exists, try to find story with it"
             
             ###@seeIfStoryExists = Story.find_by(slug: params[:path].split('/')[-1])
         
@@ -674,10 +674,6 @@ class SparksController < ApplicationController
         puts "============Sparks controller def get_comment_info start================"
 
 
-        #puts "set user from sparks get article info start"
-        #setUser
-        #puts "set user from sparks get article info end"
-        
         
         puts " SLUG = " + params["data"]["slug"]
 
@@ -707,7 +703,7 @@ class SparksController < ApplicationController
 
             
 
-            #@testComments.push(@comments)
+           
 
 
             
@@ -721,38 +717,6 @@ class SparksController < ApplicationController
         puts " @fullCommentsHash inspect = " +  @fullCommentsHash.inspect 
         
         
-        # @comments = @article_info.comments.as_json(include: {comments: 
-        #                                             { include: {comments:
-        #                                                 { include: {comments:
-        #                                                     { include: [:comments]}
-        #                                                 }}
-        #                                             }}
-        #                                         })
-
-        
-
-        
-
-
-        # if @current_user
-
-        #     #puts "found current user" + @comments.inspect
-            
-            
-
-        #     render json: {
-                
-        #         article: @article_info,
-        #         comments: Comment.json_tree(@fullCommentsHash),
-        #         user: @current_user
-            
-        #     }
-
-           
-
-        # else
-
-            #puts "did not find current user"
             render json: {
 
 
@@ -760,7 +724,7 @@ class SparksController < ApplicationController
                 comments: Comment.json_tree(@fullCommentsHash)
 
             }
-        #end
+       
     
 
     end

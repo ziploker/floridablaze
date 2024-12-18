@@ -276,7 +276,7 @@ end
 
 def get_story_info_v2
 
-  puts "============Stories controller def get_article_info start================"
+  puts "============Stories controller def get_story_info_V2 start================"
 
 
   puts "set user from stories get article info start"
@@ -357,7 +357,7 @@ def get_story_info_v2
       }
   end
   
-  puts "============Sparks controller def get_article_info end================"
+  puts "============Stories controller def get_story_info_V2 end================"
 
 end
 
