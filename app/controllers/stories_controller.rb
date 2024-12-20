@@ -284,12 +284,13 @@ def get_story_info_v2
   puts "set user from stories get article info end"
   
   puts params.to_s
+  puts "the ID is " + params["id"]
+  
   #puts " SLUG = " + params["data"]["slug"]
 
-  @story_info = Story.find_by(id: params["id"].to_i)
+  @story_info = Story.find_by(id: params["id"])
 
-  puts "666666666666666666" + @story_info.title
-  
+  puts "666666666666666666" + @story_info.inspect
   
   
   
