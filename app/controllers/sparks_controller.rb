@@ -58,7 +58,7 @@ class SparksController < ApplicationController
         
             
             
-            @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls)
+            @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls, :slug)
             
             puts "@page===================== " + @page.to_s  
             puts "@stories===================== " + @stories.inspect  
@@ -84,7 +84,7 @@ class SparksController < ApplicationController
             if doesStoryExist 
                 puts "story exists, do nothing here"
             else
-                @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls)
+                @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls, :slug)
 
             end
 
