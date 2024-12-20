@@ -286,7 +286,7 @@ def get_story_info_v2
   puts params.to_s
   #puts " SLUG = " + params["data"]["slug"]
 
-  @story_info = Story.find_by(id: params["id"])
+  @story_info = Story.find_by(id: params["id"].to_i)
 
   puts "666666666666666666" + @story_info.title
   
@@ -329,7 +329,7 @@ def get_story_info_v2
   
   
   
-  if @current_user
+  ##if @current_user
 
       #puts "found current user" + @comments.inspect
       
@@ -345,17 +345,17 @@ def get_story_info_v2
 
      
 
-  else
+  # # else
 
-      puts "did not find current user"
-      render json: {
+  # #     puts "did not find current user"
+  # #     render json: {
 
 
-          article: {},
+  # #         article: {},
           
 
-      }
-  end
+  # #     }
+  # # end
   
   puts "============Stories controller def get_story_info_V2 end================"
 
