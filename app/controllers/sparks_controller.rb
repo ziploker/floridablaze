@@ -42,71 +42,56 @@ class SparksController < ApplicationController
 
         
 
-        puts "============Sparks controller def index start================"
+        puts "============Sparks#index start================"
 
-        puts "---------calling setUser from sparks controller-----------"
+        @googleGeoApi = Rails.application.credentials.dig(:google, :geoapi)
+        @page = 0
+        
+        theParams = params["path"] ? params["path"].split('/') : ""
+        puts "theParams are " + theParams.inspect
+
         
         setUser
 
-        
-        
-        puts "=============  check to see if params[:path] exists AND corresponds to a story "
-        
-        if params[:path] && params[:path] != "actnow"
-            #puts "params[:path] is ========" + params[:path]
-            #puts "params exists, try to find story with it"
-            
-            ###@seeIfStoryExists = Story.find_by(slug: params[:path].split('/')[-1])
+        if theParams[0] != "blog"
+
         
             
             
-            ###puts "blank? ===== " + @seeIfStoryExists.blank?.to_s
-            ###puts "nil? ====== " + @seeIfStoryExists.nil?.to_s
-            
-            
-            # # # if @seeIfStoryExists.blank?
-            # # #     puts "@seeIfStoryExists.blank? was true, so no story was found, either bad params or no story found, redirect to root path with no params, aka homepage, and exit controller "
-            # # #     #redirect_to root_path
-            # # #     return false
-            # # # end
-            
-            # # # if @seeIfStoryExists.nil?
-            # # #     puts "@seeIfStoryExists.blank? was true, so no story was found, either bad params or no story found, redirect to root path with no params, aka homepage, and exit controller "
-            # # #     #redirect_to root_path
-            # # #     return false
-            # # # end
-        
-            # # # puts "@seeIfStoryExists was true, so exit controller because itll be handled by react router instead"
-            # # # return false
-        
-        else
-            puts "params[:path] didnt exist i guess, carry on"
-            # puts "params[:path] is ========" + params[:path]
-            # @path = params[:path]
-            
-            # @page = params.fetch(:page, 0).to_i
-            @page = 0
-            
-            @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE)
+            @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls)
             
             puts "@page===================== " + @page.to_s  
             puts "@stories===================== " + @stories.inspect  
 
-            @lastStory = Story.last
-            @secondToLastStory = Story.second_to_last
-            @thirdToLastStory = Story.third_to_last
-            @fourthToLastStory = Story.order('created_at DESC').fourth()
-            @googleGeoApi = Rails.application.credentials.dig(:google, :geoapi)
+            # @lastStory = Story.last
+            # @secondToLastStory = Story.second_to_last
+            # @thirdToLastStory = Story.third_to_last
+            # @fourthToLastStory = Story.order('created_at DESC').fourth()
+            
 
-            @allStoriesPlaceholder = []
-            s = Story.all
-            s.map{|x| @allStoriesPlaceholder.push(x.id)}
+            # @allStoriesPlaceholder = []
+            # s = Story.all
+            # s.map{|x| @allStoriesPlaceholder.push(x.id)}
 
-            @totalNumOfStoriesOnServer = Story.count
-        
+            #@totalNumOfStoriesOnServer = Story.count
+        else
+
+
+            doesStoryExist = Story.find_by(slug: theParams[1])
+
+           
+
+            if doesStoryExist 
+                puts "story exists, do nothing here"
+            else
+                @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls)
+
+            end
+
+        end
 
             
-        end
+        
 
         puts "============Sparks controller def index end================"
     end

@@ -61,16 +61,6 @@ const StyledBurger = styled.button`
       transform: ${({ open_side_menu }) =>
         open_side_menu == "true" ? "translateX(5px)" : "translateX(0)"};
 
-      /* background: ${(props) =>
-        props.scroll_dir == "scrolling down"
-          ? props.leaf_scrolled_so_change_color_down == "true"
-            ? "black"
-            : "white"
-          : props.leafScrolledSoChangeColorUp == "true"
-          ? "white"
-          : "black"};
-       */
-
       @media only screen and (max-width: 520px) {
         color: black;
       }
@@ -86,15 +76,6 @@ const StyledBurger = styled.button`
     :nth-child(3) {
       transform: ${({ open_side_menu }) =>
         open_side_menu == "true" ? "rotate(-45deg)" : "rotate(0)"};
-
-      /* background: ${(props) =>
-        props.scroll_dir == "scrolling down"
-          ? props.leaf_scrolled_so_change_color_down == " true"
-            ? "black"
-            : "white"
-          : props.leaf_scrolled_so_change_color_up == "true"
-          ? "white"
-          : "black"}; */
 
       @media only screen and (max-width: 520px) {
         background: black;

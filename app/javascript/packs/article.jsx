@@ -57,7 +57,7 @@ const NewsWrapper = styled.div`
   display: grid;
   grid-template-columns: 100%;
   justify-content: center;
-  position: relative;  const query = useQuery({ queryKey: 
+  position: relative;
   grid-area: 2/1/3/2;
   max-width: 770px;
 
@@ -371,212 +371,19 @@ const SideAds = styled.div`
 `;
 
 function Article({ userState }) {
-  /* const location = useLocation(); */
-
-  /* console.log("==============Article===============start", artData)
-  console.log("==============Article=============== location", location);
-
-  if (artData && artData != null) {
-    //console.log("==============Article=============== artdata was full")
-    console.log("==============Article=============== location", location);
-
-    artData = artData;
-    console.log(
-      "artData set via props.artData - direct link to article - sparks#index"
-    );
-  } else {
-    // artData was null {
-    //console.log("==============Article=============== artdata = null", artData)
-
-    if (location && location.state != null) {
-      console.log(
-        "==============Article=============== location.state",
-        location.state
-      );
-      const { art, pathname } = location.state;
-      artData = art;
-      console.log("artData set via props.location.art - link via home page");
-    }
-    console.log("artData not set, bad params");
-  } */
-
-  /* // if (props.location){
-
-  //     let dater = useLocation()
-  //     console.log("dater", dater); //state would be in data.state//
-
-  //     artData = dater.art
-
-  // }else if (props.artData){
-
-  //     artData = props.artData
-
-  // } */
-
-  /* //const artData = typeof dater.art == 'undefined' ? "empty" : dater.art
-
-  //console.log("is artData good?", JSON.stringify(artData)) */
-
-  /* const [storyFromRails, setStoryFromRails] = useState({}); */
-
-  /* //const [userData, setUserData] = useState({});
-  //const [isArtLoading, setIsArtLoading] = useState(true);
-  //const [artData, setArtData] = useState({})
-
-  //const [artDataComments, setArtDataComments] = useState([])
-  //const [avatarLoaded, setAvatarLoaded] = useState(false)
-  //const [rows, setRows] = useState({})
-  //const [showMore, setShowMore] = useState({})
-
-  //const showMoreButtonRefs = useRef([])
-  //showMoreButtonRefs.current = []
-
-  //const [isCommentsLoading, setIsCommentsLoading] = useState(true); */
-
-  /* console.log(
-    "INSIDE USE QUERY &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&",
-    location
-  ); */
-
   const { data: storyFromRails, isLoading } = useQuery({
     queryFn: () =>
       axios.get("1/get_story_info_v2").then((res) => res.data.story),
     queryKey: ["story"],
   });
 
-  let obj = {};
-
-  /* const returnFirstItemOfArray = (id) => {
-    //console.log("returnFirstItemOfArrayxxxxreturnFirstItemOfArray is = " + id);
-    //console.log("LengthnnnLengthnnnLengthnnnLength is = " + id.length.toString());
-
-    if (id.length > 0) {
-      //console.log("LengthnnnLengthnnnLengthnnnLength is = " + id[0].toString());
-      return id[0];
-    }
-  };
-
-  const getReplyArray = (childrenCommentArray) => {
-    let tempArray = [];
-
-    childrenCommentArray.map((x, i) => {
-      x.id;
-
-      tempArray.push(x.id + ", ");
-    });
-
-    return tempArray;
-
-    //console.log("getReplyArraydfdfdfdfdfdfdfgetReplyArray = " + JSON.stringify(childrenCommentArray, null, 4))
-  };
-
-  function addAllCommentsToStateForReplyButtonToWork(c) {
-    //{console.log("the addAllCommentsToStateForReplyButtonToWork Object about to be mapped is " + JSON.stringify(c, null, 4))}
-
-    let newArray = [];
-    let newState = {};
-
-    function getAllId(arr, key) {
-      //console.log("================ in getAllId =======================")
-      // console.log("array = " + JSON.stringify(arr, null, 4))
-      // console.log("key = " + JSON.stringify(key, null, 4))
-
-      arr.forEach(function (item) {
-        //console.log("================ in arr.forEach =======================")
-        // console.log("item = " + JSON.stringify(item, null, 4))
-        // console.log("key = " + JSON.stringify(key, null, 4))
-
-        for (let keys in item) {
-          //console.log("================ in for loop =======================")
-          // console.log("keys = " + JSON.stringify(keys, null, 4))
-          // console.log("key = " + JSON.stringify(key, null, 4))
-          // console.log("item = " + JSON.stringify(item, null, 4))
-
-          if (keys === key) {
-            newArray.push(item[key]);
-          } else if (Array.isArray(item[keys])) {
-            getAllId(item[keys], key);
-          }
-        }
-      });
-
-      //console.log("================ OUT getAllId =======================")
-    }
-
-    getAllId(c, "id");
-    //console.log(newArray)
-
-    newArray.forEach(function (item) {
-      //console.log("xxxitemx = " + item)
-
-      newState[item] = "false";
-    });
-
-    //console.log("newState = " + JSON.stringify(newState, null, 4))
-
-    setRows(newState);
-  }
-
-  function addAllCommentsToStateForShowMoreButtonToWork(c) {
-    //{console.log("the addAllCommentsToStateForReplyButtonToWork Object about to be mapped is " + JSON.stringify(c, null, 4))}
-
-    let newArray = [];
-    let newState = {};
-
-    function getAllId(arr, key) {
-      //console.log("================ in getAllId =======================")
-      // console.log("array = " + JSON.stringify(arr, null, 4))
-      // console.log("key = " + JSON.stringify(key, null, 4))
-
-      arr.forEach(function (item) {
-        //console.log("================ in arr.forEach =======================")
-        // console.log("item = " + JSON.stringify(item, null, 4))
-        // console.log("key = " + JSON.stringify(key, null, 4))
-
-        for (let keys in item) {
-          //console.log("================ in for loop =======================")
-          // console.log("keys = " + JSON.stringify(keys, null, 4))
-          // console.log("key = " + JSON.stringify(key, null, 4))
-          // console.log("item = " + JSON.stringify(item, null, 4))
-
-          if (keys === key) {
-            newArray.push(item[key]);
-          } else if (Array.isArray(item[keys])) {
-            getAllId(item[keys], key);
-          }
-        }
-      });
-
-      //console.log("================ OUT getAllId =======================")
-    }
-
-    getAllId(c, "id");
-    //console.log(newArray)
-
-    newArray.forEach(function (item) {
-      //console.log("xxxitemx = " + item)
-
-      newState[item] = "NO_SHRINK";
-    });
-
-    //console.log("newState = " + JSON.stringify(newState, null, 4))
-
-    //setShowMore(newState);
-
-    //console.log("right before saving ref", newState)
-    //console.log(typeof newState)
-    //showMoreButtonRefs.current.push(newState)
-    //console.log("right after saving ref", showMoreButtonRefs)
-  }
-
-  // /////////////////////////  do not load page until info lodes from server /////////////
-  // if (isArtLoading) {
-
-  //     return <Loading> <h1>Loading......</h1> </Loading>;
-  // } */
-
   if (isLoading) {
-    return <div>. . . . ...Loading.. . . .</div>;
+    return (
+      <Loading>
+        {" "}
+        <h1>Loading......</h1>{" "}
+      </Loading>
+    );
   }
 
   const articleStructuredData = {
@@ -616,6 +423,7 @@ function Article({ userState }) {
           __html: JSON.stringify(articleStructuredData),
         }}
       />
+
       {Object.keys(userState.user).length > 0 &&
       userState.user.isAdmin == true ? (
         <Link
@@ -635,7 +443,7 @@ function Article({ userState }) {
         ></link>
         <meta property="og:title" content={storyFromRails.title} />
         <meta property="og:description" content={storyFromRails.description} />
-        /* <meta property="og:image" content={storyFromRails.alt} /> */
+        <meta property="og:image" content={storyFromRails.urls[0]} />
         <meta
           property="og:url"
           content={`https://floridaBlaze.io/blog/${storyFromRails.urls[0]}`}
@@ -702,33 +510,13 @@ function Article({ userState }) {
           dangerouslySetInnerHTML={{ __html: storyFromRails.body }}
         ></PWrapper>
 
-        {/* <CommentFormWrapper>
-
-                    <CommentForm addAllCommentsToStateForReplyButtonToWork={addAllCommentsToStateForReplyButtonToWork} userState={props.userState} storyID={artData.id} setIsCommentsLoading={setIsCommentsLoading}/>
-
-                </CommentFormWrapper> */}
-
-        {/* {isCommentsLoading ? 
-                   
-                   <h1>comments loading==============================</h1>
-               
-               
-               : */}
-
         <Comments
-          //showMoreButtonRefs={showMoreButtonRefs}
-          //artDataComments={artDataComments}
-          //showMore={showMore}
-          //setShowMore={setShowMore}
           userState={userState}
           artData={storyFromRails}
-          //setArtDataComments={setArtDataComments}
-          //rows={rows}
-          //setRows={setRows}
           slug={storyFromRails.slug}
         />
-
-        <SideAds />
+        {/* 
+        <SideAds /> */}
       </ArticleSection>
     </>
   );

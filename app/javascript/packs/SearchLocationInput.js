@@ -34,7 +34,7 @@ function SearchLocationInput({
   //for when address is entered (but never selected from list) and hit enter.
   useEffect(() => {
     loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=AIzaSyAejSgheqbFb_ibGMf9ko902a5_FrJ0dTw&libraries=places`,
+      `https://maps.googleapis.com/maps/api/js?key=AIzaSyAejSgheqbFb_ibGMf9ko902a5_FrJ0dTw&libraries=places&callback=Function.prototype`,
       () => handleScriptLoad(setQuery, autoCompleteRef)
     );
 

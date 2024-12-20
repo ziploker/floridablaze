@@ -381,8 +381,8 @@ function Header(props) {
   };
 
   useEffect(() => {
-    console.log("===================window.scrollY===", window.scrollY);
-    console.log("==== pixlesFromLongNavToTop ====", pixlesFromLogoToTop);
+    //console.log("===================window.scrollY===", window.scrollY);
+    //console.log("==== pixlesFromLongNavToTop ====", pixlesFromLogoToTop);
     // console.log(
     //   "==== longNavRef.current.getBoundingClientRect().top====",
     //   longNavRef.current.getBoundingClientRect().top
@@ -393,7 +393,6 @@ function Header(props) {
   });
 
   useEffect(() => {
-    console.log("UseEffect 22222222222");
     const threshold = 0;
     let lastScrollY = window.pageYOffset;
     let ticking = false;
@@ -424,22 +423,20 @@ function Header(props) {
   }, [scrollDir]);
 
   useEffect(() => {
-    console.log("UseEffect 3333333333");
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // set initial values for "sticky" feature
   useEffect(() => {
-    console.log("UseEffect 444444444444");
-    console.log(
-      "Sticky feature, initial hamburgerRef.current.getBoundingClientRect().top is ",
-      hamburgerRef.current.getBoundingClientRect().top
-    );
-    console.log(
-      "What is the longNavRef.current.getBoundingClientRect().top",
-      longNavRef.current.getBoundingClientRect().top
-    );
+    // console.log(
+    //   "Sticky feature, initial hamburgerRef.current.getBoundingClientRect().top is ",
+    //   hamburgerRef.current.getBoundingClientRect().top
+    // );
+    // console.log(
+    //   "What is the longNavRef.current.getBoundingClientRect().top",
+    //   longNavRef.current.getBoundingClientRect().top
+    // );
     //
     setPixlesFromLogoToTop(
       logoTextRef.current.getBoundingClientRect().top //-30
@@ -481,7 +478,6 @@ function Header(props) {
 
   ////sticky nav end
   useEffect(() => {
-    console.log("UseEffect 5555555555555");
     // make it so this header doesnt load on certin pages
     if (
       locationFromHook.pathname === "/login" ||

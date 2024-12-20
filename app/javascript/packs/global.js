@@ -230,8 +230,8 @@ const GlobalStyles = createGlobalStyle`
 html{
   
   font-size: 100%;
-  line-height: 1.15; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+  line-height: 1.15;
+  ‑webkit‑text‑size‑adjust: 100%;
 }
 /*
   Typographic tweaks!
