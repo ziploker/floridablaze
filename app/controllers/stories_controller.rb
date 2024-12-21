@@ -288,7 +288,7 @@ def get_story_info_v2
   
   #puts " SLUG = " + params["data"]["slug"]
 
-  @story_info = Story.find_by(id: params["id"])
+  @story_info = Story.find_by(slug: params["id"])
 
   puts "666666666666666666" + @story_info.inspect
   

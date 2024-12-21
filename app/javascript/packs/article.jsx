@@ -371,9 +371,11 @@ const SideAds = styled.div`
 `;
 
 function Article({ userState }) {
+  const params = useParams();
+
   const { data: storyFromRails, isLoading } = useQuery({
     queryFn: () =>
-      axios.get("1/get_story_info_v2").then((res) => res.data.story),
+      axios.get(`${params.id}/get_story_info_v2`).then((res) => res.data.story),
     queryKey: ["story"],
   });
 
