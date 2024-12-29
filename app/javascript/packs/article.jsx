@@ -45,9 +45,9 @@ const ArticleSection = styled.div`
   display: grid;
   grid-template-columns: minmax(555px, 730px) 300px;
   justify-content: center;
-  margin: 20px 14px 0px 14px;
+  //margin: 20px 14px 0px 14px;
   grid-column-gap: 28px;
-
+  margin: 0 15px;
   @media only screen and (max-width: 900px) {
     grid-template-columns: 1fr;
   }
@@ -113,7 +113,7 @@ const InfoBar = styled.div`
   //padding: 0px 20px;
 
   @media only screen and (max-width: 420px) {
-    grid-template-columns: minmax(100px, min-content);
+    grid-template-columns: minmax(100px, 1fr);
     grid-auto-rows: 1fr 1fr;
     margin-top: 0px;
     grid-template-areas:
@@ -209,11 +209,31 @@ const StoryShareButtons = styled.div`
 
 const PWrapper = styled.div`
   //// font-size: .9rem;
-  line-height: 1.9em;
+  //line-height: 1.9em;
   grid-area: 5/1/6/2;
   //text-indent: 45px;
-  margin-top: 50px;
+  margin-top: 20px;
   //padding: 0px 20px;
+
+  .theReferences {
+    a {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+
+      -ms-word-break: break-all;
+      /* This is the dangerous one in WebKit, as it breaks things wherever */
+      word-break: break-all;
+      /* Instead use this non-standard one: */
+      word-break: break-word;
+
+      /* Adds a hyphen where the word breaks, if supported (No Blink) */
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+      font-size: 12px;
+    }
+  }
 
   ul {
     padding: 0 0 44px 15px;
@@ -234,14 +254,14 @@ const PWrapper = styled.div`
     margin: 20px 0 40px 0;
   }
 
-  @media only screen and (max-width: 450px) {
+  /* @media only screen and (max-width: 450px) {
     h2 {
       font-size: 1rem;
     }
     p {
       font-size: 0.7rem;
     }
-  }
+  } */
 `;
 
 const Loading = styled.div`

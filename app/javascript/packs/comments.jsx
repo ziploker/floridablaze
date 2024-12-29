@@ -42,6 +42,7 @@ TimeAgo.addDefaultLocale(en);
 const Comments = styled.div`
   grid-area: 6/1/7/2;
   //margin-bottom: 80px;
+  margin-top: 50px;
 `;
 
 const CommentDisplay = styled.div`

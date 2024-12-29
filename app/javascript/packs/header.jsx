@@ -95,7 +95,7 @@ const LogoText = styled.div`
 
   @media only screen and (max-width: 230px) {
     width: ${(props) => (props.logo_scrolled == "true" ? "100px" : "100px")};
-    margin-left: 8px;
+    //margin-left: 8px;
   }
 `;
 
