@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { createGlobalStyle } from "styled-components";
+import React, { useEffect, useState } from "react"
+import { createGlobalStyle } from "styled-components"
 
-import "../../../node_modules/modern-normalize/modern-normalize.css";
+import "../../../node_modules/modern-normalize/modern-normalize.css"
 
 //light blue   #56c5cc 	(86,197,204)
 //pink         #f14f7b 	(241,79,123)
@@ -680,6 +680,11 @@ p{
 
 
 
+.theLinks{
+
+  display: grid:
+  grid-template-columns: min-content min-content  1fr;
+}
 
 
 
@@ -688,7 +693,6 @@ p{
 
 
 
+`
 
-`;
-
-export default (props) => <GlobalStyles {...props} />;
+export default (props) => <GlobalStyles {...props} />
