@@ -48,6 +48,8 @@ class SparksController < ApplicationController
         @page = 0
         
         theParams = params["path"] ? params["path"].split('/') : ""
+        theParamsFull = params["path"] ? params["path"] : ""
+        puts "theParamsFull are " + theParamsFull
         puts "theParams are " + theParams.inspect
 
         
@@ -59,7 +61,7 @@ class SparksController < ApplicationController
             
             
             @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls, :slug)
-            
+            puts "theParams[0] did not equal blog"
             puts "@page===================== " + @page.to_s  
             puts "@stories===================== " + @stories.inspect  
 
@@ -84,6 +86,7 @@ class SparksController < ApplicationController
             if doesStoryExist 
                 puts "story exists, do nothing here"
             else
+                puts "story did exists, do something here"
                 @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls, :slug)
 
             end
