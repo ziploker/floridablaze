@@ -59,7 +59,7 @@ class SparksController < ApplicationController
 
         
             
-            
+            @showHome = true
             @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls, :slug)
             puts "theParams[0] did not equal blog"
             puts "@page===================== " + @page.to_s  
@@ -77,18 +77,27 @@ class SparksController < ApplicationController
 
             #@totalNumOfStoriesOnServer = Story.count
         else
-
+            puts "theParams[0] DID___ equal blog"
 
             doesStoryExist = Story.find_by(slug: theParams[1])
+            
 
+            puts "doesStoryExist = " + doesStoryExist.inspect
+
+            if doesStoryExist
+                puts "test, doesstoryexist was true"
+            else
+                puts "test, doesstoryexist was FALSE__"
+            end
            
 
             if doesStoryExist 
                 puts "story exists, do nothing here"
+                @showHome = true
             else
-                puts "story did exists, do something here"
+                puts "story didn't exists, do something here"
                 @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls, :slug)
-
+                @showHome = false
             end
 
         end
