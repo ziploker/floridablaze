@@ -48,9 +48,26 @@ class SparksController < ApplicationController
         @page = 0
         
         theParams = params["path"] ? params["path"].split('/') : ""
-        theParamsFull = params["path"] ? params["path"] : ""
-        puts "theParamsFull are " + theParamsFull
+        
+        puts "theWholeURL is: " + request.original_url
         puts "theParams are " + theParams.inspect
+        puts "theParams Count is " + theParams.count.to_s
+
+
+        if theParams.count == 1 
+            puts "in loop (params was 1)"
+            puts theParams[0]
+
+            if theParams[0] === "forgot" || theParams[0] === "resend" || theParams[0] === "edit"
+
+                puts "it was forgot, resend or edit"
+            else
+                puts "it was garbage"
+            end
+        
+        else
+            puts "in loop (params was MORE than 1)"
+        end
 
         
         setUser
@@ -95,9 +112,10 @@ class SparksController < ApplicationController
                 puts "story exists, do nothing here"
                 @showHome = true
             else
-                puts "story didn't exists, do something here"
-                @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls, :slug)
-                @showHome = false
+                raise ActionController::RoutingError.new('Not Found')
+                # puts "story didn't exists, do something here"
+                # @stories = Story.order("created_at DESC").limit(STORIES_PER_PAGE).offset(@page * STORIES_PER_PAGE).select(:id, :title, :urls, :slug)
+                # @showHome = false
             end
 
         end
